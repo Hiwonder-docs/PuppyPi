@@ -7,9 +7,15 @@
    :maxdepth: 2
    :caption: PuppyPi
 
-   docs/read_before_studying.md
-   docs/play_first_hand.md
-   docs/docker_container_basics_course.md
-   docs/ros_basics_course.md
-   docs/remote_tool.md
+   docs/1_read_before_studying.md
+   docs/2_play_first_hand.md
+   docs/5_docker_container_basics_course.md
+   docs/6_ros_basics_course.md
+   docs/8_remote_tool.md
+   docs/9_motion_control.md
+   docs/10_action_editing.md
+   docs/11_simulation.md
+   docs/13_visual_recognition_and_tracking.md
+
+
 

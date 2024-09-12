@@ -12,23 +12,23 @@
 
 VNC是一款图形化远程控制软件。通过连接树莓派的Wi-Fi热点，可以直接在电脑端控制树莓派，VNC的安装步骤如下：
 
-1)  双击本节目录下的安装程序“**VNC-Viewer-6.17.731-Windows**”，将安装语言选择为“**English**”，并点击“**OK**”按键。
+1)  双击本节目录下的安装程序"**VNC-Viewer-6.17.731-Windows**"，将安装语言选择为"**English**"，并点击"**OK**"按键。
 
 <img src="../_static/media/chapter_8/section_1/image1.png" style="width:3.14931in;height:1.61736in" />
 
-2)  点击“**Next**”按键。
+2)  点击"**Next**"按键。
 
 <img src="../_static/media/chapter_8/section_1/image2.png" style="width:4.72431in;height:3.68889in" />
 
-3)  勾选同意协议，并点击“**Next**”按键。
+3)  勾选同意协议，并点击"**Next**"按键。
 
 <img src="../_static/media/chapter_8/section_1/image3.png" style="width:4.72431in;height:3.68889in" />
 
-4)  保持默认安装位置，并点击“**Next**”按键。跳转至下一界面时，直接点击“**Install**”按键。
+4)  保持默认安装位置，并点击"**Next**"按键。跳转至下一界面时，直接点击"**Install**"按键。
 
 <img src="../_static/media/chapter_8/section_1/image4.png" style="width:4.72431in;height:3.68889in" />
 
-5)  等待片刻后，出现安装完成的提示界面，点击“**Finish**”按键即可。
+5)  等待片刻后，出现安装完成的提示界面，点击"**Finish**"按键即可。
 
 <img src="../_static/media/chapter_8/section_1/image5.png" style="width:4.72431in;height:3.68889in" />
 
@@ -36,25 +36,25 @@ VNC是一款图形化远程控制软件。通过连接树莓派的Wi-Fi热点，
 
 1.3 设备开机
 
-参照“**[学前先看\2. 首次开机]()**”课程，打开设备开关，将设备开机。稍等片刻后，扩展板上的LED1会开始闪烁，蜂鸣器会鸣叫一次，代表设备开机成功。
+参照"**[学前先看\2. 首次开机]()**"课程，打开设备开关，将设备开机。稍等片刻后，扩展板上的LED1会开始闪烁，蜂鸣器会鸣叫一次，代表设备开机成功。
 
 ### 1.2 设备连接
 
-1)  PuppyPi开机成功后，默认连接模式是AP直连模式，此时将会产生一个以“HW”开头的热点，我们可以在电脑端搜索并连接这个热点，如下图所示：
+1)  PuppyPi开机成功后，默认连接模式是AP直连模式，此时将会产生一个以"HW"开头的热点，我们可以在电脑端搜索并连接这个热点，如下图所示：
 
 <img src="../_static/media/chapter_8/section_1/image7.png" style="width:3.14961in;height:0.50556in" alt="D:\Work\TurboPi\TurboPi图片素材\3.3.1.png3.3.1" />
 
-2)  点击连接，输入密码“**hiwonder**”。
+2)  点击连接，输入密码"**hiwonder**"。
 
 <img src="../_static/media/chapter_8/section_1/image8.png" style="width:3.76042in;height:1.75in" alt="D:\Work\TurboPi\TurboPi图片素材\3.3.2.png3.3.2" />
 
 <img src="../_static/media/chapter_8/section_1/image9.png" style="width:3.76042in;height:1.42708in" alt="3.3.3" />
 
-3)  连接成功后，打开VNC Viewer，在地址栏输入树莓派默认的IP地址：192.168.149.1，按下回车。如果出现安全连接相关的提示框，点击“Continue”按键即可。  
+3)  连接成功后，打开VNC Viewer，在地址栏输入树莓派默认的IP地址：192.168.149.1，按下回车。如果出现安全连接相关的提示框，点击"Continue"按键即可。  
 
 3) <img src="../_static/media/chapter_8/section_1/image10.png" style="width:5.51181in;height:0.54792in" />
 
-4)  在账号登录窗口填写所需信息，账号栏（Username）输入“**pi**”，密码栏（Password）输入“**raspberrypi**”，并勾选记住密码（Remember password）。点击“OK”按键后，便可远程打开树莓派桌面。
+4)  在账号登录窗口填写所需信息，账号栏（Username）输入"**pi**"，密码栏（Password）输入"**raspberrypi**"，并勾选记住密码（Remember password）。点击"OK"按键后，便可远程打开树莓派桌面。
 
 <img src="../_static/media/chapter_8/section_1/image11.png" style="width:3.14931in;height:2.21528in" />
 
@@ -148,9 +148,9 @@ VNC是一款图形化远程控制软件。通过连接树莓派的Wi-Fi热点，
 
 ### 2.2 程序结构说明
 
-指令的输入需严格区分大小写及空格，关键词支持“**TAB**”键补齐。
+指令的输入需严格区分大小写及空格，关键词支持"**TAB**"键补齐。
 
-1)  点击桌面左上角终端图标<img src="../_static/media/chapter_8/section_2/image11.png" style="width:0.4375in;height:0.35417in" />，或者按下“**Ctrl+Alt+T**”，打开命令行终端。
+1)  点击桌面左上角终端图标<img src="../_static/media/chapter_8/section_2/image11.png" style="width:0.4375in;height:0.35417in" />，或者按下"**Ctrl+Alt+T**"，打开命令行终端。
 
 <img src="../_static/media/chapter_8/section_2/image12.png" style="width:5.76528in;height:3.69236in" />
 
@@ -247,7 +247,7 @@ Docker是一种开源平台和工具，它可以帮助您在容器中打包、�
 
 Docker标志
 
-关于Docker的学习，用户可前往课程资料的“**[Docker容器基础课程]()**”的相关课程或Docker相关网站进行了解和学习。
+关于Docker的学习，用户可前往课程资料的"**[Docker容器基础课程]()**"的相关课程或Docker相关网站进行了解和学习。
 
 Docker官网：http://www.docker.com
 
@@ -259,7 +259,7 @@ Docker Hub（仓库）官网：https://hub.docker.com
 
 本产品的所有功能玩法和程序，都会放置在Docker容器中运行。为了用户能快速了解和上手该产品，以下进行Docker常用指令的介绍。
 
-1)  将设备开机，并参照课程资料的“**[远程工具安装及容器进入方法\1. 远程桌面工具安装与连接]()**”内容，通过VNC远程连接工具连接。
+1)  将设备开机，并参照课程资料的"**[远程工具安装及容器进入方法\1. 远程桌面工具安装与连接]()**"内容，通过VNC远程连接工具连接。
 
 <img src="../_static/media/chapter_8/section_3/image2.png" style="width:5.75278in;height:3.24375in" />
 
@@ -325,7 +325,7 @@ exit
 
 <img src="../_static/media/chapter_8/section_3/image7.png" style="width:5.76389in;height:1.50347in" />
 
-2)  使用快捷键组合“**crtl+P+Q**”，此时容器会直接退出但不停止运行，我们可以在终端输入指令,查看到正在运行的容器。
+2)  使用快捷键组合"**crtl+P+Q**"，此时容器会直接退出但不停止运行，我们可以在终端输入指令,查看到正在运行的容器。
 
 ```commandline
 docker ps
@@ -339,7 +339,7 @@ docker ps
 
 <img src="../_static/media/chapter_8/section_3/image9.png" style="width:5.7625in;height:1.64097in" />
 
-1)  在terminator窗口右键，选择“**Preference**”点击。
+1)  在terminator窗口右键，选择"**Preference**"点击。
 
 <img src="../_static/media/chapter_8/section_3/image10.png" style="width:5.76319in;height:3.60486in" />
 
@@ -347,7 +347,7 @@ docker ps
 
 <img src="../_static/media/chapter_8/section_3/image11.png" style="width:5.7625in;height:3.75833in" />
 
-3)  在方框内“**√**”中，输入“**host + && docker exec -it -u ubuntu -w /home/ubuntu puppypi /bin/zsh**”进入容器的指令。（注意：**puppypi** 是装有功能玩法的容器名称）
+3)  在方框内"**√**"中，输入"**host + && docker exec -it -u ubuntu -w /home/ubuntu puppypi /bin/zsh**"进入容器的指令。（注意：**puppypi** 是装有功能玩法的容器名称）
 
 ```commandline
 host + && docker exec -it -u ubuntu -w /home/ubuntu puppypi /bin/zsh

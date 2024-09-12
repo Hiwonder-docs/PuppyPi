@@ -32,13 +32,13 @@ ROS官网：**https://wiki.ros.org**
 
 ## 2. ROS系统安装和环境搭建
 
-本节课适用于Jetson Nano官方镜像下从0开始搭建ROS环境，这里提供两种ROS系统的安装方式，“方法一”为一键安装，只需要一条指令即可自动安装整个ROS系统；“方法二”则需要设置下载源配置、设置环境变量等步骤。
+本节课适用于Jetson Nano官方镜像下从0开始搭建ROS环境，这里提供两种ROS系统的安装方式，"方法一"为一键安装，只需要一条指令即可自动安装整个ROS系统；"方法二"则需要设置下载源配置、设置环境变量等步骤。
 
-如果你是初次接触ROS的用户，建议选择“方法一”一键即可快速安装，在后续根据个人需求可选择“方法二”进行体验。
+如果你是初次接触ROS的用户，建议选择"方法一"一键即可快速安装，在后续根据个人需求可选择"方法二"进行体验。
 
 ### 2.1 方法一：一键安装（推荐）
 
-点击系统桌面的图标<img src="../_static/media/chapter_6/section_2/image1.png" style="width:0.48958in;height:0.39583in" />，打开命令行终端。在终端输入指令“**wget http://fishros.com/install -O fishros && . fishros**”，按下回车，然后输入密码。
+点击系统桌面的图标<img src="../_static/media/chapter_6/section_2/image1.png" style="width:0.48958in;height:0.39583in" />，打开命令行终端。在终端输入指令"**wget http://fishros.com/install -O fishros && . fishros**"，按下回车，然后输入密码。
 
 <img src="../_static/media/chapter_6/section_2/image2.png" style="width:5.76528in;height:1.29861in" />
 
@@ -72,7 +72,7 @@ ROS官网：**https://wiki.ros.org**
 
 - #### 2.2.2 检查Ubuntu的软件和更新源
 
-1)  找到系统中的“**软件和更新**”。
+1)  找到系统中的"**软件和更新**"。
 
 <img src="../_static/media/chapter_6/section_2/image9.png" style="width:5.76389in;height:4.18194in" />
 
@@ -90,7 +90,7 @@ ROS官网：**https://wiki.ros.org**
 sudo sh -c '. /etc/lsb-release && echo "deb http://mirrors.ustc.edu.cn/ros/ubuntu/ \`lsb_release -cs\` main" \> /etc/apt/sources.list.d/ros-latest.list'
 ```
 
-按下回车，接着输入虚拟机的密码“**ubuntu**”（此密码为用户自行设置的，我们这里的密码为ubuntu）。
+按下回车，接着输入虚拟机的密码"**ubuntu**"（此密码为用户自行设置的，我们这里的密码为ubuntu）。
 
 <img src="../_static/media/chapter_6/section_2/image11.png" style="width:5.76111in;height:0.98125in" />
 
@@ -114,7 +114,7 @@ sudo apt update
 
 - #### 2.2.4 安装ROS
 
-打开命令行终端，输入指令“**sudo apt install ros-melodic-desktop-full**”，等待下载安装完成，根据网络状况不同，安装过程大概要10分钟。
+打开命令行终端，输入指令"**sudo apt install ros-melodic-desktop-full**"，等待下载安装完成，根据网络状况不同，安装过程大概要10分钟。
 
 ```commandline
 sudo apt install ros-melodic-desktop-full
@@ -122,7 +122,7 @@ sudo apt install ros-melodic-desktop-full
 
 - #### 2.2.5 设置环境变量
 
-打开命令行终端，依次输入指令“**echo "source /opt/ros/melodic/setup.bash" \>\> ~/.bashrc**”和“**source ~/.bashrc**”，完成环境变量配置。
+打开命令行终端，依次输入指令"**echo "source /opt/ros/melodic/setup.bash" \>\> ~/.bashrc**"和"**source ~/.bashrc**"，完成环境变量配置。
 
 ```commandline
 echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
@@ -136,7 +136,7 @@ source ~/.bashrc
 
 - #### 2.2.6 安装rosdep
 
-输入指令“**sudo apt-get install python3-rosdep**”按下回车，安装rosdep；出现安装确认提示，输入“**Y**”即可。
+输入指令"**sudo apt-get install python3-rosdep**"按下回车，安装rosdep；出现安装确认提示，输入"**Y**"即可。
 
 ```commandline
 sudo apt-get install python3-rosdep
@@ -146,13 +146,13 @@ sudo apt-get install python3-rosdep
 
 - #### 2.2.7 初始化
 
-1)  输入指令“**cd /etc/ros/rosdep/sources.list.d**”进入“**sources.list.d**”文件夹。
+1)  输入指令"**cd /etc/ros/rosdep/sources.list.d**"进入"**sources.list.d**"文件夹。
 
 ```commandline
 cd /etc/ros/rosdep/sources.list.d
 ```
 
-2)  输入指令“**sudo gedit 20-default.list**”，编辑此文件。
+2)  输入指令"**sudo gedit 20-default.list**"，编辑此文件。
 
 ```commandline
 sudo gedit 20-default.list
@@ -172,57 +172,57 @@ sudo gedit 20-default.list
 
 <img src="../_static/media/chapter_6/section_2/image20.png" style="width:5.76736in;height:1.09514in" />
 
-6)  输入指令“**cd /usr/lib/python2.7/dist-packages/rosdep2/**”,进入到“**rosdep2**”目录下。
+6)  输入指令"**cd /usr/lib/python2.7/dist-packages/rosdep2/**",进入到"**rosdep2**"目录下。
 
 ```commandline
 cd /usr/lib/python2.7/dist-packages/rosdep2/
 ```
 
-7)  输入指令“**sudo gedit gbpdistro_support.py**”按下回车，若提示有输入虚拟机密码的提示，我们输入“**ubuntu**”（此密码为用户自行设置的，我们这里的密码为ubuntu），按下回车，即可打开“**gbpdistro_support.py**”文 件，找到“FUERTE_GBPDISTRO_URL”代码。
+7)  输入指令"**sudo gedit gbpdistro_support.py**"按下回车，若提示有输入虚拟机密码的提示，我们输入"**ubuntu**"（此密码为用户自行设置的，我们这里的密码为ubuntu），按下回车，即可打开"**gbpdistro_support.py**"文 件，找到"FUERTE_GBPDISTRO_URL"代码。
 
 <img src="../_static/media/chapter_6/section_2/image22.png" style="width:5.76458in;height:0.30694in" />
 
 <img src="../_static/media/chapter_6/section_2/image23.png" style="width:5.7625in;height:0.62222in" />
 
-8)  将“ **https://raw.githubusercontent.com/ros/rosdistro/** ”修改为“ **https://gitee.com/wybros/rosdistro/raw/** ”，（只修改下图红框所示内容,后续内容无需更改）修改完成后点击保存，关闭即可。
+8)  将" **https://raw.githubusercontent.com/ros/rosdistro/** "修改为" **https://gitee.com/wybros/rosdistro/raw/** "，（只修改下图红框所示内容,后续内容无需更改）修改完成后点击保存，关闭即可。
 
 <img src="../_static/media/chapter_6/section_2/image24.png" style="width:5.76181in;height:3.16111in" />
 
-9)  接着输入指令“**sudo gedit rep3.py**”，打开“**rep3.py**”文件，找到“REP3_TARGETS_URL”代码。
+9)  接着输入指令"**sudo gedit rep3.py**"，打开"**rep3.py**"文件，找到"REP3_TARGETS_URL"代码。
 
 <img src="../_static/media/chapter_6/section_2/image25.png" style="width:5.76111in;height:0.27917in" />
 
 <img src="../_static/media/chapter_6/section_2/image26.png" style="width:5.76389in;height:0.36875in" />
 
-10) 将“ **https://raw.githubusercontent.com/ros/rosdistro/** ”修改为“ **https://gitee.com/wybros/rosdistro/raw/** ”，（只修改下图红框所示内容,后续内容无需更改）修改完成后点击保存，关闭即可。
+10) 将" **https://raw.githubusercontent.com/ros/rosdistro/** "修改为" **https://gitee.com/wybros/rosdistro/raw/** "，（只修改下图红框所示内容,后续内容无需更改）修改完成后点击保存，关闭即可。
 
 <img src="../_static/media/chapter_6/section_2/image27.png" style="width:5.7625in;height:3.38333in" />
 
-11) 接着输入指令“**sudo gedit sources_list.py**”，打开“**sources_list.py**”文件，找到“**DEFAULT_SOURCES_LIST_URL**”代码。
+11) 接着输入指令"**sudo gedit sources_list.py**"，打开"**sources_list.py**"文件，找到"**DEFAULT_SOURCES_LIST_URL**"代码。
 
 <img src="../_static/media/chapter_6/section_2/image28.png" style="width:5.76667in;height:0.29722in" /><img src="../_static/media/chapter_6/section_2/image29.png" style="width:5.7625in;height:0.55417in" />
 
-12) 将“ **https://raw.githubusercontent.com/ros/rosdistro/** ”修改为“ **https://gitee.com/wybros/rosdistro/raw/** ”，（只修改下图红框所示内容,后续内容无需更改）修改完成后点击保存，关闭即可。
+12) 将" **https://raw.githubusercontent.com/ros/rosdistro/** "修改为" **https://gitee.com/wybros/rosdistro/raw/** "，（只修改下图红框所示内容,后续内容无需更改）修改完成后点击保存，关闭即可。
 
 <img src="../_static/media/chapter_6/section_2/image30.png" style="width:5.75903in;height:3.29931in" />
 
-13) 输入指令“**cd /usr/lib/python2.7/dist-packages/rosdistro/**”，进入“**rosdistro**”目录下。
+13) 输入指令"**cd /usr/lib/python2.7/dist-packages/rosdistro/**"，进入"**rosdistro**"目录下。
 
 <img src="../_static/media/chapter_6/section_2/image31.png" style="width:5.76667in;height:0.28056in" />
 
-14) 输入指令“**sudo gedit \_\_init\_\_.py**”，进入“**\_\_init\_\_.py**”文件，找到“DEFAULT_INDEX_URL”代码。
+14) 输入指令"**sudo gedit \_\_init\_\_.py**"，进入"**\_\_init\_\_.py**"文件，找到"DEFAULT_INDEX_URL"代码。
 
 <img src="../_static/media/chapter_6/section_2/image32.png" style="width:5.76736in;height:0.26458in" />
 
 <img src="../_static/media/chapter_6/section_2/image33.png" style="width:5.75903in;height:0.55278in" />
 
-15) 将“ **https://raw.githubusercontent.com/ros/rosdistro/** ”修改为“ **https://gitee.com/wybros/rosdistro/raw/** ”，（只修改下图红框所示内容,后续内容无需更改）修改完成后点击保存，关闭即可。
+15) 将" **https://raw.githubusercontent.com/ros/rosdistro/** "修改为" **https://gitee.com/wybros/rosdistro/raw/** "，（只修改下图红框所示内容,后续内容无需更改）修改完成后点击保存，关闭即可。
 
 <img src="../_static/media/chapter_6/section_2/image34.png" style="width:5.76111in;height:4.01736in" />
 
 - #### 2.2.8更新
 
-打开新的命令行终端，输入指令“**rosdep update**”更新。
+打开新的命令行终端，输入指令"**rosdep update**"更新。
 
 <img src="../_static/media/chapter_6/section_2/image35.png" style="width:5.76458in;height:0.65278in" />
 
@@ -230,7 +230,7 @@ cd /usr/lib/python2.7/dist-packages/rosdep2/
 
 <img src="../_static/media/chapter_6/section_2/image36.png" style="width:5.7625in;height:3.89722in" />
 
-若出现下图读取超时的提示，可能是网络原因，用户可多输入几次“**rosdep update**”尝试更新；若还是更新不了，用户可检查“[2.2.7 初始化]()”的内容，确保修改的内容无误，后再次输入“**rosdep update**”进行更新。
+若出现下图读取超时的提示，可能是网络原因，用户可多输入几次"**rosdep update**"尝试更新；若还是更新不了，用户可检查"[2.2.7 初始化]()"的内容，确保修改的内容无误，后再次输入"**rosdep update**"进行更新。
 
 <img src="../_static/media/chapter_6/section_2/image37.png" style="width:5.7625in;height:1.43056in" />
 
@@ -315,7 +315,7 @@ Manifest（package xml）：功能包的描述文件，用于定义功能包相�
 | **术语名称** | **说明** |
 |:--:|:--:|
 | urdf文件 | 描述机器人所有元素的模型文件，包含连杆（link）、关节（joint）、运动学参数（axis）、动力学参数（dynamics）、可视化模型（visual）和碰撞检测模型（collision）。 |
-| srv文件 | 存放在srv文件夹下，用于定义ROS服务消息，包含请求和响应两个部分，请求与响应之间使用符号“---”进行分隔。 |
+| srv文件 | 存放在srv文件夹下，用于定义ROS服务消息，包含请求和响应两个部分，请求与响应之间使用符号"---"进行分隔。 |
 | msg文件 | 存放在msg文件夹下，用于定义ROS话题消息。 |
 | package.xml | 描述功能包的属性，包含功能包的名字、版本号、作者等。 |
 | CmakeLists.txt | 编译配置文件，使用Cmake编译。 |
@@ -366,7 +366,7 @@ ROS命令可以大致分为五个类型：ROS shell命令、ROS执行命令、RO
 | catkin_create_pkg | 自动生成功能包 |
 | catkin_make | 基于catkin构建系统，构建目录中所有的功能包 |
 | catkin_eclipse | 修改以catkin构建系统生成的功能包，使其能在Eclipse环境中使用 |
-| catkin_prepare_release | 更新由命令“catkin_generate_changelog”生成的CHANGELOG.rst文件 |
+| catkin_prepare_release | 更新由命令"catkin_generate_changelog"生成的CHANGELOG.rst文件 |
 | catkin_generate_changelog | 在发布时生成或更新CHANGELOG.rst文件 |
 | catkin_init_workspace | 初始化catkin构建系统的工作目录 |
 | catkin_find | 搜寻所有正在使用的工作目录 |
@@ -392,7 +392,7 @@ ROS命令可以大致分为五个类型：ROS shell命令、ROS执行命令、RO
 
 1)  打开命令行终端。
 
-2)  输入指令“**mkdir -p ~/catkin_ws/src**”，并按下回车，在指定目录下创建一个名为catkin_ws的工作空间。
+2)  输入指令"**mkdir -p ~/catkin_ws/src**"，并按下回车，在指定目录下创建一个名为catkin_ws的工作空间。
 
 ```commandline
 mkdir -p ~/catkin_ws/src
@@ -402,13 +402,13 @@ mkdir -p ~/catkin_ws/src
 
 ### 4.2 ROS功能包的创建
 
-1)  输入指令“**cd ~/catkin_ws/src**”，并按下回车，进入catkin_ws的源文件空间（src）目录。
+1)  输入指令"**cd ~/catkin_ws/src**"，并按下回车，进入catkin_ws的源文件空间（src）目录。
 
 ```commandline
 cd ~/catkin_ws/src
 ```
 
-2)  输入指令“**catkin_create_pkg beginner_hiwonder std_msgs rospy roscpp**”，并按下回车，创建一个名为“**beginner_hiwonder**”的功能包，添加依赖关系（msgs、rospy、roscpp）。
+2)  输入指令"**catkin_create_pkg beginner_hiwonder std_msgs rospy roscpp**"，并按下回车，创建一个名为"**beginner_hiwonder**"的功能包，添加依赖关系（msgs、rospy、roscpp）。
 
 ```commandline
 catkin_create_pkg beginner_hiwonder std_msgs rospy roscpp
@@ -416,13 +416,13 @@ catkin_create_pkg beginner_hiwonder std_msgs rospy roscpp
 
 <img src="../_static/media/chapter_6/section_4//image4.png" style="width:5.51181in;height:0.97349in" />
 
-3)  输入指令“**cd ~/catkin_ws**”，并按下回车，返回catkin工作空间。
+3)  输入指令"**cd ~/catkin_ws**"，并按下回车，返回catkin工作空间。
 
 ```commandline
 cd ~/catkin_ws
 ```
 
-4)  输入指令“**catkin_make**”，并按下回车，完成catkin工作区中功能包的构建。
+4)  输入指令"**catkin_make**"，并按下回车，完成catkin工作区中功能包的构建。
 
 ```commandline
 catkin_make
@@ -430,19 +430,19 @@ catkin_make
 
 <img src="../_static/media/chapter_6/section_4//image7.png" style="width:5.51181in;height:1.6331in" />
 
-5)  输入指令“**echo "source ~/catkin_ws/devel/setup.bash" \>\> ~/.bashrc**”，将catkin_ws工作空间添加到ROS环境中，即完成工作空间的创建。
+5)  输入指令"**echo "source ~/catkin_ws/devel/setup.bash" \>\> ~/.bashrc**"，将catkin_ws工作空间添加到ROS环境中，即完成工作空间的创建。
 
 ```commandline
 echo "source ~/catkin_ws/devel/setup.bash" \>\> ~/.bashrc
 ```
 
-6)  输入指令“**source ~/.bashrc**”，并按下回车，即完成路径的添加。
+6)  输入指令"**source ~/.bashrc**"，并按下回车，即完成路径的添加。
 
 ```commandline
 source ~/.bashrc
 ```
 
-7)  输入进入功能包所在目录的指令“**roscd beginner_hiwonder**”，并按下回车，验证功能包是否创建成功。
+7)  输入进入功能包所在目录的指令"**roscd beginner_hiwonder**"，并按下回车，验证功能包是否创建成功。
 
 ```commandline
 roscd beginner_hiwonder
@@ -452,25 +452,25 @@ roscd beginner_hiwonder
 
 本节以创建一个**velocity_publisher.py**的（发布者）节点为例进行讲解。
 
-1)  输入指令“**roscd beginner_hiwonder**”，回车。进入beginner_hiwonder软件包。
+1)  输入指令"**roscd beginner_hiwonder**"，回车。进入beginner_hiwonder软件包。
 
 ```commandline
 roscd beginner_hiwonder
 ```
 
-2)  输入指令“**mkdir scripts**”，回车。新建一个scripts目录存放Python脚本。
+2)  输入指令"**mkdir scripts**"，回车。新建一个scripts目录存放Python脚本。
 
 ```commandline
 mkdir scripts
 ```
 
-3)  输入指令“**cd scripts/**”，回车。
+3)  输入指令"**cd scripts/**"，回车。
 
 ```commandline
 cd scripts/
 ```
 
-4)  输入指令“**vi velocity_publisher.py**”编辑程序，复制下面程序。如需修改，再按下“**i**”即可修改。修改完成，按下“**Esc**”，输入“**：wq**”保存并退出。
+4)  输入指令"**vi velocity_publisher.py**"编辑程序，复制下面程序。如需修改，再按下"**i**"即可修改。修改完成，按下"**Esc**"，输入"**：wq**"保存并退出。
 
 ```commandline
 vi velocity_publisher.py
@@ -538,7 +538,7 @@ vi velocity_publisher.py
 
 <img src="../_static/media/chapter_6/section_5/image5.png" style="width:5.51181in;height:3.02552in" />
 
-5)  输入指令“**chmod +x velocity_publisher.py**”回车，为保存的velocity_publisher.py赋予可执行权限。
+5)  输入指令"**chmod +x velocity_publisher.py**"回车，为保存的velocity_publisher.py赋予可执行权限。
 
 ```commandline
 chmod +x velocity_publisher.py
@@ -549,19 +549,19 @@ chmod +x velocity_publisher.py
 
 ## 6. 编写简单的订阅器Subscriber
 
-订阅器是基于编辑了发布器的基础上创建的，只有发布了消息，才有可能订阅。若未编辑发布器，可前往目录“**[5. 编辑简单的发布器Publisher]()**”查看编辑教程。
+订阅器是基于编辑了发布器的基础上创建的，只有发布了消息，才有可能订阅。若未编辑发布器，可前往目录"**[5. 编辑简单的发布器Publisher]()**"查看编辑教程。
 
 ### 6.1 编写订阅者节点
 
 这里我们以创建一个的pose_subscriber.py节点为例进行讲解。
 
-1)  输入指令“**cd catkin_ws/src/beginner_hiwonder/scripts/**”，回车。
+1)  输入指令"**cd catkin_ws/src/beginner_hiwonder/scripts/**"，回车。
 
 ```commandline
 cd catkin_ws/src/beginner_hiwonder/scripts/
 ```
 
-2)  输入指令“**vi pose_subscriber.py**”编辑程序，复制下面程序。如需修改，再按下“**i**”即可修改。修改完成，按下“**Esc**”，输入“**：wq**”保存并退出。
+2)  输入指令"**vi pose_subscriber.py**"编辑程序，复制下面程序。如需修改，再按下"**i**"即可修改。修改完成，按下"**Esc**"，输入"**：wq**"保存并退出。
 
 ```commandline
 vi pose_subscriber.py
@@ -601,7 +601,7 @@ vi pose_subscriber.py
 
 <img src="../_static/media/chapter_6/section_6/image3.png" style="width:5.51181in;height:3.04684in" />
 
-3)  输入指令“**chmod +x pose_subscriber.py**”回车，为保存的pose_subscriber.py赋予可执行权限。
+3)  输入指令"**chmod +x pose_subscriber.py**"回车，为保存的pose_subscriber.py赋予可执行权限。
 
 ```commandline
 chmod +x pose_subscriber.py
@@ -609,7 +609,7 @@ chmod +x pose_subscriber.py
 
 ### 6.2 测试发布者和订阅者
 
-1)  输入指令“**roscore**”，启动节点管理器。
+1)  输入指令"**roscore**"，启动节点管理器。
 
 ```commandline
 roscore
@@ -619,7 +619,7 @@ roscore
 
 <img src="../_static/media/chapter_6/section_6/image6.jpeg" style="width:5.51181in;height:0.48798in" alt="C:\Users\Admin\Desktop\456.jpg456" />
 
-2)  再输入指令“**rosrun turtlesim turtlesim_node**”，回车，开启小乌龟。
+2)  再输入指令"**rosrun turtlesim turtlesim_node**"，回车，开启小乌龟。
 
 ```commandline
 rosrun turtlesim turtlesim_node
@@ -629,7 +629,7 @@ rosrun turtlesim turtlesim_node
 
 <img src="../_static/media/chapter_6/section_6/image8.png" style="width:5.76458in;height:5.34514in" alt="992" />
 
-3)  再打开一个新的终端，输入指令“**rosrun beginner_hiwonder velocity_publisher.py**”运行velocity_publisher.py的发布者。按下“Ctrl+C”即可停止发布者节点的运行。
+3)  再打开一个新的终端，输入指令"**rosrun beginner_hiwonder velocity_publisher.py**"运行velocity_publisher.py的发布者。按下"Ctrl+C"即可停止发布者节点的运行。
 
 ```commandline
 rosrun beginner_hiwonder velocity_publisher.py
@@ -641,7 +641,7 @@ rosrun beginner_hiwonder velocity_publisher.py
 
 4)  重新打开一个命令行终端，输入指令
 
-“**rosrun beginner_hiwonder pose_subscriber.py**”运行pose_subscriber.py的订阅者。按下“**Ctrl+C**”即可停止订阅者节点的运行。
+"**rosrun beginner_hiwonder pose_subscriber.py**"运行pose_subscriber.py的订阅者。按下"**Ctrl+C**"即可停止订阅者节点的运行。
 
 ```commandline
 rosrun beginner_hiwonder pose_subscriber.py
@@ -661,7 +661,7 @@ rosrun beginner_hiwonder pose_subscriber.py
 
 :::{Note}
 
-在自定义话题消息之前，需要先创建工作空间和功能包，具体操作过程可前往目录“**[3. 创建工作空间与功能包]()**”查看文档。
+在自定义话题消息之前，需要先创建工作空间和功能包，具体操作过程可前往目录"**[3. 创建工作空间与功能包]()**"查看文档。
 
 :::
 
@@ -669,7 +669,7 @@ rosrun beginner_hiwonder pose_subscriber.py
 
 1)  打开命令行终端。
 
-2)  输入进入功能包所在目录的指令“**roscd beginner_hiwonder**”，并按下回车。
+2)  输入进入功能包所在目录的指令"**roscd beginner_hiwonder**"，并按下回车。
 
 ```commandline
 roscd beginner_hiwonder
@@ -677,25 +677,25 @@ roscd beginner_hiwonder
 
 :::{Note}
 
-若出现提示“**No such package/stack ‘beginner_hiwonder’**”，即功能包不存在于环境变量ROS_PACKAGE_PATH中，具体解决方法可前往目录“**[3. 创建工作空间与功能包]()**”查看文档，解决此问题后，请重复一次当前步骤的操作。
+若出现提示"**No such package/stack ‘beginner_hiwonder’**"，即功能包不存在于环境变量ROS_PACKAGE_PATH中，具体解决方法可前往目录"**[3. 创建工作空间与功能包]()**"查看文档，解决此问题后，请重复一次当前步骤的操作。
 
 :::
 
 注意：
 
-3)  输入指令“**mkdir msg**”，并按下回车，新建用于存放文本文件的文件夹“**msg**”。
+3)  输入指令"**mkdir msg**"，并按下回车，新建用于存放文本文件的文件夹"**msg**"。
 
 ```commandline
 mkdir msg
 ```
 
-4)  输入指令“**cd msg**”，回车。
+4)  输入指令"**cd msg**"，回车。
 
 ```commandline
 cd msg
 ```
 
-5)  输入指令“**vi Person.msg**”编辑程序，复制下面程序。如需修改，再按下“**i**”即可修改。修改完成，按下“**Esc**”，输入“**：wq**”保存并退出。
+5)  输入指令"**vi Person.msg**"编辑程序，复制下面程序。如需修改，再按下"**i**"即可修改。修改完成，按下"**Esc**"，输入"**：wq**"保存并退出。
 
 ```commandline
 vi Person.msg
@@ -717,7 +717,7 @@ uint8 female = 2
 
 <img src="../_static/media/chapter_6/section_7/image5.png" style="width:5.51181in;height:1.39819in" />
 
-6)  输入“**vi package.xml**”，复制下面程序，在下图所示位置添加功能包依赖。如需修改，再按下“**i**”即可修改。修改完成，按下“**Esc**”，输入“**：wq**”保存并退出。
+6)  输入"**vi package.xml**"，复制下面程序，在下图所示位置添加功能包依赖。如需修改，再按下"**i**"即可修改。修改完成，按下"**Esc**"，输入"**：wq**"保存并退出。
 
 ```commandline
 vi package.xml
@@ -733,17 +733,17 @@ vi package.xml
 
 <img src="../_static/media/chapter_6/section_7/image7.png" style="width:5.51181in;height:1.84147in" />
 
-8)  输入“**vi CMakeLists.txt**”，再按下“**i**”，修改“**CMakeLists.txt**”文件。
+8)  输入"**vi CMakeLists.txt**"，再按下"**i**"，修改"**CMakeLists.txt**"文件。
 
 ```commandline
 vi CMakeLists.txt
 ```
 
-9)  在下图所示位置添加所需的编译选项“**message_generation**”。
+9)  在下图所示位置添加所需的编译选项"**message_generation**"。
 
 <img src="../_static/media/chapter_6/section_7/image9.png" style="width:5.51181in;height:1.05528in" />
 
-10) 找到下图所示代码，将红框部分进行反注释，并添加所需的编译选项“**Person.msg**”。
+10) 找到下图所示代码，将红框部分进行反注释，并添加所需的编译选项"**Person.msg**"。
 
 <img src="../_static/media/chapter_6/section_7/image10.png" style="width:5.51181in;height:1.14631in" /><img src="../_static/media/chapter_6/section_7/image11.png" style="width:5.51181in;height:1.09653in" />
 
@@ -753,15 +753,15 @@ vi CMakeLists.txt
 
 <img src="../_static/media/chapter_6/section_7/image13.png" style="width:5.51181in;height:0.7121in" />
 
-12) 找到下图所示代码，将红框部分进行反注释，并添加所需的编译选项“**message_runtime**”。
+12) 找到下图所示代码，将红框部分进行反注释，并添加所需的编译选项"**message_runtime**"。
 
 <img src="../_static/media/chapter_6/section_7/image14.png" style="width:5.51181in;height:0.99864in" /><img src="../_static/media/chapter_6/section_7/image15.png" style="width:5.51181in;height:0.86477in" />
 
-13) 修改完成，按下“**Esc**”，输入“**：wq**”保存并退出。
+13) 修改完成，按下"**Esc**"，输入"**：wq**"保存并退出。
 
 <img src="../_static/media/chapter_6/section_7/image16.png" style="width:5.51181in;height:0.80826in" />
 
-14) 输入指令“**rosmsg show beginner_hiwonder/Person**”，并按下回车，查看写入的消息字段能否被系统识别。当出现下图红框所示字样，即代表识别成功。
+14) 输入指令"**rosmsg show beginner_hiwonder/Person**"，并按下回车，查看写入的消息字段能否被系统识别。当出现下图红框所示字样，即代表识别成功。
 
 ```commandline
 rosmsg show beginner_hiwonder/Person
@@ -775,19 +775,19 @@ rosmsg show beginner_hiwonder/Person
 
 1)  打开命令行终端。
 
-2)  输入进入功能包所在目录的指令“**roscd beginner_hiwonder**”，并按下回车。
+2)  输入进入功能包所在目录的指令"**roscd beginner_hiwonder**"，并按下回车。
 
 ```commandline
 roscd beginner_hiwonder
 ```
 
-3)  输入指令“**cd scripts**”，并按下回车，进入用于存放Python脚本的文件夹“**scripts**”。
+3)  输入指令"**cd scripts**"，并按下回车，进入用于存放Python脚本的文件夹"**scripts**"。
 
 ```commandline
 cd scripts
 ```
 
-4)  输入指令“**vi person_publisher.py**”编辑程序，复制下面程序。如需修改，再按下“**i**”即可修改。修改完成，按下“**Esc**”，输入“**：wq**”保存并退出。
+4)  输入指令"**vi person_publisher.py**"编辑程序，复制下面程序。如需修改，再按下"**i**"即可修改。修改完成，按下"**Esc**"，输入"**：wq**"保存并退出。
 
 ```commandline
 vi person_publisher.py
@@ -856,7 +856,7 @@ vi person_publisher.py
 
 <img src="../_static/media/chapter_6/section_7/image20.png" style="width:5.51181in;height:0.71403in" />
 
-5)  输入指令“**vi person_subscriber.py**”编辑程序，复制下面程序。如需修改，再按下“**i**”即可修改。修改完成，按下“**Esc**”，输入“**：wq**”保存并退出。
+5)  输入指令"**vi person_subscriber.py**"编辑程序，复制下面程序。如需修改，再按下"**i**"即可修改。修改完成，按下"**Esc**"，输入"**：wq**"保存并退出。
 
 ```commandline
 vi person_subscriber.py
@@ -902,13 +902,13 @@ vi person_subscriber.py
 
 <img src="../_static/media/chapter_6/section_7/image22.png" style="width:5.51181in;height:1.33183in" />
 
-6)  输入指令“**chmod +x person_publisher.py**”回车，为保存的person_publisher.py赋予可执行权限。
+6)  输入指令"**chmod +x person_publisher.py**"回车，为保存的person_publisher.py赋予可执行权限。
 
 ```commandline
 chmod +x person_publisher.py
 ```
 
-7)  输入指令“**chmod +x person_subscriber.py**”回车，为保存的person_publisher.py赋予可执行权限。
+7)  输入指令"**chmod +x person_subscriber.py**"回车，为保存的person_publisher.py赋予可执行权限。
 
 ```commandline
 chmod +x person_subscriber.py
@@ -916,25 +916,25 @@ chmod +x person_subscriber.py
 
 - #### 7.2.2 运行发布者和订阅者节点
 
-1)  输入指令“**cd ~/catkin_ws**”，并按下回车，进入catkin工作空间。
+1)  输入指令"**cd ~/catkin_ws**"，并按下回车，进入catkin工作空间。
 
 ```commandline
 cd ~/catkin_ws
 ```
 
-2)  输入指令“**catkin_make**”，并按下回车，构建目录中所有的功能包。
+2)  输入指令"**catkin_make**"，并按下回车，构建目录中所有的功能包。
 
 ```commandline
 catkin_make
 ```
 
-3)  输入指令“**source ./devel/setup.bash**”，并按下回车，刷新工作空间的环境。
+3)  输入指令"**source ./devel/setup.bash**"，并按下回车，刷新工作空间的环境。
 
 ```commandline
 source ./devel/setup.bash
 ```
 
-4)  输入指令“**roscore**”，启动节点管理器。
+4)  输入指令"**roscore**"，启动节点管理器。
 
 ```commandline
 roscore
@@ -944,7 +944,7 @@ roscore
 
 <img src="../_static/media/chapter_6/section_7/image29.jpeg" style="width:5.51181in;height:0.48798in" alt="C:\Users\Admin\Desktop\456.jpg456" />
 
-5)  输入指令“**rosrun beginner_hiwonder person_publisher.py**”，并按下回车，运行发布者节点。如需停止节点的运行，可按下快捷键“**Ctrl+C**”。
+5)  输入指令"**rosrun beginner_hiwonder person_publisher.py**"，并按下回车，运行发布者节点。如需停止节点的运行，可按下快捷键"**Ctrl+C**"。
 
 ```commandline
 rosrun beginner_hiwonder person_publisher.py
@@ -952,7 +952,7 @@ rosrun beginner_hiwonder person_publisher.py
 
 <img src="../_static/media/chapter_6/section_7/image30.png" style="width:5.51181in;height:1.19911in" />
 
-6)  打开一个新的命令行终端，输入指令 “**rosrun beginner_hiwonder person_subscriber.py**”，并按下回车，运行订阅者节点。如需停止节点的运行，可按下快捷键“**Ctrl+C**”。
+6)  打开一个新的命令行终端，输入指令 "**rosrun beginner_hiwonder person_subscriber.py**"，并按下回车，运行订阅者节点。如需停止节点的运行，可按下快捷键"**Ctrl+C**"。
 
 ```commandline
 rosrun beginner_hiwonder person_subscriber.py
@@ -973,13 +973,13 @@ rosrun beginner_hiwonder person_subscriber.py
 
 ### 8.1 配置客户端代码编译规则
 
-1)  输入指令“**cd catkin_ws/src/beginner_hiwonder/scripts/**”，回车。
+1)  输入指令"**cd catkin_ws/src/beginner_hiwonder/scripts/**"，回车。
 
 ```commandline
 cd catkin_ws/src/beginner_hiwonder/scripts/
 ```
 
-2)  输入指令“**vi turtle_spawn.py**”编辑程序，复制下面程序。如需修改，再按下“**i**”即可修改。修改完成，按下“**Esc**”，输入“**：wq**”保存并退出。
+2)  输入指令"**vi turtle_spawn.py**"编辑程序，复制下面程序。如需修改，再按下"**i**"即可修改。修改完成，按下"**Esc**"，输入"**：wq**"保存并退出。
 
 ```commandline
 vi turtle_spawn.py
@@ -1034,7 +1034,7 @@ vi turtle_spawn.py
 
 <img src="../_static/media/chapter_6/section_8/image3.png" style="width:5.51181in;height:3.0088in" />
 
-3)  输入指令“**chmod +x turtle_spawn.py**”回车，为保存的turtle_spawn.py赋予可执行权限。
+3)  输入指令"**chmod +x turtle_spawn.py**"回车，为保存的turtle_spawn.py赋予可执行权限。
 
 ```commandline
 chmod +x turtle_spawn.py
@@ -1042,7 +1042,7 @@ chmod +x turtle_spawn.py
 
 ### 8.2 运行客户端
 
-1)  输入指令“**roscore**”，启动节点管理器。
+1)  输入指令"**roscore**"，启动节点管理器。
 
 <img src="../_static/media/chapter_6/section_8/image5.png" style="width:5.51181in;height:0.14997in" />
 
@@ -1050,7 +1050,7 @@ chmod +x turtle_spawn.py
 
 <img src="../_static/media/chapter_6/section_8/image6.jpeg" style="width:5.51181in;height:0.48798in" alt="C:\Users\Admin\Desktop\456.jpg456" />
 
-2)  输入指令“**rosrun turtlesim turtlesim_node**”，回车，开启小乌龟。
+2)  输入指令"**rosrun turtlesim turtlesim_node**"，回车，开启小乌龟。
 
 ```commandline
 rosrun turtlesim turtlesim_node
@@ -1060,7 +1060,7 @@ rosrun turtlesim turtlesim_node
 
 <img src="../_static/media/chapter_6/section_8/image8.png" style="width:3.14961in;height:2.90863in" alt="10" />
 
-3)  重新打开一个命令行终端，输入指令“**rosrun beginner_hiwonder turtle_spawn.py**”回车，运行客户端。
+3)  重新打开一个命令行终端，输入指令"**rosrun beginner_hiwonder turtle_spawn.py**"回车，运行客户端。
 
 ```commandline
 rosrun beginner_hiwonder turtle_spawn.py
@@ -1078,17 +1078,17 @@ rosrun beginner_hiwonder turtle_spawn.py
 
 :::{Note}
 
-在创建服务器代码之前，需要先创建工作空间和功能包，具体操作过程可前往目录“**[3. 创建工作空间与功能包]()**”查看文档。
+在创建服务器代码之前，需要先创建工作空间和功能包，具体操作过程可前往目录"**[3. 创建工作空间与功能包]()**"查看文档。
 
 :::
 
-1)  输入指令“**cd catkin_ws/src/beginner_hiwonder/scripts/**”，回车。
+1)  输入指令"**cd catkin_ws/src/beginner_hiwonder/scripts/**"，回车。
 
 ```commandline
 cd catkin_ws/src/beginner_hiwonder/scripts/
 ```
 
-2)  输入指令“**vi turtle_command_server.py**”编辑程序，复制下面程序。如需修改，再按下“**i**”即可修改。修改完成，按下“**Esc**”，输入“**：wq**”保存并退出。
+2)  输入指令"**vi turtle_command_server.py**"编辑程序，复制下面程序。如需修改，再按下"**i**"即可修改。修改完成，按下"**Esc**"，输入"**：wq**"保存并退出。
 
 ```commandline
 vi turtle_command_server.py
@@ -1155,7 +1155,7 @@ vi turtle_command_server.py
 
 <img src="../_static/media/chapter_6/section_9/image3.png" style="width:5.51181in;height:3.08693in" />
 
-3)  输入指令“**chmod +x turtle_command_server.py**”，并按下回车，为保存的turtle_command_server.py赋予可执行权限。
+3)  输入指令"**chmod +x turtle_command_server.py**"，并按下回车，为保存的turtle_command_server.py赋予可执行权限。
 
 ```commandline
 chmod +x turtle_command_server.py
@@ -1163,7 +1163,7 @@ chmod +x turtle_command_server.py
 
 ### 9.2 运行服务器节点
 
-1)  输入指令“**roscore**”，启动节点管理器。
+1)  输入指令"**roscore**"，启动节点管理器。
 
 ```commandline
 roscore
@@ -1173,19 +1173,19 @@ roscore
 
 <img src="../_static/media/chapter_6/section_9/image6.jpeg" style="width:5.51181in;height:0.48798in" alt="C:\Users\Admin\Desktop\456.jpg456" />
 
-2)  输入指令“**rosrun turtlesim turtlesim_node**”，并按下回车，启动小乌龟仿真器。
+2)  输入指令"**rosrun turtlesim turtlesim_node**"，并按下回车，启动小乌龟仿真器。
 
 ```commandline
 rosrun turtlesim turtlesim_node
 ```
 
-3)  打开一个新的命令行终端，输入指令“**rosrun beginner_hiwonder turtle_command_server.py**”，并按下回车，运行服务器节点。如需停止节点的运行，可按下快捷键“**Ctrl+C**”。
+3)  打开一个新的命令行终端，输入指令"**rosrun beginner_hiwonder turtle_command_server.py**"，并按下回车，运行服务器节点。如需停止节点的运行，可按下快捷键"**Ctrl+C**"。
 
 ```commandline
 rosrun beginner_hiwonder turtle_command_server.py
 ```
 
-4)  再次打开一个新的命令行终端，输入指令“**rosservice call /turtle_command "{}"**”，并按下回车，令小乌龟沿着圆形轨迹移动。
+4)  再次打开一个新的命令行终端，输入指令"**rosservice call /turtle_command "{}"**"，并按下回车，令小乌龟沿着圆形轨迹移动。
 
 <img src="../_static/media/chapter_6/section_9/image9.png" style="width:5.51181in;height:0.791in" />
 
@@ -1197,7 +1197,7 @@ rosrun beginner_hiwonder turtle_command_server.py
 
 :::{Note}
 
-在自定义服务数据之前，需要先创建工作空间和功能包，具体操作过程可前往目录“**3. 创建工作空间与功能包**”查看文档。
+在自定义服务数据之前，需要先创建工作空间和功能包，具体操作过程可前往目录"**3. 创建工作空间与功能包**"查看文档。
 
 :::
 
@@ -1205,7 +1205,7 @@ rosrun beginner_hiwonder turtle_command_server.py
 
 1)  打开命令行终端。
 
-2)  输入进入功能包所在目录的指令“**roscd beginner_hiwonder**”，并按下回车。
+2)  输入进入功能包所在目录的指令"**roscd beginner_hiwonder**"，并按下回车。
 
 ```commandline
 roscd beginner_hiwonder
@@ -1213,17 +1213,17 @@ roscd beginner_hiwonder
 
 :::{Note}
 
-若出现提示“**No such package/stack ‘beginner_hiwonder’**”，即功能包不存在于环境变量ROS_PACKAGE_PATH中，具体解决方法可前往目录“**第2章 ROS开发入门-\>ROS基础课程-\>第3课 创建工作空间与功能包**”查看文档，解决此问题后，请重复一次当前步骤的操作。
+若出现提示"**No such package/stack ‘beginner_hiwonder’**"，即功能包不存在于环境变量ROS_PACKAGE_PATH中，具体解决方法可前往目录"**第2章 ROS开发入门-\>ROS基础课程-\>第3课 创建工作空间与功能包**"查看文档，解决此问题后，请重复一次当前步骤的操作。
 
 :::
 
-3)  输入指令“**mkdir srv**”，并按下回车，新建用于存放文本文件的文件夹“**srv**”。
+3)  输入指令"**mkdir srv**"，并按下回车，新建用于存放文本文件的文件夹"**srv**"。
 
 ```commandline
 mkdir srv
 ```
 
-4)  输入指令“**vi Person.srv**”编辑程序，复制下面程序。如需修改，再按下“**i**”即可修改。修改完成，按下“**Esc**”，输入“**：wq**”保存并退出。
+4)  输入指令"**vi Person.srv**"编辑程序，复制下面程序。如需修改，再按下"**i**"即可修改。修改完成，按下"**Esc**"，输入"**：wq**"保存并退出。
 
 ```commandline
 vi Person.srv
@@ -1243,13 +1243,13 @@ string result
 ```
 <img src="../_static/media/chapter_6/section_10/image4.png" style="width:5.51181in;height:1.71738in" />
 
-5)  输入“**cd ~/catkin_ws/src/beginner_hiwonder/**”，按下回车。
+5)  输入"**cd ~/catkin_ws/src/beginner_hiwonder/**"，按下回车。
 
 ```commandline
 cd ~/catkin_ws/src/beginner_hiwonder/
 ```
 
-6)  输入“**vi package.xml**”，复制下面程序，在下图所示位置添加功能包依赖。如需修改，再按下“**i**”即可修改。修改完成，按下“**Esc**”，输入“**：wq**”保存并退出。
+6)  输入"**vi package.xml**"，复制下面程序，在下图所示位置添加功能包依赖。如需修改，再按下"**i**"即可修改。修改完成，按下"**Esc**"，输入"**：wq**"保存并退出。
 
 ```commandline
 vi package.xml
@@ -1263,17 +1263,17 @@ vi package.xml
 
 <img src="../_static/media/chapter_6/section_10/image7.png" style="width:5.51181in;height:3.04485in" />
 
-7)  输入“**vi CMakeLists.txt**”，再按下“**i**”，修改“**CMakeLists.txt**”文件。
+7)  输入"**vi CMakeLists.txt**"，再按下"**i**"，修改"**CMakeLists.txt**"文件。
 
 ```commandline
 vi CMakeLists.txt
 ```
 
-8)  在下图所示位置添加所需的编译选项“**message_generation**”。
+8)  在下图所示位置添加所需的编译选项"**message_generation**"。
 
 <img src="../_static/media/chapter_6/section_10/image9.png" style="width:5.51181in;height:1.10754in" />
 
-9)  找到下图所示代码，将红框部分进行反注释，并添加所需的编译选项“**Person.srv**”。
+9)  找到下图所示代码，将红框部分进行反注释，并添加所需的编译选项"**Person.srv**"。
 
 <img src="../_static/media/chapter_6/section_10/image10.png" style="width:5.51181in;height:1.82178in" />
 
@@ -1281,15 +1281,15 @@ vi CMakeLists.txt
 
 <img src="../_static/media/chapter_6/section_10/image11.png" style="width:5.51181in;height:1.41683in" />
 
-11) 找到下图所示代码，将红框部分进行反注释，并添加所需的编译选项“**message_runtime**”。
+11) 找到下图所示代码，将红框部分进行反注释，并添加所需的编译选项"**message_runtime**"。
 
 <img src="../_static/media/chapter_6/section_10/image12.png" style="width:5.51181in;height:1.13637in" />
 
-12) 修改完成，按下“**Esc**”，输入“**：wq**”保存并退出。
+12) 修改完成，按下"**Esc**"，输入"**：wq**"保存并退出。
 
 <img src="../_static/media/chapter_6/section_10/image13.png" style="width:5.51181in;height:3.0701in" />
 
-13) 输入指令“**rossrv show beginner_hiwonder/Person**”，并按下回车，查看写入的消息字段能否被系统识别。当出现下图红框所示字样，即代表识别成功。
+13) 输入指令"**rossrv show beginner_hiwonder/Person**"，并按下回车，查看写入的消息字段能否被系统识别。当出现下图红框所示字样，即代表识别成功。
 
 ```commandline
 rossrv show beginner_hiwonder/Person
@@ -1303,13 +1303,13 @@ rossrv show beginner_hiwonder/Person
 
 1)  打开Linux命令行终端。
 
-2)  输入指令“**cd catkin_ws/src/beginner_hiwonder/scripts/**”，并按下回车，进入用于存放Python脚本的文件夹“**scripts**”。
+2)  输入指令"**cd catkin_ws/src/beginner_hiwonder/scripts/**"，并按下回车，进入用于存放Python脚本的文件夹"**scripts**"。
 
 ```commandline
 cd catkin_ws/src/beginner_hiwonder/scripts/
 ```
 
-3)  输入指令“**vi person_server.py**”编辑程序，复制下面程序。如需修改，再按下“**i**”即可修改。修改完成，按下“**Esc**”，输入“**：wq**”保存并退出。
+3)  输入指令"**vi person_server.py**"编辑程序，复制下面程序。如需修改，再按下"**i**"即可修改。修改完成，按下"**Esc**"，输入"**：wq**"保存并退出。
 
 ```commandline
 vi person_server.py
@@ -1358,7 +1358,7 @@ vi person_server.py
 
 <img src="../_static/media/chapter_6/section_10/image17.png" style="width:5.51181in;height:3.04235in" />
 
-4)  输入指令“**vi person_client.py**”编辑程序，复制下面程序。如需修改，再按下“**i**”即可修改。修改完成，按下“**Esc**”，输入“**：wq**”保存并退出。
+4)  输入指令"**vi person_client.py**"编辑程序，复制下面程序。如需修改，再按下"**i**"即可修改。修改完成，按下"**Esc**"，输入"**：wq**"保存并退出。
 
 ```commandline
 vi person_client.py
@@ -1410,7 +1410,7 @@ vi person_client.py
 
 <img src="../_static/media/chapter_6/section_10/image19.png" style="width:5.51181in;height:3.02207in" />
 
-5)  输入指令“**chmod +x person_server.py**”和“**chmod +x person_client.py**”，并按下回车，赋予文件可执行权限。
+5)  输入指令"**chmod +x person_server.py**"和"**chmod +x person_client.py**"，并按下回车，赋予文件可执行权限。
 
 ```commandline
 chmod +x person_server.py
@@ -1418,25 +1418,25 @@ chmod +x person_server.py
 
 ## 运行服务器和客户端节点
 
-1)  输入指令“**cd ~/catkin_ws**”，并按下回车，进入catkin工作空间。
+1)  输入指令"**cd ~/catkin_ws**"，并按下回车，进入catkin工作空间。
 
 ```commandline
 cd ~/catkin_ws
 ```
 
-2)  输入指令“**catkin_make**”，并按下回车，构建目录中所有的功能包。
+2)  输入指令"**catkin_make**"，并按下回车，构建目录中所有的功能包。
 
 ```commandline
 catkin_make
 ```
 
-3)  输入指令“**source ./devel/setup.bash**”，并按下回车，刷新工作空间的环境。
+3)  输入指令"**source ./devel/setup.bash**"，并按下回车，刷新工作空间的环境。
 
 ```commandline
 source ./devel/setup.bash
 ```
 
-4)  输入指令“**roscore**”，并按下回车，启动节点管理器。
+4)  输入指令"**roscore**"，并按下回车，启动节点管理器。
 
 ```commandline
 roscore
@@ -1446,13 +1446,13 @@ roscore
 
 <img src="../_static/media/chapter_6/section_10/image26.jpeg" style="width:5.51181in;height:0.48798in" alt="C:\Users\Admin\Desktop\456.jpg456" />
 
-5)  输入指令“**rosrun beginner_hiwonder person_server.py**”，并按下回车，运行服务器节点。如需停止节点的运行，可按下快捷键“**Ctrl+C**”。
+5)  输入指令"**rosrun beginner_hiwonder person_server.py**"，并按下回车，运行服务器节点。如需停止节点的运行，可按下快捷键"**Ctrl+C**"。
 
 ```commandline
 rosrun beginner_hiwonder person_server.py
 ```
 
-6)  打开一个新的命令行终端，输入指令“**rosrun beginner_hiwonder person_client.py**”，并按下回车，运行客户端节点。
+6)  打开一个新的命令行终端，输入指令"**rosrun beginner_hiwonder person_client.py**"，并按下回车，运行客户端节点。
 
 ```commandline
 rosrun beginner_hiwonder person_client.py
@@ -1470,7 +1470,7 @@ rosrun beginner_hiwonder person_client.py
 
 在ROS master当中有一个参数服务器，它是一个全局字典，用来保存各个节点之间的配置参数的。例如里面有Parameter server保存我们的名字、半径和高度，是各个节点都可以全局访问的。
 
-比如说我在Node A点里面来访问robot name，然后就会获取得到一个“my_rot”的值，它只要给我们的ROS master去发送一个查询的请求，然后就会返回“my_rot”的结果。Node B、Node C和Node D也是一样。
+比如说我在Node A点里面来访问robot name，然后就会获取得到一个"my_rot"的值，它只要给我们的ROS master去发送一个查询的请求，然后就会返回"my_rot"的结果。Node B、Node C和Node D也是一样。
 
 Parameter server参数服务器模型如下图所示：
 
@@ -1488,7 +1488,7 @@ Parameter server参数服务器模型如下图所示：
 
 这里以海龟案例为例，先运行海龟例程，步骤如下：
 
-1)  输入指令“**roscore**”，回车。
+1)  输入指令"**roscore**"，回车。
 
 ```commandline
 roscore
@@ -1498,7 +1498,7 @@ roscore
 
 <img src="../_static/media/chapter_6/section_11/image4.jpeg" style="width:5.51181in;height:0.48798in" alt="C:\Users\Admin\Desktop\456.jpg456" />
 
-2)  输入指令“**rosrun turtlesim turtlesim_node**”，回车，打开小海龟的仿真器。
+2)  输入指令"**rosrun turtlesim turtlesim_node**"，回车，打开小海龟的仿真器。
 
 ```commandline
 rosrun turtlesim turtlesim_node
@@ -1510,7 +1510,7 @@ rosrun turtlesim turtlesim_node
 
 再打开一个终端， rosparam的使用，步骤如下：
 
-1)  输入指令“**rosparam**”，回车。
+1)  输入指令"**rosparam**"，回车。
 
 ```commandline
 rosparam
@@ -1518,25 +1518,25 @@ rosparam
 
 <img src="../_static/media/chapter_6/section_11/image6.png" style="width:5.51181in;height:1.5989in" />
 
-2)  输入指令“**rosparam list**”，回车，查询海龟参数个数。
+2)  输入指令"**rosparam list**"，回车，查询海龟参数个数。
 
 ```commandline
 rosparam list
 ```
 
-3)  输入指令“**rosparam get /turtlesim/background_b**”，回车，获取“**background_b**”数值，其他数值获取方法类似。
+3)  输入指令"**rosparam get /turtlesim/background_b**"，回车，获取"**background_b**"数值，其他数值获取方法类似。
 
 ```commandline
 rosparam get /turtlesim/background_b
 ```
 
-4)  输入指令“**rosparam set /turtlesim/background_b 100**”，回车，设置“**background_b**”数值，其他数值设置方法类似。
+4)  输入指令"**rosparam set /turtlesim/background_b 100**"，回车，设置"**background_b**"数值，其他数值设置方法类似。
 
 ```commandline
 rosparam set /turtlesim/background_b 100
 ```
 
-5)  输入指令“**rosparam get /turtlesim/background_b**”，回车，看到数值改为100了。
+5)  输入指令"**rosparam get /turtlesim/background_b**"，回车，看到数值改为100了。
 
 ```commandline
 rosparam get /turtlesim/background_b
@@ -1544,7 +1544,7 @@ rosparam get /turtlesim/background_b
 
 <img src="../_static/media/chapter_6/section_11/image10.png" style="width:5.51033in;height:0.77117in" />
 
-6)  输入指令“**rosservice call clear "{}"**”，回车，发送请求，更改颜色。
+6)  输入指令"**rosservice call clear "{}"**"，回车，发送请求，更改颜色。
 
 ```commandline
 rosservice call clear "{}"
@@ -1552,7 +1552,7 @@ rosservice call clear "{}"
 
 <img src="../_static/media/chapter_6/section_11/image12.png" style="width:3.14961in;height:2.30132in" alt="13" />
 
-7)  输入指令“**rosparam dump param.yaml**”，回车，保存到文件。
+7)  输入指令"**rosparam dump param.yaml**"，回车，保存到文件。
 
 ```commandline
 rosparam dump param.yaml
@@ -1562,7 +1562,7 @@ rosparam dump param.yaml
 
 <img src="../_static/media/chapter_6/section_11/image14.png" style="width:5.51181in;height:1.30371in" />
 
-9)  输入指令“**vi param.yaml**”，回车。按下“**i**”修改“**param.yaml**”。
+9)  输入指令"**vi param.yaml**"，回车。按下"**i**"修改"**param.yaml**"。
 
 ```commandline
 vi param.yaml
@@ -1570,23 +1570,23 @@ vi param.yaml
 
 <img src="../_static/media/chapter_6/section_11/image16.png" style="width:5.51181in;height:1.6331in" />
 
-10)  可以将颜色都改为0，也就是黑色，修改完成，按下“**Esc**”，输入“**：wq**”保存并退出。
+10)  可以将颜色都改为0，也就是黑色，修改完成，按下"**Esc**"，输入"**：wq**"保存并退出。
 
 <img src="../_static/media/chapter_6/section_11/image17.png" style="width:5.51181in;height:1.71672in" />
 
-11) 输入指令“**rosparam load param.yaml**”，回车，加载文件。
+11) 输入指令"**rosparam load param.yaml**"，回车，加载文件。
 
 ```commandline
 rosparam load param.yaml
 ```
 
-12) 输入指令“**rosparam get /turtlesim/background_b**”，回车，检查加载效果。
+12) 输入指令"**rosparam get /turtlesim/background_b**"，回车，检查加载效果。
 
 ```commandline
 rosparam get /turtlesim/background_b
 ```
 
-13) 输入指令“**rosservice call clear "{}"**”，回车，发送请求，更改颜色，背景颜色为黑色。
+13) 输入指令"**rosservice call clear "{}"**"，回车，发送请求，更改颜色，背景颜色为黑色。
 
 ```commandline
 rosservice call clear "{}"
@@ -1594,19 +1594,19 @@ rosservice call clear "{}"
 
 <img src="../_static/media/chapter_6/section_11/image20.png" style="width:3.14961in;height:2.36985in" alt="20" />
 
-14) 输入指令“**rosparam delete /turtlesim/background_g**”，回车，删除g的颜色。
+14) 输入指令"**rosparam delete /turtlesim/background_g**"，回车，删除g的颜色。
 
 ```commandline
 rosparam delete /turtlesim/background_g
 ```
 
-15) 输入指令“**rosparam list**”，回车，查看效果。
+15) 输入指令"**rosparam list**"，回车，查看效果。
 
 ```commandline
 rosparam list
 ```
 
-16) 输入指令“**rosservice call clear "{}"**”，回车，重新刷新背景颜色，查看效果。
+16) 输入指令"**rosservice call clear "{}"**"，回车，重新刷新背景颜色，查看效果。
 
 ```commandline
 rosservice call clear "{}"
@@ -1618,13 +1618,13 @@ rosservice call clear "{}"
 
 创建功能包，步骤如下：
 
-1)  输入指令“**cd catkin_ws/src/**”，回车，进入工作空间。
+1)  输入指令"**cd catkin_ws/src/**"，回车，进入工作空间。
 
 ```commandline
 cd catkin_ws/src/
 ```
 
-输入指令“**catkin_create_pkg parameter_hiwonder rospy std_msgs**”，回车，创建功能包。
+输入指令"**catkin_create_pkg parameter_hiwonder rospy std_msgs**"，回车，创建功能包。
 
 ```commandline
 catkin_create_pkg parameter_hiwonder rospy std_msgs
@@ -1634,25 +1634,25 @@ catkin_create_pkg parameter_hiwonder rospy std_msgs
 
 1)  打开Linux命令行终端。
 
-2)  输入进入功能包所在目录的指令“**roscd parameter_hiwonder**”，并按下回车。
+2)  输入进入功能包所在目录的指令"**roscd parameter_hiwonder**"，并按下回车。
 
 ```commandline
 roscd parameter_hiwonder
 ```
 
-3)  输入指令“**mkdir scripts**”，并按下回车，新建用于存放Python脚本的文件夹“**scripts**”。
+3)  输入指令"**mkdir scripts**"，并按下回车，新建用于存放Python脚本的文件夹"**scripts**"。
 
 ```commandline
 mkdir scripts
 ```
 
-4)  输入指令“**cd scripts/**”，并按下回车，进入用于存放Python脚本的文件夹“**scripts**”。
+4)  输入指令"**cd scripts/**"，并按下回车，进入用于存放Python脚本的文件夹"**scripts**"。
 
 ```commandline
 cd scripts/
 ```
 
-5)  输入指令“**vi parameter_config.py**”编辑程序，复制下面程序。如需修改，再按下“**i**”即可修改。修改完成，按下“**Esc**”，输入“**：wq**”保存并退出。
+5)  输入指令"**vi parameter_config.py**"编辑程序，复制下面程序。如需修改，再按下"**i**"即可修改。修改完成，按下"**Esc**"，输入"**：wq**"保存并退出。
 
 ```commandline
 vi parameter_config.py
@@ -1730,7 +1730,7 @@ vi parameter_config.py
 ```
 <img src="../_static/media/chapter_6/section_11/image30.png" style="width:5.51181in;height:3.0297in" />
 
-6)  输入指令“**chmod +x parameter_config.py**”回车，为保存的parameter_config.py赋予可执行权限。
+6)  输入指令"**chmod +x parameter_config.py**"回车，为保存的parameter_config.py赋予可执行权限。
 
 ```commandline
 chmod +x parameter_config.py
@@ -1738,7 +1738,7 @@ chmod +x parameter_config.py
 
 ### 11.4 运行程序
 
-1)  输入指令“**roscore**”，并按下回车，启动节点管理器。
+1)  输入指令"**roscore**"，并按下回车，启动节点管理器。
 
 
 ```commandline
@@ -1749,14 +1749,14 @@ roscore
 
 <img src="../_static/media/chapter_6/section_11/image4.jpeg" style="width:5.51181in;height:0.48798in" alt="C:\Users\Admin\Desktop\456.jpg456" />
 
-2)  输入指令“**rosrun turtlesim turtlesim_node**”，回车，打开小海龟的仿真器。
+2)  输入指令"**rosrun turtlesim turtlesim_node**"，回车，打开小海龟的仿真器。
 
 ```commandline
 rosrun turtlesim turtlesim_node
 ```
 <img src="../_static/media/chapter_6/section_11/image5.png" style="width:5.51181in;height:3.04069in" alt="6" />
 
-3)  输入指令“**rosrun parameter_hiwonder parameter_config.py**”，并按下回车，运行程序，它将海龟的背景颜色改为白色，显示如下图：
+3)  输入指令"**rosrun parameter_hiwonder parameter_config.py**"，并按下回车，运行程序，它将海龟的背景颜色改为白色，显示如下图：
 
 ```commandline
 rosrun parameter_hiwonder parameter_config.py
@@ -1765,7 +1765,7 @@ rosrun parameter_hiwonder parameter_config.py
 
 <img src="../_static/media/chapter_6/section_11/image34.png" style="width:3.14961in;height:2.91924in" />
 
-4)  如需停止程序，可按下快捷键“**Ctrl+C**”。
+4)  如需停止程序，可按下快捷键"**Ctrl+C**"。
 
 ## 12. Launch启动文件的使用方法
 
@@ -1792,7 +1792,7 @@ Lanuch文件：通过XML文件实现多节点的配置和启动。
 
 其中node标签是Lanuch文件中最常使用的标签之一。
 
-\<node pkg=”package-name”type=”executable-name”name=”node-name”/\>
+\<node pkg="package-name"type="executable-name"name="node-name"/\>
 
 1)  \<node\>：表示启动节点。
 
@@ -1834,7 +1834,7 @@ Lanuch文件：通过XML文件实现多节点的配置和启动。
 
 | **参数** | **作用** |
 |:--:|:--:|
-| output | 默认情况下，launch 启动 node 的信息会存入下面的 log 文件中（/.ros/log/run_id/node_name-number-stdout.log），可以通过此处参数设置，令信息显示在屏幕上，例如，output = “screen”。 |
+| output | 默认情况下，launch 启动 node 的信息会存入下面的 log 文件中（/.ros/log/run_id/node_name-number-stdout.log），可以通过此处参数设置，令信息显示在屏幕上，例如，output = "screen"。 |
 | required | 是否关闭其他所有launch启动的节点。 |
 | respawn | 若该节点意外关闭，是否自动重新启动。 |
 | ns | 将 node 归入不同的 namespace，即在 node name 前边加 ns 指定的前缀。 |
@@ -1843,7 +1843,7 @@ Lanuch文件：通过XML文件实现多节点的配置和启动。
 
 \<param\>/：设置ROS系统运行中的参数，存储在参数服务器中。
 
-\<param name=”output_frame”value=”odom”/\>
+\<param name="output_frame"value="odom"/\>
 
 1)  name：参数名
 
@@ -1851,11 +1851,11 @@ Lanuch文件：通过XML文件实现多节点的配置和启动。
 
 \<rosparam\>：加载参数文件中的多个参数。
 
-\<rosparam file=”params.yaml”command=”load”ns=”params” /\>
+\<rosparam file="params.yaml"command="load"ns="params" /\>
 
 \<arg\>：Launch文件内部的局部变量，仅限于Launch文件使用。
 
-\<arg name=”arg-name” default=”arg-value” /\>
+\<arg name="arg-name" default="arg-value" /\>
 
 1)  name：参数名
 
@@ -1865,7 +1865,7 @@ Lanuch文件：通过XML文件实现多节点的配置和启动。
 
 \<remap\>：重映射Ros计算图资源的命名。
 
-\<remap from=”/turtlebot/cmd_vel”to=”/cmd_vel”/”\>
+\<remap from="/turtlebot/cmd_vel"to="/cmd_vel"/"\>
 
 1)  from：原命名
 
@@ -1873,7 +1873,7 @@ Lanuch文件：通过XML文件实现多节点的配置和启动。
 
 \<include\>：包含其它Lanuch文件，类似C语言中的头文件包含。
 
-\<include file=”\$(dirname)/other.launch”\>
+\<include file="\$(dirname)/other.launch"\>
 
 file：包含的其它Launch文件路径。
 
@@ -1881,25 +1881,25 @@ file：包含的其它Launch文件路径。
 
 我们以通过单个Launch文件来启动小乌龟运动程序为例，步骤如下：
 
-1.  打开命令行终端，输入指令“**cd catkin_ws/src/beginner_hiwonder**”。
+1.  打开命令行终端，输入指令"**cd catkin_ws/src/beginner_hiwonder**"。
 
 ```commandline
 cd catkin_ws/src/beginner_hiwonder
 ```
 
-2.  输入指令“**mkdir lanuch**”，建立lanuch文件夹。
+2.  输入指令"**mkdir lanuch**"，建立lanuch文件夹。
 
 ```commandline
 mkdir lanuch
 ```
 
-3.  输入指令“**cd lanuch**”，进入lanuch文件夹。
+3.  输入指令"**cd lanuch**"，进入lanuch文件夹。
 
 ```commandline
 cd lanuch
 ```
 
-4.  输入指令“**vi turtlesim_launch_test.lanuch**”，通过vi编辑器打开所创建文件。
+4.  输入指令"**vi turtlesim_launch_test.lanuch**"，通过vi编辑器打开所创建文件。
 
 ```commandline
 vi turtlesim_launch_test.lanuch
@@ -1920,11 +1920,11 @@ vi turtlesim_launch_test.lanuch
 
 <img src="../_static/media/chapter_6/section_12/image7.png" style="width:5.51181in;height:0.96485in" />
 
-6.  按下“**Esc**”键，输入“**:**”，然后输入“**wq**”保存并退出。
+6.  按下"**Esc**"键，输入"**:**"，然后输入"**wq**"保存并退出。
 
 <img src="../_static/media/chapter_6/section_12/image8.png" style="width:5.51181in;height:1.06374in" />
 
-7.  输入指令“**roslaunch beginner_hiwonder turtlesim_launch_test.lanuch**”，即可启动小乌龟程序。
+7.  输入指令"**roslaunch beginner_hiwonder turtlesim_launch_test.lanuch**"，即可启动小乌龟程序。
 
 ```commandline
 roslaunch beginner_hiwonder turtlesim_launch_test.lanuch
@@ -1976,15 +1976,15 @@ TF树的建立和维护是基于Topic通信机制的。
 
 在进行编程前，先需要了解机器人的坐标变换。这里以运行海龟案例来进行解说，步骤如下：
 
-1)  输入指令“**sudo apt-get install ros-melodic-turtle-tf**”，安装功能包。
+1)  输入指令"**sudo apt-get install ros-melodic-turtle-tf**"，安装功能包。
 
 ```commandline
 sudo apt-get install ros-melodic-turtle-tf
 ```
 
-其中“**melodic**”对应的是ROS版本。
+其中"**melodic**"对应的是ROS版本。
 
-2)  输入指令“**roslaunch turtle_tf turtle_tf_demo.launch**”，启动launch文件。
+2)  输入指令"**roslaunch turtle_tf turtle_tf_demo.launch**"，启动launch文件。
 
 ```commandline
 roslaunch turtle_tf turtle_tf_demo.launch
@@ -1992,7 +1992,7 @@ roslaunch turtle_tf turtle_tf_demo.launch
 
 <img src="../_static/media/chapter_6/section_13/image5.png" style="width:3.14961in;height:2.90385in" />
 
-3)  输入指令“**rosrun turtlesim turtle_teleop_key**”，运行海龟键盘控制节点。
+3)  输入指令"**rosrun turtlesim turtle_teleop_key**"，运行海龟键盘控制节点。
 
 ```commandline
 rosrun turtlesim turtle_teleop_key
@@ -2000,7 +2000,7 @@ rosrun turtlesim turtle_teleop_key
 
 <img src="../_static/media/chapter_6/section_13/image7.png" style="width:3.14961in;height:2.51035in" />
 
-4)  输入指令“**rosrun rqt_tf_tree rqt_tf_tree**”，可视化框架。
+4)  输入指令"**rosrun rqt_tf_tree rqt_tf_tree**"，可视化框架。
 
 可以看到当前系统TF坐标之间的位置关系，如下图：
 
@@ -2010,13 +2010,13 @@ rosrun turtlesim turtle_teleop_key
 
 下面，就开始创建功能包，步骤如下：
 
-1)  输入指令“**cd catkin_ws/src/**”，回车，进入工作空间。
+1)  输入指令"**cd catkin_ws/src/**"，回车，进入工作空间。
 
 ```commandline
 cd catkin_ws/src/
 ```
 
-5)  输入指令“**catkin_create_pkg tf_hiwonder rospy std_msgs**”，回车，创建功能包。
+5)  输入指令"**catkin_create_pkg tf_hiwonder rospy std_msgs**"，回车，创建功能包。
 
 ```commandline
 catkin_create_pkg tf_hiwonder rospy std_msgs
@@ -2028,25 +2028,25 @@ catkin_create_pkg tf_hiwonder rospy std_msgs
 
 1)  打开Linux命令行终端。
 
-2)  输入进入功能包所在目录的指令“**roscd tf_hiwonder**”，并按下回车。
+2)  输入进入功能包所在目录的指令"**roscd tf_hiwonder**"，并按下回车。
 
 ```commandline
 roscd tf_hiwonder
 ```
 
-3)  输入指令“**mkdir scripts**”，并按下回车，新建用于存放Python脚本的文件夹“**scripts**”。
+3)  输入指令"**mkdir scripts**"，并按下回车，新建用于存放Python脚本的文件夹"**scripts**"。
 
 ```commandline
 mkdir scripts
 ```
 
-4)  输入指令“**cd scripts/**”，并按下回车，进入用于存放Python脚本的文件夹“**scripts**”。
+4)  输入指令"**cd scripts/**"，并按下回车，进入用于存放Python脚本的文件夹"**scripts**"。
 
 ```commandline
 cd scripts/
 ```
 
-5)  输入指令“**vi turtle_tf_broadcaster.py**”编辑程序，复制下面程序。如需修改，再按下“**i**”即可修改。修改完成，按下“**Esc**”，输入“**：wq**”保存并退出。
+5)  输入指令"**vi turtle_tf_broadcaster.py**"编辑程序，复制下面程序。如需修改，再按下"**i**"即可修改。修改完成，按下"**Esc**"，输入"**：wq**"保存并退出。
 
 ```commandline
 vi turtle_tf_broadcaster.py
@@ -2097,7 +2097,7 @@ vi turtle_tf_broadcaster.py
 
 <img src="../_static/media/chapter_6/section_13/image15.png" style="width:5.51181in;height:3.03644in" />
 
-6)  输入指令“**vi turtle_tf_listener.py**”编辑程序，复制下面程序。如需修改，再按下“**i**”即可修改。修改完成，按下“**Esc**”，输入“**：wq**”保存并退出。
+6)  输入指令"**vi turtle_tf_listener.py**"编辑程序，复制下面程序。如需修改，再按下"**i**"即可修改。修改完成，按下"**Esc**"，输入"**：wq**"保存并退出。
 
 ```commandline
 vi turtle_tf_listener.py
@@ -2165,7 +2165,7 @@ vi turtle_tf_listener.py
 
 <img src="../_static/media/chapter_6/section_13/image17.png" style="width:5.51181in;height:3.05547in" />
 
-6)  输入指令“**chmod +x turtle_tf_broadcaster.py**”和“**chmod +x turtle_tf_listener.py**”，并按下回车，赋予文件可执行权限。
+6)  输入指令"**chmod +x turtle_tf_broadcaster.py**"和"**chmod +x turtle_tf_listener.py**"，并按下回车，赋予文件可执行权限。
 
 ```commandline
 chmod +x turtle_tf_broadcaster.py
@@ -2175,7 +2175,7 @@ chmod +x turtle_tf_broadcaster.py
 chmod +x turtle_tf_listener.py
 ```
 
-7)  输入指令“**cd ..**”和“**mkdir launch**”，新建用于存放launch脚本的文件夹“**launch**”。
+7)  输入指令"**cd ..**"和"**mkdir launch**"，新建用于存放launch脚本的文件夹"**launch**"。
 
 ```commandline
 cd ..
@@ -2185,13 +2185,13 @@ cd ..
 mkdir launch
 ```
 
-8)  输入指令“**cd launch/**”，并按下回车，进入用于存放Python脚本的文件夹“**launch**”。
+8)  输入指令"**cd launch/**"，并按下回车，进入用于存放Python脚本的文件夹"**launch**"。
 
 ```commandline
 cd launch/
 ```
 
-9)  输入指令“**vi start_tf_demo_py.launch**”编辑程序，复制下面程序。如需修改，再按下“**i**”即可修改。修改完成，按下“**Esc**”，输入“**：wq**”保存并退出。
+9)  输入指令"**vi start_tf_demo_py.launch**"编辑程序，复制下面程序。如需修改，再按下"**i**"即可修改。修改完成，按下"**Esc**"，输入"**：wq**"保存并退出。
 
 ```commandline
 vi start_tf_demo_py.launch
@@ -2226,13 +2226,13 @@ vi start_tf_demo_py.launch
 
 - #### 13.4.2运行程序
 
-1)  输入指令“**source ./devel/setup.bash**”，并按下回车，设置工作环境。
+1)  输入指令"**source ./devel/setup.bash**"，并按下回车，设置工作环境。
 
 ```commandline
 source ./devel/setup.bash
 ```
 
-2)  输入指令“**roslaunch tf_hiwonder start_tf_demo_py.launch**”，并按下回车，运行launch程序。
+2)  输入指令"**roslaunch tf_hiwonder start_tf_demo_py.launch**"，并按下回车，运行launch程序。
 
 ```commandline
 roslaunch tf_hiwonder start_tf_demo_py.launch
@@ -2242,7 +2242,7 @@ roslaunch tf_hiwonder start_tf_demo_py.launch
 
 <img src="../_static/media/chapter_6/section_13/image27.png" style="width:3.14961in;height:2.93484in" />
 
-3)  如需程序，可按下快捷键“**Ctrl+C**”。
+3)  如需程序，可按下快捷键"**Ctrl+C**"。
 
 ## 14. 常用可视化工具的使用
 
@@ -2252,7 +2252,7 @@ roslaunch tf_hiwonder start_tf_demo_py.launch
 
 RQT是ROS提供的一个图形化用户接口框架，它允许以插件的形式来实现各种图形工具和接口。
 
-RQT中能够以可停靠窗口的形式运行所有存在的GUI工具。使用时，可以通过命令“**rqt**”来运行RQT工具和插件。这个GUI允许用户载入并运行任何插件。此外，用户还可以以独立窗口的形式运行插件。
+RQT中能够以可停靠窗口的形式运行所有存在的GUI工具。使用时，可以通过命令"**rqt**"来运行RQT工具和插件。这个GUI允许用户载入并运行任何插件。此外，用户还可以以独立窗口的形式运行插件。
 
 - #### 14.1.2 组件的结构
 
@@ -2290,7 +2290,7 @@ ROS安装成功后，自带RQT工具，无需重新安装。
 
 :::
 
-打开终端，输入命令“**rosrun rqt\_**”，按下“**Tab**”键即可展开以下指令：
+打开终端，输入命令"**rosrun rqt\_**"，按下"**Tab**"键即可展开以下指令：
 
 ```commandline
 rosrun rqt\_

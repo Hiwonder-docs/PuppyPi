@@ -34,7 +34,7 @@ Docker Hub（仓库）官网：https://hub.docker.com
 
 这里使用阿里源进行下载
 
-1)  按下“**Ctrl+Alt+T**”，打开命令行终端，输入“**sudo apt-get update**”，然后按下回车，更新apt软件包列表。
+1)  按下"**Ctrl+Alt+T**"，打开命令行终端，输入"**sudo apt-get update**"，然后按下回车，更新apt软件包列表。
 
 <img src="../_static/media/chapter_5/section_1/image2.png" style="width:5.76667in;height:1.15417in" />
 
@@ -100,7 +100,7 @@ sudo gpasswd -a $USER docker
 sudo reboot
 ```
 
-11) 下载完成之后，输入“**docker version**”查看docker版本。
+11) 下载完成之后，输入"**docker version**"查看docker版本。
 
 ```commandline
 docker version
@@ -108,7 +108,7 @@ docker version
 
 <img src="../_static/media/chapter_5/section_1/image13.png" style="width:5.76458in;height:5.3375in" />
 
-12) 输入“**docker run hello-world**”，若出现以下内容则表示Docker安装成功。
+12) 输入"**docker run hello-world**"，若出现以下内容则表示Docker安装成功。
 
 ```commandline
 docker run hello-world
@@ -122,7 +122,7 @@ Docker 官方提供的 hello-world 是一个轻量级的容器，用于测试 Do
 
 安装和运行。这个容器非常小，主要用于展示 Docker 的基本用法和验证 Docker 运行环境的正确性。
 
-1)  按下“**Ctrl+Alt+T**”，打开命令行终端，输入**指令**，Docker 将下载 hello-world 镜像（如果本地不存在）。
+1)  按下"**Ctrl+Alt+T**"，打开命令行终端，输入**指令**，Docker 将下载 hello-world 镜像（如果本地不存在）。
 
 ```commandline
 docker run hello-world
@@ -138,7 +138,7 @@ docker images
 
 <img src="../_static/media/chapter_5/section_2/image3.png" style="width:5.76042in;height:0.51875in" />
 
-在这里我们可以查看到“**Hello_World**”的相关信息，对应参数含义：
+在这里我们可以查看到"**Hello_World**"的相关信息，对应参数含义：
 
 REPOSITORY： 镜像的仓库源
 
@@ -212,7 +212,7 @@ docker pull 镜像仓库地址/镜像名：版本
 
 示例（无法下载，仅做参考）： docker pull hiwonder/ros-foxy:1.0.0
 
-例如下载debian镜像,按下“**Ctrl+Alt+T**”，打开命令行终端，输入指令，然后按下回车。
+例如下载debian镜像,按下"**Ctrl+Alt+T**"，打开命令行终端，输入指令，然后按下回车。
 
 ```commandline
 docker pull debian
@@ -220,7 +220,7 @@ docker pull debian
 
 <img src="../_static/media/chapter_5/section_3/image3.png" style="width:5.76042in;height:1.09028in" />
 
-输入指令，查看主机上的镜像，可以看到这里多了一个“**debian**”的镜像。
+输入指令，查看主机上的镜像，可以看到这里多了一个"**debian**"的镜像。
 
 ```commandline
 docker images
@@ -230,7 +230,7 @@ docker images
 
 3)  docker search：搜索对应DockerHub仓库中的镜像。
 
-例如搜索ROS镜像,按下“**Ctrl+Alt+T**”，打开命令行终端，输入指令，然后按下回车。
+例如搜索ROS镜像,按下"**Ctrl+Alt+T**"，打开命令行终端，输入指令，然后按下回车。
 
 ```commandline
 docker search ros
@@ -260,7 +260,7 @@ docker rmi -f \$(docker images -qa) ： 删除全部镜像
 
 ### 3.3 容器命令
 
-有镜像才能创建容器，这里使用 debian 的镜像来测试，按下“**Ctrl+Alt+T**”，打开命令行终端，输入指令，然后按下回车。
+有镜像才能创建容器，这里使用 debian 的镜像来测试，按下"**Ctrl+Alt+T**"，打开命令行终端，输入指令，然后按下回车。
 
 ```commandline
 docker pull debian
@@ -333,7 +333,7 @@ exit
 
 -q ：静默模式，只显示容器编号。
 
-在命令行终端，输入“**docker ps -a**”，然后按下回车，显示出正在运行和历史运行过的容器。其中container id是容器的ID，image是该容器使用的镜像名称，created是容器创建时间，status是容器当前状态
+在命令行终端，输入"**docker ps -a**"，然后按下回车，显示出正在运行和历史运行过的容器。其中container id是容器的ID，image是该容器使用的镜像名称，created是容器创建时间，status是容器当前状态
 
 <img src="../_static/media/chapter_5/section_3/image9.png" style="width:5.76667in;height:0.49097in" />
 
@@ -347,7 +347,7 @@ exit
 exit
 ```
 
-2)  使用快捷键组合“**crtl+P+Q**”，此时容器会直接退出但不停止运行，我们可以在终端输入指令,查看到正在运行的容器。
+2)  使用快捷键组合"**crtl+P+Q**"，此时容器会直接退出但不停止运行，我们可以在终端输入指令,查看到正在运行的容器。
 
 ```commandline
 docker ps
@@ -365,7 +365,7 @@ docker exec： 是在容器中打开新的终端，并且可以启动新的进�
 
 - **docker attach**
 
-1)  按下“**Ctrl+Alt+T**”，打开命令行终端，在终端输入指令，显示当前正在运行的容器。
+1)  按下"**Ctrl+Alt+T**"，打开命令行终端，在终端输入指令，显示当前正在运行的容器。
 
 ```commandline
 docker ps
@@ -399,7 +399,7 @@ docker ps
 
 - **docker exec**
 
-1)  按下“**Ctrl+Alt+T**”，打开命令行终端，在终端输入指令，显示当前正在运行的容器。
+1)  按下"**Ctrl+Alt+T**"，打开命令行终端，在终端输入指令，显示当前正在运行的容器。
 
 ```commandline
 docker ps
@@ -452,7 +452,7 @@ docker ps -a -q\|xargs docker rm ：删除所有容器
 
 - #### 3.4.1 查看容器中运行的进程信息
 
-1)  按下“**Ctrl+Alt+T**”，打开命令行终端，在终端输入指令，显示当前正在运行的容器。
+1)  按下"**Ctrl+Alt+T**"，打开命令行终端，在终端输入指令，显示当前正在运行的容器。
 
 ```commandline
 docker ps
@@ -488,7 +488,7 @@ CMD: 进程的命令行。
 
 - #### 3.4.2 查看容器/镜像的元数据
 
-1)  按下“**Ctrl+Alt+T**”，打开命令行终端，在终端输入指令，显示当前正在运行的容器。
+1)  按下"**Ctrl+Alt+T**"，打开命令行终端，在终端输入指令，显示当前正在运行的容器。
 
 ```commandline
 docker ps
@@ -560,7 +560,7 @@ docker镜像都是只读的，当容器启动时，一个新的可写层被加�
 
 **指令解释：docker commit -m="提交的描述信息" -a="作者" 容器ID要创建的目标镜像名:\[标签名\] 【也可省略 -m -a 参数】**
 
-1)  按下“**Ctrl+Alt+T**”，打开命令行终端，在终端输入指令，显示所有运行过的容器，找到需要提交容器的ID。
+1)  按下"**Ctrl+Alt+T**"，打开命令行终端，在终端输入指令，显示所有运行过的容器，找到需要提交容器的ID。
 
 ```commandline
 docker ps -a
@@ -594,13 +594,13 @@ docker images
 
 images/dockerfile_best-practices/
 
-1)  按下“**Ctrl+Alt+T**”，打开命令行终端，在终端输入指令，创建并打开文件。
+1)  按下"**Ctrl+Alt+T**"，打开命令行终端，在终端输入指令，创建并打开文件。
 
 ```commandline
 vim Dockerfile
 ```
 
-2)  在终端输入下图内容，按下“**ESC**”键，输入指令退出并保存文件。
+2)  在终端输入下图内容，按下"**ESC**"键，输入指令退出并保存文件。
 
 ```commandline
 :wq
@@ -635,13 +635,13 @@ docker images
 
 以下是以USB摄像头挂载为例，实际情况根据自己的设备挂载 。
 
-1) 按下“**Ctrl+Alt+T**”，打开命令行终端，在终端输入 指令，启动debian容器并将USB摄像头挂载。
+1) 按下"**Ctrl+Alt+T**"，打开命令行终端，在终端输入 指令，启动debian容器并将USB摄像头挂载。
 
 ```commandline
 docker run -it --device=/dev/video0 debian:latest /bin/bash
 ```
 
-2) 在终端输入指令，按下回车，查看当前容器下挂载的设备，可以看到刚刚的USB摄像头设备“**video0**”已经挂载上了。
+2) 在终端输入指令，按下回车，查看当前容器下挂载的设备，可以看到刚刚的USB摄像头设备"**video0**"已经挂载上了。
 
 ```commandline
 ls /dev/
@@ -653,7 +653,7 @@ ls /dev/
 
 在宿主机中安装：
 
-1) 按下“**Ctrl+Alt+T**”，打开命令行终端，在终端输入 指令，按下回车，输入“**y**”进行下载。
+1) 按下"**Ctrl+Alt+T**"，打开命令行终端，在终端输入 指令，按下回车，输入"**y**"进行下载。
 
 ```commandline
 sudo apt-get install tigervnc-standalone-server tigervnc-viewer
@@ -759,7 +759,7 @@ pwd
 
 <img src="../_static/media/chapter_5/section_5/image16.png" style="width:5.76389in;height:0.39931in" />
 
-6)  按下“crtl+P+Q”，退出容器但不停止。
+6)  按下"crtl+P+Q"，退出容器但不停止。
 
 7)  在终端输入指令，将刚刚创建好的test.txt文件复制到宿主机中。
 
@@ -897,7 +897,7 @@ Docker已经成为了现代应用程序开发和部署的核心工具之一。�
 
 在长时间的使用过程中，Docker主机上可能会积累大量无用的容器和镜像，占用宝贵的磁盘空间。定期清理无用资源是容器环境维护的第一步。
 
-按下“**Ctrl+Alt+T**”，打开命令行终端，在终端输入指令， 按下回车，输入“**y**”开始
+按下"**Ctrl+Alt+T**"，打开命令行终端，在终端输入指令， 按下回车，输入"**y**"开始
 
 清理无用的停止容器。
 
@@ -907,7 +907,7 @@ docker container prune
 
 <img src="../_static/media/chapter_5/section_6/image2.png" style="width:5.76319in;height:0.84028in" />
 
-按下“**Ctrl+Alt+T**”，打开命令行终端，在终端输入指令， 按下回车，输入“**y**”开始
+按下"**Ctrl+Alt+T**"，打开命令行终端，在终端输入指令， 按下回车，输入"**y**"开始
 
 清理无用的镜像。
 
@@ -921,7 +921,7 @@ docker image prune
 
 监控容器的性能是确保容器正常运行的重要任务。使用Docker自带的stats命令可以实时查看容器的CPU、内存、网络和磁盘使用情况。
 
-按下“**Ctrl+Alt+T**”，打开命令行终端，在终端输入指令， 按下回车， 查看ID 0cfc6a98a68c 的容器实时性能数据。
+按下"**Ctrl+Alt+T**"，打开命令行终端，在终端输入指令， 按下回车， 查看ID 0cfc6a98a68c 的容器实时性能数据。
 
 ```commandline
 docker stats 0cfc6a98a68c
@@ -935,7 +935,7 @@ docker stats 0cfc6a98a68c
 
 容器的日志记录对于排查问题和诊断故障非常重要。使用docker logs命令可以查看容器的标准输出日志。
 
-按下“**Ctrl+Alt+T**”，打开命令行终端，在终端输入指令， 按下回车， 查看ID
+按下"**Ctrl+Alt+T**"，打开命令行终端，在终端输入指令， 按下回车， 查看ID
 
 0cfc6a98a68c 的容器的标准输出日志。
 
@@ -949,7 +949,7 @@ docker logs 0cfc6a98a68c
 
 容器在运行过程中可能会出现各种问题，包括应用程序崩溃或资源耗尽。在这种情况下，重启容器可能是解决问题的一种有效方法。
 
-按下“**Ctrl+Alt+T**”，打开命令行终端，在终端输入**指令**”， 按下回车， 重启容器。
+按下"**Ctrl+Alt+T**"，打开命令行终端，在终端输入**指令**"， 按下回车， 重启容器。
 
 ```commandline
 docker restart 0cfc6a98a68c
@@ -961,7 +961,7 @@ docker restart 0cfc6a98a68c
 
 容器之间的网络问题可能会导致应用程序无法通信。使用docker network命令可以管理容器网络，查看容器的IP地址和端口映射情况。
 
-按下“**Ctrl+Alt+T**”，打开命令行终端，在终端输入， 按下回车，查看容器网络信息。
+按下"**Ctrl+Alt+T**"，打开命令行终端，在终端输入， 按下回车，查看容器网络信息。
 
 ```commandline
 docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 0cfc6a98a68c
@@ -973,7 +973,7 @@ docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' 0cf
 
 容器的存储问题可能包括磁盘空间耗尽或数据丢失。使用数据卷和存储驱动程序可以更好地管理容器的存储。
 
-按下“**Ctrl+Alt+T**”，打开命令行终端，在终端输入指令， 按下回车，创建数据卷。
+按下"**Ctrl+Alt+T**"，打开命令行终端，在终端输入指令， 按下回车，创建数据卷。
 
 ```commandline
 docker volume create my-data
@@ -1001,13 +1001,11 @@ Docker容器的日常维护和故障排除是确保容器环境稳定性和可�
 
 - #### 7.1.1 这里以melodic版本为例（需联网）
 
-1)  按下“**Ctrl+Alt+T**”，打开命令行终端，在终端输入指令，下载ROS1镜像，镜像下载需要一些时间，请耐心等待一会。
+1)  按下"**Ctrl+Alt+T**"，打开命令行终端，在终端输入指令，下载ROS1镜像，镜像下载需要一些时间，请耐心等待一会。
 
 ```commandline
 docker pull ros:melodic
 ```
-
-<img src="../_static/media/chapter_5/section_7/image1.png" style="width:5.65625in;height:0.23958in" />
 
 1)  镜像下载完成后，在终端输入指令，运行容器并指定名称为 melodic。
 
@@ -1047,9 +1045,7 @@ docker exec -it 75b6634e6227 /bin/bash
 useradd -m -s /bin/bash ubuntu
 ```
 
-<img src="../_static/media/chapter_5/section_7/image6.png" style="width:5.76458in;height:0.20417in" />
-
-6)  在终端输入指令，设置“**ubuntu**”的密码，输入密码按下之后，需要重新输入一遍密码。
+6)  在终端输入指令，设置"**ubuntu**"的密码，输入密码按下之后，需要重新输入一遍密码。
 
 ```commandline
 passwd ubuntu
@@ -1062,8 +1058,6 @@ passwd ubuntu
 ```commandline
 usermod -aG sudo ubuntu
 ```
-
-<img src="../_static/media/chapter_5/section_7/image8.png" style="width:5.76597in;height:0.22083in" />
 
 8)  在终端输入指令，更新可用软件包列表并升级系统上已安装的软件包。
 
@@ -1115,7 +1109,7 @@ source /opt/ros/melodic/setup.bash
 3)  每一次打开都执行 7）步骤加载工作空间，可以在终端输入指令，将该指令写入.bashrc文件中。
 
 ```commandline
-echo “source /opt/ros/melodic/setup.bash” >> ~/.bashrc
+echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
 ```
 
 <img src="../_static/media/chapter_5/section_7/image14.png" style="width:5.76389in;height:0.35278in" />
@@ -1134,7 +1128,6 @@ source ~/.bashrc
 rosrun turtlesim turtlesim_node
 ```
 
-<img src="../_static/media/chapter_5/section_7/image16.png" style="width:5.76528in;height:0.20556in" />
 
 <img src="../_static/media/chapter_5/section_7/image17.png" style="width:2.58194in;height:2.75903in" />
 
@@ -1142,7 +1135,7 @@ rosrun turtlesim turtlesim_node
 
 - #### 7.2.1 这里以humble版本为例（需联网）
 
-1)  按下“**Ctrl+Alt+T**”，打开命令行终端，在终端输入指令，下载ROS2镜像，镜像下载需要一些时间，请耐心等待一会。
+1)  按下"**Ctrl+Alt+T**"，打开命令行终端，在终端输入指令，下载ROS2镜像，镜像下载需要一些时间，请耐心等待一会。
 
 ```commandline
 docker pull ros:humble
@@ -1180,31 +1173,23 @@ docker ps -a
 docker exec -it 76a092503f2e /bin/bash
 ```
 
-<img src="../_static/media/chapter_5/section_7/image20.png" style="width:5.76458in;height:0.21528in" />
-
 6)  在终端输入指令，创建一个新用户。
 
 ```commandline
 useradd -m -s /bin/bash ubuntu
 ```
 
-<img src="../_static/media/chapter_5/section_7/image21.png" style="width:5.76181in;height:0.21181in" />
-
-7)  在终端输入指令，设置“**ubuntu**”的密码，这里我们设置为“**ubuntu**”输入密码按下之后，需要重新输入一遍密码。
+7)  在终端输入指令，设置"**ubuntu**"的密码，这里我们设置为"**ubuntu**"输入密码按下之后，需要重新输入一遍密码。
 
 ```commandline
 passwd ubuntu
 ```
-
-<img src="../_static/media/chapter_5/section_7/image7.png" style="width:5.76389in;height:0.78264in" />
 
 8)  在终端输入指令，将新用户 ubuntu 添加sudo ，使其具有超级用户权限。
 
 ```commandline
 usermod -aG sudo ubuntu
 ```
-
-<img src="../_static/media/chapter_5/section_7/image8.png" style="width:5.76597in;height:0.22083in" />
 
 9) 在终端输入指令，更新可用软件包列表并升级系统上已安装的软件包。
 
@@ -1251,10 +1236,8 @@ source /opt/ros/humble/setup.bash
 3)  每一次打开都执行7）步骤加载工作空间，可以在终端输入指令，将该指令写入.bashrc文件中。
 
 ```commandline
-echo “source /opt/ros/humble/setup.bash” \>\> ~/.bashrc
+echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
 ```
-
-<img src="../_static/media/chapter_5/section_7/image24.png" style="width:5.76181in;height:0.27361in" />
 
 4)  然后输入指令，让**.bashrc**文件生效。这样就不需要每一次加载工作空间环境。
 
@@ -1263,15 +1246,11 @@ echo “source /opt/ros/humble/setup.bash” \>\> ~/.bashrc
 source ~/.bashrc
 ```
 
-<img src="../_static/media/chapter_5/section_7/image15.png" style="width:5.76528in;height:0.5in" />
-
 5)  输入指令，启动小海龟GUI界面，启动成功即说明ROS2安装成功。
 
 ```commandline
 ros2 run turtlesim turtlesim_node
 ```
-
-<img src="../_static/media/chapter_5/section_7/image25.png" style="width:5.76458in;height:0.23681in" />
 
 <img src="../_static/media/chapter_5/section_7/image17.png" style="width:2.58194in;height:2.75903in" />
 
@@ -1294,7 +1273,7 @@ docker仓库（repository）是集中存放镜像文件的场所。最大的公�
 
 这里的注册用户名是:tao082，那就要先修改镜像名称
 
-- 1. 按下“**Ctrl+Alt+T**”，打开命令行终端，在终端输入指令，查看主机上的镜像。
+- 1. 按下"**Ctrl+Alt+T**"，打开命令行终端，在终端输入指令，查看主机上的镜像。
 
 ```commandline
 docker images
@@ -1307,8 +1286,6 @@ docker images
 ```commandline
 docker tag 30555f5a4f74 tao082/debian:1.1
 ```
-
-<img src="../_static/media/chapter_5/section_8/image3.png" style="width:5.76389in;height:0.22639in" />
 
 - 3.  在终端输入指令，可以看到镜像名称已经修改成功了。
 
@@ -1347,7 +1324,7 @@ docker push tao082/debian:1.1
 
 1. **方式一：docker export 和 docker import（从容器中导出压缩包）**
 
-- 1)  按下“**Ctrl+Alt+T**”，打开命令行终端，在终端输入指令，显示当前主机中的容器。
+- 1)  按下"**Ctrl+Alt+T**"，打开命令行终端，在终端输入指令，显示当前主机中的容器。
 
 ```commandline
 docker ps
@@ -1355,19 +1332,17 @@ docker ps
 
 <img src="../_static/media/chapter_5/section_8/image8.png" style="width:5.76042in;height:0.54444in" />
 
-- 2)  在终端输入指令，将“**efe969b704a7**”容器导出为“**debian.tar**”。
+- 2)  在终端输入指令，将"**efe969b704a7**"容器导出为"**debian.tar**"。
 
 ```commandline
 docker export efe969b704a7 > debian.tar
 ```
 
-<img src="../_static/media/chapter_5/section_8/image9.png" style="width:5.375in;height:0.23958in" />
-
 可以在当前路径下看到导出的容器。
 
 <img src="../_static/media/chapter_5/section_8/image10.png" style="width:5.72847in;height:1.79583in" />
 
-- 3)  在终端输入指令导入容器所在路径，“**test/debian**”为镜像名，“**v1**”为标签名。
+- 3)  在终端输入指令导入容器所在路径，"**test/debian**"为镜像名，"**v1**"为标签名。
 
 ```commandline
 cat /home/pi/debian.tar | docker import - test/debian:v1
@@ -1385,7 +1360,7 @@ docker images
 
 2. **方式二：docker save 和 docker load（从镜像中导出压缩包）**
 
-- 1)  按下“**Ctrl+Alt+T**”，打开命令行终端，在终端输入指令，查看当前主机中的镜像。
+- 1)  按下"**Ctrl+Alt+T**"，打开命令行终端，在终端输入指令，查看当前主机中的镜像。
 
 ```commandline
 docker images
@@ -1398,8 +1373,6 @@ docker images
 ```commandline
 docker save -o debian_1.1.tar debian:latest
 ```
-
-<img src="../_static/media/chapter_5/section_8/image13.png" style="width:5.76597in;height:0.25139in" />
 
 可以在当前路径下看到导出的容器。
 

@@ -58,15 +58,15 @@ PuppyPi机器人采用ROS操作系统，支持Gazebo编程，能满足用户对�
 
 <img src="../_static/media/chapter_1/section_2/image9.png" style="width:5.75972in;height:4.25278in" alt="" />
 
-2)  然后将扩展板的开关由“**OFF**”推到“**ON**”，开机以后，机器狗尾部的数码管会显示电池当前电量（下图所示点亮为8V，当电池电量低于6.8V时需尽快给电池充电），且LED1和LED2会亮起微弱蓝灯，稍等片刻后，LED1将常亮，LED2将每隔两秒闪烁，代表网络配置已经准备完毕。然后等待蜂鸣器发出“嘀”的一声，说明Ros配置完成，设备启动完毕。
+2)  然后将扩展板的开关由"**OFF**"推到"**ON**"，开机以后，机器狗尾部的数码管会显示电池当前电量（下图所示点亮为8V，当电池电量低于6.8V时需尽快给电池充电），且LED1和LED2会亮起微弱蓝灯，稍等片刻后，LED1将常亮，LED2将每隔两秒闪烁，代表网络配置已经准备完毕。然后等待蜂鸣器发出"嘀"的一声，说明Ros配置完成，设备启动完毕。
 
 <img src="../_static/media/chapter_1/section_2/image11.png" style="width:5.75972in;height:4.25278in" alt="" />
 
 <img src="../_static/media/chapter_1/section_2/image13.png" style="width:5.75972in;height:4.25278in" alt="" />
 
-3)  设备出厂默认为AP直连模式，开机成功后，将产生一个以“**HW**”开头的热点。
+3)  设备出厂默认为AP直连模式，开机成功后，将产生一个以"**HW**"开头的热点。
 
 <img src="../_static/media/chapter_1/section_2/image15.jpeg" style="width:3.14961in;height:1.16704in" alt="" />
 
-接下来可前往“**[上手试玩]()**”继续学习后续内容。
+接下来可前往"**[上手试玩]()**"继续学习后续内容。
 
