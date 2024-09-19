@@ -1416,7 +1416,7 @@ vi person_client.py
 chmod +x person_server.py
 ```
 
-## 运行服务器和客户端节点
+### 10.3 运行服务器和客户端节点
 
 1)  输入指令"**cd ~/catkin_ws**"，并按下回车，进入catkin工作空间。
 
@@ -2006,7 +2006,7 @@ rosrun turtlesim turtle_teleop_key
 
 <img src="../_static/media/chapter_6/section_13/image8.png" style="width:5.75625in;height:3.34444in" />
 
-# 3.创建功能包
+### 13.3 创建功能包
 
 下面，就开始创建功能包，步骤如下：
 
