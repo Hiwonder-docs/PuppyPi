@@ -676,7 +676,7 @@ rqt_graph
 
 <img src="../_static/media/chapter_9/section_7/image12.png" style="width:5.75625in;height:3.70417in" />
 
-- #### 7.2.2话题通讯分析
+- #### 7.2.2 话题通讯分析
 
 为了方便理解，这里以人脸识别玩法的流程为例进行分析，所涉流程如下图：
 
