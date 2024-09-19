@@ -16,6 +16,15 @@
    docs/10_action_editing.md
    docs/11_simulation.md
    docs/13_visual_recognition_and_tracking.md
+   docs/14_step_climbing.md
+   docs/15_tracking_kick.md
+   docs/16_autonomous_cruise.md
+   docs/17_sensor_bonding.md
+   docs/18_mass_control.md
+   docs/19_lidar.md
+   docs/20_slam_mapping.md
+   docs/21_autonomous_navigation.md
+   docs/22_coupling_manipulator.md
 
 
 
