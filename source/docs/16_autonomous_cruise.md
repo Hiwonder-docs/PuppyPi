@@ -2,7 +2,9 @@
 
 ## 1. 线条定位
 
->可在本节文件夹下观看演示效果。
+:::{Note}
+可在本节文件夹下观看演示效果。
+:::
 
 ### 1.1 玩法简要说明
 
@@ -16,7 +18,9 @@ PuppyPi机器狗在进行自主巡线行走之前，需要先对线条进行定�
 
 ### 1.2 玩法开启及关闭步骤
 
-> 指令输入需严格区分大小写及空格。
+:::{Note}
+指令输入需严格区分大小写及空格。
+:::
 
 1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
@@ -36,7 +40,9 @@ rosrun puppy_advanced_functions visual_patrol_demo.py
 
 ### 1.3 功能实现
 
-<img src="../_static/media/chapter_16/section_1/image2.png" style="width:0.31528in;height:0.31528in" />程序默认检测颜色为红色。
+:::{Note}
+程序默认检测颜色为红色。
+:::
 
 将红色的电工胶带铺设在所用场地，并将PuppyPi机器狗置于红色线条上。启动玩法后，机器狗识别到线条后，会在回传画面中框出线条，并画出中心点，同时在终端上显示中心点坐标。
 
@@ -44,7 +50,7 @@ rosrun puppy_advanced_functions visual_patrol_demo.py
 
 ### 1.4 程序参数说明
 
-1. **处理图像**
+- #### 1.4.1 处理图像
 
 该程序的源代码位于Docker容器中的： **/home/ubuntu/puppypi/src/puppy_advanced_functions/scripts/visual_patrol_demo.py**
 
@@ -52,19 +58,19 @@ rosrun puppy_advanced_functions visual_patrol_demo.py
 
 <img src="../_static/media/chapter_16/section_1/image10.png" style="width:3.92708in;height:3.30278in" />
 
-- **导入功能包**
+1. **导入功能包**
 
-<img src="../_static/media/chapter_16/section_1/image13.png" style="width:5.76667in;height:2.05417in" />
+<img class="common_img" src="../_static/media/chapter_16/section_1/image13.png" style="width:5.76667in;height:2.05417in" />
 
 通过 import 语句导入所需模块：math提供了一系列数学函数和常数,用于进行相关计算；rospy用于ROS通信；from sensor_msgs.msg import Image: 是从 sensor_msgs.msg 包中导入 Image 消息类型。sensor_msgs 包提供了各种传感器数据的消息定义,相机图像。puppy_control导入动作组
 
-- **获取最大面积轮廓**
+2. **获取最大面积轮廓**
 
 <img src="../_static/media/chapter_16/section_1/image15.png" style="width:4.53125in;height:0.66667in" />
 
 设置巡线颜色设置为红色
 
-- **高斯滤波**
+3. **高斯滤波**
 
 在将图像的颜色空间由RGB转换为Lab前，需要先对其进行降噪处理，此处用到cv2库中的GaussianBlur()函数，该函数用于对图像进行高斯滤波处理。
 
@@ -78,7 +84,7 @@ rosrun puppy_advanced_functions visual_patrol_demo.py
 
 第三个参数“**3**”是在高斯滤波中其平均值附近允许的方差大。该值越大，平均值周围允许的方差越大；数值越小，平均值周围允许的方差越小。
 
-- **二值化处理**
+4. **二值化处理**
 
 采用cv2库中的inRange()函数对图像进行二值化处理。
 
@@ -86,9 +92,11 @@ rosrun puppy_advanced_functions visual_patrol_demo.py
 
 函数括号内的第一个参数是输入图像；第二个、第三个参数分别是阈值的下限和上限。当像素点RGB的颜色数值处于上、下限之间时，该像素点被赋值为1，否则为0。
 
-- **开运算和闭运算**
+5. **开运算和闭运算**
 
-> 为了降低干扰，令图像更平滑，需要对图像进行处理。
+:::{Note}
+为了降低干扰，令图像更平滑，需要对图像进行处理。
+:::
 
 <img src="../_static/media/chapter_16/section_1/image21.png" style="width:5.75833in;height:0.19653in" />
 
@@ -102,7 +110,7 @@ cv2.MORPH_OPEN 进行开运算，指的是先进行腐蚀操作，再进行膨�
 
 第三个参数“**np.ones((6, 6), np.uint8)**”是方框的大小。
 
-- **获取最大面积轮廓**
+6. **获取最大面积轮廓**
 
 完成上述的图像处理后，需要获取识别目标的轮廓，此处涉及cv2库中的findContours()函数。
 
@@ -114,15 +122,15 @@ cv2.MORPH_OPEN 进行开运算，指的是先进行腐蚀操作，再进行膨�
 
 <img src="../_static/media/chapter_16/section_1/image25.png" style="width:5.76389in;height:1.41319in" />
 
-2. **获取位置信息**
+- #### 1.4.2 **获取位置信息**
 
-- **框出线条**
+1. **框出线条**
 
 通过drawContours()函数，设置矩形图案，将线条框出。
 
 <img src="../_static/media/chapter_16/section_1/image27.png" style="width:5.7625in;height:0.23889in" />
 
-- **画出中心点**
+2. **画出中心点**
 
 接着，获取矩形的对角点，通过circle()画出线条的中心点。
 
@@ -148,21 +156,25 @@ cv2.MORPH_OPEN 进行开运算，指的是先进行腐蚀操作，再进行膨�
 
 ### 2.2 玩法开启及关闭步骤
 
->指令输入需严格区分大小写及空格。
+:::{Note}
+指令输入需严格区分大小写及空格。
+:::
 
-  - 1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-  - 2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_16/section_2/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_16/section_2/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
 <img src="../_static/media/chapter_16/section_2/image5.png" style="width:5.76111in;height:1.43611in" />
 
-  - 3)  输入启动玩法的指令，按下回车。
+3)  输入启动玩法的指令，按下回车。
 
-    **rosrun puppy_advanced_functions** **visual_patrol_demo.py**
+```commandline
+rosrun puppy_advanced_functions visual_patrol_demo.py
+```
 
 <img src="../_static/media/chapter_16/section_2/image6.png" style="width:5.76667in;height:1.81736in" />
 
-  - 4)  如需关闭此玩法，可在LX终端界面按下“**Ctrl+C**”，如关闭失败，可多次按下。
+4)  如需关闭此玩法，可在LX终端界面按下“**Ctrl+C**”，如关闭失败，可多次按下。
 
 ### 2.3 功能实现
 
@@ -174,11 +186,11 @@ cv2.MORPH_OPEN 进行开运算，指的是先进行腐蚀操作，再进行膨�
 
 <span id="anchor_2_4_1" class="anchor"></span>
 
-1. **关闭调试画面和终端打印数据**
+- #### 2.4.1 关闭调试画面和终端打印数据
 
 由于调试画面和终端打印数据不断刷新，会占用树莓派一定的CPU资源，所以如果出现运行不流畅的情况，可通过关闭调试画面和终端打印数据来改善，具体步骤如下：
 
-  - 1)  输入指令，用来编辑自主巡线行走玩法程序，按下回车。
+1)  输入指令，用来编辑自主巡线行走玩法程序，按下回车。
 
 ```commandline
 rosed puppy_advanced_functions visual_patrol_demo.py
@@ -186,7 +198,7 @@ rosed puppy_advanced_functions visual_patrol_demo.py
 
 <img src="../_static/media/chapter_16/section_2/image9.png" style="width:5.76806in;height:1.82708in" />
 
-  - 2)  找到下图所示代码：
+2)  找到下图所示代码：
 
 <img src="../_static/media/chapter_16/section_2/image11.png" style="width:5.76111in;height:0.59514in" />
 
@@ -196,13 +208,13 @@ rosed puppy_advanced_functions visual_patrol_demo.py
 在键盘输入代码位置序号后，按下“Shift+G”键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
 :::
 
-  - 3)  按下“**i**”键进入编辑模式，在代码前面添加“**\#**”，进行注释。
+3)  按下“**i**”键进入编辑模式，在代码前面添加“**\#**”，进行注释。
 
 <img src="../_static/media/chapter_16/section_2/image15.png" style="width:5.76806in;height:0.60903in" />
 
 <img src="../_static/media/chapter_16/section_2/image17.png" style="width:5.76667in;height:1.31389in" />
 
-  - 4)  修改完成后，按下“**Esc**”键，输入指令并按下回车，进行保存与退出。
+4)  修改完成后，按下“**Esc**”键，输入指令并按下回车，进行保存与退出。
 
 ```commandline
 :wq
@@ -210,7 +222,7 @@ rosed puppy_advanced_functions visual_patrol_demo.py
 
 <img src="../_static/media/chapter_16/section_2/image19.png" style="width:5.76806in;height:0.59514in" />
 
-  - 5)  输入指令，重新启动玩法，即可查看修改后的玩法效果。
+5)  输入指令，重新启动玩法，即可查看修改后的玩法效果。
 
 ```commandline
 rosrun puppy_advanced_functions visual_patrol_demo.py
@@ -218,17 +230,17 @@ rosrun puppy_advanced_functions visual_patrol_demo.py
 
 <img src="../_static/media/chapter_16/section_2/image21.png" style="width:5.76806in;height:2.00208in" />
 
-  - 6)  如需再次查看调试画面（摄像头实时回传画面）和终端打印数据，可将步骤3）框出的内容进行反注释，即将代码前面的“**\#**”去掉，再进行保存，如下图所示：
+6)  如需再次查看调试画面（摄像头实时回传画面）和终端打印数据，可将步骤3）框出的内容进行反注释，即将代码前面的“**\#**”去掉，再进行保存，如下图所示：
 
 <img src="../_static/media/chapter_16/section_2/image11.png" style="width:5.76111in;height:0.59514in" />
 
 <img src="../_static/media/chapter_16/section_2/image13.png" style="width:5.7625in;height:1.90694in" />
 
-2. **更改巡线颜色**
+- #### 2.4.2 更改巡线颜色
 
 **玩法默认巡线颜色是红色，如需更改巡线颜色，比如黑色，可参照以下步骤：**
 
-  - 1) 输入指令，用来编辑 自主巡线行走玩法程序，按下回车。
+1) 输入指令，用来编辑 自主巡线行走玩法程序，按下回车。
 
 ```commandline
 rosed puppy_advanced_functions visual_patrol_demo.py
@@ -236,19 +248,19 @@ rosed puppy_advanced_functions visual_patrol_demo.py
 
 <img src="../_static/media/chapter_16/section_2/image9.png" style="width:5.76806in;height:1.82708in" />
 
-  - 2)  找到下图所示代码：
+2)  找到下图所示代码：
 
-    <img src="../_static/media/chapter_16/section_2/image22.png" style="width:5.76667in;height:0.64306in" />
+<img src="../_static/media/chapter_16/section_2/image22.png" style="width:5.76667in;height:0.64306in" />
 
 :::{Note}
 在键盘输入代码位置序号后，按下“Shift+G”键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
 :::
 
-4)  按下“**i**”键进入编辑模式，将“**red**”改为“**black**”。
+3)  按下“**i**”键进入编辑模式，将“**red**”改为“**black**”。
 
 <img src="../_static/media/chapter_16/section_2/image24.png" style="width:5.76111in;height:1.575in" />
 
-5)  修改完成后，按下“**Esc**”键，输入“**:wq**”并回车，进行保存与退出。
+4)  修改完成后，按下“**Esc**”键，输入“**:wq**”并回车，进行保存与退出。
 
 ```commandline
 :wq
@@ -256,7 +268,7 @@ rosed puppy_advanced_functions visual_patrol_demo.py
 
 <img src="../_static/media/chapter_16/section_2/image26.png" style="width:5.76667in;height:0.75486in" />
 
-6)  输入指令并按下回车，重新启动玩法，即可查看修改后的玩法效果。
+5)  输入指令并按下回车，重新启动玩法，即可查看修改后的玩法效果。
 
 ```commandline
 rosrun puppy_advanced_functions visual_patrol_demo.py
@@ -276,7 +288,7 @@ rosrun puppy_advanced_functions visual_patrol_demo.py
 
   <img src="../_static/media/chapter_16/section_2/image30.png" style="width:4.53125in;height:0.66667in" />
 
-  设置巡线颜色设置为红色
+设置巡线颜色为红色
 
 1.  **控制巡线**
 

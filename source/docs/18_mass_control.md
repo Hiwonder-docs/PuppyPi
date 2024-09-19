@@ -6,7 +6,7 @@
 
 1)  至少准备2台及以上的PuppyPi（本节课以2台PuppyPi为例进行示范）。
 
-2)  开发环境搭建，参照“**[远程工具安装及容器进入方法\1. 远程桌面工具安装与连接]()**”，下载并安装远程连接工具 VNC。
+2)  开发环境搭建，参照“**[远程工具安装及容器进入方法\1. 远程桌面工具安装与连接](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/8_remote_tool.html#)**”，下载并安装远程连接工具 VNC。
 
 ### 1.2 实现原理
 
@@ -16,103 +16,107 @@
 
 <p id="anchor_1_3_1"></p>
 
-1. **网络配置**
+- #### 1.3.1 网络配置
 
-   1. **配置主机网络**
+1. **配置主机网络**
 
-      1)  首先，选取一台PuppyPi作为主机，将它开机，然后远程连接它的系统桌面。
+- 首先，选取一台PuppyPi作为主机，将它开机，然后远程连接它的系统桌面。
 
-      2)  按下“Ctrl+Alt+T”打开命令行终端，进入到文件所在目录。输入指令，按下回车。
+-  按下“Ctrl+Alt+T”打开命令行终端，进入到文件所在目录。输入指令，按下回车。
       
-            ```commandline
-            cd hiwonder-toolbox
-            ```
+```commandline
+cd hiwonder-toolbox
+```
 
-          <img src="../_static/media/chapter_18/section_1//image2.png" style="width:5.8125in;height:1.69375in" />
+<img src="../_static/media/chapter_18/section_1//image2.png" style="width:5.8125in;height:1.69375in" />
 
-      3)  使用vim编辑器打开Wi-Fi 配置文件，输入指令，按下回车。
+- 使用vim编辑器打开Wi-Fi 配置文件，输入指令，按下回车。
       
-            ```commandline
-            sudo vim wifi_conf.py
-            ```
+```commandline
+sudo vim wifi_conf.py
+```
 
-          <img src="../_static/media/chapter_18/section_1//image3.png" style="width:5.8125in;height:1.71736in" />
+<img src="../_static/media/chapter_18/section_1//image3.png" style="width:5.8125in;height:1.71736in" />
 
-      4)  按下键盘上的“**i** ”键，进入编辑模式。修改主机热点密码，先找到下图框选的这两行代码。
+-  按下键盘上的“**i** ”键，进入编辑模式。修改主机热点密码，先找到下图框选的这两行代码。
 
-          <img src="../_static/media/chapter_18/section_1//image5.png" style="width:5.8125in;height:3.28264in" />
+<img src="../_static/media/chapter_18/section_1//image5.png" style="width:5.8125in;height:3.28264in" />
 
-      5)  修改完成之后，按下“**Esc** ”键，退出编辑模式。再输入“**:wq** ”保存并退出。
+-  修改完成之后，按下“**Esc** ”键，退出编辑模式。再输入“**:wq** ”保存并退出。
 
-            ```commandline
-            :wq
-            ```
-          
-           <img src="../_static/media/chapter_18/section_1//image6.png" style="width:5.8125in;height:3.28681in" />
+```commandline
+:wq
+```
 
-      6)  输入指令重启主机。
-           ```commandline
-           sudo systemctl restart wifi.service
-           ```
-          
-          <img src="../_static/media/chapter_18/section_1//image7.png" style="width:5.7625in;height:0.24167in" />
+<img src="../_static/media/chapter_18/section_1//image6.png" style="width:5.8125in;height:3.28681in" />
 
-      7)  待主机重启完成后，再连接主机的Wi-Fi 时，需输入Wi-Fi密码“**hiwonder** ”。
+-  输入指令重启主机。
+```commandline
+sudo systemctl restart wifi.service
+```
 
-   2. **配置从机网络**
+<img src="../_static/media/chapter_18/section_1//image7.png" style="width:5.7625in;height:0.24167in" />
 
-      1)  将从机开机，远程连接从机的系统桌面。
+-  待主机重启完成后，再连接主机的Wi-Fi 时，需输入Wi-Fi密码“**hiwonder** ”。
 
-      2)  打开命令行终端，进入到文件所在目录。输入指令，按下回车。
-          ```commandline
-          cd hiwonder-toolbox
-          ```
-           
-          <img src="../_static/media/chapter_18/section_1//image2.png" style="width:5.8125in;height:1.69375in" />
+2. **配置从机网络**
 
-      3)  使用vim编辑器打开Wi-Fi 配置文件，输入指令，按下回车。
+- 将从机开机，远程连接从机的系统桌面。
 
-          ```commandline
-          sudo vim wifi_conf.py
-          ```
-           
-          <img src="../_static/media/chapter_18/section_1//image3.png" style="width:5.8125in;height:1.71736in" />
+- 打开命令行终端，进入到文件所在目录。输入指令，按下回车。
+```commandline
+cd hiwonder-toolbox
+```
 
-      4)  输入键盘上的“**i**”键，进入编辑模式，将WI-FI名称和密码这两行代码改成如下图所示。
+<img src="../_static/media/chapter_18/section_1//image2.png" style="width:5.8125in;height:1.69375in" />
 
-          > 找到框选出的这四行代码。
+-  使用vim编辑器打开Wi-Fi 配置文件，输入指令，按下回车。
 
-          <img src="../_static/media/chapter_18/section_1//image8.png" style="width:5.8125in;height:3.29514in" />
+```commandline
+sudo vim wifi_conf.py
+```
 
-          将从机的网络模式设置为“**2**”即为局域网模式，“**HW-123**”和“**hiwonder**”则为**配置主机网络**设置的主机WI-FI名称和密码。
+<img src="../_static/media/chapter_18/section_1//image3.png" style="width:5.8125in;height:1.71736in" />
 
-      5)  修改完成之后，按一下“**Esc** ”键，退出编辑模式。再输入“ **:wq** ”保存并退出。
-   
-            ```commandline
-            :wq
-            ```
+-  输入键盘上的“**i**”键，进入编辑模式，将WI-FI名称和密码这两行代码改成如下图所示。
 
-          <img src="../_static/media/chapter_18/section_1//image9.png" style="width:5.8125in;height:3.275in" />
+:::{Note}
+找到框选出的这四行代码。
+:::
 
-      6)  输入命令将设备重启。（**此步不可跳过！**）
-      
-           ```commandline
-           sudo systemctl restart wifi.service
-           ```
+<img src="../_static/media/chapter_18/section_1//image8.png" style="width:5.8125in;height:3.29514in" />
 
-           <img src="../_static/media/chapter_18/section_1//image7.png" style="width:5.7625in;height:0.24167in" />
-    
+将从机的网络模式设置为“**2**”即为局域网模式，“**HW-123**”和“**hiwonder**”则为**配置主机网络**设置的主机WI-FI名称和密码。
+
+-  修改完成之后，按一下“**Esc** ”键，退出编辑模式。再输入“ **:wq** ”保存并退出。
+
+```commandline
+:wq
+```
+
+<img src="../_static/media/chapter_18/section_1//image9.png" style="width:5.8125in;height:3.275in" />
+
+-  输入命令将设备重启。（**此步不可跳过！**）
+
+```commandline
+sudo systemctl restart wifi.service
+```
+
+<img src="../_static/media/chapter_18/section_1//image7.png" style="width:5.7625in;height:0.24167in" />
+
 ## 2. 群控启动方法
 
 ### 2.1 启动群发控制
 
-> 指令输入需严格区分大小写及空格。
+:::{Note}
+指令输入需严格区分大小写及空格。
+:::
 
 1)  选择一个PuppyPi机器狗作为主机并启动，通过VNC远程连接树莓派桌面。
 
 2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_18/section_2//image3.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-    <img src="../_static/media/chapter_18/section_2//image4.png" style="width:5.76111in;height:3.75208in" />
+<img src="../_static/media/chapter_18/section_2//image4.png" style="width:5.76111in;height:3.75208in" />
 
 3)  输入关闭自启玩法的指令，并按下回车。
 

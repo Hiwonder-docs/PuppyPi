@@ -86,7 +86,7 @@ AMCL可以看作是蒙特卡罗定位算法的改进版本，它通过在蒙特�
 
 算法核心思想：假设：k=dy/dx。因为直线的起始点在像素中心，所以误差项d的初值d0＝0。X下标每增加1，d的值相应递增直线的斜率值k，即d＝d＋k。一旦d≥1，就把它减去1，这样保证d在0、1之间。当d≥0.5时，最接近于当前像素的右上方像素（x+1,y+1）而当d\<0.5时，更接近于右方像素(x+1,y）为方便计算，令e＝d-0.5，e的初值为-0.5，增量为k。当e≥0时，取当前像素（xi，yi）的右上方像素（x+1,y+1）而当e\<0时，更接近于右方像素(x+1,y）可以改用整数以避免除法。由于算法中只用到误差项的符号，因此可作如下替换：e1 = 2\*e\*dx。
 
-<img src="../_static/media/chapter_21/section_2/image5.png" style="width:4.72431in;height:4.24514in" />
+<img class="common_img" src="../_static/media/chapter_21/section_2/image5.png" style="width:4.72431in;height:4.24514in" />
 
 Costmap2D类维护了每个栅格的代价值。Layer类是虚基类，它统一了各插件costmap层的接口。其中最主要的接口函数有：
 
@@ -100,7 +100,7 @@ updateBounds函数，调整当前costmap层需要更新的大小范围。对于S
 
 CostmapLayer类同时继承了Layer类和Costmap2D类，并提供了几个更新cost值的操作方法。StaticLayer类和ObstacleLayer类需要保存实例化costmap层的cost值，所以都继承了CostmapLayer类。StaticLayer类使用静态栅格地图数据更新自己的costmap。ObstacleLayer类使用传感器数据更新自己的costmap。VoxelLayer类相对于ObstacleLayer类则多考虑了z轴的数据。效果的区别主要体现在障碍物的清除方面。一个是二维层面的清除，一个是三维里的清除。
 
-<img src="../_static/media/chapter_21/section_2/image6.png" style="width:5.76667in;height:3.83819in" />
+<img class="common_img" src="../_static/media/chapter_21/section_2/image6.png" style="width:5.76667in;height:3.83819in" />
 
 Costmap 度量障碍非常灵活，可以根据需求创建特定的图层，然后在该图层上维护需要关注的障碍信息。如果机器人上只安装了激光雷达，那么需创建一个 Obstacles 图层来维护激光雷达扫描到的障碍信息。如果机器人上添加了超声波，那么需要新建一个 Sonar 图层来维护声波传感器扫描到的障碍信息。每个图层都可以有自己的障碍更新规则，例如添加障碍、删除障碍、更新障碍点的置信度等，极大地提高了导航系统的可扩展性。
 
@@ -114,13 +114,13 @@ Costmap 度量障碍非常灵活，可以根据需求创建特定的图层，然
 
 前言：根据移动机器人对环境的了解情况、环境性质以及使用的算法，可将路径规划分为基于环境的路径规划算法、基于地图知识的路径规划算法和基于完备性的路径规划算法，
 
-<img src="../_static/media/chapter_21/section_2/image7.png" style="width:3.93681in;height:2.00069in" />
+<img class="common_img" src="../_static/media/chapter_21/section_2/image7.png" style="width:3.93681in;height:2.00069in" />
 
 机器人自主导航中比较常用的路径规划算法包括 Diikstra、A\*、D\*、PRM、RRT、遗传算法蚁群算法、模糊算法等。
 
 机器人中用到的 Dijkstra、A\*属于基于图结构的路径搜索算法。导航功能包中集成了 navfn、global planner 和 carrot planner 全局路规划插件。用户可以从中选择一种加载到 move_base 中使用，也可以选择第三方全局路径规划插件加载到move_base中使用，例 SBPL_Lattice_Planner、srl_global_planner，或者根据nav_core 的接口规范自己开发所需的全局路径规划插件。
 
-<img src="../_static/media/chapter_21/section_2/image8.png" style="width:5.76111in;height:2.21042in" />
+<img class="common_img" src="../_static/media/chapter_21/section_2/image8.png" style="width:5.76111in;height:2.21042in" />
 
 移动机器人导航通过路径规划使其可以到达目标点。导航规划层可以分为全局路径规划层、局部路径规划层、行为执行层等。
 
@@ -132,43 +132,43 @@ Costmap 度量障碍非常灵活，可以根据需求创建特定的图层，然
 
 作为移动机器人研究的一个重点领域，移动机器人路径规划算法的优劣很大程度上决定了机器人的工作效率。
 
-1.  **Dijkstra 算法**
+- #### 2.5.1 Dijkstra 算法
 
 迪杰斯特拉(Dijkstra)算法是典型最短路径算法，Dijkstra是一种单源最短路径算法，主要特点是以起始点为中心向外层层扩展，即广度优先搜索思想，直到扩展到终点为止，是一种带有边权值考量的广度优先算法，是全局路径规划问题中最常用的算法之一。
 
 下面是Dijkstra算法图解：
 
-- 1)  开始时我们把dis\[start\]初始化为0,其余点初始化为inf。
+1)  开始时我们把dis\[start\]初始化为0,其余点初始化为inf。
 
-    <img src="../_static/media/chapter_21/section_2/image9.png" style="width:3.93681in;height:3.31597in" />
+<img src="../_static/media/chapter_21/section_2/image9.png" style="width:3.93681in;height:3.31597in" />
 
-- 2)  第一轮循环找到dis值最小的点1,将1变成白点,对所有与1相连的蓝点的dis值进行修改,使得dis\[2\]=2,dis\[3\]=4,dis\[4\]=7。
+2)  第一轮循环找到dis值最小的点1,将1变成白点,对所有与1相连的蓝点的dis值进行修改,使得dis\[2\]=2,dis\[3\]=4,dis\[4\]=7。
 
-    <img src="../_static/media/chapter_21/section_2/image10.png" style="width:3.93681in;height:3.12917in" />
+<img src="../_static/media/chapter_21/section_2/image10.png" style="width:3.93681in;height:3.12917in" />
 
-- 3)  第二轮循环找到dis值最小的点2,将2变成白点,对所有与2相连的蓝点的dis值进行修改,使得dis\[3\]=3,dis\[5\]=4。
+3)  第二轮循环找到dis值最小的点2,将2变成白点,对所有与2相连的蓝点的dis值进行修改,使得dis\[3\]=3,dis\[5\]=4。
 
-    <img src="../_static/media/chapter_21/section_2/image11.png" style="width:3.93681in;height:3.16181in" />
+<img src="../_static/media/chapter_21/section_2/image11.png" style="width:3.93681in;height:3.16181in" />
 
-- 4)  第三轮循环找到dis值最小的点3,将3变成白点,对所有与2相连的蓝点的dis值进行修改,使得dis\[4\]=4。
+4)  第三轮循环找到dis值最小的点3,将3变成白点,对所有与2相连的蓝点的dis值进行修改,使得dis\[4\]=4。
 
-    <img src="../_static/media/chapter_21/section_2/image12.png" style="width:3.93681in;height:3.16944in" />
+<img src="../_static/media/chapter_21/section_2/image12.png" style="width:3.93681in;height:3.16944in" />
 
-- 5)  接下来两轮循环分别将4,5设为白点,算法结束,求出所有点的最短路
+5)  接下来两轮循环分别将4,5设为白点,算法结束,求出所有点的最短路
 
 关于 Dijkstra 算法介绍和使用方法，可以登录 wiki 查看链接: http://wiki.ros.org/navfn
 
-2.  **A星算法**
+- #### 2.5.2 A星算法
 
 A星是对Dijkstra算法的修改，该算法针对单个目的地进行了优化。Dijkstra算法可以找到所有位置的路径；A星查找到一个位置或几个位置中最近的位置的路径。它优先考虑那些似乎更接近目标的路径。
 
 A星算法的公式为：F = G + H，其中G值是起点移动到指定方格的移动代价H是指定的方格移动到终点的估算成本，H值的计算方式有如下两种：
 
-- 1)  计算横向和纵向移动的距离，无法斜向计算（曼哈顿距离）。
+1)  计算横向和纵向移动的距离，无法斜向计算（曼哈顿距离）。
 
 <img src="../_static/media/chapter_21/section_2/image13.png" style="width:3.64583in;height:2.72917in" />
 
-- 2)  计算横向和纵向移动的距离，可以斜向计算（对角线距离）。
+2)  计算横向和纵向移动的距离，可以斜向计算（对角线距离）。
 
 <img src="../_static/media/chapter_21/section_2/image14.png" style="width:3.62222in;height:2.53889in" />
 
@@ -184,25 +184,25 @@ https://www.redblobgames.com/pathfinding/a-star/introduction.html#graphs
 
 由于树莓派计算能力有限，所以需要将建图的一部分工作放到虚拟机来完成。建图和导航都需要虚拟机和PuppyPi互相通信，我们需要在修改两者的配置。
 
-1. **安装虚拟机软件**
+- #### 3.1.1 安装虚拟机软件
 
 虚拟机的安装可以参考“**[软件工具\6.虚拟机安装包与虚拟机镜像]()**”路径下的文档。
 
-2. **虚拟机的打开和导入**
+- #### 3.1.2 虚拟机的打开和导入
 
-- 1)  将同目录下的虚拟机文件解压到任意非中文路径下。
+1)  将同目录下的虚拟机文件解压到任意非中文路径下。
 
 <img src="../_static/media/chapter_21/section_3/image2.png" style="width:5.7625in;height:1.06389in" />
 
-- 2)  打开虚拟机软件，点击“**打开虚拟机**”。
+2)  打开虚拟机软件，点击“**打开虚拟机**”。
 
 <img src="../_static/media/chapter_21/section_3/image3.png" style="width:5.76389in;height:1.25in" />
 
-- 3)  找到虚拟机文件解压的路径，点击打开。
+3)  找到虚拟机文件解压的路径，点击打开。
 
 <img src="../_static/media/chapter_21/section_3/image4.png" style="width:5.7625in;height:3.56181in" />
 
-- 4)  根据自己的需求，设置虚拟机的名称和存储路径，设置完成后，点击导入。
+4)  根据自己的需求，设置虚拟机的名称和存储路径，设置完成后，点击导入。
 
 <img src="../_static/media/chapter_21/section_3/image5.png" style="width:4.16667in;height:2.60417in" />
 
@@ -210,37 +210,37 @@ https://www.redblobgames.com/pathfinding/a-star/introduction.html#graphs
 导入完成后，下次打开可以直接选择设置的虚拟机存储路径，直接打开虚拟机，无需再次导入
 :::
 
-3. **虚拟机的网络配置**
+- #### 3.1.2 虚拟机的网络配置
 
 :::{Note}
 台式机进行以下配置时，需要确保装配有无线网卡或准备好一个USB无线网卡。
 :::
 
-- 1)  首先，启动机器狗，并用电脑主机连接机器狗的热点。
+1)  首先，启动机器狗，并用电脑主机连接机器狗的热点。
 
 <img src="../_static/media/chapter_21/section_3/image6.png" style="width:3.76042in;height:4.85417in" />
 
-- 2)  返回虚拟机，点击“**编辑**”，再点击“**虚拟机网络配置**”。
+2)  返回虚拟机，点击“**编辑**”，再点击“**虚拟机网络配置**”。
 
 <img src="../_static/media/chapter_21/section_3/image7.png" style="width:5.76389in;height:1.20278in" />
 
-- 3)  在桥接模式处，选择自己的无线网卡，然后点击确定。
+3)  在桥接模式处，选择自己的无线网卡，然后点击确定。
 
 <img src="../_static/media/chapter_21/section_3/image8.png" style="width:6.13472in;height:2.44792in" alt="$CSFYAKAM)B9OFUR39B0GC8" />
 
 <img src="../_static/media/chapter_21/section_3/image9.png" style="width:6.16875in;height:2.64375in" />
 
-- 4)  开启虚拟机，等待开机完成。
+4)  开启虚拟机，等待开机完成。
 
 <img src="../_static/media/chapter_21/section_3/image10.png" style="width:5.76667in;height:2.73958in" />
 
-- 5)  进入系统桌面后，桌面右键点击，打开命令行终端。
+ 5)  进入系统桌面后，桌面右键点击，打开命令行终端。
 
 <img src="../_static/media/chapter_21/section_3/image11.png" style="width:5.75625in;height:2.33403in" />
 
 <img src="../_static/media/chapter_21/section_3/image12.png" style="width:0.31496in;height:0.31496in" />输入指令时需要严格区分大小写，且可使用“Tab”键补齐关键词。
 
-- 6)  输入指令，按下回车，查看虚拟机的IP，如红框处所示。
+6)  输入指令，按下回车，查看虚拟机的IP，如红框处所示。
 
 ```commandline
 ifconfig
@@ -248,7 +248,7 @@ ifconfig
 
 <img src="../_static/media/chapter_21/section_3/image13.png" style="width:5.76319in;height:2.67153in" />
 
-- 7)  再次右键系统桌面，打开一个新的命令行终端，输入指令，按下回车，配置网络。
+7)  再次右键系统桌面，打开一个新的命令行终端，输入指令，按下回车，配置网络。
 
 ```commandline
 sudo nano /etc/hosts
@@ -256,7 +256,7 @@ sudo nano /etc/hosts
 
 <img src="../_static/media/chapter_21/section_3/image14.png" style="width:5.76111in;height:0.24722in" />
 
-- 8)  将下图第2行和第3行的IP修改为查看到的虚拟机IP和树莓派的IP，虚拟机IP按实际查看情况填写，树莓派IP在直连模式下，固定为“**192.168.149.1**”。
+8)  将下图第2行和第3行的IP修改为查看到的虚拟机IP和树莓派的IP，虚拟机IP按实际查看情况填写，树莓派IP在直连模式下，固定为“**192.168.149.1**”。
 
 <img src="../_static/media/chapter_21/section_3/image15.png" style="width:5.7625in;height:1.38264in" />
 
@@ -264,17 +264,17 @@ sudo nano /etc/hosts
 在修改ip的时候，我们要保证缩进与上行的相同。
 :::
 
-- 9)  修改完成后按“**Ctrl+x**”，按下Y键保存，再按下回车确定。
+9)  修改完成后按“**Ctrl+x**”，按下Y键保存，再按下回车确定。
 
 <img src="../_static/media/chapter_21/section_3/image16.png" style="width:5.76111in;height:0.44653in" />
 
-4. **PuppyPi的网络配置**
+- #### 3.1.4 PuppyPi的网络配置
 
-- 1)  接着通过VNC远程连接树莓派桌面。
+1)  接着通过VNC远程连接树莓派桌面。
 
-- 2)  单击桌面左上角的的图标<img src="../_static/media/chapter_21/section_3/image17.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键“**Ctrl+Alt+T**”，打开命令行终端。
+2)  单击桌面左上角的的图标<img src="../_static/media/chapter_21/section_3/image17.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键“**Ctrl+Alt+T**”，打开命令行终端。
 
-- 3)  输入指令，并按下回车，修改PuppyPi网络配置。
+3)  输入指令，并按下回车，修改PuppyPi网络配置。
 
 ```commandline
 sudo vim /etc/hosts
@@ -282,7 +282,7 @@ sudo vim /etc/hosts
 
 <img src="../_static/media/chapter_21/section_3/image18.png" style="width:5.7625in;height:0.25694in" />
 
-- 4)  找到下图红框位置，输入修改成自己的虚拟机IP（上文1.2获得）。按下“**Esc**”键，输入指令，按下回车保存并退出。
+4)  找到下图红框位置，输入修改成自己的虚拟机IP（上文1.2获得）。按下“**Esc**”键，输入指令，按下回车保存并退出。
 
 ```commandline
 :wq
@@ -290,7 +290,7 @@ sudo vim /etc/hosts
 
 <img src="../_static/media/chapter_21/section_3/image19.png" style="width:5.7625in;height:1.16042in" />
 
-- 5)  输入指令，并按下回车，更新配置。
+5)  输入指令，并按下回车，更新配置。
 
 ```commandline
 source .bashrc
@@ -388,32 +388,33 @@ roslaunch puppy_description rviz_with_urdf.launch
 
 3. 确保已参照“**[SLAM建图课程\5. APP建图]()**”进行了建图。
 
-### 2.导航操作
+### 4.2 导航操作
 
-1. **APP导航服务的开启**
+- #### 4.2.1 APP导航服务的开启
 
-- 1)  开启机器狗，接着通过VNC远程连接树莓派桌面。
+1)  开启机器狗，接着通过VNC远程连接树莓派桌面。
 
-- 2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_21/section_4/image2.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_21/section_4/image2.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-- 3)  输入指令，并按下回车，开启APP导航服务。
-    ```commandline
-    . /home/ubuntu/puppypi/src/puppy_navigation/scripts/navigation_app.sh
-    ```
+3)  输入指令，并按下回车，开启APP导航服务。
 
-    <img src="../_static/media/chapter_21/section_4/image20.png" style="width:5.76667in;height:1.95in" />
+```commandline
+. /home/ubuntu/puppypi/src/puppy_navigation/scripts/navigation_app.sh
+```
 
-2. **APP导航**
+<img src="../_static/media/chapter_21/section_4/image20.png" style="width:5.76667in;height:1.95in" />
 
-- 1.  启动机器狗，将其连接至远程控制软件VNC。
+- #### 4.2.2 APP导航
 
-- 2.  开启APP服务，具体操作步骤可参考“3.1 APP导航服务的开启”。
+1.  启动机器狗，将其连接至远程控制软件VNC。
 
-- 3.  前往手机的设置界面，连接机器狗生成的热点。
+2.  开启APP服务，具体操作步骤可参考“3.1 APP导航服务的开启”。
+
+3.  前往手机的设置界面，连接机器狗生成的热点。
 
 <img src="../_static/media/chapter_21/section_4/image6.png" style="width:3.14931in;height:3.22986in" />
 
-- 4.  打开APP“**Map Nav**”，将“**Master URI**”一栏为“**http://192.168.149.1:11311**”，并点击“**CONNECT**”按键。
+4.  打开APP“**Map Nav**”，将“**Master URI**”一栏为“**http://192.168.149.1:11311**”，并点击“**CONNECT**”按键。
 
 <img src="../_static/media/chapter_21/section_4/image7.png" style="width:3.14961in;height:2.50801in" />
 
@@ -427,15 +428,15 @@ roslaunch puppy_description rviz_with_urdf.launch
 
 <img src="../_static/media/chapter_21/section_4/image22.png" style="width:5.75069in;height:2.89236in" />
 
-- 5.  选中“**Set Pose**”，长按地图内的某一点即可将该点设置为机器狗的初始位置。
+5.  选中“**Set Pose**”，长按地图内的某一点即可将该点设置为机器狗的初始位置。
 
-- 6.  将红色方框内的箭头标识朝四周拖动，控制机器人移动以进行位置校准。
+6.  将红色方框内的箭头标识朝四周拖动，控制机器人移动以进行位置校准。
 
 将箭头标识依次朝上、下、左、右四个方向拖动，分别可以控制机器狗进行前进、后退、左转、右转。
 
-- 7.  选中“**Set Goal**”，长按地图内的某一点即可将该点设置为导航目标点。
+7.  选中“**Set Goal**”，长按地图内的某一点即可将该点设置为导航目标点。
 
-- 8.  完成初始位置与导航目标点的设置后，机器狗会自动生成路线，并按照路线由初始位置移动至目标点。
+8.  完成初始位置与导航目标点的设置后，机器狗会自动生成路线，并按照路线由初始位置移动至目标点。
 
 机器狗移动过程中，红色方框内会以百分数形式来显示机器狗的移动速度。
 

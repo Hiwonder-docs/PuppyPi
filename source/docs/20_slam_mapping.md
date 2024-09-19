@@ -100,119 +100,119 @@ Gmapping算法的缺点是随着场景增大所需的粒子增加，因为每个
 
 由于树莓派计算能力有限，所以需要将建图的一部分工作放到虚拟机来完成。建图和导航都需要虚拟机和PuppyPi互相通信，我们需要在修改两者的配置。
 
-1. **安装虚拟机软件**
+- #### 2.3.1 安装虚拟机软件
 
 虚拟机的安装可以参考同目录下的文档：“**虚拟机安装.docx**”。
 
-2. **虚拟机的打开和导入**
+- #### 2.3.2 虚拟机的打开和导入
 
-   1)  将同目录下的虚拟机文件解压到任意非中文路径下。
+1)  将同目录下的虚拟机文件解压到任意非中文路径下。
 
-        <img src="../_static/media/chapter_20/section_2/image4.png" style="width:5.7625in;height:1.06389in" />
+<img src="../_static/media/chapter_20/section_2/image4.png" style="width:5.7625in;height:1.06389in" />
 
-   2)  打开虚拟机软件，点击“**打开虚拟机**”。
+2)  打开虚拟机软件，点击“**打开虚拟机**”。
 
-        <img src="../_static/media/chapter_20/section_2/image5.png" style="width:5.76389in;height:1.25in" />
+<img src="../_static/media/chapter_20/section_2/image5.png" style="width:5.76389in;height:1.25in" />
 
-   3)  找到虚拟机文件解压的路径，点击打开。
+3)  找到虚拟机文件解压的路径，点击打开。
 
-        <img src="../_static/media/chapter_20/section_2/image6.png" style="width:5.7625in;height:3.56181in" />
+<img src="../_static/media/chapter_20/section_2/image6.png" style="width:5.7625in;height:3.56181in" />
 
-   4)  根据自己的需求，设置虚拟机的名称和存储路径，设置完成后，点击导入。
+4)  根据自己的需求，设置虚拟机的名称和存储路径，设置完成后，点击导入。
 
-        <img src="../_static/media/chapter_20/section_2/image7.png" style="width:4.16667in;height:2.60417in" />
-       
-       :::{Note}
-        导入完成后，下次打开可以直接选择设置的虚拟机存储路径，直接打开虚拟机，无需再次导入
-       :::
+<img src="../_static/media/chapter_20/section_2/image7.png" style="width:4.16667in;height:2.60417in" />
 
-3. **虚拟机的网络配置**
+:::{Note}
+导入完成后，下次打开可以直接选择设置的虚拟机存储路径，直接打开虚拟机，无需再次导入
+:::
 
-    :::{Note}
-    台式机进行以下配置时，需要确保装配有无线网卡或准备好一个USB无线网卡。
-    :::
+- #### 2.3.3 虚拟机的网络配置
 
-   1)  首先，启动机器狗，并用电脑主机连接机器狗的热点。
+:::{Note}
+台式机进行以下配置时，需要确保装配有无线网卡或准备好一个USB无线网卡。
+:::
 
-        <img src="../_static/media/chapter_20/section_2/image8.png" style="width:3.76042in;height:4.85417in" />
+1)  首先，启动机器狗，并用电脑主机连接机器狗的热点。
 
-   2)  返回虚拟机，点击“**编辑**”，再点击“**虚拟机网络配置**”。
+<img src="../_static/media/chapter_20/section_2/image8.png" style="width:3.76042in;height:4.85417in" />
 
-        <img src="../_static/media/chapter_20/section_2/image9.png" style="width:5.76389in;height:1.20278in" />
+2)  返回虚拟机，点击“**编辑**”，再点击“**虚拟机网络配置**”。
 
-   3)  在桥接模式处，选择自己的无线网卡，然后点击确定。
+<img src="../_static/media/chapter_20/section_2/image9.png" style="width:5.76389in;height:1.20278in" />
 
-        <img src="../_static/media/chapter_20/section_2/image10.png" style="width:6.13472in;height:2.44792in" alt="$CSFYAKAM)B9OFUR39B0GC8" />
+3)  在桥接模式处，选择自己的无线网卡，然后点击确定。
 
-        <img src="../_static/media/chapter_20/section_2/image11.png" style="width:6.16875in;height:2.64375in" />
+<img src="../_static/media/chapter_20/section_2/image10.png" style="width:6.13472in;height:2.44792in" alt="$CSFYAKAM)B9OFUR39B0GC8" />
 
-   4)  开启虚拟机，等待开机完成。
+<img src="../_static/media/chapter_20/section_2/image11.png" style="width:6.16875in;height:2.64375in" />
 
-        <img src="../_static/media/chapter_20/section_2/image12.png" style="width:5.76667in;height:2.73958in" />
+4)  开启虚拟机，等待开机完成。
 
-   5)  进入系统桌面后，桌面右键点击，打开命令行终端。
+<img src="../_static/media/chapter_20/section_2/image12.png" style="width:5.76667in;height:2.73958in" />
 
-        <img src="../_static/media/chapter_20/section_2/image13.png" style="width:5.75625in;height:2.33403in" />
+5)  进入系统桌面后，桌面右键点击，打开命令行终端。
 
-        <img src="../_static/media/chapter_20/section_2/image14.png" style="width:0.31496in;height:0.31496in" />输入指令时需要严格区分大小写，且可使用“Tab”键补齐关键词。
+<img src="../_static/media/chapter_20/section_2/image13.png" style="width:5.75625in;height:2.33403in" />
 
-   6)  输入指令，按下回车，查看虚拟机的IP，如红框处所示。
-   
-        ```commandline
-        ifconfig
-        ```
+<img src="../_static/media/chapter_20/section_2/image14.png" style="width:0.31496in;height:0.31496in" />输入指令时需要严格区分大小写，且可使用“Tab”键补齐关键词。
 
-        <img src="../_static/media/chapter_20/section_2/image15.png" style="width:5.76319in;height:2.67153in" />
+6)  输入指令，按下回车，查看虚拟机的IP，如红框处所示。
 
-   7)  再次右键系统桌面，打开一个新的命令行终端，输入指令，按下回车，配置网络。
+```commandline
+ifconfig
+```
 
-        ```commandline
-        sudo nano /etc/hosts
-        ```
+<img src="../_static/media/chapter_20/section_2/image15.png" style="width:5.76319in;height:2.67153in" />
 
-        <img src="../_static/media/chapter_20/section_2/image16.png" style="width:5.76111in;height:0.24722in" />
+7)  再次右键系统桌面，打开一个新的命令行终端，输入指令，按下回车，配置网络。
 
-   8)  将下图第2行和第3行的IP修改为查看到的虚拟机IP和树莓派的IP，虚拟机IP按实际查看情况填写，树莓派IP在直连模式下，固定为“**192.168.149.1**”。
+```commandline
+sudo nano /etc/hosts
+```
 
-        <img src="../_static/media/chapter_20/section_2/image17.png" style="width:5.7625in;height:1.38264in" />
+<img src="../_static/media/chapter_20/section_2/image16.png" style="width:5.76111in;height:0.24722in" />
 
-        :::{Note}
-        在修改ip的时候，我们要保证缩进与上行的相同。
-        :::
+8)  将下图第2行和第3行的IP修改为查看到的虚拟机IP和树莓派的IP，虚拟机IP按实际查看情况填写，树莓派IP在直连模式下，固定为“**192.168.149.1**”。
 
-   9)  修改完成后按“**Ctrl+x**”，按下Y键保存，再按下回车确定。
+<img src="../_static/media/chapter_20/section_2/image17.png" style="width:5.7625in;height:1.38264in" />
 
-        <img src="../_static/media/chapter_20/section_2/image18.png" style="width:5.76111in;height:0.44653in" />
-    
-4. **PuppyPi的网络配置**
+:::{Note}
+在修改ip的时候，我们要保证缩进与上行的相同。
+:::
 
-   1)  接着通过VNC远程连接树莓派桌面。
+9)  修改完成后按“**Ctrl+x**”，按下Y键保存，再按下回车确定。
 
-   2)  单击桌面左上角的的图标<img src="../_static/media/chapter_20/section_2/image19.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键“**Ctrl+Alt+T**”，打开命令行终端。
+<img src="../_static/media/chapter_20/section_2/image18.png" style="width:5.76111in;height:0.44653in" />
 
-   3)  输入指令，并按下回车，修改PuppyPi网络配置。
+- #### 2.3.4 PuppyPi的网络配置
 
-        ```commandline
-        sudo vim /etc/hosts
-        ```
+1)  接着通过VNC远程连接树莓派桌面。
 
-        <img src="../_static/media/chapter_20/section_2/image20.png" style="width:5.7625in;height:0.25694in" />
+2)  单击桌面左上角的的图标<img src="../_static/media/chapter_20/section_2/image19.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键“**Ctrl+Alt+T**”，打开命令行终端。
 
-   4)  找到下图红框位置，输入修改成自己的虚拟机IP（上文1.2获得）。按下“**Esc**”键，输入指令，按下回车保存并退出。
+3)  输入指令，并按下回车，修改PuppyPi网络配置。
 
-        ```commandline
-        :wq
-        ```
+```commandline
+sudo vim /etc/hosts
+```
 
-        <img src="../_static/media/chapter_20/section_2/image21.png" style="width:5.7625in;height:1.16042in" />
+<img src="../_static/media/chapter_20/section_2/image20.png" style="width:5.7625in;height:0.25694in" />
 
-   5)  输入指令，并按下回车，更新配置。
+4)  找到下图红框位置，输入修改成自己的虚拟机IP（上文1.2获得）。按下“**Esc**”键，输入指令，按下回车保存并退出。
 
-        ```commandline
-        source .bashrc
-        ```
+```commandline
+:wq
+```
 
-        <img src="../_static/media/chapter_20/section_2/image22.png" style="width:5.76319in;height:0.19792in" />
+<img src="../_static/media/chapter_20/section_2/image21.png" style="width:5.7625in;height:1.16042in" />
+
+5)  输入指令，并按下回车，更新配置。
+
+```commandline
+source .bashrc
+```
+
+<img src="../_static/media/chapter_20/section_2/image22.png" style="width:5.76319in;height:0.19792in" />
 
 ### 2.4 启动激光雷达建图
 
@@ -350,123 +350,119 @@ Hector 的算法流程如下图所示：
 
 由于树莓派计算能力有限，所以需要将建图的一部分工作放到虚拟机来完成。建图和导航都需要虚拟机和PuppyPi互相通信，我们需要在修改两者的配置。
 
-1. **安装虚拟机软件**
+- #### 3.3.1 安装虚拟机软件
 
 虚拟机的安装可以参考同目录下的文档：“**虚拟机安装.docx**”。
 
-2. **虚拟机的打开和导入**
+- #### 3.3.2 虚拟机的打开和导入
 
-    1)  将同目录下的虚拟机文件解压到任意非中文路径下。
-    
-    <img src="../_static/media/chapter_20/section_3/image5.png" style="width:5.7625in;height:1.06389in" />
-    
-    2)  打开虚拟机软件，点击“**打开虚拟机**”。
-    
-    <img src="../_static/media/chapter_20/section_3/image6.png" style="width:5.76389in;height:1.25in" />
-    
-    3)  找到虚拟机文件解压的路径，点击打开。
-    
-    <img src="../_static/media/chapter_20/section_3/image7.png" style="width:5.7625in;height:3.56181in" />
-    
-    4)  根据自己的需求，设置虚拟机的名称和存储路径，设置完成后，点击导入。
-    
-    <img src="../_static/media/chapter_20/section_3/image8.png" style="width:4.16667in;height:2.60417in" />
-    
-    :::{Note}
-    
-    导入完成后，下次打开可以直接选择设置的虚拟机存储路径，直接打开虚拟机，无需再次导入
-    
-    :::
+1)  将同目录下的虚拟机文件解压到任意非中文路径下。
 
-3. **虚拟机的网络配置**
+<img src="../_static/media/chapter_20/section_3/image5.png" style="width:5.7625in;height:1.06389in" />
 
-    :::{Note}
-    
-    台式机进行以下配置时，需要确保装配有无线网卡或准备好一个USB无线网卡。
-    
-    :::
-    
-    1)  首先，启动机器狗，并用电脑主机连接机器狗的热点。
-    
-    <img src="../_static/media/chapter_20/section_3/image9.png" style="width:3.76042in;height:4.85417in" />
-    
-    2)  返回虚拟机，点击“**编辑**”，再点击“**虚拟机网络配置**”。
-    
-    <img src="../_static/media/chapter_20/section_3/image10.png" style="width:5.76389in;height:1.20278in" />
-    
-    3)  在桥接模式处，选择自己的无线网卡，然后点击确定。
-    
-    <img src="../_static/media/chapter_20/section_3/image11.png" style="width:6.13472in;height:2.44792in" alt="$CSFYAKAM)B9OFUR39B0GC8" />
-    
-    <img src="../_static/media/chapter_20/section_3/image12.png" style="width:6.16875in;height:2.64375in" />
-    
-    4)  开启虚拟机，等待开机完成。
-    
-    <img src="../_static/media/chapter_20/section_3/image13.png" style="width:5.76667in;height:2.73958in" />
-    
-    5)  进入系统桌面后，桌面右键点击，打开命令行终端。
-    
-    <img src="../_static/media/chapter_20/section_3/image14.png" style="width:5.75625in;height:2.33403in" />
-    
-    <img src="../_static/media/chapter_20/section_3/image15.png" style="width:0.31496in;height:0.31496in" />输入指令时需要严格区分大小写，且可使用“Tab”键补齐关键词。
-    
-    6)  输入指令，按下回车，查看虚拟机的IP，如红框处所示。
-    
-    ```commandline
-    ifconfig
-    ```
-    
-    <img src="../_static/media/chapter_20/section_3/image16.png" style="width:5.76319in;height:2.67153in" />
-    
-    7)  再次右键系统桌面，打开一个新的命令行终端，输入指令，按下回车，配置网络。
-    
-    ```commandline
-    sudo nano /etc/hosts
-    ```
-    
-    <img src="../_static/media/chapter_20/section_3/image17.png" style="width:5.76111in;height:0.24722in" />
-    
-    8)  将下图第2行和第3行的IP修改为查看到的虚拟机IP和树莓派的IP，虚拟机IP按实际查看情况填写，树莓派IP在直连模式下，固定为“**192.168.149.1**”。
-    
-    <img src="../_static/media/chapter_20/section_3/image18.png" style="width:5.7625in;height:1.38264in" />
-    
-    :::{Note}
-    在修改ip的时候，我们要保证缩进与上行的相同。
-    :::
-    
-    9)  修改完成后按“**Ctrl+x**”，按下Y键保存，再按下回车确定。
-    
-    <img src="../_static/media/chapter_20/section_3/image19.png" style="width:5.76111in;height:0.44653in" />
+2)  打开虚拟机软件，点击“**打开虚拟机**”。
 
-4. **PuppyPi的网络配置**
+<img src="../_static/media/chapter_20/section_3/image6.png" style="width:5.76389in;height:1.25in" />
 
-   1)  接着通过VNC远程连接树莓派桌面。
+3)  找到虚拟机文件解压的路径，点击打开。
 
-   2)  单击桌面左上角的的图标<img src="../_static/media/chapter_20/section_3/image20.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键“Ctrl+Alt+T”，打开命令行终端。
+<img src="../_static/media/chapter_20/section_3/image7.png" style="width:5.7625in;height:3.56181in" />
 
-   3)  输入指令，并按下回车，修改PuppyPi网络配置。
-    
-    ```commandline
-    sudo vim /etc/hosts
-    ```
-    
-    <img src="../_static/media/chapter_20/section_3/image21.png" style="width:5.7625in;height:0.25694in" />
-    
-    4)  找到下图红框位置，输入修改成自己的虚拟机IP（上文1.2获得）。按下“**Esc**”键，输入指令，按下回车保存并退出。
-    
-    ```commandline
-    :wq
-    ```
-    
-    <img src="../_static/media/chapter_20/section_3/image22.png" style="width:5.7625in;height:1.16042in" />
-    
-    5)  输入指令，并按下回车，更新配置。
-    
-    ```commandline
-    source .bashrc
-    ```
-    
-    <img src="../_static/media/chapter_20/section_3/image23.png" style="width:5.76319in;height:0.19792in" />
+4)  根据自己的需求，设置虚拟机的名称和存储路径，设置完成后，点击导入。
+
+<img src="../_static/media/chapter_20/section_3/image8.png" style="width:4.16667in;height:2.60417in" />
+
+:::{Note}
+导入完成后，下次打开可以直接选择设置的虚拟机存储路径，直接打开虚拟机，无需再次导入
+:::
+
+- #### 3.3.3 虚拟机的网络配置
+
+:::{Note}
+台式机进行以下配置时，需要确保装配有无线网卡或准备好一个USB无线网卡。
+:::
+
+1)  首先，启动机器狗，并用电脑主机连接机器狗的热点。
+
+<img src="../_static/media/chapter_20/section_3/image9.png" style="width:3.76042in;height:4.85417in" />
+
+2)  返回虚拟机，点击“**编辑**”，再点击“**虚拟机网络配置**”。
+
+<img src="../_static/media/chapter_20/section_3/image10.png" style="width:5.76389in;height:1.20278in" />
+
+3)  在桥接模式处，选择自己的无线网卡，然后点击确定。
+
+<img src="../_static/media/chapter_20/section_3/image11.png" style="width:6.13472in;height:2.44792in" alt="$CSFYAKAM)B9OFUR39B0GC8" />
+
+<img src="../_static/media/chapter_20/section_3/image12.png" style="width:6.16875in;height:2.64375in" />
+
+4)  开启虚拟机，等待开机完成。
+
+<img src="../_static/media/chapter_20/section_3/image13.png" style="width:5.76667in;height:2.73958in" />
+
+5)  进入系统桌面后，桌面右键点击，打开命令行终端。
+
+<img src="../_static/media/chapter_20/section_3/image14.png" style="width:5.75625in;height:2.33403in" />
+
+<img src="../_static/media/chapter_20/section_3/image15.png" style="width:0.31496in;height:0.31496in" />输入指令时需要严格区分大小写，且可使用“Tab”键补齐关键词。
+
+6)  输入指令，按下回车，查看虚拟机的IP，如红框处所示。
+
+```commandline
+ifconfig
+```
+
+<img src="../_static/media/chapter_20/section_3/image16.png" style="width:5.76319in;height:2.67153in" />
+
+7)  再次右键系统桌面，打开一个新的命令行终端，输入指令，按下回车，配置网络。
+
+```commandline
+sudo nano /etc/hosts
+```
+
+<img src="../_static/media/chapter_20/section_3/image17.png" style="width:5.76111in;height:0.24722in" />
+
+8)  将下图第2行和第3行的IP修改为查看到的虚拟机IP和树莓派的IP，虚拟机IP按实际查看情况填写，树莓派IP在直连模式下，固定为“**192.168.149.1**”。
+
+<img src="../_static/media/chapter_20/section_3/image18.png" style="width:5.7625in;height:1.38264in" />
+
+:::{Note}
+在修改ip的时候，我们要保证缩进与上行的相同。
+:::
+
+9)  修改完成后按“**Ctrl+x**”，按下Y键保存，再按下回车确定。
+
+<img src="../_static/media/chapter_20/section_3/image19.png" style="width:5.76111in;height:0.44653in" />
+
+- #### 3.3.4 PuppyPi的网络配置
+
+1)  接着通过VNC远程连接树莓派桌面。
+
+2)  单击桌面左上角的的图标<img src="../_static/media/chapter_20/section_3/image20.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键“Ctrl+Alt+T”，打开命令行终端。
+
+3)  输入指令，并按下回车，修改PuppyPi网络配置。
+
+```commandline
+sudo vim /etc/hosts
+```
+
+<img src="../_static/media/chapter_20/section_3/image21.png" style="width:5.7625in;height:0.25694in" />
+
+4)  找到下图红框位置，输入修改成自己的虚拟机IP（上文1.2获得）。按下“**Esc**”键，输入指令，按下回车保存并退出。
+
+```commandline
+:wq
+```
+
+<img src="../_static/media/chapter_20/section_3/image22.png" style="width:5.7625in;height:1.16042in" />
+
+5)  输入指令，并按下回车，更新配置。
+
+```commandline
+source .bashrc
+```
+
+<img src="../_static/media/chapter_20/section_3/image23.png" style="width:5.76319in;height:0.19792in" />
 
 ### 3.4 启动激光雷达建图
 
@@ -604,121 +600,123 @@ Karto算法的数据处理流程如下：
 
 由于树莓派计算能力有限，所以需要将建图的一部分工作放到虚拟机来完成。建图和导航都需要虚拟机和PuppyPi互相通信，我们需要在修改两者的配置。
 
-1. **安装虚拟机软件**
+- #### 4.3.1 安装虚拟机软件
 
 虚拟机的安装可以参考同目录下的文档：“**虚拟机安装.docx**”。
 
-2. **虚拟机的打开和导入**
+- #### 4.3.2 虚拟机的打开和导入
 
-   1)  将同目录下的虚拟机文件解压到任意非中文路径下。
+1)  将同目录下的虚拟机文件解压到任意非中文路径下。
 
-       <img src="../_static/media/chapter_20/section_4/image4.png" style="width:5.7625in;height:1.06389in" />
+<img src="../_static/media/chapter_20/section_4/image4.png" style="width:5.7625in;height:1.06389in" />
 
-   2)  打开虚拟机软件，点击“**打开虚拟机**”。
+2)  打开虚拟机软件，点击“**打开虚拟机**”。
 
-       <img src="../_static/media/chapter_20/section_4/image5.png" style="width:5.76389in;height:1.25in" />
+<img src="../_static/media/chapter_20/section_4/image5.png" style="width:5.76389in;height:1.25in" />
 
-   3)  找到虚拟机文件解压的路径，点击打开。
+3)  找到虚拟机文件解压的路径，点击打开。
 
-       <img src="../_static/media/chapter_20/section_4/image6.png" style="width:5.7625in;height:3.56181in" />
+<img src="../_static/media/chapter_20/section_4/image6.png" style="width:5.7625in;height:3.56181in" />
 
-   4)  根据自己的需求，设置虚拟机的名称和存储路径，设置完成后，点击导入。
+4)  根据自己的需求，设置虚拟机的名称和存储路径，设置完成后，点击导入。
 
-       <img src="../_static/media/chapter_20/section_4/image7.png" style="width:4.16667in;height:2.60417in" />
-       :::{Note}
-       导入完成后，下次打开可以直接选择设置的虚拟机存储路径，直接打开虚拟机，无需再次导入
-       :::
+<img src="../_static/media/chapter_20/section_4/image7.png" style="width:4.16667in;height:2.60417in" />
+:::{Note}
+导入完成后，下次打开可以直接选择设置的虚拟机存储路径，直接打开虚拟机，无需再次导入
+:::
 
-3. **虚拟机的网络配置**
+- #### 4.3.3 虚拟机的网络配置
 
-    :::{Note} 
-    台式机进行以下配置时，需要确保装配有无线网卡或准备好一个USB无线网卡。
-    :::
+:::{Note} 
+台式机进行以下配置时，需要确保装配有无线网卡或准备好一个USB无线网卡。
+:::
 
-    1)  首先，启动机器狗，并用电脑主机连接机器狗的热点。
-    
-        <img src="../_static/media/chapter_20/section_4/image8.png" style="width:3.76042in;height:3.07986in" />
+1)  首先，启动机器狗，并用电脑主机连接机器狗的热点。
 
-    2)  返回虚拟机，点击“**编辑**”，再点击“**虚拟机网络配置**”。
-    
-        <img src="../_static/media/chapter_20/section_4/image9.png" style="width:5.76389in;height:1.20278in" />
+<img src="../_static/media/chapter_20/section_4/image8.png" style="width:3.76042in;height:3.07986in" />
 
-   3)  在桥接模式处，选择自己的无线网卡，然后点击确定。
+2)  返回虚拟机，点击“**编辑**”，再点击“**虚拟机网络配置**”。
 
-       <img src="../_static/media/chapter_20/section_4/image10.png" style="width:6.13472in;height:2.44792in" alt="$CSFYAKAM)B9OFUR39B0GC8" />
+<img src="../_static/media/chapter_20/section_4/image9.png" style="width:5.76389in;height:1.20278in" />
 
-       <img src="../_static/media/chapter_20/section_4/image11.png" style="width:6.16875in;height:2.64375in" />
+3)  在桥接模式处，选择自己的无线网卡，然后点击确定。
 
-   4)  开启虚拟机，等待开机完成。
+<img src="../_static/media/chapter_20/section_4/image10.png" style="width:6.13472in;height:2.44792in" alt="$CSFYAKAM)B9OFUR39B0GC8" />
 
-       <img src="../_static/media/chapter_20/section_4/image12.png" style="width:5.76667in;height:2.73958in" />
+<img src="../_static/media/chapter_20/section_4/image11.png" style="width:6.16875in;height:2.64375in" />
 
-   5)  进入系统桌面后，桌面右键点击，打开命令行终端。
+4)  开启虚拟机，等待开机完成。
 
-       <img src="../_static/media/chapter_20/section_4/image13.png" style="width:5.75625in;height:2.33403in" />
+<img src="../_static/media/chapter_20/section_4/image12.png" style="width:5.76667in;height:2.73958in" />
 
-       <img src="../_static/media/chapter_20/section_4/image14.png" style="width:0.31496in;height:0.31496in" />输入指令时需要严格区分大小写，且可使用“**Tab**”键补齐关键词。
+5)  进入系统桌面后，桌面右键点击，打开命令行终端。
 
-   6)  输入指令，按下回车，查看虚拟机的IP，如红框处所示。
-       ```commandline
-       ifconfig
-       ```
+<img src="../_static/media/chapter_20/section_4/image13.png" style="width:5.75625in;height:2.33403in" />
 
-       <img src="../_static/media/chapter_20/section_4/image15.png" style="width:5.76319in;height:2.67153in" />
+<img src="../_static/media/chapter_20/section_4/image14.png" style="width:0.31496in;height:0.31496in" />输入指令时需要严格区分大小写，且可使用“**Tab**”键补齐关键词。
 
-   7)  再次右键系统桌面，打开一个新的命令行终端，输入指令，按下回车，配置网络。
+6)  输入指令，按下回车，查看虚拟机的IP，如红框处所示。
+```commandline
+ifconfig
+```
 
-       ```commandline
-       sudo nano /etc/hosts
-       ```
+<img src="../_static/media/chapter_20/section_4/image15.png" style="width:5.76319in;height:2.67153in" />
 
-       <img src="../_static/media/chapter_20/section_4/image16.png" style="width:5.76111in;height:0.24722in" />
+7)  再次右键系统桌面，打开一个新的命令行终端，输入指令，按下回车，配置网络。
 
-   8)  将下图第2行和第3行的IP修改为查看到的虚拟机IP和树莓派的IP，虚拟机IP按实际查看情况填写，树莓派IP在直连模式下，固定为“**192.168.149.1**”。
+```commandline
+sudo nano /etc/hosts
+```
 
-       <img src="../_static/media/chapter_20/section_4/image17.png" style="width:5.7625in;height:1.38264in" />
+<img src="../_static/media/chapter_20/section_4/image16.png" style="width:5.76111in;height:0.24722in" />
 
-       :::{Note} 
-       在修改ip的时候，我们要保证缩进与上行的相同。
-       :::
+8)  将下图第2行和第3行的IP修改为查看到的虚拟机IP和树莓派的IP，虚拟机IP按实际查看情况填写，树莓派IP在直连模式下，固定为“**192.168.149.1**”。
 
-   9)  修改完成后按“**Ctrl+x**”，按下Y键保存，再按下回车确定。
+<img src="../_static/media/chapter_20/section_4/image17.png" style="width:5.7625in;height:1.38264in" />
 
-       <img src="../_static/media/chapter_20/section_4/image18.png" style="width:5.76111in;height:0.44653in" />
+:::{Note} 
+在修改ip的时候，我们要保证缩进与上行的相同。
+:::
 
-4. **PuppyPi的网络配置**
+9)  修改完成后按“**Ctrl+x**”，按下Y键保存，再按下回车确定。
 
-   1)  接着通过VNC远程连接树莓派桌面。
+<img src="../_static/media/chapter_20/section_4/image18.png" style="width:5.76111in;height:0.44653in" />
 
-   2)  单击桌面左上角的的图标<img src="../_static/media/chapter_20/section_4/image19.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键“**Ctrl+Alt+T**”，打开命令行终端。
+- #### 4.3.4 PuppyPi的网络配置
 
-   3)  输入指令，并按下回车，修改PuppyPi网络配置。
+1)  接着通过VNC远程连接树莓派桌面。
 
-       ```commandline
-       sudo vim /etc/hosts
-       ```
+2)  单击桌面左上角的的图标<img src="../_static/media/chapter_20/section_4/image19.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键“**Ctrl+Alt+T**”，打开命令行终端。
 
-       <img src="../_static/media/chapter_20/section_4/image20.png" style="width:5.7625in;height:0.25694in" />
+3)  输入指令，并按下回车，修改PuppyPi网络配置。
 
-   4)  找到下图红框位置，输入修改成自己的虚拟机IP（上文1.2获得）。按下“**Esc**”键，输入指令，按下回车保存并退出。
+```commandline
+sudo vim /etc/hosts
+```
 
-       ```commandline
-       :wq
-       ```
+<img src="../_static/media/chapter_20/section_4/image20.png" style="width:5.7625in;height:0.25694in" />
 
-       <img src="../_static/media/chapter_20/section_4/image21.png" style="width:5.7625in;height:1.16042in" />
+4)  找到下图红框位置，输入修改成自己的虚拟机IP（上文1.2获得）。按下“**Esc**”键，输入指令，按下回车保存并退出。
 
-   5)  输入指令，并按下回车，更新配置。
+```commandline
+:wq
+```
 
-       ```commandline
-       source .bashrc
-       ```
+<img src="../_static/media/chapter_20/section_4/image21.png" style="width:5.7625in;height:1.16042in" />
 
-       <img src="../_static/media/chapter_20/section_4/image22.png" style="width:5.76319in;height:0.19792in" />
+5)  输入指令，并按下回车，更新配置。
+
+```commandline
+source .bashrc
+```
+
+<img src="../_static/media/chapter_20/section_4/image22.png" style="width:5.76319in;height:0.19792in" />
 
 ### 4.4 启动激光雷达建图
 
->输入指令时需要严格区分大小写，且可使用“**Tab**”键补齐关键词。
+:::{Note}
+输入指令时需要严格区分大小写，且可使用“**Tab**”键补齐关键词。
+:::
 
 1)  我们采用PS2手柄手动遥控的方式，让PuppyPi感知周围环境并建图。打开手柄电源开关，按下START按键，连上后，机器狗将处于标准站立姿势。
 
@@ -728,45 +726,45 @@ Karto算法的数据处理流程如下：
 
 4)  输入指令，并按下回车开启建模服务。
 
-    ```commandline
-    roslaunch puppy_slam karto.launch
-    ```
+```commandline
+roslaunch puppy_slam karto.launch
+```
 
-    <img src="../_static/media/chapter_20/section_4/image24.png" style="width:5.76458in;height:2.09306in" />
+<img src="../_static/media/chapter_20/section_4/image24.png" style="width:5.76458in;height:2.09306in" />
 
 5)  打开虚拟机，打开命令行终端窗口 ，并按下回车开启URDF模型显示节点。
 
-    ```commandline
-    rosparam set /puppy_control/joint_state_pub_topic true
-    ```
+```commandline
+rosparam set /puppy_control/joint_state_pub_topic true
+```
 
-    <img src="../_static/media/chapter_20/section_4/image26.png" style="width:5.76319in;height:0.31736in" />
+<img src="../_static/media/chapter_20/section_4/image26.png" style="width:5.76319in;height:0.31736in" />
 
 6)  输入指令，并按下回车，打开建图查看工具。
 
-    ```commandline
-    roslaunch puppy_description rviz_with_urdf.launch
-    ```
+```commandline
+roslaunch puppy_description rviz_with_urdf.launch
+```
 
-    <img src="../_static/media/chapter_20/section_4/image27.png" style="width:5.7625in;height:0.18264in" />
+<img src="../_static/media/chapter_20/section_4/image27.png" style="width:5.7625in;height:0.18264in" />
 
 7)  点击左上角的“**File**”，再点击“**Open Config**”，打开配置文件。
 
-    <img src="../_static/media/chapter_20/section_4/image28.png" style="width:5.76389in;height:1.69514in" />
+<img src="../_static/media/chapter_20/section_4/image28.png" style="width:5.76389in;height:1.69514in" />
 
 8) 在“**puppy/puppy_sim/src/puppy_description**”路径下，找到“**mapping.rviz**”文件，点击打开。
 
-    <img src="../_static/media/chapter_20/section_4/image29.png" style="width:5.76111in;height:2.25in" />
+<img src="../_static/media/chapter_20/section_4/image29.png" style="width:5.76111in;height:2.25in" />
 
 9) 打开后，就会显示出地图，如下图所示。
 
-    <img src="../_static/media/chapter_20/section_4/image30.png" style="width:5.75278in;height:3.26528in" />
+<img src="../_static/media/chapter_20/section_4/image30.png" style="width:5.75278in;height:3.26528in" />
 
 10) 输入接着我们就可以用手柄控制机器狗，移动到你想要探索建图的区域，同时地图也会不断完善、更新。手柄按键和机器狗动作的对应关系如下：
 
-    :::{Note} 
-    如果控制PuppyPi移动的过程中，发现行走有些卡顿，我们可以将VNC显示先关掉，避免跟建图抢占CPU资源。
-    :::
+:::{Note} 
+如果控制PuppyPi移动的过程中，发现行走有些卡顿，我们可以将VNC显示先关掉，避免跟建图抢占CPU资源。
+:::
 
 |    **按键**    |            **功能**            |
 |:--------------:|:------------------------------:|
@@ -786,17 +784,17 @@ Karto算法的数据处理流程如下：
 
 11) 探索完区域后，需要将地图保存到树莓派中，回到VNC，重新打开一个命令行终端，输入指令，并按下回车。
 
-    ```commandline
-    rosrun map_server map_saver -f /home/ubuntu/puppypi/src/puppy_slam/maps/map1
-    ```
+```commandline
+rosrun map_server map_saver -f /home/ubuntu/puppypi/src/puppy_slam/maps/map1
+```
 
-    其中map1可以替换成你想要保存的地图名字，按下回车，等待一会，地图就会保存在此指令的路径下。
+其中map1可以替换成你想要保存的地图名字，按下回车，等待一会，地图就会保存在此指令的路径下。
 
-    <img src="../_static/media/chapter_20/section_4/image31.png" style="width:5.76389in;height:2.40208in" />
+<img src="../_static/media/chapter_20/section_4/image31.png" style="width:5.76389in;height:2.40208in" />
 
 12) 保存的地图在Docker容器中的“**/homeubuntu/puppypi/src/puppy_slam/maps/**”路径下 。
 
-    <img src="../_static/media/chapter_20/section_4/image35.png" style="width:5.76319in;height:2.0125in" />
+<img src="../_static/media/chapter_20/section_4/image35.png" style="width:5.76319in;height:2.0125in" />
 
 13) 此时整个SLAM建图过程就已经完成，可在启动建图的终端界面按下“**Ctrl+C**”，关闭程序。
 
@@ -814,82 +812,82 @@ Karto算法的数据处理流程如下：
 
 <span id="anchor_5_2_1" class="anchor"></span>
 
-1. **APP建图服务的开启**
+- #### 5.2.1 APP建图服务的开启
 
-   1)  开启机器狗，接着通过VNC远程连接树莓派桌面。
+1)  开启机器狗，接着通过VNC远程连接树莓派桌面。
 
-   2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_20/section_5/image2.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。 
+2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_20/section_5/image2.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。 
 
-   3)  输入指令，并按下回车，开启APP建图服务。
+3)  输入指令，并按下回车，开启APP建图服务。
 
-       ```commandline
-       . /home/ubuntu/puppypi/src/puppy_slam/scripts/mapping_app.sh
-       ```
-    
-       <img src="../_static/media/chapter_20/section_5/image4.png" style="width:5.76111in;height:2.10694in" />
+```commandline
+. /home/ubuntu/puppypi/src/puppy_slam/scripts/mapping_app.sh
+```
 
-2. **APP建图**
+<img src="../_static/media/chapter_20/section_5/image4.png" style="width:5.76111in;height:2.10694in" />
 
-   1.  开启机器狗，将其连接至远程控制软件VNC。
+- #### 5.2.2 APP建图
 
-   2.  开启APP服务，具体操作步骤可参考“[**APP建图服务的开启**](#anchor_5_2_1)”。
+1.  开启机器狗，将其连接至远程控制软件VNC。
 
-   3.  前往手机的设置界面，连接机器狗生成的热点。
+2.  开启APP服务，具体操作步骤可参考“[**APP建图服务的开启**](#anchor_5_2_1)”。
 
-       <img src="../_static/media/chapter_20/section_5/image6.png" style="width:4.07292in;height:4.17708in" />
+3.  前往手机的设置界面，连接机器狗生成的热点。
 
-   4.  打开APP“**Make A Map**”，将“**Master URI**”一栏修改为“**http://192.168.149.1:11311**”，并点击“**CONNECT**”按键。
+<img src="../_static/media/chapter_20/section_5/image6.png" style="width:4.07292in;height:4.17708in" />
 
-       <img src="../_static/media/chapter_20/section_5/image7.png" style="width:3.14961in;height:2.50801in" />
-    
-       APP界面可分为两个区域，黄色方框用于显示构建的地图，蓝色方框用于控制机器狗的移动。
-    
-       <img src="../_static/media/chapter_20/section_5/image8.png" style="width:5.75694in;height:2.86319in" />
+4.  打开APP“**Make A Map**”，将“**Master URI**”一栏修改为“**http://192.168.149.1:11311**”，并点击“**CONNECT**”按键。
 
-3. **保存地图**
+<img src="../_static/media/chapter_20/section_5/image7.png" style="width:3.14961in;height:2.50801in" />
 
-   1)  探索完区域后，需要将地图保存到树莓派中，回到VNC，重新打开一个命令行终端，输入指令
+APP界面可分为两个区域，黄色方框用于显示构建的地图，蓝色方框用于控制机器狗的移动。
 
-       ```commandline
-       rosrun map_server map_saver -f /home/ubuntu/puppypi/src/puppy_slam/maps/map1
-       ```
+<img src="../_static/media/chapter_20/section_5/image8.png" style="width:5.75694in;height:2.86319in" />
 
-       其中map1可以替换成你想要保存的地图名字，按下回车，等待一会，地图就会保存在此指令的路径下。
+- #### 5.2.3 保存地图
 
-       <img src="../_static/media/chapter_20/section_5/image9.png" style="width:5.76111in;height:2.05833in" />
+1)  探索完区域后，需要将地图保存到树莓派中，回到VNC，重新打开一个命令行终端，输入指令
 
-   2)  保存的地图在Docker容器中的“**/homeubuntu/puppypi/src/puppy_slam/maps/**”路径下。
+```commandline
+rosrun map_server map_saver -f /home/ubuntu/puppypi/src/puppy_slam/maps/map1
+```
 
-       <img src="../_static/media/chapter_20/section_5/image10.png" style="width:5.76319in;height:2.0125in" />
+其中map1可以替换成你想要保存的地图名字，按下回车，等待一会，地图就会保存在此指令的路径下。
 
-   3)  此时整个SLAM建图过程就已经完成，可在启动建图重新的终端界面按下“**Ctrl+C**”，关闭程序。
+<img src="../_static/media/chapter_20/section_5/image9.png" style="width:5.76111in;height:2.05833in" />
 
-4. **使用其他算法建图**
+2)  保存的地图在Docker容器中的“**/homeubuntu/puppypi/src/puppy_slam/maps/**”路径下。
 
-   1)  开启机器狗，接着通过VNC远程连接树莓派桌面。
+<img src="../_static/media/chapter_20/section_5/image10.png" style="width:5.76319in;height:2.0125in" />
 
-   2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_20/section_5/image2.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+3)  此时整个SLAM建图过程就已经完成，可在启动建图重新的终端界面按下“**Ctrl+C**”，关闭程序。
 
-   3)  输入指令，并按下回车，进入存放.sh执行文件的文件夹。
+- #### 5.2.4 使用其他算法建图
 
-       ```commandline
-       roscd puppy_slam/scripts/
-       ```
+1)  开启机器狗，接着通过VNC远程连接树莓派桌面。
 
-       <img src="../_static/media/chapter_20/section_5/image14.png" style="width:5.76667in;height:2.29236in" />
+2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_20/section_5/image2.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-   4)  输入指令，并按下回车，查看app建图文件。
+3)  输入指令，并按下回车，进入存放.sh执行文件的文件夹。
 
-       ```commandline
-       sudo vim mapping_app.sh
-       ```
+```commandline
+roscd puppy_slam/scripts/
+```
 
-       <img src="../_static/media/chapter_20/section_5/image16.png" style="width:5.76111in;height:2.31667in" />
+<img src="../_static/media/chapter_20/section_5/image14.png" style="width:5.76667in;height:2.29236in" />
 
-   5) 可以通过修改下图红框位置来修改APP建图所想要使用的算法，一共提供三种算法，他们的文件名称分别为：“**gmapping.launch**”、“**hector.launch**”、“**karto.launch**”。将红框位置修改成需要使用的算法对应的文件名后，按下“**Esc**”键，输入指令并按下回车保存并退出。然后执行“[**2.1APP建图服务的开启**](#_APP服务的开启)”。
+4)  输入指令，并按下回车，查看app建图文件。
 
-       ```commandline
-       :wq
-       ```
+```commandline
+sudo vim mapping_app.sh
+```
 
-       <img src="../_static/media/chapter_20/section_5/image18.png" style="width:5.76458in;height:3.76181in" />
+<img src="../_static/media/chapter_20/section_5/image16.png" style="width:5.76111in;height:2.31667in" />
+
+5) 可以通过修改下图红框位置来修改APP建图所想要使用的算法，一共提供三种算法，他们的文件名称分别为：“**gmapping.launch**”、“**hector.launch**”、“**karto.launch**”。将红框位置修改成需要使用的算法对应的文件名后，按下“**Esc**”键，输入指令并按下回车保存并退出。然后执行“[**2.1APP建图服务的开启**](#_APP服务的开启)”。
+
+```commandline
+:wq
+```
+
+<img src="../_static/media/chapter_20/section_5/image18.png" style="width:5.76458in;height:3.76181in" />

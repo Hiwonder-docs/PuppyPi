@@ -1,5 +1,7 @@
 # ROS机器狗运动控制课程
 
+<p id="anchor_1"></p>
+
 ## 1. Trot步态了解
 
 ### 1.1 步态概念说明
@@ -40,7 +42,9 @@ Trot步态是一种中低速的动步态，通俗而言就是前后交叉的腿�
 
 ### 1.3 玩法开启及关闭步骤
 
-<img src="../_static/media/chapter_9/section_1/image3.png" style="width:0.31496in;height:0.31496in" />输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
+:::{Note}
+输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
+:::
 
 1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
@@ -168,7 +172,9 @@ PuppyPi机器狗的摆动腿轮换顺序为：右前-\>左后-\>左前-\>右后�
 
 ### 2.3 玩法开启及关闭步骤
 
->输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
+:::{Note}
+输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
+:::
 
 1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
@@ -281,7 +287,9 @@ Amble步态是静步态，可以将其视为加速后的Walk步态。在运动�
 
 ### 3.3 玩法开启及关闭步骤
 
->输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
+:::{Note}
+输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
+:::
 
 1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
@@ -367,11 +375,13 @@ Amble步态下需要注意，设置的时候需遵循0\<clearance_time\<swing_ti
 
 ## 4. Trot步态原地踏步
 
-关于Trot步态的详细说明，可前往目录"**[ROS机器狗运动控制课程\ 1. Trot步态了解]()**"查看文档。
+关于Trot步态的详细说明，可前往目录"**[ROS机器狗运动控制课程\ 1. Trot步态了解](#anchor_1)**"查看文档。
 
 ### 4.1 玩法开启及关闭步骤
 
-<img src="../_static/media/chapter_9/section_4/image2.png" style="width:0.31496in;height:0.31496in" />输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
+:::{Note}
+输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
+:::
 
 1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
@@ -430,17 +440,19 @@ rosrun puppy_control puppy_demo.py
 
 其中，括号内的参数用于控制是否发送服务，初始默认为"**False**"，即不发送服务，启动玩法后，PuppyPi机器狗会以当前选择步态行进。值为"**True**"时，机器狗会执行原地踏步。
 
-此外，在原地踏步的过程中，PuppyPi机器狗若出现位置偏移，可以通过调整其中心来解决此问题，关于重心调节详细内容，可参考"**[ROS机器狗运动控制课程\ 6. 机器狗重心调节]()**"。
+此外，在原地踏步的过程中，PuppyPi机器狗若出现位置偏移，可以通过调整其中心来解决此问题，关于重心调节详细内容，可参考"**[ROS机器狗运动控制课程\ 6. 机器狗重心调节](#anchor_6)**"。
 
 ## 5. Trot步态转弯
 
-关于Trot步态的详细说明，可前往目录"**第9章 ROS机器狗运动控制课程\第1课 Trot步态了解**"查看文档。
+关于Trot步态的详细说明，可前往目录"**[ROS机器狗运动控制课程\1. Trot步态了解](#anchor_1)**"查看文档。
 
 本节课会以Trot步态为基础，通过修改对应参数，令PuppyPi机器狗在Trot步态下进行前进转弯。
 
 ### 5.1 玩法开启及关闭步骤
 
-<img src="../_static/media/chapter_9/section_5/image2.png" style="width:0.31496in;height:0.31496in" />输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
+:::{Note}
+输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
+:::
 
 1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
@@ -455,7 +467,6 @@ rosed puppy_control puppy_demo.py
 ```
 
 <img src="../_static/media/chapter_9/section_5/image5.png" style="width:5.76806in;height:2.03681in" />
-
 
 4)  找到下图所示代码：
 
@@ -509,7 +520,7 @@ PuppyPi机器狗会在Trot步态下，且持续朝设定的方向前进转弯。
 
 - #### 5.3.2步态调节
 
-- **步态选择**
+1. **步态选择**
 
 程序内提供了三种步态：Trot步态、Amble步态、Walk步态。其中，Trot步态是程序默认的初始步态。
 
@@ -519,9 +530,9 @@ PuppyPi机器狗会在Trot步态下，且持续朝设定的方向前进转弯。
 
 <img src="../_static/media/chapter_9/section_5/image20.png" style="width:5.76389in;height:1.26528in" />
 
-- **行进速度调节**
+2. **行进速度调节**
 
-  通过修改对应参数。可以调整PuppyPi机器狗的行进速度。
+通过修改对应参数。可以调整PuppyPi机器狗的行进速度。
 
 <img src="../_static/media/chapter_9/section_5/image21.png" style="width:5.75903in;height:0.11042in" />
 
@@ -534,6 +545,8 @@ PuppyPi机器狗会在Trot步态下，且持续朝设定的方向前进转弯。
 第三个参数"**clearance_time**"是机器狗前后交叉脚相位间隔时间，单位为秒。
 
 第四个参数"**z_clearance**"是走路时，机器狗脚尖要抬高的距离，单位为厘米。
+
+<p id="anchor_6"></p>
 
 ## 6. 机器狗重心调节
 
@@ -563,7 +576,9 @@ PuppyPi机器狗会在Trot步态下，且持续朝设定的方向前进转弯。
 
 此处以**PuppyPi机器狗向前倾2cm**为例，具体的操作步骤如下：
 
-<img src="../_static/media/chapter_9/section_6/image4.png" style="width:0.31496in;height:0.31496in" />输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
+:::{Note}
+输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
+:::
 
 1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
@@ -624,7 +639,7 @@ ROS中 话题(Topic)采用异步通信机制，它使用发布/订阅模型，�
 
 服务(Service)采用同步通信机制，它使用客户端/服务器（C/S）模型，客户端发送请求数据，服务器完成处理后返回应答数据。服务模型如下图所示：
 
-<img src="../_static/media/chapter_9/section_7/image3.png" style="width:1.88125in;height:3.45833in" alt="image20" />
+<img class="common_img" src="../_static/media/chapter_9/section_7/image3.png" style="width:1.88125in;height:3.45833in" alt="image20" />
 
 ### 7.2 话题通讯
 
@@ -632,7 +647,9 @@ ROS中 话题(Topic)采用异步通信机制，它使用发布/订阅模型，�
 
 ROS机器人系统能自带RQT工具，可以通过调用对应工具，查看机器狗节点之间的通讯过程，具体的操作步骤如下：
 
-<img src="../_static/media/chapter_9/section_7/image4.png" style="width:0.31496in;height:0.31496in" />输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
+:::{Note}
+输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
+:::
 
 1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
@@ -667,13 +684,11 @@ rqt_graph
 
 具体步骤如下：
 
-1.  <img src="../_static/media/chapter_9/section_7/image13.png" style="width:0.63264in;height:0.28819in" alt="image19" />节点发布<img src="../_static/media/chapter_9/section_7/image13.png" style="width:0.91042in;height:0.46667in" alt="image19" />话题。
+1.  <img src="../_static/media/chapter_9/section_7/image17.png" style="width:0.63264in;height:0.28819in" alt="image19" />节点发布<img src="../_static/media/chapter_9/section_7/image18.png" style="width:0.91042in;height:0.46667in" alt="image19" />话题。
 
-2.  <img src="../_static/media/chapter_9/section_7/image13.png" style="width:0.72431in;height:0.26389in" alt="image19" />节点订阅<img src="../_static/media/chapter_9/section_7/image13.png" style="width:0.63264in;height:0.28819in" alt="image19" />节点发布的<img src="../_static/media/chapter_9/section_7/image13.png" style="width:0.91042in;height:0.46667in" alt="image19" />话题，同时发布
+2.  <img src="../_static/media/chapter_9/section_7/image19.png" style="width:0.72431in;height:0.26389in" alt="image19" />节点订阅<img src="../_static/media/chapter_9/section_7/image20.png" style="width:0.63264in;height:0.28819in" alt="image19" />节点发布的<img src="../_static/media/chapter_9/section_7/image21.png" style="width:0.91042in;height:0.46667in" alt="image19" />话题，同时发布<img src="../_static/media/chapter_9/section_7/image22.png" style="width:1.06319in;height:0.44583in" alt="image19" />话题。
 
-<img src="../_static/media/chapter_9/section_7/image13.png" style="width:1.06319in;height:0.44583in" alt="image19" />话题。
-
-3.  <img src="../_static/media/chapter_9/section_7/image13.png" style="width:1.05694in;height:0.28958in" alt="image19" />节点订阅<img src="../_static/media/chapter_9/section_7/image13.png" style="width:0.72431in;height:0.26389in" alt="image19" />节点发布的<img src="../_static/media/chapter_9/section_7/image13.png" style="width:1.06319in;height:0.44583in" alt="image19" />话题。
+3.  <img src="../_static/media/chapter_9/section_7/image23.png" style="width:1.05694in;height:0.28958in" alt="image19" />节点订阅<img src="../_static/media/chapter_9/section_7/image24.png" style="width:0.72431in;height:0.26389in" alt="image19" />节点发布的<img src="../_static/media/chapter_9/section_7/image25.png" style="width:1.06319in;height:0.44583in" alt="image19" />话题。
 
 ### 7.3 服务通讯
 
@@ -713,7 +728,7 @@ rqt_graph
 
 在本节文件夹下将电脑端控制软件解压至任意英文路径下，然后打开文件夹内的图示应用（在打开应用时请关闭防火墙）。
 
-<img src="../_static/media/chapter_9/section_8/image2.png" style="width:1.375in;height:1.29167in" />
+<img class="common_img" src="../_static/media/chapter_9/section_8/image2.png" style="width:1.375in;height:1.29167in" />
 
 ### 8.2 上位机软件连接
 
@@ -721,13 +736,13 @@ rqt_graph
 
 2)  等待Ros系统启动完成以后，蜂鸣器会发出"**滴**"的一声。打开电脑（台式电脑需自备无线网卡）网络设定，选择该热点。
 
-<img src="../_static/media/chapter_9/section_8/image3.png" style="width:3.14931in;height:4.49514in" />
+<img class="common_img" src="../_static/media/chapter_9/section_8/image3.png" style="width:3.14931in;height:4.49514in" />
 
 3)  然后打开上位机软件，点击"**连接**"，等待片刻，上位机即可连接完成。
 
 <img src="../_static/media/chapter_9/section_8/image4.png" style="width:5.76042in;height:3.88819in" />
 
-<img src="../_static/media/chapter_9/section_8/image5.png" style="width:3.14931in;height:2.32014in" />
+<img class="common_img" src="../_static/media/chapter_9/section_8/image5.png" style="width:3.14931in;height:2.32014in" />
 
 ### 8.3 界面说明
 
@@ -766,13 +781,13 @@ rqt_graph
 
 所以说，首先需要建立机器狗的坐标体系。建立坐标系时，以机器狗的4个髋关节的中心点为原点坐标（0,0,0），设置4条腿的落脚点坐标，如下图所示：
 
-<img src="../_static/media/chapter_9/section_9/image2.png" style="width:5.76667in;height:2.63333in" alt="image21" /> 设置坐标时，只需设置4条腿落脚点坐标的X轴和Z轴数值。由于Y轴方向没有舵机控制，因此控制Y轴数值设置无效。
+<img src="../_static/media/chapter_9/section_9/image2.png" style="width:5.76667in;height:2.63333in" alt="image21" /> 
+
+设置坐标时，只需设置4条腿落脚点坐标的X轴和Z轴数值。由于Y轴方向没有舵机控制，因此控制Y轴数值设置无效。
 
 ### 9.2 坐标说明
 
-为方便理解，这里以机器狗的站立姿态坐标为例进行说明。
-
-机器狗的站立时对应的坐标如下图：
+为方便理解，这里以机器狗的站立姿态坐标为例进行说明。 机器狗的站立时对应的坐标如下图：
 
 <img src="../_static/media/chapter_9/section_9/image3.png" style="width:5.76181in;height:0.30278in" />
 
@@ -794,15 +809,15 @@ X轴的坐标为0，代表机器狗落脚点和原点的连线与地面垂直。
 
 对于PuppyPi机器狗而言，逆运动学就是根据其足端坐标，求解髋关节与膝关节的旋转角度，关节位置如下图所示：
 
-<img src="../_static/media/chapter_9/section_10/image2.jpeg" style="width:5.31319in;height:2.26736in" />
+<img class="common_img" src="../_static/media/chapter_9/section_10/image2.jpeg" style="width:5.31319in;height:2.26736in" />
 
 PuppyPi机器狗髋关节的旋转角度由机器狗机身上的4个舵机控制，如下图所示：
 
-<img src="../_static/media/chapter_9/section_10/image3.png" style="width:3.60278in;height:3.32014in" />
+<img class="common_img" src="../_static/media/chapter_9/section_10/image3.png" style="width:3.60278in;height:3.32014in" />
 
 PuppyPi机器狗膝关节的旋转角度由机器狗机髋关节上的4个舵机控制，控制时使用了二连杆结构，如下图所示：
 
-<img src="../_static/media/chapter_9/section_10/image4.png" style="width:4.13403in;height:3.77778in" />
+<img class="common_img" src="../_static/media/chapter_9/section_10/image4.png" style="width:4.13403in;height:3.77778in" />
 
 根据逆运动学分析，其求解步骤如下：
 
@@ -812,7 +827,7 @@ PuppyPi机器狗膝关节的旋转角度由机器狗机髋关节上的4个舵机
 
 ### 10.2 案例分析
 
-2.1源码路径
+-  **源码路径**
 
 为方便理解，这里结合控制程序，对机器狗的逆运动学进行分析。
 
@@ -822,7 +837,9 @@ PuppyPi机器狗膝关节的旋转角度由机器狗机髋关节上的4个舵机
 
 ### 10.3 玩法开启及关闭步骤
 
-> 指令的输入需严格区分大小写，另外可按键盘"Tab"键进行关键词补齐。
+:::{Note}
+指令的输入需严格区分大小写，另外可按键盘"Tab"键进行关键词补齐。
+:::
 
 1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
@@ -840,7 +857,7 @@ rosrun puppy_control puppy_IK_demo.py
 
 4)  如需关闭此玩法，只需要在LX终端界面中按下"Ctrl+C"。如果关闭失败，可多次按下。
 
-2.3功能实现
+- **功能实现**
 
 玩法开启后，PuppyPi机器狗上所有舵机会根据设置好的坐标，转动到对应角度，并在终端打印出所有舵机的转动角度。
 
@@ -848,7 +865,7 @@ rosrun puppy_control puppy_IK_demo.py
 
 ### 10.4 程序分析
 
-1. 设置坐标值
+1. **设置坐标值**
 
 在控制机器狗状态时，需要设置4个条腿的黑色落脚点坐标，如下图：
 
@@ -872,19 +889,19 @@ X轴坐标设置为0时，落脚点和原点的连线与地面垂直；如果X�
 
 Z轴坐标设置为越大，落脚点越向上抬起，即落脚点和原点竖直方向上距离越近。
 
-2. 获取舵机角度值
+2. **获取舵机角度值**
 
 通过逆运动学，计算出舵机的角度值，如下图：
 
 <img src="../_static/media/chapter_9/section_10/image18.png" style="width:5.76597in;height:0.34792in" />
 
-3. 控制舵机转动
+3. **控制舵机转动**
 
 根据舵机角度值，计算舵机的脉冲值，直接控制舵机转动，如下图：
 
 <img src="../_static/media/chapter_9/section_10/image20.png" style="width:5.76389in;height:0.43472in" />
 
-4. 显示舵机角度
+4. **显示舵机角度**
 
 并且在终端显示舵机的角度，如下图：
 
@@ -912,7 +929,9 @@ ID2的舵机角度为14.31023196，对应的姿态如下图：
 
 ID2舵机的角度为正数时，对应舵机的摆臂在水平方向下方；为负数时，摆臂在水平方向上方。
 
-## 11. 姿态数说明
+<p id="anchor_11"></p>
+
+## 11. 姿态参数说明
 
 ### 11.1 简介
 
@@ -928,7 +947,9 @@ PuppyPi机器狗的姿态参数，就是指机器狗静止不动时的参数，�
 
 通过更改参数，可以调节机器狗姿态（静态），参数调节位置如下所示：
 
+```python
 PuppyPose = {'roll':math.radians(0), 'pitch':math.radians(0), 'yaw':0.000, 'height':-10, 'x_shift':-0.6, 'stance_x':0, 'stance_y':0}
+```
 
 主要设置x_shift、height、pitch和roll参数，具体参数介绍，如下表格：
 
@@ -939,24 +960,24 @@ PuppyPose = {'roll':math.radians(0), 'pitch':math.radians(0), 'yaw':0.000, 'heig
 </colgroup>
 <tbody>
 <tr>
-<td><strong>参数</strong></td>
-<td><strong>说明</strong></td>
+<td style="text-align: center;"><strong>参数</strong></td>
+<td style="text-align: center;"><strong>说明</strong></td>
 </tr>
 <tr>
-<td>x_shift</td>
+<td style="text-align: center;">x_shift</td>
 <td><p>4个膝关节末端在x轴上同向移动的距离，用来调节机器狗移动时的平衡。相对于本身值越小，移动越前倾，越大，移动越后仰，单位为cm，范围为</p>
 <p>"<strong>-10 ~ +10</strong>"。</p></td>
 </tr>
 <tr>
-<td>height</td>
+<td style="text-align: center;">height</td>
 <td>机身的高度，膝关节末端到髋关节中心点的垂直距离，单位为cm，范围为"<strong>-15 ~ -5</strong>"。设置时，数值越小，高度越高</td>
 </tr>
 <tr>
-<td>pitch</td>
+<td style="text-align: center;">pitch</td>
 <td>机身的俯仰角，单位为度（角度），范围为"<strong>-31 ~ +31</strong>"。以机器狗为第一视角，设置为正数时，机器狗仰视，负数时，机器狗俯视。数值的绝对值越大，仰视或俯视的角度越大。</td>
 </tr>
 <tr>
-<td>roll</td>
+<td style="text-align: center;">roll</td>
 <td>机身的滚转角，单位为度（角度），范围为"<strong>-31 ~ +31</strong>"。以机器狗为第一视角；设置为正数时，机器狗向右倾斜；负数时，机器狗向左倾斜。数值的绝对值越大，倾斜的角度越大。</td>
 </tr>
 </tbody>
@@ -964,13 +985,15 @@ PuppyPose = {'roll':math.radians(0), 'pitch':math.radians(0), 'yaw':0.000, 'heig
 
 以机器狗高度设置为10cm，俯视20°，向右倾斜15°为例，参数设置如下：
 
+```python
 PuppyPose = {'roll':math.radians(15), 'pitch':math.radians(-20), 'yaw':0.000, 'height':-10, 'x_shift':-0.6, 'stance_x':0, 'stance_y':0}
+```
 
 ## 12. 站立角度调节
 
 ### 12.1 简介
 
-通过调节参数，可以调节PuppyPi 机器狗的姿态，具体参数可以参考"**第9章 ROS机器狗运动控制课程\第11课** **姿态参数说明**"文档。
+通过调节参数，可以调节PuppyPi 机器狗的姿态，具体参数可以参考"**[ROS机器狗运动控制课程\11. 姿态参数说明](#anchor_11)**"文档。
 
 这里结合控制程序，对机器狗的站立角度进行调节。
 
@@ -980,7 +1003,9 @@ PuppyPose = {'roll':math.radians(15), 'pitch':math.radians(-20), 'yaw':0.000, 'h
 
 ### 12.2 玩法开启及关闭步骤
 
-<img src="../_static/media/chapter_9/section_12/image4.png" style="width:0.31528in;height:0.31528in" />指令的输入需严格区分大小写，另外可按键盘"Tab"键进行关键词补齐。
+:::{Note}
+指令的输入需严格区分大小写，另外可按键盘"Tab"键进行关键词补齐。
+:::
 
 1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
@@ -1007,7 +1032,9 @@ rosed puppy_control puppy_demo.py
 
 <img src="../_static/media/chapter_9/section_12/image15.png" style="width:5.76111in;height:3.83333in" />
 
-**注意：**1、调节以机器狗为第一视角，"**roll**"设置为正数时，机器狗向左倾斜；设置为负数时，机器狗向右倾斜。"**pitch**"代表俯仰角，设置为正数时，机器狗向上仰视前方；设置为负数时，机器狗向下俯视前方。
+:::{Note}
+调节以机器狗为第一视角，"**roll**"设置为正数时，机器狗向左倾斜；设置为负数时，机器狗向右倾斜。"**pitch**"代表俯仰角，设置为正数时，机器狗向上仰视前方；设置为负数时，机器狗向下俯视前方。
+:::
 
 6)  我们这里让机器狗实现向左倾斜15度为例，把"**roll**"修改为15，更改完成后，按下"**Esc**"键，接着输入指令并按下回车进行保存。
 
@@ -1057,23 +1084,25 @@ PuppyPi机器狗的4条腿位置编号如下图：
 
 ### 13.4 动态步态的控制方式
 
-1. 控制简介
+1. **控制简介**
 
 Trot步态是一种动态步态，其特征是以对角的两条腿成对运动，即腿1和腿2运动一致，腿3和腿4运动一致，理想情况下对角腿同时抬起并同时着地。
 
 这里结合机器狗的控制程序，来看下动态步态的控制方式。
 
-2. 玩法开启及关闭步骤
+2. **玩法开启及关闭步骤**
 
-<img src="../_static/media/chapter_9/section_13/image5.png" style="width:0.31496in;height:0.31496in" />输入指令时需要严格区分大小写，且可使用"**Tab**"键补齐关键词。
+:::{Note}
+输入指令时需要严格区分大小写，且可使用"**Tab**"键补齐关键词。
+:::
 
-- 1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+-   启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-- 2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_13/image6.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+-   点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_13/image6.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
   <img src="../_static/media/chapter_9/section_13/image7.png" style="width:5.76111in;height:3.75208in" />
 
-- 3)  输入编辑"**puppy_demo.py**"的指令并按下回车。
+-   输入编辑"**puppy_demo.py**"的指令并按下回车。
 
 ```commandline
 rosed puppy_control puppy_demo.py
@@ -1081,11 +1110,11 @@ rosed puppy_control puppy_demo.py
 
 <img src="../_static/media/chapter_9/section_13/image9.png" style="width:5.76111in;height:2.03681in" />
 
-- 4)  可以在下图所示位置中找到调用步态的代码，程序默认是执行Trot步态，所以可以直接调用运行。
+-  可以在下图所示位置中找到调用步态的代码，程序默认是执行Trot步态，所以可以直接调用运行。
 
 <img src="../_static/media/chapter_9/section_13/image11.png" style="width:5.76806in;height:2.59722in" />
 
-3. 动态步态的设置
+3. **动态步态的设置**
 
 设置时，需设置4条腿全部着地的时间、单条腿脱离地面的时间和前后脚间隔时间3个参数。
 
@@ -1105,23 +1134,25 @@ rosed puppy_control puppy_demo.py
 
 ### 13.5 静态步态的控制方式
 
-1. 控制简介
+1. **控制简介**
 
 Walk步态是一种静态步态，其特征是在运动过程中始终有三条腿处于支撑相，至多只有一条腿处于摆动相。
 
 这里结合机器狗的控制程序，来看下静态步态的控制方式。
 
-2. 玩法开启及关闭步骤
+2. **玩法开启及关闭步骤**
 
-<img src="../_static/media/chapter_9/section_13/image5.png" style="width:0.31496in;height:0.31496in" />输入指令时需要严格区分大小写，且可使用"**Tab**"键补齐关键词。
+:::{Note}
+输入指令时需要严格区分大小写，且可使用"**Tab**"键补齐关键词。
+:::
 
-- 1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+-   启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-- 2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_13/image6.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+-   点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_13/image6.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
 <img src="../_static/media/chapter_9/section_13/image7.png" style="width:5.76111in;height:3.75208in" />
 
-- 3)  输入指令，并按下回车，打开程序文件。
+-   输入指令，并按下回车，打开程序文件。
 
 ```commandline
 rosed puppy_control puppy_demo.py
@@ -1129,15 +1160,15 @@ rosed puppy_control puppy_demo.py
 
 <img src="../_static/media/chapter_9/section_13/image16.png" style="width:5.76806in;height:2.03681in" />
 
-- 4)  可以在下图所示位置中找到调用步态的代码，程序默认是执行Trot步态。按下"**i**" 键，进入编辑模式。
+- 可以在下图所示位置中找到调用步态的代码，程序默认是执行Trot步态。按下"**i**" 键，进入编辑模式。
 
 <img src="../_static/media/chapter_9/section_13/image11.png" style="width:5.76806in;height:2.59722in" />
 
-- 5)  将"**Trot**"修改为"**Walk**"。
+-  将"**Trot**"修改为"**Walk**"。
 
 <img src="../_static/media/chapter_9/section_13/image17.png" style="width:5.76806in;height:1.75694in" />
 
-3. 静态步态的设置
+3. **静态步态的设置**
 
 设置时，需设置4条腿全部着地的时间、单条腿脱离地面的时间和前后脚间隔时间3个参数。
 
@@ -1157,23 +1188,25 @@ rosed puppy_control puppy_demo.py
 
 ### 13.6 准静态步态的控制方式
 
-1. 控制简介
+1. **控制简介**
 
 Amble步态是一种准静态步态，可视为加速后的Walk步态，其特征是在运动过程中至少有两台条腿处于支撑相，最多有两条腿处于摆动相。
 
 这里结合机器狗的控制程序，来看下静态步态的控制方式。
 
-2. 玩法开启及关闭步骤
+2. **玩法开启及关闭步骤**
 
-<img src="../_static/media/chapter_9/section_13/image5.png" style="width:0.31496in;height:0.31496in" />输入指令时需要严格区分大小写，且可使用"**Tab**"键补齐关键词。
+:::{Note}
+输入指令时需要严格区分大小写，且可使用"**Tab**"键补齐关键词。
+:::
 
-- 1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+-  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-- 2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_13/image6.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+- 点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_13/image6.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
 <img src="../_static/media/chapter_9/section_13/image7.png" style="width:5.76111in;height:3.75208in" />
 
-- 3)  输入指令，并按下回车，打开程序文件。
+-  输入指令，并按下回车，打开程序文件。
 
 ```commandline
 rosed puppy_control puppy_demo.py
@@ -1181,15 +1214,15 @@ rosed puppy_control puppy_demo.py
 
 <img src="../_static/media/chapter_9/section_13/image16.png" style="width:5.76806in;height:2.03681in" />
 
-- 4)  可以在下图所示位置中找到调用步态的代码，程序默认是执行Trot步态。按下"**i**" 键，进入编辑模式。
+-  可以在下图所示位置中找到调用步态的代码，程序默认是执行Trot步态。按下"**i**" 键，进入编辑模式。
 
 <img src="../_static/media/chapter_9/section_13/image11.png" style="width:5.76806in;height:2.59722in" />
 
-- 5)  将"**Trot**"修改为"**Amble**"。
+- 将"**Trot**"修改为"**Amble**"。
 
 <img src="../_static/media/chapter_9/section_13/image22.png" style="width:5.76806in;height:0.77014in" />
 
-3. 准静态步态的设置
+3. **准静态步态的设置**
 
 设置时，需设置4条腿全部着地的时间、单条腿脱离地面的时间和前后脚间隔时间3个参数。
 
@@ -1246,7 +1279,7 @@ rosed puppy_control puppy_demo.py
 
 ### 14.1 简介
 
-控制PuppyPi 机器狗行走过程中，可通过调节参数，达到调节行走高度的目的，具体参数可以参考"**第9章 ROS机器狗运动控制课程\第11课** **姿态参数说明**"文档。
+控制PuppyPi 机器狗行走过程中，可通过调节参数，达到调节行走高度的目的，具体参数可以参考"**[ROS机器狗运动控制课程\11. 姿态参数说明](#anchor_11)**"文档。
 
 这里结合控制程序，对机器狗的行走高度进行调节。
 
@@ -1256,7 +1289,9 @@ rosed puppy_control puppy_demo.py
 
 ### 14.2 玩法开启及关闭步骤
 
-<img src="../_static/media/chapter_9/section_14/image4.png" style="width:0.31496in;height:0.31496in" />输入指令时需要严格区分大小写，且可使用"**Tab**"键补齐关键词。
+:::{Note}
+输入指令时需要严格区分大小写，且可使用"**Tab**"键补齐关键词。
+:::
 
 1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
@@ -1283,9 +1318,7 @@ rosed puppy_control puppy_demo.py
 <img src="../_static/media/chapter_9/section_14/image13.png" style="width:5.76389in;height:1.16528in" />
 
 :::{Note}
-
 注意：调节时，数值越小，高度越高，-15为最大高度，-5为最小高度。
-
 :::
 
 6)  我们这里让机器狗高度增加为例，把"**height**"修改为-15，更改完成后，按下"**Esc**"键，接着输入指令并按下回车进行保存。
@@ -1318,7 +1351,7 @@ rosrun puppy_control puppy_demo.py
 
 ### 15.1 简介
 
-控制PuppyPi 机器狗行走过程中，可通过调节参数，达到调节行走速度的的目的，具体参数可以参考"**第9章 ROS机器狗运动控制课程\第11课 姿态参数说明**"文档。
+控制PuppyPi 机器狗行走过程中，可通过调节参数，达到调节行走速度的的目的，具体参数可以参考"**[ROS机器狗运动控制课程\11. 姿态参数说明](#anchor_11)**"文档。
 
 这里结合控制程序，对机器狗的行走速度进行调节。
 
@@ -1328,7 +1361,9 @@ rosrun puppy_control puppy_demo.py
 
 ### 15.2 玩法开启及关闭步骤
 
-<img src="../_static/media/chapter_9/section_15/image4.png" style="width:0.31496in;height:0.31496in" />输入指令时需要严格区分大小写，且可使用"**Tab**"键补齐关键词。
+:::{Note}
+输入指令时需要严格区分大小写，且可使用"**Tab**"键补齐关键词。
+:::
 
 1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
@@ -1376,7 +1411,7 @@ rosrun puppy_control puppy_demo.py
 
 7)  如需关闭此玩法，只需要在LX终端界面中按下"**Ctrl+C**"。如果关闭失败，可多次按下。
 
-### 13.3 功能实现
+### 15.3 功能实现
 
 玩法开启后，PuppyPi机器狗就会按照设置的速度行走。
 
@@ -1394,7 +1429,9 @@ rosrun puppy_control puppy_demo.py
 
 ### 16.2 玩法开启及关闭步骤
 
-<img src="../_static/media/chapter_9/section_16/image4.png" style="width:0.31496in;height:0.31496in" />输入指令时需要严格区分大小写，且可使用"**Tab**"键补齐关键词。
+:::{Note}
+输入指令时需要严格区分大小写，且可使用"**Tab**"键补齐关键词。
+:::
 
 1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
@@ -1452,7 +1489,7 @@ rosrun puppy_control puppy_demo.py
 
 9)  如需关闭此玩法，只需要在LX终端界面中按下"**Ctrl+C**"。如果关闭失败，可多次按下。
 
-### 6.3 功能实现
+### 16.3 功能实现
 
 玩法开启后，PuppyPi机器狗就会按照Trot步态俯身前行。
 

@@ -4,25 +4,27 @@
 
 ### 1.1 启动上位机
 
-1. 采用桌面图标启动（初学者推荐）
+1. **采用桌面图标启动（初学者推荐）**
 
-   1. 双击桌面图标<img src="../_static/media/chapter_10/section_1/image2.png" style="width:0.31458in;height:0.31458in" />。
+- 双击桌面图标<img src="../_static/media/chapter_10/section_1/image2.png" style="width:0.31458in;height:0.31458in" />。
 
-   2. 在弹出的提示窗口处单击"Execute"选项，即可打开上位机。
+- 在弹出的提示窗口处单击"Execute"选项，即可打开上位机。
 
 <img src="../_static/media/chapter_10/section_1/image3.png" style="width:4.51042in;height:1.3125in" />
 
-2.  采用命令行形式启动
+2.  **采用命令行形式启动**
 
-    1. 点击系统桌面左上角的图标<img src="../_static/media/chapter_10/section_1/image5.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+- 点击系统桌面左上角的图标<img src="../_static/media/chapter_10/section_1/image5.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
- <img src="../_static/media/chapter_10/section_1/image6.png" style="width:5.76111in;height:3.75208in" /><img src="../_static/media/chapter_10/section_1/image6.png" style="width:5.76111in;height:3.75208in" />
+<img src="../_static/media/chapter_10/section_1/image6.png" style="width:5.76111in;height:3.75208in" />
 
-    2. 输入指令，并按下回车，打开上位机。
+<img src="../_static/media/chapter_10/section_1/image6.png" style="width:5.76111in;height:3.75208in" />
 
-        ```commandline
-        python3 software/puppypi_control/PuppyPi.py
-        ```
+- 输入指令，并按下回车，打开上位机。
+
+```commandline
+python3 software/puppypi_control/PuppyPi.py
+```
 <img src="../_static/media/chapter_10/section_1/image8.png" style="width:5.76667in;height:1.95694in" />
 
 ### 1.2 上位机界面分布
@@ -31,7 +33,9 @@
 
 <img src="../_static/media/chapter_10/section_1/image10.png" style="width:3.14961in;height:0.71991in" />
 
-1. 普通模式
+<p id="anchor_1_2_1"></p>
+
+1. **普通模式**
 
 普通模式的界面可分为舵机操控区域、动作详情列表、动作组设置区域和偏差设置区域。
 
@@ -39,7 +43,7 @@
 
 - **舵机操控区域**
 
-    可通过调整对应舵机的数值，对PuppyPi机器狗的姿态进行调整。
+可通过调整对应舵机的数值，对PuppyPi机器狗的姿态进行调整。
 
 | **图标** | **功能说明** |
 |----|----|
@@ -49,7 +53,7 @@
 
 -  **动作详情列表**
 
-    可在动作详情列表内查看动作的执行时间及舵机参数。
+可在动作详情列表内查看动作的执行时间及舵机参数。
 
 <img src="../_static/media/chapter_10/section_1/image15.png" style="width:5.51181in;height:0.38356in" />
 
@@ -83,11 +87,11 @@
 | <img src="../_static/media/chapter_10/section_1/image36.png" style="width:0.7874in;height:0.29349in" /> | （慎点）删除所有动作组文件。 |
 | <img src="../_static/media/chapter_10/section_1/image37.png" style="width:0.7874in;height:0.29349in" /> | 执行一次选择的动作组。 |
 | <img src="../_static/media/chapter_10/section_1/image38.png" style="width:0.7874in;height:0.29349in" /> | 停止正在运行的动作组。 |
-| <img src="../_static/media/chapter_10/section_1/image39.png" style="width:1.37795in;height:0.24629in" /> | 退出上位机操作界面。 |
+| <img src="../_static/media/chapter_10/section_1/image39.png" /> | 退出上位机操作界面。 |
 
 :::{Note}
 
-动作组文件统一保存至Docker容器中的"**/home/ubuntu/software/puppypi_control/ActionGroups**
+动作组文件统一保存至Docker容器中的 "**/home/ubuntu/software/puppypi_control/ActionGroups**
 
 :::
 
@@ -100,7 +104,7 @@
 | <img src="../_static/media/chapter_10/section_1/image41.png" style="width:0.7874in;height:0.36842in" /> | 将舵机操控区域内所有舵机的数值恢复至1500。 |
 | <img src="../_static/media/chapter_10/section_1/image42.png" style="width:0.7874in;height:0.36842in" /> | 点击后，可手动调整舵机转动角度。 |
 
-2. 坐标模式
+2. **坐标模式**
 
 坐标模式的界面可分为坐标控制区域、动作详情列表和动作组设置区域。
 
@@ -143,7 +147,7 @@
 
 3.  **动作组设置区域**
 
-坐标模式的动作组设置区域与普通模式的十分相似，除按键"**复位坐标**"外，其他按键与普通模式的对应按键具有相同功能，此处不再做过多说明，可到"[**<u>2.1 普通模式</u>**](#_普通模式)"查看具体的按键说明。
+坐标模式的动作组设置区域与普通模式的十分相似，除按键"**复位坐标**"外，其他按键与普通模式的对应按键具有相同功能，此处不再做过多说明，可到"[**1.2 上位机界面分布\ 普通模式**](#anchor_1_2_1)"查看具体的按键说明。
 
 | **图标** | **功能说明** |
 |:--:|:--:|
@@ -210,22 +214,20 @@ PuppyPi机器狗的上位机软件分为两种操作模式：普通模式、坐�
 <img src="../_static/media/chapter_10/section_3/image5.png" style="width:5.76389in;height:0.40556in" />
 
 :::{Note}
-
 后续每编辑一个动作，都需要将其添加至动作列表内。
-
 :::
 
 3)  拖动滑杆，将1号舵机的参数调整为1000。
 
-<img src="../_static/media/chapter_10/section_3/image6.png" style="width:1.18056in;height:1.07222in" />
+<img class="common_img" src="../_static/media/chapter_10/section_3/image6.png" style="width:1.18056in;height:1.07222in" />
 
 4)  **动作2**：参考下图修改其他舵机参数，使PuppyPi机器狗仰起前半身，将该动作添加到动作列表。
 
-<img src="../_static/media/chapter_10/section_3/image7.png" style="width:3.93701in;height:3.5763in" />
+<img class="common_img" src="../_static/media/chapter_10/section_3/image7.png" style="width:3.93701in;height:3.5763in" />
 
 5)  **动作3**：对舵机参数进行调整，增大机器狗仰起的幅度，将该动作添加到动作列表。
 
-<img src="../_static/media/chapter_10/section_3/image8.png" style="width:3.93701in;height:3.5763in" />
+<img class="common_img" src="../_static/media/chapter_10/section_3/image8.png" style="width:3.93701in;height:3.5763in" />
 
 6)  **动作4**：重复动作3，让此动作过渡得更加自然。将时间修改为300ms，点击"**添加动作**"按钮。
 
@@ -233,29 +235,29 @@ PuppyPi机器狗的上位机软件分为两种操作模式：普通模式、坐�
 
 7)  **动作5**：按照下图红框内所示数值调整舵机，令机器狗右前足的髋关节朝前摆动。将时间修改为400ms，点击"**添加动作**"按钮，将该动作添加到动作列表。
 
-<img src="../_static/media/chapter_10/section_3/image10.png" style="width:3.93701in;height:3.5763in" />
+<img class="common_img" src="../_static/media/chapter_10/section_3/image10.png" style="width:3.93701in;height:3.5763in" />
 
 <img src="../_static/media/chapter_10/section_3/image11.png" style="width:5.76389in;height:1.00486in" />
 
 8)  **动作6**：更改舵机参数，令机器狗右前足的膝关节朝上摆动，将该动作添加到动作列表。
 
-<img src="../_static/media/chapter_10/section_3/image12.png" style="width:3.93701in;height:3.5763in" />
+<img class="common_img" src="../_static/media/chapter_10/section_3/image12.png" style="width:3.93701in;height:3.5763in" />
 
 9)  **动作7**：修改舵机参数，让机器狗右前足的膝关节朝下摆动，将该动作添加到动作列表。
 
-<img src="../_static/media/chapter_10/section_3/image13.png" style="width:3.93701in;height:3.5763in" />
+<img class="common_img" src="../_static/media/chapter_10/section_3/image13.png" style="width:3.93701in;height:3.5763in" />
 
 10) **动作8**：重复动作6，令机器狗右前足的膝关节朝上摆动，将该动作添加到动作列表。
 
-<img src="../_static/media/chapter_10/section_3/image12.png" style="width:3.93701in;height:3.5763in" />
+<img class="common_img" src="../_static/media/chapter_10/section_3/image12.png" style="width:3.93701in;height:3.5763in" />
 
 11) **动作9**：重复动作7，让机器狗右前足的膝关节朝下摆动，将该动作添加到动作列表。
 
-<img src="../_static/media/chapter_10/section_3/image14.png" style="width:3.93681in;height:3.57569in" />
+<img class="common_img" src="../_static/media/chapter_10/section_3/image14.png" style="width:3.93681in;height:3.57569in" />
 
 12) **动作10**：令PuppyPi机器狗恢复至动作3的坐姿。将时间修改为600ms，点击"**添加动作**"按钮，将该动作添加到动作列表。
 
-<img src="../_static/media/chapter_10/section_3/image15.png" style="width:3.93701in;height:3.5763in" />
+<img class="common_img" src="../_static/media/chapter_10/section_3/image15.png" style="width:3.93701in;height:3.5763in" />
 
 <img src="../_static/media/chapter_10/section_3/image16.png" style="width:5.76389in;height:1.00486in" />
 
@@ -265,22 +267,20 @@ PuppyPi机器狗的上位机软件分为两种操作模式：普通模式、坐�
 
 14) **动作12**：按照下图更改舵机参数，令机器狗俯身，前面两足着地。将时间修改为600ms，点击"**添加动作**"按钮，将该动作添加到动作列表。
 
-<img src="../_static/media/chapter_10/section_3/image18.png" style="width:3.93701in;height:3.5763in" />
+<img class="common_img" src="../_static/media/chapter_10/section_3/image18.png" style="width:3.93701in;height:3.5763in" />
 
 <img src="../_static/media/chapter_10/section_3/image19.png" style="width:5.76389in;height:1.00486in" />
 
 15) **动作13**：点击"**复位舵机**"，令机器狗恢复初始化动作，并点击"**添加动作**"，将该动作添加至动作列表。
 
-<img src="../_static/media/chapter_10/section_3/image20.png" style="width:4.72441in;height:2.51123in" />
+<img class="common_img" src="../_static/media/chapter_10/section_3/image20.png" style="width:4.72441in;height:2.51123in" />
 
 该动作组的全部数值参数如下表所示：
 
 <img src="../_static/media/chapter_10/section_3/image21.png" style="width:5.51181in;height:2.60394in" />
 
 :::{Note}
-
 红色数值为每一步骤中需要调整的时间参数或舵机参数。
-
 :::
 
 ### 3.3 动作保存
@@ -292,6 +292,8 @@ PuppyPi机器狗的上位机软件分为两种操作模式：普通模式、坐�
 2)  将保存路径选择为Docker容器中的"**/home/ubuntu/software/puppypi_control/ActionGroups"**，此处将动作组命名为"**sit_wave**"， 随后点击"**Save**"保存即可。
 
 <img src="../_static/media/chapter_10/section_3/image23.png" style="width:5.76736in;height:4.15417in" />
+
+<p id="anchor_4"></p>
 
 ## 4. 坐标模式学习
 
@@ -316,9 +318,7 @@ Z轴坐标用于调整PuppyPi机器狗的膝关节伸缩幅度，其数值的绝
 ### 4.3 动作设计
 
 :::{Note}
-
 本节内容以PuppyPi机器狗为第一视角。
-
 :::
 
 1)  双击桌面图标<img src="../_static/media/chapter_10/section_4/image2.png" style="width:0.31458in;height:0.31458in" />，打开上位机，选择"**坐标模式**"。
@@ -327,39 +327,37 @@ Z轴坐标用于调整PuppyPi机器狗的膝关节伸缩幅度，其数值的绝
 
 2)  **动作1**：点击"**复位坐标**"按键，令机器狗恢复初始姿态。将动作时间修改为800ms，点击"**添加动作**"按钮，将该动作添加到动作列表。
 
-<img src="../_static/media/chapter_10/section_4/image4.png" style="width:4.72441in;height:2.42762in" />
+<img class="common_img" src="../_static/media/chapter_10/section_4/image4.png" style="width:4.72441in;height:2.42762in" />
 
 在动作列表区域可以查看到动作的具体参数。此时，PuppyPi机器狗四肢坐标皆为（0，0，-10），即机器狗高度为10cm。
 
 <img src="../_static/media/chapter_10/section_4/image5.png" style="width:5.76389in;height:0.21875in" />
 
 :::{Note}
-
 后续每编辑一个动作，都需要将其添加至动作列表内。
-
 :::
 
 3)  **动作2**：修改机器狗四肢的髋关节对应的Z轴坐标，令机器狗向前俯身。将动作时间修改为500ms，点击"**添加动作**"按钮，将该动作添加到动作列表。
 
-<img src="../_static/media/chapter_10/section_4/image6.png" style="width:4.72441in;height:2.75591in" />
+<img class="common_img" src="../_static/media/chapter_10/section_4/image6.png" style="width:4.72441in;height:2.75591in" />
 
-<img src="../_static/media/chapter_10/section_4/image7.png" style="width:4.72441in;height:0.92259in" />
+<img class="common_img" src="../_static/media/chapter_10/section_4/image7.png" style="width:4.72441in;height:0.92259in" />
 
 4)  **动作3**：修改机器狗前面两足的髋关节对应的Z轴坐标，让机器狗抬起前半身，将该动作添加到动作列表。
 
-<img src="../_static/media/chapter_10/section_4/image8.png" style="width:4.72441in;height:2.75591in" />
+<img class="common_img" src="../_static/media/chapter_10/section_4/image8.png" style="width:4.72441in;height:2.75591in" />
 
 5)  **动作4**：重复动作2，让机器狗向前俯身，将该动作添加到动作列表。
 
-<img src="../_static/media/chapter_10/section_4/image6.png" style="width:4.72441in;height:2.75591in" />
+<img class="common_img" src="../_static/media/chapter_10/section_4/image6.png" style="width:4.72441in;height:2.75591in" />
 
 6)  **动作5**：重复动作3，让机器狗抬起前半身，将该动作添加到动作列表。
 
-<img src="../_static/media/chapter_10/section_4/image8.png" style="width:4.72441in;height:2.75591in" />
+<img class="common_img" src="../_static/media/chapter_10/section_4/image8.png" style="width:4.72441in;height:2.75591in" />
 
 7)  **动作6**：点击"**复位坐标**"按钮，令机器狗恢复初始姿态，并点击"**添加动作**"按钮，将该动作添加到动作列表。
 
-<img src="../_static/media/chapter_10/section_4/image9.png" style="width:4.72441in;height:2.44639in" />
+<img class="common_img" src="../_static/media/chapter_10/section_4/image9.png" style="width:4.72441in;height:2.44639in" />
 
 该动作组的全部数值参数如下表所示：
 
@@ -375,7 +373,7 @@ Z轴坐标用于调整PuppyPi机器狗的膝关节伸缩幅度，其数值的绝
 
 1)  点击"**保存动作文件**"按钮，将动作组保存起来。
 
-<img src="../_static/media/chapter_10/section_4/image11.png" style="width:4.72441in;height:1.6404in" />
+<img class="common_img" src="../_static/media/chapter_10/section_4/image11.png" style="width:4.72441in;height:1.6404in" />
 
 2)  将保存路径选择为"**/home/pi/PuppyPi_PC_Software/ActionGroups**"，此处将动作组命名为"**Lean_forward**"，随后点击"**Save**"保存即可。
 
@@ -389,6 +387,8 @@ Z轴坐标用于调整PuppyPi机器狗的膝关节伸缩幅度，其数值的绝
 
 本节课会在普通模式下串联动作组"raise_hands"（作揖）和"sit"（坐下），完成对串联动作文件的举例说明。
 
+<p id="anchor_5_2"></p>
+
 ### 5.2 普通模式
 
 1)  连接VNC后，双击桌面图标<img src="../_static/media/chapter_10/section_5/image1.png" style="width:0.31458in;height:0.31458in" />，打开上位机，选择"**普通模式**"。
@@ -399,7 +399,7 @@ Z轴坐标用于调整PuppyPi机器狗的膝关节伸缩幅度，其数值的绝
 
 <img src="../_static/media/chapter_10/section_5/image3.png" style="width:4.72441in;height:1.58239in" />
 
-<img src="../_static/media/chapter_10/section_5/image4.png" style="width:4.72441in;height:1.93788in" />
+<img class="common_img" src="../_static/media/chapter_10/section_5/image4.png" style="width:4.72441in;height:1.93788in" />
 
 此时，动作组详情列表中可以查看"**raise_hands**"动作组的参数。
 
@@ -407,9 +407,9 @@ Z轴坐标用于调整PuppyPi机器狗的膝关节伸缩幅度，其数值的绝
 
 3)  点击"**串联动作文件**"按键，打开"**sit.d6a**"动作组，完成两个动作组的串联。
 
-<img src="../_static/media/chapter_10/section_5/image6.png" style="width:4.72441in;height:1.58239in" />
+<img class="common_img" src="../_static/media/chapter_10/section_5/image6.png" style="width:4.72441in;height:1.58239in" />
 
-<img src="../_static/media/chapter_10/section_5/image7.png" style="width:4.72441in;height:1.90774in" />
+<img class="common_img" src="../_static/media/chapter_10/section_5/image7.png" style="width:4.72441in;height:1.90774in" />
 
 此时，查看动作组详情列表，"**sit**"动作组的参数衔接在"**raise_hands**"动作组的后面。
 
@@ -417,13 +417,13 @@ Z轴坐标用于调整PuppyPi机器狗的膝关节伸缩幅度，其数值的绝
 
 4)  点击"**运行**"按键，将从头到尾运行由这两个动作组串联而成的新动作组。
 
-<img src="../_static/media/chapter_10/section_5/image9.png" style="width:4.72441in;height:1.58239in" />
+<img class="common_img" src="../_static/media/chapter_10/section_5/image9.png" style="width:4.72441in;height:1.58239in" />
 
 5)  点击"**保存动作文件**"按键，将动作组命名为"**raise_hands_sit**"，并点击"**Save**"进行保存。
 
-<img src="../_static/media/chapter_10/section_5/image10.png" style="width:4.72441in;height:1.58239in" />
+<img class="common_img" src="../_static/media/chapter_10/section_5/image10.png" style="width:4.72441in;height:1.58239in" />
 
-<img src="../_static/media/chapter_10/section_5/image11.png" style="width:4.72441in;height:2.0141in" />
+<img class="common_img" src="../_static/media/chapter_10/section_5/image11.png" style="width:4.72441in;height:2.0141in" />
 
 ### 5.3 坐标模式
 
@@ -431,13 +431,15 @@ Z轴坐标用于调整PuppyPi机器狗的膝关节伸缩幅度，其数值的绝
 
 <img src="../_static/media/chapter_10/section_5/image12.png" style="width:5.76389in;height:3.12639in" />
 
-坐标模式与普通模式的按键面板十分相似，串联动作文件的操作流程亦是一致的，此处不做过多说明。如果需要在坐标模式下串联动作文件，可以参考"[2.普通模式](#普通模式)"的步骤说明进行操作。
+坐标模式与普通模式的按键面板十分相似，串联动作文件的操作流程亦是一致的，此处不做过多说明。如果需要在坐标模式下串联动作文件，可以参考"[5.2 普通模式](#anchor_5_2)"的步骤说明进行操作。
 
 ## 6. APP自定义控制
 
 ### 6.1 实现目标
 
-此前在"**[ROS机器狗动作编辑课程\4. 坐标模式学习]()**"学习了动作组"Lean_forward"的编辑方法，本节课会通过手机APP的自定义功能来执行该动作组。
+此前在"**[ROS机器狗动作编辑课程\4. 坐标模式学习](#anchor_4)**"学习了动作组"Lean_forward"的编辑方法，本节课会通过手机APP的自定义功能来执行该动作组。
+
+<p id="anchor_6_2"></p>
 
 ### 6.2 准备工作
 
@@ -467,11 +469,11 @@ ls
 
 <img src="../_static/media/chapter_10/section_6/image5.png" style="width:5.76389in;height:2.88125in" />
 
-1)  点击"**增加**"按键，添加自定义动作。
+3)  点击"**增加**"按键，添加自定义动作。
 
 <img src="../_static/media/chapter_10/section_6/image6.png" style="width:5.76389in;height:2.88125in" />
 
-2)  填写所需的动作信息，"**动作名称**"一栏填入"**向前倾**"，"**动作文件名**"一栏填入"**Lean_forward**"。填写完成后，点击"**好的**"按键。
+4)  填写所需的动作信息，"**动作名称**"一栏填入"**向前倾**"，"**动作文件名**"一栏填入"**Lean_forward**"。填写完成后，点击"**好的**"按键。
 
 <img src="../_static/media/chapter_10/section_6/image7.png" style="width:5.76389in;height:2.88125in" />
 
@@ -483,14 +485,14 @@ cd software/puppypi_control/ActionGroups
 
 :::{Note}
 
-"动作名称"一栏可随意填写，"动作文件名"一栏需根据PuppyPi机器狗的现有动作组进行填写。如需查看具体的动作组名称，可参考"[6.2 准备工作]()"进行操作。
+"动作名称"一栏可随意填写，"动作文件名"一栏需根据PuppyPi机器狗的现有动作组进行填写。如需查看具体的动作组名称，可参考"[6.2 准备工作](#anchor_6_2)"进行操作。
 
 :::
 
-3)  点击"**自定义**"按键，选择"**向前倾**"动作，PuppyPi机器狗便会执行设定动作。
+5)  点击"**自定义**"按键，选择"**向前倾**"动作，PuppyPi机器狗便会执行设定动作。
 
 <img src="../_static/media/chapter_10/section_6/image9.png" style="width:5.76389in;height:2.88125in" />
 
-4)  如需修改动作，可长按"**向前倾**"字样，并在弹窗内点击"**编辑**"按键，即可修改自定义动作的设定。点击"**删除**"按键，即可删除选择的自定义动作。
+6)  如需修改动作，可长按"**向前倾**"字样，并在弹窗内点击"**编辑**"按键，即可修改自定义动作的设定。点击"**删除**"按键，即可删除选择的自定义动作。
 
 <img src="../_static/media/chapter_10/section_6/image10.png" style="width:5.76389in;height:2.88125in" />

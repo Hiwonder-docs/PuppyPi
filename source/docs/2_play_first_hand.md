@@ -1,18 +1,20 @@
 # 上手试玩
 
+<p id="anchor_1"></p>
+
 ## 1. 手机APP安装与连接
 
 ### 1.1 准备工作
 
 - APP安装
 
-[安卓系统](https://play.google.com/store/apps/details?id=com.Wonder.Pi) 需要注意，请务必在手机设置内为APP开启所有权限，否则可能会影响正常功能实现！
+**[安卓系统](https://play.google.com/store/apps/details?id=com.Wonder.Pi)**： 需要注意，请务必在手机设置内为APP开启所有权限，否则可能会影响正常功能实现！
 
-[iOS系统](https://apps.apple.com/cn/app/wonderpi/id1477946178)
+**[iOS系统](https://apps.apple.com/cn/app/wonderpi/id1477946178)**
 
 - 设备开机
 
-按照"**[学前先看\ 2. 首次开机]()**"内容，打开树莓派扩展板电源开关，等待开机完成。
+按照"**[学前先看\ 2. 首次开机](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/1_read_before_studying.html#id4)**"内容，打开树莓派扩展板电源开关，等待开机完成。
 
 ### 1.2 设备连接
 
@@ -24,9 +26,9 @@
 
 以下为PuppyPi的两种网络模式：
 
-1.  AP 直连模式：开发板能够开启热点被手机连接上。(但不能联通外部网络)
+1.  **AP 直连模式**：开发板能够开启热点被手机连接上。(但不能联通外部网络)
 
-2.  STA局域网模式：开发板能够主动去连接指定的热点/Wi-Fi。(可联通外部网络)
+2.  **STA局域网模式**：开发板能够主动去连接指定的热点/Wi-Fi。(可联通外部网络)
 
 局域网模式不能和直连模式共存，PuppyPi默认为AP 直连模式，用户无论是选择AP直连还是STA局域网模式，PuppyPi玩法功能都一致。
 
@@ -66,7 +68,9 @@
 
 <img src="../_static/media/chapter_2/section_1/image11.jpeg" style="width:5.76389in;height:2.80278in" alt="03.jpg03" />
 
-<img src="../_static/media/chapter_2/section_1/image12.png" style="width:0.31496in;height:0.31496in" />若手机出现"**网络不可用，是否继续连接**"的提示弹窗，单击"**保持连接**"按键即可。
+:::{Note}
+若手机出现"**网络不可用，是否继续连接**"的提示弹窗，单击"**保持连接**"按键即可。
+:::
 
 - #### 1.2.3局域网模式连接方法（选看）
 
@@ -118,7 +122,7 @@
 
 ### 2.1 准备工作
 
-请参照目录"**[上手试玩\1. 手机APP安装和连接]()**"下的文档，安装手机APP，并连接PuppyPi机器狗。
+请参照目录"**[上手试玩\1. 手机APP安装与连接](#anchor_1)**"下的文档，安装手机APP，并连接PuppyPi机器狗。
 
 ### 2.2 开始试玩
 
@@ -142,16 +146,54 @@
 
 下表为两种模式的按键功能说明：
 
-| **模式** | **图标** | **对应功能** |
-|:--:|:--:|:--:|
-| 普通模式 | <img src="../_static/media/chapter_2/section_2/image6.jpeg" style="width:0.7874in;height:0.7874in" alt="Screenshot_20220208_173516" /> | 拖动摇杆可控制机器狗朝各个方向运动。 |
-| 高级模式 | <img src="../_static/media/chapter_2/section_2/image7.jpeg" style="width:0.7874in;height:0.7874in" alt="Screenshot_20220208_173522" /> | 显示速度等级，等级范围为0-10级。 |
-|  | <img src="../_static/media/chapter_2/section_2/image7.jpeg" style="width:0.7874in;height:0.7874in" alt="Screenshot_20220208_173522" /> | 拖动摇杆可控制机器狗的运动速度。摇杆离中心点越远，速度越快；离中心点越近，速度越慢。 |
-|  | <img src="../_static/media/chapter_2/section_2/image7.jpeg" style="width:1.77165in;height:0.3432in" alt="Screenshot_20220208_173522" /> | 拖动滑杆可调节机器狗的Pitch值，即俯仰角度。 |
-|  | <img src="../_static/media/chapter_2/section_2/image7.jpeg" style="width:0.59055in;height:1.49278in" alt="Screenshot_20220208_173522" /> | 拖动滑杆可调节机器狗的高度。 |
-| 通用 | <img src="../_static/media/chapter_2/section_2/image8.png" style="width:0.3937in;height:0.3937in" alt="1" /> | 点击图标，可将当前回传画面保存至手机相册。 |
-|  | <img src="../_static/media/chapter_2/section_2/image9.png" style="width:0.3937in;height:0.3937in" alt="2" /> | 点击图标，可隐藏当前导航栏。 |
-|  | <img src="../_static/media/chapter_2/section_2/image10.png" style="width:0.3937in;height:0.3937in" alt="14" /> | 点击图标，联系我们，了解更多产品详情。 |
+<table class="docutils-nobg" border="1">
+    <colgroup>
+        <col style="width: 28%" />
+        <col style="width: 71%" />
+    </colgroup>
+    <tbody>
+    <tr>
+        <td style="text-align: center;"><strong>模式</strong></td>
+        <td style="text-align: center;"><strong>图标</strong></td>
+        <td style="text-align: center;"><strong>对应功能</strong></td>
+    </tr>
+    <tr>
+        <td style="text-align: center;"><p>普通模式</p>
+        <td style="text-align: center;"><p><img src="../_static/media/chapter_2/section_2/image6.png" style="width:0.7874in;height:0.7874in" alt="Screenshot_20220208_173516" /></p></td>
+        <td style="text-align: left;">拖动摇杆可控制机器狗朝各个方向运动。</td>
+    </tr>
+    <tr>
+        <td rowspan="4" style="text-align: center;">高级模式</td>
+        <td style="text-align: center;"><img src="../_static/media/chapter_2/section_2/image7.png" style="width:0.7874in;height:0.7874in" alt="Screenshot_20220208_173522" /></td>
+        <td style="text-align: left;">显示速度等级，等级范围为0-10级。</td>
+    </tr>
+    <tr>
+        <td style="text-align: center;"><img src="../_static/media/chapter_2/section_2/image1.png" style="width:0.7874in;height:0.7874in" alt="Screenshot_20220208_173522" /></td>
+        <td style="text-align: left;">拖动摇杆可控制机器狗的运动速度。摇杆离中心点越远，速度越快；离中心点越近，速度越慢。 </td>
+    </tr>
+    <tr>
+        <td style="text-align: center;"><img src="../_static/media/chapter_2/section_2/image27.png" style="width:1.77165in;height:0.3432in" alt="Screenshot_20220208_173522" /></td>
+        <td style="text-align: left;">拖动滑杆可调节机器狗的Pitch值，即俯仰角度。</td>
+    </tr>
+    <tr>
+        <td style="text-align: center;"><img src="../_static/media/chapter_2/section_2/image28.png" style="width:0.59055in;height:1.49278in" alt="Screenshot_20220208_173522" /></td>
+        <td style="text-align: left;">拖动滑杆可调节机器狗的高度。</td>
+    </tr>
+    <tr>
+        <td style="text-align: center;" rowspan="3"><p>通用</p>
+        <td style="text-align: center;"><img src="../_static/media/chapter_2/section_2/image8.png" style="width:0.3937in;height:0.3937in" alt="1" /></td>
+        <td style="text-align: left;">点击图标，可将当前回传画面保存至手机相册。</td>
+    </tr>
+    <tr>
+        <td style="text-align: center;"><img src="../_static/media/chapter_2/section_2/image9.png" style="width:0.3937in;height:0.3937in" alt="2" /></td>
+        <td style="text-align: left;">点击图标，可隐藏当前导航栏。</td>
+    </tr>
+    <tr>
+        <td style="text-align: center;"><img src="../_static/media/chapter_2/section_2/image10.png" style="width:0.3937in;height:0.3937in" alt="14" /></td>
+        <td style="text-align: left;">点击图标，联系我们，了解更多产品详情。</td>
+    </tr>
+    </tbody>
+</table>
 
 2)  如需返回到玩法选择界面，点击当前界面的空白区域，调出标题栏，随后点击按键<img src="../_static/media/chapter_2/section_2/image11.png" style="width:0.31496in;height:0.31496in" />即可。
 
@@ -166,7 +208,7 @@
 
 <img src="../_static/media/chapter_2/section_2/image12.jpeg" style="width:5.76389in;height:2.80278in" alt="10.jpg10" />
 
-自定义动作的使用请参考文档"**[ROS机器狗动作编辑课程\ 6. APP自定义控制]()**"。
+自定义动作的使用请参考文档"**[ROS机器狗动作编辑课程\ 6. APP自定义控制](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/10_action_editing.html#app)**"。
 
 2)  点击界面左侧的动作名称，PuppyPi机器狗将执行对应的动作。
 
@@ -189,7 +231,7 @@
 
 2.  识别时，摄像头画面内请勿应无同目标颜色相同或相近的杂物，避免干扰识别。
 
-3.  如识别效果不佳，可前往目录"**上手试玩\3. 颜色阈值调试**"学习颜色阈值的调节方式。
+3.  如识别效果不佳，可前往目录"**[上手试玩\3. 颜色阈值调试](#anchor_3)**"学习颜色阈值的调节方式。
 
 :::
 
@@ -219,7 +261,7 @@
 
 2.  识别时，摄像头画面内请勿应无同目标颜色相同或相近的杂物，避免干扰识别。
 
-3.  如识别效果不佳，可前往目录"**上手试玩\3. 颜色阈值调试**"查看文档，学习颜色阈值的调节方式。
+3.  如识别效果不佳，可前往目录"**[上手试玩\3. 颜色阈值调试](#anchor_3)**"查看文档，学习颜色阈值的调节方式。
 
 :::
 
@@ -301,7 +343,7 @@
 
 2.  识别时，摄像头画面内请勿应无同目标颜色相同或相近的杂物，避免干扰识别。
 
-3.  如识别效果不佳，可前往目录"**上手试玩\3. 颜色阈值调试**"查看文档，学习颜色阈值的调节方式。
+3.  如识别效果不佳，可前往目录"**[上手试玩\3. 颜色阈值调试](#anchor_3)**"查看文档，学习颜色阈值的调节方式。
 
 :::
 
@@ -322,6 +364,7 @@
 
 3) 如需返回到玩法选择界面，点击当前界面的空白区域，调出标题栏，随后点击按键<img src="../_static/media/chapter_2/section_2/image11.png" style="width:0.31496in;height:0.31496in" />即可。
 
+<p id="anchor_3"></p>
 
 ## 3. 颜色阈值调试
 

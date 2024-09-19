@@ -2,7 +2,9 @@
 
 ## 1. 台阶识别
 
-> 可在本节文件夹下观看演示效果。
+:::{Note}
+可在本节文件夹下观看演示效果。
+:::
 
 ### 1.1 玩法简要说明
 
@@ -18,7 +20,9 @@
 
 ### 1.2 玩法开启及关闭步骤
 
-> 指令输入需严格区分大小写及空格。
+:::{Note}
+指令输入需严格区分大小写及空格。
+:::
 
 1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
@@ -38,7 +42,9 @@ rosrun puppy_advanced_functions negotiate_stairs_demo.py
 
 ### 1.3 功能实现
 
-> 程序默认检测颜色为红色。
+:::{Note}
+程序默认检测颜色为红色。
+:::
 
 将红色的电工胶带粘贴在台阶上，PuppyPi机器狗放置在台阶前面。启动玩法后，机器狗识别到线条后，会在回传画面中框出线条，并画出中心点。
 
@@ -50,7 +56,7 @@ rosrun puppy_advanced_functions negotiate_stairs_demo.py
 
 根据实现的效果，梳理程序的过程逻辑，如下图所示：
 
-<img src="../_static/media/chapter_14/section_1/image8.png" style="width:4.04167in;height:3.23542in" />
+<img class="common_img" src="../_static/media/chapter_14/section_1/image8.png" style="width:4.04167in;height:3.23542in" />
 
 - **导入功能包**
 
@@ -58,9 +64,9 @@ rosrun puppy_advanced_functions negotiate_stairs_demo.py
 
   通过 import 语句导入所需模块：math提供了一系列数学函数和常数,用于进行相关计算；rospy用于ROS通信，from object_tracking.srv import \*: 导入目标跟踪相关的服务。from puppy_control.msg import Velocity, Pose, Gait: 导入控制和传递机器人的速度、姿态和步态服务。
 
-1. **处理图像**
+- #### 1.4.1 处理图像
 
-- **高斯滤波**
+1. **高斯滤波**
 
 在将图像的颜色空间由RGB转换为Lab前，需要先对其进行降噪处理，此处用到cv2库中的GaussianBlur()函数，该函数用于对图像进行高斯滤波处理。
 
@@ -74,7 +80,7 @@ rosrun puppy_advanced_functions negotiate_stairs_demo.py
 
 第三个参数“**3**”是在高斯滤波中其平均值附近允许的方差大。该值越大，平均值周围允许的方差越大；数值越小，平均值周围允许的方差越小。
 
-- **二值化处理**
+2. **二值化处理**
 
 采用cv2库中的inRange()函数对图像进行二值化处理。
 
@@ -82,9 +88,11 @@ rosrun puppy_advanced_functions negotiate_stairs_demo.py
 
 函数括号内的第一个参数是输入图像；第二个、第三个参数分别是阈值的下限和上限。当像素点RGB的颜色数值处于上、下限之间时，该像素点被赋值为1，否则为0。
 
-- **开运算和闭运算**
+3. **开运算和闭运算**
 
-> 为了降低干扰，令图像更平滑，需要对图像进行处理。
+:::{Note}
+为了降低干扰，令图像更平滑，需要对图像进行处理。
+:::
 
 <img src="../_static/media/chapter_14/section_1/image17.png" style="width:5.76111in;height:0.21319in" />
 
@@ -104,7 +112,7 @@ opened = cv2.morphologyEx(frame_mask, cv2.MORPH_OPEN, np.ones((6, 6), np.uint8))
 
 第三个参数“**np.ones((6, 6), np.uint8)**”是方框的大小。
 
-- **获取最大面积轮廓**
+4. **获取最大面积轮廓**
 
 完成上述的图像处理后，需要获取识别目标的轮廓，此处涉及cv2库中的findContours()函数。
 
@@ -116,15 +124,15 @@ opened = cv2.morphologyEx(frame_mask, cv2.MORPH_OPEN, np.ones((6, 6), np.uint8))
 
 <img src="../_static/media/chapter_14/section_1/image23.png" style="width:5.76597in;height:1.33819in" />
 
-- 2. **获取位置信息**
+- #### 1.4.2 获取位置信息
 
-- **框出线条**
+1. **框出线条**
 
 通过drawContours()函数，设置矩形图案，将线条框出。
 
 <img src="../_static/media/chapter_14/section_1/image27.png" style="width:5.76389in;height:0.14444in" />
 
-- **画出中心点**
+2. **画出中心点**
 
 接着，获取矩形的对角点，通过circle()画出线条的中心点。
 
@@ -150,7 +158,9 @@ opened = cv2.morphologyEx(frame_mask, cv2.MORPH_OPEN, np.ones((6, 6), np.uint8))
 
 ### 2.2 玩法开启及关闭步骤
 
-> 指令输入需严格区分大小写及空格。
+:::{Note}
+指令输入需严格区分大小写及空格。
+:::
 
 1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
@@ -170,7 +180,9 @@ rosrun puppy_advanced_functions** **negotiate_stairs_demo.py
 
 ### 2.3 实现效果
 
-> 程序默认检测颜色为红色。
+:::{Note}
+程序默认检测颜色为红色。
+:::
 
 将红色的电工胶带粘贴在台阶上，PuppyPi机器狗放置在台阶前面。启动玩法后，机器狗识别到线条后，会自动靠近线条中心点，执行攀爬动作。
 
@@ -178,11 +190,11 @@ rosrun puppy_advanced_functions** **negotiate_stairs_demo.py
 
 <span id="anchor_2_4_1"></span>
 
-1. **关闭调试画面**
+- #### 2.4.1 关闭调试画面
 
 由于调试画面不断刷新，会占用树莓派一定的CPU资源，所以如果出现运行不流畅的情况，可通过关闭调试画面来改善，具体步骤如下：
 
-  - 1)  输入指令，用来编辑自主台阶攀爬玩法程序，按下回车。
+1)  输入指令，用来编辑自主台阶攀爬玩法程序，按下回车。
 
 ```commandline
 rosed puppy_advanced_functions negotiate_stairs_demo.py
@@ -190,7 +202,7 @@ rosed puppy_advanced_functions negotiate_stairs_demo.py
 
 <img src="../_static/media/chapter_14/section_2/image9.png" style="width:5.76111in;height:2.02986in" />
 
-  - 2)  找到下图所示代码：
+2)  找到下图所示代码：
 
 <img src="../_static/media/chapter_14/section_2/image11.png" style="width:5.7625in;height:2.00486in" />
 
@@ -198,11 +210,11 @@ rosed puppy_advanced_functions negotiate_stairs_demo.py
 在键盘输入代码位置序号后，按下“Shift+G”键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
 :::
 
-  - 3)  按下“**i**”键进入编辑模式，在代码前面添加“**\#**”，进行注释。
+3)  按下“**i**”键进入编辑模式，在代码前面添加“**\#**”，进行注释。
 
 <img src="../_static/media/chapter_14/section_2/image13.png" style="width:5.76806in;height:2.17014in" />
 
-  - 4)  修改完成后，按下“**Esc**”键，输入“**:wq**”并回车，进行保存与退出。
+4)  修改完成后，按下“**Esc**”键，输入“**:wq**”并回车，进行保存与退出。
 
 ```commandline
 :wq
@@ -210,7 +222,7 @@ rosed puppy_advanced_functions negotiate_stairs_demo.py
 
 <img src="../_static/media/chapter_14/section_2/image15.png" style="width:5.76111in;height:1.02917in" />
 
-  - 5)  输入指令重新启动玩法，即可查看修改后的玩法效果。
+5)  输入指令重新启动玩法，即可查看修改后的玩法效果。
 
 ```commandline
 rosrun puppy_advanced_functions negotiate_stairs_demo.py
@@ -218,15 +230,17 @@ rosrun puppy_advanced_functions negotiate_stairs_demo.py
 
 <img src="../_static/media/chapter_14/section_2/image17.png" style="width:5.76806in;height:2.12083in" />
 
-  - 6)  如需再次查看调试画面（摄像头实时回传画面），可将步骤3）框出的内容进行反注释，即将代码前面的“**\#**”去掉，再进行保存，如下图所示：
+6)  如需再次查看调试画面（摄像头实时回传画面），可将步骤3）框出的内容进行反注释，即将代码前面的“**\#**”去掉，再进行保存，如下图所示：
 
 <img src="../_static/media/chapter_14/section_2/image11.png" style="width:5.7625in;height:2.00486in" />
 
-2. **更改边缘线条颜色**
+- #### 2.4.2 更改边缘线条颜色
 
-> 玩法默认台阶边缘线条颜色是红色，如需更改颜色，比如黑色，可参照以下步骤：
+:::{Note}
+玩法默认台阶边缘线条颜色是红色，如需更改颜色，比如黑色，可参照以下步骤：
+:::
 
-  - 1)  输入指令，用来编辑自主台阶攀爬玩法程序，按下回车。
+1)  输入指令，用来编辑自主台阶攀爬玩法程序，按下回车。
 
 ```commandline
 rosed puppy_advanced_functions** **negotiate_stairs_demo.py
@@ -234,9 +248,9 @@ rosed puppy_advanced_functions** **negotiate_stairs_demo.py
 
 <img src="../_static/media/chapter_14/section_2/image9.png" style="width:5.76111in;height:2.02986in" />
 
-  - 2)  找到下图所示代码：
+2)  找到下图所示代码：
 
-    <img src="../_static/media/chapter_14/section_2/image18.png" style="width:5.76111in;height:0.88194in" />
+<img src="../_static/media/chapter_14/section_2/image18.png" style="width:5.76111in;height:0.88194in" />
 
 :::{Note}
 
@@ -244,7 +258,7 @@ rosed puppy_advanced_functions** **negotiate_stairs_demo.py
 
 :::
 
-  - 3)  按下“**i**”键进入编辑模式，将“**red**”改为“**black**”。
+3)  按下“**i**”键进入编辑模式，将“**red**”改为“**black**”。
 
 <img src="../_static/media/chapter_14/section_2/image20.png" style="width:5.76806in;height:1.63125in" />
 
@@ -272,7 +286,7 @@ rosrun puppy_advanced_functions negotiate_stairs_demo.py
 
 <img src="../_static/media/chapter_14/section_2/image25.png" style="width:4.94792in;height:3.5625in" />
 
-1. **靠近台阶**
+- #### 2.5.1 靠近台阶
 
 第一课我们介绍了如何识别台阶，接下来可以根据线条的中心坐标信息，控制机器人靠近台阶，如下图：
 
@@ -294,7 +308,7 @@ PuppyVelocityPub.publish(x=0, y=0, yaw_rate = math.radians(0))
 
 第三个参数“**yaw_rate**”是机器狗的转弯速度，逆时针方向为正方向，单位rad/s。
 
-2. **攀爬台阶**
+- #### 2.5.2 攀爬台阶
 
 靠近台阶后，直接调用机器狗内置动作组“**up_stairs_2cm.d6ac**”执行攀爬动作。
 

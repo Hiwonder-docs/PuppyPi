@@ -20,7 +20,7 @@ xacro模型是URDF模型的拓展形式， 本质上两者是一样的。若使�
 
 ### 1.3 URDF模型基本语法
 
-1. **XML基础语法**
+- #### 1.3.1 XML基础语法
 
 由于URDF模型是基于XML规范编写的，我们需要了解XML格式的基本构成。
 
@@ -52,9 +52,9 @@ xacro模型是URDF模型的拓展形式， 本质上两者是一样的。若使�
 <!-- 注释内容>
 ```
 
-2. **连杆的介绍**
+- #### 1.3.2 连杆的介绍
 
-连杆在URDF模型中以"link”作为标签，它描述了机器人某个刚体部分的外观和物理属性，编写连杆动作会用到下图标签：
+连杆在URDF模型中以"link"作为标签，它描述了机器人某个刚体部分的外观和物理属性，编写连杆动作会用到下图标签：
 
 <img src="../_static/media/chapter_11/section_1/image2.png" style="width:5.76389in;height:1.28681in" />
 
@@ -66,7 +66,7 @@ xacro模型是URDF模型的拓展形式， 本质上两者是一样的。若使�
 
 每个标签都含相应的子标签和不同的作用，可以参考下表：
 
-| 标签 | 作用 |
+| **标签** | **作用** |
 |:---|:---|
 | origin | 对连杆位姿的描述。内部有两个参数：xyz描述的是连杆在仿真地图中的位姿，rpy描述的是连杆在仿真地图中的姿态。 |
 | mess | 描述连杆的质量 |
@@ -74,9 +74,11 @@ xacro模型是URDF模型的拓展形式， 本质上两者是一样的。若使�
 | geometry | 描述连杆的形状，它有用mesh参数加载纹理文件，用filename参数加载纹理的路径地址。还有三个子标签：box、cylinder、sphere，分别表示矩形、圆柱、球。 |
 | material | 描述连杆的材质，参数name为必填项。通过子标签color可以调节颜色和透明度。 |
 
-3. **关节**
+<p id="anchor_1_3_3"></p>
 
-关节在URDF模型中以"joint”作为标签，描述机器人关节的运动学和动力学属性，以及运动的位置和速度限制。根据运动的形式，将关节分为下表中六种类型：
+- #### 1.3.3 关节
+
+关节在URDF模型中以"joint"作为标签，描述机器人关节的运动学和动力学属性，以及运动的位置和速度限制。根据运动的形式，将关节分为下表中六种类型：
 
 |                  **类型和说明**                  |  **标签**  |
 |:------------------------------------------------:|:----------:|
@@ -111,83 +113,85 @@ xacro模型是URDF模型的拓展形式， 本质上两者是一样的。若使�
 | mimic | 描述该关节与其他关节的关系 |
 | safety_controller | 描述安全控制器参数，用于保护机器人的关节运动。 |
 
-4. **robot标签**
+- #### 1.3.4 robot标签
 
 完整的机器人最顶层的标签，\<link\>标签和\<joint\>标签必须包含在\<robot\>内，格式如下：
 
 <img src="../_static/media/chapter_11/section_1/image4.png" style="width:5.76458in;height:1.48542in" />
 
-5. **gazebo标签**
+- #### 1.3.5 gazebo标签
 
 配合gazebo仿真器使用，可以设置一些仿真参数，使用此标签引入gazebo插件、gazebo物理属性设置等等。
 
 <img src="../_static/media/chapter_11/section_1/image5.png" style="width:5.76319in;height:0.66875in" />
 
-6. **编写简单的URDF模型**
+- #### 1.3.6 编写简单的URDF模型
 
 <img src="../_static/media/chapter_11/section_1/image6.png" style="width:5.51181in;height:8.89306in" />
 
-**设置机器人模型名称**
+1. **设置机器人模型名称**
 
-在编写URDF模型最开始时，我们需要设置机器人模型的名字："**\<robot name="机器人模型名称”\>**”。在模型编写的最后输入"**\</robot\>**”，表示该机器人模型编写完成。
+在编写URDF模型最开始时，我们需要设置机器人模型的名字："**\<robot name="机器人模型名称"\>**"。在模型编写的最后输入"**\</robot\>**"，表示该机器人模型编写完成。
 
 <img src="../_static/media/chapter_11/section_1/image7.png" style="width:5.76458in;height:0.37917in" />
 
 <img src="../_static/media/chapter_11/section_1/image8.png" style="width:5.76597in;height:0.17917in" />
 
-**设置连杆**
+2. **设置连杆**
 
-- 1.  编写第一个连杆，用缩进表示此连杆属于此次设置的模型内，然后需要设置连杆的名称："**\<link name="连杆名称”\>**”。在连杆编写的最后需要输入"**\</link\>**”，表示该连杆编写完成。
+- 1.  编写第一个连杆，用缩进表示此连杆属于此次设置的模型内，然后需要设置连杆的名称："**\<link name="连杆名称"\>**"。在连杆编写的最后需要输入"**\</link\>**"，表示该连杆编写完成。
 
 <img src="../_static/media/chapter_11/section_1/image9.png" style="width:5.76528in;height:0.17292in" />
 
 <img src="../_static/media/chapter_11/section_1/image10.png" style="width:5.76667in;height:0.17639in" />
 
-- 2.  编写连杆描述部分，用缩进表示此描述用于此次设置的连杆内，需要在描述的开头输入"\<**visual**\>”开始描述，在描述结束后输入"**\</visual\>**”。
+- 2.  编写连杆描述部分，用缩进表示此描述用于此次设置的连杆内，需要在描述的开头输入"\<**visual**\>"开始描述，在描述结束后输入"**\</visual\>**"。
 
 <img src="../_static/media/chapter_11/section_1/image11.png" style="width:5.76389in;height:0.2125in" />
 
 <img src="../_static/media/chapter_11/section_1/image12.png" style="width:5.76667in;height:0.2875in" />
 
-- 3.  "**\<geometry\>**”是对连杆形状的描述，描述完毕后需要输入"**\</geometry\>**”，在其中，用缩进表示其内部是对连杆外形的具体描述。下图描述了一个连杆外形："**\<cylinder length="0.01”radius="0.2”/\>**”，其中，length="0.01”表示该连杆的长度为0.01米，radius="0.2”该连杆半径为0.2米，是一个圆柱体。
+- 3.  "**\<geometry\>**"是对连杆形状的描述，描述完毕后需要输入"**\</geometry\>**"，在其中，用缩进表示其内部是对连杆外形的具体描述。下图描述了一个连杆外形："**\<cylinder length="0.01"radius="0.2"/\>**"，其中，length="0.01"表示该连杆的长度为0.01米，radius="0.2"该连杆半径为0.2米，是一个圆柱体。
 
 <img src="../_static/media/chapter_11/section_1/image13.png" style="width:5.76597in;height:0.49583in" />
 
-- 4.  "**\<origin\>**”是对连杆位置的描述，用缩进表示对连杆位置的具体描述。下图描述了一个连杆位置："**\<origin rpy="0 0 0” xyz="0 0 0”/\>**”，其中rpy为连杆的角度，xyz为连杆的坐标位置。表示连杆在坐标系中的位置为原点。
+- 4.  "**\<origin\>**"是对连杆位置的描述，用缩进表示对连杆位置的具体描述。下图描述了一个连杆位置："**\<origin rpy="0 0 0" xyz="0 0 0"/\>**"，其中rpy为连杆的角度，xyz为连杆的坐标位置。表示连杆在坐标系中的位置为原点。
 
 <img src="../_static/media/chapter_11/section_1/image14.png" style="width:5.76736in;height:0.13819in" />
 
-- 5.  "**\<material\>**”是对连杆位置的描述，用缩进表示对连杆颜色的具体描述，需要在描述的开头输入"\<**material**\>”开始描述，在描述结束后输入"**\</material\>**”。下图描述了将连杆设置成黄色："**\<color rgba="1 1 0 1”/\>**”，rgba="1 1 0 1”为设置颜色阈值。
+- 5.  "**\<material\>**"是对连杆位置的描述，用缩进表示对连杆颜色的具体描述，需要在描述的开头输入"\<**material**\>"开始描述，在描述结束后输入"**\</material\>**"。下图描述了将连杆设置成黄色："**\<color rgba="1 1 0 1"/\>**"，rgba="1 1 0 1"为设置颜色阈值。
 
 <img src="../_static/media/chapter_11/section_1/image15.png" style="width:5.76389in;height:0.46319in" />
 
 **设置关节**
 
-- 1.  编写第一个关节，用缩进表示此关节属于此次设置的模型内，然后需要设置关节的名称和类型："**\<joint name="关节名称” type="关节类型”\>**”。在关节编写的最后需要输入"**\</joint\>**”，表示该关节编写完成。
+- 1.  编写第一个关节，用缩进表示此关节属于此次设置的模型内，然后需要设置关节的名称和类型："**\<joint name="关节名称" type="关节类型"\>**"。在关节编写的最后需要输入"**\</joint\>**"，表示该关节编写完成。
 
-    **注意：关节类型可以前往"3.3** **关节”进行学习。**
+:::{Note}
+关节类型可以前往"[1.3 URDF模型基本语法\ 关节](#anchor_1_3_3)"进行学习。
+:::
 
 <img src="../_static/media/chapter_11/section_1/image16.png" style="width:5.76389in;height:0.15833in" />
 
 <img src="../_static/media/chapter_11/section_1/image17.png" style="width:5.7625in;height:0.15069in" />
 
-- 2. 编写关节连接连杆描述部分，用缩进表示此描述用于此次设置的关节内，需要设置parent参数和child参数。可以根据以下公式设置："**\<parent link="父连杆”/\>**”、"**\<child link="子连杆”/\>**”。当关节转动的时候，会以父连杆为支店，转动子连杆。
+- 2. 编写关节连接连杆描述部分，用缩进表示此描述用于此次设置的关节内，需要设置parent参数和child参数。可以根据以下公式设置："**\<parent link="父连杆"/\>**"、"**\<child link="子连杆"/\>**"。当关节转动的时候，会以父连杆为支店，转动子连杆。
 
 <img src="../_static/media/chapter_11/section_1/image18.png" style="width:5.76458in;height:0.28889in" />
 
-- 3.  "**\<origin\>**”是对关节位置的描述，用缩进表示对关节位置的具体描述。下图描述了一个关节位置："**\<origin xyz="0 0 0.1”/\>**”，其中，xyz为关节的坐标位置，表示关节在坐标系的具体位置为x=0、y=0、z=0.1。
+- 3.  "**\<origin\>**"是对关节位置的描述，用缩进表示对关节位置的具体描述。下图描述了一个关节位置："**\<origin xyz="0 0 0.1"/\>**"，其中，xyz为关节的坐标位置，表示关节在坐标系的具体位置为x=0、y=0、z=0.1。
 
 <img src="../_static/media/chapter_11/section_1/image19.png" style="width:5.76111in;height:0.17569in" />
 
-4.  "**\<axis\>**”是对关节位置的描述，用缩进表示对关节姿态的具体描述。下图描述了一个关节姿态："**\<axis xyz="0 0 1”/\>**”，其中，xyz为关节的姿态位置。
+- 4.  "**\<axis\>**"是对关节位置的描述，用缩进表示对关节姿态的具体描述。下图描述了一个关节姿态："**\<axis xyz="0 0 1"/\>**"，其中，xyz为关节的姿态位置。
 
 <img src="../_static/media/chapter_11/section_1/image20.png" style="width:5.76597in;height:0.20347in" />
 
-5.  "**\<limit\>**”是对关节运动进行限制，用缩进表示对关节角度限制的具体描述。下图描述了关节限制了转动关节最大的力不超过300牛，转动弧度的上线为3.14，下限为-3.14。其中，根据以下公式设置:effort="**关节的力度（牛）**”、velocity="**关节运动的速度**”、lower="**弧度下限**”、upper="**弧度上限**”。
+- 5.  "**\<limit\>**"是对关节运动进行限制，用缩进表示对关节角度限制的具体描述。下图描述了关节限制了转动关节最大的力不超过300牛，转动弧度的上线为3.14，下限为-3.14。其中，根据以下公式设置:effort="**关节的力度（牛）**"、velocity="**关节运动的速度**"、lower="**弧度下限**"、upper="**弧度上限**"。
 
 <img src="../_static/media/chapter_11/section_1/image21.png" style="width:5.76042in;height:0.10903in" />
 
-6.  "**\<dynamics\>**”是对关节位动力学的描述，用缩进表示对关节姿态的具体描述。下图描述了一个关节的动力学参数："\<**dynamics damping="50”friction="1”/\>**”，其中，damping="**阻尼值**”、friction="**摩檫力**”。
+- 6.  "**\<dynamics\>**"是对关节位动力学的描述，用缩进表示对关节姿态的具体描述。下图描述了一个关节的动力学参数："\<**dynamics damping="50"friction="1"/\>**"，其中，damping="**阻尼值**"、friction="**摩檫力**"。
 
 <img src="../_static/media/chapter_11/section_1/image22.png" style="width:5.76181in;height:0.16875in" />
 
@@ -196,41 +200,41 @@ xacro模型是URDF模型的拓展形式， 本质上两者是一样的。若使�
 
 ### 2.1 导入虚拟机
 
-1. 安装虚拟机软件
+- #### 1. 安装虚拟机软件
 
-虚拟机软件的安装可以参考："**[软件工具\2. 虚拟机镜像及虚拟机安装包]()**”中的教程进行安装。
+虚拟机软件的安装可以参考："**[软件工具\2. 虚拟机镜像及虚拟机安装包]()**"中的教程进行安装。
 
-2. 虚拟机的打开和导入
+- #### 2. 虚拟机的打开和导入
 
-   1.  将同目录下的虚拟机文件解压到任意非中文路径下。
+1.  将同目录下的虚拟机文件解压到任意非中文路径下。
 
-   2.  <span class="mark">将产品资料目录"**2软件工具\2.虚拟机镜像及虚拟机安装包\虚拟机镜像**”下的虚拟机文件"**PuppyPi_VM**.zip”解压以后打开客户端。</span>
+2.  <span class="mark">将产品资料目录"**2软件工具\2.虚拟机镜像及虚拟机安装包\虚拟机镜像**"下的虚拟机文件"**PuppyPi_VM**.zip"解压以后打开客户端。</span>
 
-   <img src="../_static/media/chapter_11/section_2/image1.png" style="width:0.88542in;height:0.94792in" />
+<img class="common_img" src="../_static/media/chapter_11/section_2/image1.png" style="width:0.88542in;height:0.94792in" />
 
-   3.  点击"**打开虚拟机**”。
+3.  点击"**打开虚拟机**"。
 
-   <img src="../_static/media/chapter_11/section_2/image2.png" style="width:5.76389in;height:1.25in" />
+<img class="common_img" src="../_static/media/chapter_11/section_2/image2.png" style="width:5.76389in;height:1.25in" />
 
-   4.  前往虚拟机解压的路径，选择"**<span class="mark">PuppyPi_VM,.ovf</span>**”，点击"**打开。**
+4.  前往虚拟机解压的路径，选择"**<span class="mark">PuppyPi_VM,.ovf</span>**"，点击"**打开。**
 
-   <img src="../_static/media/chapter_11/section_2/image3.png" style="width:5.75972in;height:3.24028in" />
+<img src="../_static/media/chapter_11/section_2/image3.png" style="width:5.75972in;height:3.24028in" />
 
-   5.  点击"**浏览**”设置虚拟机存放路径，建议存放至固态硬盘，因为存放磁盘的读写速度将会影响虚拟机的速度，最后点击"**导入**”。
+5.  点击"**浏览**"设置虚拟机存放路径，建议存放至固态硬盘，因为存放磁盘的读写速度将会影响虚拟机的速度，最后点击"**导入**"。
 
-   <img src="../_static/media/chapter_11/section_2/image4.png" style="width:5.58472in;height:3.47083in" />
+<img src="../_static/media/chapter_11/section_2/image4.png" style="width:5.58472in;height:3.47083in" />
 
-   6.  点击"**开启此虚拟机。**
+6.  点击"**开启此虚拟机。**
 
-   <img src="../_static/media/chapter_11/section_2/image5.png" style="width:5.76528in;height:1.94444in" />
+<img src="../_static/media/chapter_11/section_2/image5.png" style="width:5.76528in;height:1.94444in" />
 
 ### 2.2 打开机器狗URDF模型文件
 
-1)  在VMware虚拟机的Ubuntu系统中按下"Ctrl+Alt+T”打开终端，输入以下指令进入储存URDF模型的文件夹："**cd** **puppy_sim/src/puppy_description/urdf**”
+1)  在VMware虚拟机的Ubuntu系统中按下"Ctrl+Alt+T"打开终端，输入以下指令进入储存URDF模型的文件夹："**cd** **puppy_sim/src/puppy_description/urdf**"
 
 <img src="../_static/media/chapter_11/section_2/image14.png" style="width:5.76458in;height:0.85139in" />
 
-2)  以"**pug.urdf.xacro**”为例，在该目录下输入指令"**vim puppy.urdf.xacro**”，用vim 打开ROSPug机器狗的URDF模型。
+2)  以"**pug.urdf.xacro**"为例，在该目录下输入指令"**vim puppy.urdf.xacro**"，用vim 打开ROSPug机器狗的URDF模型。
 
 <img src="../_static/media/chapter_11/section_2/image16.png" style="width:5.76319in;height:0.73403in" />
 
@@ -242,27 +246,27 @@ xacro模型是URDF模型的拓展形式， 本质上两者是一样的。若使�
 
 - #### 1. URDF模型的结构
 
-ROSPug的URDF模型文件由3个文件组成，分别是：**"puppy.urdf.xacro”、"puppy.gazebo.xacro”、"puppy.transmission.xacro”**，其中puppy.urdf.xacro是整个机器人的主URDF文件，通过include其他2个xacro文件，使整个URDF的各个文件组合在一起，就定义了这个ROSPug的整个机械结构、动力学、仿真等信息。文件之间通过include和宏引用组织在一起，这样可以划分功能模块，便于阅读和维护最终形成一个完整的URDF模型文件。
+ROSPug的URDF模型文件由3个文件组成，分别是：**"puppy.urdf.xacro"、"puppy.gazebo.xacro"、"puppy.transmission.xacro"**，其中puppy.urdf.xacro是整个机器人的主URDF文件，通过include其他2个xacro文件，使整个URDF的各个文件组合在一起，就定义了这个ROSPug的整个机械结构、动力学、仿真等信息。文件之间通过include和宏引用组织在一起，这样可以划分功能模块，便于阅读和维护最终形成一个完整的URDF模型文件。
 
 - #### 2. puppy.urdf.xacro分析
 
 它定义了机器人的基本结构，包括机身、关节、连接等。这个文件中也包含了一些宏定义和属性定义，这些定义在代码中可以被多次使用，以简化代码和避免出现重复的代码。由于代码较长，所以这里将分为3个部分并举例介绍，主要包括以下部分：
 
-1. 模型声明和属性定义
+1. **模型声明和属性定义**
 
-"**robot**”标签定义了机器人模型的名称为"**puppy**”，"**property**”标签定义了一些属性值，分别代表最大力矩和关节最大速度。
+"**robot**"标签定义了机器人模型的名称为"**puppy**"，"**property**"标签定义了一些属性值，分别代表最大力矩和关节最大速度。
 
-"**include**”引入了两个文件，分别是puppy.transmission.xacro和pug.gazebo.xacro。这些文件包含了机器人传输系统和在Gazebo仿真环境中的一些属性。
+"**include**"引入了两个文件，分别是puppy.transmission.xacro和pug.gazebo.xacro。这些文件包含了机器人传输系统和在Gazebo仿真环境中的一些属性。
 
 <img src="../_static/media/chapter_11/section_2/image21.png" style="width:5.76389in;height:1.33264in" />
 
-2. 连杆的定义
+2. **连杆的定义**
 
 Link元素表示机器人模型中的一个刚体，它可以包含惯性信息、可视化信息、碰撞信息等。下面是一个Link元素的示例代码，包含了惯性信息、可视化信息和碰撞信息：
 
 <img src="../_static/media/chapter_11/section_2/image23.png" style="width:5.76319in;height:4.18958in" />
 
-3. 关节的定义
+3. **关节的定义**
 
 Joint元素表示机器人模型中的一个关节，它连接两个Link，并定义了它们之间的相对运动。下面是一个Joint元素的示例代码，包含了关节的类型、连接的Link、关节轴的方向和关节限制等信息：<img src="../_static/media/chapter_11/section_2/image25.png" style="width:5.14583in;height:1.15625in" />
 
@@ -272,13 +276,13 @@ Joint元素表示机器人模型中的一个关节，它连接两个Link，并�
 
 1. Gazebo插件定义
 
-这个部分定义了一个Gazebo插件"**gazebo_ros_control**”，用于实现机器人的控制。这个插件的具体实现是由"**libgazebo_ros_control.so**”这个库提供的。并对Gazebo仿真类型和命名空间进行设定。
+这个部分定义了一个Gazebo插件"**gazebo_ros_control**"，用于实现机器人的控制。这个插件的具体实现是由"**libgazebo_ros_control.so**"这个库提供的。并对Gazebo仿真类型和命名空间进行设定。
 
 <img src="../_static/media/chapter_11/section_2/image27.png" style="width:5.76736in;height:1.22222in" />
 
 2. 宏定义
 
-这个标签定义了几个Xacro的宏（macro），用于方便地设置机器人模型中各个Link的颜色和物理属性。其中"**model_color**”宏用于设置Link的颜色，"**link_setup_block**”宏用于设置Link的物理属性。<img src="../_static/media/chapter_11/section_2/image30.png" style="width:5.76597in;height:1.02292in" />
+这个标签定义了几个Xacro的宏（macro），用于方便地设置机器人模型中各个Link的颜色和物理属性。其中"**model_color**"宏用于设置Link的颜色，"**link_setup_block**"宏用于设置Link的物理属性。<img src="../_static/media/chapter_11/section_2/image30.png" style="width:5.76597in;height:1.02292in" />
 
 3. 使用宏
 
@@ -288,7 +292,7 @@ Joint元素表示机器人模型中的一个关节，它连接两个Link，并�
 
 - #### 3.4 puppy.transmissions.xacro分析
 
-这个transmissions.xacro文件定义了机器人模型中的传动系统，包括各个关节和电机之间的传动方式。在运行时，ROS会将"**transmissions.xacro**”文件转换为机器人模型中的传动系统。主要包含以下2个部分：
+这个transmissions.xacro文件定义了机器人模型中的传动系统，包括各个关节和电机之间的传动方式。在运行时，ROS会将"**transmissions.xacro**"文件转换为机器人模型中的传动系统。主要包含以下2个部分：
 
 1. xacro宏定义
 
@@ -402,7 +406,7 @@ GUI 库使用QT创建图形小部件，供用户模拟交互。用户可以通�
 
 1)  世界坐标系
 
-世界坐标系 (World Coordinate System)是一个位于"地面”上的静止参考坐标系。它不会随着时间的改变发生平移或旋转变化。 当然，这里的"地面”是广义上的"地面”。比如，机器人位于桌面上，那么世界坐标系就位于这个桌子的平面上。
+世界坐标系 (World Coordinate System)是一个位于"地面"上的静止参考坐标系。它不会随着时间的改变发生平移或旋转变化。 当然，这里的"地面"是广义上的"地面"。比如，机器人位于桌面上，那么世界坐标系就位于这个桌子的平面上。
 
 2)  腿部坐标系
 
@@ -427,51 +431,51 @@ GUI 库使用QT创建图形小部件，供用户模拟交互。用户可以通�
 
 - #### 1. 安装虚拟机软件
 
-虚拟机的安装可以参考"**[软件工具\6.虚拟机安装包与虚拟机镜像]()**”路径下的文档。
+虚拟机的安装可以参考"**[软件工具\6.虚拟机安装包与虚拟机镜像]()**"路径下的文档。
 
 - #### 2. 虚拟机的打开和导入
 
 1.  将同目录下的虚拟机文件解压到任意非中文路径下。
 
-2.  <span class="mark">将产品资料目录"[软件工具\2.虚拟机镜像及虚拟机安装包\虚拟机镜像]()”下的虚拟机文件"**PuppyPi_VM.zip**”解压以后打开客户端。</span>
+2.  将产品资料目录"[软件工具\2.虚拟机镜像及虚拟机安装包\虚拟机镜像]()"下的虚拟机文件"**PuppyPi_VM.zip**"解压以后打开客户端。
 
-<img src="../_static/media/chapter_11/section_4/image1.png" style="width:0.88542in;height:0.94792in" />
+<img class="common_img" src="../_static/media/chapter_11/section_4/image1.png" style="width:0.88542in;height:0.94792in" />
 
-3.  点击"**打开虚拟机**”。
+3.  点击"**打开虚拟机**"。
 
-<img src="../_static/media/chapter_11/section_4/image2.png" style="width:5.76389in;height:1.25in" />
+<img class="common_img" src="../_static/media/chapter_11/section_4/image2.png" style="width:5.76389in;height:1.25in" />
 
-4.  前往虚拟机解压的路径，选择"**<span class="mark">PuppyPi_VM,.ovf</span>**”，点击"**打开。**
+4.  前往虚拟机解压的路径，选择"**<span class="mark">PuppyPi_VM,.ovf</span>**"，点击"**打开。**
 
 <img src="../_static/media/chapter_11/section_4/image3.png" style="width:5.75972in;height:3.24028in" />
 
-5.  点击"浏览”设置虚拟机存放路径，建议存放至固态硬盘，因为存放磁盘的读写速度将会影响虚拟机的速度，最后点击"导入”。
+5.  点击"浏览"设置虚拟机存放路径，建议存放至固态硬盘，因为存放磁盘的读写速度将会影响虚拟机的速度，最后点击"导入"。
 
 <img src="../_static/media/chapter_11/section_4/image4.png" style="width:5.58472in;height:3.47083in" />
 
 ### 4.2 配置虚拟机网络
 
-1.  首先启动PuppyPi机器狗，使用上面安装好VMware虚拟机的电脑连接机器狗的热点，热点一般以"**HW-XXXXXXXX**”格式为名，本文以"**HW-84E02404**”为例，密码为：**hiwonder**。
+1.  首先启动PuppyPi机器狗，使用上面安装好VMware虚拟机的电脑连接机器狗的热点，热点一般以"**HW-XXXXXXXX**"格式为名，本文以"**HW-84E02404**"为例，密码为：**hiwonder**。
 
-<img src="../_static/media/chapter_11/section_4/image10.png" style="width:3.75in;height:2.38542in" />
+<img class="common_img" src="../_static/media/chapter_11/section_4/image10.png" style="width:3.75in;height:2.38542in" />
 
-2.  连接成功后返回VMware虚拟机，在软件界面点击"**编辑—\>虚拟机网络配置**”。
+2.  连接成功后返回VMware虚拟机，在软件界面点击"**编辑—\>虚拟机网络配置**"。
 
 <img src="../_static/media/chapter_11/section_4/image12.png" style="width:5.76389in;height:1.3125in" />
 
-3. 在弹出的"**虚拟网络编辑器**”窗口中点击底部的"**更改设置**”按钮。
+3. 在弹出的"**虚拟网络编辑器**"窗口中点击底部的"**更改设置**"按钮。
 
 <img src="../_static/media/chapter_11/section_4/image13.png" style="width:5.76389in;height:1.08264in" />
 
-4.  在"**桥接模式**”处的网卡列表中选择电脑的无线网卡，不同电脑的无线网卡可能不一样，但无线网卡名称中一般会包含"**802.11ac**”文字，选择名称中包含"**802.11ac**”的网卡即可，最后点击确定即可。
+4.  在"**桥接模式**"处的网卡列表中选择电脑的无线网卡，不同电脑的无线网卡可能不一样，但无线网卡名称中一般会包含"**802.11ac**"文字，选择名称中包含"**802.11ac**"的网卡即可，最后点击确定即可。
 
 <img src="../_static/media/chapter_11/section_4/image14.png" style="width:5.76389in;height:2.47014in" />
 
-5. 点击"**开启此虚拟机**”，等待开机完成即可。
+5. 点击"**开启此虚拟机**"，等待开机完成即可。
 
 <img src="../_static/media/chapter_11/section_4/image9.png" style="width:5.76389in;height:1.30347in" />
 
-6. 进入 Ubuntu 系统桌面，单击鼠标右键，选择"**Open in Terminal**”打开命令栏。
+6. 进入 Ubuntu 系统桌面，单击鼠标右键，选择"**Open in Terminal**"打开命令栏。
 
 <img src="../_static/media/chapter_11/section_4/image15.png" style="width:6.01667in;height:2.05625in" />
 
@@ -485,13 +489,13 @@ ifconfig
 
 :::{Note}
 
-如果输入"**ifconfig**”指令后无法找到 **IP** ，则需要检查是否正确连接到 **Puppy** 的热点，确认无误后若还是没有**IP**则可输入"**sudo dhclient ens33**”来手动获取其 **IP**。其中，ens33 默认情况下网卡的名称。
+如果输入"**ifconfig**"指令后无法找到 **IP** ，则需要检查是否正确连接到 **Puppy** 的热点，确认无误后若还是没有**IP**则可输入"**sudo dhclient ens33**"来手动获取其 **IP**。其中，ens33 默认情况下网卡的名称。
 
 :::
 
 ### 4.3 配置系统环境
 
-1. 进入 Ubuntu 系统桌面，单击鼠标右键，选择"**Open in Terminal**”打开命令栏。
+1. 进入 Ubuntu 系统桌面，单击鼠标右键，选择"**Open in Terminal**"打开命令栏。
 
 <img src="../_static/media/chapter_11/section_4/image15.png" style="width:6.01667in;height:2.05625in" />
 
@@ -500,8 +504,6 @@ ifconfig
 ```commandline
 sudo vim /etc/hosts
 ```
-
-<img src="../_static/media/chapter_11/section_4/image19.png" style="width:6.05694in;height:0.25069in" />
 
 3. 我们将下图所示的2行和3行的IP，分别替换为虚拟机、树莓派的IP。
 
@@ -522,8 +524,6 @@ sudo vim /etc/hosts
 ```commandline
 source ~/.bashrc
 ```
-
-<img src="../_static/media/chapter_11/section_4/image22.png" style="width:6.05625in;height:0.19236in" />
 
 5. 进入 VNC ，打开命令栏，输入以下指令：**将 PuppyPi 的动作数据传入 gazebo。
 
@@ -573,8 +573,6 @@ roslaunch puppy_description gazebo.launch
 rosed puppy_control puppy_demo.py
 ```
 
-<img src="../_static/media/chapter_11/section_4/image28.png" style="width:5.76389in;height:0.36042in" />
-
 <img src="../_static/media/chapter_11/section_4/image29.png" style="width:5.76806in;height:2.73681in" />
 
 2. 接着再输入指令，并按下回车，启动 Trot 步态。
@@ -583,13 +581,11 @@ rosed puppy_control puppy_demo.py
 rosrun puppy_control puppy_demo.py
 ```
 
-<img src="../_static/media/chapter_11/section_4/image30.png" style="width:6.02014in;height:0.31806in" />
-
 3. 可以观察到机器狗开始运行 Trot 步态，仿真软件内部，机器狗也开始移动。
 
 <img src="../_static/media/chapter_11/section_4/image31.jpeg" style="width:5.76667in;height:2.49333in" />
 
-4. 程序内默认为 Trot 步态，如需切换其它步态，可以在VNC输入指令，重新找到下图中的位置。例如 Amble，则在下图代码"**gait = ‘Trot’**"里， 将Trot 修改为 Amble ，修改后为"**gait = ‘Amble’**"。
+4. 程序内默认为 Trot 步态，如需切换其它步态，可以在VNC输入指令，重新找到下图中的位置。例如 Amble，则在下图代码"**gait = 'Trot'**"里， 将Trot 修改为 Amble ，修改后为"**gait = 'Amble'**"。
 
 ```commandline
 rosed puppy_control puppy_demo.py

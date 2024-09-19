@@ -15,7 +15,7 @@ table{
     margin: 0 auto 24px;
 }
 
-#id1 > section{
+div[itemprop="articleBody"] > section > section{
     padding-bottom: 50px;
 }
 

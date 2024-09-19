@@ -72,74 +72,70 @@ TOF我们可以参考下图来理解，激光雷达先将光照射到物体上�
 
 ## 3. 雷达避障
 
-如需了解手机APP的连接方法，可前往目录“**[上手试玩\1. 手机APP安装和连接]()**”查看相关课程。
+如需了解手机APP的连接方法，可前往目录“**[上手试玩\1. 手机APP安装和连接](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/2_play_first_hand.html#app)**”查看相关课程。
 
 ### 3.1 玩法开启及关闭步骤
 
-1. **通过APP开启**
+- #### 3.1.1 通过APP开启
 
-   1.  打开手机APP“**WonderPi**”，连接PuppyPi机器狗。
+1.  打开手机APP“**WonderPi**”，连接PuppyPi机器狗。
 
-   2.  在模式选择界面点击“**激光雷达**”，进入该玩法的操作界面。
+2.  在模式选择界面点击“**激光雷达**”，进入该玩法的操作界面。
 
-    <img src="../_static/media/chapter_19/section_3/image2.png" style="width:5.75972in;height:3.07014in" />
+<img src="../_static/media/chapter_19/section_3/image2.png" style="width:5.75972in;height:3.07014in" />
 
-   3.  点击“**雷达避障**”右侧的开关按键，启动该玩法模式。
+3.  点击“**雷达避障**”右侧的开关按键，启动该玩法模式。
 
-       <img src="../_static/media/chapter_19/section_3/image3.jpeg" style="width:5.75556in;height:2.77847in" alt="Screenshot_20240524_155302_com.Wonder.Pi_edit_3126368425144304(1)" />
+<img src="../_static/media/chapter_19/section_3/image3.jpeg" style="width:5.75556in;height:2.77847in" alt="Screenshot_20240524_155302_com.Wonder.Pi_edit_3126368425144304(1)" />
 
-2. **通过指令开启**
+- #### 3.1.2 通过指令开启
 
-    :::{Note}
-    
-    该玩法不需要关闭 APP 自启服务，如已经关闭自启服务，可以输入指令“**sudo systemctl restart start_node.service**”重新启动自启服务，等待机器人蜂鸣器滴一声。
-    
-    :::
+:::{Note}
 
-    1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+该玩法不需要关闭 APP 自启服务，如已经关闭自启服务，可以输入指令“**sudo systemctl restart start_node.service**”重新启动自启服务，等待机器人蜂鸣器滴一声。
 
-    2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_19/section_3/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+:::
 
-    3)  输入指令，并按下回车，进入激光雷达玩法。
-    ```commandline
-    rosservice call /lidar_app/enter "{}"
-    ```
+1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-    <img src="../_static/media/chapter_19/section_3/image5.png" style="width:5.76736in;height:2.025in" />
+2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_19/section_3/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-    4)  启动成功后，再输入指令并按下回车，开启雷达避障玩法。
+3)  输入指令，并按下回车，进入激光雷达玩法。
+```commandline
+rosservice call /lidar_app/enter "{}"
+```
 
-    **rosservice call /lidar_app/set_running "data: 1"**
+<img src="../_static/media/chapter_19/section_3/image5.png" style="width:5.76736in;height:2.025in" />
 
-    <img src="../_static/media/chapter_19/section_3/image6.png" style="width:5.76042in;height:2.49375in" />
+4)  启动成功后，再输入指令并按下回车，开启雷达避障玩法。
 
-    :::{Note}
-    
-    效果与手机 APP 开启玩法相同，若需要查看源码，可以在Docker容器中的“**/home/ubuntu/puppypi/src/lidar_app/scripts**”文件夹内找到“**lidar.py**”。
-    
-    :::
+**rosservice call /lidar_app/set_running "data: 1"**
 
-   5)  如需停止该玩法，输入指令并按下回车。
+<img src="../_static/media/chapter_19/section_3/image6.png" style="width:5.76042in;height:2.49375in" />
 
-    ```commandline
-    rosservice call /lidar_app/set_running "data: 0"
-    ```
-   
-    <img src="../_static/media/chapter_19/section_3/image7.png" style="width:5.76667in;height:2.71111in" />
+:::{Note}
+效果与手机 APP 开启玩法相同，若需要查看源码，可以在Docker容器中的“**/home/ubuntu/puppypi/src/lidar_app/scripts**”文件夹内找到“**lidar.py**”。
+:::
 
-   6)  如需关闭玩法，接着输入指令， 并按下回车，关闭雷达避障玩法。
+5)  如需停止该玩法，输入指令并按下回车。
 
-    ```commandline
-    rosservice call /lidar_app/exit "{}"
-    ```
+```commandline
+rosservice call /lidar_app/set_running "data: 0"
+```
 
-    <img src="../_static/media/chapter_19/section_3/image8.png" style="width:5.76667in;height:3.17083in" />
+<img src="../_static/media/chapter_19/section_3/image7.png" style="width:5.76667in;height:2.71111in" />
 
-    :::{Note}
-    
-    玩法在未退出时，会在当前树莓派通电状态下持续运行。为避免过多占用树莓派的运行内存，如需执行其它玩法，请先按照上述指令关闭当前玩法。
-    
-    :::
+6)  如需关闭玩法，接着输入指令， 并按下回车，关闭雷达避障玩法。
+
+```commandline
+rosservice call /lidar_app/exit "{}"
+```
+
+<img src="../_static/media/chapter_19/section_3/image8.png" style="width:5.76667in;height:3.17083in" />
+
+:::{Note}
+玩法在未退出时，会在当前树莓派通电状态下持续运行。为避免过多占用树莓派的运行内存，如需执行其它玩法，请先按照上述指令关闭当前玩法。
+:::
 
 ### 3.2 功能实现
 
@@ -151,7 +147,7 @@ TOF我们可以参考下图来理解，激光雷达先将光照射到物体上�
 
 ### 3.3 程序参数说明
 
-1. **Launch文件简要分析**
+- #### 3.3.1 Launch文件简要分析
 
 Launch 文件路径位置在Docker容器中的：**/home/ubuntu/puppypi/src/lidar_app/launch/**
 
@@ -161,7 +157,7 @@ Launch 文件路径位置在Docker容器中的：**/home/ubuntu/puppypi/src/lida
 
 lidar.py 为程序的源码文件，可以在Docker容器中的“**/home/ubuntu/puppypi/src/lidar_app/scripts/**”路径下查看
 
-2. **源码文件程序简要分析**
+- #### 3.3.2 源码文件程序简要分析
 
 该程序的源代码位于Docker容器中的：**/home/ubuntu/puppypi/src/lidar_app/scripts/lidar.py**
 
@@ -205,73 +201,73 @@ heartbeat_srv:创建了一个 Heart 对象，使用了/%s/heartbeat的 ROS主题
 
 ### 4.1 玩法开启及关闭步骤
 
-1. **通过APP开启**
+- #### 4.1.1 通过APP开启
 
-   1.  打开手机APP“WonderPi”，连接PuppyPi机器狗。
+1.  打开手机APP“WonderPi”，连接PuppyPi机器狗。
 
-   2.  在模式选择界面点击“**激光雷达**”，进入该玩法的操作界面。
+2.  在模式选择界面点击“**激光雷达**”，进入该玩法的操作界面。
 
-    <img src="../_static/media/chapter_19/section_4/image2.png" style="width:5.75972in;height:2.90069in" />
+<img src="../_static/media/chapter_19/section_4/image2.png" style="width:5.75972in;height:2.90069in" />
 
-   3.  点击“**雷达跟随**”右侧的开关按键，启动该玩法模式。
+3.  点击“**雷达跟随**”右侧的开关按键，启动该玩法模式。
 
-    <img src="../_static/media/chapter_19/section_4/image4.jpeg" style="width:5.75069in;height:2.77847in" alt="Screenshot_20240524_155314_com.Wonder.Pi_edit_3126458858430748(1)" />
+<img src="../_static/media/chapter_19/section_4/image4.jpeg" style="width:5.75069in;height:2.77847in" alt="Screenshot_20240524_155314_com.Wonder.Pi_edit_3126458858430748(1)" />
 
-2. **通过指令开启**
+- #### 4.1.2 通过指令开启
 
-    :::{Note}
-    
-    该玩法不需要关闭 APP 自启服务，如已经关闭自启服务，可以输入指令“**sudo systemctl restart start_node.service**”重 新启动自启服务，等待机器人蜂鸣器滴一声。
-    
-    :::
+:::{Note}
 
-    1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+该玩法不需要关闭 APP 自启服务，如已经关闭自启服务，可以输入指令“**sudo systemctl restart start_node.service**”重 新启动自启服务，等待机器人蜂鸣器滴一声。
 
-   2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_19/section_4/image6.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+:::
 
-   3)  输入指令，并按下回车，进入激光雷达玩法。
+1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+
+2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_19/section_4/image6.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+
+3)  输入指令，并按下回车，进入激光雷达玩法。
    
-   ```commandline
-    rosservice call /lidar_app/enter "{}"
-   ```
-   
-    <img src="../_static/media/chapter_19/section_4/image7.png" style="width:5.76736in;height:2.025in" />
+```commandline
+rosservice call /lidar_app/enter "{}"
+```
 
-   4)  启动成功后，再输入指令并按下回车，开启雷达跟随玩法。
-   
-   ```commandline
-    rosservice call /lidar_app/set_running "data: 2"
-   ```
+<img src="../_static/media/chapter_19/section_4/image7.png" style="width:5.76736in;height:2.025in" />
 
-    <img src="../_static/media/chapter_19/section_4/image8.png" style="width:5.76389in;height:2.81875in" />
-    
-    :::{Note}
+4)  启动成功后，再输入指令并按下回车，开启雷达跟随玩法。
 
-    效果与手机 APP 开启玩法相同，若需要查看源码，可以在Docker容器中的“**/home/ubuntu/puppypi/src/lidar_app/scripts**”文件夹内找到“**lidar.py**”。
+```commandline
+rosservice call /lidar_app/set_running "data: 2"
+```
 
-    :::
+<img src="../_static/media/chapter_19/section_4/image8.png" style="width:5.76389in;height:2.81875in" />
 
-   5)  如需停止该玩法，输入指令并按下回车。
+:::{Note}
 
-   ```commandline
-    rosservice call /lidar_app/set_running "data: 0"
-   ```
+效果与手机 APP 开启玩法相同，若需要查看源码，可以在Docker容器中的“**/home/ubuntu/puppypi/src/lidar_app/scripts**”文件夹内找到“**lidar.py**”。
 
-    <img src="../_static/media/chapter_19/section_4/image9.png" style="width:5.76319in;height:2.89653in" />
+:::
 
-   6)  如需关闭玩法，接着输入指令， 并按下回车，关闭雷达跟随玩法。
+5)  如需停止该玩法，输入指令并按下回车。
 
-   ```commandline
-    rosservice call /lidar_app/exit** **"{}"
-   ```
+```commandline
+rosservice call /lidar_app/set_running "data: 0"
+```
 
-   <img src="../_static/media/chapter_19/section_4/image10.png" style="width:5.76389in;height:3.22778in" />
+<img src="../_static/media/chapter_19/section_4/image9.png" style="width:5.76319in;height:2.89653in" />
 
-    :::{Note}
+6)  如需关闭玩法，接着输入指令， 并按下回车，关闭雷达跟随玩法。
 
-    玩法在未退出时，会在当前树莓派通电状态下持续运行。为避免过多占用树莓派的运行内存，如需执行其它玩法，请先按照上述指令关闭当前玩法
+```commandline
+rosservice call /lidar_app/exit** **"{}"
+```
 
-    :::
+<img src="../_static/media/chapter_19/section_4/image10.png" style="width:5.76389in;height:3.22778in" />
+
+:::{Note}
+
+玩法在未退出时，会在当前树莓派通电状态下持续运行。为避免过多占用树莓派的运行内存，如需执行其它玩法，请先按照上述指令关闭当前玩法
+
+:::
 
 ### 4.2 功能实现
 
@@ -338,67 +334,67 @@ heartbeat_srv:创建了一个 Heart 对象，使用了/%s/heartbeat的 ROS主题
 
 ### 5.1 玩法开启及关闭步骤
 
-1. **通过APP开启**
+- #### 5.1.1 通过APP开启
 
-   1.  打开手机APP“**WonderPi**”，连接PuppyPi机器狗。
+1.  打开手机APP“**WonderPi**”，连接PuppyPi机器狗。
 
-   2.  在模式选择界面点击“**激光雷达**”，进入该玩法的操作界面。
+2.  在模式选择界面点击“**激光雷达**”，进入该玩法的操作界面。
 
-        <img src="../_static/media/chapter_19/section_5/image2.png" style="width:5.75972in;height:3.07014in" />
+     <img src="../_static/media/chapter_19/section_5/image2.png" style="width:5.75972in;height:3.07014in" />
 
-   3.  点击“**雷达警卫**”右侧的开关按键，启动该玩法模式。
+3.  点击“**雷达警卫**”右侧的开关按键，启动该玩法模式。
 
-        <img src="../_static/media/chapter_19/section_5/image4.jpeg" style="width:5.75556in;height:2.77847in" alt="Screenshot_20240524_155319_com.Wonder.Pi_edit_3126468690684913(1)" />
+     <img src="../_static/media/chapter_19/section_5/image4.jpeg" style="width:5.75556in;height:2.77847in" alt="Screenshot_20240524_155319_com.Wonder.Pi_edit_3126468690684913(1)" />
 
-2. **通过指令开启**
+- #### 5.1.2 通过指令开启
 
-     :::{Note}
-     该玩法不需要关闭 APP 自启服务，如已经关闭自启服务，可以输入指令“**sudo systemctl restart start_node.service**”重 新启动自启服务，等待机器人蜂鸣器滴一声。
-     :::
+:::{Note}
+该玩法不需要关闭 APP 自启服务，如已经关闭自启服务，可以输入指令“**sudo systemctl restart start_node.service**”重 新启动自启服务，等待机器人蜂鸣器滴一声。
+:::
 
-   1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-   2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_19/section_5/image6.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_19/section_5/image6.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-   3)  输入指令，并按下回车，进入激光雷达玩法。
+3)  输入指令，并按下回车，进入激光雷达玩法。
 
-        ```commandline 
-        rosservice call /lidar_app/enter "{}"
-        ```
+```commandline 
+rosservice call /lidar_app/enter "{}"
+```
 
-        <img src="../_static/media/chapter_19/section_5/image7.png" style="width:5.76736in;height:2.025in" />
+<img src="../_static/media/chapter_19/section_5/image7.png" style="width:5.76736in;height:2.025in" />
 
-   4)  启动成功后，再输入指令并按下回车，开启雷达警卫玩法。
-   
-        ```commandline 
-        rosservice call /lidar_app/set_running "data: 3"
-        ```
+4)  启动成功后，再输入指令并按下回车，开启雷达警卫玩法。
 
-        <img src="../_static/media/chapter_19/section_5/image8.png" style="width:5.76389in;height:2.72986in" />
+```commandline 
+rosservice call /lidar_app/set_running "data: 3"
+```
 
-        :::{Note}
-        效果与手机 APP 开启玩法相同，若需要查看源码，可以在Docker容器中的“**/home/ubuntu/puppypi/src/lidar_app/scripts**”文件夹内找到“**lidar.py**”。
-        :::
+<img src="../_static/media/chapter_19/section_5/image8.png" style="width:5.76389in;height:2.72986in" />
 
-   5)  如需停止该玩法，输入指令并按下回车。
+:::{Note}
+效果与手机 APP 开启玩法相同，若需要查看源码，可以在Docker容器中的“**/home/ubuntu/puppypi/src/lidar_app/scripts**”文件夹内找到“**lidar.py**”。
+:::
 
-        ```commandline 
-        rosservice call /lidar_app/set_running "data: 0"
-        ```
+5)  如需停止该玩法，输入指令并按下回车。
 
-        <img src="../_static/media/chapter_19/section_5/image9.png" style="width:5.76389in;height:2.80417in" />
+```commandline 
+rosservice call /lidar_app/set_running "data: 0"
+```
 
-   6)  如需关闭玩法，接着输入指令， 并按下回车，关闭雷达警卫玩法。
-   
-        ```commandline 
-        rosservice call /lidar_app/exit "{}"
-        ```
+<img src="../_static/media/chapter_19/section_5/image9.png" style="width:5.76389in;height:2.80417in" />
 
-        <img src="../_static/media/chapter_19/section_5/image10.png" style="width:5.76389in;height:3.17569in" />
-    
-        :::{Note}
-        玩法在未退出时，会在当前树莓派通电状态下持续运行。为避免过多占用树莓派的运行内存，如需执行其它玩法，请先按照上述指令关闭当前玩法。
-        :::
+6)  如需关闭玩法，接着输入指令， 并按下回车，关闭雷达警卫玩法。
+
+```commandline 
+rosservice call /lidar_app/exit "{}"
+```
+
+<img src="../_static/media/chapter_19/section_5/image10.png" style="width:5.76389in;height:3.17569in" />
+
+:::{Note}
+玩法在未退出时，会在当前树莓派通电状态下持续运行。为避免过多占用树莓派的运行内存，如需执行其它玩法，请先按照上述指令关闭当前玩法。
+:::
 
 ### 5.2 功能实现
 

@@ -54,19 +54,19 @@ M4\*6圆头机械螺丝
 
 ### 2.1 启动上位机
 
-1. **采用桌面图标启动（初学者推荐）**
+- #### 2.1.1 采用桌面图标启动（初学者推荐）
 
-- 1)  双击桌面图标<img src="../_static/media/chapter_22/section_2/image2.png" style="width:0.31458in;height:0.31458in" />。
+1)  双击桌面图标<img src="../_static/media/chapter_22/section_2/image2.png" style="width:0.31458in;height:0.31458in" />。
 
-- 2)  在弹出的提示窗口处单击“**Execute**”选项，即可打开上位机。
+2)  在弹出的提示窗口处单击“**Execute**”选项，即可打开上位机。
 
 <img src="../_static/media/chapter_22/section_2/image3.png" style="width:4.52083in;height:1.32292in" />
 
-2. **采用命令行形式启动**
+- #### 2.1.2 采用命令行形式启动
 
-- 1)  点击系统桌面左上角的图标<img src="../_static/media/chapter_22/section_2/image5.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+1)  点击系统桌面左上角的图标<img src="../_static/media/chapter_22/section_2/image5.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-- 2)  输入指令，并按下回车，打开上位机。
+2)  输入指令，并按下回车，打开上位机。
 
 ```commandline
 python3 /home/ubuntu/software/puppypi_control/PuppyPi.py
@@ -92,7 +92,9 @@ python3 /home/ubuntu/software/puppypi_control/PuppyPi.py
 
 1.  **舵机操控区域**
 
-> 可通过调整对应舵机的数值，对PuppyPi机器狗的姿态进行调整。
+:::{Note}
+可通过调整对应舵机的数值，对PuppyPi机器狗的姿态进行调整。
+:::
 
 | **图标** | **功能说明** |
 |:--:|:--:|
@@ -102,7 +104,9 @@ python3 /home/ubuntu/software/puppypi_control/PuppyPi.py
 
 2.  **动作详情列表**
 
-> 可在动作详情列表内查看动作的执行时间及舵机参数。
+:::{Note}
+可在动作详情列表内查看动作的执行时间及舵机参数。
+:::
 
 <img src="../_static/media/chapter_22/section_2/image16.png" style="width:5.51181in;height:0.38356in" />
 
@@ -150,7 +154,7 @@ python3 /home/ubuntu/software/puppypi_control/PuppyPi.py
 | <img src="../_static/media/chapter_22/section_2/image42.png" style="width:0.7874in;height:0.36842in" /> | 将舵机操控区域内所有舵机的数值恢复至1500。 |
 | <img src="../_static/media/chapter_22/section_2/image43.png" style="width:0.7874in;height:0.36842in" /> | 点击后，可手动调整舵机转动角度。 |
 
-### 2.3机械臂偏差调节
+### 2.3 机械臂偏差调节
 
 :::{Note}
 PuppyPi 在出厂时就已经调节好了偏差，用户无需再调节，如因更换舵机或者其** **他操作导致发生变化，则需要重新调试偏差。
@@ -164,33 +168,35 @@ PuppyPi 在出厂时就已经调节好了偏差，用户无需再调节，如因
 
 <img src="../_static/media/chapter_22/section_2/image45.png" style="width:5.78125in;height:4.10903in" />
 
-1. **偏差产生的原因**
+- #### 2.3.1 偏差产生的原因
 
 偏差通常在以下情况下产生：
 
-- 1)  舵机在中位的情况下，安装舵盘时转动了舵机主轴的角度，导致初始位置发生了角度偏差（出厂默认的舵机角度为中位位置）。
+1)  舵机在中位的情况下，安装舵盘时转动了舵机主轴的角度，导致初始位置发生了角度偏差（出厂默认的舵机角度为中位位置）。
 
-- 2)  舵机安装舵盘时未转动主轴角度，但固定到支撑架方向或角度存在小的偏移，导致细微偏差。另外，偏差值在 100 以内（角度 30°内），属于正常可调范围。如果产生的偏差较大，超出 100，将无法通过软件进行调整，需要将偏差较大的舵机主轴螺丝拆下，调整至正确方向的姿态再安装一次。
+2)  舵机安装舵盘时未转动主轴角度，但固定到支撑架方向或角度存在小的偏移，导致细微偏差。另外，偏差值在 100 以内（角度 30°内），属于正常可调范围。如果产生的偏差较大，超出 100，将无法通过软件进行调整，需要将偏差较大的舵机主轴螺丝拆下，调整至正确方向的姿态再安装一次。
 
-2. **调节方法**
+- #### 2.3.2 调节方法
 
 本节课以调节 10号舵机为例进行调节。（已进行“**复位舵机**”操作）
 
 <img src="../_static/media/chapter_22/section_2/image45.png" style="width:5.78125in;height:4.10903in" />
 
-- 1)  在“**普通模式**”中，勾选“**机械臂**”观察机械臂各个位置舵机的姿态。可以看到需要调节10号舵机的偏差值。
+1)  在“**普通模式**”中，勾选“**机械臂**”观察机械臂各个位置舵机的姿态。可以看到需要调节10号舵机的偏差值。
 
-    <img src="../_static/media/chapter_22/section_2/image46.png" style="width:5.75694in;height:3.11667in" />
+<img src="../_static/media/chapter_22/section_2/image46.png" style="width:5.75694in;height:3.11667in" />
 
-- 2)  上位机会自动读取偏差，再根据实际的舵机情况，点击 ID10 舵机图标下方的小滑杆，使机械臂两连杆互相垂直。可多次点击鼠标左键或者滑动鼠标滚轮来微调滑杆数值。
+2)  上位机会自动读取偏差，再根据实际的舵机情况，点击 ID10 舵机图标下方的小滑杆，使机械臂两连杆互相垂直。可多次点击鼠标左键或者滑动鼠标滚轮来微调滑杆数值。
 
-- 3)  调节完毕后点击“**保存偏差**”，再点击“**OK**”，将偏差保存到控制板中。
+3)  调节完毕后点击“**保存偏差**”，再点击“**OK**”，将偏差保存到控制板中。
 
-    <img src="../_static/media/chapter_22/section_2/image47.png" style="width:2.33333in;height:2.125in" />
+<img src="../_static/media/chapter_22/section_2/image47.png" style="width:2.33333in;height:2.125in" />
 
 ## 3. 颜色识别夹取
 
->可在本节文件夹下观看演示效果。
+:::{Note}
+可在本节文件夹下观看演示效果。
+:::
 
 ### 3.1 实现流程
 
@@ -204,7 +210,9 @@ PuppyPi 在出厂时就已经调节好了偏差，用户无需再调节，如因
 
 ### 3.2 玩法开启及关闭步骤
 
-> 指令输入需严格区分大小写及空格。
+:::{Note}
+指令输入需严格区分大小写及空格。
+:::
 
 1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。 
 
@@ -259,7 +267,9 @@ sudo systemctl restart start_node.service
 
 玩法开启后，将色块放置在PuppyPi前面。当识别到色块后，会用对用颜色的圆圈标识出目标色块，并把颜色名称打印在窗口中间。程序能识别“**红色**”、“**蓝色**”和“**绿色**”的色块,但只对红色色块进行“**夹取**”操作。
 
->若颜色识别不准，可参照“**[ROS+OpenCV视觉识别与追踪项目\1. 颜色阈值调节]()**”对其进行调节。
+:::{Note}
+若颜色识别不准，可参照“**[ROS+OpenCV视觉识别与追踪项目\1. 颜色阈值调节]()**”对其进行调节。
+:::
 
 <img src="../_static/media/chapter_22/section_3/image15.png" style="width:5.73472in;height:4.57986in" />
 
@@ -307,13 +317,13 @@ rosed puppy_with_arm** **color_detect_with_arm.py
 
 根据玩法的效果，梳理的本次玩法的过程逻辑，如下图所示：
 
-<img src="../_static/media/chapter_22/section_3/image24.png" style="width:3.37361in;height:2.83542in" />
+<img class="common_img" src="../_static/media/chapter_22/section_3/image24.png" style="width:3.37361in;height:2.83542in" />
 
 - **launch文件分析**
 
 在功能执行的过程当中，会启动当前功能包的launch文件（**color_detect_with_arm.launch**），内容如下图所示：
 
-<img src="../_static/media/chapter_22/section_3/image25.png" style="width:5.75833in;height:0.41667in" />
+<img class="common_img" src="../_static/media/chapter_22/section_3/image25.png" style="width:5.75833in;height:0.41667in" />
 
 从上图可以看出，该功能玩法的节点名称（**color_detect_with_arm**）和该节点是位于哪个功能包（**puppy_with_arm**），节点通过终端显示处理后的信息。
 
@@ -439,7 +449,9 @@ rosed puppy_with_arm** **color_detect_with_arm.py
 
 ## 4. 自主识别夹取
 
->可在本节文件夹下观看演示效果。
+:::{Note}
+可在本节文件夹下观看演示效果。
+:::
 
 ### 4.1 实验原理
 
@@ -455,7 +467,9 @@ rosed puppy_with_arm** **color_detect_with_arm.py
 
 ### 4.2 玩法开启及关闭步骤
 
->指令输入需严格区分大小写及空格。
+:::{Note}
+指令输入需严格区分大小写及空格。
+:::
 
 1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
@@ -491,7 +505,7 @@ roslaunch puppy_with_arm color_grab.launch
 
 7)  按下树莓派扩展板上的KEY1开始启动自主识别夹取，按下KEY2可以暂停玩法。
 
-    <img src="../_static/media/chapter_22/section_4/image11.png" style="width:5.75in;height:4.58333in" />
+<img src="../_static/media/chapter_22/section_4/image11.png" style="width:5.75in;height:4.58333in" />
 
 8)  如需关闭此玩法，可在Terminator终端界面按下“**Ctrl+C**”。如果关闭失败，可多次按下。
 
@@ -523,7 +537,9 @@ sudo systemctl restart button_scan.service
 
 <img src="../_static/media/chapter_22/section_4/image16.png" style="width:5.76181in;height:3.18889in" /><img src="../_static/media/chapter_22/section_4/image17.png" style="width:5.76528in;height:3.8in" />
 
->若颜色识别不准，可参照“**[ROS+OpenCV视觉识别与追踪项目\1. 颜色阈值调节]()**”对其进行调节。
+:::{Note}
+若颜色识别不准，可参照“**[ROS+OpenCV视觉识别与追踪项目\1. 颜色阈值调节](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/13_visual_recognition_and_tracking.html)**”对其进行调节。
+:::
 
 若出现夹取位置不准的情况，可修改程序中**block_center_point\[1\]**的参数。数值越大，末端夹持器位置越靠后，反之则越靠前。
 
@@ -745,7 +761,9 @@ output="**screen**"： 节点的输出将显示在屏幕上。
 
 ## 5. 巡线夹取
 
->可在本节文件夹下观看演示效果。
+:::{Note}
+可在本节文件夹下观看演示效果。
+:::
 
 ### 5.1 实现流程
 
@@ -757,7 +775,9 @@ output="**screen**"： 节点的输出将显示在屏幕上。
 
 ### 5.2 玩法开启及关闭步骤
 
->指令输入需严格区分大小写及空格。
+:::{Note}
+指令输入需严格区分大小写及空格。
+:::
 
 1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
@@ -827,7 +847,9 @@ sudo systemctl restart button_scan.service
 
 <img src="../_static/media/chapter_22/section_5/image14.png" style="width:4.82847in;height:3.84097in" alt="6df22f7e70a139a191509393b2c734f" />
 
->若颜色识别不准，可参照“**[ROS+OpenCV视觉识别与追踪项目\1.  颜色阈值调节]()**”对其进行调节。
+:::{Note}
+若颜色识别不准，可参照“**[ROS+OpenCV视觉识别与追踪项目\1.  颜色阈值调节]()**”对其进行调节。
+:::
 
 若出现夹取位置不准的情况，可修改程序中**block_center_point\[1\]**的参数。数值越大，末端夹持器位置越靠后，反之则越靠前。
 
@@ -1013,7 +1035,9 @@ rosed puppy_with_arm** **visual_patrol_with_arm.py
 
 ## 6. 手势控制机械臂
 
->可在本节文件夹下观看演示效果。
+:::{Note}
+可在本节文件夹下观看演示效果。
+:::
 
 ### 6.1 实验原理
 
@@ -1025,7 +1049,9 @@ rosed puppy_with_arm** **visual_patrol_with_arm.py
 
 ### 6.2 玩法开启及关闭步骤
 
->指令输入需严格区分大小写及空格。
+:::{Note}
+指令输入需严格区分大小写及空格。
+:::
 
 1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
@@ -1063,11 +1089,11 @@ roslaunch puppy_with_arm hand_control_with_arm.launch
 
 6)  选择对应节点的图像进行查看。
 
-<img src="../_static/media/chapter_22/section_6/image11.png" style="width:5.76667in;height:1.47361in" />
+<img class="common_img" src="../_static/media/chapter_22/section_6/image11.png" style="width:5.76667in;height:1.47361in" />
 
 7)  进入手势控制机械臂玩法的相机回传界面，如下图所示：
 
-<img src="../_static/media/chapter_22/section_6/image12.png" style="width:4.66528in;height:4.01597in" />
+<img class="common_img" src="../_static/media/chapter_22/section_6/image12.png" style="width:4.66528in;height:4.01597in" />
 
 8)  如需关闭此玩法，可在Terminator终端界面按下“**Ctrl+C**”。如果关闭失败，可多次按下。
 
@@ -1089,7 +1115,7 @@ sudo systemctl restart start_node.service
 
 玩法开启后，当识别到手部特征时，会将手部特征用圆点和线条连接起来，用黄线将大拇指和食指相连，识别出大拇指和食指之间的距离，并在左下角打印出来，Puppypi的机械爪会跟随大拇指和食指的距离变化而变化。
 
-<img src="../_static/media/chapter_22/section_6/image12.png" style="width:4.66528in;height:4.01597in" />
+<img class="common_img" src="../_static/media/chapter_22/section_6/image12.png" style="width:4.66528in;height:4.01597in" />
 
 ### 6.4 程序分析
 
@@ -1344,15 +1370,17 @@ $$theta = \ 180\  - 角\ AOB$$
 
 ### 7.3 逆运动学求解及程序实现
 
->指令输入需严格区分大小写及空格。
+:::{Note}
+指令输入需严格区分大小写及空格。
+:::
 
-- 1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-- 2) 点击系统桌面左上角的图标<img src="../_static/media/chapter_22/section_7/image6.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+2) 点击系统桌面左上角的图标<img src="../_static/media/chapter_22/section_7/image6.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
 <img src="../_static/media/chapter_22/section_7/image7.png" style="width:5.76111in;height:1.30833in" />
 
-- 3)  输入指令并按下回车，切换到逆运动学程序文件所在目录。
+3)  输入指令并按下回车，切换到逆运动学程序文件所在目录。
 
 ```commandline
 cd puppypi/src/puppy_common/kinematics_sdk/arm_kinematics
@@ -1360,7 +1388,7 @@ cd puppypi/src/puppy_common/kinematics_sdk/arm_kinematics
 
 <img src="../_static/media/chapter_22/section_7/image9.png" style="width:5.7625in;height:1.32639in" />
 
-- 4)  输入指令并按下回车，打开逆运动学程序文件。
+4)  输入指令并按下回车，打开逆运动学程序文件。
 
 ```commandline
 vim InverseKinematics.py
@@ -1368,58 +1396,58 @@ vim InverseKinematics.py
 
 <img src="../_static/media/chapter_22/section_7/image10.png" style="width:5.7625in;height:2.05417in" />
 
-- 5)  以下是InverseKinematics.py的部分代码截图：
+5)  以下是InverseKinematics.py的部分代码截图：
 
 <img src="../_static/media/chapter_22/section_7/image12.png" style="width:5.76111in;height:3.75903in" />
 
-1. **俯仰关节beta转动角度的求解**
+- #### 7.3.1 俯仰关节beta转动角度的求解
 
 <img src="../_static/media/chapter_22/section_7/image3.png" style="width:5.76389in;height:3.18611in" />
 
 -  根据余弦定理，计算出$\cos{OAP}$的值，然后将值四舍五入保留到小数点后四位。
 
-    <img src="../_static/media/chapter_22/section_7/image14.png" style="width:5.76458in;height:0.50903in" />
+<img src="../_static/media/chapter_22/section_7/image14.png" style="width:5.76458in;height:0.50903in" />
 
 -  由于余弦值的范围是\[-1,1\]，判断$\cos{OAP}$的绝对值是否大于1，如果大于1说明给定的末端坐标无法构成连杆结构。
 
-    <img src="../_static/media/chapter_22/section_7/image16.png" style="width:5.76667in;height:0.59444in" />
+<img src="../_static/media/chapter_22/section_7/image16.png" style="width:5.76667in;height:0.59444in" />
 
 -  接着计算出$\cos{PAC}$的值，然后将值四舍五入保留到小数点后四位。
 
-    <img src="../_static/media/chapter_22/section_7/image18.png" style="width:5.7625in;height:0.48403in" />
+<img src="../_static/media/chapter_22/section_7/image18.png" style="width:5.7625in;height:0.48403in" />
 
 -  再次判断$\cos{PAC}$的绝对值是否大于1。
 
-    <img src="../_static/media/chapter_22/section_7/image20.png" style="width:5.7625in;height:0.59583in" />
+<img src="../_static/media/chapter_22/section_7/image20.png" style="width:5.7625in;height:0.59583in" />
 
 - 接下来，用反余弦函数求出夹角OAP和PAC的弧度值并相加，得到夹角OAC的值。
 
-    <img src="../_static/media/chapter_22/section_7/image22.png" style="width:3.80208in;height:0.69792in" />
+<img src="../_static/media/chapter_22/section_7/image22.png" style="width:3.80208in;height:0.69792in" />
 
 -  最后，将夹角OAC的弧度值转换为角度值，并减去90度（机械臂初始俯仰关节），即可得到俯仰关节beta转动角度。
 
-    <img src="../_static/media/chapter_22/section_7/image24.png" style="width:3.98958in;height:0.27083in" />
+<img src="../_static/media/chapter_22/section_7/image24.png" style="width:3.98958in;height:0.27083in" />
 
-2. **基座关节theta转动角度的求解**
+- #### 7.3.2 基座关节theta转动角度的求解
 
 <img src="../_static/media/chapter_22/section_7/image3.png" style="width:5.76389in;height:3.18611in" />
 
 -  根据余弦定理，计算出$\cos{AOP}$的值，然后将值四舍五入保留到小数点后四位。
 
-    <img src="../_static/media/chapter_22/section_7/image26.png" style="width:5.76597in;height:0.46389in" />
+<img src="../_static/media/chapter_22/section_7/image26.png" style="width:5.76597in;height:0.46389in" />
 
 -  由于余弦值的范围是\[-1,1\]，判断$\cos{AOP}$的绝对值是否大于1，如果大于1说明给定的末端坐标无法构成连杆结构。
 
-    <img src="../_static/media/chapter_22/section_7/image28.png" style="width:5.76667in;height:0.55208in" />
+<img src="../_static/media/chapter_22/section_7/image28.png" style="width:5.76667in;height:0.55208in" />
 
 -  接着计算出$\sin{POB}$的值，并将值四舍五入保留到小数点后四位，再次判断$\sin{POB}$的绝对值是否大于1。
 
-    <img src="../_static/media/chapter_22/section_7/image30.png" style="width:5.7625in;height:0.75in" />
+<img src="../_static/media/chapter_22/section_7/image30.png" style="width:5.7625in;height:0.75in" />
 
 -  接下来，用反余弦函数和反正弦函数求出夹角AOP和POB的弧度值并相加，得到夹角AOB的值。
 
-    <img src="../_static/media/chapter_22/section_7/image32.png" style="width:5.7625in;height:0.22292in" />
+<img src="../_static/media/chapter_22/section_7/image32.png" style="width:5.7625in;height:0.22292in" />
 
 -  最后，180度减去转换为角度值的夹角AOB，即可得到基座关节theta转动角度。
 
-    <img src="../_static/media/chapter_22/section_7/image34.png" style="width:5.76389in;height:0.36042in" />
+<img src="../_static/media/chapter_22/section_7/image34.png" style="width:5.76389in;height:0.36042in" />

@@ -18,13 +18,13 @@
 4PIN线采用防反插设计，切勿硬塞。
 :::
 
-### 1.2 使用模块
+### 1.3 使用模块
 
 本节课超声波测距芯片内部集成超声波发射电路、接收电路、数字处理电路等。模块采用IIC通信接口，能利用IIC通信读取测量的距离。
 
 此外，超声波探头位置集成两个RGB灯，不仅能调节灯光亮度，还可以通过修改红(R)、绿(G)、蓝(B)三个颜色通道的参数，实现多彩颜色变化。
 
-### 1.3 实验原理
+### 1.4 实验原理
 
 首先设置测距，然后通过高低电平的变化控制RGB彩灯的亮灭，最后通过改变各颜色分量数值来控制显示的灯光颜色。
 
@@ -32,7 +32,7 @@
 
 <img src="../_static/media/chapter_17/section_1/image3.png" style="width:5.76458in;height:3.58681in" />
 
-### 1.4 玩法开启及关闭步骤
+### 1.5 玩法开启及关闭步骤
 
 <img src="../_static/media/chapter_17/section_1/image4.png" style="width:0.31528in;height:0.31528in" />指令输入需严格区分大小写及空格。
 
@@ -50,7 +50,7 @@ rosrun puppy_extend_demo sonar_control_demo.py
 
 4)  如需关闭此程序，可按下“**Ctrl+C**”,若关闭失败，可多次按下。
 
-### 1.5 功能实现
+### 1.6 功能实现
 
 程序运行后，在超声波传感器前方放置障碍物，终端界面会打印测得距离，且RGB灯显示对应的灯光颜色。灯光颜色与距离范围对应如下：
 
@@ -60,19 +60,19 @@ rosrun puppy_extend_demo sonar_control_demo.py
 
 当间距大于500mm时，RGB灯显示蓝色灯光。
 
-### 1.6 功能延伸
+### 1.7 功能延伸
 
-<span id="anchor_1_6_1" class="anchor"></span>
+<span id="anchor_1_7_1" class="anchor"></span>
 
-1. **修改探测距离**
+- #### 1.7.1 修改探测距离
 
 我们可以修改RGB灯颜色对应的距离范围，这里以将RGB亮绿色的距离范围“**300\<distance\<500**”修改为“**300\<distance\<550**”，将RGB亮蓝色的距离范围“**distance\>550**”修改为“**distance\>550**”为例进行示范，可参考以下步骤进行：
 
-  - 1)  点击系统桌面左上角的图标<img src="../_static/media/chapter_17/section_1/image5.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+1)  点击系统桌面左上角的图标<img src="../_static/media/chapter_17/section_1/image5.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
 <img src="../_static/media/chapter_17/section_1/image7.png" style="width:5.76111in;height:1.23958in" />
 
-  - 2)  输入指令，回车，打开玩法程序文件。
+2)  输入指令，回车，打开玩法程序文件。
 
 ```commandline
 rosed puppy_extend_demo sonar_control_demo.py
@@ -80,15 +80,15 @@ rosed puppy_extend_demo sonar_control_demo.py
 
 <img src="../_static/media/chapter_17/section_1/image8.png" style="width:5.76389in;height:2.38681in" />
 
-  - 3)  找到如下图框出的代码，按一下键盘的“**i**”键，进入编辑模式。
+3)  找到如下图框出的代码，按一下键盘的“**i**”键，进入编辑模式。
 
 <img src="../_static/media/chapter_17/section_1/image9.png" style="width:5.7625in;height:2.86736in" />
 
-  - 4)  修改数据，如下图所示：
+4)  修改数据，如下图所示：
 
 <img src="../_static/media/chapter_17/section_1/image10.png" style="width:5.76458in;height:1.88472in" />
 
-  - 5)  修改完成之后，按一下键盘的“**Esc**”键，再依次输入指令（注意wq前为冒号：），回车，即可保存修改内容。
+5)  修改完成之后，按一下键盘的“**Esc**”键，再依次输入指令（注意wq前为冒号：），回车，即可保存修改内容。
 
 ```commandline
 :wq
@@ -96,23 +96,23 @@ rosed puppy_extend_demo sonar_control_demo.py
 
 <img src="../_static/media/chapter_17/section_1/image11.png" style="width:5.76389in;height:0.75833in" />
 
-2. **自定义RGB颜色**
+- #### 1.7.2 自定义RGB颜色
 
 同样，我们也可以更改RGB彩灯的颜色，这里以将RGB彩灯的颜色由红色更改为黄色为例进行示范，可按照以下步骤进行修改：
 
-  - 1)  参考“[6.1 修改探测距离](#anchor_1_6_1)”的步骤1、2，打开玩法程序文件。
+1)  参考“[6.1 修改探测距离](#anchor_1_7_1)”的步骤1、2，打开玩法程序文件。
 
-  - 2)  在打开的界面中，找到如下图所示代码，按一下键盘的“i”键，进入编辑模式。
+2)  在打开的界面中，找到如下图所示代码，按一下键盘的“i”键，进入编辑模式。
 
 <img src="../_static/media/chapter_17/section_1/image12.png" style="width:5.7625in;height:2.86042in" />
 
-  - 3)  可通过修改RGB的值来修改发光颜色。将“**setRGB(1,(255,0,0))**”和“**setRGB(0,(255,0,0))**”修改为“**setRGB(1,(255,255,0))**”和“**setRGB(0,(255,255,0))**”，如下图所示：
+3)  可通过修改RGB的值来修改发光颜色。将“**setRGB(1,(255,0,0))**”和“**setRGB(0,(255,0,0))**”修改为“**setRGB(1,(255,255,0))**”和“**setRGB(0,(255,255,0))**”，如下图所示：
 
 <img src="../_static/media/chapter_17/section_1/image13.png" style="width:5.76111in;height:2.17014in" />
 
 RGB值指某种颜色中红（Red）、绿（Green）、蓝（Blue）成分，理论上讲，红绿蓝三种基色按照不同的比例混合可以调配出任何一种颜色。某种颜色的RGB值越近就越接近灰色或黑白，数值越大就越白，反之越黑。
 
-  - 4)  修改完成之后，按一下键盘的“**Esc**”键，再依次输入指令（注意wq前为冒号：），按下回车，即可保存修改内容。
+4)  修改完成之后，按一下键盘的“**Esc**”键，再依次输入指令（注意wq前为冒号：），按下回车，即可保存修改内容。
 
 ```commandline
 :wq
@@ -305,7 +305,7 @@ rosrun puppy_extend_demo lattice_display_demo.py
 
 1)  在本节同目录下双击打开取模软件。
 
-<img src="../_static/media/chapter_17/section_4/image12.png" style="width:1.10208in;height:1.19444in" alt="11" />
+<img class="common_img" src="../_static/media/chapter_17/section_4/image12.png" style="width:1.10208in;height:1.19444in" alt="11" />
 
 2)  先点击“**新建图像**”，在弹出的设置框设置点阵模块的尺寸参数，这里设置为“**16\*8**”，设置完成后，点击“**确定**”。
 
