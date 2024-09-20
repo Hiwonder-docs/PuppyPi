@@ -46,15 +46,15 @@
 
 1)  打开手机APP，在主界面选择"**进阶平台-\>PuppyPi**"。
 
-<img src="../_static/media/chapter_2/section_1/image6.jpeg" style="width:5.76389in;height:2.8in" alt="04.jpg04" />
+<img class="common_img" src="../_static/media/chapter_2/section_1/image6.jpeg" style="width:5.76389in;height:2.8in" alt="04.jpg04" />
 
 2)  点击界面右下角的"**+**"按钮，选择"**直连模式**"。
 
-<img src="../_static/media/chapter_2/section_1/image7.png" style="width:5.76389in;height:3.24236in" alt="G:\gongzuo\SpiderPi PRO\图片素材\手机APP试玩\已处理\10.png10" />
+<img class="common_img" src="../_static/media/chapter_2/section_1/image7.png" style="width:5.76389in;height:3.24236in" alt="G:\gongzuo\SpiderPi PRO\图片素材\手机APP试玩\已处理\10.png10" />
 
 3)  按照画面提示，前往手机设置连接"**HW**"名开头的热点。
 
-<img src="../_static/media/chapter_2/section_1/image8.jpeg" style="width:5.76389in;height:2.8in" alt="01.jpg01" />
+<img class="common_img" src="../_static/media/chapter_2/section_1/image8.jpeg" style="width:5.76389in;height:2.8in" alt="01.jpg01" />
 
 <img class="common_img" src="../_static/media/chapter_2/section_1/image9.jpeg" style="width:3.14961in;height:2.72587in" alt="02.jpg02" />
 
@@ -80,43 +80,43 @@
 
 1)  首先，在打开的WonderPi手机APP界面单击右下角"**+**"按钮，选择"**局域网模式**"，根据界面提示前往手机设置连接Wi-Fi。
 
-<img src="../_static/media/chapter_2/section_1/image13.png" style="width:5.76389in;height:3.24236in" alt="F90C7A57C0C7B598C11C5EA8089BC654" />
+<img class="common_img" src="../_static/media/chapter_2/section_1/image13.png" style="width:5.76389in;height:3.24236in" alt="F90C7A57C0C7B598C11C5EA8089BC654" />
 
-<img src="../_static/media/chapter_2/section_1/image14.png" style="width:5.76389in;height:3.24236in" alt="7F4575D0E7A3F537FAE25FD853AF1BFD" />
+<img class="common_img" src="../_static/media/chapter_2/section_1/image14.png" style="width:5.76389in;height:3.24236in" alt="7F4575D0E7A3F537FAE25FD853AF1BFD" />
 
 2)  点击想要连接的Wi-Fi（这里以"**Hiwonder**"为例）。
 
-<img src="../_static/media/chapter_2/section_1/image15.png" style="width:3.14931in;height:1.79931in" alt="2EC81098754F5A2B71A6E9A4C21B4F78" />
+<img class="common_img" src="../_static/media/chapter_2/section_1/image15.png" style="width:3.14931in;height:1.79931in" alt="2EC81098754F5A2B71A6E9A4C21B4F78" />
 
 3)  连接完成后返回APP，再次点击界面右下角"**+**"按钮，选择"**局域网模式**"。
 
-<img src="../_static/media/chapter_2/section_1/image13.png" style="width:5.76389in;height:3.24236in" alt="F90C7A57C0C7B598C11C5EA8089BC654" />
+<img class="common_img" src="../_static/media/chapter_2/section_1/image13.png" style="width:5.76389in;height:3.24236in" alt="F90C7A57C0C7B598C11C5EA8089BC654" />
 
 4)  此时，APP会提示输入所要连接的Wi-Fi的密码（若没有自动弹出可再次点击"**局域网模式**"），输入Wi-Fi密码hiwonder，输入完成后点击"**下一步**"。（请确认Wi-Fi密码是否输入正确，如果输入错误会导致连接失败。）
 
-<img src="../_static/media/chapter_2/section_1/image16.png" style="width:5.76389in;height:3.24236in" alt="7FF2CBAFAC3191F16073B8071C12B8AE" />
+<img class="common_img" src="../_static/media/chapter_2/section_1/image16.png" style="width:5.76389in;height:3.24236in" alt="7FF2CBAFAC3191F16073B8071C12B8AE" />
 
 5)  根据APP提示，再次前往设置，连接以"**HW**"开头的热点。
 
-<img src="../_static/media/chapter_2/section_1/image17.png" style="width:5.76389in;height:3.24236in" alt="BAC0AB92B751BCCE60A21AE9EB535050" />
+<img class="common_img" src="../_static/media/chapter_2/section_1/image17.png" style="width:5.76389in;height:3.24236in" alt="BAC0AB92B751BCCE60A21AE9EB535050" />
 
 6)  连接热点后返回APP，此时可以看到APP已经开始自动连接了。连接过程中如出现是否加入的提示，点击"**加入**"即可。
 
-<img src="../_static/media/chapter_2/section_1/image18.png" style="width:5.76389in;height:3.24236in" alt="769FBACC5FF2B4C2DB11E92859144118" />
+<img class="common_img" src="../_static/media/chapter_2/section_1/image18.png" style="width:5.76389in;height:3.24236in" alt="769FBACC5FF2B4C2DB11E92859144118" />
 
-<img src="../_static/media/chapter_2/section_1/image19.png" style="width:5.76389in;height:3.24236in" alt="D68158A6292D6D73CBB48CEE92243936" />
+<img class="common_img" src="../_static/media/chapter_2/section_1/image19.png" style="width:5.76389in;height:3.24236in" alt="D68158A6292D6D73CBB48CEE92243936" />
 
 7)  稍等片刻，界面会自动切回APP主界面，同时树莓派扩展板上的LED2将停止闪烁，和LED1一样保持常亮状态，此时即表示树莓派联网成功。
 
-<img src="../_static/media/chapter_2/section_1/image20.jpeg" style="width:5.76389in;height:1.71458in" alt="4" />
+<img class="common_img" src="../_static/media/chapter_2/section_1/image20.jpeg" style="width:5.76389in;height:1.71458in" alt="4" />
 
 8)  长按APP中的机器狗图标，可以查看分配给机器狗的IP地址和ID。
 
-<img src="../_static/media/chapter_2/section_1/image21.png" style="width:3.14931in;height:2.24931in" alt="D:\Work\PuppyPi AI智能视觉机器狗\PuppyPi图片素材\图片2.png图片2" />
+<img class="common_img" src="../_static/media/chapter_2/section_1/image21.png" style="width:3.14931in;height:2.24931in" alt="D:\Work\PuppyPi AI智能视觉机器狗\PuppyPi图片素材\图片2.png图片2" />
 
 9)  若要回到直连模式，可长按扩展板上的KEY1，直到LED2闪烁
 
-<img src="../_static/media/chapter_2/section_1/image22.jpeg" style="width:5.76389in;height:1.71458in" alt="4.1" />
+<img class="common_img" src="../_static/media/chapter_2/section_1/image22.jpeg" style="width:5.76389in;height:1.71458in" alt="4.1" />
 
 ## 2. 手机APP试玩
 
@@ -128,9 +128,9 @@
 
 点击PuppyPi机器狗图标，进入玩法选择界面。
 
-<img src="../_static/media/chapter_2/section_2/image2.jpeg" style="width:5.76389in;height:2.80278in" alt="03.jpg03" />
+<img class="common_img" src="../_static/media/chapter_2/section_2/image2.jpeg" style="width:5.76389in;height:2.80278in" alt="03.jpg03" />
 
-<img src="../_static/media/chapter_2/section_2/image3.jpeg" style="width:5.76389in;height:2.80278in" alt="17.jpg17" />
+<img class="common_img" src="../_static/media/chapter_2/section_2/image3.jpeg" style="width:5.76389in;height:2.80278in" alt="17.jpg17" />
 
 - #### 2.2.1 机体遥控
 
@@ -138,18 +138,18 @@
 
 - 普通模式可实现较为简单的控制，通过滑动摇杆即可控制机器狗运动。
 
-<img src="../_static/media/chapter_2/section_2/image4.jpeg" style="width:5.76389in;height:2.80278in" alt="08.jpg08" />
+<img class="common_img" src="../_static/media/chapter_2/section_2/image4.jpeg" style="width:5.76389in;height:2.80278in" alt="08.jpg08" />
 
 - 高级模式可以控制运动速度、高度及姿态。
 
-<img src="../_static/media/chapter_2/section_2/image5.jpeg" style="width:5.76389in;height:2.80625in" alt="09.jpg09" />
+<img class="common_img" src="../_static/media/chapter_2/section_2/image5.jpeg" style="width:5.76389in;height:2.80625in" alt="09.jpg09" />
 
 下表为两种模式的按键功能说明：
 
 <table class="docutils-nobg" border="1">
     <colgroup>
-        <col style="width: 28%" />
-        <col style="width: 71%" />
+        <col style="width: 20%" />
+        <col style="width: 35%" />
     </colgroup>
     <tbody>
     <tr>
@@ -199,20 +199,19 @@
 
 - #### 2.2.2 表演模式
 
-1)  点击"**表演模式**"，进入玩法界面。该界面分为两部分：
-
+1. 点击"**表演模式**"，进入玩法界面。该界面分为两部分：
 
 - 界面左侧是动作选择区域，有内置动作和自定义动作可供选择；
 
 - 界面右侧是自平衡功能区域。
 
-<img src="../_static/media/chapter_2/section_2/image12.jpeg" style="width:5.76389in;height:2.80278in" alt="10.jpg10" />
+<img class="common_img" src="../_static/media/chapter_2/section_2/image12.jpeg" style="width:5.76389in;height:2.80278in" alt="10.jpg10" />
 
 自定义动作的使用请参考文档"**[ROS机器狗动作编辑课程\ 6. APP自定义控制](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/10_action_editing.html#app)**"。
 
-2)  点击界面左侧的动作名称，PuppyPi机器狗将执行对应的动作。
+2.  点击界面左侧的动作名称，PuppyPi机器狗将执行对应的动作。
 
-3)  点击界面右侧的"**自平衡**"按钮，机器狗将会根据平面的倾斜度，自主调整自身姿态，以维持稳定站姿。
+3.  点击界面右侧的"**自平衡**"按钮，机器狗将会根据平面的倾斜度，自主调整自身姿态，以维持稳定站姿。
 
 下表为此玩法界面的按键功能说明：
 
@@ -226,13 +225,11 @@
 - #### 2.2.3 颜色识别
 
 :::{Note}
-
 1.  请在光线充足的室内环境下进行，但尽量避免在强光直射下进行。
 
 2.  识别时，摄像头画面内请勿应无同目标颜色相同或相近的杂物，避免干扰识别。
 
 3.  如识别效果不佳，可前往目录"**[上手试玩\3. 颜色阈值调试](#anchor_3)**"学习颜色阈值的调节方式。
-
 :::
 
 1)  点击"**颜色识别**"，进入玩法界面。该界面分为两部分：
@@ -241,7 +238,7 @@
 
 - 界面右侧是摄像头回传画面区域。
 
-<img src="../_static/media/chapter_2/section_2/image15.jpeg" style="width:5.76389in;height:2.80278in" alt="11.jpg11" />
+<img class="common_img" src="../_static/media/chapter_2/section_2/image15.jpeg" style="width:5.76389in;height:2.80278in" alt="11.jpg11" />
 
 2)  点击"**开始识别**"按钮，可依次将红色、蓝色、绿色的物体单独放置于摄像头前，当识别到不同颜色的物体，PuppyPi机器狗会执行对应的反馈动作。
 
@@ -271,7 +268,7 @@
 
 - 界面右侧是摄像头回传画面区域。
 
-<img src="../_static/media/chapter_2/section_2/image17.jpeg" style="width:5.76389in;height:2.79931in" alt="12.jpg12" />
+<img class="common_img" src="../_static/media/chapter_2/section_2/image17.jpeg" style="width:5.76389in;height:2.79931in" alt="12.jpg12" />
 
 2)  选择目标颜色后，点击"**开始追踪**"按钮。PuppyPi机器狗将跟随选定的颜色目标运动。
 
@@ -299,7 +296,7 @@
 
 - 界面右侧是摄像头回传画面区域。
 
-<img src="../_static/media/chapter_2/section_2/image21.jpeg" style="width:5.76389in;height:2.79931in" alt="13.jpg13" />
+<img class="common_img" src="../_static/media/chapter_2/section_2/image21.jpeg" style="width:5.76389in;height:2.79931in" alt="13.jpg13" />
 
 2)  点击"**开始识别**"按钮，将标签逐张放置于摄像头前，当识别到不同ID的标签，PuppyPi机器狗会执行对应的反馈动作。
 
@@ -325,7 +322,7 @@
 
 -  界面右侧是摄像头回传画面区域。
 
-<img src="../_static/media/chapter_2/section_2/image22.jpeg" style="width:5.76389in;height:2.80278in" alt="14.jpg14" />
+<img class="common_img" src="../_static/media/chapter_2/section_2/image22.jpeg" style="width:5.76389in;height:2.80278in" alt="14.jpg14" />
 
 2)  点击"**开始检测**"按钮，机器狗会检测方圆1米内的人脸。当识别到人脸，PuppyPi机器狗会执行"**招手**"动作。
 
@@ -353,7 +350,7 @@
 
 -  界面右侧是摄像头回传画面区域。
 
-<img src="../_static/media/chapter_2/section_2/image24.jpeg" style="width:5.76389in;height:2.79931in" alt="15" />
+<img class="common_img" src="../_static/media/chapter_2/section_2/image24.jpeg" style="width:5.76389in;height:2.79931in" alt="15" />
 
 2) 点击"**开始巡线**"按钮，并选择选择巡线颜色，PuppyPi机器狗将沿着带有目标颜色的线条行进。
 
@@ -372,31 +369,31 @@
 
 1)  进入玩法主界面，点击右上角的设置按键，进入阈值调节界面。
 
-<img src="../_static/media/chapter_2/section_3/image2.jpeg" style="width:5.76389in;height:2.8in" alt="G:\gongzuo\PuppyPi\图片素材\23.jpg23" />
+<img class="common_img" src="../_static/media/chapter_2/section_3/image2.jpeg" style="width:5.76389in;height:2.8in" alt="G:\gongzuo\PuppyPi\图片素材\23.jpg23" />
 
 2)  本节以调节红色为例，将红色方块放置在摄像头的视野范围内，在"**选择颜色**"处点击红色按键。
 
-<img src="../_static/media/chapter_2/section_3/image3.png" style="width:5.76389in;height:3.07778in" alt="2" />
+<img class="common_img" src="../_static/media/chapter_2/section_3/image3.png" style="width:5.76389in;height:3.07778in" alt="2" />
 
 3)  点击界面右下角的"**操作说明**"按键，进入帮助界面。根据Lab颜色模型图可知，红色位于"**+a**"附近，因此需要将阈值区间往该处调整。
 
-<img src="../_static/media/chapter_2/section_3/image4.png" style="width:5.76389in;height:3.07778in" alt="3" />
+<img class="common_img" src="../_static/media/chapter_2/section_3/image4.png" style="width:5.76389in;height:3.07778in" alt="3" />
 
-<img src="../_static/media/chapter_2/section_3/image5.png" style="width:5.76389in;height:2.96667in" alt="4" />
+<img class="common_img" src="../_static/media/chapter_2/section_3/image5.png" style="width:5.76389in;height:2.96667in" alt="4" />
 
 4)  点击"**好的**"按键以返回阈值设置界面，将L、A、B三个颜色分量的数值范围都调整为0~255，即所有_min的参数都为0，所有_max的参数都为255。
 
-<img src="../_static/media/chapter_2/section_3/image6.png" style="width:5.76389in;height:2.98472in" alt="5" />
+<img class="common_img" src="../_static/media/chapter_2/section_3/image6.png" style="width:5.76389in;height:2.98472in" alt="5" />
 
 5)  保持"**A**"分量中"**a_max**"的数值不变，将"**a_min**"的数值增大，直至画面显示区上方的颜色物体区域变为白色，其它区域变为黑色。
 
-<img src="../_static/media/chapter_2/section_3/image7.png" style="width:5.76389in;height:2.98681in" alt="6" />
+<img class="common_img" src="../_static/media/chapter_2/section_3/image7.png" style="width:5.76389in;height:2.98681in" alt="6" />
 
 6)  根据所处环境来调整L分量和B分量。若红色物体在环境下颜色偏浅，增大亮度的最小值(L_min)；在环境下颜色偏深，则减小亮度的最大值(L_max)。若红色物体在环境下偏暖色调，增大色度的最小值(b_min)；在环境下偏冷色调，减小色度的最大值(b_max)。
 
 7)  调节完成后，点击"**保存**"按键。
 
-<img src="../_static/media/chapter_2/section_3/image8.png" style="width:5.76389in;height:3.01944in" alt="7" />
+<img class="common_img" src="../_static/media/chapter_2/section_3/image8.png" style="width:5.76389in;height:3.01944in" alt="7" />
 
 
 ## 4. 无线手柄遥控教程
@@ -413,7 +410,7 @@
 
 2.  自备两节7号干电池，取出手柄后壳，将电池插入电池槽内，注意正负极请勿插反。
 
-<img src="../_static/media/chapter_2/section_4/image2.png" style="width:5.51181in;height:2.11381in" alt="C:/Users/ADMINI~1/AppData/Local/Temp/picturescale_20200424200056/output_20200424200058.pngoutput_20200424200058" />
+<img class="common_img" src="../_static/media/chapter_2/section_4/image2.png" style="width:5.51181in;height:2.11381in" alt="C:/Users/ADMINI~1/AppData/Local/Temp/picturescale_20200424200056/output_20200424200058.pngoutput_20200424200058" />
 
 ### 4.2 设备连接
 
