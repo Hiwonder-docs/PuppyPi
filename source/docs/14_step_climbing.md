@@ -38,7 +38,7 @@ rosrun puppy_advanced_functions negotiate_stairs_demo.py
 
 <img src="../_static/media/chapter_14/section_1/image6.png" style="width:5.76111in;height:2.03681in" />
 
-4)  如需关闭此玩法，可在LX终端界面按下“**Ctrl+C**”，如关闭失败，可多次按下。
+4)  如需关闭此玩法，可在LX终端界面按下"**Ctrl+C**"，如关闭失败，可多次按下。
 
 ### 1.3 功能实现
 
@@ -74,11 +74,11 @@ rosrun puppy_advanced_functions negotiate_stairs_demo.py
 
 函数括号内的参数含义如下：
 
-第一个参数“**frame_resize**”是输入图像；
+第一个参数"**frame_resize**"是输入图像；
 
-第二个参数“**(3, 3)**”是高斯内核大小；
+第二个参数"**(3, 3)**"是高斯内核大小；
 
-第三个参数“**3**”是在高斯滤波中其平均值附近允许的方差大。该值越大，平均值周围允许的方差越大；数值越小，平均值周围允许的方差越小。
+第三个参数"**3**"是在高斯滤波中其平均值附近允许的方差大。该值越大，平均值周围允许的方差越大；数值越小，平均值周围允许的方差越小。
 
 2. **二值化处理**
 
@@ -106,11 +106,11 @@ opened = cv2.morphologyEx(frame_mask, cv2.MORPH_OPEN, np.ones((6, 6), np.uint8))
 
 为例，括号内的参数含义如下：
 
-第一个参数“**frame_mask**”是输入图像；
+第一个参数"**frame_mask**"是输入图像；
 
-第二个参数“**cv2.MORPH_OPEN**”是进行变化的方式，为开运算；
+第二个参数"**cv2.MORPH_OPEN**"是进行变化的方式，为开运算；
 
-第三个参数“**np.ones((6, 6), np.uint8)**”是方框的大小。
+第三个参数"**np.ones((6, 6), np.uint8)**"是方框的大小。
 
 4. **获取最大面积轮廓**
 
@@ -141,7 +141,7 @@ opened = cv2.morphologyEx(frame_mask, cv2.MORPH_OPEN, np.ones((6, 6), np.uint8))
 ## 2. 自主台阶攀爬
 
 :::{Note}
-如果演示效果不佳，可根据文档内“[关闭调试画面](#anchor_2_4_1)”进行调试。
+如果演示效果不佳，可根据文档内"[关闭调试画面](#anchor_2_4_1)"进行调试。
 :::
 
 ### 2.1 玩法简要说明
@@ -176,7 +176,7 @@ rosrun puppy_advanced_functions** **negotiate_stairs_demo.py
 
 <img src="../_static/media/chapter_14/section_2/image6.png" style="width:5.76111in;height:2.03681in" />
 
-4)  如需关闭此玩法，可在LX终端界面按下“**Ctrl+C**”，如关闭失败，可多次按下。
+4)  如需关闭此玩法，可在LX终端界面按下"**Ctrl+C**"，如关闭失败，可多次按下。
 
 ### 2.3 实现效果
 
@@ -207,14 +207,14 @@ rosed puppy_advanced_functions negotiate_stairs_demo.py
 <img src="../_static/media/chapter_14/section_2/image11.png" style="width:5.7625in;height:2.00486in" />
 
 :::{Note}
-在键盘输入代码位置序号后，按下“Shift+G”键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
+在键盘输入代码位置序号后，按下"Shift+G"键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
 :::
 
-3)  按下“**i**”键进入编辑模式，在代码前面添加“**\#**”，进行注释。
+3)  按下"**i**"键进入编辑模式，在代码前面添加"**\#**"，进行注释。
 
 <img src="../_static/media/chapter_14/section_2/image13.png" style="width:5.76806in;height:2.17014in" />
 
-4)  修改完成后，按下“**Esc**”键，输入“**:wq**”并回车，进行保存与退出。
+4)  修改完成后，按下"**Esc**"键，输入"**:wq**"并回车，进行保存与退出。
 
 ```commandline
 :wq
@@ -230,7 +230,7 @@ rosrun puppy_advanced_functions negotiate_stairs_demo.py
 
 <img src="../_static/media/chapter_14/section_2/image17.png" style="width:5.76806in;height:2.12083in" />
 
-6)  如需再次查看调试画面（摄像头实时回传画面），可将步骤3）框出的内容进行反注释，即将代码前面的“**\#**”去掉，再进行保存，如下图所示：
+6)  如需再次查看调试画面（摄像头实时回传画面），可将步骤3）框出的内容进行反注释，即将代码前面的"**\#**"去掉，再进行保存，如下图所示：
 
 <img src="../_static/media/chapter_14/section_2/image11.png" style="width:5.7625in;height:2.00486in" />
 
@@ -254,15 +254,15 @@ rosed puppy_advanced_functions** **negotiate_stairs_demo.py
 
 :::{Note}
 
-在键盘输入代码位置序号后，按下“Shift+G”键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
+在键盘输入代码位置序号后，按下"Shift+G"键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
 
 :::
 
-3)  按下“**i**”键进入编辑模式，将“**red**”改为“**black**”。
+3)  按下"**i**"键进入编辑模式，将"**red**"改为"**black**"。
 
 <img src="../_static/media/chapter_14/section_2/image20.png" style="width:5.76806in;height:1.63125in" />
 
-4)  修改完成后，按下“**Esc**”键，输入指令并按下回车，进行保存与退出。
+4)  修改完成后，按下"**Esc**"键，输入指令并按下回车，进行保存与退出。
 
 ```commandline
 :wq
@@ -302,15 +302,15 @@ PuppyVelocityPub.publish(x=0, y=0, yaw_rate = math.radians(0))
 
 为例，括号内的参数含义如下：
 
-第一个参数“**x**”是机器狗的直行速度，前进方向为正方向，单位cm/s；
+第一个参数"**x**"是机器狗的直行速度，前进方向为正方向，单位cm/s；
 
-第二个参数“**y**”是机器狗的侧移速度，左侧方向为正方向，单位cm/s，目前无此功能；
+第二个参数"**y**"是机器狗的侧移速度，左侧方向为正方向，单位cm/s，目前无此功能；
 
-第三个参数“**yaw_rate**”是机器狗的转弯速度，逆时针方向为正方向，单位rad/s。
+第三个参数"**yaw_rate**"是机器狗的转弯速度，逆时针方向为正方向，单位rad/s。
 
 - #### 2.5.2 攀爬台阶
 
-靠近台阶后，直接调用机器狗内置动作组“**up_stairs_2cm.d6ac**”执行攀爬动作。
+靠近台阶后，直接调用机器狗内置动作组"**up_stairs_2cm.d6ac**"执行攀爬动作。
 
 <img src="../_static/media/chapter_14/section_2/image29.png" style="width:5.76319in;height:1.40347in" />
 
@@ -324,18 +324,18 @@ PuppyPosePub.publish(stance_x=PuppyPose['stance_x'], stance_y=PuppyPose['stance_
 
 为例，括号内的参数含义如下：
 
-第一个参数“**stance_x**”是4条腿在x轴上额外分开的距离，单位为cm；
+第一个参数"**stance_x**"是4条腿在x轴上额外分开的距离，单位为cm；
 
-第二个参数“**stance_y**”是4条腿在y轴上额外分开的距离，单位为cm；
+第二个参数"**stance_y**"是4条腿在y轴上额外分开的距离，单位为cm；
 
-第三个参数“**x_shift**”是4条腿在x轴上同向移动的距离，越小，走路越前倾，越大越后仰,通过调节x_shift可以调节机器狗走路的平衡，单位为cm；
+第三个参数"**x_shift**"是4条腿在x轴上同向移动的距离，越小，走路越前倾，越大越后仰,通过调节x_shift可以调节机器狗走路的平衡，单位为cm；
 
-第四个参数“**height**”是机器狗的高度，脚尖到大腿转动轴的垂直距离，单位为cm；
+第四个参数"**height**"是机器狗的高度，脚尖到大腿转动轴的垂直距离，单位为cm；
 
-第五个参数“**roll**”是机器狗的滚转角，单位为度；
+第五个参数"**roll**"是机器狗的滚转角，单位为度；
 
-第六个参数“**pitch**”是机器狗的的俯仰角，单位为度；
+第六个参数"**pitch**"是机器狗的的俯仰角，单位为度；
 
-第七个参数“**yaw**”是机器狗的偏航角，单位为度；
+第七个参数"**yaw**"是机器狗的偏航角，单位为度；
 
-第八个参数“**run_time**”是运动时间，单位为ms。
+第八个参数"**run_time**"是运动时间，单位为ms。

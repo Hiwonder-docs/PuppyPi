@@ -48,7 +48,7 @@ rosrun puppy_extend_demo sonar_control_demo.py
 
 <img src="../_static/media/chapter_17/section_1/image6.png" style="width:5.76389in;height:2.00069in" />
 
-4)  如需关闭此程序，可按下“**Ctrl+C**”,若关闭失败，可多次按下。
+4)  如需关闭此程序，可按下"**Ctrl+C**",若关闭失败，可多次按下。
 
 ### 1.6 功能实现
 
@@ -66,7 +66,7 @@ rosrun puppy_extend_demo sonar_control_demo.py
 
 - #### 1.7.1 修改探测距离
 
-我们可以修改RGB灯颜色对应的距离范围，这里以将RGB亮绿色的距离范围“**300\<distance\<500**”修改为“**300\<distance\<550**”，将RGB亮蓝色的距离范围“**distance\>550**”修改为“**distance\>550**”为例进行示范，可参考以下步骤进行：
+我们可以修改RGB灯颜色对应的距离范围，这里以将RGB亮绿色的距离范围"**300\<distance\<500**"修改为"**300\<distance\<550**"，将RGB亮蓝色的距离范围"**distance\>550**"修改为"**distance\>550**"为例进行示范，可参考以下步骤进行：
 
 1)  点击系统桌面左上角的图标<img src="../_static/media/chapter_17/section_1/image5.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
@@ -80,7 +80,7 @@ rosed puppy_extend_demo sonar_control_demo.py
 
 <img src="../_static/media/chapter_17/section_1/image8.png" style="width:5.76389in;height:2.38681in" />
 
-3)  找到如下图框出的代码，按一下键盘的“**i**”键，进入编辑模式。
+3)  找到如下图框出的代码，按一下键盘的"**i**"键，进入编辑模式。
 
 <img src="../_static/media/chapter_17/section_1/image9.png" style="width:5.7625in;height:2.86736in" />
 
@@ -88,7 +88,7 @@ rosed puppy_extend_demo sonar_control_demo.py
 
 <img src="../_static/media/chapter_17/section_1/image10.png" style="width:5.76458in;height:1.88472in" />
 
-5)  修改完成之后，按一下键盘的“**Esc**”键，再依次输入指令（注意wq前为冒号：），回车，即可保存修改内容。
+5)  修改完成之后，按一下键盘的"**Esc**"键，再依次输入指令（注意wq前为冒号：），回车，即可保存修改内容。
 
 ```commandline
 :wq
@@ -100,19 +100,19 @@ rosed puppy_extend_demo sonar_control_demo.py
 
 同样，我们也可以更改RGB彩灯的颜色，这里以将RGB彩灯的颜色由红色更改为黄色为例进行示范，可按照以下步骤进行修改：
 
-1)  参考“[6.1 修改探测距离](#anchor_1_7_1)”的步骤1、2，打开玩法程序文件。
+1)  参考"[6.1 修改探测距离](#anchor_1_7_1)"的步骤1、2，打开玩法程序文件。
 
-2)  在打开的界面中，找到如下图所示代码，按一下键盘的“i”键，进入编辑模式。
+2)  在打开的界面中，找到如下图所示代码，按一下键盘的"i"键，进入编辑模式。
 
 <img src="../_static/media/chapter_17/section_1/image12.png" style="width:5.7625in;height:2.86042in" />
 
-3)  可通过修改RGB的值来修改发光颜色。将“**setRGB(1,(255,0,0))**”和“**setRGB(0,(255,0,0))**”修改为“**setRGB(1,(255,255,0))**”和“**setRGB(0,(255,255,0))**”，如下图所示：
+3)  可通过修改RGB的值来修改发光颜色。将"**setRGB(1,(255,0,0))**"和"**setRGB(0,(255,0,0))**"修改为"**setRGB(1,(255,255,0))**"和"**setRGB(0,(255,255,0))**"，如下图所示：
 
 <img src="../_static/media/chapter_17/section_1/image13.png" style="width:5.76111in;height:2.17014in" />
 
 RGB值指某种颜色中红（Red）、绿（Green）、蓝（Blue）成分，理论上讲，红绿蓝三种基色按照不同的比例混合可以调配出任何一种颜色。某种颜色的RGB值越近就越接近灰色或黑白，数值越大就越白，反之越黑。
 
-4)  修改完成之后，按一下键盘的“**Esc**”键，再依次输入指令（注意wq前为冒号：），按下回车，即可保存修改内容。
+4)  修改完成之后，按一下键盘的"**Esc**"键，再依次输入指令（注意wq前为冒号：），按下回车，即可保存修改内容。
 
 ```commandline
 :wq
@@ -164,7 +164,7 @@ rosrun puppy_extend_demo sonar_avoidance.py
 
 <img src="../_static/media/chapter_17/section_2/image8.png" style="width:5.76111in;height:2.05069in" />
 
-4)  如需关闭此程序，可按下“**Ctrl+C**”,若关闭失败，可多次按下。
+4)  如需关闭此程序，可按下"**Ctrl+C**",若关闭失败，可多次按下。
 
 ### 2.5 功能实现
 
@@ -179,7 +179,7 @@ rosrun puppy_extend_demo sonar_avoidance.py
 
 ### 3.2 准备工作
 
-准备一个触摸传感器，并通过4PIN线将其连接至树莓派扩展板上的“5V GND IO22 IO24”接口，接线效果如下图所示：
+准备一个触摸传感器，并通过4PIN线将其连接至树莓派扩展板上的"5V GND IO22 IO24"接口，接线效果如下图所示：
 
 <img src="../_static/media/chapter_17/section_3/image2.png" style="width:5.75972in;height:5.75972in" alt="触摸传感器" />
 
@@ -219,7 +219,7 @@ rosrun puppy_extend_demo touch_detect_demo.py
 
 <img src="../_static/media/chapter_17/section_3/image6.png" style="width:5.7625in;height:1.89306in" />
 
-4)  如需关闭此程序，可按下“**Ctrl+C**”，若关闭失败，可多次按下。
+4)  如需关闭此程序，可按下"**Ctrl+C**"，若关闭失败，可多次按下。
 
 ### 3.6 功能实现
 
@@ -235,7 +235,7 @@ rosrun puppy_extend_demo touch_detect_demo.py
 
 ### 4.2 准备工作
 
-需要准备点阵屏显示模块，并通过4PIN线将点阵屏显示模块连接至树莓派扩展板上的“**5V GND IO7 IO8**”接口，接线效果如下图所示：
+需要准备点阵屏显示模块，并通过4PIN线将点阵屏显示模块连接至树莓派扩展板上的"**5V GND IO7 IO8**"接口，接线效果如下图所示：
 
 <img src="../_static/media/chapter_17/section_4/image2.png" style="width:5.74583in;height:3.44167in" alt="点阵模块接线图 - 4PIN线" />
 
@@ -259,15 +259,15 @@ rosrun puppy_extend_demo touch_detect_demo.py
 
 每组数据设置方法非常简单，我们以本节示例课程为例。实验中，我们控制点阵模块显
 
-示“**Hello**”字符。
+示"**Hello**"字符。
 
 <img src="../_static/media/chapter_17/section_4/image4.png" style="width:5.76181in;height:0.55556in" />
 
-在控制代码的32和33行中就是设置点阵显示图案的数组。数组中的第1个元素是0x7f， 转换为二进制数是01111111，它代表第一列LED从下往上的灯光状态为：灭亮亮亮亮亮亮亮。 同理，后面的15个元素，就是控制其他15列LED亮灭，最终让点阵显示“**Hello**”字符。
+在控制代码的32和33行中就是设置点阵显示图案的数组。数组中的第1个元素是0x7f， 转换为二进制数是01111111，它代表第一列LED从下往上的灯光状态为：灭亮亮亮亮亮亮亮。 同理，后面的15个元素，就是控制其他15列LED亮灭，最终让点阵显示"**Hello**"字符。
 
 :::{Note}
 
-大家可以在本节同目录下看到“字模软件的使用方法”，利用字模软件快速获取控制数组。
+大家可以在本节同目录下看到"字模软件的使用方法"，利用字模软件快速获取控制数组。
 
 :::
 
@@ -291,15 +291,15 @@ rosrun puppy_extend_demo lattice_display_demo.py
 
 <img src="../_static/media/chapter_17/section_4/image10.png" style="width:5.76389in;height:1.86042in" />
 
-4)  如需关闭此程序，可按下“**Ctrl+C**”。
+4)  如需关闭此程序，可按下"**Ctrl+C**"。
 
 ### 4.6 功能实现
 
-程序运行后，点阵显示“**Hello**”字符5秒钟，然后自动退出程序，关闭点阵显示。
+程序运行后，点阵显示"**Hello**"字符5秒钟，然后自动退出程序，关闭点阵显示。
 
 ### 4.7 功能延伸
 
-本节程序默认点阵显示内容为“**Hello**”，如需修改显示的字样，例如修改为“**Love**”。可参照以下步骤：
+本节程序默认点阵显示内容为"**Hello**"，如需修改显示的字样，例如修改为"**Love**"。可参照以下步骤：
 
 修改之前，我们需要获取字母在点阵显示的地址符，这里我们通过取模软件来获取。
 
@@ -307,11 +307,11 @@ rosrun puppy_extend_demo lattice_display_demo.py
 
 <img class="common_img" src="../_static/media/chapter_17/section_4/image12.png" style="width:1.10208in;height:1.19444in" alt="11" />
 
-2)  先点击“**新建图像**”，在弹出的设置框设置点阵模块的尺寸参数，这里设置为“**16\*8**”，设置完成后，点击“**确定**”。
+2)  先点击"**新建图像**"，在弹出的设置框设置点阵模块的尺寸参数，这里设置为"**16\*8**"，设置完成后，点击"**确定**"。
 
 <img src="../_static/media/chapter_17/section_4/image13.png" style="width:5.7625in;height:4.10139in" alt="7" />
 
-3)  依次点击“**模拟动画**”和“**放大格点**”，将右侧点阵模拟区域放大。
+3)  依次点击"**模拟动画**"和"**放大格点**"，将右侧点阵模拟区域放大。
 
 <img src="../_static/media/chapter_17/section_4/image14.png" style="width:5.7625in;height:4.10139in" alt="8" />
 
@@ -319,7 +319,7 @@ rosrun puppy_extend_demo lattice_display_demo.py
 
 <img src="../_static/media/chapter_17/section_4/image15.png" style="width:5.76667in;height:3.29514in" alt="9" />
 
-5)  绘制完成之后，依次点击“**取模方式**”、“**51格式**”，即可得到地址符（这一步请将地址符记下，后续步骤需用到）。
+5)  绘制完成之后，依次点击"**取模方式**"、"**51格式**"，即可得到地址符（这一步请将地址符记下，后续步骤需用到）。
 
 <img src="../_static/media/chapter_17/section_4/image16.png" style="width:5.7625in;height:4.10139in" alt="10" />
 
@@ -335,7 +335,7 @@ rosed puppy_extend_demo lattice_display_demo.py
 
 <img src="../_static/media/chapter_17/section_4/image19.png" style="width:5.7625in;height:0.46944in" />
 
-8)  按一下键盘的“**i**”键，进入编辑模式。
+8)  按一下键盘的"**i**"键，进入编辑模式。
 
 <img src="../_static/media/chapter_17/section_4/image21.png" style="width:5.76111in;height:1.47014in" />
 
@@ -343,7 +343,7 @@ rosed puppy_extend_demo lattice_display_demo.py
 
 <img src="../_static/media/chapter_17/section_4/image24.png" style="width:5.76806in;height:1.63819in" />
 
-10) 修改完成之后，按一下键盘的“**Esc**”键，再依次输入指令（注意wq前为冒号：），回车，即可保存修改内容。
+10) 修改完成之后，按一下键盘的"**Esc**"键，再依次输入指令（注意wq前为冒号：），回车，即可保存修改内容。
 
 ```commandline
 :wq
@@ -351,7 +351,7 @@ rosed puppy_extend_demo lattice_display_demo.py
 
 <img src="../_static/media/chapter_17/section_4/image25.png" style="width:5.76389in;height:0.75139in" />
 
-11) 重复本文档“[4.5 玩法开启及关闭步骤](#anchor_4_5)”的步骤，即可实现更改效果。
+11) 重复本文档"[4.5 玩法开启及关闭步骤](#anchor_4_5)"的步骤，即可实现更改效果。
 
 ## 5. 语音识别传感器实验
 
@@ -389,7 +389,7 @@ rosed puppy_extend_demo lattice_display_demo.py
 
 <img src="../_static/media/chapter_17/section_5/image3.png" style="width:5.76042in;height:3.23264in" />
 
-通过asr.setMode函数设置识别模式，此行代码“**asr.setMode(2)**”中的参数“**2**”为选择口令模式，再通过asr.addWords函数添加词条，以代码“**asr.addWords(1, ‘kai shi’)**”为例，参数“**1**”为词条的序号，参数“**kai shi**”为词条“**开始**”的拼音
+通过asr.setMode函数设置识别模式，此行代码"**asr.setMode(2)**"中的参数"**2**"为选择口令模式，再通过asr.addWords函数添加词条，以代码"**asr.addWords(1, ‘kai shi’)**"为例，参数"**1**"为词条的序号，参数"**kai shi**"为词条"**开始**"的拼音
 
 <p id="anchor_5_5"></p>
 
@@ -407,11 +407,11 @@ rosrun puppy_extend_demo ASR_detect_demo.py
 
 <img src="../_static/media/chapter_17/section_5/image7.png" style="width:5.76806in;height:2.04375in" />
 
-4)  如需关闭此程序，可按下“**Ctrl+C**”，若关闭失败，可重复按下。
+4)  如需关闭此程序，可按下"**Ctrl+C**"，若关闭失败，可重复按下。
 
 ### 5.6 功能实现
 
-程序运行后，说“开始”，识别到后，接着说“红色”，树莓派扩展板上的彩灯会变成红色；再说出“绿色”，彩灯会变成绿色；再说出“蓝色”，彩灯会变成蓝色。
+程序运行后，说"开始"，识别到后，接着说"红色"，树莓派扩展板上的彩灯会变成红色；再说出"绿色"，彩灯会变成绿色；再说出"蓝色"，彩灯会变成蓝色。
 
 ### 5.7 功能延伸
 
@@ -431,11 +431,11 @@ rosed puppy_extend_demo ASR_detect_demo.py
 
 <img src="../_static/media/chapter_17/section_5/image11.png" style="width:5.76528in;height:3.52778in" />
 
-4)  按一下键盘的“**i**”键，进入编辑模式，将“**hong se**”修改为“**huang se**”，set_rgb_show函数中的数值修改为“**255，255，0**”如下图所示。
+4)  按一下键盘的"**i**"键，进入编辑模式，将"**hong se**"修改为"**huang se**"，set_rgb_show函数中的数值修改为"**255，255，0**"如下图所示。
 
 <img src="../_static/media/chapter_17/section_5/image13.png" style="width:5.76736in;height:4.02014in" />
 
-5)  修改完成之后，按一下键盘的“**Esc**”键，再依次输入指令（注意wq前为冒号：），回车，即可保存修改内容。
+5)  修改完成之后，按一下键盘的"**Esc**"键，再依次输入指令（注意wq前为冒号：），回车，即可保存修改内容。
 
 ```commandline
 :wq
@@ -443,7 +443,7 @@ rosed puppy_extend_demo ASR_detect_demo.py
 
 <img src="../_static/media/chapter_17/section_5/image15.png" style="width:5.76667in;height:1.01736in" />
 
-6)  重复本文档“[5.5 玩法开启及关闭步骤](#anchor_5_5)”的步骤，即可实现更改效果。
+6)  重复本文档"[5.5 玩法开启及关闭步骤](#anchor_5_5)"的步骤，即可实现更改效果。
 
 ## 6. 机器狗触摸检测感应
 
@@ -455,7 +455,7 @@ rosed puppy_extend_demo ASR_detect_demo.py
 
 ### 6.2 准备工作
 
-准备一个触摸传感器，并通过4PIN线将其连接至树莓派扩展板上的“**5V GND IO22 IO24**”接口，接线效果如下图所示：
+准备一个触摸传感器，并通过4PIN线将其连接至树莓派扩展板上的"**5V GND IO22 IO24**"接口，接线效果如下图所示：
 
 <img src="../_static/media/chapter_17/section_6/image2.png" style="width:5.75972in;height:5.75972in" alt="触摸传感器" />
 
@@ -499,7 +499,7 @@ rosrun puppy_extend_demo touch_control_demo.py
 
 <img src="../_static/media/chapter_17/section_6/image8.png" style="width:5.76736in;height:1.97222in" />
 
-4)  如需关闭此程序，可按下“**Ctrl+C**”，若关闭失败，可多次按下。
+4)  如需关闭此程序，可按下"**Ctrl+C**"，若关闭失败，可多次按下。
 
 ### 6.6 功能实现
 
@@ -532,7 +532,7 @@ rosrun puppy_extend_demo touch_control_demo.py
 
 ### 7.4 实现原理
 
-MP3模块最大支持32G的SD卡，支持FAT16， FAT32文件系统，支持MP3， WAV，WMA格式歌曲，先在SD卡内建立一个名称为“**MP3**”的文件夹，然后在文件夹里放入需要播放的歌曲，歌曲格式如下0001+歌曲名，例如歌曲小苹果可以命名如下：0001小苹果，也可以不加歌曲名即0001,其他以此类推0010, 0100, 1000等。
+MP3模块最大支持32G的SD卡，支持FAT16， FAT32文件系统，支持MP3， WAV，WMA格式歌曲，先在SD卡内建立一个名称为"**MP3**"的文件夹，然后在文件夹里放入需要播放的歌曲，歌曲格式如下0001+歌曲名，例如歌曲小苹果可以命名如下：0001小苹果，也可以不加歌曲名即0001,其他以此类推0010, 0100, 1000等。
 
 该程序的源代码位于Docker容器中的：**/home/ubuntu/puppypi/src/puppy_extend_demo/scripts/mp3_moonwalk_demo.py**
 
@@ -552,7 +552,7 @@ rosrun puppy_extend_demo mp3_moonwalk_demo.py
 
 <img src="../_static/media/chapter_17/section_7/image8.png" style="width:5.76736in;height:2.10764in" />
 
-4)  如需关闭此程序，可按下“**Ctrl+C**”，若关闭失败，可重复按下。
+4)  如需关闭此程序，可按下"**Ctrl+C**"，若关闭失败，可重复按下。
 
 ### 7.6 功能实现
 
@@ -560,7 +560,7 @@ rosrun puppy_extend_demo mp3_moonwalk_demo.py
 
 ### 7.7 功能延伸
 
-如需修改音乐，可按照以下步骤进行，本节以更换编号为“0007”的曲目为例进行说明。
+如需修改音乐，可按照以下步骤进行，本节以更换编号为"0007"的曲目为例进行说明。
 
 :::{Note}
 
@@ -578,11 +578,11 @@ rosed puppy_extend_demo** **mp3_moonwalk_demo.py
 
 <img src="../_static/media/chapter_17/section_7/image10.png" style="width:5.76736in;height:1.89028in" />
 
-3)  找到如下图框出的代码，按一下键盘的“i”键，进入编辑模式。
+3)  找到如下图框出的代码，按一下键盘的"i"键，进入编辑模式。
 
 <img src="../_static/media/chapter_17/section_7/image12.png" style="width:5.76736in;height:1.99514in" />
 
-4)  playNum函数中的参数就是歌曲的编号，我们修改为7，修改完成之后，按一下键盘的“**Esc**”键，再依次输入指令，按下回车，即可保存修改内容。
+4)  playNum函数中的参数就是歌曲的编号，我们修改为7，修改完成之后，按一下键盘的"**Esc**"键，再依次输入指令，按下回车，即可保存修改内容。
 
 ```commandline
 :wq
@@ -592,7 +592,7 @@ rosed puppy_extend_demo** **mp3_moonwalk_demo.py
 
 :::{Note}
 
-函数中填写歌曲编号时可以省略前面的0，例如“0007”可以写成“7”
+函数中填写歌曲编号时可以省略前面的0，例如"0007"可以写成"7"
 
 :::
 
@@ -633,7 +633,7 @@ rosed puppy_extend_demo** **mp3_moonwalk_demo.py
 
 <img src="../_static/media/chapter_17/section_8/image3.png" style="width:5.76597in;height:2.28611in" />
 
-通过asr.setMode函数设置识别模式，此行代码“**asr.setMode(2)**”中的参数“**2**”为选择口令模式，再通过asr.addWords函数添加词条，以代码“**asr.addWords(1, ‘kai shi’)**”为例，参数“**1**”为词条的序号，参数“**kai shi**”为词条“**开始**”的拼音
+通过asr.setMode函数设置识别模式，此行代码"**asr.setMode(2)**"中的参数"**2**"为选择口令模式，再通过asr.addWords函数添加词条，以代码"**asr.addWords(1, ‘kai shi’)**"为例，参数"**1**"为词条的序号，参数"**kai shi**"为词条"**开始**"的拼音
 
 ### 8.5 玩法开启及关闭步骤
 
@@ -649,8 +649,8 @@ rosrun puppy_extend_demo voice_interaction_demo.py
 
 <img src="../_static/media/chapter_17/section_8/image7.png" style="width:5.76736in;height:2.175in" />
 
-4)  如需关闭此程序，可按下“**Ctrl+C**”，若关闭失败，可重复按下。
+4)  如需关闭此程序，可按下"**Ctrl+C**"，若关闭失败，可重复按下。
 
 ### 8.6 功能实现
 
-程序运行后，机器狗会保持站立，说“开始”，识别到后，接着说“抬头”，机器狗会做出抬头的动作；再说出“趴下”，机器狗会切换成趴下姿态；再说出“立正”，机器狗会回到站立姿态；再说出“原地踏步”，机器狗会开始原地踏步。
+程序运行后，机器狗会保持站立，说"开始"，识别到后，接着说"抬头"，机器狗会做出抬头的动作；再说出"趴下"，机器狗会切换成趴下姿态；再说出"立正"，机器狗会回到站立姿态；再说出"原地踏步"，机器狗会开始原地踏步。

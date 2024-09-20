@@ -4,7 +4,7 @@
 
 ### 1.1 SLAM简介
 
-首先以人为例，在前往目的地前，不管是否有地图，肯定要知道当前所处的位置，只不过人是通过眼睛，机器人则通过“激光雷达”这种方式。SLAM（Simultaneous Localization and Mapping）指的是即时定位和建图。
+首先以人为例，在前往目的地前，不管是否有地图，肯定要知道当前所处的位置，只不过人是通过眼睛，机器人则通过"激光雷达"这种方式。SLAM（Simultaneous Localization and Mapping）指的是即时定位和建图。
 
 定位是定位机体在坐标系下的位姿。坐标系的原点和姿态可以由第一帧关键帧、已有的全局地图或路标点、GPS得到。
 
@@ -16,7 +16,7 @@
 
 SLAM建图主要是有以下三个过程：
 
-1.  预处理：对雷达的点云原始数据进行优化，剔除一些有问题的数据，或者进行滤波。通俗来说，激光雷达获取的周围环境信息，被称为点云。它是能反映机器人所在环境中“眼睛”能看到的一个部分。其采集到的物体信息呈现出一系列分散的、具有准确角度和距离的信息。
+1.  预处理：对雷达的点云原始数据进行优化，剔除一些有问题的数据，或者进行滤波。通俗来说，激光雷达获取的周围环境信息，被称为点云。它是能反映机器人所在环境中"眼睛"能看到的一个部分。其采集到的物体信息呈现出一系列分散的、具有准确角度和距离的信息。
 
 2.  匹配：把当前这一局部环境的点云数据在已建立的地图上寻找对应的位置，进行匹配。通常，激光SLAM系统通过对不同时刻两片点云的匹配与比对，计算激光雷达相对运动的距离和姿态的改变，也就完成了对机器人自身的定位。
 
@@ -102,7 +102,7 @@ Gmapping算法的缺点是随着场景增大所需的粒子增加，因为每个
 
 - #### 2.3.1 安装虚拟机软件
 
-虚拟机的安装可以参考同目录下的文档：“**虚拟机安装.docx**”。
+虚拟机的安装可以参考同目录下的文档："**虚拟机安装.docx**"。
 
 - #### 2.3.2 虚拟机的打开和导入
 
@@ -110,7 +110,7 @@ Gmapping算法的缺点是随着场景增大所需的粒子增加，因为每个
 
 <img src="../_static/media/chapter_20/section_2/image4.png" style="width:5.7625in;height:1.06389in" />
 
-2)  打开虚拟机软件，点击“**打开虚拟机**”。
+2)  打开虚拟机软件，点击"**打开虚拟机**"。
 
 <img src="../_static/media/chapter_20/section_2/image5.png" style="width:5.76389in;height:1.25in" />
 
@@ -136,7 +136,7 @@ Gmapping算法的缺点是随着场景增大所需的粒子增加，因为每个
 
 <img src="../_static/media/chapter_20/section_2/image8.png" style="width:3.76042in;height:4.85417in" />
 
-2)  返回虚拟机，点击“**编辑**”，再点击“**虚拟机网络配置**”。
+2)  返回虚拟机，点击"**编辑**"，再点击"**虚拟机网络配置**"。
 
 <img src="../_static/media/chapter_20/section_2/image9.png" style="width:5.76389in;height:1.20278in" />
 
@@ -154,7 +154,7 @@ Gmapping算法的缺点是随着场景增大所需的粒子增加，因为每个
 
 <img src="../_static/media/chapter_20/section_2/image13.png" style="width:5.75625in;height:2.33403in" />
 
-<img src="../_static/media/chapter_20/section_2/image14.png" style="width:0.31496in;height:0.31496in" />输入指令时需要严格区分大小写，且可使用“Tab”键补齐关键词。
+<img src="../_static/media/chapter_20/section_2/image14.png" style="width:0.31496in;height:0.31496in" />输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
 
 6)  输入指令，按下回车，查看虚拟机的IP，如红框处所示。
 
@@ -172,7 +172,7 @@ sudo nano /etc/hosts
 
 <img src="../_static/media/chapter_20/section_2/image16.png" style="width:5.76111in;height:0.24722in" />
 
-8)  将下图第2行和第3行的IP修改为查看到的虚拟机IP和树莓派的IP，虚拟机IP按实际查看情况填写，树莓派IP在直连模式下，固定为“**192.168.149.1**”。
+8)  将下图第2行和第3行的IP修改为查看到的虚拟机IP和树莓派的IP，虚拟机IP按实际查看情况填写，树莓派IP在直连模式下，固定为"**192.168.149.1**"。
 
 <img src="../_static/media/chapter_20/section_2/image17.png" style="width:5.7625in;height:1.38264in" />
 
@@ -180,7 +180,7 @@ sudo nano /etc/hosts
 在修改ip的时候，我们要保证缩进与上行的相同。
 :::
 
-9)  修改完成后按“**Ctrl+x**”，按下Y键保存，再按下回车确定。
+9)  修改完成后按"**Ctrl+x**"，按下Y键保存，再按下回车确定。
 
 <img src="../_static/media/chapter_20/section_2/image18.png" style="width:5.76111in;height:0.44653in" />
 
@@ -188,7 +188,7 @@ sudo nano /etc/hosts
 
 1)  接着通过VNC远程连接树莓派桌面。
 
-2)  单击桌面左上角的的图标<img src="../_static/media/chapter_20/section_2/image19.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键“**Ctrl+Alt+T**”，打开命令行终端。
+2)  单击桌面左上角的的图标<img src="../_static/media/chapter_20/section_2/image19.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键"**Ctrl+Alt+T**"，打开命令行终端。
 
 3)  输入指令，并按下回车，修改PuppyPi网络配置。
 
@@ -198,7 +198,7 @@ sudo vim /etc/hosts
 
 <img src="../_static/media/chapter_20/section_2/image20.png" style="width:5.7625in;height:0.25694in" />
 
-4)  找到下图红框位置，输入修改成自己的虚拟机IP（上文1.2获得）。按下“**Esc**”键，输入指令，按下回车保存并退出。
+4)  找到下图红框位置，输入修改成自己的虚拟机IP（上文1.2获得）。按下"**Esc**"键，输入指令，按下回车保存并退出。
 
 ```commandline
 :wq
@@ -216,7 +216,7 @@ source .bashrc
 
 ### 2.4 启动激光雷达建图
 
-<img src="../_static/media/chapter_20/section_2/image14.png" style="width:0.31496in;height:0.31496in" />输入指令时需要严格区分大小写，且可使用“Tab”键补齐关键词。
+<img src="../_static/media/chapter_20/section_2/image14.png" style="width:0.31496in;height:0.31496in" />输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
 
 1)  我们采用PS2手柄手动遥控的方式，让PuppyPi感知周围环境并建图。打开手柄电源开关，按下START按键，连上后，机器狗将处于标准站立姿势。
 
@@ -248,11 +248,11 @@ roslaunch puppy_description rviz_with_urdf.launch
 
 <img src="../_static/media/chapter_20/section_2/image27.png" style="width:5.7625in;height:0.18264in" />
 
-7)  点击左上角的“**File**”，再点击“**Open Config**”，打开配置文件。
+7)  点击左上角的"**File**"，再点击"**Open Config**"，打开配置文件。
 
 <img src="../_static/media/chapter_20/section_2/image28.png" style="width:5.76389in;height:1.69514in" />
 
-8) 在“**puppy/puppy_sim/src/puppy_description**”路径下，找到“**mapping.rviz**”文件，点击打开。
+8) 在"**puppy/puppy_sim/src/puppy_description**"路径下，找到"**mapping.rviz**"文件，点击打开。
 
 <img src="../_static/media/chapter_20/section_2/image29.png" style="width:5.76111in;height:2.25in" />
 
@@ -281,8 +281,8 @@ roslaunch puppy_description rviz_with_urdf.launch
 | → / 左滑杆向右 |              右转              |
 | △ / 右滑杆向上 |          提升机体高度          |
 | × / 右滑杆向下 |          降低机体高度          |
-| ◻ / 右滑杆向左 | 减速（需配合按键“↑”、“↓”使用） |
-| ○ / 右滑杆向右 | 加速（需配合按键“↑”、“↓”使用） |
+| ◻ / 右滑杆向左 | 减速（需配合按键"↑"、"↓"使用） |
+| ○ / 右滑杆向右 | 加速（需配合按键"↑"、"↓"使用） |
 
 11) 探索完区域后，需要将地图保存到树莓派中，回到VNC，重新打开一个命令行终端，输入指令
 
@@ -296,11 +296,11 @@ rosrun map_server map_saver -f /home/ubuntu/puppypi/src/puppy_slam/maps/map1
 
 <img src="../_static/media/chapter_20/section_2/image31.png" style="width:5.76389in;height:2.40208in" />
 
-12) 保存的地图在Docker容器中的 “**/homeubuntu/puppy_pi/src/puppy_slam/maps/**”路径下。
+12) 保存的地图在Docker容器中的 "**/homeubuntu/puppy_pi/src/puppy_slam/maps/**"路径下。
 
 <img src="../_static/media/chapter_20/section_2/image34.png" style="width:5.76319in;height:2.0125in" />
 
-13) 此时整个SLAM建图过程就已经完成，可在启动建图重新的终端界面按下“**Ctrl+C**”，关闭程序。
+13) 此时整个SLAM建图过程就已经完成，可在启动建图重新的终端界面按下"**Ctrl+C**"，关闭程序。
 
 ## 3. Hector建图算法
 
@@ -352,7 +352,7 @@ Hector 的算法流程如下图所示：
 
 - #### 3.3.1 安装虚拟机软件
 
-虚拟机的安装可以参考同目录下的文档：“**虚拟机安装.docx**”。
+虚拟机的安装可以参考同目录下的文档："**虚拟机安装.docx**"。
 
 - #### 3.3.2 虚拟机的打开和导入
 
@@ -360,7 +360,7 @@ Hector 的算法流程如下图所示：
 
 <img src="../_static/media/chapter_20/section_3/image5.png" style="width:5.7625in;height:1.06389in" />
 
-2)  打开虚拟机软件，点击“**打开虚拟机**”。
+2)  打开虚拟机软件，点击"**打开虚拟机**"。
 
 <img src="../_static/media/chapter_20/section_3/image6.png" style="width:5.76389in;height:1.25in" />
 
@@ -386,7 +386,7 @@ Hector 的算法流程如下图所示：
 
 <img src="../_static/media/chapter_20/section_3/image9.png" style="width:3.76042in;height:4.85417in" />
 
-2)  返回虚拟机，点击“**编辑**”，再点击“**虚拟机网络配置**”。
+2)  返回虚拟机，点击"**编辑**"，再点击"**虚拟机网络配置**"。
 
 <img src="../_static/media/chapter_20/section_3/image10.png" style="width:5.76389in;height:1.20278in" />
 
@@ -404,7 +404,7 @@ Hector 的算法流程如下图所示：
 
 <img src="../_static/media/chapter_20/section_3/image14.png" style="width:5.75625in;height:2.33403in" />
 
-<img src="../_static/media/chapter_20/section_3/image15.png" style="width:0.31496in;height:0.31496in" />输入指令时需要严格区分大小写，且可使用“Tab”键补齐关键词。
+<img src="../_static/media/chapter_20/section_3/image15.png" style="width:0.31496in;height:0.31496in" />输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
 
 6)  输入指令，按下回车，查看虚拟机的IP，如红框处所示。
 
@@ -422,7 +422,7 @@ sudo nano /etc/hosts
 
 <img src="../_static/media/chapter_20/section_3/image17.png" style="width:5.76111in;height:0.24722in" />
 
-8)  将下图第2行和第3行的IP修改为查看到的虚拟机IP和树莓派的IP，虚拟机IP按实际查看情况填写，树莓派IP在直连模式下，固定为“**192.168.149.1**”。
+8)  将下图第2行和第3行的IP修改为查看到的虚拟机IP和树莓派的IP，虚拟机IP按实际查看情况填写，树莓派IP在直连模式下，固定为"**192.168.149.1**"。
 
 <img src="../_static/media/chapter_20/section_3/image18.png" style="width:5.7625in;height:1.38264in" />
 
@@ -430,7 +430,7 @@ sudo nano /etc/hosts
 在修改ip的时候，我们要保证缩进与上行的相同。
 :::
 
-9)  修改完成后按“**Ctrl+x**”，按下Y键保存，再按下回车确定。
+9)  修改完成后按"**Ctrl+x**"，按下Y键保存，再按下回车确定。
 
 <img src="../_static/media/chapter_20/section_3/image19.png" style="width:5.76111in;height:0.44653in" />
 
@@ -438,7 +438,7 @@ sudo nano /etc/hosts
 
 1)  接着通过VNC远程连接树莓派桌面。
 
-2)  单击桌面左上角的的图标<img src="../_static/media/chapter_20/section_3/image20.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键“Ctrl+Alt+T”，打开命令行终端。
+2)  单击桌面左上角的的图标<img src="../_static/media/chapter_20/section_3/image20.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键"Ctrl+Alt+T"，打开命令行终端。
 
 3)  输入指令，并按下回车，修改PuppyPi网络配置。
 
@@ -448,7 +448,7 @@ sudo vim /etc/hosts
 
 <img src="../_static/media/chapter_20/section_3/image21.png" style="width:5.7625in;height:0.25694in" />
 
-4)  找到下图红框位置，输入修改成自己的虚拟机IP（上文1.2获得）。按下“**Esc**”键，输入指令，按下回车保存并退出。
+4)  找到下图红框位置，输入修改成自己的虚拟机IP（上文1.2获得）。按下"**Esc**"键，输入指令，按下回车保存并退出。
 
 ```commandline
 :wq
@@ -466,7 +466,7 @@ source .bashrc
 
 ### 3.4 启动激光雷达建图
 
-<img src="../_static/media/chapter_20/section_3/image15.png" style="width:0.31496in;height:0.31496in" />输入指令时需要严格区分大小写，且可使用“**Tab**”键补齐关键词。
+<img src="../_static/media/chapter_20/section_3/image15.png" style="width:0.31496in;height:0.31496in" />输入指令时需要严格区分大小写，且可使用"**Tab**"键补齐关键词。
 
 1)  我们采用PS2手柄手动遥控的方式，让PuppyPi感知周围环境并建图。打开手柄电源开关，按下START按键，连上后，机器狗将处于标准站立姿势。
 
@@ -498,11 +498,11 @@ roslaunch puppy_description rviz_with_urdf.launch
 
 <img src="../_static/media/chapter_20/section_3/image28.png" style="width:5.7625in;height:0.18264in" />
 
-7) 点击左上角的“**File**”，再点击“**Open Config**”，打开配置文件。
+7) 点击左上角的"**File**"，再点击"**Open Config**"，打开配置文件。
 
 <img src="../_static/media/chapter_20/section_3/image29.png" style="width:5.76389in;height:1.69514in" />
 
-8) 在“**puppy/puppy_sim/src/puppy_description**”路径下，找到“**mapping.rviz**”文件，点击打开。
+8) 在"**puppy/puppy_sim/src/puppy_description**"路径下，找到"**mapping.rviz**"文件，点击打开。
 
 <img src="../_static/media/chapter_20/section_3/image30.png" style="width:5.76111in;height:2.25in" />
 
@@ -531,8 +531,8 @@ roslaunch puppy_description rviz_with_urdf.launch
 | → / 左滑杆向右 |              右转              |
 | △ / 右滑杆向上 |          提升机体高度          |
 | × / 右滑杆向下 |          降低机体高度          |
-| ◻ / 右滑杆向左 | 减速（需配合按键“↑”、“↓”使用） |
-| ○ / 右滑杆向右 | 加速（需配合按键“↑”、“↓”使用） |
+| ◻ / 右滑杆向左 | 减速（需配合按键"↑"、"↓"使用） |
+| ○ / 右滑杆向右 | 加速（需配合按键"↑"、"↓"使用） |
 
 11) 探索完区域后，需要将地图保存到树莓派中，回到VNC，重新打开一个命令行终端<img src="../_static/media/chapter_20/section_3/image24.png" style="width:0.32292in;height:0.30208in" />，输入指令
 
@@ -544,11 +544,11 @@ rosrun map_server map_saver -f /home/ubuntu/puppypi/src/puppy_slam/maps/map1
 
 <img src="../_static/media/chapter_20/section_3/image32.png" style="width:5.76389in;height:2.40208in" />
 
-12) 保存的地图在Docker容器中的“**/home/ubuntu/puppypi/src/puppy_slam/maps/**”路径下 。
+12) 保存的地图在Docker容器中的"**/home/ubuntu/puppypi/src/puppy_slam/maps/**"路径下 。
 
 <img src="../_static/media/chapter_20/section_3/image35.png" style="width:5.76319in;height:2.0125in" />
 
-13) 此时整个SLAM建图过程就已经完成，可在启动建图重新的终端界面按下“**Ctrl+C**”，关闭程序。
+13) 此时整个SLAM建图过程就已经完成，可在启动建图重新的终端界面按下"**Ctrl+C**"，关闭程序。
 
 ## 4. Karto建图算法
 
@@ -602,7 +602,7 @@ Karto算法的数据处理流程如下：
 
 - #### 4.3.1 安装虚拟机软件
 
-虚拟机的安装可以参考同目录下的文档：“**虚拟机安装.docx**”。
+虚拟机的安装可以参考同目录下的文档："**虚拟机安装.docx**"。
 
 - #### 4.3.2 虚拟机的打开和导入
 
@@ -610,7 +610,7 @@ Karto算法的数据处理流程如下：
 
 <img src="../_static/media/chapter_20/section_4/image4.png" style="width:5.7625in;height:1.06389in" />
 
-2)  打开虚拟机软件，点击“**打开虚拟机**”。
+2)  打开虚拟机软件，点击"**打开虚拟机**"。
 
 <img src="../_static/media/chapter_20/section_4/image5.png" style="width:5.76389in;height:1.25in" />
 
@@ -635,7 +635,7 @@ Karto算法的数据处理流程如下：
 
 <img src="../_static/media/chapter_20/section_4/image8.png" style="width:3.76042in;height:3.07986in" />
 
-2)  返回虚拟机，点击“**编辑**”，再点击“**虚拟机网络配置**”。
+2)  返回虚拟机，点击"**编辑**"，再点击"**虚拟机网络配置**"。
 
 <img src="../_static/media/chapter_20/section_4/image9.png" style="width:5.76389in;height:1.20278in" />
 
@@ -653,7 +653,7 @@ Karto算法的数据处理流程如下：
 
 <img src="../_static/media/chapter_20/section_4/image13.png" style="width:5.75625in;height:2.33403in" />
 
-<img src="../_static/media/chapter_20/section_4/image14.png" style="width:0.31496in;height:0.31496in" />输入指令时需要严格区分大小写，且可使用“**Tab**”键补齐关键词。
+<img src="../_static/media/chapter_20/section_4/image14.png" style="width:0.31496in;height:0.31496in" />输入指令时需要严格区分大小写，且可使用"**Tab**"键补齐关键词。
 
 6)  输入指令，按下回车，查看虚拟机的IP，如红框处所示。
 ```commandline
@@ -670,7 +670,7 @@ sudo nano /etc/hosts
 
 <img src="../_static/media/chapter_20/section_4/image16.png" style="width:5.76111in;height:0.24722in" />
 
-8)  将下图第2行和第3行的IP修改为查看到的虚拟机IP和树莓派的IP，虚拟机IP按实际查看情况填写，树莓派IP在直连模式下，固定为“**192.168.149.1**”。
+8)  将下图第2行和第3行的IP修改为查看到的虚拟机IP和树莓派的IP，虚拟机IP按实际查看情况填写，树莓派IP在直连模式下，固定为"**192.168.149.1**"。
 
 <img src="../_static/media/chapter_20/section_4/image17.png" style="width:5.7625in;height:1.38264in" />
 
@@ -678,7 +678,7 @@ sudo nano /etc/hosts
 在修改ip的时候，我们要保证缩进与上行的相同。
 :::
 
-9)  修改完成后按“**Ctrl+x**”，按下Y键保存，再按下回车确定。
+9)  修改完成后按"**Ctrl+x**"，按下Y键保存，再按下回车确定。
 
 <img src="../_static/media/chapter_20/section_4/image18.png" style="width:5.76111in;height:0.44653in" />
 
@@ -686,7 +686,7 @@ sudo nano /etc/hosts
 
 1)  接着通过VNC远程连接树莓派桌面。
 
-2)  单击桌面左上角的的图标<img src="../_static/media/chapter_20/section_4/image19.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键“**Ctrl+Alt+T**”，打开命令行终端。
+2)  单击桌面左上角的的图标<img src="../_static/media/chapter_20/section_4/image19.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键"**Ctrl+Alt+T**"，打开命令行终端。
 
 3)  输入指令，并按下回车，修改PuppyPi网络配置。
 
@@ -696,7 +696,7 @@ sudo vim /etc/hosts
 
 <img src="../_static/media/chapter_20/section_4/image20.png" style="width:5.7625in;height:0.25694in" />
 
-4)  找到下图红框位置，输入修改成自己的虚拟机IP（上文1.2获得）。按下“**Esc**”键，输入指令，按下回车保存并退出。
+4)  找到下图红框位置，输入修改成自己的虚拟机IP（上文1.2获得）。按下"**Esc**"键，输入指令，按下回车保存并退出。
 
 ```commandline
 :wq
@@ -715,7 +715,7 @@ source .bashrc
 ### 4.4 启动激光雷达建图
 
 :::{Note}
-输入指令时需要严格区分大小写，且可使用“**Tab**”键补齐关键词。
+输入指令时需要严格区分大小写，且可使用"**Tab**"键补齐关键词。
 :::
 
 1)  我们采用PS2手柄手动遥控的方式，让PuppyPi感知周围环境并建图。打开手柄电源开关，按下START按键，连上后，机器狗将处于标准站立姿势。
@@ -748,11 +748,11 @@ roslaunch puppy_description rviz_with_urdf.launch
 
 <img src="../_static/media/chapter_20/section_4/image27.png" style="width:5.7625in;height:0.18264in" />
 
-7)  点击左上角的“**File**”，再点击“**Open Config**”，打开配置文件。
+7)  点击左上角的"**File**"，再点击"**Open Config**"，打开配置文件。
 
 <img src="../_static/media/chapter_20/section_4/image28.png" style="width:5.76389in;height:1.69514in" />
 
-8) 在“**puppy/puppy_sim/src/puppy_description**”路径下，找到“**mapping.rviz**”文件，点击打开。
+8) 在"**puppy/puppy_sim/src/puppy_description**"路径下，找到"**mapping.rviz**"文件，点击打开。
 
 <img src="../_static/media/chapter_20/section_4/image29.png" style="width:5.76111in;height:2.25in" />
 
@@ -779,8 +779,8 @@ roslaunch puppy_description rviz_with_urdf.launch
 | → / 左滑杆向右 |              右转              |
 | △ / 右滑杆向上 |          提升机体高度          |
 | × / 右滑杆向下 |          降低机体高度          |
-| ◻ / 右滑杆向左 | 减速（需配合按键“↑”、“↓”使用） |
-| ○ / 右滑杆向右 | 加速（需配合按键“↑”、“↓”使用） |
+| ◻ / 右滑杆向左 | 减速（需配合按键"↑"、"↓"使用） |
+| ○ / 右滑杆向右 | 加速（需配合按键"↑"、"↓"使用） |
 
 11) 探索完区域后，需要将地图保存到树莓派中，回到VNC，重新打开一个命令行终端，输入指令，并按下回车。
 
@@ -792,11 +792,11 @@ rosrun map_server map_saver -f /home/ubuntu/puppypi/src/puppy_slam/maps/map1
 
 <img src="../_static/media/chapter_20/section_4/image31.png" style="width:5.76389in;height:2.40208in" />
 
-12) 保存的地图在Docker容器中的“**/homeubuntu/puppypi/src/puppy_slam/maps/**”路径下 。
+12) 保存的地图在Docker容器中的"**/homeubuntu/puppypi/src/puppy_slam/maps/**"路径下 。
 
 <img src="../_static/media/chapter_20/section_4/image35.png" style="width:5.76319in;height:2.0125in" />
 
-13) 此时整个SLAM建图过程就已经完成，可在启动建图的终端界面按下“**Ctrl+C**”，关闭程序。
+13) 此时整个SLAM建图过程就已经完成，可在启动建图的终端界面按下"**Ctrl+C**"，关闭程序。
 
 ## 5. APP建图
 
@@ -804,7 +804,7 @@ rosrun map_server map_saver -f /home/ubuntu/puppypi/src/puppy_slam/maps/map1
 
 我们可以通过手机来控制机器狗和查看机器狗的建图画面，并且用手机给机器狗设置目标点进行导航。
 
-1. 本节课需要用到手机APP“**Make A APP**”和“**Map Nav**”，前者用于建图，后者用于导航。
+1. 本节课需要用到手机APP"**Make A APP**"和"**Map Nav**"，前者用于建图，后者用于导航。
 
 2. 目前仅支持安卓系统：软件安装包位于本目录下，用户可将其导入手机进行安装。
 
@@ -830,13 +830,13 @@ rosrun map_server map_saver -f /home/ubuntu/puppypi/src/puppy_slam/maps/map1
 
 1.  开启机器狗，将其连接至远程控制软件VNC。
 
-2.  开启APP服务，具体操作步骤可参考“[**APP建图服务的开启**](#anchor_5_2_1)”。
+2.  开启APP服务，具体操作步骤可参考"[**APP建图服务的开启**](#anchor_5_2_1)"。
 
 3.  前往手机的设置界面，连接机器狗生成的热点。
 
 <img src="../_static/media/chapter_20/section_5/image6.png" style="width:4.07292in;height:4.17708in" />
 
-4.  打开APP“**Make A Map**”，将“**Master URI**”一栏修改为“**http://192.168.149.1:11311**”，并点击“**CONNECT**”按键。
+4.  打开APP"**Make A Map**"，将"**Master URI**"一栏修改为"**http://192.168.149.1:11311**"，并点击"**CONNECT**"按键。
 
 <img src="../_static/media/chapter_20/section_5/image7.png" style="width:3.14961in;height:2.50801in" />
 
@@ -856,11 +856,11 @@ rosrun map_server map_saver -f /home/ubuntu/puppypi/src/puppy_slam/maps/map1
 
 <img src="../_static/media/chapter_20/section_5/image9.png" style="width:5.76111in;height:2.05833in" />
 
-2)  保存的地图在Docker容器中的“**/homeubuntu/puppypi/src/puppy_slam/maps/**”路径下。
+2)  保存的地图在Docker容器中的"**/homeubuntu/puppypi/src/puppy_slam/maps/**"路径下。
 
 <img src="../_static/media/chapter_20/section_5/image10.png" style="width:5.76319in;height:2.0125in" />
 
-3)  此时整个SLAM建图过程就已经完成，可在启动建图重新的终端界面按下“**Ctrl+C**”，关闭程序。
+3)  此时整个SLAM建图过程就已经完成，可在启动建图重新的终端界面按下"**Ctrl+C**"，关闭程序。
 
 - #### 5.2.4 使用其他算法建图
 
@@ -884,7 +884,7 @@ sudo vim mapping_app.sh
 
 <img src="../_static/media/chapter_20/section_5/image16.png" style="width:5.76111in;height:2.31667in" />
 
-5) 可以通过修改下图红框位置来修改APP建图所想要使用的算法，一共提供三种算法，他们的文件名称分别为：“**gmapping.launch**”、“**hector.launch**”、“**karto.launch**”。将红框位置修改成需要使用的算法对应的文件名后，按下“**Esc**”键，输入指令并按下回车保存并退出。然后执行“[**2.1APP建图服务的开启**](#_APP服务的开启)”。
+5) 可以通过修改下图红框位置来修改APP建图所想要使用的算法，一共提供三种算法，他们的文件名称分别为："**gmapping.launch**"、"**hector.launch**"、"**karto.launch**"。将红框位置修改成需要使用的算法对应的文件名后，按下"**Esc**"键，输入指令并按下回车保存并退出。然后执行"[**2.1APP建图服务的开启**](#_APP服务的开启)"。
 
 ```commandline
 :wq

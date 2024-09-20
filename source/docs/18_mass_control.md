@@ -6,7 +6,7 @@
 
 1)  至少准备2台及以上的PuppyPi（本节课以2台PuppyPi为例进行示范）。
 
-2)  开发环境搭建，参照“**[远程工具安装及容器进入方法\1. 远程桌面工具安装与连接](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/8_remote_tool.html#)**”，下载并安装远程连接工具 VNC。
+2)  开发环境搭建，参照"**[远程工具安装及容器进入方法\1. 远程桌面工具安装与连接](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/8_remote_tool.html#)**"，下载并安装远程连接工具 VNC。
 
 ### 1.2 实现原理
 
@@ -22,7 +22,7 @@
 
 - 首先，选取一台PuppyPi作为主机，将它开机，然后远程连接它的系统桌面。
 
--  按下“Ctrl+Alt+T”打开命令行终端，进入到文件所在目录。输入指令，按下回车。
+-  按下"Ctrl+Alt+T"打开命令行终端，进入到文件所在目录。输入指令，按下回车。
       
 ```commandline
 cd hiwonder-toolbox
@@ -38,11 +38,11 @@ sudo vim wifi_conf.py
 
 <img src="../_static/media/chapter_18/section_1//image3.png" style="width:5.8125in;height:1.71736in" />
 
--  按下键盘上的“**i** ”键，进入编辑模式。修改主机热点密码，先找到下图框选的这两行代码。
+-  按下键盘上的"**i** "键，进入编辑模式。修改主机热点密码，先找到下图框选的这两行代码。
 
 <img src="../_static/media/chapter_18/section_1//image5.png" style="width:5.8125in;height:3.28264in" />
 
--  修改完成之后，按下“**Esc** ”键，退出编辑模式。再输入“**:wq** ”保存并退出。
+-  修改完成之后，按下"**Esc** "键，退出编辑模式。再输入"**:wq** "保存并退出。
 
 ```commandline
 :wq
@@ -57,7 +57,7 @@ sudo systemctl restart wifi.service
 
 <img src="../_static/media/chapter_18/section_1//image7.png" style="width:5.7625in;height:0.24167in" />
 
--  待主机重启完成后，再连接主机的Wi-Fi 时，需输入Wi-Fi密码“**hiwonder** ”。
+-  待主机重启完成后，再连接主机的Wi-Fi 时，需输入Wi-Fi密码"**hiwonder** "。
 
 2. **配置从机网络**
 
@@ -78,7 +78,7 @@ sudo vim wifi_conf.py
 
 <img src="../_static/media/chapter_18/section_1//image3.png" style="width:5.8125in;height:1.71736in" />
 
--  输入键盘上的“**i**”键，进入编辑模式，将WI-FI名称和密码这两行代码改成如下图所示。
+-  输入键盘上的"**i**"键，进入编辑模式，将WI-FI名称和密码这两行代码改成如下图所示。
 
 :::{Note}
 找到框选出的这四行代码。
@@ -86,9 +86,9 @@ sudo vim wifi_conf.py
 
 <img src="../_static/media/chapter_18/section_1//image8.png" style="width:5.8125in;height:3.29514in" />
 
-将从机的网络模式设置为“**2**”即为局域网模式，“**HW-123**”和“**hiwonder**”则为**配置主机网络**设置的主机WI-FI名称和密码。
+将从机的网络模式设置为"**2**"即为局域网模式，"**HW-123**"和"**hiwonder**"则为**配置主机网络**设置的主机WI-FI名称和密码。
 
--  修改完成之后，按一下“**Esc** ”键，退出编辑模式。再输入“ **:wq** ”保存并退出。
+-  修改完成之后，按一下"**Esc** "键，退出编辑模式。再输入" **:wq** "保存并退出。
 
 ```commandline
 :wq
@@ -148,7 +148,7 @@ rosrun puppy_control puppy_mul.py
 
 <img src="../_static/media/chapter_18/section_2//image9.png" style="width:5.76389in;height:1.86042in" />
 
-7)  接着再打开一个新的终端输入“**ssh 192.168.149.119**”按下回车，输入密码“**raspberrypi**”与“**source multi_slave_env.sh 192.168.149.1**”配置为从机环境变量（这里是为了启动群发控制的话题，也可将其配置为主机环境变量再启动8~11步）
+7)  接着再打开一个新的终端输入"**ssh 192.168.149.119**"按下回车，输入密码"**raspberrypi**"与"**source multi_slave_env.sh 192.168.149.1**"配置为从机环境变量（这里是为了启动群发控制的话题，也可将其配置为主机环境变量再启动8~11步）
 
 ```commandline
 ssh 192.168.149.119
@@ -160,7 +160,7 @@ source multi_slave_env.sh 192.168.149.1
 
 <img src="../_static/media/chapter_18/section_2//image10.png" style="width:5.76458in;height:2.00278in" />
 
-8)  输入以下指令可查看主/从机的话题信息。（**若未出现主/从机话题信息，则是主/从机对应的群发控制程序没有启动，需参照上文“1~6步重新操作** **”**）
+8)  输入以下指令可查看主/从机的话题信息。（**若未出现主/从机话题信息，则是主/从机对应的群发控制程序没有启动，需参照上文"1~6步重新操作** **"**）
 
 ```commandline
 rostopic info /multi_robot/runActionGroup
@@ -168,7 +168,7 @@ rostopic info /multi_robot/runActionGroup
 
 <img src="../_static/media/chapter_18/section_2//image11.jpeg" style="width:5.76333in;height:1.41in" />
 
-9)  输入“ **rostopic** **pub** **/multi_robot/runActionGroup** ”，再按3下Tab键将命令补齐为“**rostopic** **pub** **/multi_robot/runActionGroup** **std_msgs/String** **"data:** **''"** ”
+9)  输入" **rostopic** **pub** **/multi_robot/runActionGroup** "，再按3下Tab键将命令补齐为"**rostopic** **pub** **/multi_robot/runActionGroup** **std_msgs/String** **"data:** **''"** "
 
 ```commandline
 rostopic pub /multi_robot/runActionGroup std_msgs/String "data: ''"
@@ -176,7 +176,7 @@ rostopic pub /multi_robot/runActionGroup std_msgs/String "data: ''"
 
 <img src="../_static/media/chapter_18/section_2//image12.png" style="width:5.76458in;height:1.87014in" />
 
-10) 在data: ''中填入动作组的名称（动作组可在“**/home/ubuntu/software/puppypi_control/ActionGroups**” 目录中可以找到）
+10) 在data: ''中填入动作组的名称（动作组可在"**/home/ubuntu/software/puppypi_control/ActionGroups**" 目录中可以找到）
 
 <img src="../_static/media/chapter_18/section_2//image13.png" style="width:5.76111in;height:1.98125in" />
 
@@ -184,13 +184,13 @@ rostopic pub /multi_robot/runActionGroup std_msgs/String "data: ''"
 
 <img src="../_static/media/chapter_18/section_2//image14.jpeg" style="width:5.755in;height:0.34833in" />
 
-12) 若要执行其它的动作，在启动群发控制话题的终端按下“Ctrl+c ”，将其关闭，再 按下键盘的“ ↑ ”方向按键，修改动作组名称，按下回车即可执行。
+12) 若要执行其它的动作，在启动群发控制话题的终端按下"Ctrl+c "，将其关闭，再 按下键盘的" ↑ "方向按键，修改动作组名称，按下回车即可执行。
 
 <img src="../_static/media/chapter_18/section_2//image15.png" style="width:5.76806in;height:1.88333in" />
 
-13) 如需关闭此玩法，可在LX终端界面按下“**Ctrl+C**”，如关闭失败，可多次按下。
+13) 如需关闭此玩法，可在LX终端界面按下"**Ctrl+C**"，如关闭失败，可多次按下。
 
-14) 接着在主机与从机的终端界面参考“**[1.3 主从机配置工作\ 配置主机网络](#anchor_1_3_1)**”，将Wi-Fi配置文件的注释添加上。将其恢复成直连模式。
+14) 接着在主机与从机的终端界面参考"**[1.3 主从机配置工作\ 配置主机网络](#anchor_1_3_1)**"，将Wi-Fi配置文件的注释添加上。将其恢复成直连模式。
 
 ### 2.2 功能实现
 

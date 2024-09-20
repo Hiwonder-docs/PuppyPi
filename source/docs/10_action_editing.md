@@ -91,7 +91,7 @@ python3 software/puppypi_control/PuppyPi.py
 
 :::{Note}
 
-动作组文件统一保存至Docker容器中的 "**/home/ubuntu/software/puppypi_control/ActionGroups**
+动作组文件统一保存至Docker容器中的 "**/home/ubuntu/software/puppypi_control/ActionGroups**"
 
 :::
 

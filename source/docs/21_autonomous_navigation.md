@@ -12,7 +12,7 @@
 
 我们已经知道，要实现自主导航，就需要机器人带有：全局地图、自身定位、路径规划、运动控制和环境感知这五个组件，而这些组件对应的就是机器人内部的功能包。
 
-首先是**全局地图**：它可以为机器人的导航提供全局性质的地图，而对应的地图则是通过SLAM来进行构建的，对应有关SLAM的原理可以参考“**第20章SLAM建图课程\第1课 SLAM地图构建原理**”进行学习。
+首先是**全局地图**：它可以为机器人的导航提供全局性质的地图，而对应的地图则是通过SLAM来进行构建的，对应有关SLAM的原理可以参考"**第20章SLAM建图课程\第1课 SLAM地图构建原理**"进行学习。
 
 **自身定位**：通过算法来计算出机器人在地图中的位置。
 
@@ -186,7 +186,7 @@ https://www.redblobgames.com/pathfinding/a-star/introduction.html#graphs
 
 - #### 3.1.1 安装虚拟机软件
 
-虚拟机的安装可以参考“**[软件工具\6.虚拟机安装包与虚拟机镜像]()**”路径下的文档。
+虚拟机的安装可以参考"**[软件工具\6.虚拟机安装包与虚拟机镜像]()**"路径下的文档。
 
 - #### 3.1.2 虚拟机的打开和导入
 
@@ -194,7 +194,7 @@ https://www.redblobgames.com/pathfinding/a-star/introduction.html#graphs
 
 <img src="../_static/media/chapter_21/section_3/image2.png" style="width:5.7625in;height:1.06389in" />
 
-2)  打开虚拟机软件，点击“**打开虚拟机**”。
+2)  打开虚拟机软件，点击"**打开虚拟机**"。
 
 <img src="../_static/media/chapter_21/section_3/image3.png" style="width:5.76389in;height:1.25in" />
 
@@ -220,7 +220,7 @@ https://www.redblobgames.com/pathfinding/a-star/introduction.html#graphs
 
 <img src="../_static/media/chapter_21/section_3/image6.png" style="width:3.76042in;height:4.85417in" />
 
-2)  返回虚拟机，点击“**编辑**”，再点击“**虚拟机网络配置**”。
+2)  返回虚拟机，点击"**编辑**"，再点击"**虚拟机网络配置**"。
 
 <img src="../_static/media/chapter_21/section_3/image7.png" style="width:5.76389in;height:1.20278in" />
 
@@ -238,7 +238,7 @@ https://www.redblobgames.com/pathfinding/a-star/introduction.html#graphs
 
 <img src="../_static/media/chapter_21/section_3/image11.png" style="width:5.75625in;height:2.33403in" />
 
-<img src="../_static/media/chapter_21/section_3/image12.png" style="width:0.31496in;height:0.31496in" />输入指令时需要严格区分大小写，且可使用“Tab”键补齐关键词。
+<img src="../_static/media/chapter_21/section_3/image12.png" style="width:0.31496in;height:0.31496in" />输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
 
 6)  输入指令，按下回车，查看虚拟机的IP，如红框处所示。
 
@@ -256,7 +256,7 @@ sudo nano /etc/hosts
 
 <img src="../_static/media/chapter_21/section_3/image14.png" style="width:5.76111in;height:0.24722in" />
 
-8)  将下图第2行和第3行的IP修改为查看到的虚拟机IP和树莓派的IP，虚拟机IP按实际查看情况填写，树莓派IP在直连模式下，固定为“**192.168.149.1**”。
+8)  将下图第2行和第3行的IP修改为查看到的虚拟机IP和树莓派的IP，虚拟机IP按实际查看情况填写，树莓派IP在直连模式下，固定为"**192.168.149.1**"。
 
 <img src="../_static/media/chapter_21/section_3/image15.png" style="width:5.7625in;height:1.38264in" />
 
@@ -264,7 +264,7 @@ sudo nano /etc/hosts
 在修改ip的时候，我们要保证缩进与上行的相同。
 :::
 
-9)  修改完成后按“**Ctrl+x**”，按下Y键保存，再按下回车确定。
+9)  修改完成后按"**Ctrl+x**"，按下Y键保存，再按下回车确定。
 
 <img src="../_static/media/chapter_21/section_3/image16.png" style="width:5.76111in;height:0.44653in" />
 
@@ -272,7 +272,7 @@ sudo nano /etc/hosts
 
 1)  接着通过VNC远程连接树莓派桌面。
 
-2)  单击桌面左上角的的图标<img src="../_static/media/chapter_21/section_3/image17.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键“**Ctrl+Alt+T**”，打开命令行终端。
+2)  单击桌面左上角的的图标<img src="../_static/media/chapter_21/section_3/image17.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键"**Ctrl+Alt+T**"，打开命令行终端。
 
 3)  输入指令，并按下回车，修改PuppyPi网络配置。
 
@@ -282,7 +282,7 @@ sudo vim /etc/hosts
 
 <img src="../_static/media/chapter_21/section_3/image18.png" style="width:5.7625in;height:0.25694in" />
 
-4)  找到下图红框位置，输入修改成自己的虚拟机IP（上文1.2获得）。按下“**Esc**”键，输入指令，按下回车保存并退出。
+4)  找到下图红框位置，输入修改成自己的虚拟机IP（上文1.2获得）。按下"**Esc**"键，输入指令，按下回车保存并退出。
 
 ```commandline
 :wq
@@ -338,11 +338,11 @@ roslaunch puppy_description rviz_with_urdf.launch
 
 <img src="../_static/media/chapter_21/section_3/image29.png" style="width:5.75833in;height:4.01042in" />
 
-5)  根据下图提示，打开建图文件。点击“**File-\>Open Config**”。
+5)  根据下图提示，打开建图文件。点击"**File-\>Open Config**"。
 
 <img src="../_static/media/chapter_21/section_3/image30.png" style="width:5.76528in;height:1.88958in" />
 
-如下图，打开对应的路径，选择“**navigation.rviz**”，然后点击“**Open**”。
+如下图，打开对应的路径，选择"**navigation.rviz**"，然后点击"**Open**"。
 
 <img src="../_static/media/chapter_21/section_3/image31.png" style="width:5.76319in;height:4.52014in" />
 
@@ -360,13 +360,13 @@ roslaunch puppy_description rviz_with_urdf.launch
 
 <img src="../_static/media/chapter_21/section_3/image33.png" style="width:5.40625in;height:2.65625in" />
 
-1)  软件菜单栏中，“**2D Pose Estimate**”用于设置PuppyPi机器狗的初始位置；
+1)  软件菜单栏中，"**2D Pose Estimate**"用于设置PuppyPi机器狗的初始位置；
 
 <img src="../_static/media/chapter_21/section_3/image34.png" style="width:5.76389in;height:0.19653in" />
 
 <img src="../_static/media/chapter_21/section_3/image35.png" style="width:5.7625in;height:3.1125in" />
 
-2)  “**2D Nav Goal**”用于设置机器人的单个目标点。点击图标<img src="../_static/media/chapter_21/section_3/image36.png" style="width:0.72908in;height:0.19685in" />，并在地图界面选择一处作为目标点，在该点处按下鼠标左键，然后拖动鼠标，选择机器人所需要到达的目的地以及朝向，选择完成后，机器人会自动生成路线，并移动至目标点。
+2)  "**2D Nav Goal**"用于设置机器人的单个目标点。点击图标<img src="../_static/media/chapter_21/section_3/image36.png" style="width:0.72908in;height:0.19685in" />，并在地图界面选择一处作为目标点，在该点处按下鼠标左键，然后拖动鼠标，选择机器人所需要到达的目的地以及朝向，选择完成后，机器人会自动生成路线，并移动至目标点。
 
 <img src="../_static/media/chapter_21/section_3/image37.png" style="width:5.7625in;height:0.22014in" />
 
@@ -382,11 +382,11 @@ roslaunch puppy_description rviz_with_urdf.launch
 
 我们可以通过手机来控制机器狗和查看机器狗的建图画面，并且用手机给机器狗设置目标点进行导航。
 
-1. 本节课需要用到手机APP“**Make A APP**”和“**Map Nav**”，前者用于建图，后者用于导航。
+1. 本节课需要用到手机APP"**Make A APP**"和"**Map Nav**"，前者用于建图，后者用于导航。
 
 2. 目前仅支持安卓系统：软件安装包位于本目录下，用户可将其导入手机进行安装。
 
-3. 确保已参照“**[SLAM建图课程\5. APP建图]()**”进行了建图。
+3. 确保已参照"**[SLAM建图课程\5. APP建图]()**"进行了建图。
 
 ### 4.2 导航操作
 
@@ -408,33 +408,33 @@ roslaunch puppy_description rviz_with_urdf.launch
 
 1.  启动机器狗，将其连接至远程控制软件VNC。
 
-2.  开启APP服务，具体操作步骤可参考“3.1 APP导航服务的开启”。
+2.  开启APP服务，具体操作步骤可参考"3.1 APP导航服务的开启"。
 
 3.  前往手机的设置界面，连接机器狗生成的热点。
 
 <img src="../_static/media/chapter_21/section_4/image6.png" style="width:3.14931in;height:3.22986in" />
 
-4.  打开APP“**Map Nav**”，将“**Master URI**”一栏为“**http://192.168.149.1:11311**”，并点击“**CONNECT**”按键。
+4.  打开APP"**Map Nav**"，将"**Master URI**"一栏为"**http://192.168.149.1:11311**"，并点击"**CONNECT**"按键。
 
 <img src="../_static/media/chapter_21/section_4/image7.png" style="width:3.14961in;height:2.50801in" />
 
 :::{Note}
 
-下图“CHOOSE A MAP”按键无实际作用，地图将会自动加载。
+下图"CHOOSE A MAP"按键无实际作用，地图将会自动加载。
 
 :::
 
-“**Map Nav**”的界面可分为3个区域。绿色方框用于显示地图；红色方框用于控制机器狗的移动；蓝框内选项“**Set Pose**”、“**Set Goal**”搭配绿色方框使用，用于设置机器狗的初始位置与导航目标点。
+"**Map Nav**"的界面可分为3个区域。绿色方框用于显示地图；红色方框用于控制机器狗的移动；蓝框内选项"**Set Pose**"、"**Set Goal**"搭配绿色方框使用，用于设置机器狗的初始位置与导航目标点。
 
 <img src="../_static/media/chapter_21/section_4/image22.png" style="width:5.75069in;height:2.89236in" />
 
-5.  选中“**Set Pose**”，长按地图内的某一点即可将该点设置为机器狗的初始位置。
+5.  选中"**Set Pose**"，长按地图内的某一点即可将该点设置为机器狗的初始位置。
 
 6.  将红色方框内的箭头标识朝四周拖动，控制机器人移动以进行位置校准。
 
 将箭头标识依次朝上、下、左、右四个方向拖动，分别可以控制机器狗进行前进、后退、左转、右转。
 
-7.  选中“**Set Goal**”，长按地图内的某一点即可将该点设置为导航目标点。
+7.  选中"**Set Goal**"，长按地图内的某一点即可将该点设置为导航目标点。
 
 8.  完成初始位置与导航目标点的设置后，机器狗会自动生成路线，并按照路线由初始位置移动至目标点。
 

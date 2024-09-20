@@ -4,7 +4,7 @@
 
 ### 1.1 机械臂的安装
 
-Puppypi机械臂安装的教学视频可以参考同目录下的“**机械臂的安装**”。下文为Puppypi机械臂安装的示意图：
+Puppypi机械臂安装的教学视频可以参考同目录下的"**机械臂的安装**"。下文为Puppypi机械臂安装的示意图：
 
 使用**4颗M4\*6圆头机械螺丝**将机械臂固定在Puppypi上（**由于Puppypi钣金件新旧版本更替的现象，部分钣金件只能安装两颗M4\*6圆头机械螺丝，具体以实际Puppypi钣金件为主**）。
 
@@ -40,13 +40,13 @@ M4\*6圆头机械螺丝
 
 <img src="../_static/media/chapter_22/section_1/image7.png" style="width:5.76806in;height:4.57708in" />
 
-2)  然后将扩展板的开关由“**OFF**”推到“**ON**”，开机以后，机器狗尾部的数码管会显示电池当前电量（下图所示点亮为8V，当电池电量低于6.8V时需尽快给电池充电），且LED1和LED2会亮起微弱蓝灯，稍等片刻后，LED1将常亮，LED2将每隔两秒闪烁，代表网络配置已经准备完毕。然后等待蜂鸣器发出“嘀”的一声，说明ROS配置完成，设备启动完毕。
+2)  然后将扩展板的开关由"**OFF**"推到"**ON**"，开机以后，机器狗尾部的数码管会显示电池当前电量（下图所示点亮为8V，当电池电量低于6.8V时需尽快给电池充电），且LED1和LED2会亮起微弱蓝灯，稍等片刻后，LED1将常亮，LED2将每隔两秒闪烁，代表网络配置已经准备完毕。然后等待蜂鸣器发出"嘀"的一声，说明ROS配置完成，设备启动完毕。
 
 <img src="../_static/media/chapter_22/section_1/image8.jpeg" style="width:5.73194in;height:2.30903in" alt="4 (3)" />
 
 <img src="../_static/media/chapter_22/section_1/image10.jpeg" style="width:5.72361in;height:0.97083in" alt="4 (2)" />
 
-3)  设备出厂默认为AP直连模式，开机成功后，将产生一个以“**HW**”开头的热点。
+3)  设备出厂默认为AP直连模式，开机成功后，将产生一个以"**HW**"开头的热点。
 
 <img src="../_static/media/chapter_22/section_1/image11.jpeg" style="width:3.14961in;height:1.16704in" alt="2021-09-29_14-27-29" />
 
@@ -58,7 +58,7 @@ M4\*6圆头机械螺丝
 
 1)  双击桌面图标<img src="../_static/media/chapter_22/section_2/image2.png" style="width:0.31458in;height:0.31458in" />。
 
-2)  在弹出的提示窗口处单击“**Execute**”选项，即可打开上位机。
+2)  在弹出的提示窗口处单击"**Execute**"选项，即可打开上位机。
 
 <img src="../_static/media/chapter_22/section_2/image3.png" style="width:4.52083in;height:1.32292in" />
 
@@ -76,7 +76,7 @@ python3 /home/ubuntu/software/puppypi_control/PuppyPi.py
 
 ### 2.2 上位机使用介绍
 
-上位机启动成功后，我们在普通模式下方“**机械臂**”的选项勾选上，界面上就会出现对应机械臂舵机的控制区域。
+上位机启动成功后，我们在普通模式下方"**机械臂**"的选项勾选上，界面上就会出现对应机械臂舵机的控制区域。
 
 <img src="../_static/media/chapter_22/section_2/image9.png" style="width:5.76389in;height:1.44514in" />
 
@@ -124,16 +124,16 @@ python3 /home/ubuntu/software/puppypi_control/PuppyPi.py
 | <img src="../_static/media/chapter_22/section_2/image21.png" style="width:1.18056in;height:0.30903in" /> | 运行单个动作所需的时间，可直接在方框内修改数值。 |
 | <img src="../_static/media/chapter_22/section_2/image22.png" style="width:1.18056in;height:0.18681in" /> | 运行完整动作组所需的时间。 |
 | <img src="../_static/media/chapter_22/section_2/image23.png" style="width:0.7874in;height:0.69291in" /> | 将当前舵机操控区域的舵机数值作为一个动作，添加至动作详情列表的最后一行。 |
-| <img src="../_static/media/chapter_22/section_2/image24.png" style="width:0.7874in;height:0.32283in" /> | 将动作详情列表内选择动作的舵机参数替换为当前舵机操控区域的数值，动作运行时间替换为“**动作时间**”的设定值。 |
-| <img src="../_static/media/chapter_22/section_2/image25.png" style="width:0.7874in;height:0.32283in" /> | 在动作详情列表内选择动作的上方插入一个动作，舵机参数取舵机操控区域的数值，动作时间取“**动作时间**”的设定值。 |
+| <img src="../_static/media/chapter_22/section_2/image24.png" style="width:0.7874in;height:0.32283in" /> | 将动作详情列表内选择动作的舵机参数替换为当前舵机操控区域的数值，动作运行时间替换为"**动作时间**"的设定值。 |
+| <img src="../_static/media/chapter_22/section_2/image25.png" style="width:0.7874in;height:0.32283in" /> | 在动作详情列表内选择动作的上方插入一个动作，舵机参数取舵机操控区域的数值，动作时间取"**动作时间**"的设定值。 |
 | <img src="../_static/media/chapter_22/section_2/image26.png" style="width:0.7874in;height:0.32283in" /> | 将动作详情列表内的选择动作与其上一个动作进行位置交换。 |
 | <img src="../_static/media/chapter_22/section_2/image27.png" style="width:0.7874in;height:0.32283in" /> | 删除动作详情列表内的选择动作。 |
 | <img src="../_static/media/chapter_22/section_2/image28.png" style="width:0.7874in;height:0.32283in" /> | 删除动作详情列表内的所有动作。 |
 | <img src="../_static/media/chapter_22/section_2/image29.png" style="width:0.7874in;height:0.32283in" /> | 将动作详情列表内的选择动作与其下一个动作进行位置交换。 |
-| <img src="../_static/media/chapter_22/section_2/image30.png" style="width:0.59055in;height:1.04987in" /> | 运行一次动作详情列表内的动作，勾选“**循环**”代表循环运行动作。 |
+| <img src="../_static/media/chapter_22/section_2/image30.png" style="width:0.59055in;height:1.04987in" /> | 运行一次动作详情列表内的动作，勾选"**循环**"代表循环运行动作。 |
 | <img src="../_static/media/chapter_22/section_2/image31.png" style="width:0.7874in;height:0.36507in" /> | 打开所需的动作组文件。 |
 | <img src="../_static/media/chapter_22/section_2/image32.png" style="width:0.7874in;height:0.36507in" /> | 将动作详情列表内的动作保存至指定位置。 |
-| <img src="../_static/media/chapter_22/section_2/image33.png" style="width:0.7874in;height:0.36507in" /> | 通过按键“**打开动作文件**”打开一个动作组后，点击此按键打开另一个动作组，可将两者串联。 |
+| <img src="../_static/media/chapter_22/section_2/image33.png" style="width:0.7874in;height:0.36507in" /> | 通过按键"**打开动作文件**"打开一个动作组后，点击此按键打开另一个动作组，可将两者串联。 |
 | <img src="../_static/media/chapter_22/section_2/image34.png" style="width:1.1811in;height:0.26961in" /> | 可在上位机中显示已保存的动作组。 |
 | <img src="../_static/media/chapter_22/section_2/image35.png" style="width:0.59055in;height:0.34102in" /> | 刷新选择的动作组。 |
 | <img src="../_static/media/chapter_22/section_2/image36.png" style="width:0.7874in;height:0.29349in" /> | 删除当前选择的动作组文件。 |
@@ -143,7 +143,7 @@ python3 /home/ubuntu/software/puppypi_control/PuppyPi.py
 | <img src="../_static/media/chapter_22/section_2/image40.png" style="width:1.37795in;height:0.24629in" /> | 退出上位机操作界面。 |
 
 :::{Note}
-动作组文件统一保存至Docker容器中的“/home/ubuntu/software/puppypi_control/ActionGroups”。
+动作组文件统一保存至Docker容器中的"/home/ubuntu/software/puppypi_control/ActionGroups"。
 :::
 
 4.  **偏差设置区域（PuppyPi机器狗出厂前已调好偏差，此区域功能按键仅做了解）**
@@ -178,17 +178,17 @@ PuppyPi 在出厂时就已经调节好了偏差，用户无需再调节，如因
 
 - #### 2.3.2 调节方法
 
-本节课以调节 10号舵机为例进行调节。（已进行“**复位舵机**”操作）
+本节课以调节 10号舵机为例进行调节。（已进行"**复位舵机**"操作）
 
 <img src="../_static/media/chapter_22/section_2/image45.png" style="width:5.78125in;height:4.10903in" />
 
-1)  在“**普通模式**”中，勾选“**机械臂**”观察机械臂各个位置舵机的姿态。可以看到需要调节10号舵机的偏差值。
+1)  在"**普通模式**"中，勾选"**机械臂**"观察机械臂各个位置舵机的姿态。可以看到需要调节10号舵机的偏差值。
 
 <img src="../_static/media/chapter_22/section_2/image46.png" style="width:5.75694in;height:3.11667in" />
 
 2)  上位机会自动读取偏差，再根据实际的舵机情况，点击 ID10 舵机图标下方的小滑杆，使机械臂两连杆互相垂直。可多次点击鼠标左键或者滑动鼠标滚轮来微调滑杆数值。
 
-3)  调节完毕后点击“**保存偏差**”，再点击“**OK**”，将偏差保存到控制板中。
+3)  调节完毕后点击"**保存偏差**"，再点击"**OK**"，将偏差保存到控制板中。
 
 <img src="../_static/media/chapter_22/section_2/image47.png" style="width:2.33333in;height:2.125in" />
 
@@ -204,7 +204,7 @@ PuppyPi 在出厂时就已经调节好了偏差，用户无需再调节，如因
 
 接着对图像进行二值化、腐蚀、膨胀处理，以获取图像内目标颜色的最大轮廓，并将识别到的颜色框出；
 
-最后，控制PuppyPi机器狗执行反馈动作。当检测到红色，控制机器狗执行“**夹取**”的动作。
+最后，控制PuppyPi机器狗执行反馈动作。当检测到红色，控制机器狗执行"**夹取**"的动作。
 
 <p id="anchor_3_2"></p>
 
@@ -244,16 +244,16 @@ roslaunch puppy_with_arm color_detect_with_arm.launch
 
 <img src="../_static/media/chapter_22/section_3/image10.png" style="width:5.76111in;height:1.32361in" />
 
-7)  如需关闭此玩法，可在Terminator终端界面按下“**Ctrl+C**”。如果关闭失败，可多次按下。
+7)  如需关闭此玩法，可在Terminator终端界面按下"**Ctrl+C**"。如果关闭失败，可多次按下。
 
-8)  玩法关闭后，按下“Ctrl+Alt+T”打开LX终端，输入指令并按下回车，开启APP自启服务。
+8)  玩法关闭后，按下"Ctrl+Alt+T"打开LX终端，输入指令并按下回车，开启APP自启服务。
 
 ```commandline
 sudo systemctl restart start_node.service
 ```
 <img src="../_static/media/chapter_22/section_3/image12.png" style="width:5.76597in;height:0.93403in" />
 
-在启动完成后，蜂鸣器会短鸣“**滴**”一声。
+在启动完成后，蜂鸣器会短鸣"**滴**"一声。
 
 :::{Note}
 如未启动 APP 自启服务，则会影响 APP 对应玩法的正常实现。如未输入命令进行自启，将机器人重启也会重新启动 APP 自启服务。
@@ -265,17 +265,17 @@ sudo systemctl restart start_node.service
 启动玩法后，请确保摄像头的视野范围内不存在其他包含识别颜色的物体，以免影响玩法的实现效果。
 :::
 
-玩法开启后，将色块放置在PuppyPi前面。当识别到色块后，会用对用颜色的圆圈标识出目标色块，并把颜色名称打印在窗口中间。程序能识别“**红色**”、“**蓝色**”和“**绿色**”的色块,但只对红色色块进行“**夹取**”操作。
+玩法开启后，将色块放置在PuppyPi前面。当识别到色块后，会用对用颜色的圆圈标识出目标色块，并把颜色名称打印在窗口中间。程序能识别"**红色**"、"**蓝色**"和"**绿色**"的色块,但只对红色色块进行"**夹取**"操作。
 
 :::{Note}
-若颜色识别不准，可参照“**[ROS+OpenCV视觉识别与追踪项目\1. 颜色阈值调节]()**”对其进行调节。
+若颜色识别不准，可参照"**[ROS+OpenCV视觉识别与追踪项目\1. 颜色阈值调节]()**"对其进行调节。
 :::
 
 <img src="../_static/media/chapter_22/section_3/image15.png" style="width:5.73472in;height:4.57986in" />
 
 ### 3.4 功能延伸
 
-**玩法默认识别红色后，机器狗执行“夹取”和“放置”色块动作，如需更改识别的颜色，比如“绿色”色块，可参照以下步骤：**
+**玩法默认识别红色后，机器狗执行"夹取"和"放置"色块动作，如需更改识别的颜色，比如"绿色"色块，可参照以下步骤：**
 
 1)  输入指令，用来编辑颜色识别夹取玩法程序，按下回车。
 
@@ -290,14 +290,14 @@ rosed puppy_with_arm** **color_detect_with_arm.py
 <img src="../_static/media/chapter_22/section_3/image18.png" style="width:5.76458in;height:1.90556in" />
 
 :::{Note}
-在键盘输入代码位置序号后，按下“Shift+G”键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
+在键盘输入代码位置序号后，按下"Shift+G"键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
 :::
 
-3)  按下“**i**”键进入编辑模式，将“**red**”改为“**green**”。
+3)  按下"**i**"键进入编辑模式，将"**red**"改为"**green**"。
 
 <img src="../_static/media/chapter_22/section_3/image20.png" style="width:5.76111in;height:2.02292in" />
 
-4)  修改完成后，按下“**Esc**”键，输入指令并按下回车，进行保存与退出。
+4)  修改完成后，按下"**Esc**"键，输入指令并按下回车，进行保存与退出。
 
 ```commandline
 :wq
@@ -305,7 +305,7 @@ rosed puppy_with_arm** **color_detect_with_arm.py
 
 <img src="../_static/media/chapter_22/section_3/image23.png" style="width:5.76806in;height:0.61597in" />
 
-5)  参照“[3.2 玩法开启及关闭步骤](#anchor_3_2)”，重新启动玩法，即可查看修改后的玩法效果。
+5)  参照"[3.2 玩法开启及关闭步骤](#anchor_3_2)"，重新启动玩法，即可查看修改后的玩法效果。
 
 ### 3.5 程序分析
 
@@ -365,25 +365,25 @@ rosed puppy_with_arm** **color_detect_with_arm.py
 
 <img src="../_static/media/chapter_22/section_3/image29.png" style="width:5.76111in;height:1.42153in" />
 
-1.  使用“**rospy.Subscriber**”创建了一个信息订阅器，来处理相机信息。
+1.  使用"**rospy.Subscriber**"创建了一个信息订阅器，来处理相机信息。
 
 <img src="../_static/media/chapter_22/section_3/image31.png" style="width:5.76597in;height:0.26458in" />
 
-第一个参数“**/usb_cam/image_raw**”表示接受图像数据的话题名称；
+第一个参数"**/usb_cam/image_raw**"表示接受图像数据的话题名称；
 
-第二个参数“**Image**”消息类型；
+第二个参数"**Image**"消息类型；
 
-第三个参数表示调用“**image_callback**”函数，处理回传画面；
+第三个参数表示调用"**image_callback**"函数，处理回传画面；
 
-2.  创建buzzer_pub蜂鸣器发布者，使用“**rospy.Publisher**”创建了一个信息发布器。
+2.  创建buzzer_pub蜂鸣器发布者，使用"**rospy.Publisher**"创建了一个信息发布器。
 
 <img src="../_static/media/chapter_22/section_3/image33.png" style="width:5.76458in;height:0.22569in" />
 
-第一个参数“**/sensor/buzzer**”表示蜂鸣器控制的话题名称；
+第一个参数"**/sensor/buzzer**"表示蜂鸣器控制的话题名称；
 
-第二个参数“**Float32**”消息类型；
+第二个参数"**Float32**"消息类型；
 
-第三个参数“**queue_size=1**”指定了消息队列的大小。
+第三个参数"**queue_size=1**"指定了消息队列的大小。
 
 - **image_callback回调函数**
 
@@ -429,7 +429,7 @@ rosed puppy_with_arm** **color_detect_with_arm.py
 
 <img src="../_static/media/chapter_22/section_3/image51.png" style="width:5.76389in;height:4.62639in" />
 
-根据检测到的颜色与目标颜色的匹配情况，控制机器人执行相应的动作。如果颜色匹配（红色）,通过buzzer_pub.publish(0.1)发送一个0.1秒的蜂鸣器信号，执行一系列动作（抓取和放置动作），然后将检测到的颜色重置为“None”；如果颜色不匹配，则不执行动作组。
+根据检测到的颜色与目标颜色的匹配情况，控制机器人执行相应的动作。如果颜色匹配（红色）,通过buzzer_pub.publish(0.1)发送一个0.1秒的蜂鸣器信号，执行一系列动作（抓取和放置动作），然后将检测到的颜色重置为"None"；如果颜色不匹配，则不执行动作组。
 
 - **执行子线程**
 
@@ -459,9 +459,9 @@ rosed puppy_with_arm** **color_detect_with_arm.py
 
 接着对图像进行二值化、腐蚀、膨胀处理，以获取图像内目标颜色的最大轮廓，并将识别到的颜色框出；
 
-然后，控制PuppyPi机器狗执行反馈动作。当检测到红色，控制机器狗执行“**夹取**”的动作，将色块夹取起来；
+然后，控制PuppyPi机器狗执行反馈动作。当检测到红色，控制机器狗执行"**夹取**"的动作，将色块夹取起来；
 
-最后，PuppyPi机器狗往前走再向左转寻找红色放置点。当检测到红色，控制机器狗执行“放置”的动作，将色块放置在红色放置点中。
+最后，PuppyPi机器狗往前走再向左转寻找红色放置点。当检测到红色，控制机器狗执行"放置"的动作，将色块放置在红色放置点中。
 
 <p id="anchor_4_2"></p>
 
@@ -473,7 +473,7 @@ rosed puppy_with_arm** **color_detect_with_arm.py
 
 1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-2)  单击桌面左上角的的图标<img src="../_static/media/chapter_22/section_4/image3.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键“**Ctrl+Alt+T**”，打开LX终端。
+2)  单击桌面左上角的的图标<img src="../_static/media/chapter_22/section_4/image3.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键"**Ctrl+Alt+T**"，打开LX终端。
 
 3)  输入关闭按键控制服务的指令，并按下回车。
 
@@ -507,7 +507,7 @@ roslaunch puppy_with_arm color_grab.launch
 
 <img src="../_static/media/chapter_22/section_4/image11.png" style="width:5.75in;height:4.58333in" />
 
-8)  如需关闭此玩法，可在Terminator终端界面按下“**Ctrl+C**”。如果关闭失败，可多次按下。
+8)  如需关闭此玩法，可在Terminator终端界面按下"**Ctrl+C**"。如果关闭失败，可多次按下。
 
 9)  玩法关闭后还需在LX终端输入指令并按下回车，开启APP自启服务。
 
@@ -517,7 +517,7 @@ sudo systemctl restart start_node.service
 
 <img src="../_static/media/chapter_22/section_4/image12.png" style="width:5.76597in;height:0.93403in" />
 
-在启动完成后，蜂鸣器会短鸣“**滴**”一声。
+在启动完成后，蜂鸣器会短鸣"**滴**"一声。
 
 :::{Note}
 如未启动 APP 自启服务，则会影响 APP 对应玩法的正常实现。如未输入命令进行自启，将机器狗重启也会重新启动 APP 自启服务。
@@ -538,7 +538,7 @@ sudo systemctl restart button_scan.service
 <img src="../_static/media/chapter_22/section_4/image16.png" style="width:5.76181in;height:3.18889in" /><img src="../_static/media/chapter_22/section_4/image17.png" style="width:5.76528in;height:3.8in" />
 
 :::{Note}
-若颜色识别不准，可参照“**[ROS+OpenCV视觉识别与追踪项目\1. 颜色阈值调节](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/13_visual_recognition_and_tracking.html)**”对其进行调节。
+若颜色识别不准，可参照"**[ROS+OpenCV视觉识别与追踪项目\1. 颜色阈值调节](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/13_visual_recognition_and_tracking.html)**"对其进行调节。
 :::
 
 若出现夹取位置不准的情况，可修改程序中**block_center_point\[1\]**的参数。数值越大，末端夹持器位置越靠后，反之则越靠前。
@@ -547,7 +547,7 @@ sudo systemctl restart button_scan.service
 
 ### 4.4 功能延伸
 
-**玩法默认识别红色后，机器狗执行“夹取”和“放置”色块动作，如需更改识别的颜色，比如“绿色”色块，可参照以下步骤：**
+**玩法默认识别红色后，机器狗执行"夹取"和"放置"色块动作，如需更改识别的颜色，比如"绿色"色块，可参照以下步骤：**
 
 1)  输入指令并按下回车，打开用来编辑颜色识别夹取玩法程序。
 
@@ -562,14 +562,14 @@ rosed puppy_with_arm color_grab.py
 <img src="../_static/media/chapter_22/section_4/image22.png" style="width:5.76806in;height:1.85486in" />
 
 :::{Note}
-在键盘输入代码位置序号后，按下“Shift+G”键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
+在键盘输入代码位置序号后，按下"Shift+G"键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
 :::
 
-3)  按下“**i**”键进入编辑模式，将“**red**”改为“**green**”。
+3)  按下"**i**"键进入编辑模式，将"**red**"改为"**green**"。
 
 <img src="../_static/media/chapter_22/section_4/image24.png" style="width:5.7625in;height:1.86458in" />
 
-4)  修改完成后，按下“**Esc**”键，输入指令并按下回车，进行保存与退出。
+4)  修改完成后，按下"**Esc**"键，输入指令并按下回车，进行保存与退出。
 
 ```commandline
 :wq
@@ -577,7 +577,7 @@ rosed puppy_with_arm color_grab.py
 
 <img src="../_static/media/chapter_22/section_4/image26.png" style="width:5.76667in;height:1.04861in" />
 
-5)  参照“[4.2 玩法开启及关闭步骤](#anchor_4_2)”，重新启动玩法，即可查看修改后的玩法效果。
+5)  参照"[4.2 玩法开启及关闭步骤](#anchor_4_2)"，重新启动玩法，即可查看修改后的玩法效果。
 
 ### 4.5 程序分析
 
@@ -667,33 +667,33 @@ output="**screen**"： 节点的输出将显示在屏幕上。
 
 调用puppy对象的stance_config和gait_config进行姿态和步态的初始化设置，启动小狗puppy.start()，设置Debug模式是否控制机器狗的移动，然后打开相机获取图像，在主循环中获取图像，调用run()函数进行图像处理。整体逻辑是完成程序环境初始化，图像获取显示，状态机控制运行循环。通过判断Debug模式来选择是否控制机器人开启巡线夹取任务。<img src="../_static/media/chapter_22/section_4/image34.png" style="width:5.75694in;height:0.97778in" />
 
-1.  使用“**puppy.stance_config**”来配置机器狗四脚在静止状态下的姿态。
+1.  使用"**puppy.stance_config**"来配置机器狗四脚在静止状态下的姿态。
 
 <img src="../_static/media/chapter_22/section_4/image36.png" style="width:5.76667in;height:0.13889in" />
 
-第一个参数“**PuppyPose\['stance_x'\]**”表示四条腿在X轴上的额外分开距离，单位cm；
+第一个参数"**PuppyPose\['stance_x'\]**"表示四条腿在X轴上的额外分开距离，单位cm；
 
-第二个参数“**PuppyPose\['stance_y'\]**”表示四条腿在Y轴上的额外分开距离，单位cm；
+第二个参数"**PuppyPose\['stance_y'\]**"表示四条腿在Y轴上的额外分开距离，单位cm；
 
-第三个参数“**PuppyPose\['height'\]**”表示狗的高度，脚尖到腿转轴的垂直距离，单位cm；
+第三个参数"**PuppyPose\['height'\]**"表示狗的高度，脚尖到腿转轴的垂直距离，单位cm；
 
-第四个参数“**PuppyPose\['x_shift'\]**”表示四条腿在X轴上同向移动的距离，值越小走路越前倾，值越大越后仰；
+第四个参数"**PuppyPose\['x_shift'\]**"表示四条腿在X轴上同向移动的距离，值越小走路越前倾，值越大越后仰；
 
-第五个参数“**PuppyPose\['pitch'\]**”表示机器狗身体的俯仰角度，单位弧度；
+第五个参数"**PuppyPose\['pitch'\]**"表示机器狗身体的俯仰角度，单位弧度；
 
-第六个参数“**PuppyPose\['roll'\]**”表示机器狗身体的滚动角度，单位弧度；
+第六个参数"**PuppyPose\['roll'\]**"表示机器狗身体的滚动角度，单位弧度；
 
-2.  使用“**puppy.gait_config**”来配置机器狗步态动作参数。
+2.  使用"**puppy.gait_config**"来配置机器狗步态动作参数。
 
 <img src="../_static/media/chapter_22/section_4/image38.png" style="width:5.75903in;height:0.25972in" />
 
-第一个参数“**overlap_time**”表示四条腿同时着地时间；
+第一个参数"**overlap_time**"表示四条腿同时着地时间；
 
-第二个参数“**swing_time**”表示单脚离地摆动时间；
+第二个参数"**swing_time**"表示单脚离地摆动时间；
 
-第三个参数“**clearace_time**”表示前后脚间隔时间；
+第三个参数"**clearace_time**"表示前后脚间隔时间；
 
-第四个参数“**z_clearance**”表示步态过程中脚离地高度；
+第四个参数"**z_clearance**"表示步态过程中脚离地高度；
 
 3.  启动机器狗，设置机器狗的初始姿态，触发蜂鸣器响声。
 
@@ -781,7 +781,7 @@ output="**screen**"： 节点的输出将显示在屏幕上。
 
 1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-2)  单击桌面左上角的的图标<img src="../_static/media/chapter_22/section_5/image3.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键“**Ctrl+Alt+T**”，打开LX终端。
+2)  单击桌面左上角的的图标<img src="../_static/media/chapter_22/section_5/image3.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键"**Ctrl+Alt+T**"，打开LX终端。
 
 3)  输入关闭按键控制服务的指令，并按下回车。
 
@@ -813,7 +813,7 @@ roslaunch puppy_with_arm visual_patrol_with_arm.launch
 
 7)  按下扩展板上的Key1按键，启动玩法
 
-8) 如需关闭此玩法，可在Terminator终端界面按下“**Ctrl+C**”。如果关闭失败，可多次按下。
+8) 如需关闭此玩法，可在Terminator终端界面按下"**Ctrl+C**"。如果关闭失败，可多次按下。
 
 9) 玩法关闭后还需在LX终端输入指令并按下回车，开启APP自启服务。
 
@@ -823,7 +823,7 @@ sudo systemctl restart start_node.service
 
 <img src="../_static/media/chapter_22/section_5/image11.png" style="width:5.76597in;height:0.70972in" />
 
-在启动完成后，蜂鸣器会短鸣“**滴**”一声。
+在启动完成后，蜂鸣器会短鸣"**滴**"一声。
 
 :::{Note}
 如未启动 APP 自启服务，则会影响 APP 对应玩法的正常实现。如未输入命令进行自启，将机器狗重启也会重新启动 APP 自启服务。
@@ -843,12 +843,12 @@ sudo systemctl restart button_scan.service
 启动玩法后，请确保摄像头的视野范围内不存在其他包含识别颜色的物体，以免影响玩法的实现效果。
 :::
 
-将PuppyPi机器狗放置黑色线条上，启动玩法后，机器狗将巡黑色线条进行移动，如果识别到前面线条上有色块阻挡，则会执行“搬运”动作。夹取红色色块放置于线条左边，夹取绿色或蓝色色块放置于线条右边，执行完夹取动作后继续进行巡线任务。
+将PuppyPi机器狗放置黑色线条上，启动玩法后，机器狗将巡黑色线条进行移动，如果识别到前面线条上有色块阻挡，则会执行"搬运"动作。夹取红色色块放置于线条左边，夹取绿色或蓝色色块放置于线条右边，执行完夹取动作后继续进行巡线任务。
 
 <img src="../_static/media/chapter_22/section_5/image14.png" style="width:4.82847in;height:3.84097in" alt="6df22f7e70a139a191509393b2c734f" />
 
 :::{Note}
-若颜色识别不准，可参照“**[ROS+OpenCV视觉识别与追踪项目\1.  颜色阈值调节]()**”对其进行调节。
+若颜色识别不准，可参照"**[ROS+OpenCV视觉识别与追踪项目\1.  颜色阈值调节]()**"对其进行调节。
 :::
 
 若出现夹取位置不准的情况，可修改程序中**block_center_point\[1\]**的参数。数值越大，末端夹持器位置越靠后，反之则越靠前。
@@ -857,7 +857,7 @@ sudo systemctl restart button_scan.service
 
 ### 5.4 功能延伸
 
-**玩法默认识别红色后，机器狗执行“夹取”动作组，将红色色块放置于线条左边；玩法默认识别绿色后，机器狗执行“夹取”动作组，将绿色色块放置于线条右边。如需更改放置的位置，比如“红色”和“绿色”色块互换位置，可参照以下步骤：**
+**玩法默认识别红色后，机器狗执行"夹取"动作组，将红色色块放置于线条左边；玩法默认识别绿色后，机器狗执行"夹取"动作组，将绿色色块放置于线条右边。如需更改放置的位置，比如"红色"和"绿色"色块互换位置，可参照以下步骤：**
 
 1)  输入指令并按下回车，用来编辑巡线夹取玩法程序，按下回车。
 
@@ -872,14 +872,14 @@ rosed puppy_with_arm** **visual_patrol_with_arm.py
 <img src="../_static/media/chapter_22/section_5/image19.png" style="width:5.75972in;height:3.55625in" />
 
 :::{Note}
-在键盘输入代码位置序号后，按下“Shift+G”键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
+在键盘输入代码位置序号后，按下"Shift+G"键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
 :::
 
-3)  按下“**i**”键进入编辑模式，将“**red**”和“**green**”两个颜色的位置互换一下。
+3)  按下"**i**"键进入编辑模式，将"**red**"和"**green**"两个颜色的位置互换一下。
 
 <img src="../_static/media/chapter_22/section_5/image21.png" style="width:5.75972in;height:3.44444in" />
 
-4)  修改完成后，按下“**Esc**”键，输入指令并回车，进行保存与退出。
+4)  修改完成后，按下"**Esc**"键，输入指令并回车，进行保存与退出。
 
 ```commandline
 :wq
@@ -887,7 +887,7 @@ rosed puppy_with_arm** **visual_patrol_with_arm.py
 
 <img src="../_static/media/chapter_22/section_5/image23.png" style="width:5.7625in;height:1.07917in" />
 
-5)  参照“[5.2 玩法开启及关闭步骤](#anchor_5_2)”，重新启动玩法，即可查看修改后的玩法效果。
+5)  参照"[5.2 玩法开启及关闭步骤](#anchor_5_2)"，重新启动玩法，即可查看修改后的玩法效果。
 
 ### 5.5 程序分析
 
@@ -945,33 +945,33 @@ rosed puppy_with_arm** **visual_patrol_with_arm.py
 
 调用puppy对象的stance_config和gait_config进行姿态和步态的初始化设置，启动小狗puppy.start()，设置Debug模式是否控制机器狗的移动，然后打开相机获取图像，在主循环中获取图像，调用run()函数进行图像处理。整体逻辑是完成程序环境初始化，图像获取显示，状态机控制运行循环。通过判断Debug模式来选择是否控制机器人开启巡线夹取任务。<img src="../_static/media/chapter_22/section_5/image30.png" style="width:5.76389in;height:1.85556in" />
 
-1.  使用“**puppy.stance_config**”来配置机器狗四脚在静止状态下的姿态。
+1.  使用"**puppy.stance_config**"来配置机器狗四脚在静止状态下的姿态。
 
 <img src="../_static/media/chapter_22/section_5/image32.png" style="width:5.76111in;height:0.12778in" />
 
-第一个参数“**PuppyPose\[‘stance_x’\]**”表示四条腿在X轴上的额外分开距离，单位cm；
+第一个参数"**PuppyPose\['stance_x'\]**"表示四条腿在X轴上的额外分开距离，单位cm；
 
-第二个参数“**PuppyPose\[‘stance_y’\]**”表示四条腿在Y轴上的额外分开距离，单位cm；
+第二个参数"**PuppyPose\['stance_y'\]**"表示四条腿在Y轴上的额外分开距离，单位cm；
 
-第三个参数“**PuppyPose\[‘height’\]**”表示狗的高度，脚尖到腿转轴的垂直距离，单位cm；
+第三个参数"**PuppyPose\['height'\]**"表示狗的高度，脚尖到腿转轴的垂直距离，单位cm；
 
-第四个参数“**PuppyPose\[‘x_shift’\]**”表示四条腿在X轴上同向移动的距离，值越小走路越前倾，值越大越后仰；
+第四个参数"**PuppyPose\['x_shift'\]**"表示四条腿在X轴上同向移动的距离，值越小走路越前倾，值越大越后仰；
 
-第五个参数“**PuppyPose\[‘pitch’\]**”表示机器狗身体的俯仰角度，单位弧度；
+第五个参数"**PuppyPose\['pitch'\]**"表示机器狗身体的俯仰角度，单位弧度；
 
-第六个参数“**PuppyPose\[‘roll’\]**”表示机器狗身体的滚动角度，单位弧度；
+第六个参数"**PuppyPose\['roll'\]**"表示机器狗身体的滚动角度，单位弧度；
 
-2.  使用“**puppy.gait_config**”来配置机器狗步态动作参数。
+2.  使用"**puppy.gait_config**"来配置机器狗步态动作参数。
 
 <img src="../_static/media/chapter_22/section_5/image34.png" style="width:5.76667in;height:0.26597in" />
 
-第一个参数“**overlap_time**”表示四条腿同时着地时间；
+第一个参数"**overlap_time**"表示四条腿同时着地时间；
 
-第二个参数“**swing_time**”表示单脚离地摆动时间；
+第二个参数"**swing_time**"表示单脚离地摆动时间；
 
-第三个参数“**clearace_time**”表示前后脚间隔时间；
+第三个参数"**clearace_time**"表示前后脚间隔时间；
 
-第四个参数“**z_clearance**”表示步态过程中脚离地高度；
+第四个参数"**z_clearance**"表示步态过程中脚离地高度；
 
 3.  设置Debug变量来进行Running模式的切换，如果Debug为True是非实时模式，只处理图像机器狗不动，如果Debug为Falses是实时运行模式，同时处理图像和机器狗巡线夹取。
 
@@ -1081,9 +1081,9 @@ roslaunch puppy_with_arm hand_control_with_arm.launch
 启动相机回传前需要保证手势控制玩法正常运行，否则可能无法启动相机回传。
 :::
 
-玩法启动后，由于VNC没有显示摄像头画面，对此可以通过打开**“web_video_server”**服务在浏览器中查看摄像头画面。
+玩法启动后，由于VNC没有显示摄像头画面，对此可以通过打开**"web_video_server"**服务在浏览器中查看摄像头画面。
 
-5)  使用任意浏览器，输入地址“**192.168.149.1:8080**”。
+5)  使用任意浏览器，输入地址"**192.168.149.1:8080**"。
 
 <img src="../_static/media/chapter_22/section_6/image10.png" style="width:5.76319in;height:2.00833in" />
 
@@ -1095,9 +1095,9 @@ roslaunch puppy_with_arm hand_control_with_arm.launch
 
 <img class="common_img" src="../_static/media/chapter_22/section_6/image12.png" style="width:4.66528in;height:4.01597in" />
 
-8)  如需关闭此玩法，可在Terminator终端界面按下“**Ctrl+C**”。如果关闭失败，可多次按下。
+8)  如需关闭此玩法，可在Terminator终端界面按下"**Ctrl+C**"。如果关闭失败，可多次按下。
 
-9) 玩法关闭后，按下“Ctrl+Alt+T”打开LX终端，输入指令并按下回车，开启APP自启服务。
+9) 玩法关闭后，按下"Ctrl+Alt+T"打开LX终端，输入指令并按下回车，开启APP自启服务。
 
 ```commandline
 sudo systemctl restart start_node.service
@@ -1105,7 +1105,7 @@ sudo systemctl restart start_node.service
 
 <img src="../_static/media/chapter_22/section_6/image13.png" style="width:5.76597in;height:0.70972in" />
 
-在启动完成后，蜂鸣器会短鸣“**滴**”一声。
+在启动完成后，蜂鸣器会短鸣"**滴**"一声。
 
 :::{Note}
 如未启动 APP 自启服务，则会影响 APP 对应玩法的正常实现。如未输入命令进行自启，将机器狗重启也会重新启动 APP 自启服务。
@@ -1204,7 +1204,7 @@ output="**screen**"：指定节点的输出将显示在屏幕上。
 
 <img src="../_static/media/chapter_22/section_6/image24.png" style="width:5.76181in;height:0.91667in" />
 
-使用了 Python 中的数学库“**math**”，计算了两点之间的欧氏距离。它计算了二维平面上两个点 (point_1\[0\], point_1\[1\]) 和 (point_2\[0\], point_2\[1\]) 之间的距离。
+使用了 Python 中的数学库"**math**"，计算了两点之间的欧氏距离。它计算了二维平面上两个点 (point_1\[0\], point_1\[1\]) 和 (point_2\[0\], point_2\[1\]) 之间的距离。
 
 (point_1\[0\] - point_2\[0\]) \*\* 2 和 (point_1\[1\] - point_2\[1\]) \*\* 2：分别计算 x 方向和 y 方向上的差值的平方，将两个平方相加，得到欧氏距离的平方。
 
@@ -1272,9 +1272,9 @@ return np.array(landmarks)：将映射后的关键点坐标转换为 NumPy 数�
 
 <img src="../_static/media/chapter_22/section_6/image34.png" style="width:3.90625in;height:0.84375in" />
 
-使用“**setServoPulse**”函数来控制舵机，这里以“**setServoPulse(9,1500,300)**”为例：
+使用"**setServoPulse**"函数来控制舵机，这里以"**setServoPulse(9,1500,300)**"为例：
 
-第一个参数“9”为舵机ID；第二个参数“1500”为舵机脉冲宽度；第三个参数“300”为舵机运动时间，单位为毫秒。
+第一个参数"9"为舵机ID；第二个参数"1500"为舵机脉冲宽度；第三个参数"300"为舵机运动时间，单位为毫秒。
 
 - **爪子运动函数**
 

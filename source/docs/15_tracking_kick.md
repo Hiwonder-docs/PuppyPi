@@ -34,7 +34,7 @@ rosrun puppy_advanced_functions kick_ball_demo.py
 
 <img src="../_static/media/chapter_15/section_1/image7.png" style="width:5.76806in;height:1.25833in" />
 
-4.  如需关闭此玩法，可在LX终端界面按下“**Ctrl+C**”。如果关闭失败，可多次按下。
+4.  如需关闭此玩法，可在LX终端界面按下"**Ctrl+C**"。如果关闭失败，可多次按下。
 
 ### 1.3 功能实现
 
@@ -70,11 +70,11 @@ rosrun puppy_advanced_functions kick_ball_demo.py
 
 括号内的参数含义如下：
 
-第一个参数“**frame_resize**”是输入图像；
+第一个参数"**frame_resize**"是输入图像；
 
-第二个参数“**(3, 3)**”是高斯内核大小；
+第二个参数"**(3, 3)**"是高斯内核大小；
 
-第三个参数“**3**”是在高斯滤波中其平均值附近允许的变化范围大小。该值越大，平均值周围允许的变化范围越大；数值越小，平均值周围允许的变化范围越小。
+第三个参数"**3**"是在高斯滤波中其平均值附近允许的变化范围大小。该值越大，平均值周围允许的变化范围越大；数值越小，平均值周围允许的变化范围越小。
 
 2. **二值化处理**
 
@@ -101,9 +101,9 @@ eroded = cv2.erode(frame_mask, cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
 
 为例，括号内的参数含义如下：
 
-第一个参数“**frame_mask**”是输入图像；
+第一个参数"**frame_mask**"是输入图像；
 
-第二个参数“**cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))**”是决定操作性质的结构元素或内核。其中，括号内的第一个参数是内核形状，第二个参数是内核尺寸。
+第二个参数"**cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))**"是决定操作性质的结构元素或内核。其中，括号内的第一个参数是内核形状，第二个参数是内核尺寸。
 
 dilate()函数用于对图像进行膨胀操作。此函数括号内参数的含义与erode()函数的相同。
 
@@ -132,7 +132,7 @@ dilate()函数用于对图像进行膨胀操作。此函数括号内参数的含
 ## 2. 自主追踪踢球
 
 :::{Note}
-如果演示效果不佳，可根据文档内“[关闭调试画面](#anchor_2_4_1)”进行调试。
+如果演示效果不佳，可根据文档内"[关闭调试画面](#anchor_2_4_1)"进行调试。
 :::
 
 ### 2.1 实验原理
@@ -161,7 +161,7 @@ rosrun puppy_advanced_functions kick_ball_demo.py
 
 <img src="../_static/media/chapter_15/section_2/image5.png" style="width:5.76806in;height:1.20833in" />
 
-4.  如需关闭此玩法，可在LX终端界面按下“**Ctrl+C**”。如果关闭失败，可多次按下。
+4.  如需关闭此玩法，可在LX终端界面按下"**Ctrl+C**"。如果关闭失败，可多次按下。
 
 ### 2.3 功能实现
 
@@ -191,15 +191,15 @@ rosed puppy_advanced_functions kick_ball_demo.py
 
 :::{Note}
 
-在键盘输入代码位置序号后，按下“Shift+G”键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
+在键盘输入代码位置序号后，按下"Shift+G"键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
 
 :::
 
-3)  按下“**i**”键进入编辑模式，在代码前面添加“**\#**”，进行注释。
+3)  按下"**i**"键进入编辑模式，在代码前面添加"**\#**"，进行注释。
 
 <img src="../_static/media/chapter_15/section_2/image8.png" style="width:5.76111in;height:1.60972in" />
 
-4)  修改完成后，按下“**Esc**”键，输入并回车，进行保存与退出。
+4)  修改完成后，按下"**Esc**"键，输入并回车，进行保存与退出。
 
 ```commandline
 :wq
@@ -215,7 +215,7 @@ rosrun puppy_advanced_functions kick_ball_demo.py
 
 <img src="../_static/media/chapter_15/section_2/image10.png" style="width:5.76111in;height:1.90417in" />
 
-6)  如需再次查看调试画面（摄像头实时回传画面），可将步骤3）框出的内容进行反注释，即将代码前面的“**\#**”去掉，再进行保存，如下图所示：
+6)  如需再次查看调试画面（摄像头实时回传画面），可将步骤3）框出的内容进行反注释，即将代码前面的"**\#**"去掉，再进行保存，如下图所示：
 
 <img src="../_static/media/chapter_15/section_2/image7.png" style="width:5.7625in;height:1.43681in" />
 
@@ -236,14 +236,14 @@ rosed puppy_advanced_functions kick_ball_demo.py
 <img src="../_static/media/chapter_15/section_2/image11.png" style="width:5.76111in;height:1.05in" />
 
 :::{Note}
-在键盘输入代码位置序号后，按下“Shift+G”键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
+在键盘输入代码位置序号后，按下"Shift+G"键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
 :::
 
-3)  按下“**i**”键进入编辑模式，将“**red**”改为“**blue**”。
+3)  按下"**i**"键进入编辑模式，将"**red**"改为"**blue**"。
 
 <img src="../_static/media/chapter_15/section_2/image12.png" style="width:5.76458in;height:1.74514in" />
 
-4)  修改完成后，按下“**Esc**”键，输入指令并按下回车，进行保存与退出。
+4)  修改完成后，按下"**Esc**"键，输入指令并按下回车，进行保存与退出。
 
 ```commandline
 :wq
@@ -289,11 +289,11 @@ PuppyVelocityPub.publish(x=4, y=0, yaw_rate = math.radians(0))
 
 为例，括号内的参数含义如下：
 
-第一个参数“**x**”是机器狗的直行速度，前进方向为正方向，单位cm/s；
+第一个参数"**x**"是机器狗的直行速度，前进方向为正方向，单位cm/s；
 
-第二个参数“**y**”是机器狗的侧移速度，左侧方向为正方向，单位cm/s，目前无此功能；
+第二个参数"**y**"是机器狗的侧移速度，左侧方向为正方向，单位cm/s，目前无此功能；
 
-第三个参数“**yaw_rate**”是机器狗的转弯速度，逆时针方向为正方向，单位rad/s。
+第三个参数"**yaw_rate**"是机器狗的转弯速度，逆时针方向为正方向，单位rad/s。
 
 3. **开始踢球**
 
