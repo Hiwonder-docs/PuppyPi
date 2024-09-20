@@ -56,17 +56,17 @@
 
 <img src="../_static/media/chapter_2/section_1/image8.jpeg" style="width:5.76389in;height:2.8in" alt="01.jpg01" />
 
-<img src="../_static/media/chapter_2/section_1/image9.jpeg" style="width:3.14961in;height:2.72587in" alt="02.jpg02" />
+<img class="common_img" src="../_static/media/chapter_2/section_1/image9.jpeg" style="width:3.14961in;height:2.72587in" alt="02.jpg02" />
 
 :::{Note}
 
-若使用苹果手机进行操作，在连接热点时，切记要等待手机上方出现了Wi-Fi连接成功的图标之后再返回APP，否则可能会搜索不到设备。出现此情况可点击<img src="../_static/media/chapter_2/section_1/image10.png" style="width:0.31496in;height:0.31496in" />进行刷新，一般来说多刷新几次，就可以搜索到设备。
+若使用苹果手机进行操作，在连接热点时，切记要等待手机上方出现了Wi-Fi连接成功的图标之后再返回APP，否则可能会搜索不到设备。出现此情况可点击<img class="common_img" src="../_static/media/chapter_2/section_1/image10.png" style="width:0.31496in;height:0.31496in" />进行刷新，一般来说多刷新几次，就可以搜索到设备。
 
 :::
 
 4)  连接热点后，返回手机APP，APP将自动连接设备。稍等片刻，当搜索到下图所示图标时，即为连接成功。
 
-<img src="../_static/media/chapter_2/section_1/image11.jpeg" style="width:5.76389in;height:2.80278in" alt="03.jpg03" />
+<img class="common_img" src="../_static/media/chapter_2/section_1/image11.jpeg" style="width:5.76389in;height:2.80278in" alt="03.jpg03" />
 
 :::{Note}
 若手机出现"**网络不可用，是否继续连接**"的提示弹窗，单击"**保持连接**"按键即可。
@@ -159,24 +159,24 @@
     </tr>
     <tr>
         <td style="text-align: center;"><p>普通模式</p>
-        <td style="text-align: center;"><p><img src="../_static/media/chapter_2/section_2/image6.png" style="width:0.7874in;height:0.7874in" alt="Screenshot_20220208_173516" /></p></td>
+        <td style="text-align: center;"><p><img src="../_static/media/chapter_2/section_2/image30.png" style="width:0.7874in;height:0.7874in" alt="Screenshot_20220208_173516" /></p></td>
         <td style="text-align: left;">拖动摇杆可控制机器狗朝各个方向运动。</td>
     </tr>
     <tr>
         <td rowspan="4" style="text-align: center;">高级模式</td>
-        <td style="text-align: center;"><img src="../_static/media/chapter_2/section_2/image7.png" style="width:0.7874in;height:0.7874in" alt="Screenshot_20220208_173522" /></td>
+        <td style="text-align: center;"><img src="../_static/media/chapter_2/section_2/image31.png" style="width:0.7874in;height:0.7874in" alt="Screenshot_20220208_173522" /></td>
         <td style="text-align: left;">显示速度等级，等级范围为0-10级。</td>
     </tr>
     <tr>
-        <td style="text-align: center;"><img src="../_static/media/chapter_2/section_2/image1.png" style="width:0.7874in;height:0.7874in" alt="Screenshot_20220208_173522" /></td>
+        <td style="text-align: center;"><img src="../_static/media/chapter_2/section_2/image29.png" style="width:0.7874in;height:0.7874in" alt="Screenshot_20220208_173522" /></td>
         <td style="text-align: left;">拖动摇杆可控制机器狗的运动速度。摇杆离中心点越远，速度越快；离中心点越近，速度越慢。 </td>
     </tr>
     <tr>
-        <td style="text-align: center;"><img src="../_static/media/chapter_2/section_2/image27.png" style="width:1.77165in;height:0.3432in" alt="Screenshot_20220208_173522" /></td>
+        <td style="text-align: center;"><img src="../_static/media/chapter_2/section_2/image32.png" style="width:1.77165in;height:0.3432in" alt="Screenshot_20220208_173522" /></td>
         <td style="text-align: left;">拖动滑杆可调节机器狗的Pitch值，即俯仰角度。</td>
     </tr>
     <tr>
-        <td style="text-align: center;"><img src="../_static/media/chapter_2/section_2/image28.png" style="width:0.59055in;height:1.49278in" alt="Screenshot_20220208_173522" /></td>
+        <td style="text-align: center;"><img src="../_static/media/chapter_2/section_2/image33.png" style="width:0.59055in;height:1.49278in" alt="Screenshot_20220208_173522" /></td>
         <td style="text-align: left;">拖动滑杆可调节机器狗的高度。</td>
     </tr>
     <tr>
