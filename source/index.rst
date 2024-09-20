@@ -9,8 +9,6 @@
 
    docs/1_read_before_studying.md
    docs/2_play_first_hand.md
-   docs/5_docker_container_basics_course.md
-   docs/6_ros_basics_course.md
    docs/8_remote_tool.md
    docs/9_motion_control.md
    docs/10_action_editing.md
