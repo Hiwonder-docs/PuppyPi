@@ -20,23 +20,23 @@ VNC是一款图形化远程控制软件。通过连接树莓派的Wi-Fi热点，
 
 2)  点击"**Next**"按键。
 
-<img class="common_img" src="../_static/media/chapter_8/section_1/image2.png" style="width:4.72431in;height:3.68889in" />
+<img class="common_img" src="../_static/media/chapter_8/section_1/image2.png"  />
 
 3)  勾选同意协议，并点击"**Next**"按键。
 
-<img class="common_img" src="../_static/media/chapter_8/section_1/image3.png" style="width:4.72431in;height:3.68889in" />
+<img class="common_img" src="../_static/media/chapter_8/section_1/image3.png"  />
 
 4)  保持默认安装位置，并点击"**Next**"按键。跳转至下一界面时，直接点击"**Install**"按键。
 
-<img class="common_img" src="../_static/media/chapter_8/section_1/image4.png" style="width:4.72431in;height:3.68889in" />
+<img class="common_img" src="../_static/media/chapter_8/section_1/image4.png"  />
 
 5)  等待片刻后，出现安装完成的提示界面，点击"**Finish**"按键即可。
 
-<img class="common_img" src="../_static/media/chapter_8/section_1/image5.png" style="width:4.72431in;height:3.68889in" />
+<img class="common_img" src="../_static/media/chapter_8/section_1/image5.png"  />
 
-6)  安装完成，点击图标<img src="../_static/media/chapter_8/section_1/image6.png" style="width:0.31458in;height:0.31458in" />即可打开VNC。
+6)  安装完成，点击图标<img src="../_static/media/chapter_8/section_1/image6.png"  />即可打开VNC。
 
-1.3 设备开机
+- #### 设备开机
 
 参照"**[学前先看\2. 首次开机](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/1_read_before_studying.html#id4)**"课程，打开设备开关，将设备开机。稍等片刻后，扩展板上的LED1会开始闪烁，蜂鸣器会鸣叫一次，代表设备开机成功。
 
@@ -54,21 +54,21 @@ VNC是一款图形化远程控制软件。通过连接树莓派的Wi-Fi热点，
 
 3)  连接成功后，打开VNC Viewer，在地址栏输入树莓派默认的IP地址：192.168.149.1，按下回车。如果出现安全连接相关的提示框，点击"Continue"按键即可。  
 
-<img class="common_img" src="../_static/media/chapter_8/section_1/image10.png" style="width:5.51181in;height:0.54792in" />
+<img class="common_img" src="../_static/media/chapter_8/section_1/image10.png"  />
 
 4)  在账号登录窗口填写所需信息，账号栏（Username）输入"**pi**"，密码栏（Password）输入"**raspberrypi**"，并勾选记住密码（Remember password）。点击"OK"按键后，便可远程打开树莓派桌面。
 
-<img class="common_img" src="../_static/media/chapter_8/section_1/image11.png" style="width:3.14931in;height:2.21528in" />
+<img class="common_img" src="../_static/media/chapter_8/section_1/image11.png"  />
 
 5)  桌面如下图所示。（如果出现黑屏，只显示鼠标指针，可尝试重启树莓派。）
 
-<img class="common_img" src="../_static/media/chapter_8/section_1/image12.png" style="width:5.75278in;height:3.24375in" />
+<img class="common_img" src="../_static/media/chapter_8/section_1/image12.png"  />
 
 ### 2.3 界面介绍
 
 通过VNC成功连接PuppyPi之后，操作界面如下所示：
 
-<img class="common_img" src="../_static/media/chapter_8/section_1/image13.png" style="width:5.75486in;height:3.2375in" />
+<img class="common_img" src="../_static/media/chapter_8/section_1/image13.png"  />
 
 下表为常用功能说明：
 
@@ -80,7 +80,7 @@ VNC是一款图形化远程控制软件。通过连接树莓派的Wi-Fi热点，
 </tr>
 <tr>
 <td style="text-align: center;"><img src="../_static/media/chapter_8/section_1/image14.png" style="width:0.5in;height:0.5in" alt="2" /></td>
-<td style="text-align: center;"><p>应用菜单，点击之后可选择不同应用。</p>
+<td><p>应用菜单，点击之后可选择不同应用。</p>
 <p><img src="../_static/media/chapter_8/section_1/image15.png" style="width:1.45in;height:2.30972in" /></p></td>
 </tr>
 <tr>
@@ -130,7 +130,7 @@ VNC是一款图形化远程控制软件。通过连接树莓派的Wi-Fi热点，
 
 通过VNC远程连接后，树莓派系统桌面如下图所示：
 
-<img class="common_img" src="../_static/media/chapter_8/section_2/image2.png" style="width:5.75278in;height:3.24375in" />
+<img src="../_static/media/chapter_8/section_2/image2.png"  />
 
 其中我们主要看下面这6个图标：
 
@@ -149,7 +149,7 @@ VNC是一款图形化远程控制软件。通过连接树莓派的Wi-Fi热点，
 
 1)  点击桌面左上角终端图标<img src="../_static/media/chapter_8/section_2/image11.png" style="width:0.4375in;height:0.35417in" />，或者按下"**Ctrl+Alt+T**"，打开命令行终端。
 
-<img class="common_img" src="../_static/media/chapter_8/section_2/image12.png" style="width:5.76528in;height:3.69236in" />
+<img src="../_static/media/chapter_8/section_2/image12.png"  />
 
 2)  输入指令，然后按下回车，列出当前所有文件。主要来看这两个目录，如下图所示：
 
@@ -157,7 +157,7 @@ VNC是一款图形化远程控制软件。通过连接树莓派的Wi-Fi热点，
 ls
 ```
 
-<img src="../_static/media/chapter_8/section_2/image13.png" style="width:5.7625in;height:2.5375in" />
+<img class="common_img" src="../_static/media/chapter_8/section_2/image13.png"  />
 
 |    **目录名**    |          **作用**           |
 |:----------------:|:---------------------------:|
@@ -168,7 +168,7 @@ ls
 
 1)  点击系统桌面左上角的图标<img src="../_static/media/chapter_8/section_2/image15.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-<img class="common_img" src="../_static/media/chapter_8/section_2/image16.png" style="width:5.7625in;height:0.65903in" />
+<img class="common_img" src="../_static/media/chapter_8/section_2/image16.png"  />
 
 2)  在命令行终端，输入指令，然后按下回车，显示出正在运行和历史运行过的容器。其中container id是容器的ID，image是该容器使用的镜像名称，created是容器创建时间，status是容器当前状态。
 
@@ -176,7 +176,7 @@ ls
 docker ps -a
 ```
 
-<img src="../_static/media/chapter_8/section_2/image18.png" style="width:5.75833in;height:0.84028in" />
+<img src="../_static/media/chapter_8/section_2/image18.png"  />
 
 3)  根据得到容器ID（唯一），输入指令，进入装有功能程序的容器中。（容器的ID可以简写，只要是该容器唯一标识即可）
 
@@ -184,7 +184,7 @@ docker ps -a
 docker exec -it -u ubuntu -w /home/ubuntu 82df /bin/bash
 ```
 
-<img class="common_img" src="../_static/media/chapter_8/section_2/image20.png" style="width:5.75833in;height:1.30972in" />
+<img src="../_static/media/chapter_8/section_2/image20.png"  />
 
 4)  输入指令，然后按下回车，列出当前所有文件。主要来看这两个目录，如下图所示：
 
@@ -192,7 +192,7 @@ docker exec -it -u ubuntu -w /home/ubuntu 82df /bin/bash
 ls
 ```
 
-<img class="common_img" src="../_static/media/chapter_8/section_2/image22.png" style="width:5.75833in;height:1.55903in" />
+<img src="../_static/media/chapter_8/section_2/image22.png"  />
 
 | **目录名** |             **作用**             |
 |:----------:|:--------------------------------:|
@@ -210,7 +210,7 @@ cd puppypi/src/
 ls
 ```
 
-<img class="common_img" src="../_static/media/chapter_8/section_2/image24.png" style="width:5.75833in;height:2.075in" />
+<img src="../_static/media/chapter_8/section_2/image24.png"  />
 
 下表是程序目录：
 
@@ -258,11 +258,11 @@ Docker Hub（仓库）官网：https://hub.docker.com
 
 1)  将设备开机，并参照课程资料的"**[远程工具安装及容器进入方法\1. 远程桌面工具安装与连接](#anchor_1)**"内容，通过VNC远程连接工具连接。
 
-<img class="common_img" src="../_static/media/chapter_8/section_3/image2.png" style="width:5.75278in;height:3.24375in" />
+<img class="common_img" src="../_static/media/chapter_8/section_3/image2.png"  />
 
 2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_8/section_3/image3.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-<img class="common_img" src="../_static/media/chapter_8/section_3/image4.png" style="width:5.76389in;height:1.20903in" />
+<img class="common_img" src="../_static/media/chapter_8/section_3/image4.png"  />
 
 当前为树莓派系统的终端。
 
@@ -294,7 +294,7 @@ Docker Hub（仓库）官网：https://hub.docker.com
 docker ps -a
 ```
 
-<img class="common_img" src="../_static/media/chapter_8/section_3/image5.png" style="width:5.75833in;height:1.30764in" />
+<img class="common_img" src="../_static/media/chapter_8/section_3/image5.png"  />
 
 - #### 3.2.2 进入容器
 
@@ -310,7 +310,7 @@ docker ps -a
 docker exec -it -u ubuntu -w /home/ubuntu 82df /bin/bash
 ```
 
-<img class="common_img" src="../_static/media/chapter_8/section_3/image6.png" style="width:5.75833in;height:1.36736in" />
+<img class="common_img" src="../_static/media/chapter_8/section_3/image6.png"  />
 
 - #### 3.2.3 退出容器
 
@@ -322,7 +322,7 @@ docker exec -it -u ubuntu -w /home/ubuntu 82df /bin/bash
 exit
 ```
 
-<img class="common_img" src="../_static/media/chapter_8/section_3/image7.png" style="width:5.76389in;height:1.50347in" />
+<img class="common_img" src="../_static/media/chapter_8/section_3/image7.png"  />
 
 2)  使用快捷键组合"**crtl+P+Q**"，此时容器会直接退出但不停止运行，我们可以在终端输入指令,查看到正在运行的容器。
 
@@ -330,21 +330,21 @@ exit
 docker ps
 ```
 
-<img class="common_img" src="../_static/media/chapter_8/section_3/image8.png" style="width:5.75833in;height:2.07431in" />
+<img class="common_img" src="../_static/media/chapter_8/section_3/image8.png"  />
 
 ### 3.3 便捷工具使用（必看）
 
 每次进入容器之前都需要输入在terminator终端输入指令，这就很麻烦，可以在terminator工具里面设置进入容器的指令。
 
-<img class="common_img" src="../_static/media/chapter_8/section_3/image9.png" style="width:5.7625in;height:1.64097in" />
+<img class="common_img" src="../_static/media/chapter_8/section_3/image9.png"  />
 
 1)  在terminator窗口右键，选择"**Preference**"点击。
 
-<img class="common_img" src="../_static/media/chapter_8/section_3/image10.png" style="width:5.76319in;height:3.60486in" />
+<img class="common_img" src="../_static/media/chapter_8/section_3/image10.png"  />
 
 2)  选择**Profiles→Command**。
 
-<img class="common_img" src="../_static/media/chapter_8/section_3/image11.png" style="width:5.7625in;height:3.75833in" />
+<img class="common_img" src="../_static/media/chapter_8/section_3/image11.png"  />
 
 3)  在方框内"**√**"中，输入"**host + && docker exec -it -u ubuntu -w /home/ubuntu puppypi /bin/zsh**"进入容器的指令。（注意：**puppypi** 是装有功能玩法的容器名称）
 
@@ -352,11 +352,11 @@ docker ps
 host + && docker exec -it -u ubuntu -w /home/ubuntu puppypi /bin/zsh
 ```
 
-<img class="common_img" src="../_static/media/chapter_8/section_3/image12.png" style="width:5.76667in;height:4.64861in" />
+<img class="common_img" src="../_static/media/chapter_8/section_3/image12.png"  />
 
 4)  然后点击关闭，这样每次开启terminal，可以直接进入装功能程序的容器中。
 
-<img class="common_img" src="../_static/media/chapter_8/section_3/image13.png" style="width:5.76458in;height:4.61944in" />
+<img class="common_img" src="../_static/media/chapter_8/section_3/image13.png"  />
 
 
 
