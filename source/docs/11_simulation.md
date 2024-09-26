@@ -56,7 +56,7 @@ xacro模型是URDF模型的拓展形式， 本质上两者是一样的。若使�
 
 连杆在URDF模型中以"link"作为标签，它描述了机器人某个刚体部分的外观和物理属性，编写连杆动作会用到下图标签：
 
-<img src="../_static/media/chapter_11/section_1/image2.png" style="width:5.76389in;height:1.28681in" />
+<img src="../_static/media/chapter_11/section_1/image2.png"  />
 
 - \<visual\>：描述机器人link部分的外观参数，如尺寸、颜色、形状等。
 
@@ -91,7 +91,7 @@ xacro模型是URDF模型的拓展形式， 本质上两者是一样的。若使�
 
 编写关节动作会用到下图标签：
 
-<img src="../_static/media/chapter_11/section_1/image3.png" style="width:5.76806in;height:1.52708in" />
+<img src="../_static/media/chapter_11/section_1/image3.png"  />
 
 - \<parent_link\>：父连杆。
 
@@ -117,51 +117,51 @@ xacro模型是URDF模型的拓展形式， 本质上两者是一样的。若使�
 
 完整的机器人最顶层的标签，\<link\>标签和\<joint\>标签必须包含在\<robot\>内，格式如下：
 
-<img src="../_static/media/chapter_11/section_1/image4.png" style="width:5.76458in;height:1.48542in" />
+<img src="../_static/media/chapter_11/section_1/image4.png"  />
 
 - #### 1.3.5 gazebo标签
 
 配合gazebo仿真器使用，可以设置一些仿真参数，使用此标签引入gazebo插件、gazebo物理属性设置等等。
 
-<img src="../_static/media/chapter_11/section_1/image5.png" style="width:5.76319in;height:0.66875in" />
+<img src="../_static/media/chapter_11/section_1/image5.png"  />
 
 - #### 1.3.6 编写简单的URDF模型
 
-<img src="../_static/media/chapter_11/section_1/image6.png" style="width:5.51181in;height:8.89306in" />
+<img src="../_static/media/chapter_11/section_1/image6.png"  />
 
 1. **设置机器人模型名称**
 
 在编写URDF模型最开始时，我们需要设置机器人模型的名字："**\<robot name="机器人模型名称"\>**"。在模型编写的最后输入"**\</robot\>**"，表示该机器人模型编写完成。
 
-<img src="../_static/media/chapter_11/section_1/image7.png" style="width:5.76458in;height:0.37917in" />
+<img src="../_static/media/chapter_11/section_1/image7.png"  />
 
-<img src="../_static/media/chapter_11/section_1/image8.png" style="width:5.76597in;height:0.17917in" />
+<img src="../_static/media/chapter_11/section_1/image8.png"  />
 
 2. **设置连杆**
 
 - 1.  编写第一个连杆，用缩进表示此连杆属于此次设置的模型内，然后需要设置连杆的名称："**\<link name="连杆名称"\>**"。在连杆编写的最后需要输入"**\</link\>**"，表示该连杆编写完成。
 
-<img src="../_static/media/chapter_11/section_1/image9.png" style="width:5.76528in;height:0.17292in" />
+<img src="../_static/media/chapter_11/section_1/image9.png"  />
 
-<img src="../_static/media/chapter_11/section_1/image10.png" style="width:5.76667in;height:0.17639in" />
+<img src="../_static/media/chapter_11/section_1/image10.png"  />
 
 - 2.  编写连杆描述部分，用缩进表示此描述用于此次设置的连杆内，需要在描述的开头输入"\<**visual**\>"开始描述，在描述结束后输入"**\</visual\>**"。
 
-<img src="../_static/media/chapter_11/section_1/image11.png" style="width:5.76389in;height:0.2125in" />
+<img src="../_static/media/chapter_11/section_1/image11.png"  />
 
-<img src="../_static/media/chapter_11/section_1/image12.png" style="width:5.76667in;height:0.2875in" />
+<img src="../_static/media/chapter_11/section_1/image12.png"  />
 
 - 3.  "**\<geometry\>**"是对连杆形状的描述，描述完毕后需要输入"**\</geometry\>**"，在其中，用缩进表示其内部是对连杆外形的具体描述。下图描述了一个连杆外形："**\<cylinder length="0.01"radius="0.2"/\>**"，其中，length="0.01"表示该连杆的长度为0.01米，radius="0.2"该连杆半径为0.2米，是一个圆柱体。
 
-<img src="../_static/media/chapter_11/section_1/image13.png" style="width:5.76597in;height:0.49583in" />
+<img src="../_static/media/chapter_11/section_1/image13.png"  />
 
 - 4.  "**\<origin\>**"是对连杆位置的描述，用缩进表示对连杆位置的具体描述。下图描述了一个连杆位置："**\<origin rpy="0 0 0" xyz="0 0 0"/\>**"，其中rpy为连杆的角度，xyz为连杆的坐标位置。表示连杆在坐标系中的位置为原点。
 
-<img src="../_static/media/chapter_11/section_1/image14.png" style="width:5.76736in;height:0.13819in" />
+<img src="../_static/media/chapter_11/section_1/image14.png"  />
 
 - 5.  "**\<material\>**"是对连杆位置的描述，用缩进表示对连杆颜色的具体描述，需要在描述的开头输入"\<**material**\>"开始描述，在描述结束后输入"**\</material\>**"。下图描述了将连杆设置成黄色："**\<color rgba="1 1 0 1"/\>**"，rgba="1 1 0 1"为设置颜色阈值。
 
-<img src="../_static/media/chapter_11/section_1/image15.png" style="width:5.76389in;height:0.46319in" />
+<img src="../_static/media/chapter_11/section_1/image15.png"  />
 
 **设置关节**
 
@@ -171,29 +171,29 @@ xacro模型是URDF模型的拓展形式， 本质上两者是一样的。若使�
 关节类型可以前往"[1.3 URDF模型基本语法\ 关节](#anchor_1_3_3)"进行学习。
 :::
 
-<img src="../_static/media/chapter_11/section_1/image16.png" style="width:5.76389in;height:0.15833in" />
+<img src="../_static/media/chapter_11/section_1/image16.png"  />
 
-<img src="../_static/media/chapter_11/section_1/image17.png" style="width:5.7625in;height:0.15069in" />
+<img src="../_static/media/chapter_11/section_1/image17.png"  />
 
 - 2. 编写关节连接连杆描述部分，用缩进表示此描述用于此次设置的关节内，需要设置parent参数和child参数。可以根据以下公式设置："**\<parent link="父连杆"/\>**"、"**\<child link="子连杆"/\>**"。当关节转动的时候，会以父连杆为支店，转动子连杆。
 
-<img src="../_static/media/chapter_11/section_1/image18.png" style="width:5.76458in;height:0.28889in" />
+<img src="../_static/media/chapter_11/section_1/image18.png"  />
 
 - 3.  "**\<origin\>**"是对关节位置的描述，用缩进表示对关节位置的具体描述。下图描述了一个关节位置："**\<origin xyz="0 0 0.1"/\>**"，其中，xyz为关节的坐标位置，表示关节在坐标系的具体位置为x=0、y=0、z=0.1。
 
-<img src="../_static/media/chapter_11/section_1/image19.png" style="width:5.76111in;height:0.17569in" />
+<img src="../_static/media/chapter_11/section_1/image19.png"  />
 
 - 4.  "**\<axis\>**"是对关节位置的描述，用缩进表示对关节姿态的具体描述。下图描述了一个关节姿态："**\<axis xyz="0 0 1"/\>**"，其中，xyz为关节的姿态位置。
 
-<img src="../_static/media/chapter_11/section_1/image20.png" style="width:5.76597in;height:0.20347in" />
+<img src="../_static/media/chapter_11/section_1/image20.png"  />
 
 - 5.  "**\<limit\>**"是对关节运动进行限制，用缩进表示对关节角度限制的具体描述。下图描述了关节限制了转动关节最大的力不超过300牛，转动弧度的上线为3.14，下限为-3.14。其中，根据以下公式设置:effort="**关节的力度（牛）**"、velocity="**关节运动的速度**"、lower="**弧度下限**"、upper="**弧度上限**"。
 
-<img src="../_static/media/chapter_11/section_1/image21.png" style="width:5.76042in;height:0.10903in" />
+<img src="../_static/media/chapter_11/section_1/image21.png"  />
 
 - 6.  "**\<dynamics\>**"是对关节位动力学的描述，用缩进表示对关节姿态的具体描述。下图描述了一个关节的动力学参数："\<**dynamics damping="50"friction="1"/\>**"，其中，damping="**阻尼值**"、friction="**摩檫力**"。
 
-<img src="../_static/media/chapter_11/section_1/image22.png" style="width:5.76181in;height:0.16875in" />
+<img src="../_static/media/chapter_11/section_1/image22.png"  />
 
 
 ## 2. ROS机器狗URDF模型说明
@@ -210,45 +210,45 @@ xacro模型是URDF模型的拓展形式， 本质上两者是一样的。若使�
 
 2.  <span class="mark">将产品资料目录"**2软件工具\2.虚拟机镜像及虚拟机安装包\虚拟机镜像**"下的虚拟机文件"**PuppyPi_VM**.zip"解压以后打开客户端。</span>
 
-<img class="common_img" src="../_static/media/chapter_11/section_2/image1.png" style="width:0.88542in;height:0.94792in" />
+<img class="common_img" src="../_static/media/chapter_11/section_2/image1.png"  />
 
 3.  点击"**打开虚拟机**"。
 
-<img class="common_img" src="../_static/media/chapter_11/section_2/image2.png" style="width:5.76389in;height:1.25in" />
+<img class="common_img" src="../_static/media/chapter_11/section_2/image2.png"  />
 
 4.  前往虚拟机解压的路径，选择"**<span class="mark">PuppyPi_VM,.ovf</span>**"，点击"**打开。**
 
-<img src="../_static/media/chapter_11/section_2/image3.png" style="width:5.75972in;height:3.24028in" />
+<img src="../_static/media/chapter_11/section_2/image3.png"  />
 
 5.  点击"**浏览**"设置虚拟机存放路径，建议存放至固态硬盘，因为存放磁盘的读写速度将会影响虚拟机的速度，最后点击"**导入**"。
 
-<img src="../_static/media/chapter_11/section_2/image4.png" style="width:5.58472in;height:3.47083in" />
+<img class="common_img" src="../_static/media/chapter_11/section_2/image4.png"  />
 
 6.  点击"**开启此虚拟机。**
 
-<img src="../_static/media/chapter_11/section_2/image5.png" style="width:5.76528in;height:1.94444in" />
+<img src="../_static/media/chapter_11/section_2/image5.png"  />
 
 ### 2.2 打开机器狗URDF模型文件
 
 1)  在VMware虚拟机的Ubuntu系统中按下"Ctrl+Alt+T"打开终端，输入以下指令进入储存URDF模型的文件夹："**cd** **puppy_sim/src/puppy_description/urdf**"
 
-<img src="../_static/media/chapter_11/section_2/image14.png" style="width:5.76458in;height:0.85139in" />
+<img src="../_static/media/chapter_11/section_2/image14.png"  />
 
 2)  以"**pug.urdf.xacro**"为例，在该目录下输入指令"**vim puppy.urdf.xacro**"，用vim 打开ROSPug机器狗的URDF模型。
 
-<img src="../_static/media/chapter_11/section_2/image16.png" style="width:5.76319in;height:0.73403in" />
+<img src="../_static/media/chapter_11/section_2/image16.png"  />
 
 3)  出现下图则证明打开了ROSPug机器狗URDF模型文件：
 
-<img src="../_static/media/chapter_11/section_2/image18.png" style="width:5.76667in;height:3.37639in" />
+<img src="../_static/media/chapter_11/section_2/image18.png"  />
 
 ### 2.3 URDF模型分析和理解
 
-- #### 1. URDF模型的结构
+- #### 2.3.1 URDF模型的结构
 
 ROSPug的URDF模型文件由3个文件组成，分别是：**"puppy.urdf.xacro"、"puppy.gazebo.xacro"、"puppy.transmission.xacro"**，其中puppy.urdf.xacro是整个机器人的主URDF文件，通过include其他2个xacro文件，使整个URDF的各个文件组合在一起，就定义了这个ROSPug的整个机械结构、动力学、仿真等信息。文件之间通过include和宏引用组织在一起，这样可以划分功能模块，便于阅读和维护最终形成一个完整的URDF模型文件。
 
-- #### 2. puppy.urdf.xacro分析
+- #### 2.3.2 puppy.urdf.xacro分析
 
 它定义了机器人的基本结构，包括机身、关节、连接等。这个文件中也包含了一些宏定义和属性定义，这些定义在代码中可以被多次使用，以简化代码和避免出现重复的代码。由于代码较长，所以这里将分为3个部分并举例介绍，主要包括以下部分：
 
@@ -258,19 +258,19 @@ ROSPug的URDF模型文件由3个文件组成，分别是：**"puppy.urdf.xacro"�
 
 "**include**"引入了两个文件，分别是puppy.transmission.xacro和pug.gazebo.xacro。这些文件包含了机器人传输系统和在Gazebo仿真环境中的一些属性。
 
-<img src="../_static/media/chapter_11/section_2/image21.png" style="width:5.76389in;height:1.33264in" />
+<img src="../_static/media/chapter_11/section_2/image21.png"  />
 
 2. **连杆的定义**
 
 Link元素表示机器人模型中的一个刚体，它可以包含惯性信息、可视化信息、碰撞信息等。下面是一个Link元素的示例代码，包含了惯性信息、可视化信息和碰撞信息：
 
-<img src="../_static/media/chapter_11/section_2/image23.png" style="width:5.76319in;height:4.18958in" />
+<img src="../_static/media/chapter_11/section_2/image23.png"  />
 
 3. **关节的定义**
 
 Joint元素表示机器人模型中的一个关节，它连接两个Link，并定义了它们之间的相对运动。下面是一个Joint元素的示例代码，包含了关节的类型、连接的Link、关节轴的方向和关节限制等信息：<img src="../_static/media/chapter_11/section_2/image25.png" style="width:5.14583in;height:1.15625in" />
 
-- #### 3. puppy.gazebo.xacro分析
+- #### 2.3.3 puppy.gazebo.xacro分析
 
 主要用于Gazebo仿真器中创建机器人模型。它定义了一个机器人的各个部件的物理特性、关节控制、传感器等信息，以便在Gazebo中进行仿真、控制和测试。由于代码较长，所以这里将分为3个部分并举例介绍，主要包括以下部分：
 
@@ -290,7 +290,7 @@ Joint元素表示机器人模型中的一个关节，它连接两个Link，并�
 
 <img src="../_static/media/chapter_11/section_2/image32.png" style="width:5.76736in;height:5.24931in" /> 
 
-- #### 3.4 puppy.transmissions.xacro分析
+- #### 2.3.4 puppy.transmissions.xacro分析
 
 这个transmissions.xacro文件定义了机器人模型中的传动系统，包括各个关节和电机之间的传动方式。在运行时，ROS会将"**transmissions.xacro**"文件转换为机器人模型中的传动系统。主要包含以下2个部分：
 
@@ -413,7 +413,8 @@ GUI 库使用QT创建图形小部件，供用户模拟交互。用户可以通�
 腿部坐标系(Joint Coordinate System)顾名思义就是定义在腿部的坐标系。同样，腿部坐标系的建立也遵循右手定则。因此，在下图示例的机器人模型中，红轴为X轴，绿轴为Y轴，蓝轴为Z轴。
 
 腿部坐标系的数量并不固定，它主要和腿的数量相关。所以，大家在建立关节坐标系时需要格外注意。  
-<img src="../_static/media/chapter_11/section_3/image2.png" style="width:5.76528in;height:3.18958in" />
+
+<img src="../_static/media/chapter_11/section_3/image2.png" class="common_img"/>
 
 ## 4. Gazebo仿真及运动规划
 
@@ -447,11 +448,11 @@ GUI 库使用QT创建图形小部件，供用户模拟交互。用户可以通�
 
 4.  前往虚拟机解压的路径，选择"**<span class="mark">PuppyPi_VM,.ovf</span>**"，点击"**打开。**
 
-<img src="../_static/media/chapter_11/section_4/image3.png" style="width:5.75972in;height:3.24028in" />
+<img class="common_img" src="../_static/media/chapter_11/section_4/image3.png"  />
 
 5.  点击"浏览"设置虚拟机存放路径，建议存放至固态硬盘，因为存放磁盘的读写速度将会影响虚拟机的速度，最后点击"导入"。
 
-<img src="../_static/media/chapter_11/section_4/image4.png" style="width:5.58472in;height:3.47083in" />
+<img class="common_img" src="../_static/media/chapter_11/section_4/image4.png"  />
 
 ### 4.2 配置虚拟机网络
 
@@ -461,23 +462,23 @@ GUI 库使用QT创建图形小部件，供用户模拟交互。用户可以通�
 
 2.  连接成功后返回VMware虚拟机，在软件界面点击"**编辑—\>虚拟机网络配置**"。
 
-<img src="../_static/media/chapter_11/section_4/image12.png" style="width:5.76389in;height:1.3125in" />
+<img src="../_static/media/chapter_11/section_4/image12.png"  />
 
 3. 在弹出的"**虚拟网络编辑器**"窗口中点击底部的"**更改设置**"按钮。
 
-<img src="../_static/media/chapter_11/section_4/image13.png" style="width:5.76389in;height:1.08264in" />
+<img class="common_img" src="../_static/media/chapter_11/section_4/image13.png"  />
 
 4.  在"**桥接模式**"处的网卡列表中选择电脑的无线网卡，不同电脑的无线网卡可能不一样，但无线网卡名称中一般会包含"**802.11ac**"文字，选择名称中包含"**802.11ac**"的网卡即可，最后点击确定即可。
 
-<img src="../_static/media/chapter_11/section_4/image14.png" style="width:5.76389in;height:2.47014in" />
+<img class="common_img" src="../_static/media/chapter_11/section_4/image14.png"  />
 
 5. 点击"**开启此虚拟机**"，等待开机完成即可。
 
-<img src="../_static/media/chapter_11/section_4/image9.png" style="width:5.76389in;height:1.30347in" />
+<img class="common_img" src="../_static/media/chapter_11/section_4/image9.png"  />
 
 6. 进入 Ubuntu 系统桌面，单击鼠标右键，选择"**Open in Terminal**"打开命令栏。
 
-<img src="../_static/media/chapter_11/section_4/image15.png" style="width:6.01667in;height:2.05625in" />
+<img src="../_static/media/chapter_11/section_4/image15.png"  />
 
 7. 输入以下指令，并按下回车。红框内为 Ubuntu 系统 IP。
 
@@ -485,7 +486,7 @@ GUI 库使用QT创建图形小部件，供用户模拟交互。用户可以通�
 ifconfig
 ```
 
-<img src="../_static/media/chapter_11/section_4/image17.png" style="width:6.05764in;height:3.1125in" />
+<img src="../_static/media/chapter_11/section_4/image17.png"  />
 
 :::{Note}
 
@@ -497,7 +498,7 @@ ifconfig
 
 1. 进入 Ubuntu 系统桌面，单击鼠标右键，选择"**Open in Terminal**"打开命令栏。
 
-<img src="../_static/media/chapter_11/section_4/image15.png" style="width:6.01667in;height:2.05625in" />
+<img src="../_static/media/chapter_11/section_4/image15.png"  />
 
 2. 在命令栏输入指令,进入配置网络文件。
 
@@ -507,9 +508,9 @@ sudo vim /etc/hosts
 
 3. 我们将下图所示的2行和3行的IP，分别替换为虚拟机、树莓派的IP。
 
-<img src="../_static/media/chapter_11/section_4/image20.png" style="width:6.05417in;height:2.18264in" />
+<img src="../_static/media/chapter_11/section_4/image20.png"  />
 
-<img src="../_static/media/chapter_11/section_4/image21.png" style="width:6.05417in;height:0.30694in" />
+<img src="../_static/media/chapter_11/section_4/image21.png"  />
 
 :::{Note}
 
@@ -531,7 +532,7 @@ source ~/.bashrc
 rosparam set /puppy_control/joint_state_controller_pub_topic true
 ```
 
-<img src="../_static/media/chapter_11/section_4/image23.png" style="width:6.05347in;height:1.62083in" />
+<img src="../_static/media/chapter_11/section_4/image23.png"  />
 
 ### 4.4 启动Gazebo仿真工具
 
@@ -541,17 +542,17 @@ rosparam set /puppy_control/joint_state_controller_pub_topic true
 roslaunch puppy_description gazebo.launch
 ```
 
-<img src="../_static/media/chapter_11/section_4/image24.png" style="width:6.05278in;height:3.03194in" />
+<img src="../_static/media/chapter_11/section_4/image24.png"  />
 
 2. 点击虚拟机Ubuntu系统页面左侧任务栏的gazebo仿真软件图标即可进入仿真页面，然后gazebo仿真页面下方的启动按钮即可开启gazebo仿真。
 
-<img src="../_static/media/chapter_11/section_4/image26.png" style="width:6.05625in;height:3.29028in" />
+<img src="../_static/media/chapter_11/section_4/image26.png"  />
 
 ### 4.5 Gazebo GUI简介
 
 仿真软件界面如下图：
 
-<img src="../_static/media/chapter_11/section_4/image27.png" style="width:5.7625in;height:2.77361in" />
+<img src="../_static/media/chapter_11/section_4/image27.png"  />
 
 各个位置具体作用见下表：
 
@@ -573,7 +574,7 @@ roslaunch puppy_description gazebo.launch
 rosed puppy_control puppy_demo.py
 ```
 
-<img src="../_static/media/chapter_11/section_4/image29.png" style="width:5.76806in;height:2.73681in" />
+<img src="../_static/media/chapter_11/section_4/image29.png"  />
 
 2. 接着再输入指令，并按下回车，启动 Trot 步态。
 
@@ -583,7 +584,7 @@ rosrun puppy_control puppy_demo.py
 
 3. 可以观察到机器狗开始运行 Trot 步态，仿真软件内部，机器狗也开始移动。
 
-<img src="../_static/media/chapter_11/section_4/image31.jpeg" style="width:5.76667in;height:2.49333in" />
+<img class="common_img" src="../_static/media/chapter_11/section_4/image31.jpeg"  />
 
 4. 程序内默认为 Trot 步态，如需切换其它步态，可以在VNC输入指令，重新找到下图中的位置。例如 Amble，则在下图代码"**gait = 'Trot'**"里， 将Trot 修改为 Amble ，修改后为"**gait = 'Amble'**"。
 
@@ -591,7 +592,7 @@ rosrun puppy_control puppy_demo.py
 rosed puppy_control puppy_demo.py
 ```
 
-<img src="../_static/media/chapter_11/section_4/image29.png" style="width:5.76806in;height:2.73681in" />
+<img src="../_static/media/chapter_11/section_4/image29.png"  />
 
 5. 按下"ESC"，进入下拉命令模式，输入":wq"，保存修改。
 
@@ -599,7 +600,7 @@ rosed puppy_control puppy_demo.py
 :wq
 ```
 
-<img src="../_static/media/chapter_11/section_4/image32.png" style="width:5.76111in;height:0.88889in" />
+<img src="../_static/media/chapter_11/section_4/image32.png"  />
 
 
 

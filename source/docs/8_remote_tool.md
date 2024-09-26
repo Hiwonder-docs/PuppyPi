@@ -16,7 +16,7 @@ VNC是一款图形化远程控制软件。通过连接树莓派的Wi-Fi热点，
 
 1)  双击本节目录下的安装程序"**VNC-Viewer-6.17.731-Windows**"，将安装语言选择为"**English**"，并点击"**OK**"按键。
 
-<img class="common_img" src="../_static/media/chapter_8/section_1/image1.png" style="width:3.14931in;height:1.61736in" />
+<img class="common_img" src="../_static/media/chapter_8/section_1/image1.png"  />
 
 2)  点击"**Next**"按键。
 
@@ -34,7 +34,7 @@ VNC是一款图形化远程控制软件。通过连接树莓派的Wi-Fi热点，
 
 <img class="common_img" src="../_static/media/chapter_8/section_1/image5.png"  />
 
-6)  安装完成，点击图标<img src="../_static/media/chapter_8/section_1/image6.png"  />即可打开VNC。
+6)  安装完成，点击图标<img src="../_static/media/chapter_8/section_1/image6.png" style="width:45px"  />即可打开VNC。
 
 - #### 设备开机
 
@@ -117,7 +117,7 @@ VNC是一款图形化远程控制软件。通过连接树莓派的Wi-Fi热点，
 </tr>
 <tr>
 <td style="text-align: center;"><img src="../_static/media/chapter_8/section_1/image24.png" style="width:0.5in;height:0.5in" alt="10" /></td>
-<td style="text-align: center;"><p>电源，点击可选择关机、重启、退出</p>
+<td><p>电源，点击可选择关机、重启、退出</p>
 <p><img src="../_static/media/chapter_8/section_1/image25.png" style="width:2.28472in;height:1.19583in" /></p></td>
 </tr>
 </tbody>

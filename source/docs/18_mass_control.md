@@ -28,7 +28,7 @@
 cd hiwonder-toolbox
 ```
 
-<img src="../_static/media/chapter_18/section_1//image2.png" style="width:5.8125in;height:1.69375in" />
+<img src="../_static/media/chapter_18/section_1//image2.png"  />
 
 - 使用vim编辑器打开Wi-Fi 配置文件，输入指令，按下回车。
       
@@ -36,11 +36,11 @@ cd hiwonder-toolbox
 sudo vim wifi_conf.py
 ```
 
-<img src="../_static/media/chapter_18/section_1//image3.png" style="width:5.8125in;height:1.71736in" />
+<img src="../_static/media/chapter_18/section_1//image3.png"  />
 
 -  按下键盘上的"**i** "键，进入编辑模式。修改主机热点密码，先找到下图框选的这两行代码。
 
-<img src="../_static/media/chapter_18/section_1//image5.png" style="width:5.8125in;height:3.28264in" />
+<img src="../_static/media/chapter_18/section_1//image5.png"  />
 
 -  修改完成之后，按下"**Esc** "键，退出编辑模式。再输入"**:wq** "保存并退出。
 
@@ -48,14 +48,14 @@ sudo vim wifi_conf.py
 :wq
 ```
 
-<img src="../_static/media/chapter_18/section_1//image6.png" style="width:5.8125in;height:3.28681in" />
+<img src="../_static/media/chapter_18/section_1//image6.png"  />
 
 -  输入指令重启主机。
 ```commandline
 sudo systemctl restart wifi.service
 ```
 
-<img src="../_static/media/chapter_18/section_1//image7.png" style="width:5.7625in;height:0.24167in" />
+<img src="../_static/media/chapter_18/section_1//image7.png"  />
 
 -  待主机重启完成后，再连接主机的Wi-Fi 时，需输入Wi-Fi密码"**hiwonder** "。
 
@@ -68,7 +68,7 @@ sudo systemctl restart wifi.service
 cd hiwonder-toolbox
 ```
 
-<img src="../_static/media/chapter_18/section_1//image2.png" style="width:5.8125in;height:1.69375in" />
+<img src="../_static/media/chapter_18/section_1//image2.png"  />
 
 -  使用vim编辑器打开Wi-Fi 配置文件，输入指令，按下回车。
 
@@ -76,7 +76,7 @@ cd hiwonder-toolbox
 sudo vim wifi_conf.py
 ```
 
-<img src="../_static/media/chapter_18/section_1//image3.png" style="width:5.8125in;height:1.71736in" />
+<img src="../_static/media/chapter_18/section_1//image3.png"  />
 
 -  输入键盘上的"**i**"键，进入编辑模式，将WI-FI名称和密码这两行代码改成如下图所示。
 
@@ -84,7 +84,7 @@ sudo vim wifi_conf.py
 找到框选出的这四行代码。
 :::
 
-<img src="../_static/media/chapter_18/section_1//image8.png" style="width:5.8125in;height:3.29514in" />
+<img src="../_static/media/chapter_18/section_1//image8.png"  />
 
 将从机的网络模式设置为"**2**"即为局域网模式，"**HW-123**"和"**hiwonder**"则为**配置主机网络**设置的主机WI-FI名称和密码。
 
@@ -94,7 +94,7 @@ sudo vim wifi_conf.py
 :wq
 ```
 
-<img src="../_static/media/chapter_18/section_1//image9.png" style="width:5.8125in;height:3.275in" />
+<img src="../_static/media/chapter_18/section_1//image9.png"  />
 
 -  输入命令将设备重启。（**此步不可跳过！**）
 
@@ -102,7 +102,7 @@ sudo vim wifi_conf.py
 sudo systemctl restart wifi.service
 ```
 
-<img src="../_static/media/chapter_18/section_1//image7.png" style="width:5.7625in;height:0.24167in" />
+<img src="../_static/media/chapter_18/section_1//image7.png"  />
 
 ## 2. 群控启动方法
 
@@ -116,21 +116,21 @@ sudo systemctl restart wifi.service
 
 2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_18/section_2//image3.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-<img src="../_static/media/chapter_18/section_2//image4.png" style="width:5.76111in;height:3.75208in" />
+<img src="../_static/media/chapter_18/section_2//image4.png"  />
 
 3)  输入关闭自启玩法的指令，并按下回车。
 
 ```commandline
 sudo ./.stop_ros.sh
 ```
-<img src="../_static/media/chapter_18/section_2//image6.png" style="width:5.76806in;height:1.87569in" />
+<img src="../_static/media/chapter_18/section_2//image6.png"  />
 
 4)  输入指令配置主机环境变量。
 
 ```commandline
 source multi_master_env.sh
 ```
-<img src="../_static/media/chapter_18/section_2//image8.png" style="width:5.7625in;height:2.13819in" />
+<img src="../_static/media/chapter_18/section_2//image8.png"  />
 
 5)  再回到从机的终端界面，输入关闭自启玩法的指令，并按下回车。
 
@@ -138,7 +138,7 @@ source multi_master_env.sh
 sudo ./.stop_ros.sh
 ```
 
-<img src="../_static/media/chapter_18/section_2//image6.png" style="width:5.76806in;height:1.87569in" />
+<img src="../_static/media/chapter_18/section_2//image6.png"  />
 
 6)  在从机的终端界面，输入指令启动从机群发控制程序。
 
@@ -146,7 +146,7 @@ sudo ./.stop_ros.sh
 rosrun puppy_control puppy_mul.py
 ```
 
-<img src="../_static/media/chapter_18/section_2//image9.png" style="width:5.76389in;height:1.86042in" />
+<img src="../_static/media/chapter_18/section_2//image9.png"  />
 
 7)  接着再打开一个新的终端输入"**ssh 192.168.149.119**"按下回车，输入密码"**raspberrypi**"与"**source multi_slave_env.sh 192.168.149.1**"配置为从机环境变量（这里是为了启动群发控制的话题，也可将其配置为主机环境变量再启动8~11步）
 
@@ -158,7 +158,7 @@ ssh 192.168.149.119
 source multi_slave_env.sh 192.168.149.1
 ```
 
-<img src="../_static/media/chapter_18/section_2//image10.png" style="width:5.76458in;height:2.00278in" />
+<img src="../_static/media/chapter_18/section_2//image10.png"  />
 
 8)  输入以下指令可查看主/从机的话题信息。（**若未出现主/从机话题信息，则是主/从机对应的群发控制程序没有启动，需参照上文"1~6步重新操作** **"**）
 
@@ -166,7 +166,7 @@ source multi_slave_env.sh 192.168.149.1
 rostopic info /multi_robot/runActionGroup
 ```
 
-<img src="../_static/media/chapter_18/section_2//image11.jpeg" style="width:5.76333in;height:1.41in" />
+<img src="../_static/media/chapter_18/section_2//image11.jpeg"  />
 
 9)  输入" **rostopic** **pub** **/multi_robot/runActionGroup** "，再按3下Tab键将命令补齐为"**rostopic** **pub** **/multi_robot/runActionGroup** **std_msgs/String** **"data:** **''"** "
 
@@ -174,19 +174,19 @@ rostopic info /multi_robot/runActionGroup
 rostopic pub /multi_robot/runActionGroup std_msgs/String "data: ''"
 ```
 
-<img src="../_static/media/chapter_18/section_2//image12.png" style="width:5.76458in;height:1.87014in" />
+<img src="../_static/media/chapter_18/section_2//image12.png"  />
 
 10) 在data: ''中填入动作组的名称（动作组可在"**/home/ubuntu/software/puppypi_control/ActionGroups**" 目录中可以找到）
 
-<img src="../_static/media/chapter_18/section_2//image13.png" style="width:5.76111in;height:1.98125in" />
+<img src="../_static/media/chapter_18/section_2//image13.png"  />
 
 11) 动作组执行完毕后，可以在主机和从机运行群发控制程序的终端界面，看到打印的动作组名称。
 
-<img src="../_static/media/chapter_18/section_2//image14.jpeg" style="width:5.755in;height:0.34833in" />
+<img src="../_static/media/chapter_18/section_2//image14.jpeg"  />
 
 12) 若要执行其它的动作，在启动群发控制话题的终端按下"Ctrl+c "，将其关闭，再 按下键盘的" ↑ "方向按键，修改动作组名称，按下回车即可执行。
 
-<img src="../_static/media/chapter_18/section_2//image15.png" style="width:5.76806in;height:1.88333in" />
+<img src="../_static/media/chapter_18/section_2//image15.png"  />
 
 13) 如需关闭此玩法，可在LX终端界面按下"**Ctrl+C**"，如关闭失败，可多次按下。
 
@@ -196,4 +196,4 @@ rostopic pub /multi_robot/runActionGroup std_msgs/String "data: ''"
 
 玩法启动后，主机与从机将执行同样的动作。在动作组执行完毕后，也可以在主机和从 机运行群发控制程序的终端界面，看到打印的动作组名称 。
 
-<img src="../_static/media/chapter_18/section_2//image16.jpeg" style="width:5.765in;height:0.70833in" />
+<img src="../_static/media/chapter_18/section_2//image16.jpeg"  />

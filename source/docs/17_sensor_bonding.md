@@ -5,14 +5,15 @@
 ## 1. 发光超声波控制
 
 ### 1.1 发光超声波传感器安装
-<img src="../_static/media/chapter_17/section_1/image1.png" style="width:5.76111in;height:7.59375in" alt="超声波安装" />
-<img src="../_static/media/chapter_17/section_1/image2.png" style="width:5.12014in;height:3.69583in" alt="超声波接线" />
+<img class="common_img" src="../_static/media/chapter_17/section_1/image1.png"  alt="loading" style="width:70%" />
+
+<img class="common_img" src="../_static/media/chapter_17/section_1/image2.png"  alt="loading" style="width:70%"/>
 
 ### 1.2 准备工作
 
 准备一个超声波传感器，并通过4PIN线将其连接至树莓派扩展板上的任意一个IIC接口，接线效果如下图所示：
 
-<img src="../_static/media/chapter_17/section_1/image14.png" style="width:5.75208in;height:4.1in" alt="超声波传感器接线图 - 4PIN线" />
+<img class="common_img" src="../_static/media/chapter_17/section_1/image14.png"  alt="loading" style="width:70%"/>
 
 :::{Note}
 4PIN线采用防反插设计，切勿硬塞。
@@ -30,15 +31,17 @@
 
 该程序的源代码位于Docker容器中的：**/home/ubuntu/puppypi/src/puppy_extend_demo/scripts/sonar_control_demo.py**
 
-<img src="../_static/media/chapter_17/section_1/image3.png" style="width:5.76458in;height:3.58681in" />
+<img src="../_static/media/chapter_17/section_1/image3.png"  style="width:70%"/>
 
 ### 1.5 玩法开启及关闭步骤
 
-<img src="../_static/media/chapter_17/section_1/image4.png" style="width:0.31528in;height:0.31528in" />指令输入需严格区分大小写及空格。
+:::{Note}
+指令输入需严格区分大小写及空格。
+:::
 
 1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_17/section_1/image5.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_17/section_1/image5.png"  />，打开Terminator终端。
 
 3)  输入指令，按下回车，运行玩法程序。
 
@@ -46,7 +49,7 @@
 rosrun puppy_extend_demo sonar_control_demo.py
 ```
 
-<img src="../_static/media/chapter_17/section_1/image6.png" style="width:5.76389in;height:2.00069in" />
+<img src="../_static/media/chapter_17/section_1/image6.png"  />
 
 4)  如需关闭此程序，可按下"**Ctrl+C**",若关闭失败，可多次按下。
 
@@ -70,7 +73,7 @@ rosrun puppy_extend_demo sonar_control_demo.py
 
 1)  点击系统桌面左上角的图标<img src="../_static/media/chapter_17/section_1/image5.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-<img src="../_static/media/chapter_17/section_1/image7.png" style="width:5.76111in;height:1.23958in" />
+<img src="../_static/media/chapter_17/section_1/image7.png"  />
 
 2)  输入指令，回车，打开玩法程序文件。
 
@@ -78,15 +81,15 @@ rosrun puppy_extend_demo sonar_control_demo.py
 rosed puppy_extend_demo sonar_control_demo.py
 ```
 
-<img src="../_static/media/chapter_17/section_1/image8.png" style="width:5.76389in;height:2.38681in" />
+<img src="../_static/media/chapter_17/section_1/image8.png"  />
 
 3)  找到如下图框出的代码，按一下键盘的"**i**"键，进入编辑模式。
 
-<img src="../_static/media/chapter_17/section_1/image9.png" style="width:5.7625in;height:2.86736in" />
+<img src="../_static/media/chapter_17/section_1/image9.png"  />
 
 4)  修改数据，如下图所示：
 
-<img src="../_static/media/chapter_17/section_1/image10.png" style="width:5.76458in;height:1.88472in" />
+<img src="../_static/media/chapter_17/section_1/image10.png"  />
 
 5)  修改完成之后，按一下键盘的"**Esc**"键，再依次输入指令（注意wq前为冒号：），回车，即可保存修改内容。
 
@@ -94,7 +97,7 @@ rosed puppy_extend_demo sonar_control_demo.py
 :wq
 ```
 
-<img src="../_static/media/chapter_17/section_1/image11.png" style="width:5.76389in;height:0.75833in" />
+<img src="../_static/media/chapter_17/section_1/image11.png"  />
 
 - #### 1.7.2 自定义RGB颜色
 
@@ -104,11 +107,11 @@ rosed puppy_extend_demo sonar_control_demo.py
 
 2)  在打开的界面中，找到如下图所示代码，按一下键盘的"i"键，进入编辑模式。
 
-<img src="../_static/media/chapter_17/section_1/image12.png" style="width:5.7625in;height:2.86042in" />
+<img src="../_static/media/chapter_17/section_1/image12.png"  />
 
 3)  可通过修改RGB的值来修改发光颜色。将"**setRGB(1,(255,0,0))**"和"**setRGB(0,(255,0,0))**"修改为"**setRGB(1,(255,255,0))**"和"**setRGB(0,(255,255,0))**"，如下图所示：
 
-<img src="../_static/media/chapter_17/section_1/image13.png" style="width:5.76111in;height:2.17014in" />
+<img src="../_static/media/chapter_17/section_1/image13.png"  />
 
 RGB值指某种颜色中红（Red）、绿（Green）、蓝（Blue）成分，理论上讲，红绿蓝三种基色按照不同的比例混合可以调配出任何一种颜色。某种颜色的RGB值越近就越接近灰色或黑白，数值越大就越白，反之越黑。
 
@@ -118,7 +121,7 @@ RGB值指某种颜色中红（Red）、绿（Green）、蓝（Blue）成分，�
 :wq
 ```
 
-<img src="../_static/media/chapter_17/section_1/image11.png" style="width:5.76389in;height:0.75833in" />
+<img src="../_static/media/chapter_17/section_1/image11.png"  />
 
 ## 2. 机器狗超声波测距避障
 
@@ -128,12 +131,10 @@ RGB值指某种颜色中红（Red）、绿（Green）、蓝（Blue）成分，�
 
 准备一个超声波传感器，并通过4PIN线将其连接至树莓派扩展板上的任意一个IIC接口，接线效果如下图所示：
 
-<img src="../_static/media/chapter_17/section_2/image2.png" style="width:5.75208in;height:4.1in" alt="超声波传感器接线图 - 4PIN线" />
+<img class="common_img" src="../_static/media/chapter_17/section_2/image2.png"  alt="loading" style="width:70%" />
 
 :::{Note}
-
 4PIN线采用防反插设计，切勿硬塞。
-
 :::
 
 ### 2.2 使用模块
@@ -148,7 +149,7 @@ RGB值指某种颜色中红（Red）、绿（Green）、蓝（Blue）成分，�
 
 该程序的源代码位于Docker容器中的：**/home/ubuntu/puppypi** **/src/puppy_extend_demo/scripts/sonar_avoidance.py**
 
-<img src="../_static/media/chapter_17/section_2/image4.png" style="width:5.76528in;height:2.27639in" />
+<img src="../_static/media/chapter_17/section_2/image4.png"  />
 
 ### 2.4 玩法开启及关闭步骤
 
@@ -162,7 +163,7 @@ RGB值指某种颜色中红（Red）、绿（Green）、蓝（Blue）成分，�
 rosrun puppy_extend_demo sonar_avoidance.py
 ```
 
-<img src="../_static/media/chapter_17/section_2/image8.png" style="width:5.76111in;height:2.05069in" />
+<img src="../_static/media/chapter_17/section_2/image8.png"  />
 
 4)  如需关闭此程序，可按下"**Ctrl+C**",若关闭失败，可多次按下。
 
@@ -174,14 +175,15 @@ rosrun puppy_extend_demo sonar_avoidance.py
 
 ### 3.1 触摸传感器安装
 
-<img src="../_static/media/chapter_17/section_3/image3.png" style="width:5.76111in;height:3.33542in" alt="1-01(5)" />
-<img src="../_static/media/chapter_17/section_3/image7.png" style="width:5.12014in;height:3.69583in" alt="触摸传感器接线" />
+<img class="common_img" src="../_static/media/chapter_17/section_3/image3.png"  alt="loading" style="width:70%" />
+
+<img class="common_img" src="../_static/media/chapter_17/section_3/image7.png"  alt="loading" style="width:70%" />
 
 ### 3.2 准备工作
 
 准备一个触摸传感器，并通过4PIN线将其连接至树莓派扩展板上的"5V GND IO22 IO24"接口，接线效果如下图所示：
 
-<img src="../_static/media/chapter_17/section_3/image2.png" style="width:5.75972in;height:5.75972in" alt="触摸传感器" />
+<img class="common_img" src="../_static/media/chapter_17/section_3/image2.png"  alt="loading" style="width:60%"/>
 
 :::{Note}
 
@@ -201,7 +203,7 @@ rosrun puppy_extend_demo sonar_avoidance.py
 
 该程序的源代码位于Docker容器中的：**/home/ubuntu/puppypi/src/puppy_extend_demo/scripts/touch_detect_demo.py**
 
-<img src="../_static/media/chapter_17/section_3/image4.png" style="width:5.76319in;height:2.32083in" />
+<img src="../_static/media/chapter_17/section_3/image4.png"  />
 
 主要通过GPIO.input函数获取触摸传感器反馈的数值，从而判断当前的状态。
 
@@ -217,7 +219,7 @@ rosrun puppy_extend_demo sonar_avoidance.py
 rosrun puppy_extend_demo touch_detect_demo.py
 ```
 
-<img src="../_static/media/chapter_17/section_3/image6.png" style="width:5.7625in;height:1.89306in" />
+<img src="../_static/media/chapter_17/section_3/image6.png"  />
 
 4)  如需关闭此程序，可按下"**Ctrl+C**"，若关闭失败，可多次按下。
 
@@ -229,15 +231,15 @@ rosrun puppy_extend_demo touch_detect_demo.py
 
 ### 4.1 点阵模块的安装
 
-<img src="../_static/media/chapter_17/section_4/image1.png" style="width:5.75903in;height:3.54236in" alt="点阵安装" />
+<img class="common_img" src="../_static/media/chapter_17/section_4/image1.png"  alt="loading"  style="width:70%"/>
 
-<img src="../_static/media/chapter_17/section_4/image7.png" style="width:5.12014in;height:3.69583in" alt="点阵接线" />
+<img class="common_img" src="../_static/media/chapter_17/section_4/image7.png"  alt="loading" style="width:70%" />
 
 ### 4.2 准备工作
 
 需要准备点阵屏显示模块，并通过4PIN线将点阵屏显示模块连接至树莓派扩展板上的"**5V GND IO7 IO8**"接口，接线效果如下图所示：
 
-<img src="../_static/media/chapter_17/section_4/image2.png" style="width:5.74583in;height:3.44167in" alt="点阵模块接线图 - 4PIN线" />
+<img class="common_img" src="../_static/media/chapter_17/section_4/image2.png"  alt="loading" style="width:70%" />
 
 :::{Note}
 
@@ -255,13 +257,13 @@ rosrun puppy_extend_demo touch_detect_demo.py
 
 实验中我们通过利用一组十六进制数据控制点阵显示图案，一组数据共有16个数据，控 制时，每个数据控制点阵显示一列LED。
 
-<img src="../_static/media/chapter_17/section_4/image3.png" style="width:3.26528in;height:1.72153in" alt="图片" />
+<img class="common_img"  style="width:40%"  src="../_static/media/chapter_17/section_4/image3.png"  alt="loading" />
 
 每组数据设置方法非常简单，我们以本节示例课程为例。实验中，我们控制点阵模块显
 
 示"**Hello**"字符。
 
-<img src="../_static/media/chapter_17/section_4/image4.png" style="width:5.76181in;height:0.55556in" />
+<img src="../_static/media/chapter_17/section_4/image4.png"  />
 
 在控制代码的32和33行中就是设置点阵显示图案的数组。数组中的第1个元素是0x7f， 转换为二进制数是01111111，它代表第一列LED从下往上的灯光状态为：灭亮亮亮亮亮亮亮。 同理，后面的15个元素，就是控制其他15列LED亮灭，最终让点阵显示"**Hello**"字符。
 
@@ -273,7 +275,7 @@ rosrun puppy_extend_demo touch_detect_demo.py
 
 该程序的源代码位于Docker容器中的：**/home/ubuntu/puppypi/src/puppy_extend_demo/scripts/lattice_display_demo.py**
 
-<img src="../_static/media/chapter_17/section_4/image6.png" style="width:5.76458in;height:1.33264in" />
+<img src="../_static/media/chapter_17/section_4/image6.png"  />
 
 <p id="anchor_4_5"></p>
 
@@ -289,7 +291,7 @@ rosrun puppy_extend_demo touch_detect_demo.py
 rosrun puppy_extend_demo lattice_display_demo.py
 ```
 
-<img src="../_static/media/chapter_17/section_4/image10.png" style="width:5.76389in;height:1.86042in" />
+<img src="../_static/media/chapter_17/section_4/image10.png"  />
 
 4)  如需关闭此程序，可按下"**Ctrl+C**"。
 
@@ -305,23 +307,23 @@ rosrun puppy_extend_demo lattice_display_demo.py
 
 1)  在本节同目录下双击打开取模软件。
 
-<img class="common_img" src="../_static/media/chapter_17/section_4/image12.png" style="width:1.10208in;height:1.19444in" alt="11" />
+<img class="common_img" src="../_static/media/chapter_17/section_4/image12.png"  alt="loading" />
 
 2)  先点击"**新建图像**"，在弹出的设置框设置点阵模块的尺寸参数，这里设置为"**16\*8**"，设置完成后，点击"**确定**"。
 
-<img src="../_static/media/chapter_17/section_4/image13.png" style="width:5.7625in;height:4.10139in" alt="7" />
+<img src="../_static/media/chapter_17/section_4/image13.png"  alt="loading" />
 
 3)  依次点击"**模拟动画**"和"**放大格点**"，将右侧点阵模拟区域放大。
 
-<img src="../_static/media/chapter_17/section_4/image14.png" style="width:5.7625in;height:4.10139in" alt="8" />
+<img src="../_static/media/chapter_17/section_4/image14.png"  alt="loading" />
 
 4)  然后通过点击鼠标的方式，在右侧区域绘制显示内容。
 
-<img src="../_static/media/chapter_17/section_4/image15.png" style="width:5.76667in;height:3.29514in" alt="9" />
+<img src="../_static/media/chapter_17/section_4/image15.png"  alt="loading" />
 
 5)  绘制完成之后，依次点击"**取模方式**"、"**51格式**"，即可得到地址符（这一步请将地址符记下，后续步骤需用到）。
 
-<img src="../_static/media/chapter_17/section_4/image16.png" style="width:5.7625in;height:4.10139in" alt="10" />
+<img src="../_static/media/chapter_17/section_4/image16.png"  alt="loading" />
 
 6)  输入指令，按下回车，打开玩法程序文件。
 
@@ -329,19 +331,19 @@ rosrun puppy_extend_demo lattice_display_demo.py
 rosed puppy_extend_demo lattice_display_demo.py
 ```
 
-<img src="../_static/media/chapter_17/section_4/image17.png" style="width:5.7625in;height:2.06111in" />
+<img src="../_static/media/chapter_17/section_4/image17.png"  />
 
 7)  在打开界面找到如下图所示代码。
 
-<img src="../_static/media/chapter_17/section_4/image19.png" style="width:5.7625in;height:0.46944in" />
+<img src="../_static/media/chapter_17/section_4/image19.png"  />
 
 8)  按一下键盘的"**i**"键，进入编辑模式。
 
-<img src="../_static/media/chapter_17/section_4/image21.png" style="width:5.76111in;height:1.47014in" />
+<img src="../_static/media/chapter_17/section_4/image21.png"  />
 
 9)  将程序默认的地址符替换为取模软件得出的地址符，如下图所示：
 
-<img src="../_static/media/chapter_17/section_4/image24.png" style="width:5.76806in;height:1.63819in" />
+<img src="../_static/media/chapter_17/section_4/image24.png"  />
 
 10) 修改完成之后，按一下键盘的"**Esc**"键，再依次输入指令（注意wq前为冒号：），回车，即可保存修改内容。
 
@@ -349,7 +351,7 @@ rosed puppy_extend_demo lattice_display_demo.py
 :wq
 ```
 
-<img src="../_static/media/chapter_17/section_4/image25.png" style="width:5.76389in;height:0.75139in" />
+<img src="../_static/media/chapter_17/section_4/image25.png"  />
 
 11) 重复本文档"[4.5 玩法开启及关闭步骤](#anchor_4_5)"的步骤，即可实现更改效果。
 
@@ -357,15 +359,15 @@ rosed puppy_extend_demo lattice_display_demo.py
 
 ### 5.1 语音识别模块安装
 
-<img src="../_static/media/chapter_17/section_5/image1.png" style="width:5.75069in;height:2.79167in" alt="语音识别安装" />
+<img class="common_img" src="../_static/media/chapter_17/section_5/image1.png"  alt="loading"  style="width:70%"  />
 
-<img src="../_static/media/chapter_17/section_5/image2.png" style="width:5.12014in;height:3.69583in" alt="语音识别接线" />
+<img class="common_img" src="../_static/media/chapter_17/section_5/image2.png"  alt="loading"  style="width:70%"  />
 
 ### 5.2 准备工作
 
 准备一个语音识别传感器模块，并通过4PIN线将其连接至树莓派扩展板上的任意一个IIC接口，接线效果如下图所示：
 
-<img src="../_static/media/chapter_17/section_5/image2.png" style="width:5.76458in;height:4.73056in" alt="语音识别传感器" />
+<img class="common_img" src="../_static/media/chapter_17/section_5/image2.png"  alt="loading"  style="width:70%"  />
 
 :::{Note}
 
@@ -387,7 +389,7 @@ rosed puppy_extend_demo lattice_display_demo.py
 
 该程序的源代码位于Docker容器中的：**/home/ubuntu/puppypi/src/puppy_extend_demo/scripts/ASR_detect_demo.py**
 
-<img src="../_static/media/chapter_17/section_5/image3.png" style="width:5.76042in;height:3.23264in" />
+<img src="../_static/media/chapter_17/section_5/image3.png"  />
 
 通过asr.setMode函数设置识别模式，此行代码"**asr.setMode(2)**"中的参数"**2**"为选择口令模式，再通过asr.addWords函数添加词条，以代码"**asr.addWords(1, ‘kai shi’)**"为例，参数"**1**"为词条的序号，参数"**kai shi**"为词条"**开始**"的拼音
 
@@ -405,7 +407,7 @@ rosed puppy_extend_demo lattice_display_demo.py
 rosrun puppy_extend_demo ASR_detect_demo.py
 ```
 
-<img src="../_static/media/chapter_17/section_5/image7.png" style="width:5.76806in;height:2.04375in" />
+<img src="../_static/media/chapter_17/section_5/image7.png"  />
 
 4)  如需关闭此程序，可按下"**Ctrl+C**"，若关闭失败，可重复按下。
 
@@ -425,15 +427,15 @@ rosrun puppy_extend_demo ASR_detect_demo.py
 rosed puppy_extend_demo ASR_detect_demo.py
 ```
 
-<img src="../_static/media/chapter_17/section_5/image9.png" style="width:5.76111in;height:1.93194in" />
+<img src="../_static/media/chapter_17/section_5/image9.png"  />
 
 3)  找到如下图框出的代码。
 
-<img src="../_static/media/chapter_17/section_5/image11.png" style="width:5.76528in;height:3.52778in" />
+<img src="../_static/media/chapter_17/section_5/image11.png"  />
 
 4)  按一下键盘的"**i**"键，进入编辑模式，将"**hong se**"修改为"**huang se**"，set_rgb_show函数中的数值修改为"**255，255，0**"如下图所示。
 
-<img src="../_static/media/chapter_17/section_5/image13.png" style="width:5.76736in;height:4.02014in" />
+<img src="../_static/media/chapter_17/section_5/image13.png"  />
 
 5)  修改完成之后，按一下键盘的"**Esc**"键，再依次输入指令（注意wq前为冒号：），回车，即可保存修改内容。
 
@@ -441,7 +443,7 @@ rosed puppy_extend_demo ASR_detect_demo.py
 :wq
 ```
 
-<img src="../_static/media/chapter_17/section_5/image15.png" style="width:5.76667in;height:1.01736in" />
+<img src="../_static/media/chapter_17/section_5/image15.png"  />
 
 6)  重复本文档"[5.5 玩法开启及关闭步骤](#anchor_5_5)"的步骤，即可实现更改效果。
 
@@ -449,25 +451,23 @@ rosed puppy_extend_demo ASR_detect_demo.py
 
 ### 6.1 触摸传感器安装
 
-<img src="../_static/media/chapter_17/section_6/image1.png" style="width:5.76111in;height:3.33542in" alt="1-01(5)" />
+<img class="common_img" src="../_static/media/chapter_17/section_6/image1.png"  alt="loading"  style="width:70%"/>
 
-<img src="../_static/media/chapter_17/section_6/image7.png" style="width:5.12014in;height:3.69583in" alt="触摸传感器接线" />
+<img class="common_img" src="../_static/media/chapter_17/section_6/image7.png"  alt="loading" style="width:70%"/>
 
 ### 6.2 准备工作
 
 准备一个触摸传感器，并通过4PIN线将其连接至树莓派扩展板上的"**5V GND IO22 IO24**"接口，接线效果如下图所示：
 
-<img src="../_static/media/chapter_17/section_6/image2.png" style="width:5.75972in;height:5.75972in" alt="触摸传感器" />
+<img class="common_img" src="../_static/media/chapter_17/section_6/image2.png"  alt="loading" style="width:60%"/>
 
 :::{Note}
-
 4PIN线采用防反插设计，切勿硬塞。
-
 :::
 
 此外，也可以用3根母对母杜邦线将触摸传感器连接至树莓派扩展板上，如下图所示：
 
-<img src="../_static/media/chapter_17/section_6/image3.png" style="width:5.76528in;height:3.90625in" alt="触摸传感器接线图 - 杜邦线" />
+<img class="common_img" src="../_static/media/chapter_17/section_6/image3.png"  alt="loading" style="width:60%" />
 
 ### 6.3 使用模块
 
@@ -481,7 +481,7 @@ rosed puppy_extend_demo ASR_detect_demo.py
 
 该程序的源代码位于Docker容器中的：**/home/ubuntu/puppypi/src/puppy_extend_demo/scripts/touch_control_demo.py**
 
-<img src="../_static/media/chapter_17/section_6/image4.png" style="width:5.76181in;height:2.21319in" />
+<img src="../_static/media/chapter_17/section_6/image4.png"  />
 
 主要通过GPIO.input函数获取触摸传感器反馈的数值，从而判断当前的状态，再根据触摸传感器状态执行不同的动作。
 
@@ -497,7 +497,7 @@ rosed puppy_extend_demo ASR_detect_demo.py
 rosrun puppy_extend_demo touch_control_demo.py
 ```
 
-<img src="../_static/media/chapter_17/section_6/image8.png" style="width:5.76736in;height:1.97222in" />
+<img src="../_static/media/chapter_17/section_6/image8.png"  />
 
 4)  如需关闭此程序，可按下"**Ctrl+C**"，若关闭失败，可多次按下。
 
@@ -509,16 +509,15 @@ rosrun puppy_extend_demo touch_control_demo.py
 
 ### 7.1 MP3模块安装
 
-<img src="../_static/media/chapter_17/section_7/image1.png" style="width:5.76528in;height:3.07986in" alt="1-01(4)" />
+<img class="common_img" src="../_static/media/chapter_17/section_7/image1.png"  alt="loading" style="width:70%" />
 
-<img src="../_static/media/chapter_17/section_7/image5.png" style="width:5.12014in;height:3.69583in" alt="MP3接线" />
-
+<img class="common_img" src="../_static/media/chapter_17/section_7/image5.png"  alt="loading" style="width:70%" />
 
 ### 7.2 准备工作
 
 准备一个MP3模块，并通过4PIN线将其连接至树莓派扩展板上的任意一个IIC接口，接线效果如下图所示：
 
-<img src="../_static/media/chapter_17/section_7/image2.png" style="width:5.76458in;height:4.33403in" alt="MP3传感器" />
+<img class="common_img" src="../_static/media/chapter_17/section_7/image2.png"  alt="loading" style="width:60%"/>
 
 :::{Note}
 
@@ -536,7 +535,7 @@ MP3模块最大支持32G的SD卡，支持FAT16， FAT32文件系统，支持MP3�
 
 该程序的源代码位于Docker容器中的：**/home/ubuntu/puppypi/src/puppy_extend_demo/scripts/mp3_moonwalk_demo.py**
 
-<img src="../_static/media/chapter_17/section_7/image4.png" style="width:5.76458in;height:2.68681in" />
+<img src="../_static/media/chapter_17/section_7/image4.png"  />
 
 ### 7.5 玩法开启及关闭步骤
 
@@ -550,7 +549,7 @@ MP3模块最大支持32G的SD卡，支持FAT16， FAT32文件系统，支持MP3�
 rosrun puppy_extend_demo mp3_moonwalk_demo.py
 ```
 
-<img src="../_static/media/chapter_17/section_7/image8.png" style="width:5.76736in;height:2.10764in" />
+<img src="../_static/media/chapter_17/section_7/image8.png"  />
 
 4)  如需关闭此程序，可按下"**Ctrl+C**"，若关闭失败，可重复按下。
 
@@ -576,11 +575,11 @@ rosrun puppy_extend_demo mp3_moonwalk_demo.py
 rosed puppy_extend_demo** **mp3_moonwalk_demo.py
 ```
 
-<img src="../_static/media/chapter_17/section_7/image10.png" style="width:5.76736in;height:1.89028in" />
+<img src="../_static/media/chapter_17/section_7/image10.png"  />
 
 3)  找到如下图框出的代码，按一下键盘的"i"键，进入编辑模式。
 
-<img src="../_static/media/chapter_17/section_7/image12.png" style="width:5.76736in;height:1.99514in" />
+<img src="../_static/media/chapter_17/section_7/image12.png"  />
 
 4)  playNum函数中的参数就是歌曲的编号，我们修改为7，修改完成之后，按一下键盘的"**Esc**"键，再依次输入指令，按下回车，即可保存修改内容。
 
@@ -588,7 +587,7 @@ rosed puppy_extend_demo** **mp3_moonwalk_demo.py
 :wq
 ```
 
-<img src="../_static/media/chapter_17/section_7/image14.png" style="width:5.76667in;height:2.02986in" />
+<img src="../_static/media/chapter_17/section_7/image14.png"  />
 
 :::{Note}
 
@@ -600,16 +599,16 @@ rosed puppy_extend_demo** **mp3_moonwalk_demo.py
 
 ### 8.1 语音识别模块安装
 
-<img src="../_static/media/chapter_17/section_8/image1.png" style="width:5.75069in;height:2.79167in" alt="语音识别安装" />
+<img class="common_img" src="../_static/media/chapter_17/section_8/image1.png"  alt="loading" style="width:70%" />
 
-<img src="../_static/media/chapter_17/section_8/image4.png" style="width:5.12014in;height:3.69583in" alt="语音识别接线" />
+<img class="common_img" src="../_static/media/chapter_17/section_8/image4.png"  alt="loading" style="width:70%" />
 
 
 ### 8.2 准备工作
 
 准备好语音合成传感器模块，并通过4PIN线将连接至树莓派扩展板上的任意IIC接口，接线效果如下图所示：
 
-<img src="../_static/media/chapter_17/section_8/image2.png" style="width:5.76458in;height:4.73056in" alt="puppy传感器" />
+<img class="common_img" src="../_static/media/chapter_17/section_8/image2.png"  alt="loading" style="width:60%" />
 
 :::{Note}
 
@@ -631,7 +630,7 @@ rosed puppy_extend_demo** **mp3_moonwalk_demo.py
 
 该程序的源代码位于Docker容器中的：**/home/ubuntu/puppypi/src/puppy_extend_demo/scripts/voice_interaction_demo.py**
 
-<img src="../_static/media/chapter_17/section_8/image3.png" style="width:5.76597in;height:2.28611in" />
+<img src="../_static/media/chapter_17/section_8/image3.png"  />
 
 通过asr.setMode函数设置识别模式，此行代码"**asr.setMode(2)**"中的参数"**2**"为选择口令模式，再通过asr.addWords函数添加词条，以代码"**asr.addWords(1, ‘kai shi’)**"为例，参数"**1**"为词条的序号，参数"**kai shi**"为词条"**开始**"的拼音
 
@@ -647,7 +646,7 @@ rosed puppy_extend_demo** **mp3_moonwalk_demo.py
 rosrun puppy_extend_demo voice_interaction_demo.py
 ```
 
-<img src="../_static/media/chapter_17/section_8/image7.png" style="width:5.76736in;height:2.175in" />
+<img src="../_static/media/chapter_17/section_8/image7.png"  />
 
 4)  如需关闭此程序，可按下"**Ctrl+C**"，若关闭失败，可重复按下。
 

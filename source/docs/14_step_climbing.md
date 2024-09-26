@@ -28,7 +28,7 @@
 
 2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_14/section_1/image3.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-<img src="../_static/media/chapter_14/section_1/image4.png" style="width:5.76111in;height:1.27986in" />
+<img src="../_static/media/chapter_14/section_1/image4.png" alt="loading" />
 
 3)  输入启动玩法的指令，按下回车。
 
@@ -36,7 +36,7 @@
 rosrun puppy_advanced_functions negotiate_stairs_demo.py
 ```
 
-<img src="../_static/media/chapter_14/section_1/image6.png" style="width:5.76111in;height:2.03681in" />
+<img src="../_static/media/chapter_14/section_1/image6.png" alt="loading" />
 
 4)  如需关闭此玩法，可在LX终端界面按下"**Ctrl+C**"，如关闭失败，可多次按下。
 
@@ -56,13 +56,13 @@ rosrun puppy_advanced_functions negotiate_stairs_demo.py
 
 根据实现的效果，梳理程序的过程逻辑，如下图所示：
 
-<img class="common_img" src="../_static/media/chapter_14/section_1/image8.png" style="width:4.04167in;height:3.23542in" />
+<img class="common_img" src="../_static/media/chapter_14/section_1/image8.png" alt="loading" />
 
 - **导入功能包**
 
-<img src="../_static/media/chapter_14/section_1/image10.png" style="width:5.76389in;height:1.62361in" />
+<img src="../_static/media/chapter_14/section_1/image10.png" alt="loading" />
 
-  通过 import 语句导入所需模块：math提供了一系列数学函数和常数,用于进行相关计算；rospy用于ROS通信，from object_tracking.srv import \*: 导入目标跟踪相关的服务。from puppy_control.msg import Velocity, Pose, Gait: 导入控制和传递机器人的速度、姿态和步态服务。
+通过 import 语句导入所需模块：math提供了一系列数学函数和常数,用于进行相关计算；rospy用于ROS通信，from object_tracking.srv import \*: 导入目标跟踪相关的服务。from puppy_control.msg import Velocity, Pose, Gait: 导入控制和传递机器人的速度、姿态和步态服务。
 
 - #### 1.4.1 处理图像
 
@@ -70,7 +70,7 @@ rosrun puppy_advanced_functions negotiate_stairs_demo.py
 
 在将图像的颜色空间由RGB转换为Lab前，需要先对其进行降噪处理，此处用到cv2库中的GaussianBlur()函数，该函数用于对图像进行高斯滤波处理。
 
-<img src="../_static/media/chapter_14/section_1/image11.png" style="width:5.76806in;height:0.33681in" />
+<img src="../_static/media/chapter_14/section_1/image11.png" alt="loading" />
 
 函数括号内的参数含义如下：
 
@@ -84,7 +84,7 @@ rosrun puppy_advanced_functions negotiate_stairs_demo.py
 
 采用cv2库中的inRange()函数对图像进行二值化处理。
 
-<img src="../_static/media/chapter_14/section_1/image14.png" style="width:5.75833in;height:0.59722in" />
+<img src="../_static/media/chapter_14/section_1/image14.png" alt="loading" />
 
 函数括号内的第一个参数是输入图像；第二个、第三个参数分别是阈值的下限和上限。当像素点RGB的颜色数值处于上、下限之间时，该像素点被赋值为1，否则为0。
 
@@ -94,7 +94,7 @@ rosrun puppy_advanced_functions negotiate_stairs_demo.py
 为了降低干扰，令图像更平滑，需要对图像进行处理。
 :::
 
-<img src="../_static/media/chapter_14/section_1/image17.png" style="width:5.76111in;height:0.21319in" />
+<img src="../_static/media/chapter_14/section_1/image17.png" alt="loading" />
 
 cv2.MORPH_OPEN 进行开运算，指的是先进行腐蚀操作，再进行膨胀操作；cv2.MORPH_CLOSE 进行闭运算，指的是先进行膨胀操作，再进行腐蚀操作。
 
@@ -116,13 +116,13 @@ opened = cv2.morphologyEx(frame_mask, cv2.MORPH_OPEN, np.ones((6, 6), np.uint8))
 
 完成上述的图像处理后，需要获取识别目标的轮廓，此处涉及cv2库中的findContours()函数。
 
-<img src="../_static/media/chapter_14/section_1/image21.png" style="width:5.76597in;height:0.21319in" />
+<img src="../_static/media/chapter_14/section_1/image21.png" alt="loading" />
 
 函数括号内的第一个参数是输入图像；第二个参数是轮廓的检索模式；第三个参数是轮廓的近似方法。
 
 在获得的轮廓中寻找面积最大的轮廓，而为了避免干扰，需要设定一个最小值，仅当面积大于该值时，目标轮廓才有效。
 
-<img src="../_static/media/chapter_14/section_1/image23.png" style="width:5.76597in;height:1.33819in" />
+<img src="../_static/media/chapter_14/section_1/image23.png" alt="loading" />
 
 - #### 1.4.2 获取位置信息
 
@@ -130,13 +130,13 @@ opened = cv2.morphologyEx(frame_mask, cv2.MORPH_OPEN, np.ones((6, 6), np.uint8))
 
 通过drawContours()函数，设置矩形图案，将线条框出。
 
-<img src="../_static/media/chapter_14/section_1/image27.png" style="width:5.76389in;height:0.14444in" />
+<img src="../_static/media/chapter_14/section_1/image27.png" alt="loading" />
 
 2. **画出中心点**
 
 接着，获取矩形的对角点，通过circle()画出线条的中心点。
 
-<img src="../_static/media/chapter_14/section_1/image29.png" style="width:5.76667in;height:1.37708in" />
+<img src="../_static/media/chapter_14/section_1/image29.png" alt="loading" />
 
 ## 2. 自主台阶攀爬
 
@@ -166,7 +166,7 @@ opened = cv2.morphologyEx(frame_mask, cv2.MORPH_OPEN, np.ones((6, 6), np.uint8))
 
 2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_14/section_2/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-<img src="../_static/media/chapter_14/section_2/image5.png" style="width:5.76111in;height:1.27986in" />
+<img src="../_static/media/chapter_14/section_2/image5.png" alt="loading" />
 
 3)  输入启动玩法的指令，按下回车。
 
@@ -174,7 +174,7 @@ opened = cv2.morphologyEx(frame_mask, cv2.MORPH_OPEN, np.ones((6, 6), np.uint8))
 rosrun puppy_advanced_functions** **negotiate_stairs_demo.py
 ```
 
-<img src="../_static/media/chapter_14/section_2/image6.png" style="width:5.76111in;height:2.03681in" />
+<img src="../_static/media/chapter_14/section_2/image6.png" alt="loading" />
 
 4)  如需关闭此玩法，可在LX终端界面按下"**Ctrl+C**"，如关闭失败，可多次按下。
 
@@ -200,11 +200,11 @@ rosrun puppy_advanced_functions** **negotiate_stairs_demo.py
 rosed puppy_advanced_functions negotiate_stairs_demo.py
 ```
 
-<img src="../_static/media/chapter_14/section_2/image9.png" style="width:5.76111in;height:2.02986in" />
+<img src="../_static/media/chapter_14/section_2/image9.png" alt="loading" />
 
 2)  找到下图所示代码：
 
-<img src="../_static/media/chapter_14/section_2/image11.png" style="width:5.7625in;height:2.00486in" />
+<img src="../_static/media/chapter_14/section_2/image11.png" alt="loading" />
 
 :::{Note}
 在键盘输入代码位置序号后，按下"Shift+G"键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
@@ -212,7 +212,7 @@ rosed puppy_advanced_functions negotiate_stairs_demo.py
 
 3)  按下"**i**"键进入编辑模式，在代码前面添加"**\#**"，进行注释。
 
-<img src="../_static/media/chapter_14/section_2/image13.png" style="width:5.76806in;height:2.17014in" />
+<img src="../_static/media/chapter_14/section_2/image13.png" alt="loading" />
 
 4)  修改完成后，按下"**Esc**"键，输入"**:wq**"并回车，进行保存与退出。
 
@@ -220,7 +220,7 @@ rosed puppy_advanced_functions negotiate_stairs_demo.py
 :wq
 ```
 
-<img src="../_static/media/chapter_14/section_2/image15.png" style="width:5.76111in;height:1.02917in" />
+<img src="../_static/media/chapter_14/section_2/image15.png" alt="loading" />
 
 5)  输入指令重新启动玩法，即可查看修改后的玩法效果。
 
@@ -228,11 +228,11 @@ rosed puppy_advanced_functions negotiate_stairs_demo.py
 rosrun puppy_advanced_functions negotiate_stairs_demo.py
 ```
 
-<img src="../_static/media/chapter_14/section_2/image17.png" style="width:5.76806in;height:2.12083in" />
+<img src="../_static/media/chapter_14/section_2/image17.png" alt="loading" />
 
 6)  如需再次查看调试画面（摄像头实时回传画面），可将步骤3）框出的内容进行反注释，即将代码前面的"**\#**"去掉，再进行保存，如下图所示：
 
-<img src="../_static/media/chapter_14/section_2/image11.png" style="width:5.7625in;height:2.00486in" />
+<img src="../_static/media/chapter_14/section_2/image11.png" alt="loading" />
 
 - #### 2.4.2 更改边缘线条颜色
 
@@ -246,11 +246,11 @@ rosrun puppy_advanced_functions negotiate_stairs_demo.py
 rosed puppy_advanced_functions** **negotiate_stairs_demo.py
 ```
 
-<img src="../_static/media/chapter_14/section_2/image9.png" style="width:5.76111in;height:2.02986in" />
+<img src="../_static/media/chapter_14/section_2/image9.png" alt="loading" />
 
 2)  找到下图所示代码：
 
-<img src="../_static/media/chapter_14/section_2/image18.png" style="width:5.76111in;height:0.88194in" />
+<img src="../_static/media/chapter_14/section_2/image18.png" alt="loading" />
 
 :::{Note}
 
@@ -260,7 +260,7 @@ rosed puppy_advanced_functions** **negotiate_stairs_demo.py
 
 3)  按下"**i**"键进入编辑模式，将"**red**"改为"**black**"。
 
-<img src="../_static/media/chapter_14/section_2/image20.png" style="width:5.76806in;height:1.63125in" />
+<img src="../_static/media/chapter_14/section_2/image20.png" alt="loading" />
 
 4)  修改完成后，按下"**Esc**"键，输入指令并按下回车，进行保存与退出。
 
@@ -268,7 +268,7 @@ rosed puppy_advanced_functions** **negotiate_stairs_demo.py
 :wq
 ```
 
-<img src="../_static/media/chapter_14/section_2/image22.png" style="width:5.76111in;height:0.74931in" />
+<img src="../_static/media/chapter_14/section_2/image22.png" alt="loading" />
 
 5)  输入指令，重新启动玩法，即可查看修改后的玩法效果。
 
@@ -276,7 +276,7 @@ rosed puppy_advanced_functions** **negotiate_stairs_demo.py
 rosrun puppy_advanced_functions negotiate_stairs_demo.py
 ```
 
-<img src="../_static/media/chapter_14/section_2/image24.png" style="width:5.76806in;height:2.08611in" />
+<img src="../_static/media/chapter_14/section_2/image24.png" alt="loading" />
 
 ### 2.5 程序参数说明
 
@@ -284,13 +284,13 @@ rosrun puppy_advanced_functions negotiate_stairs_demo.py
 
 根据实现的效果，梳理程序的过程逻辑，如下图所示：
 
-<img src="../_static/media/chapter_14/section_2/image25.png" style="width:4.94792in;height:3.5625in" />
+<img class="common_img" src="../_static/media/chapter_14/section_2/image25.png" alt="loading" />
 
 - #### 2.5.1 靠近台阶
 
 第一课我们介绍了如何识别台阶，接下来可以根据线条的中心坐标信息，控制机器人靠近台阶，如下图：
 
-<img src="../_static/media/chapter_14/section_2/image26.png" style="width:5.76042in;height:1.43681in" />
+<img src="../_static/media/chapter_14/section_2/image26.png" alt="loading" />
 
 PuppyVelocityPub.publish()函数用于控制机器狗运动时的状态。
 
@@ -312,7 +312,7 @@ PuppyVelocityPub.publish(x=0, y=0, yaw_rate = math.radians(0))
 
 靠近台阶后，直接调用机器狗内置动作组"**up_stairs_2cm.d6ac**"执行攀爬动作。
 
-<img src="../_static/media/chapter_14/section_2/image29.png" style="width:5.76319in;height:1.40347in" />
+<img src="../_static/media/chapter_14/section_2/image29.png" alt="loading" />
 
 PuppyPosePub.publish()函数用于控制机器狗运动时的姿态。
 

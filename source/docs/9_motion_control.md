@@ -639,7 +639,7 @@ ROS中 话题(Topic)采用异步通信机制，它使用发布/订阅模型，�
 
 服务(Service)采用同步通信机制，它使用客户端/服务器（C/S）模型，客户端发送请求数据，服务器完成处理后返回应答数据。服务模型如下图所示：
 
-<img class="common_img" src="../_static/media/chapter_9/section_7/image3.png"  alt="image20" />
+<img class="common_img" src="../_static/media/chapter_9/section_7/image3.png" width="200px"  alt="image20" />
 
 ### 7.2 话题通讯
 
@@ -861,7 +861,7 @@ rosrun puppy_control puppy_IK_demo.py
 
 玩法开启后，PuppyPi机器狗上所有舵机会根据设置好的坐标，转动到对应角度，并在终端打印出所有舵机的转动角度。
 
-<img src="../_static/media/chapter_9/section_10/image13.png"  />
+<img class="common_img" src="../_static/media/chapter_9/section_10/image13.png"  />
 
 ### 10.4 程序分析
 
@@ -911,9 +911,9 @@ Z轴坐标设置为越大，落脚点越向上抬起，即落脚点和原点竖�
 
 所有舵机对应角度，位置如下图：
 
-<img src="../_static/media/chapter_9/section_10/image24.png"  />
+<img class="common_img" src="../_static/media/chapter_9/section_10/image24.png"  />
 
-<img src="../_static/media/chapter_9/section_10/image26.png"  />
+<img class="common_img" src="../_static/media/chapter_9/section_10/image26.png"  />
 
 下面来看下机器狗舵机角度和姿态的对应关系，以ID1和ID2舵机为例，其他舵机类似。
 
@@ -1347,7 +1347,7 @@ rosrun puppy_control puppy_demo.py
 
 玩法开启后，PuppyPi机器狗就会调整到设置的高度。
 
-<img src="../_static/media/chapter_9/section_14/image19.png"  />
+<img class="common_img" src="../_static/media/chapter_9/section_14/image19.png"  />
 
 ## 15. 行走速度调节
 
