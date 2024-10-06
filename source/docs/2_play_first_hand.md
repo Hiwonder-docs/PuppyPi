@@ -108,15 +108,15 @@
 
 7)  稍等片刻，界面会自动切回APP主界面，同时树莓派扩展板上的LED2将停止闪烁，和LED1一样保持常亮状态，此时即表示树莓派联网成功。
 
-<img class="common_img" src="../_static/media/chapter_2/section_1/image20.jpeg"  alt="loading" />
+<img class="common_img" style="width:450px" src="../_static/media/chapter_2/section_1/image20.jpeg"  alt="loading" />
 
 8)  长按APP中的机器狗图标，可以查看分配给机器狗的IP地址和ID。
 
-<img class="common_img" src="../_static/media/chapter_2/section_1/image21.png" style="width:200px;"  alt="loading" />
+<img class="common_img"  src="../_static/media/chapter_2/section_1/image21.png" style="width:250px;"  alt="loading" />
 
 9)  若要回到直连模式，可长按扩展板上的KEY1，直到LED2闪烁
 
-<img class="common_img" src="../_static/media/chapter_2/section_1/image22.jpeg"  alt="loading" />
+<img class="common_img" style="width:450px" src="../_static/media/chapter_2/section_1/image22.jpeg"  alt="loading" />
 
 ## 2. 手机APP试玩
 
