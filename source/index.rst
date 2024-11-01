@@ -24,6 +24,7 @@
    docs/20_slam_mapping.md
    docs/21_autonomous_navigation.md
    docs/22_coupling_manipulator.md
+   docs/23_resources_download.md
 
 
 

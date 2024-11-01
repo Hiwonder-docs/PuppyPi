@@ -1,3 +1,8 @@
+section p{
+    line-height: 1.66;
+    margin: 0 0 12px
+}
+
 table td{
     white-space: unset !important;
 }
@@ -8,6 +13,7 @@ table td{
 
 table{
     min-width: 50%;
+    margin: 0 auto 24px;
 }
 
 .common_img{
@@ -41,4 +47,14 @@ div[itemprop="articleBody"] > section > section{
     padding: 8px 16px;
     border-bottom: 1px solid #e1e4e5;
     border-left: 1px solid #e1e4e5;
+}
+
+.rst-content .section ul li, .rst-content section ul li, .wy-plain-list-disc li, article ul li{
+    margin-left: 0px;
+    list-style: none;
+}
+
+.rst-content section ul.simple li{
+    margin-left: 24px;
+    list-style: disc;
 }

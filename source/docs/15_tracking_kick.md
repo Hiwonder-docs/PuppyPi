@@ -2,10 +2,6 @@
 
 ## 1. 小球寻找与定位
 
-:::{Note}
-可在本节文件夹下观看演示效果。
-:::
-
 ### 1.1 玩法简要说明
 
 首先，需要对颜色进行识别，本节使用的是Lab颜色空间进行处理，将图像颜色空间由RGB转换为Lab，随后对图像进行二值化、腐蚀、膨胀等操作，获得只包含目标颜色的轮廓，并用圆圈将其标识出来。
@@ -20,21 +16,17 @@
 指令输入需严格区分大小写及空格。
 :::
 
-1. 启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1) 启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-2. 点击系统桌面左上角的图标<img src="../_static/media/chapter_15/section_1/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2) 点击系统桌面左上角的图标<img src="../_static/media/chapter_15/section_1/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-<img src="../_static/media/chapter_15/section_1/image5.png"  />
+(3) 输入启动玩法的指令，按下回车。
 
-3. 输入启动玩法的指令，按下回车。
-
-```commandline
+```bash
 rosrun puppy_advanced_functions kick_ball_demo.py
 ```
 
-<img src="../_static/media/chapter_15/section_1/image7.png"  />
-
-4.  如需关闭此玩法，可在LX终端界面按下"**Ctrl+C**"。如果关闭失败，可多次按下。
+(4) 如需关闭此玩法，可在LX终端界面按下"**Ctrl+C**"。如果关闭失败，可多次按下。
 
 ### 1.3 功能实现
 
@@ -48,21 +40,17 @@ rosrun puppy_advanced_functions kick_ball_demo.py
 
 ### 1.4 程序参数说明
 
-该程序的源代码位于Docker容器中的：**/home/ubuntu/puppypi/src/puppy_advanced_functions/scripts/kick_ball_demo.py**
+[下载源代码](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/15/kick_ball_demo.py)
 
-根据实现的效果，梳理程序的过程逻辑，如下图所示：
-
-<img class="common_img" src="../_static/media/chapter_15/section_1/image10.png"  />
-
-- **导入功能包**
+- #### 1.4.2 导入功能包
 
 <img src="../_static/media/chapter_15/section_1/image12.png"  />
 
 通过 import 语句导入所需模块：math提供了一系列数学函数和常数,用于进行相关计算；rospy用于ROS通信，from object_tracking.srv import \*: 导入目标跟踪相关的服务。from puppy_control.msg import Velocity, Pose, Gait: 导入控制和传递机器人的速度、姿态和步态服务。
 
-- #### 1.4.1 处理图像
+- #### 1.4.2 处理图像
 
-1. **高斯滤波**
+(1) **高斯滤波**
 
 在将图像的颜色空间由RGB转换为Lab前，需要先对其进行降噪处理，此处用到cv2库中的GaussianBlur()函数，该函数用于对图像进行高斯滤波处理。
 
@@ -76,7 +64,7 @@ rosrun puppy_advanced_functions kick_ball_demo.py
 
 第三个参数"**3**"是在高斯滤波中其平均值附近允许的变化范围大小。该值越大，平均值周围允许的变化范围越大；数值越小，平均值周围允许的变化范围越小。
 
-2. **二值化处理**
+(2) **二值化处理**
 
 采用cv2库中的inRange()函数对图像进行二值化处理。
 
@@ -84,7 +72,7 @@ rosrun puppy_advanced_functions kick_ball_demo.py
 
 括号内的第一个参数是输入图像；第二个、第三个参数分别是阈值的下限和上限。当像素点RGB的颜色数值处于上、下限之间时，该像素点被赋值为1，否则为0。
 
-3. **腐蚀膨胀处理**
+(3) **腐蚀膨胀处理**
 
 :::{Note} 
 为了降低干扰，令图像更平滑，需要对图像进行腐蚀和膨胀处理。
@@ -108,7 +96,7 @@ eroded = cv2.erode(frame_mask, cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
 
 dilate()函数用于对图像进行膨胀操作。此函数括号内参数的含义与erode()函数的相同。
 
-4. **获取最大面积轮廓**
+(4) **获取最大面积轮廓**
 
 完成上述的图像处理后，需要获取识别目标的轮廓，此处涉及cv2库中的findContours()函数。
 
@@ -124,7 +112,7 @@ dilate()函数用于对图像进行膨胀操作。此函数括号内参数的含
 
 <img src="../_static/media/chapter_15/section_1/image24.png"  />
 
-- #### 1.4.2 **显示坐标**
+- #### 1.4.3 显示坐标
 
 最后在终端显示红色小球的X轴坐标，如下图所示：
 
@@ -148,21 +136,17 @@ dilate()函数用于对图像进行膨胀操作。此函数括号内参数的含
 指令输入需严格区分大小写及空格。
 :::
 
-1.  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1) 启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-2.  点击系统桌面左上角的图标<img src="../_static/media/chapter_15/section_2/image3.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2) 点击系统桌面左上角的图标<img src="../_static/media/chapter_15/section_2/image3.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-<img src="../_static/media/chapter_15/section_2/image4.png"  />
+(3) 输入启动玩法的指令，按下回车。
 
-3.  输入启动玩法的指令，按下回车。
-
-```commandline
+```bash
 rosrun puppy_advanced_functions kick_ball_demo.py
 ```
 
-<img src="../_static/media/chapter_15/section_2/image5.png"  />
-
-4.  如需关闭此玩法，可在LX终端界面按下"**Ctrl+C**"。如果关闭失败，可多次按下。
+(4) 如需关闭此玩法，可在LX终端界面按下"**Ctrl+C**"。如果关闭失败，可多次按下。
 
 ### 2.3 功能实现
 
@@ -180,45 +164,37 @@ rosrun puppy_advanced_functions kick_ball_demo.py
 
 由于调试画面不断刷新，会占用树莓派一定的CPU资源，所以如果出现运行不流畅的情况，可通过关闭调试画面来改善，具体步骤如下：
 
-1)  输入指令，用来编辑自主追踪踢球玩法程序，按下回车。
+(1)  输入指令，用来编辑自主追踪踢球玩法程序，按下回车。
 
-```commandline
+```bash
 rosed puppy_advanced_functions kick_ball_demo.py
 ```
 
-<img src="../_static/media/chapter_15/section_2/image6.png"  />
-
-2)  找到下图所示代码：
+(2)  找到下图所示代码：
 
 <img src="../_static/media/chapter_15/section_2/image7.png"  />
 
 :::{Note}
-
 在键盘输入代码位置序号后，按下"Shift+G"键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
-
 :::
 
-3)  按下"**i**"键进入编辑模式，在代码前面添加"**\#**"，进行注释。
+(3)  按下"**i**"键进入编辑模式，在代码前面添加"**\#**"，进行注释。
 
 <img src="../_static/media/chapter_15/section_2/image8.png"  />
 
-4)  修改完成后，按下"**Esc**"键，输入并回车，进行保存与退出。
+(4)  修改完成后，按下"**Esc**"键，输入并回车，进行保存与退出。
 
-```commandline
+```bash
 :wq
 ```
 
-<img src="../_static/media/chapter_15/section_2/image9.png"  />
+(5)  输入指令，重新启动玩法，即可查看修改后的玩法效果。
 
-5)  输入指令，重新启动玩法，即可查看修改后的玩法效果。
-
-```commandline
+```bash
 rosrun puppy_advanced_functions kick_ball_demo.py
 ```
 
-<img src="../_static/media/chapter_15/section_2/image10.png"  />
-
-6)  如需再次查看调试画面（摄像头实时回传画面），可将步骤3）框出的内容进行反注释，即将代码前面的"**\#**"去掉，再进行保存，如下图所示：
+(6)  如需再次查看调试画面（摄像头实时回传画面），可将步骤3）框出的内容进行反注释，即将代码前面的"**\#**"去掉，再进行保存，如下图所示：
 
 <img src="../_static/media/chapter_15/section_2/image7.png"  />
 
@@ -226,15 +202,13 @@ rosrun puppy_advanced_functions kick_ball_demo.py
 
 **玩法默认识别红色小球后开始踢球，如需更改小球颜色，比如蓝色，可参照以下步骤：**
 
-1)  输入指令，用来编辑自主追踪踢球玩法程序，按下回车。
+(1)  输入指令，用来编辑自主追踪踢球玩法程序，按下回车。
 
-```commandline
+```bash
 rosed puppy_advanced_functions kick_ball_demo.py
 ```
 
-<img src="../_static/media/chapter_15/section_2/image6.png"  />
-
-2)  找到下图所示代码：
+(2)  找到下图所示代码：
 
 <img src="../_static/media/chapter_15/section_2/image11.png"  />
 
@@ -242,41 +216,33 @@ rosed puppy_advanced_functions kick_ball_demo.py
 在键盘输入代码位置序号后，按下"Shift+G"键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
 :::
 
-3)  按下"**i**"键进入编辑模式，将"**red**"改为"**blue**"。
+(3)  按下"**i**"键进入编辑模式，将"**red**"改为"**blue**"。
 
 <img src="../_static/media/chapter_15/section_2/image12.png"  />
 
-4)  修改完成后，按下"**Esc**"键，输入指令并按下回车，进行保存与退出。
+(4)  修改完成后，按下"**Esc**"键，输入指令并按下回车，进行保存与退出。
 
-```commandline
+```bash
 :wq
 ```
 
-<img src="../_static/media/chapter_15/section_2/image13.png"  />
+(5)  输入指令，重新启动玩法，即可查看修改后的玩法效果。
 
-5)  输入指令，重新启动玩法，即可查看修改后的玩法效果。
-
-```commandline
+```bash
 rosrun puppy_advanced_functions kick_ball_demo.py
 ```
 
-<img src="../_static/media/chapter_15/section_2/image5.png"  />
-
 ### 2.5 程序参数说明
 
-该程序的源代码位于Docker容器中的：**/home/ubuntu/puppypi/src/puppy_advanced_functions/scripts/kick_ball_demo.py**
+[下载源代码](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/15/kick_ball_demo.py)
 
-根据实现的效果，梳理程序的过程逻辑，如下图所示：
-
-<img class="common_img" src="../_static/media/chapter_15/section_2/image14.png"  />
-
-1. **判断左右位置**
+(1) **判断左右位置**
 
 第一课我们介绍了小球的寻找觉定位，接下来可以小球的坐标信息，判断小球的左右位置，如下图：
 
 <img src="../_static/media/chapter_15/section_2/image15.png"  />
 
-2. **靠近红色小球**
+(2) **靠近红色小球**
 
 接下根据小球坐标，控制机器狗不断靠近红色小球，如下图：
 
@@ -298,7 +264,7 @@ PuppyVelocityPub.publish(x=4, y=0, yaw_rate = math.radians(0))
 
 第三个参数"**yaw_rate**"是机器狗的转弯速度，逆时针方向为正方向，单位rad/s。
 
-3. **开始踢球**
+(3) **开始踢球**
 
 靠近红色小球后，通过小球左右位置，调用对应动作组，执行踢球动作，如下图：
 

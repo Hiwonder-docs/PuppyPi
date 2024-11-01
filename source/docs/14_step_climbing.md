@@ -2,10 +2,6 @@
 
 ## 1. 台阶识别
 
-:::{Note}
-可在本节文件夹下观看演示效果。
-:::
-
 ### 1.1 玩法简要说明
 
 本节课使用20mm高度的物品做台阶，如木板、坚固的盒子。在物品边缘粘贴红色的电工胶带后，机器狗通过识别胶带的颜色识别台阶。
@@ -24,21 +20,17 @@
 指令输入需严格区分大小写及空格。
 :::
 
-1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_14/section_1/image3.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_14/section_1/image3.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-<img src="../_static/media/chapter_14/section_1/image4.png" alt="loading" />
+(3)  输入启动玩法的指令，按下回车。
 
-3)  输入启动玩法的指令，按下回车。
-
-```commandline
+```bash
 rosrun puppy_advanced_functions negotiate_stairs_demo.py
 ```
 
-<img src="../_static/media/chapter_14/section_1/image6.png" alt="loading" />
-
-4)  如需关闭此玩法，可在LX终端界面按下"**Ctrl+C**"，如关闭失败，可多次按下。
+(4)  如需关闭此玩法，可在LX终端界面按下"**Ctrl+C**"，如关闭失败，可多次按下。
 
 ### 1.3 功能实现
 
@@ -50,23 +42,17 @@ rosrun puppy_advanced_functions negotiate_stairs_demo.py
 
 ### 1.4 程序参数说明
 
-该程序的源代码位于Docker容器中的：
+[下载源代码](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/14/negotiate_stairs_demo.py)
 
-**/home/ubuntu/puppypi/src/puppy_advanced_functions/scripts/negotiate_stairs_demo.py**
-
-根据实现的效果，梳理程序的过程逻辑，如下图所示：
-
-<img class="common_img" src="../_static/media/chapter_14/section_1/image8.png" alt="loading" />
-
-- **导入功能包**
+- #### 1.4.1 导入功能包
 
 <img src="../_static/media/chapter_14/section_1/image10.png" alt="loading" />
 
 通过 import 语句导入所需模块：math提供了一系列数学函数和常数,用于进行相关计算；rospy用于ROS通信，from object_tracking.srv import \*: 导入目标跟踪相关的服务。from puppy_control.msg import Velocity, Pose, Gait: 导入控制和传递机器人的速度、姿态和步态服务。
 
-- #### 1.4.1 处理图像
+- #### 1.4.2 处理图像
 
-1. **高斯滤波**
+(1) **高斯滤波**
 
 在将图像的颜色空间由RGB转换为Lab前，需要先对其进行降噪处理，此处用到cv2库中的GaussianBlur()函数，该函数用于对图像进行高斯滤波处理。
 
@@ -80,7 +66,7 @@ rosrun puppy_advanced_functions negotiate_stairs_demo.py
 
 第三个参数"**3**"是在高斯滤波中其平均值附近允许的方差大。该值越大，平均值周围允许的方差越大；数值越小，平均值周围允许的方差越小。
 
-2. **二值化处理**
+(2) **二值化处理**
 
 采用cv2库中的inRange()函数对图像进行二值化处理。
 
@@ -88,7 +74,7 @@ rosrun puppy_advanced_functions negotiate_stairs_demo.py
 
 函数括号内的第一个参数是输入图像；第二个、第三个参数分别是阈值的下限和上限。当像素点RGB的颜色数值处于上、下限之间时，该像素点被赋值为1，否则为0。
 
-3. **开运算和闭运算**
+(3) **开运算和闭运算**
 
 :::{Note}
 为了降低干扰，令图像更平滑，需要对图像进行处理。
@@ -112,7 +98,7 @@ opened = cv2.morphologyEx(frame_mask, cv2.MORPH_OPEN, np.ones((6, 6), np.uint8))
 
 第三个参数"**np.ones((6, 6), np.uint8)**"是方框的大小。
 
-4. **获取最大面积轮廓**
+(4) **获取最大面积轮廓**
 
 完成上述的图像处理后，需要获取识别目标的轮廓，此处涉及cv2库中的findContours()函数。
 
@@ -124,15 +110,15 @@ opened = cv2.morphologyEx(frame_mask, cv2.MORPH_OPEN, np.ones((6, 6), np.uint8))
 
 <img src="../_static/media/chapter_14/section_1/image23.png" alt="loading" />
 
-- #### 1.4.2 获取位置信息
+- #### 1.4.3 获取位置信息
 
-1. **框出线条**
+(1) **框出线条**
 
 通过drawContours()函数，设置矩形图案，将线条框出。
 
 <img src="../_static/media/chapter_14/section_1/image27.png" alt="loading" />
 
-2. **画出中心点**
+(2) **画出中心点**
 
 接着，获取矩形的对角点，通过circle()画出线条的中心点。
 
@@ -162,21 +148,17 @@ opened = cv2.morphologyEx(frame_mask, cv2.MORPH_OPEN, np.ones((6, 6), np.uint8))
 指令输入需严格区分大小写及空格。
 :::
 
-1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_14/section_2/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_14/section_2/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-<img src="../_static/media/chapter_14/section_2/image5.png" alt="loading" />
+(3)  输入启动玩法的指令，按下回车。
 
-3)  输入启动玩法的指令，按下回车。
-
-```commandline
+```bash
 rosrun puppy_advanced_functions** **negotiate_stairs_demo.py
 ```
 
-<img src="../_static/media/chapter_14/section_2/image6.png" alt="loading" />
-
-4)  如需关闭此玩法，可在LX终端界面按下"**Ctrl+C**"，如关闭失败，可多次按下。
+(4)  如需关闭此玩法，可在LX终端界面按下"**Ctrl+C**"，如关闭失败，可多次按下。
 
 ### 2.3 实现效果
 
@@ -194,15 +176,13 @@ rosrun puppy_advanced_functions** **negotiate_stairs_demo.py
 
 由于调试画面不断刷新，会占用树莓派一定的CPU资源，所以如果出现运行不流畅的情况，可通过关闭调试画面来改善，具体步骤如下：
 
-1)  输入指令，用来编辑自主台阶攀爬玩法程序，按下回车。
+(1)  输入指令，用来编辑自主台阶攀爬玩法程序，按下回车。
 
-```commandline
+```bash
 rosed puppy_advanced_functions negotiate_stairs_demo.py
 ```
 
-<img src="../_static/media/chapter_14/section_2/image9.png" alt="loading" />
-
-2)  找到下图所示代码：
+(2)  找到下图所示代码：
 
 <img src="../_static/media/chapter_14/section_2/image11.png" alt="loading" />
 
@@ -210,27 +190,25 @@ rosed puppy_advanced_functions negotiate_stairs_demo.py
 在键盘输入代码位置序号后，按下"Shift+G"键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
 :::
 
-3)  按下"**i**"键进入编辑模式，在代码前面添加"**\#**"，进行注释。
+(3)  按下"**i**"键进入编辑模式，在代码前面添加"**\#**"，进行注释。
 
 <img src="../_static/media/chapter_14/section_2/image13.png" alt="loading" />
 
-4)  修改完成后，按下"**Esc**"键，输入"**:wq**"并回车，进行保存与退出。
+(4)  修改完成后，按下"**Esc**"键，输入"**:wq**"并回车，进行保存与退出。
 
-```commandline
+```bash
 :wq
 ```
 
-<img src="../_static/media/chapter_14/section_2/image15.png" alt="loading" />
+(5)  输入指令重新启动玩法，即可查看修改后的玩法效果。
 
-5)  输入指令重新启动玩法，即可查看修改后的玩法效果。
-
-```commandline
+```bash
 rosrun puppy_advanced_functions negotiate_stairs_demo.py
 ```
 
 <img src="../_static/media/chapter_14/section_2/image17.png" alt="loading" />
 
-6)  如需再次查看调试画面（摄像头实时回传画面），可将步骤3）框出的内容进行反注释，即将代码前面的"**\#**"去掉，再进行保存，如下图所示：
+(6)  如需再次查看调试画面（摄像头实时回传画面），可将步骤3）框出的内容进行反注释，即将代码前面的"**\#**"去掉，再进行保存，如下图所示：
 
 <img src="../_static/media/chapter_14/section_2/image11.png" alt="loading" />
 
@@ -240,39 +218,33 @@ rosrun puppy_advanced_functions negotiate_stairs_demo.py
 玩法默认台阶边缘线条颜色是红色，如需更改颜色，比如黑色，可参照以下步骤：
 :::
 
-1)  输入指令，用来编辑自主台阶攀爬玩法程序，按下回车。
+(1)  输入指令，用来编辑自主台阶攀爬玩法程序，按下回车。
 
-```commandline
+```bash
 rosed puppy_advanced_functions** **negotiate_stairs_demo.py
 ```
 
-<img src="../_static/media/chapter_14/section_2/image9.png" alt="loading" />
-
-2)  找到下图所示代码：
+(2)  找到下图所示代码：
 
 <img src="../_static/media/chapter_14/section_2/image18.png" alt="loading" />
 
 :::{Note}
-
 在键盘输入代码位置序号后，按下"Shift+G"键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
-
 :::
 
-3)  按下"**i**"键进入编辑模式，将"**red**"改为"**black**"。
+(3)  按下"**i**"键进入编辑模式，将"**red**"改为"**black**"。
 
 <img src="../_static/media/chapter_14/section_2/image20.png" alt="loading" />
 
-4)  修改完成后，按下"**Esc**"键，输入指令并按下回车，进行保存与退出。
+(4)  修改完成后，按下"**Esc**"键，输入指令并按下回车，进行保存与退出。
 
-```commandline
+```bash
 :wq
 ```
 
-<img src="../_static/media/chapter_14/section_2/image22.png" alt="loading" />
+(5)  输入指令，重新启动玩法，即可查看修改后的玩法效果。
 
-5)  输入指令，重新启动玩法，即可查看修改后的玩法效果。
-
-```commandline
+```bash
 rosrun puppy_advanced_functions negotiate_stairs_demo.py
 ```
 
@@ -280,11 +252,7 @@ rosrun puppy_advanced_functions negotiate_stairs_demo.py
 
 ### 2.5 程序参数说明
 
-该程序的源代码位于Docker容器中的：**/home/ubuntu/puppypi/src/puppy_advanced_functions/scripts/negotiate_stairs_demo.py**
-
-根据实现的效果，梳理程序的过程逻辑，如下图所示：
-
-<img class="common_img" src="../_static/media/chapter_14/section_2/image25.png" alt="loading" />
+[下载源代码](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/14/negotiate_stairs_demo.py)
 
 - #### 2.5.1 靠近台阶
 

@@ -10,20 +10,18 @@
 
 ### 1.1 启动 LAB_Tool
 
-1.  打开VNC软件，在系统桌面找到并双击"**LAB_Tool**"图标<img src="../_static/media/chapter_13/section_1/image2.png" style="width:0.31458in;height:0.31458in" />。
+(1) 打开VNC软件，在系统桌面找到并双击"**LAB_Tool**"图标<img src="../_static/media/chapter_13/section_1/image2.png" style="width:0.31458in;height:0.31458in" />。
 
-2. 此时将出现"**执行文件**"对话框，点击"**执行**"即可。
+(2) 此时将出现"**执行文件**"对话框，点击"**执行**"即可。
 
 <img src="../_static/media/chapter_13/section_1/image3.png"  />
 
-3. 进入软件后，我们可以看到LAB_Tool的界面，如下图所示：
+(3) 进入软件后，我们可以看到LAB_Tool的界面，如下图所示：
 
 <img src="../_static/media/chapter_13/section_1/image4.png"  alt="loading" />
 
 :::{Note}
-
 若回传画面无法正常显示，即摄像头连接失败，需检查其连接线是否连接正常。
-
 :::
 
 ### 1.2 LAB_Tool 的界面分布及说明
@@ -35,15 +33,15 @@ LAB_Tool软件的界面分为画面显示区和识别调节区两个部分。
 | 画面显示区 | <img src="../_static/media/chapter_13/section_1/image4.png" style="width:3.14961in;height:1.13095in" alt="loading" /> |
 | 识别调节区 | <img src="../_static/media/chapter_13/section_1/image4.png" style="width:3.14961in;height:0.95764in" alt="loading" /> |
 
-- **画面显示区**
+(1) **画面显示区**
 
 | **图标** | **功能说明** |
 |----|----|
 | <img src="../_static/media/chapter_13/section_1/image4.png" style="width:2.3622in;height:0.84833in" alt="loading" /> | 左侧为原始画面，右侧为处理后的画面。 |
 
-- **识别调节区**
+(2) **识别调节区**
 
-  在识别调节区，可调节颜色属性。各部分对应功能见下表：
+在识别调节区，可调节颜色属性。各部分对应功能见下表：
 
 | **图标** | **功能说明** |
 |----|----|
@@ -56,15 +54,15 @@ LAB_Tool软件的界面分为画面显示区和识别调节区两个部分。
 
 我们这里以调节红色为例，其它颜色亦可参考，具体调节步骤如下：
 
-1)  启动系统桌面的LAB_Tool，连接摄像头后，在识别调节区的颜色选择栏中选择"**red**"。
+(1) 启动系统桌面的LAB_Tool，连接摄像头后，在识别调节区的颜色选择栏中选择"**red**"。
 
 <img class="common_img" src="../_static/media/chapter_13/section_1/image8.png"  alt="loading" />
 
-2)  将左边"**min**"调节区都调整为0，右边"**max**"调节区都调整为255。
+(2) 将左边"**min**"调节区都调整为0，右边"**max**"调节区都调整为255。
 
 <img class="common_img" src="../_static/media/chapter_13/section_1/image9.png"  />
 
-3)  将摄像头对准需要进行效果调节的颜色物体，拖动识别调节区的L、A、B分量滑杆进行阈值调节，直至画面显示区左侧的颜色物体区域变为白色，其它区域变为黑色。
+(3) 将摄像头对准需要进行效果调节的颜色物体，拖动识别调节区的L、A、B分量滑杆进行阈值调节，直至画面显示区左侧的颜色物体区域变为白色，其它区域变为黑色。
 
 <img class="common_img" src="../_static/media/chapter_13/section_1/image10.png"  alt="loading" />
 
@@ -82,13 +80,13 @@ LAB颜色空间：
 
 调节颜色阈值时，需要将L、A、B的参数数值向需要识别的颜色区间进行调整。此处以红色为例，调节步骤如下：
 
-1.  将L、A、B三个颜色分量的数值范围都调整为0~255，即调节区左侧参数都为0，右侧参数都为255；
+(1) 将L、A、B三个颜色分量的数值范围都调整为0~255，即调节区左侧参数都为0，右侧参数都为255；
 
-2.  由"**LAB颜色空间**"可知，所有的红色都处于"+a"附近，所以需要让A的分量增加，在右侧"max"的分量参数保持不变时，增大左侧"min"的分量参数，直至画面显示区左侧的颜色物体区域变为白色，其它区域变为黑色；
+(2) 由"**LAB颜色空间**"可知，所有的红色都处于"+a"附近，所以需要让A的分量增加，在右侧"max"的分量参数保持不变时，增大左侧"min"的分量参数，直至画面显示区左侧的颜色物体区域变为白色，其它区域变为黑色；
 
-3.  根据所处环境来调整L分量和B分量。若红色物体在环境下颜色偏浅，增大亮度的最小值(**L_min**)；在环境下颜色偏深，则减小亮度的最大值(**L_max**)。若红色物体在环境下偏暖色调，增大色度的最小值(**b_min**)；在环境下偏冷色调，减小色度的最大值(**b_max**)。
+(3) 根据所处环境来调整L分量和B分量。若红色物体在环境下颜色偏浅，增大亮度的最小值(**L_min**)；在环境下颜色偏深，则减小亮度的最大值(**L_max**)。若红色物体在环境下偏暖色调，增大色度的最小值(**b_min**)；在环境下偏冷色调，减小色度的最大值(**b_max**)。
 
-4.  点击识别调节区的"**Save**"按键，将调节后的参数数值保存。
+(4) 点击识别调节区的"**Save**"按键，将调节后的参数数值保存。
 
 <img class="common_img" src="../_static/media/chapter_13/section_1/image12.png"  alt="loading" />
 
@@ -96,23 +94,23 @@ LAB颜色空间：
 
 除了内置的三种识别颜色，我们还可以增设其它可识别的颜色。增设的方法有两种：
 
-1.  直接将默认颜色选项的LAB数值调整为实际颜色的LAB数值；
+(1) 直接将默认颜色选项的LAB数值调整为实际颜色的LAB数值；
 
-2.  使用"**Add**"按键，增加新的颜色选项。
+(2) 使用"**Add**"按键，增加新的颜色选项。
 
 本着最易操作，最快速达到效果的原则，本节课仅介绍第一种方法。
 
 **下面我们以橙色为例进行设置，具体步骤如下：**
 
-- 1)  启动系统桌面的LAB_Tool，连接摄像头后，在识别调节区的颜色选择栏中选择"**red**"。
+① 启动系统桌面的LAB_Tool，连接摄像头后，在识别调节区的颜色选择栏中选择"**red**"。
 
  <img class="common_img" src="../_static/media/chapter_13/section_1/image8.png"  alt="loading" />
 
-- 2)  将摄像头对准需要识别的橙色物体，拖动L、A、B分量滑杆调整阈值，直到画面显示区左侧画面中的橙色物体所在区域变为白色，其他区域变成黑色。
+② 将摄像头对准需要识别的橙色物体，拖动L、A、B分量滑杆调整阈值，直到画面显示区左侧画面中的橙色物体所在区域变为白色，其他区域变成黑色。
 
  <img class="common_img" src="../_static/media/chapter_13/section_1/image13.png"  alt="loading" />
 
-- 3)  点击识别调节区的"**Save**"按键，将修改后的L、A、B参数数值保存。
+③ 点击识别调节区的"**Save**"按键，将修改后的L、A、B参数数值保存。
 
 <img class="common_img" src="../_static/media/chapter_13/section_1/image14.png"  alt="loading" />
 
@@ -133,21 +131,17 @@ LAB颜色空间：
 输入指令时需要严格区分大小写，且可使用"**Tab**"键补齐关键词。
 :::
 
-1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_13/section_2/image3.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_13/section_2/image3.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-<img src="../_static/media/chapter_13/section_2/image4.png"  />
+(3)  输入指令，并按下回车，启动颜色识别玩法。
 
-3)  输入指令，并按下回车，启动颜色识别玩法。
-
-```commandline
+```bash
 rosrun puppy_standard_functions color_detect_demo.py
 ```
 
-<img src="../_static/media/chapter_13/section_2/image6.png"  />
-
-4)  如需关闭此玩法，可在终端界面按下"Ctrl+C"。若关闭失败，请反复尝试。
+(4)  如需关闭此玩法，可在终端界面按下"Ctrl+C"。若关闭失败，请反复尝试。
 
 ### 2.3 功能实现
 
@@ -165,41 +159,35 @@ rosrun puppy_standard_functions color_detect_demo.py
 
 除了内置三种识别的颜色，我们还可以设置其它可识别的颜色，**比如我们以橙色作为新增的识别颜色为例，具体的修改步骤如下：**
 
-1. 根据"[ROS+OpenCV视觉识别与追踪项目\1. 颜色阈值调节](#anchor_1)**"课程内容使用LAB_TOOL添加橙色并保存。
+(1) 根据"[1. 颜色阈值调节](#anchor_1)**"课程内容使用LAB_TOOL添加橙色并保存。
 
 <img class="common_img" src="../_static/media/chapter_13/section_2/image10.png"  />
 
-2. 保存完橙色之后，我们打开命令窗口，输入以下命令，并按下回车。
+(2) 保存完橙色之后，我们打开命令窗口，输入以下命令，并按下回车。
 
-```commandline
+```bash
 sudo vim puppypi/src/lab_config/config/lab_config.yaml
 ```
-
-<img src="../_static/media/chapter_13/section_2/image11.png"  />
 
 在打开的文件中找到我们添加的橙色的LAB值。
 
 <img src="../_static/media/chapter_13/section_2/image13.png"  />
 
-3. 打开新的命令窗口，输入如下命令。
+(3) 打开新的命令窗口，输入如下命令。
 
-```commandline
+```bash
 sudo vim puppypi/src/lab_config/lab_config_list.yaml
 ```
-
-<img src="../_static/media/chapter_13/section_2/image14.png"  />
 
 将上一个文件中找到的orange的值写入lab_config_list文件中并保存。
 
 <img src="../_static/media/chapter_13/section_2/image16.png"  />
 
-4. 在命令窗口中输入如下命令，打开程序文件。
+(4) 在命令窗口中输入如下命令，打开程序文件。
 
-```commandline
+```bash
 sudo vim puppypi/src/puppy_standard_functions/scripts/color_detect_demo.py
 ```
-
-<img src="../_static/media/chapter_13/section_2/image17.png"  />
 
 在程序文件中，添加回传画面中字体颜色的BGR的值。
 
@@ -219,21 +207,17 @@ sudo vim puppypi/src/puppy_standard_functions/scripts/color_detect_demo.py
 
 <img src="../_static/media/chapter_13/section_2/image25.png"  />
 
-5. 在以上的位置中添加完代码后，输入命令再次启动该玩法，把橙色物品放置到摄像头前，可看到回传画面中识别到橙色，且在命令窗口打印出"**detect_color is orange**"。
+(5) 在以上的位置中添加完代码后，输入命令再次启动该玩法，把橙色物品放置到摄像头前，可看到回传画面中识别到橙色，且在命令窗口打印出"**detect_color is orange**"。
 
 <img src="../_static/media/chapter_13/section_2/image27.png"  />
 
 ### 2.5 程序参数说明
 
-该程序的源代码位于Docker容器中的： **/home/ubuntu/puppypi/src/puppy_standard_functions/scripts/color_detect_demo.py**
-
-根据实现的效果，梳理程序的过程逻辑，如下图所示：
-
-<img class="common_img" src="../_static/media/chapter_13/section_2/image28.png"  />
+[下载源代码](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/13/color_detect_demo.py)
 
 - #### 2.4.1 图像处理
 
-1. **高斯滤波**
+(1) **高斯滤波**
 
 在将图像的颜色空间由RGB转换为Lab前，需要先对其进行降噪处理，此处用到cv2库中的GaussianBlur()函数，该函数用于对图像进行高斯滤波处理。
 
@@ -247,7 +231,7 @@ sudo vim puppypi/src/puppy_standard_functions/scripts/color_detect_demo.py
 
 第三个参数"**3**"是在高斯滤波中其平均值附近允许的方差大小。该值越大，平均值周围允许的方差越大；数值越小，平均值周围允许的方差越小。
 
-2. **二值化处理**
+(2) **二值化处理**
 
 采用cv2库中的inRange()函数对图像进行二值化处理。
 
@@ -255,7 +239,7 @@ sudo vim puppypi/src/puppy_standard_functions/scripts/color_detect_demo.py
 
 函数括号内的第一个参数是输入图像；第二个、第三个参数分别是阈值的下限和上限。当像素点RGB的颜色数值处于上、下限之间时，该像素点被赋值为1，否则为0。
 
-3. **腐蚀膨胀处理**
+(3) **腐蚀膨胀处理**
 
 为了降低干扰，令图像更平滑，需要对图像进行腐蚀和膨胀处理。
 
@@ -269,7 +253,7 @@ erode()函数用于对图像进行腐蚀操作。以代码"**eroded = cv2.erode(
 
 dilate()函数用于对图像进行膨胀操作。此函数括号内参数的含义与erode()函数的相同。
 
-4. **获取最大面积轮廓**
+(4) **获取最大面积轮廓**
 
 完成上述的图像处理后，需要获取识别目标的轮廓，此处涉及cv2库中的findContours()函数。
 
@@ -283,15 +267,15 @@ dilate()函数用于对图像进行膨胀操作。此函数括号内参数的含
 
 - #### 2.5.2 反馈信息
 
-1.  获得最大面积轮廓后，通过调用cv2库中的circle()函数，用圆圈对识别目标进行标识，圆圈的线条颜色是识别颜色。
+(1)  获得最大面积轮廓后，通过调用cv2库中的circle()函数，用圆圈对识别目标进行标识，圆圈的线条颜色是识别颜色。
 
 <img src="../_static/media/chapter_13/section_2/image39.png"  />
 
-2.  通过调用print()函数，在终端窗口打印识别颜色。
+(2)  通过调用print()函数，在终端窗口打印识别颜色。
 
 <img src="../_static/media/chapter_13/section_2/image42.png"  />
 
-3.  在回传画面内打印识别颜色，此处涉及cv2库中的putText()函数。
+(3) 在回传画面内打印识别颜色，此处涉及cv2库中的putText()函数。
 
 <img src="../_static/media/chapter_13/section_2/image43.png"  />
 
@@ -326,22 +310,17 @@ dilate()函数用于对图像进行膨胀操作。此函数括号内参数的含
 :::
 
 
-1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_13/section_3/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_13/section_3/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-<img src="../_static/media/chapter_13/section_3/image5.png"  />
+(3)  输入指令，并按下回车，启动标签识别玩法。
 
-
-3)  输入指令，并按下回车，启动标签识别玩法。
-
-```commandline
+```bash
 rosrun puppy_standard_functions apriltag_detect_demo.py
 ```
 
-<img src="../_static/media/chapter_13/section_3/image7.png"  />
-
-4)  如需关闭此玩法，可在终端界面按下"**Ctrl+C**"。若关闭失败，请反复尝试。
+(4)  如需关闭此玩法，可在终端界面按下"**Ctrl+C**"。若关闭失败，请反复尝试。
 
 ### 3.3 功能实现
 
@@ -353,21 +332,17 @@ rosrun puppy_standard_functions apriltag_detect_demo.py
 
 ### 3.4 程序参数说明
 
-该程序的源代码位于Docker容器中的：**/home/ubuntu/puppypi/src/puppy_standard_functions/scripts/apriltag_detect_demo.py**
-
-根据实现的效果，梳理程序的过程逻辑，如下图所示：
-
-<img class="common_img" src="../_static/media/chapter_13/section_3/image11.png"  />
+[下载源代码](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/13/apriltag_detect_demo.py)
 
 - #### 3.4.1 标签检测
 
-1. **图像灰度化**
+(1) **图像灰度化**
 
 通过调用cv2库中的**cvtColor()** 函数，将摄像头采集的彩色图像转换为灰色图，并从中采集标签信息。
 
 <img src="../_static/media/chapter_13/section_3/image12.png"  />
 
-2. **提取标签信息**
+(2) **提取标签信息**
 
 获得标签信息后，将所需信息提取出来。
 
@@ -379,13 +354,13 @@ rosrun puppy_standard_functions apriltag_detect_demo.py
 
 - #### 3.4.2 反馈信息
 
-1.  完成标签识别后，通过调用**print()** 函数，在终端处打印标签坐标与标签ID。
+(1) 完成标签识别后，通过调用**print()** 函数，在终端处打印标签坐标与标签ID。
 
 <img src="../_static/media/chapter_13/section_3/image19.png"  />
 
 <img src="../_static/media/chapter_13/section_3/image21.png"  />
 
-2.  通过调用cv2库中的**putText()** 函数，在回传画面内打印标签ID。
+(2) 通过调用cv2库中的**putText()** 函数，在回传画面内打印标签ID。
 
 <img src="../_static/media/chapter_13/section_3/image23.png"  />
 
@@ -421,20 +396,17 @@ rosrun puppy_standard_functions apriltag_detect_demo.py
 输入指令时需要严格区分大小写，且可使用"**Tab**"键补齐关键词。
 :::
 
-1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_13/section_4/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_13/section_4/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-<img src="../_static/media/chapter_13/section_4/image5.png"  />
+(3)  输入指令，并按下回车，启动AR视觉玩法。
 
-
-3)  输入指令，并按下回车，启动AR视觉玩法。
-
-```commandline
+```bash
 rosrun puppy_standard_functions apriltag_AR_demo.py
 ```
 
-4)  如需关闭此玩法，可在终端界面按下"**Ctrl+C**"。若关闭失败，请反复尝试。
+(4)  如需关闭此玩法，可在终端界面按下"**Ctrl+C**"。若关闭失败，请反复尝试。
 
 ### 4.3 功能实现
 
@@ -452,17 +424,15 @@ rosrun puppy_standard_functions apriltag_AR_demo.py
 
 此处以**将默认显示的三维图像更改为cow**为例，具体的修改步骤如下所示：
 
-1)  单击桌面左上角的的图标<img src="../_static/media/chapter_13/section_4/image6.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键"**Ctrl+Alt+T**"，打开命令行终端。
+(1)  单击桌面左上角的的图标<img src="../_static/media/chapter_13/section_4/image6.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键"**Ctrl+Alt+T**"，打开命令行终端。
 
-2)  输入指令，并按下回车，打开玩法程序文件。
+(2)  输入指令，并按下回车，打开玩法程序文件。
 
-```commandline
+```bash
 rosed puppy_standard_functions apriltag_AR_demo.py
 ```
 
-<img src="../_static/media/chapter_13/section_4/image10.png"  />
-
-3)  找到下图所示代码：
+(3)  找到下图所示代码：
 
 <img src="../_static/media/chapter_13/section_4/image12.png"  />
 
@@ -470,45 +440,37 @@ rosed puppy_standard_functions apriltag_AR_demo.py
 在键盘输入代码位置序号后，按下"Shift+G"键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
 :::
 
-4)  点击"**i**"键进入编辑模式。将代码修改为"**ar_app_node.set_model_srv_callback('cow')**"。
+(4)  点击"**i**"键进入编辑模式。将代码修改为"**ar_app_node.set_model_srv_callback('cow')**"。
 
 <img src="../_static/media/chapter_13/section_4/image14.png"  />
 
-5)  修改完成后，按下"**Esc**"键，输入指令并按下回车，进行保存与退出。
+(5)  修改完成后，按下"**Esc**"键，输入指令并按下回车，进行保存与退出。
 
-```commandline
+```bash
 :wq
 ```
 
-<img src="../_static/media/chapter_13/section_4/image16.png"  />
+(6)  输入指令，重新启动玩法，即可查看修改后的玩法效果。
 
-6)  输入指令，重新启动玩法，即可查看修改后的玩法效果。
-
-```commandline
+```bash
 rosrun puppy_standard_functions apriltag_AR_demo.py
 ```
 
-<img src="../_static/media/chapter_13/section_4/image17.png"  />
-
 ### 4.5 程序参数说明
 
-该程序的源代码位于Docker容器中的：**/home/ubuntu/puppypi/src/puppy_standard_functions/scripts/apriltag_AR_demo.py**
-
-根据实现的效果，梳理程序的过程逻辑，如下图所示：
-
-<img class="common_img" src="../_static/media/chapter_13/section_4/image18.png"  />
+[下载源代码](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/13/apriltag_AR_demo.py)
 
 - #### 4.5.1 标签检测
 
-1. **图像灰度化**
+(1) **图像灰度化**
 
   通过调用cv2库中的cvtColor()函数，将摄像头采集的彩色图像转换为灰色图，并从中采集标签信息。
 
 <img src="../_static/media/chapter_13/section_4/image20.png"  />
 
-2. **提取标签信息**
+(2) **提取标签信息**
 
-  获得标签信息后，将所需信息提取出来。
+获得标签信息后，将所需信息提取出来。
 
 <img src="../_static/media/chapter_13/section_4/image21.png"  />
 
@@ -518,7 +480,7 @@ rosrun puppy_standard_functions apriltag_AR_demo.py
 
 - #### 4.5.2 三维图像绘制
 
-1. **相对位姿计算**
+(1) **相对位姿计算**
 
 若想在回传画面内的指定位置绘制三维图像，需要先求解相机相对于世界坐标系的位姿，即由世界坐标系变换到相机坐标系的旋转向量与平移向量，此处涉及cv2库中的solvePnP()函数。
 
@@ -534,13 +496,13 @@ rosrun puppy_standard_functions apriltag_AR_demo.py
 
 第四个参数"**self.dist_coeffs**"是相机坐标系下的二维坐标，单位为像素。
 
-2. **模型投影**
+(2) **模型投影**
 
 获取相机相对于世界坐标系的位姿后，进而可以通过调用cv2库中的projectPoints()函数，将特征点在世界坐标系下的三维坐标转换为像素坐标系下的二维坐标。
 
 <img src="../_static/media/chapter_13/section_4/image27.png"  />
 
-3. **图像绘制**
+(3) **图像绘制**
 
 程序默认绘制的三维图像是bicycle（自行车）。
 
@@ -550,13 +512,13 @@ rosrun puppy_standard_functions apriltag_AR_demo.py
 
 <img src="../_static/media/chapter_13/section_4/image31.png"  />
 
--  通过调用cv2库中的drawContours()、line()函数，即可实现rectangle（正方体）的上色。
+① 通过调用cv2库中的drawContours()、line()函数，即可实现rectangle（正方体）的上色。
 
 <img src="../_static/media/chapter_13/section_4/image33.png"  />
 
 <img src="../_static/media/chapter_13/section_4/image35.png"  />
 
-- 通过调用可填充多边形的函数fillConvexPoly()，可实现对其他图形的上色。
+② 通过调用可填充多边形的函数fillConvexPoly()，可实现对其他图形的上色。
 
 <img src="../_static/media/chapter_13/section_4/image37.png"  />
 
@@ -570,9 +532,9 @@ rosrun puppy_standard_functions apriltag_AR_demo.py
 
 - #### 4.5.3 反馈信息
 
-1. **图像输出**
+(1) **图像输出**
 
-  通过调用cv2库中的**imshow()** 函数，即可在回传画面内显示图像。
+通过调用cv2库中的**imshow()** 函数，即可在回传画面内显示图像。
 
 <img src="../_static/media/chapter_13/section_4/image39.png"  />
 
@@ -582,7 +544,7 @@ rosrun puppy_standard_functions apriltag_AR_demo.py
 
 第二个参数"**frame_result**"是输入图像。
 
-2. **标签信息打印**
+(2) **标签信息打印**
 
 通过调用**print()** 函数，在终端处打印标签坐标与标签ID。
 
@@ -606,21 +568,17 @@ rosrun puppy_standard_functions apriltag_AR_demo.py
 输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
 :::
 
-1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_13/section_5/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_13/section_5/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-<img src="../_static/media/chapter_13/section_5/image5.png"  />
+(3)  输入指令，并按下回车，启动玩法。
 
-3)  输入指令，并按下回车，启动玩法。
-
-```commandline
+```bash
 rosrun puppy_standard_functions color_tracking_demo.py
 ```
 
-<img src="../_static/media/chapter_13/section_5/image7.png"  />
-
-4)  如需关闭此玩法，可在终端界面按下"**Ctrl+C**"。若关闭失败，请反复尝试。
+(4)  如需关闭此玩法，可在终端界面按下"**Ctrl+C**"。若关闭失败，请反复尝试。
 
 ### 5.3 功能实现
 
@@ -640,121 +598,103 @@ rosrun puppy_standard_functions color_tracking_demo.py
 
 此处以**将默认目标识别颜色修改为绿色为例**，具体的修改步骤如下所示：
 
-1)  单击桌面左上角的的图标<img src="../_static/media/chapter_13/section_5/image6.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键"**Ctrl+Alt+T**"，打开命令行终端。
+(1)  单击桌面左上角的的图标<img src="../_static/media/chapter_13/section_5/image6.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键"**Ctrl+Alt+T**"，打开命令行终端。
 
-2)  输入指令，并按下回车，打开玩法程序文件。
+(2)  输入指令，并按下回车，打开玩法程序文件。
 
-```commandline
+```bash
 rosed puppy_standard_functions color_tracking_demo.py
 ```
 
-<img src="../_static/media/chapter_13/section_5/image11.png"  />
-
-3)  找到下图所示代码：
+(3)  找到下图所示代码：
 
 <img src="../_static/media/chapter_13/section_5/image13.png"  />
 
 :::{Note}
-
 在键盘输入代码位置序号后，按下"Shift+G"键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
-
 :::
 
-4)  点击"**i**"键进入编辑模式。将代码修改为"**msg.data = 'green'**"。
+(4)  点击"**i**"键进入编辑模式。将代码修改为"**msg.data = 'green'**"。
 
 <img src="../_static/media/chapter_13/section_5/image14.png"  />
 
-5)  修改完成后，按下"**Esc**"键，输入指令并按下回车，进行保存与退出。
+(5)  修改完成后，按下"**Esc**"键，输入指令并按下回车，进行保存与退出。
 
-```commandline
+```bash
 :wq
 ```
 
-<img src="../_static/media/chapter_13/section_5/image16.png"  />
+(6)  输入指令并按下回车，重新启动玩法，即可查看修改后的玩法效果。
 
-- 6)  输入指令并按下回车，重新启动玩法，即可查看修改后的玩法效果。
-
-```commandline
+```bash
 rosrun puppy_standard_functions color_tracking_demo.py
 ```
-
-<img src="../_static/media/chapter_13/section_5/image18.png"  />
 
 - #### 5.4.2 增加新的识别颜色
 
 除了程序内置的三种可识别颜色，用户还可以添加其它可识别颜色。此处以**新增黄色**为例，具体的修改步骤如下：
 
-1)  单击桌面左上角的的图标<img src="../_static/media/chapter_13/section_5/image6.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键"**Ctrl+Alt+T**"，打开命令行终端。
+(1)  单击桌面左上角的的图标<img src="../_static/media/chapter_13/section_5/image6.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键"**Ctrl+Alt+T**"，打开命令行终端。
 
-2)  输入指令，并按下回车，打开Lab颜色设置文件，采用截图或备份文件的形式记录初始数据。
+(2)  输入指令，并按下回车，打开Lab颜色设置文件，采用截图或备份文件的形式记录初始数据。
 
-```commandline
+```bash
 rosed lab_config lab_config.yaml
 ```
-
-<img src="../_static/media/chapter_13/section_5/image19.png"  />
 
 <img src="../_static/media/chapter_13/section_5/image21.png"  />
 
-3)  双击桌面的调试工具图标<img src="../_static/media/chapter_13/section_5/image23.png" style="width:0.31496in;height:0.29528in" />，打开颜色阈值调节工具。若弹出提示框，选择"**执行**"即可。
+(3)  双击桌面的调试工具图标<img src="../_static/media/chapter_13/section_5/image23.png" style="width:0.31496in;height:0.29528in" />，打开颜色阈值调节工具。若弹出提示框，选择"**执行**"即可。
 
 <img src="../_static/media/chapter_13/section_5/image24.png"  />
 
-4)  连接成功后，在界面右下角的颜色选项栏中选择"**red**"。
+(4)  连接成功后，在界面右下角的颜色选项栏中选择"**red**"。
 
 <img src="../_static/media/chapter_13/section_5/image25.png"  />
 
-5)  将黄色物品放置在摄像头的视野范围内，拖动LAB滑杆，使右侧画面中的黄色区域，在左侧画面内显示为白色，其它区域显示为黑色。
+(5)  将黄色物品放置在摄像头的视野范围内，拖动LAB滑杆，使右侧画面中的黄色区域，在左侧画面内显示为白色，其它区域显示为黑色。
 
 <img src="../_static/media/chapter_13/section_5/image26.png"  />
 
-6)  调节完成后，点击"**Save**"按钮保存数据，并关闭颜色阈值调节工具。
+(6)  调节完成后，点击"**Save**"按钮保存数据，并关闭颜色阈值调节工具。
 
 <img src="../_static/media/chapter_13/section_5/image27.png"  />
 
-7)  检查修改数据是否被成功写入，输入指令，并按下回车，打开Lab颜色设置文件。
+(7)  检查修改数据是否被成功写入，输入指令，并按下回车，打开Lab颜色设置文件。
 
-```commandline
+```bash
 rosed lab_config lab_config.yaml
 ```
-
-<img src="../_static/media/chapter_13/section_5/image19.png"  />
 
 <img src="../_static/media/chapter_13/section_5/image28.png"  />
 
 :::{Note}
-
 在学习了如何修改Lab参数后，建议通过LAB_Tool工具将数值恢复为初始值，以免影响玩法的实现效果。
-
 :::
 
-8)  参照"[5.4 功能延伸\ 修改默认识别颜色](#anchor_5_4_1)"，将默认识别颜色还原为红色。
+(8)  参照"[5.4 功能延伸\ 修改默认识别颜色](#anchor_5_4_1)"，将默认识别颜色还原为红色。
 
-9)  输入指令，再次启动色块坐标定位玩法。将黄色方块放置在摄像头的视野范围内，回传画面内会用圆圈将其标识出来，且终端处会打印色块坐标。
+(9)  输入指令，再次启动色块坐标定位玩法。将黄色方块放置在摄像头的视野范围内，回传画面内会用圆圈将其标识出来，且终端处会打印色块坐标。
 
-```commandline
+```bash
 rosrun puppy_standard_functions color_tracking_demo.py
 ```
 
 ### 5.5 程序参数说明
 
-该程序的源代码位于Docker容器中的：**/home/ubuntu/puppypi/src/puppy_standard_functions/scripts/color_tracking_demo.py**
-
-根据实现的效果，梳理程序的过程逻辑，如下图所示：
-
-<img class="common_img" src="../_static/media/chapter_13/section_5/image30.png"  />
+[下载源代码](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/13/color_tracking_demo.py)
 
 - #### 5.5.1 图像处理
 
-1. **二值化处理**
+(1) **二值化处理**
 
-  采用cv2库中的inRange()函数对图像进行二值化处理。
+采用cv2库中的inRange()函数对图像进行二值化处理。
 
 <img src="../_static/media/chapter_13/section_5/image31.png"  />
 
 函数括号内的第一个参数是输入图像；第二个、第三个参数分别是阈值的下限和上限。当像素点RGB的颜色数值处于上、下限之间时，该像素点被赋值为1，否则为0。
 
-2. **腐蚀膨胀处理**
+(2) **腐蚀膨胀处理**
 
 为了降低干扰，令图像更平滑，需要对图像进行腐蚀和膨胀处理。
 
@@ -768,7 +708,7 @@ erode()函数用于对图像进行腐蚀操作。以代码"**eroded = cv2.erode(
 
 dilate()函数用于对图像进行膨胀操作。此函数括号内参数的含义与erode()函数的相同。
 
-3. **获取最大面积轮廓**
+(3) **获取最大面积轮廓**
 
 完成上述的图像处理后，需要获取识别目标的轮廓，此处涉及cv2库中的findContours()函数。
 
@@ -782,13 +722,13 @@ dilate()函数用于对图像进行膨胀操作。此函数括号内参数的含
 
 - #### 5.5.2 **反馈信息**
 
-1. **色块坐标反馈**
+(1) **色块坐标反馈**
 
 通过调用**print()** 函数，在回传画面内打印色块坐标。
 
 <img src="../_static/media/chapter_13/section_5/image39.png"  />
 
-2. **回传画面标识**
+(2) **回传画面标识**
 
 在回传画面内，用目标识别颜色的圆圈标识出色块，此处涉及cv2库中的**circle()** 函数。
 
@@ -828,21 +768,17 @@ dilate()函数用于对图像进行膨胀操作。此函数括号内参数的含
 输入指令时需要严格区分大小写，且可使用"**Tab**"键补齐关键词。
 :::
 
-1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_13/section_6/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_13/section_6/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-<img src="../_static/media/chapter_13/section_6/image5.png"  />
+(3)  输入指令，并按下回车，启动玩法。
 
-3)  输入指令，并按下回车，启动玩法。
-
-```commandline
+```bash
 rosrun puppy_standard_functions color_tracking_demo.py
 ```
 
-<img src="../_static/media/chapter_13/section_6/image7.png"  />
-
-4)  如需关闭此玩法，可在终端界面按下"**Ctrl+C**"。若关闭失败，请反复尝试。
+(4)  如需关闭此玩法，可在终端界面按下"**Ctrl+C**"。若关闭失败，请反复尝试。
 
 ### 6.3 功能实现
 
@@ -858,105 +794,91 @@ rosrun puppy_standard_functions color_tracking_demo.py
 
 此处以**将默认目标识别颜色修改为绿色**为例，具体的修改步骤如下所示：
 
-1)  单击桌面左上角的的图标<img src="../_static/media/chapter_13/section_6/image6.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键"Ctrl+Alt+T"，打开命令行终端。
+(1)  单击桌面左上角的的图标<img src="../_static/media/chapter_13/section_6/image6.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键"Ctrl+Alt+T"，打开命令行终端。
 
-2)  输入指令，并按下回车，打开玩法程序文件。
+(2)  输入指令，并按下回车，打开玩法程序文件。
 
-```commandline
+```bash
 rosed puppy_standard_functions color_tracking_demo.py
 ```
 
-<img src="../_static/media/chapter_13/section_6/image10.png"  />
-
-3)  找到下图所示代码：
+(3)  找到下图所示代码：
 
 <img src="../_static/media/chapter_13/section_6/image12.png"  />
 
 :::{Note}
-
 在键盘输入代码位置序号后，按下"Shift+G"键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
-
 :::
 
-4)  点击"**i**"键进入编辑模式。将代码修改为"**msg.data = 'green'**"。
+(4)  点击"**i**"键进入编辑模式。将代码修改为"**msg.data = 'green'**"。
 
 <img src="../_static/media/chapter_13/section_6/image13.png"  />
 
-5)  修改完成后，按下"**Esc**"键，输入指令并按下回车，进行保存与退出。
+(5)  修改完成后，按下"**Esc**"键，输入指令并按下回车，进行保存与退出。
 
-```commandline
+```bash
 :wq
 ```
 
-<img src="../_static/media/chapter_13/section_6/image15.png"  />
+(6)  输入指令并按下回车，重新启动玩法，即可查看修改后的玩法效果。
 
-6)  输入指令并按下回车，重新启动玩法，即可查看修改后的玩法效果。
-
-```commandline
+```bash
 rosrun puppy_standard_functions color_tracking_demo.py
 ```
-
-<img src="../_static/media/chapter_13/section_6/image17.png"  />
 
 - #### 6.4.2 增加新的识别颜色
 
 除了程序内置的三种可识别颜色，用户还可以添加其它可识别颜色。此处以新增黄色为例，具体的修改步骤如下：
 
-1)  双击桌面的调试工具图标<img src="../_static/media/chapter_13/section_6/image18.png" style="width:0.31496in;height:0.29548in" />，打开颜色阈值调节工具。若弹出提示框，选择"**执行**"即可。
+(1)  双击桌面的调试工具图标<img src="../_static/media/chapter_13/section_6/image18.png" style="width:0.31496in;height:0.29548in" />，打开颜色阈值调节工具。若弹出提示框，选择"**执行**"即可。
 
 <img src="../_static/media/chapter_13/section_6/image19.png"  />
 
-2)  点击界面右下方的"**Add**"按键。
+(2)  点击界面右下方的"**Add**"按键。
 
 <img src="../_static/media/chapter_13/section_6/image20.png"  />
 
-3)  在弹出的窗口中输入新增的颜色名称"**yellow**"，并点击"**OK**"按键。
+(3)  在弹出的窗口中输入新增的颜色名称"**yellow**"，并点击"**OK**"按键。
 
 <img class="common_img" src="../_static/media/chapter_13/section_6/image21.png"  />
 
-4)  在界面右下方的颜色选项栏处选择"**yellow**"。
+(4)  在界面右下方的颜色选项栏处选择"**yellow**"。
 
 <img src="../_static/media/chapter_13/section_6/image22.png"  />
 
-5)  将黄色物品放置在摄像头的视野范围内，拖动LAB滑杆，使右侧画面中的黄色区域，在左侧画面内显示为白色，其它区域显示为黑色。
+(5)  将黄色物品放置在摄像头的视野范围内，拖动LAB滑杆，使右侧画面中的黄色区域，在左侧画面内显示为白色，其它区域显示为黑色。
 
 <img src="../_static/media/chapter_13/section_6/image23.png"  />
 
-6)  调节完成后，点击"**Save**"按钮保存数据，并关闭颜色阈值调节工具。
+(6)  调节完成后，点击"**Save**"按钮保存数据，并关闭颜色阈值调节工具。
 
 <img src="../_static/media/chapter_13/section_6/image24.png"  />
 
-7)  单击桌面左上角的的图标<img src="../_static/media/chapter_13/section_6/image6.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键"**Ctrl+Alt+T**"，打开命令行终端。
+(7)  单击桌面左上角的的图标<img src="../_static/media/chapter_13/section_6/image6.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键"**Ctrl+Alt+T**"，打开命令行终端。
 
-8)  检查修改数据是否被成功写入，输入指令，并按下回车，打开Lab颜色设置文件。
+(8)  检查修改数据是否被成功写入，输入指令，并按下回车，打开Lab颜色设置文件。
 
-```commandline
+```bash
 rosed lab_config lab_config.yaml
 ```
 
-<img src="../_static/media/chapter_13/section_6/image25.png"  />
-
 <img src="../_static/media/chapter_13/section_6/image26.png"  />
 
-9)  参照"4.1 更改默认识别颜色"，将默认识别颜色修改为黄色。
+(9)  参照"4.1 更改默认识别颜色"，将默认识别颜色修改为黄色。
 
-10) 输入指令，重新启动玩法，即可查看修改后的玩法效果。
+(10) 输入指令，重新启动玩法，即可查看修改后的玩法效果。
 
-```commandline
+```bash
 rosrun puppy_standard_functions color_tracking_demo.py
 ```
 
 ### 6.5 程序参数说明
 
-该程序的源代码位于Docker容器中的：**/home/ubuntu/puppypi/src/puppy_standard_functions/scripts/color_tracking_demo.py**
-
-根据实现的效果，梳理程序的过程逻辑，如下图所示：
-
-<img class="common_img" src="../_static/media/chapter_13/section_6/image27.png"  />
+[下载源代码](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/13/color_tracking_demo.py)
 
 - #### 6.5.1 图像处理
 
-1. **二值化处理**
+(1) **二值化处理**
 
 采用cv2库中的inRange()函数对图像进行二值化处理。
 
@@ -964,7 +886,7 @@ rosrun puppy_standard_functions color_tracking_demo.py
 
 函数括号内的第一个参数是输入图像；第二个、第三个参数分别是阈值的下限和上限。当像素点RGB的颜色数值处于上、下限之间时，该像素点被赋值为1，否则为0。
 
-2. **腐蚀膨胀处理**
+(2) **腐蚀膨胀处理**
 
 为了降低干扰，令图像更平滑，需要对图像进行腐蚀和膨胀处理。
 
@@ -978,7 +900,7 @@ erode()函数用于对图像进行腐蚀操作。以代码"**eroded = cv2.erode(
 
 dilate()函数用于对图像进行膨胀操作。此函数括号内参数的含义与erode()函数的相同。
 
-3. **获取最大面积轮廓**
+(3) **获取最大面积轮廓**
 
 完成上述的图像处理后，需要获取识别目标的轮廓，此处涉及cv2库中的findContours()函数。
 
@@ -992,13 +914,13 @@ dilate()函数用于对图像进行膨胀操作。此函数括号内参数的含
 
 - #### 6.5.2 反馈信息
 
-1. **坐标反馈**
+(1) **坐标反馈**
 
 通过调用print()函数，在回传画面内打印目标物体的坐标。
 
 <img src="../_static/media/chapter_13/section_6/image36.png"  />
 
-2. **回传画面标识**
+(2) **回传画面标识**
 
 在回传画面内，用目标物体对应颜色的圆圈将其标识出来，此处涉及cv2库中的circle()函数。
 
@@ -1018,7 +940,7 @@ dilate()函数用于对图像进行膨胀操作。此函数括号内参数的含
 
 - #### 6.5.3 反馈动作
 
-1. **设置特定点**
+(1) **设置特定点**
 
 将回传画面的中心设置为特定点，后续需要根据目标物体中心点与此特定点的位置差，判断PuppyPi机器狗需要执行的反馈动作。
 
@@ -1026,13 +948,13 @@ dilate()函数用于对图像进行膨胀操作。此函数括号内参数的含
 
 <img src="../_static/media/chapter_13/section_6/image42.png"  />
 
-2. **调整翻滚角（Roll）**
+(2) **调整翻滚角（Roll）**
 
 根据目标物体中心点位于回传画面中心点的左侧或是右侧，调整PuppyPi机器狗的翻滚角（Roll）。
 
 <img src="../_static/media/chapter_13/section_6/image44.png"  />
 
-3. **调整俯仰角（Pitch）**
+(3) **调整俯仰角（Pitch）**
 
 根据目标物体中心点低于或是高于回传画面中心点，调整PuppyPi机器狗的翻滚角（Pitch）。
 
@@ -1052,19 +974,17 @@ dilate()函数用于对图像进行膨胀操作。此函数括号内参数的含
 输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
 :::
 
-1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_13/section_7/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_13/section_7/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-3)  输入指令，并按下回车，启动玩法。
+(3)  输入指令，并按下回车，启动玩法。
 
-```commandline
+```bash
 rosrun puppy_standard_functions apriltag_tracking_demo.py
 ```
 
-<img src="../_static/media/chapter_13/section_7/image7.png"  />
-
-4)  如需关闭此玩法，可在终端界面按下"**Ctrl+C**"。若关闭失败，请反复尝试。
+(4)  如需关闭此玩法，可在终端界面按下"**Ctrl+C**"。若关闭失败，请反复尝试。
 
 ### 7.3 功能实现
 
@@ -1074,23 +994,19 @@ rosrun puppy_standard_functions apriltag_tracking_demo.py
 
 ### 7.4 程序参数说明
 
-该程序的源代码位于Docker容器中的：**/home/ubuntu/puppypi/src/puppy_standard_functions/scripts/apriltag_tracking_demo.py**
-
-根据实现的效果，梳理程序的过程逻辑，如下图所示：
-
-<img class="common_img" src="../_static/media/chapter_13/section_7/image10.png"  />
+[下载源代码](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/13/apriltag_tracking_demo.py)
 
 - #### 7.4.1 标签检测
 
-1. **图像灰度化**
+(1) **图像灰度化**
 
-  通过调用cv2库中的cvtColor()函数，将摄像头采集的彩色图像转换为灰色图，并从中采集标签信息。
+通过调用cv2库中的cvtColor()函数，将摄像头采集的彩色图像转换为灰色图，并从中采集标签信息。
 
 <img src="../_static/media/chapter_13/section_7/image11.png"  />
 
-2. **提取标签信息**
+(2) **提取标签信息**
 
-  获得标签信息后，将所需信息提取出来。
+获得标签信息后，将所需信息提取出来。
 
 <img src="../_static/media/chapter_13/section_7/image13.png"  />
 
@@ -1146,21 +1062,17 @@ AprilTag作为一种视觉定位标志符，其作用类似于二维码或者条
 输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
 :::
 
-1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_13/section_8/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_13/section_8/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-<img src="../_static/media/chapter_13/section_8/image5.png"  />
+(3)  输入指令，并按下回车，启动玩法。
 
-3)  输入指令，并按下回车，启动玩法。
-
-```commandline
+```bash
 rosrun puppy_standard_functions apriltag_tracking_demo.py
 ```
 
-<img src="../_static/media/chapter_13/section_8/image6.png"  />
-
-4)  如需关闭此玩法，可在终端界面按下"**Ctrl+C**"。若关闭失败，请反复尝试。
+(4)  如需关闭此玩法，可在终端界面按下"**Ctrl+C**"。若关闭失败，请反复尝试。
 
 ### 8.3 功能实现
 
@@ -1178,115 +1090,91 @@ rosrun puppy_standard_functions apriltag_tracking_demo.py
 
 此处以**将默认距离阈值修改为间距大于0.20米时，机器狗前进**为例，具体的修改步骤如下所示：
 
-1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_13/section_8/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_13/section_8/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-<img src="../_static/media/chapter_13/section_8/image5.png"  />
+(3)  输入指令，并按下回车，打开玩法程序文件。
 
-3)  输入指令，并按下回车，打开玩法程序文件。
-
-```commandline
+```bash
 rosed puppy_standard_functions apriltag_tracking_demo.py
 ```
 
-<img src="../_static/media/chapter_13/section_8/image10.png"  />
-
-4)  找到下图所示代码：
+(4)  找到下图所示代码：
 
 <img src="../_static/media/chapter_13/section_8/image12.png"  />
 
 :::{Note}
-
 在键盘输入代码位置序号后，按下"Shift+G"键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
-
 :::
 
-5)  点击"**i**"键进入编辑模式。将代码修改为"**coordinate\[2\] \> 0.20**"。
+(5)  点击"**i**"键进入编辑模式。将代码修改为"**coordinate\[2\] \> 0.20**"。
 
 <img src="../_static/media/chapter_13/section_8/image14.png"  />
 
-6)  修改完成后，按下"**Esc**"键，输入指令并按下回车，进行保存与退出。
+(6)  修改完成后，按下"**Esc**"键，输入指令并按下回车，进行保存与退出。
 
-```commandline
+```bash
 :wq
 ```
 
-<img src="../_static/media/chapter_13/section_8/image16.png"  />
+(7)  输入指令，重新启动玩法，即可查看修改后的玩法效果。
 
-7)  输入指令，重新启动玩法，即可查看修改后的玩法效果。
-
-```commandline
+```bash
 rosrun puppy_standard_functions apriltag_tracking_demo.py
 ```
-
-<img src="../_static/media/chapter_13/section_8/image18.png"  />
 
 - #### 8.4.1 更改默认移动速度
 
 程序内部已将PuppyPi机器狗前进与后退的速度设置为5cm/s。此处以**将前进速度修改为3cm/s为例**，具体的修改步骤如下所示：
 
-1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_13/section_8/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_13/section_8/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-<img src="../_static/media/chapter_13/section_8/image5.png"  />
+(3)  输入指令，并按下回车，打开玩法程序文件。
 
-3)  输入指令，并按下回车，打开玩法程序文件。
-
-```commandline
+```bash
 rosed puppy_standard_functions apriltag_tracking_demo.py
 ```
 
-<img src="../_static/media/chapter_13/section_8/image10.png"  />
-
-4)  找到下图所示代码：
+(4)  找到下图所示代码：
 
 <img src="../_static/media/chapter_13/section_8/image19.png"  />
 
 :::{Note}
-
 在键盘输入代码位置序号后，按下"**Shift+G**"键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
-
 :::
 
-5)  点击"**i**"键进入编辑模式。将代码修改为"**PuppyVelocityPub.publish(x=3, y=0, yaw_rate=0)**"。
+(5)  点击"**i**"键进入编辑模式。将代码修改为"**PuppyVelocityPub.publish(x=3, y=0, yaw_rate=0)**"。
 
 <img src="../_static/media/chapter_13/section_8/image21.png"  />
 
-6)  修改完成后，按下"**Esc**"键，输入指令并按下回车，进行保存与退出。
+(6)  修改完成后，按下"**Esc**"键，输入指令并按下回车，进行保存与退出。
 
-```commandline
+```bash
 :wq
 ```
 
-<img src="../_static/media/chapter_13/section_8/image23.png"  />
+(7)  输入指令并按下回车，重新启动玩法，即可查看修改后的玩法效果。
 
-7)  输入指令并按下回车，重新启动玩法，即可查看修改后的玩法效果。
-
-```commandline
+```bash
 rosrun puppy_standard_functions apriltag_tracking_demo.py
 ```
 
-<img src="../_static/media/chapter_13/section_8/image24.png"  />
-
 ### 8.5 程序参数说明
 
-该程序的源代码位于Docker容器中的：**/home/ubuntu/puppypi/src/puppy_standard_functions/scripts/apriltag_tracking_demo.py**
-
-根据实现的效果，梳理程序的过程逻辑，如下图所示：
-
-<img class="common_img" src="../_static/media/chapter_13/section_8/image25.png"  />
+[下载源代码](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/13/apriltag_tracking_demo.py)
 
 - #### 8.5.1 标签检测
 
-1. **图像灰度化**
+(1) **图像灰度化**
 
 通过调用cv2库中的cvtColor()函数，将摄像头采集的彩色图像转换为灰色图，并从中采集标签信息。
 
 <img src="../_static/media/chapter_13/section_8/image26.png"  />
 
-2. **提取标签信息**
+(2) **提取标签信息**
 
 获得标签信息后，将所需信息提取出来。
 
@@ -1334,15 +1222,15 @@ rosrun puppy_standard_functions apriltag_tracking_demo.py
 
 第三个参数用于控制机器狗转弯，以逆时针方向为正方向，单位为rad/s。当值为"0"，机器狗行进时为直行；当值为正数，机器狗行进时持续朝左侧转弯；当值为负数，机器狗行进时持续朝右侧转弯。数值的绝对值越大，机器狗的转弯幅度越大。
 
-1.  若没有识别到标签，则PuppyPi机器狗无动作。
+(1) 若没有识别到标签，则PuppyPi机器狗无动作。
 
 <img src="../_static/media/chapter_13/section_8/image38.png"  />
 
-2.  若标签距离摄像头Z轴方向的坐标值大于设定阈值，机器狗以5m/s的速度前进。
+(2) 若标签距离摄像头Z轴方向的坐标值大于设定阈值，机器狗以5m/s的速度前进。
 
 <img src="../_static/media/chapter_13/section_8/image40.png"  />
 
-3.  若标签距离摄像头Z轴方向的坐标值小于设定阈值，机器狗以5m/s的速度后退。
+(3) 若标签距离摄像头Z轴方向的坐标值小于设定阈值，机器狗以5m/s的速度后退。
 
 <img src="../_static/media/chapter_13/section_8/image43.png"  />
 

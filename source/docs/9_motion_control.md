@@ -28,7 +28,7 @@ Trot步态是一种中低速的动步态，通俗而言就是前后交叉的腿�
 
 当PuppyPi机器狗处于Trot步态，其对角线上的脚同时着地。接下来会以下图为例，对Trot步态进行分析说明：
 
-<img src="../_static/media/chapter_9/section_1/image2.png"  />
+<img class="common_img" src="../_static/media/chapter_9/section_1/image2.png"  />
 
 如图（a）所示，PuppyPi机器狗的1、2号腿抬起并向前摆动，3、4号腿则用于支撑机身，确保机器狗重心位于对角线交汇处。此时，1、2号腿为摆动相，3、4号腿为支撑相。
 
@@ -46,41 +46,33 @@ Trot步态是一种中低速的动步态，通俗而言就是前后交叉的腿�
 输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
 :::
 
-1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_1/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_1/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-<img src="../_static/media/chapter_9/section_1/image5.png"  />
+(3)  输入指令，并按下回车，打开程序文件。
 
-3)  输入指令，并按下回车，打开程序文件。
-
-```commandline
+```bash
 rosed puppy_control puppy_demo.py
 ```
 
-<img src="../_static/media/chapter_9/section_1/image6.png"  />
-
-4)  可以在下图所示位置中找到调用步态的代码，程序默认是执行Trot步态，所以可以直接调用运行。
+(4)  可以在下图所示位置中找到调用步态的代码，程序默认是执行Trot步态，所以可以直接调用运行。
 
 <img src="../_static/media/chapter_9/section_1/image7.png"  />
 
-5)  这里我们无需任何修改，按下"**Esc**"，输入指令，退出并保存。
+(5)  这里我们无需任何修改，按下"**Esc**"，输入指令，退出并保存。
 
-```commandline
+```bash
 :wq
 ```
 
-<img src="../_static/media/chapter_9/section_1/image8.png"  />
+(6)  输入指令，并按下回车，启动玩法。
 
-6)  输入指令，并按下回车，启动玩法。
-
-```commandline
+```bash
 rosrun puppy_control puppy_demo.py
 ```
 
-<img src="../_static/media/chapter_9/section_1/image9.png"  />
-
-7) 如需关闭此玩法，可在终端界面按下"**Ctrl+C**"。若关闭失败，请反复尝试。
+(7) 如需关闭此玩法，可在终端界面按下"**Ctrl+C**"。若关闭失败，请反复尝试。
 
 ### 1.4 实现效果
 
@@ -90,9 +82,9 @@ rosrun puppy_control puppy_demo.py
 
 ### 1.5 程序参数说明
 
-该程序的源代码位于Docker容器中的：**/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py**
+[下载源代码（puppy_demo.py）](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)
 
-- **步态选择**
+(1) **步态选择**
 
 程序内提供了三种步态：Trot步态、Amble步态、Walk步态。其中，Trot步态是程序默认的初始步态。
 
@@ -102,7 +94,7 @@ rosrun puppy_control puppy_demo.py
 
 <img src="../_static/media/chapter_9/section_1/image18.png"  />
 
-- **行走频率调节**
+(2) **行走频率调节**
 
 通过修改下方对应参数，可调整该步态下的行走频率。时间越短，频率越快，时间越长，频率越慢。
 
@@ -176,45 +168,37 @@ PuppyPi机器狗的摆动腿轮换顺序为：右前-\>左后-\>左前-\>右后�
 输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
 :::
 
-1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_2/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_2/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-<img src="../_static/media/chapter_9/section_2/image5.png"  />
+(3)  输入指令，并按下回车，打开程序文件。
 
-3)  输入指令，并按下回车，打开程序文件。
-
-```commandline
+```bash
 rosed puppy_control puppy_demo.py
 ```
 
-<img src="../_static/media/chapter_9/section_2/image7.png"  />
-
-4)  可以在下图所示位置中找到调用步态的代码，程序默认是执行Trot步态。按下"I"键，进入编辑模式。
+(4)  可以在下图所示位置中找到调用步态的代码，程序默认是执行Trot步态。按下"I"键，进入编辑模式。
 
 <img src="../_static/media/chapter_9/section_2/image9.png"  />
 
-5)  将"**Trot**"修改为"**Walk**"。
+(5)  将"**Trot**"修改为"**Walk**"。
 
 <img src="../_static/media/chapter_9/section_2/image11.png"  />
 
-6)  修改完成后，按下"Esc"键，输入"指令并按下回车，进行保存与退出。
+(6)  修改完成后，按下"Esc"键，输入"指令并按下回车，进行保存与退出。
 
-```commandline
+```bash
 :wq
 ```
 
-<img src="../_static/media/chapter_9/section_2/image13.png"  />
+(7)  输入指令，并按下回车，启动玩法。
 
-7)  输入指令，并按下回车，启动玩法。
-
-```commandline
+```bash
 rosrun puppy_control puppy_demo.py
 ```
 
-<img src="../_static/media/chapter_9/section_2/image14.png"  />
-
-8)  如需关闭此玩法，可在终端界面按下"**Ctrl+C**"。若关闭失败，请反复尝试。
+(8)  如需关闭此玩法，可在终端界面按下"**Ctrl+C**"。若关闭失败，请反复尝试。
 
 ### 2.4 实现效果
 
@@ -224,9 +208,9 @@ rosrun puppy_control puppy_demo.py
 
 ### 2.5 程序参数说明
 
-该程序的源代码位于Docker容器中的：**/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py**
+[下载源代码（puppy_demo.py）](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)
 
-- **步态选择**
+(1) **步态选择**
 
 程序内提供了三种步态：Trot步态、Amble步态、Walk步态。其中，Trot步态是程序默认的初始步态。
 
@@ -236,7 +220,7 @@ rosrun puppy_control puppy_demo.py
 
 <img src="../_static/media/chapter_9/section_2/image19.png"  />
 
-- **行走频率调节**
+(2) **行走频率调节**
 
 通过修改对应参数。可以调整PuppyPi机器狗的行走频率。时间越短，频率越快。时间越长，频率越慢。
 
@@ -291,46 +275,37 @@ Amble步态是静步态，可以将其视为加速后的Walk步态。在运动�
 输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
 :::
 
-1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_3/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_3/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-<img src="../_static/media/chapter_9/section_3/image5.png"  />
+(3)  输入指令，并按下回车，打开程序文件。
 
-3)  输入指令，并按下回车，打开程序文件。
-
-```commandline
+```bash
 rosed puppy_control puppy_demo.py
 ```
 
-<img src="../_static/media/chapter_9/section_3/image6.png"  />
-
-
-4)  可以在下图所示位置中找到调用步态的代码，程序默认是执行Trot步态。按下"**I**"键，进入编辑模式。
+(4)  可以在下图所示位置中找到调用步态的代码，程序默认是执行Trot步态。按下"**I**"键，进入编辑模式。
 
 <img src="../_static/media/chapter_9/section_3/image9.png"  />
 
-5)  将"**Trot**"修改为"**Amble**"。
+(5)  将"**Trot**"修改为"**Amble**"。
 
 <img src="../_static/media/chapter_9/section_3/image11.png"  />
 
-6)  修改完成后，按下"**Esc**"键，输入指令并回车，进行保存与退出。
+(6)  修改完成后，按下"**Esc**"键，输入指令并回车，进行保存与退出。
 
-```commandline
+```bash
 :wq
 ```
 
-<img src="../_static/media/chapter_9/section_3/image13.png"  />
+(7)  输入指令，并按下回车，启动玩法。
 
-7)  输入指令，并按下回车，启动玩法。
-
-```commandline
+```bash
 rosrun puppy_control puppy_demo.py
 ```
 
-<img src="../_static/media/chapter_9/section_3/image14.png"  />
-
-8)  如需关闭此玩法，可在终端界面按下"**Ctrl+C**"。若关闭失败，请反复尝试。
+(8)  如需关闭此玩法，可在终端界面按下"**Ctrl+C**"。若关闭失败，请反复尝试。
 
 ### 3.4 实现效果
 
@@ -340,11 +315,13 @@ PuppyPi机器狗会以Amble步态行进，至少有两台条腿处于支撑相�
 
 ### 3.5 程序参数说明
 
+[下载源代码（puppy_demo.py）](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)
+
 该程序的源代码位于Docker容器中的：**/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py**
 
-- **步态选择**
+(1) **步态选择**
 
-  程序内提供了三种步态：Trot步态、Amble步态、Walk步态。其中，Trot步态是程序默认的初始步态。
+程序内提供了三种步态：Trot步态、Amble步态、Walk步态。其中，Trot步态是程序默认的初始步态。
 
 <img src="../_static/media/chapter_9/section_3/image16.png"  />
 
@@ -352,7 +329,7 @@ PuppyPi机器狗会以Amble步态行进，至少有两台条腿处于支撑相�
 
 <img src="../_static/media/chapter_9/section_3/image18.png"  />
 
-- **行走频率调节**
+(2) **行走频率调节**
 
 通过修改对应参数。可以调整PuppyPi机器狗的行走频率。时间越短，频率越快。时间越长，频率越慢。
 
@@ -383,46 +360,38 @@ Amble步态下需要注意，设置的时候需遵循0\<clearance_time\<swing_ti
 输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
 :::
 
-1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_4/image3.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_4/image3.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-<img src="../_static/media/chapter_9/section_4/image4.png"  />
+(3)  输入指令，并按下回车，打开程序文件。
 
-3)  输入指令，并按下回车，打开程序文件。
-
-```commandline
+```bash
 rosed puppy_control puppy_demo.py
 ```
 
-<img src="../_static/media/chapter_9/section_4/image5.png"  />
 
-
-4)  找到下图所示代码：
+(4)  找到下图所示代码：
 
 <img src="../_static/media/chapter_9/section_4/image8.png"  />
 
-5)  点击"**i**"键进入编辑模式。将代码修改为"**set_mark_time_srv(True)**"。
+(5)  点击"**i**"键进入编辑模式。将代码修改为"**set_mark_time_srv(True)**"。
 
 <img src="../_static/media/chapter_9/section_4/image10.png"  />
 
-6)  修改完成后，按下"**Esc**"键，输入指令并回车，进行保存与退出。
+(6)  修改完成后，按下"**Esc**"键，输入指令并回车，进行保存与退出。
 
-```commandline
+```bash
 :wq
 ```
 
-<img src="../_static/media/chapter_9/section_4/image12.png"  />
+(7)  输入指令，并按下回车，启动玩法。
 
-7)  输入指令，并按下回车，启动玩法。
-
-```commandline
+```bash
 rosrun puppy_control puppy_demo.py
 ```
 
-<img src="../_static/media/chapter_9/section_4/image13.png"  />
-
-8)  如需关闭此玩法，可在终端界面按下"**Ctrl+C**"。若关闭失败，请反复尝试。
+(8)  如需关闭此玩法，可在终端界面按下"**Ctrl+C**"。若关闭失败，请反复尝试。
 
 ### 4.2 实现效果 
 
@@ -454,45 +423,37 @@ rosrun puppy_control puppy_demo.py
 输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
 :::
 
-1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_5/image3.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_5/image3.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-<img src="../_static/media/chapter_9/section_5/image4.png"  />
+(3)  输入指令，并按下回车，打开程序文件。
 
-3)  输入指令，并按下回车，打开程序文件。
-
-```commandline
+```bash
 rosed puppy_control puppy_demo.py
 ```
 
-<img src="../_static/media/chapter_9/section_5/image5.png"  />
+(4)  找到下图所示代码：
 
-4)  找到下图所示代码：
+<img class="common_img" src="../_static/media/chapter_9/section_5/image8.png"  />
 
-<img src="../_static/media/chapter_9/section_5/image8.png"  />
-
-5)  点击"**i**"键进入编辑模式。例如将机器狗逆时针转0.18rad/s，转换后代码应修改为"**PuppyMove = {'x':6, 'y':0, 'yaw_rate':0.18}**"。
+(5)  点击"**i**"键进入编辑模式。例如将机器狗逆时针转0.18rad/s，转换后代码应修改为"**PuppyMove = {'x':6, 'y':0, 'yaw_rate':0.18}**"。
 
 <img src="../_static/media/chapter_9/section_5/image10.png"  />
 
-6)  修改完成后，按下"**Esc**"键，输入指令并按下回车，进行保存与退出。
+(6)  修改完成后，按下"**Esc**"键，输入指令并按下回车，进行保存与退出。
 
-```commandline
+```bash
 :wq
 ```
 
-<img src="../_static/media/chapter_9/section_5/image12.png"  />
+(7)  输入指令，并按下回车，启动玩法。
 
-7)  输入指令，并按下回车，启动玩法。
-
-```commandline
+```bash
 rosrun puppy_control puppy_demo.py
 ```
 
-<img src="../_static/media/chapter_9/section_5/image13.png"  />
-
-8)  如需关闭此玩法，可在终端界面按下"Ctrl+C"。若关闭失败，请反复尝试。
+(8)  如需关闭此玩法，可在终端界面按下"Ctrl+C"。若关闭失败，请反复尝试。
 
 ### 5.2 实现效果
 
@@ -500,7 +461,7 @@ PuppyPi机器狗会在Trot步态下，且持续朝设定的方向前进转弯。
 
 ### 5.3 程序参数说明
 
-该程序的源代码位于Docker容器中的：**/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py**
+[下载源代码（puppy_demo.py）](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy.py)
 
 - #### 5.3.1 移动参数调节
 
@@ -520,7 +481,7 @@ PuppyPi机器狗会在Trot步态下，且持续朝设定的方向前进转弯。
 
 - #### 5.3.2步态调节
 
-1. **步态选择**
+(1) **步态选择**
 
 程序内提供了三种步态：Trot步态、Amble步态、Walk步态。其中，Trot步态是程序默认的初始步态。
 
@@ -530,7 +491,7 @@ PuppyPi机器狗会在Trot步态下，且持续朝设定的方向前进转弯。
 
 <img src="../_static/media/chapter_9/section_5/image20.png"  />
 
-2. **行进速度调节**
+(2) **行进速度调节**
 
 通过修改对应参数。可以调整PuppyPi机器狗的行进速度。
 
@@ -560,7 +521,7 @@ PuppyPi机器狗会在Trot步态下，且持续朝设定的方向前进转弯。
 
 ### 6.2 程序设置说明
 
-该程序的源代码位于Docker容器中的：**/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py**
+[下载源代码（puppy_demo.py）](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)
 
 我们以默认的Trot步态为例进行说明：
 
@@ -580,46 +541,36 @@ PuppyPi机器狗会在Trot步态下，且持续朝设定的方向前进转弯。
 输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
 :::
 
-1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_6/image5.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_6/image5.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-<img src="../_static/media/chapter_9/section_6/image6.png"  />
+(3)  输入指令，并按下回车，打开程序文件。
 
-3)  输入指令，并按下回车，打开程序文件。
-
-```commandline
+```bash
 rosed puppy_control puppy_demo.py
 ```
 
-<img src="../_static/media/chapter_9/section_6/image7.png"  />
+(4)  "**PuppyPose\[‘x_shift’\]**"的参数，Trot 步态默认平衡值为-0.6，我们这里把数值修改为-2，比平衡值小，所以机器狗会向前倾。更改完成后，按下"**Esc**"键，接着按下指令进行保存。
 
-
-4)  "**PuppyPose\[‘x_shift’\]**"的参数，Trot 步态默认平衡值为-0.6，我们这里把数值修改为-2，比平衡值小，所以机器狗会向前倾。更改完成后，按下"**Esc**"键，接着按下指令进行保存。
-
-```commandline
+```bash
 :wq
 ```
 
 <img src="../_static/media/chapter_9/section_6/image10.png"  />
 
 :::{Note}
-
-1. 该修改方法不只是适用于 Trot 步态，其他步态也同样适用。
-
-2. 本次示例大幅度调整是为了让变化效果更明显，以方便观察。实际调节时则建议小幅度范围调整。
-
+① 该修改方法不只是适用于 Trot 步态，其他步态也同样适用。
+② 本次示例大幅度调整是为了让变化效果更明显，以方便观察。实际调节时则建议小幅度范围调整。
 :::
 
-5) 输入指令，并按下回车，即可查看调整效果。
+(5) 输入指令，并按下回车，即可查看调整效果。
 
-```commandline
+```bash
 rosrun puppy_control puppy_demo.py
 ```
 
-<img src="../_static/media/chapter_9/section_6/image13.png"  />
-
-6)  如需关闭此玩法，可在终端界面按下"**Ctrl+C**"。若关闭失败，请反复尝试。
+(6)  如需关闭此玩法，可在终端界面按下"**Ctrl+C**"。若关闭失败，请反复尝试。
 
 ### 6.4 功能实现
 
@@ -651,22 +602,17 @@ ROS机器人系统能自带RQT工具，可以通过调用对应工具，查看�
 输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
 :::
 
-1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_7/image5.png"  />，打开Terminator终端。
+(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_7/image5.png"  />，打开Terminator终端。
 
-<img src="../_static/media/chapter_9/section_7/image6.png"  />
+(3)  输入指令，并按下回车，打开工具。
 
-
-3)  输入指令，并按下回车，打开工具。
-
-```commandline
+```bash
 rqt_graph
 ```
 
-<img src="../_static/media/chapter_9/section_7/image8.png"  />
-
-4)  找到下图所示代码，在界面中设置为"Nodes/Topics(all)"，显示如下图：
+(4)  找到下图所示代码，在界面中设置为"Nodes/Topics(all)"，显示如下图：
 
 <img src="../_static/media/chapter_9/section_7/image10.png"  />
 
@@ -684,11 +630,11 @@ rqt_graph
 
 具体步骤如下：
 
-1.  <img src="../_static/media/chapter_9/section_7/image17.png" style="width:0.63264in;height:0.28819in" alt="image19" />节点发布<img src="../_static/media/chapter_9/section_7/image18.png" style="width:0.91042in;height:0.46667in" alt="image19" />话题。
+(1) <img src="../_static/media/chapter_9/section_7/image17.png" style="width:0.63264in;height:0.28819in" alt="image19" />节点发布<img src="../_static/media/chapter_9/section_7/image18.png" style="width:0.91042in;height:0.46667in" alt="image19" />话题。
 
-2.  <img src="../_static/media/chapter_9/section_7/image19.png" style="width:0.72431in;height:0.26389in" alt="image19" />节点订阅<img src="../_static/media/chapter_9/section_7/image20.png" style="width:0.63264in;height:0.28819in" alt="image19" />节点发布的<img src="../_static/media/chapter_9/section_7/image21.png" style="width:0.91042in;height:0.46667in" alt="image19" />话题，同时发布<img src="../_static/media/chapter_9/section_7/image22.png" style="width:1.06319in;height:0.44583in" alt="image19" />话题。
+(2) <img src="../_static/media/chapter_9/section_7/image19.png" style="width:0.72431in;height:0.26389in" alt="image19" />节点订阅<img src="../_static/media/chapter_9/section_7/image20.png" style="width:0.63264in;height:0.28819in" alt="image19" />节点发布的<img src="../_static/media/chapter_9/section_7/image21.png" style="width:0.91042in;height:0.46667in" alt="image19" />话题，同时发布<img src="../_static/media/chapter_9/section_7/image22.png" style="width:1.06319in;height:0.44583in" alt="image19" />话题。
 
-3.  <img src="../_static/media/chapter_9/section_7/image23.png" style="width:1.05694in;height:0.28958in" alt="image19" />节点订阅<img src="../_static/media/chapter_9/section_7/image24.png" style="width:0.72431in;height:0.26389in" alt="image19" />节点发布的<img src="../_static/media/chapter_9/section_7/image25.png" style="width:1.06319in;height:0.44583in" alt="image19" />话题。
+(3) <img src="../_static/media/chapter_9/section_7/image23.png" style="width:1.05694in;height:0.28958in" alt="image19" />节点订阅<img src="../_static/media/chapter_9/section_7/image24.png" style="width:0.72431in;height:0.26389in" alt="image19" />节点发布的<img src="../_static/media/chapter_9/section_7/image25.png" style="width:1.06319in;height:0.44583in" alt="image19" />话题。
 
 ### 7.3 服务通讯
 
@@ -696,9 +642,7 @@ rqt_graph
 
 通过观察"**puppy.py**"文件，可以查看到机器狗的服务通讯。
 
-该程序的源代码位于Docker容器中的：**/home/ubuntu/puppypi/src/puppy_control/scripts/puppy.py**
-
-<img src="../_static/media/chapter_9/section_7/image14.png"  />
+[下载源代码（puppy.py）](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy.py)
 
 通过观察，可以知道，服务通讯中主要发送"**set_running**"、"**go_home**"、"**set_self_balancing**"、"**runActionGroupFun**"和"**set_mark_time**"这些请求，如下图：
 
@@ -717,11 +661,8 @@ rqt_graph
 ## 8. ROS机器狗上位机遥控
 
 :::{Note}
-
-1.  为了避免操控冲突及出现问题，在使用电脑端控制软件时，请断开手机APP控制。
-
-2.  如无法打开软件，可在本节目录下安装驱动包。
-
+(1) 为了避免操控冲突及出现问题，在使用电脑端控制软件时，请断开手机APP控制。
+(2) 如无法打开软件，可在本节目录下安装驱动包。
 :::
 
 ### 8.1 上位机软件打开
@@ -732,13 +673,13 @@ rqt_graph
 
 ### 8.2 上位机软件连接
 
-1)  打开机器狗的开关。
+(1)  打开机器狗的开关。
 
-2)  等待Ros系统启动完成以后，蜂鸣器会发出"**滴**"的一声。打开电脑（台式电脑需自备无线网卡）网络设定，选择该热点。
+(2)  等待Ros系统启动完成以后，蜂鸣器会发出"**滴**"的一声。打开电脑（台式电脑需自备无线网卡）网络设定，选择该热点。
 
 <img class="common_img" src="../_static/media/chapter_9/section_8/image3.png"  />
 
-3)  然后打开上位机软件，点击"**连接**"，等待片刻，上位机即可连接完成。
+(3)  然后打开上位机软件，点击"**连接**"，等待片刻，上位机即可连接完成。
 
 <img src="../_static/media/chapter_9/section_8/image4.png"  />
 
@@ -748,7 +689,7 @@ rqt_graph
 
 <img src="../_static/media/chapter_9/section_8/image6.png"  />
 
-1.  **移动控制区域**
+(1) **移动控制区域**
 
 | **图标** | **功能说明** |
 |:--:|:--:|
@@ -758,7 +699,7 @@ rqt_graph
 | <img src="../_static/media/chapter_9/section_8/image10.png" style="width:1.625in;height:0.54167in" /> | 可切换Trot、Amble、Walk三种任意一个步态。 |
 | <img src="../_static/media/chapter_9/section_8/image11.png" style="width:1.80625in;height:1.63264in" /> | 移动操控按钮，鼠标点按或使用对应按键皆可。 |
 
-2.  **姿态控制区域**
+(2) **姿态控制区域**
 
 | **图标** | **功能说明** |
 |:--:|:--:|
@@ -766,8 +707,7 @@ rqt_graph
 | <img src="../_static/media/chapter_9/section_8/image13.png" style="width:3.36111in;height:0.59722in" /> | 俯视仰视的角度，以机器狗为第一视角；设置为正数时，机器狗仰视；负数时，机器狗俯视。数值的绝对值越大，仰视或俯视的角度越大。 |
 | <img src="../_static/media/chapter_9/section_8/image14.png" style="width:3.39097in;height:0.52431in" /> | 左右倾斜的角度，以机器狗为第一视角；设置为正数时，机器狗向右倾斜；负数时，机器狗向左倾斜。数值的绝对值越大，倾斜的角度越大。 |
 
-
-3.  **重心调节区域**
+(3) **重心调节区域**
 
 | **图标** | **功能说明** |
 |:--:|:--:|
@@ -821,19 +761,17 @@ PuppyPi机器狗膝关节的旋转角度由机器狗机髋关节上的4个舵机
 
 根据逆运动学分析，其求解步骤如下：
 
-1)  根据足端坐标，计算膝关节和髋关节的运动位置，进而求解对应舵机的旋转角度。
+(1)  根据足端坐标，计算膝关节和髋关节的运动位置，进而求解对应舵机的旋转角度。
 
-2)  通过舵机的旋转角度，计算出对应数值，直接控制舵机转动，达到控制机器狗的目的。
+(2)  通过舵机的旋转角度，计算出对应数值，直接控制舵机转动，达到控制机器狗的目的。
 
 ### 10.2 案例分析
 
--  **源码路径**
+(1) **源码路径**
 
 为方便理解，这里结合控制程序，对机器狗的逆运动学进行分析。
 
-该程序的源代码位于Docker容器中的：**/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_IK_demo.py**
-
-<img src="../_static/media/chapter_9/section_10/image5.png"  />
+[下载源代码（puppy_IK_demo.py）](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_IK_demo.py)
 
 ### 10.3 玩法开启及关闭步骤
 
@@ -841,23 +779,19 @@ PuppyPi机器狗膝关节的旋转角度由机器狗机髋关节上的4个舵机
 指令的输入需严格区分大小写，另外可按键盘"Tab"键进行关键词补齐。
 :::
 
-1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_10/image8.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_10/image8.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-<img src="../_static/media/chapter_9/section_10/image9.png"  />
+(3)  输入运行程序的指令并按下回车。
 
-3)  输入运行程序的指令并按下回车。
-
-```commandline
+```bash
 rosrun puppy_control puppy_IK_demo.py
 ```
 
-<img src="../_static/media/chapter_9/section_10/image11.png"  />
+(4)  如需关闭此玩法，只需要在LX终端界面中按下"Ctrl+C"。如果关闭失败，可多次按下。
 
-4)  如需关闭此玩法，只需要在LX终端界面中按下"Ctrl+C"。如果关闭失败，可多次按下。
-
-- **功能实现**
+(5) **功能实现**
 
 玩法开启后，PuppyPi机器狗上所有舵机会根据设置好的坐标，转动到对应角度，并在终端打印出所有舵机的转动角度。
 
@@ -865,7 +799,7 @@ rosrun puppy_control puppy_IK_demo.py
 
 ### 10.4 程序分析
 
-1. **设置坐标值**
+(1) **设置坐标值**
 
 在控制机器狗状态时，需要设置4个条腿的黑色落脚点坐标，如下图：
 
@@ -878,9 +812,7 @@ rosrun puppy_control puppy_IK_demo.py
 | 右前方 | 左前方 | 右后方 | 左后方 |
 
 :::{Note}
-
 设置坐标时，X轴的坐标范围为"-15 ~ +15"，Z轴的坐标范围为"-15 ~ -1"。
-
 :::
 
 X轴坐标设置为0时，落脚点和原点的连线与地面垂直；如果X轴坐标为正数，落脚点则在前面，如下图（绿色箭头）：
@@ -889,19 +821,19 @@ X轴坐标设置为0时，落脚点和原点的连线与地面垂直；如果X�
 
 Z轴坐标设置为越大，落脚点越向上抬起，即落脚点和原点竖直方向上距离越近。
 
-2. **获取舵机角度值**
+(2) **获取舵机角度值**
 
 通过逆运动学，计算出舵机的角度值，如下图：
 
 <img src="../_static/media/chapter_9/section_10/image18.png"  />
 
-3. **控制舵机转动**
+(3) **控制舵机转动**
 
 根据舵机角度值，计算舵机的脉冲值，直接控制舵机转动，如下图：
 
 <img src="../_static/media/chapter_9/section_10/image20.png"  />
 
-4. **显示舵机角度**
+(4) **显示舵机角度**
 
 并且在终端显示舵机的角度，如下图：
 
@@ -937,11 +869,9 @@ ID2舵机的角度为正数时，对应舵机的摆臂在水平方向下方；�
 
 PuppyPi机器狗的姿态参数，就是指机器狗静止不动时的参数，比如站立时的高度、俯仰角、翻滚角等。
 
-通过调节机器狗4条腿落脚点的坐标值，可以改变机器狗的姿态。设置姿态时，我们需要调用"**puppy_demo.py**"文件，
+通过调节机器狗4条腿落脚点的坐标值，可以改变机器狗的姿态。设置姿态时，我们需要调用"**puppy_demo.py**"文件。
 
-该程序的源代码位于Docker容器中的：文件路径为：**/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py**
-
-<img src="../_static/media/chapter_9/section_11/image2.png"  />
+[下载源代码（puppy_demo.py）](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)
 
 ### 11.2 参数说明
 
@@ -997,9 +927,7 @@ PuppyPose = {'roll':math.radians(15), 'pitch':math.radians(-20), 'yaw':0.000, 'h
 
 这里结合控制程序，对机器狗的站立角度进行调节。
 
-该程序的源代码位于Docker容器中的：**/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py**
-
-<img src="../_static/media/chapter_9/section_12/image2.png"  />
+[下载源代码（puppy_demo.py）](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)
 
 ### 12.2 玩法开启及关闭步骤
 
@@ -1007,18 +935,15 @@ PuppyPose = {'roll':math.radians(15), 'pitch':math.radians(-20), 'yaw':0.000, 'h
 指令的输入需严格区分大小写，另外可按键盘"Tab"键进行关键词补齐。
 :::
 
-1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_12/image5.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_12/image5.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-<img src="../_static/media/chapter_9/section_12/image6.png"  />
+(3)  输入编辑"**puppy_demo.py**"的指令，并按下回车。
 
-3)  输入编辑"**puppy_demo.py**"的指令，并按下回车。
-
-```commandline
+```bash
 rosed puppy_control puppy_demo.py
 ```
-<img src="../_static/media/chapter_9/section_12/image8.png"  />
 
 4)  按下"**i**"开始更改，为方便观察，需要把速度设置为0，即将"**PuppyMove**"中的参数"**x**"修改为0，如下图：
 
@@ -1038,7 +963,7 @@ rosed puppy_control puppy_demo.py
 
 6)  我们这里让机器狗实现向左倾斜15度为例，把"**roll**"修改为15，更改完成后，按下"**Esc**"键，接着输入指令并按下回车进行保存。
 
-```commandline
+```bash
 :wq
 ```
 
@@ -1048,11 +973,9 @@ rosed puppy_control puppy_demo.py
 
 7)  输入运行程序的指令，并按下回车。
 
-```commandline
+```bash
 rosrun puppy_control puppy_demo.py
 ```
-
-<img src="../_static/media/chapter_9/section_12/image18.png"  />
 
 8)  如需关闭此玩法，只需要在LX终端界面中按下"**Ctrl+C**"。如果关闭失败，可多次按下。
 
@@ -1084,37 +1007,33 @@ PuppyPi机器狗的4条腿位置编号如下图：
 
 ### 13.4 动态步态的控制方式
 
-1. **控制简介**
+(1) **控制简介**
 
 Trot步态是一种动态步态，其特征是以对角的两条腿成对运动，即腿1和腿2运动一致，腿3和腿4运动一致，理想情况下对角腿同时抬起并同时着地。
 
 这里结合机器狗的控制程序，来看下动态步态的控制方式。
 
-2. **玩法开启及关闭步骤**
+(2) **玩法开启及关闭步骤**
 
 :::{Note}
 输入指令时需要严格区分大小写，且可使用"**Tab**"键补齐关键词。
 :::
 
--   启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+①  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
--   点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_13/image6.png"  />，打开Terminator终端。
+②  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_13/image6.png"  />，打开Terminator终端。
 
-<img src="../_static/media/chapter_9/section_13/image7.png"  />
+③  输入编辑"**puppy_demo.py**"的指令并按下回车。
 
--   输入编辑"**puppy_demo.py**"的指令并按下回车。
-
-```commandline
+```bash
 rosed puppy_control puppy_demo.py
 ```
 
-<img src="../_static/media/chapter_9/section_13/image9.png"  />
-
--  可以在下图所示位置中找到调用步态的代码，程序默认是执行Trot步态，所以可以直接调用运行。
+④ 可以在下图所示位置中找到调用步态的代码，程序默认是执行Trot步态，所以可以直接调用运行。
 
 <img src="../_static/media/chapter_9/section_13/image11.png"  />
 
-3. **动态步态的设置**
+(3) **动态步态的设置**
 
 设置时，需设置4条腿全部着地的时间、单条腿脱离地面的时间和前后脚间隔时间3个参数。
 
@@ -1134,41 +1053,37 @@ rosed puppy_control puppy_demo.py
 
 ### 13.5 静态步态的控制方式
 
-1. **控制简介**
+(1) **控制简介**
 
 Walk步态是一种静态步态，其特征是在运动过程中始终有三条腿处于支撑相，至多只有一条腿处于摆动相。
 
 这里结合机器狗的控制程序，来看下静态步态的控制方式。
 
-2. **玩法开启及关闭步骤**
+(2) **玩法开启及关闭步骤**
 
 :::{Note}
 输入指令时需要严格区分大小写，且可使用"**Tab**"键补齐关键词。
 :::
 
--   启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+① 启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
--   点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_13/image6.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+② 点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_13/image6.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-<img src="../_static/media/chapter_9/section_13/image7.png"  />
+③ 输入指令，并按下回车，打开程序文件。
 
--   输入指令，并按下回车，打开程序文件。
-
-```commandline
+```bash
 rosed puppy_control puppy_demo.py
 ```
 
-<img src="../_static/media/chapter_9/section_13/image16.png"  />
-
-- 可以在下图所示位置中找到调用步态的代码，程序默认是执行Trot步态。按下"**i**" 键，进入编辑模式。
+④ 可以在下图所示位置中找到调用步态的代码，程序默认是执行Trot步态。按下"**i**" 键，进入编辑模式。
 
 <img src="../_static/media/chapter_9/section_13/image11.png"  />
 
--  将"**Trot**"修改为"**Walk**"。
+⑤ 将"**Trot**"修改为"**Walk**"。
 
 <img src="../_static/media/chapter_9/section_13/image17.png"  />
 
-3. **静态步态的设置**
+(3) **静态步态的设置**
 
 设置时，需设置4条腿全部着地的时间、单条腿脱离地面的时间和前后脚间隔时间3个参数。
 
@@ -1188,41 +1103,37 @@ rosed puppy_control puppy_demo.py
 
 ### 13.6 准静态步态的控制方式
 
-1. **控制简介**
+(1) **控制简介**
 
 Amble步态是一种准静态步态，可视为加速后的Walk步态，其特征是在运动过程中至少有两台条腿处于支撑相，最多有两条腿处于摆动相。
 
 这里结合机器狗的控制程序，来看下静态步态的控制方式。
 
-2. **玩法开启及关闭步骤**
+(2) **玩法开启及关闭步骤**
 
 :::{Note}
 输入指令时需要严格区分大小写，且可使用"**Tab**"键补齐关键词。
 :::
 
--  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+① 启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-- 点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_13/image6.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+② 点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_13/image6.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-<img src="../_static/media/chapter_9/section_13/image7.png"  />
+③ 输入指令，并按下回车，打开程序文件。
 
--  输入指令，并按下回车，打开程序文件。
-
-```commandline
+```bash
 rosed puppy_control puppy_demo.py
 ```
 
-<img src="../_static/media/chapter_9/section_13/image16.png"  />
-
--  可以在下图所示位置中找到调用步态的代码，程序默认是执行Trot步态。按下"**i**" 键，进入编辑模式。
+④ 可以在下图所示位置中找到调用步态的代码，程序默认是执行Trot步态。按下"**i**" 键，进入编辑模式。
 
 <img src="../_static/media/chapter_9/section_13/image11.png"  />
 
-- 将"**Trot**"修改为"**Amble**"。
+⑤ 将"**Trot**"修改为"**Amble**"。
 
 <img src="../_static/media/chapter_9/section_13/image22.png"  />
 
-3. **准静态步态的设置**
+(3) **准静态步态的设置**
 
 设置时，需设置4条腿全部着地的时间、单条腿脱离地面的时间和前后脚间隔时间3个参数。
 
@@ -1246,9 +1157,7 @@ rosed puppy_control puppy_demo.py
 
 设置时，我们需要调用"**puppy_demo.py**"文件，
 
-该程序的源代码位于Docker容器中的：**/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py**
-
-<img src="../_static/media/chapter_9/section_13/image27.png"  />
+[下载源代码（puppy_demo.py）](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)
 
 通过更改参数，可以调节机器狗的运动状态。
 
@@ -1285,9 +1194,7 @@ rosed puppy_control puppy_demo.py
 
 这里结合控制程序，对机器狗的行走高度进行调节。
 
-该程序的源代码位于Docker容器中的：**/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py**
-
-<img src="../_static/media/chapter_9/section_14/image2.png"  />
+[下载源代码（puppy_demo.py）](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)
 
 ### 14.2 玩法开启及关闭步骤
 
@@ -1295,37 +1202,33 @@ rosed puppy_control puppy_demo.py
 输入指令时需要严格区分大小写，且可使用"**Tab**"键补齐关键词。
 :::
 
-1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_14/image5.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_14/image5.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-<img src="../_static/media/chapter_9/section_14/image6.png"  />
+(3)  输入编辑"**puppy_demo.py**"的指令并按下回车。
 
-3)  输入编辑"**puppy_demo.py**"的指令并按下回车。
-
-```commandline
+```bash
 rosed puppy_control puppy_demo.py
 ```
 
-<img src="../_static/media/chapter_9/section_14/image7.png"  />
-
-4)  按下"**i**"开始更改，为方便观察，需要把速度设置为0，即将"**PuppyMove**"中的参数"**x**"修改为0，此时，机器狗会停止运动，后续需要设置行走高度时，将其再改为默认值即可。如下图：
+(4)  按下"**i**"开始更改，为方便观察，需要把速度设置为0，即将"**PuppyMove**"中的参数"**x**"修改为0，此时，机器狗会停止运动，后续需要设置行走高度时，将其再改为默认值即可。如下图：
 
 <img src="../_static/media/chapter_9/section_14/image10.png"  />
 
 <img src="../_static/media/chapter_9/section_14/image11.png"  />
 
-5)  修改"**PuppyPose**"中"**height**"参数，该参数用于调节机器狗的高度，调节范围为"**-15 ~ -5**"，单位为cm。
+(5)  修改"**PuppyPose**"中"**height**"参数，该参数用于调节机器狗的高度，调节范围为"**-15 ~ -5**"，单位为cm。
 
 <img src="../_static/media/chapter_9/section_14/image13.png"  />
 
-:::{Note}
-注意：调节时，数值越小，高度越高，-15为最大高度，-5为最小高度。
+:::{Note} 
+调节时，数值越小，高度越高，-15为最大高度，-5为最小高度。
 :::
 
-6)  我们这里让机器狗高度增加为例，把"**height**"修改为-15，更改完成后，按下"**Esc**"键，接着输入指令并按下回车进行保存。
+(6)  我们这里让机器狗高度增加为例，把"**height**"修改为-15，更改完成后，按下"**Esc**"键，接着输入指令并按下回车进行保存。
 
-```commandline
+```bash
 :wq
 ```
 
@@ -1333,15 +1236,13 @@ rosed puppy_control puppy_demo.py
 
 其他的高度调节也是同样的操作，大家可以自行尝试。
 
-7)  输入运行程序的指令，并按下回车。
+(7)  输入运行程序的指令，并按下回车。
 
-```commandline
+```bash
 rosrun puppy_control puppy_demo.py
 ```
 
-<img src="../_static/media/chapter_9/section_14/image17.png"  />
-
-8)  如需关闭此玩法，只需要在LX终端界面中按下"**Ctrl+C**"。如果关闭失败，可多次按下。
+(8)  如需关闭此玩法，只需要在LX终端界面中按下"**Ctrl+C**"。如果关闭失败，可多次按下。
 
 ### 14.3 功能实现
 
@@ -1357,9 +1258,7 @@ rosrun puppy_control puppy_demo.py
 
 这里结合控制程序，对机器狗的行走速度进行调节。
 
-该程序的源代码位于Docker容器中的：**/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py**
-
-<img src="../_static/media/chapter_9/section_15/image2.png"  />
+[下载源代码（puppy_demo.py）](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)
 
 ### 15.2 玩法开启及关闭步骤
 
@@ -1367,35 +1266,29 @@ rosrun puppy_control puppy_demo.py
 输入指令时需要严格区分大小写，且可使用"**Tab**"键补齐关键词。
 :::
 
-1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_15/image5.png"  />，打开Terminator终端。
+(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_15/image5.png"  />，打开Terminator终端。
 
-<img src="../_static/media/chapter_9/section_15/image6.png"  />
+(3)  输入编辑"**puppy_demo.py**"的指令并按下回车。
 
-3)  输入编辑"**puppy_demo.py**"的指令并按下回车。
-
-```commandline
+```bash
 rosed puppy_control puppy_demo.py
 ```
 
-<img src="../_static/media/chapter_9/section_15/image7.png"  />
-
-4)  我们需要更改"**PuppyMove**"中的"**x**"参数，该参数可以调节机器狗的速度，调整范围是"**-20~20**"，单位为cm/s。
+(4)  我们需要更改"**PuppyMove**"中的"**x**"参数，该参数可以调节机器狗的速度，调整范围是"**-20~20**"，单位为cm/s。
 
 <img src="../_static/media/chapter_9/section_15/image10.png"  />
 
 :::{Note}
-1. 数为正数时，机器狗前进；参数为负数时，机器狗后退。
-
-2.  调节时，数值绝对值越大，机器狗速度越快。
-
-3.  3、 不同步态下，速度的调节会对机器狗的稳定性有一定的影响，需根据实际的情况进行调节。
+① 数为正数时，机器狗前进；参数为负数时，机器狗后退。
+② 调节时，数值绝对值越大，机器狗速度越快。
+③ 不同步态下，速度的调节会对机器狗的稳定性有一定的影响，需根据实际的情况进行调节。
 :::
 
-5)  我们这里让机器狗前进的速度调整为12cm/s为例，把"**x**"修改为12，更改完成后，按下"**Esc**"键，接着按下指令进行保存。
+(5)  我们这里让机器狗前进的速度调整为12cm/s为例，把"**x**"修改为12，更改完成后，按下"**Esc**"键，接着按下指令进行保存。
 
-```commandline
+```bash
 :wq
 ```
 
@@ -1403,15 +1296,13 @@ rosed puppy_control puppy_demo.py
 
 后退的速度修改也是同样的操作，大家可以自行尝试不同速度的设置，对比机器狗速度的变化。
 
-6)  输入运行程序的指令，并按下回车。
+(6)  输入运行程序的指令，并按下回车。
 
-```commandline
+```bash
 rosrun puppy_control puppy_demo.py
 ```
 
-<img src="../_static/media/chapter_9/section_15/image14.png"  />
-
-7)  如需关闭此玩法，只需要在LX终端界面中按下"**Ctrl+C**"。如果关闭失败，可多次按下。
+(7)  如需关闭此玩法，只需要在LX终端界面中按下"**Ctrl+C**"。如果关闭失败，可多次按下。
 
 ### 15.3 功能实现
 
@@ -1425,9 +1316,7 @@ rosrun puppy_control puppy_demo.py
 
 这里结合机器狗的控制程序，来看下Trot步态俯身前行的控制方式。
 
-该程序的源代码位于Docker容器中的：**/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py**
-
-<img src="../_static/media/chapter_9/section_16/image2.png"  />
+[下载源代码（puppy_demo.py）](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)
 
 ### 16.2 玩法开启及关闭步骤
 
@@ -1435,61 +1324,52 @@ rosrun puppy_control puppy_demo.py
 输入指令时需要严格区分大小写，且可使用"**Tab**"键补齐关键词。
 :::
 
-1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_16/image5.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_16/image5.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
 
-<img src="../_static/media/chapter_9/section_16/image6.png"  />
+(3)  输入编辑"**puppy_demo.py**"的指令并按下回车。
 
-3)  输入编辑"**puppy_demo.py**"的指令并按下回车。
-
-```commandline
+```bash
 rosed puppy_control puppy_demo.py
 ```
 
-<img src="../_static/media/chapter_9/section_16/image7.png"  />
-
-4)  按下"**i**"开始更改，为方便观察，需要把速度设置为0，即将"**PuppyMove**"中的参数"**x**"修改为0，此时，机器狗会停止运动，后续需要设置机械狗行走时，将其再改为默认值即可。，如下图：
+(4)  按下"**i**"开始更改，为方便观察，需要把速度设置为0，即将"**PuppyMove**"中的参数"**x**"修改为0，此时，机器狗会停止运动，后续需要设置机械狗行走时，将其再改为默认值即可。，如下图：
 
 <img src="../_static/media/chapter_9/section_16/image10.png"  />
 
 <img src="../_static/media/chapter_9/section_16/image11.png"  />
 
-5)  修改"**PuppyPose**"中的"**pitch**"参数，该参数代表俯仰角，角度范围是"**-31°~31°**"，单位为度。设置为正数时，机器狗向上仰视前方；设置为负数时，机器狗向下俯视前方。我们这里让机器狗实现向下俯视15度为例，把"**pitch**"修改为-15。
+(5)  修改"**PuppyPose**"中的"**pitch**"参数，该参数代表俯仰角，角度范围是"**-31°~31°**"，单位为度。设置为正数时，机器狗向上仰视前方；设置为负数时，机器狗向下俯视前方。我们这里让机器狗实现向下俯视15度为例，把"**pitch**"修改为-15。
 
 <img src="../_static/media/chapter_9/section_16/image13.png"  />
 
 <img src="../_static/media/chapter_9/section_16/image14.png"  />
 
-6)  接着设置机器狗为Trot步态，找到并查看"**gait**"的参数是否为"**Trot**",程序默认是Trot步态，无需修改，如果不是则需修改为"**Trot**"。
+(6)  接着设置机器狗为Trot步态，找到并查看"**gait**"的参数是否为"**Trot**",程序默认是Trot步态，无需修改，如果不是则需修改为"**Trot**"。
 
 <img src="../_static/media/chapter_9/section_16/image16.png"  />
 
-7)  最后更改"**PuppyMove**"中的参数"**x**"，这里以把数值修改为默认的5为例，让机器狗以5cm/s的速度俯身前进。更改完成后，按下"**Esc**"键，接着输入指令进行保存。
+(7)  最后更改"**PuppyMove**"中的参数"**x**"，这里以把数值修改为默认的5为例，让机器狗以5cm/s的速度俯身前进。更改完成后，按下"**Esc**"键，接着输入指令进行保存。
 
-```commandline
+```bash
 :wq
 ```
 
 <img src="../_static/media/chapter_9/section_16/image18.png"  />
 
 :::{Note}
-
-1. 该修改方法不只是适用于Trot步态，其他步态也同样适用。
-
-2. 俯视角度的调整要根据实际情况来修改，避免影响实际运行效果。
-
+① 该修改方法不只是适用于Trot步态，其他步态也同样适用。
+② 俯视角度的调整要根据实际情况来修改，避免影响实际运行效果。
 :::
 
-8)  输入运行程序的指令，并按下回车。
+(8)  输入运行程序的指令，并按下回车。
 
-```commandline
+```bash
 rosrun puppy_control puppy_demo.py
 ```
 
-<img src="../_static/media/chapter_9/section_16/image20.png"  />
-
-9)  如需关闭此玩法，只需要在LX终端界面中按下"**Ctrl+C**"。如果关闭失败，可多次按下。
+(9)  如需关闭此玩法，只需要在LX终端界面中按下"**Ctrl+C**"。如果关闭失败，可多次按下。
 
 ### 16.3 功能实现
 
