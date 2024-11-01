@@ -36,7 +36,7 @@ rosrun puppy_advanced_functions kick_ball_demo.py
 
 当识别到红色小球后，回传画面内会使用矩形标识出小球，并在终端打印出X轴坐标。
 
-<img src="../_static/media/chapter_15/section_1/image9.png"  />
+<img src="../_static/media/chapter_15/section_1/image9.png" class="common_img"  />
 
 ### 1.4 程序参数说明
 

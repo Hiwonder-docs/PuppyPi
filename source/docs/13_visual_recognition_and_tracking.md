@@ -434,7 +434,7 @@ rosed puppy_standard_functions apriltag_AR_demo.py
 
 (3)  找到下图所示代码：
 
-<img src="../_static/media/chapter_13/section_4/image12.png"  />
+<img src="../_static/media/chapter_13/section_4/image12.png" class="common_img"  />
 
 :::{Note}
 在键盘输入代码位置序号后，按下"Shift+G"键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
@@ -616,7 +616,7 @@ rosed puppy_standard_functions color_tracking_demo.py
 
 (4)  点击"**i**"键进入编辑模式。将代码修改为"**msg.data = 'green'**"。
 
-<img src="../_static/media/chapter_13/section_5/image14.png"  />
+<img class="common_img" src="../_static/media/chapter_13/section_5/image14.png"  />
 
 (5)  修改完成后，按下"**Esc**"键，输入指令并按下回车，进行保存与退出。
 
@@ -642,7 +642,7 @@ rosrun puppy_standard_functions color_tracking_demo.py
 rosed lab_config lab_config.yaml
 ```
 
-<img src="../_static/media/chapter_13/section_5/image21.png"  />
+<img class="common_img" src="../_static/media/chapter_13/section_5/image21.png"  />
 
 (3)  双击桌面的调试工具图标<img src="../_static/media/chapter_13/section_5/image23.png" style="width:0.31496in;height:0.29528in" />，打开颜色阈值调节工具。若弹出提示框，选择"**执行**"即可。
 
@@ -666,7 +666,7 @@ rosed lab_config lab_config.yaml
 rosed lab_config lab_config.yaml
 ```
 
-<img src="../_static/media/chapter_13/section_5/image28.png"  />
+<img class="common_img" src="../_static/media/chapter_13/section_5/image28.png"  />
 
 :::{Note}
 在学习了如何修改Lab参数后，建议通过LAB_Tool工具将数值恢复为初始值，以免影响玩法的实现效果。
@@ -812,7 +812,7 @@ rosed puppy_standard_functions color_tracking_demo.py
 
 (4)  点击"**i**"键进入编辑模式。将代码修改为"**msg.data = 'green'**"。
 
-<img src="../_static/media/chapter_13/section_6/image13.png"  />
+<img class="common_img" src="../_static/media/chapter_13/section_6/image13.png"  />
 
 (5)  修改完成后，按下"**Esc**"键，输入指令并按下回车，进行保存与退出。
 

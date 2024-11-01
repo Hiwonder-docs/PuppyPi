@@ -82,7 +82,7 @@ rosrun puppy_control puppy_demo.py
 
 ### 1.5 程序参数说明
 
-[下载源代码（puppy_demo.py）](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)
+该程序的源代码位于Docker容器中的：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
 
 (1) **步态选择**
 
@@ -208,7 +208,7 @@ rosrun puppy_control puppy_demo.py
 
 ### 2.5 程序参数说明
 
-[下载源代码（puppy_demo.py）](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)
+该程序的源代码位于Docker容器中的：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
 
 (1) **步态选择**
 
@@ -315,9 +315,7 @@ PuppyPi机器狗会以Amble步态行进，至少有两台条腿处于支撑相�
 
 ### 3.5 程序参数说明
 
-[下载源代码（puppy_demo.py）](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)
-
-该程序的源代码位于Docker容器中的：**/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py**
+该程序的源代码位于Docker容器中的：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
 
 (1) **步态选择**
 
@@ -401,7 +399,7 @@ rosrun puppy_control puppy_demo.py
 
 ### 4.3 程序参数说明 
 
-该程序的源代码位于Docker容器中的：**/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py**
+该程序的源代码位于Docker容器中的：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
 
 通过发送对应的服务请求，可使PuppyPi机器狗进行原地踏步。
 
@@ -461,7 +459,7 @@ PuppyPi机器狗会在Trot步态下，且持续朝设定的方向前进转弯。
 
 ### 5.3 程序参数说明
 
-[下载源代码（puppy_demo.py）](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy.py)
+该程序的源代码位于Docker容器中的：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
 
 - #### 5.3.1 移动参数调节
 
@@ -521,7 +519,7 @@ PuppyPi机器狗会在Trot步态下，且持续朝设定的方向前进转弯。
 
 ### 6.2 程序设置说明
 
-[下载源代码（puppy_demo.py）](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)
+该程序的源代码位于Docker容器中的：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
 
 我们以默认的Trot步态为例进行说明：
 
@@ -871,7 +869,7 @@ PuppyPi机器狗的姿态参数，就是指机器狗静止不动时的参数，�
 
 通过调节机器狗4条腿落脚点的坐标值，可以改变机器狗的姿态。设置姿态时，我们需要调用"**puppy_demo.py**"文件。
 
-[下载源代码（puppy_demo.py）](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)
+该程序的源代码位于Docker容器中的：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
 
 ### 11.2 参数说明
 
@@ -927,7 +925,7 @@ PuppyPose = {'roll':math.radians(15), 'pitch':math.radians(-20), 'yaw':0.000, 'h
 
 这里结合控制程序，对机器狗的站立角度进行调节。
 
-[下载源代码（puppy_demo.py）](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)
+该程序的源代码位于Docker容器中的：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
 
 ### 12.2 玩法开启及关闭步骤
 
@@ -1157,7 +1155,7 @@ rosed puppy_control puppy_demo.py
 
 设置时，我们需要调用"**puppy_demo.py**"文件，
 
-[下载源代码（puppy_demo.py）](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)
+该程序的源代码位于Docker容器中的：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
 
 通过更改参数，可以调节机器狗的运动状态。
 
@@ -1194,7 +1192,7 @@ rosed puppy_control puppy_demo.py
 
 这里结合控制程序，对机器狗的行走高度进行调节。
 
-[下载源代码（puppy_demo.py）](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)
+该程序的源代码位于Docker容器中的：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
 
 ### 14.2 玩法开启及关闭步骤
 
@@ -1258,7 +1256,7 @@ rosrun puppy_control puppy_demo.py
 
 这里结合控制程序，对机器狗的行走速度进行调节。
 
-[下载源代码（puppy_demo.py）](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)
+该程序的源代码位于Docker容器中的：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
 
 ### 15.2 玩法开启及关闭步骤
 
@@ -1316,7 +1314,7 @@ rosrun puppy_control puppy_demo.py
 
 这里结合机器狗的控制程序，来看下Trot步态俯身前行的控制方式。
 
-[下载源代码（puppy_demo.py）](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)
+该程序的源代码位于Docker容器中的：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
 
 ### 16.2 玩法开启及关闭步骤
 

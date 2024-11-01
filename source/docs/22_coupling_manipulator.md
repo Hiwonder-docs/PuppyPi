@@ -469,7 +469,7 @@ roslaunch puppy_with_arm color_grab.launch
 
 (7)  按下树莓派扩展板上的KEY1开始启动自主识别夹取，按下KEY2可以暂停玩法。
 
-<img src="../_static/media/chapter_22/section_4/image11.png"  />
+<img class="common_img" src="../_static/media/chapter_22/section_4/image11.png"  />
 
 (8)  如需关闭此玩法，可在Terminator终端界面按下"**Ctrl+C**"。如果关闭失败，可多次按下。
 
@@ -538,10 +538,6 @@ rosed puppy_with_arm color_grab.py
 (5)  参照"[4.2 玩法开启及关闭步骤](#anchor_4_2)"，重新启动玩法，即可查看修改后的玩法效果。
 
 ### 4.5 程序分析
-
-根据玩法的效果，梳理的本次玩法的过程逻辑，如下图所示：
-
-<img src="../_static/media/chapter_22/section_4/image28.png"  />
 
 (1) **launch文件分析**
 
@@ -789,7 +785,7 @@ sudo systemctl restart button_scan.service
 
 将PuppyPi机器狗放置黑色线条上，启动玩法后，机器狗将巡黑色线条进行移动，如果识别到前面线条上有色块阻挡，则会执行"搬运"动作。夹取红色色块放置于线条左边，夹取绿色或蓝色色块放置于线条右边，执行完夹取动作后继续进行巡线任务。
 
-<img src="../_static/media/chapter_22/section_5/image14.png"  alt="6df22f7e70a139a191509393b2c734f" />
+<img src="../_static/media/chapter_22/section_5/image14.png"  alt="" class="common_img" />
 
 :::{Note}
 若颜色识别不准，可参照"**[ROS+OpenCV视觉识别与追踪项目\1.  颜色阈值调节](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/13_visual_recognition_and_tracking.html#id1)**"对其进行调节。
@@ -1320,11 +1316,11 @@ vim InverseKinematics.py
 
 (5) 接下来，用反余弦函数求出夹角OAP和PAC的弧度值并相加，得到夹角OAC的值。
 
-<img src="../_static/media/chapter_22/section_7/image22.png"  />
+<img class="common_img" src="../_static/media/chapter_22/section_7/image22.png"  />
 
 (6) 最后，将夹角OAC的弧度值转换为角度值，并减去90度（机械臂初始俯仰关节），即可得到俯仰关节beta转动角度。
 
-<img src="../_static/media/chapter_22/section_7/image24.png"  />
+<img class="common_img" src="../_static/media/chapter_22/section_7/image24.png"  />
 
 - #### 7.3.2 基座关节theta转动角度的求解
 
@@ -1344,8 +1340,8 @@ vim InverseKinematics.py
 
 (4) 接下来，用反余弦函数和反正弦函数求出夹角AOP和POB的弧度值并相加，得到夹角AOB的值。
 
-<img src="../_static/media/chapter_22/section_7/image32.png"  />
+<img class="common_img" src="../_static/media/chapter_22/section_7/image32.png"  />
 
 (5) 最后，180度减去转换为角度值的夹角AOB，即可得到基座关节theta转动角度。
 
-<img src="../_static/media/chapter_22/section_7/image34.png"  />
+<img class="common_img" src="../_static/media/chapter_22/section_7/image34.png"  />

@@ -18,7 +18,7 @@
 
 ② 输入指令，并按下回车，打开上位机。
 
-```commandline
+```bash
 python3 software/puppypi_control/PuppyPi.py
 ```
 
@@ -434,11 +434,11 @@ Z轴坐标用于调整PuppyPi机器狗的膝关节伸缩幅度，其数值的绝
 
 (2)  输入指令并按下回车，进入目录可查看到当前所有动作组的名称
 
-```commandline
+```bash
 cd software/puppypi_control/ActionGroups
 ```
 
-```commandline
+```bash
 ls
 ```
 
@@ -464,7 +464,7 @@ ls
 
 <img src="../_static/media/chapter_10/section_6/image8.png"  />
 
-```commandline
+```bash
 cd software/puppypi_control/ActionGroups
 ```
 
