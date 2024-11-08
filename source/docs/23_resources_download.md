@@ -1,6 +1,6 @@
 # 资源下载
 
-- PuppyPi（与PuppyPi Pro共用）镜像（提取码：w71d）：[百度网盘](https://pan.baidu.com/s/1lcKvb0fYrKdjRg5ek7qp5w)
+- PuppyPi（与PuppyPi Pro共用）镜像：[百度网盘](https://pan.baidu.com/s/1lcKvb0fYrKdjRg5ek7qp5w)
 
 - 源码下载 ：[源码.zip](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/appendix/PuppyPi.zip)
 

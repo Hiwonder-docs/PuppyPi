@@ -19,11 +19,11 @@
    docs/15_tracking_kick.md
    docs/16_autonomous_cruise.md
    docs/17_sensor_bonding.md
-   docs/18_mass_control.md
    docs/19_lidar.md
    docs/20_slam_mapping.md
    docs/21_autonomous_navigation.md
    docs/22_coupling_manipulator.md
+   docs/18_mass_control.md
    docs/23_resources_download.md
 
 

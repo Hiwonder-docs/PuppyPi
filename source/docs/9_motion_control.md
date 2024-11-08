@@ -1,4 +1,4 @@
-# ROS机器狗运动控制课程
+# 运动控制课程
 
 <p id="anchor_1"></p>
 
@@ -1372,10 +1372,3 @@ rosrun puppy_control puppy_demo.py
 ### 16.3 功能实现
 
 玩法开启后，PuppyPi机器狗就会按照Trot步态俯身前行。
-
-
-
-
-
-
-
