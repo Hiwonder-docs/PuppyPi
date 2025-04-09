@@ -28,7 +28,7 @@ There are two control modes, including normal mode and coordinate mode.
 
 <img class="common_img" src="../_static/media/chapter_10/section_1/image10.png"  />
 
-<p id="anchor_1_2_1"></p>
+<p id="anchor_5_1_2_1"></p>
 
 **(1)  Normal Mode**
 
@@ -139,9 +139,7 @@ we need to take PuppyPi as the first-person perspective.
 
 The buttons of the action group setting area is the same as those of normal mode, except the <img src="../_static/media/chapter_10/section_1/image58.png" style="width:0.98425in;height:0.34381in" /> 
 
-. For the detailed functions of the buttons, please refer to "[**5.1.2 PC Software Layout->Normal Mode**](#anchor_1_2_1)"
-
-
+For the detailed functions of the buttons, please refer to "[**5.1.2 PC Software Layout->Normal Mode**](#anchor_5_1_2_1)"
 
 | Icon | Function |
 |:--:|:--:|
@@ -192,11 +190,11 @@ In this project, we will edit an action group to make PuppyPi **"wave hand"**, w
 
 ### 5.3.2 Action Design
 
-(1)  Double click<img src="../_static/media/chapter_10/section_3/image2.png" style="width:0.31458in;height:0.31458in" />on the desktop, and select **"Normal Mode"**.
+(1)  Double click <img src="../_static/media/chapter_10/section_3/image2.png" style="width:0.41458in;height:0.41458in" /> on the desktop, and select **"Normal Mode"**.
 
-<img src="../_static/media/chapter_10/section_3/image3.png"  />
+<img src="../_static/media/chapter_10/section_3/image3.png" class="common_img" />
 
-(2)  **Action 1**: click <img src="../_static/media/chapter_10/section_3/image1.png" style="width:0.31458in;height:0.31458in" /> to make PuppyPi restore to initial posture. And modify the Time as 500ms. Then click <img src="../_static/media/chapter_10/section_3/image24.png" style="width:0.31458in;height:0.31458in" /> to add this action to the action list.
+(2)  **Action 1**: click <img src="../_static/media/chapter_10/section_3/image1.png" /> to make PuppyPi restore to initial posture. And modify the Time as 500ms. Then click <img src="../_static/media/chapter_10/section_3/image24.png" /> to add this action to the action list.
 
 <img class="common_img" src="../_static/media/chapter_10/section_3/image4.png"  />
 
@@ -222,13 +220,13 @@ Then the specific parameters of action1 are updated to the action list.
 
 (6)  **Action 4:** Make PuppyPi repeat action3 to make the transition between actions more natural. Set the time as 300ms, and click **"Add Action"** button.
 
-<img src="../_static/media/chapter_10/section_3/image9.png"  />
+<img src="../_static/media/chapter_10/section_3/image9.png" class="common_img" />
 
 (7) **Action 5:** adjust the servo parameter of ID1 servo as below to make the upper joint of front right leg swing forward. And set the time as 400ms. Then click "Add Action" button.
 
 <img class="common_img" src="../_static/media/chapter_10/section_3/image10.png"  />
 
-<img src="../_static/media/chapter_10/section_3/image11.png"  />
+<img class="common_img" src="../_static/media/chapter_10/section_3/image11.png"  />
 
 (8) **Action 6:** modify the value of ID2 servo as the picture shown to make the lower joint of front right leg to swing upward. Then click **"Add Action"** button.
 
@@ -250,17 +248,17 @@ Then the specific parameters of action1 are updated to the action list.
 
 <img class="common_img" src="../_static/media/chapter_10/section_3/image15.png"  />
 
-<img src="../_static/media/chapter_10/section_3/image16.png"  />
+<img class="common_img" src="../_static/media/chapter_10/section_3/image16.png"  />
 
 (13) **Action 11:** to make the transition between the actions more smooth, set the servo parameter of action11 the same as that of action 10. And set the time as 300ms. Then click **"Add Action**" button.
 
-<img src="../_static/media/chapter_10/section_3/image17.png"  />
+<img class="common_img" src="../_static/media/chapter_10/section_3/image17.png"  />
 
 (14) **Action 12:** modify the servo parameter as follow to make PuppyPi look down with two front legs on the ground. And set the time as 600ms. Then click **"Add Action"** button.
 
 <img class="common_img" src="../_static/media/chapter_10/section_3/image18.png"  />
 
-<img src="../_static/media/chapter_10/section_3/image19.png"  />
+<img class="common_img" src="../_static/media/chapter_10/section_3/image19.png"  />
 
 (15) **Action 13**: click **"Reset Servo"** button to make PuppyPi return to initial posture. Then click **"Add Action"** button.
 
@@ -268,7 +266,7 @@ Then the specific parameters of action1 are updated to the action list.
 
 The servo parameters of these 13 actions are listed below.
 
-<img src="../_static/media/chapter_10/section_3/image21.png"  />
+<img class="common_img" src="../_static/media/chapter_10/section_3/image21.png"  />
 
 :::{Note}
  the values in red are the values required to adjust in the previous steps. 
@@ -284,7 +282,7 @@ The servo parameters of these 13 actions are listed below.
 
 <img class="common_img" src="../_static/media/chapter_10/section_3/image23.png"  />
 
-<p id="anchor_4"></p>
+<p id="anchor_5_4"></p>
 
 ## 5.4 Coordinate Mode Introduction
 
@@ -311,17 +309,17 @@ Take **-10** as critical point. When Z-axis coordinate is greater than **-10**, 
  Please take PuppyPi as the first-person perspective.
 :::
 
-(1) Double click<img src="../_static/media/chapter_10/section_4/image2.png" style="width:0.31458in;height:0.31458in" /> on the desktop to open PC software. Then select **"Coordinate Mode"**.
+(1) Double click <img src="../_static/media/chapter_10/section_4/image2.png" style="width:0.31458in;height:0.31458in" /> on the desktop to open PC software. Then select **"Coordinate Mode"**.
 
-<img src="../_static/media/chapter_10/section_4/image3.png" style="width:5.51181in;height:0.47779in" />
+<img class="common_img" src="../_static/media/chapter_10/section_4/image3.png"/>
 
 (2) **Action 1:** click **"Reset Servo"** button to make PuppyPi return to the initial posture. And modify the time as 800ms. Then, click **"Add Action"** button. 
 
-<img class="common_img" src="../_static/media/chapter_10/section_4/image4.png" style="width:4.72441in;height:2.42762in" />
+<img class="common_img" src="../_static/media/chapter_10/section_4/image4.png"/>
 
 The specific parameters of this action are displayed on the action list. The coordinates of 4 legs are all (0，0，-10), which means that PuppyPi's height is 10cm.
 
-<img src="../_static/media/chapter_10/section_4/image5.png" style="width:5.76389in;height:0.21875in" />
+<img src="../_static/media/chapter_10/section_4/image5.png" />
 
 :::{Note}
 Please remember to click **"Add Action"** button after each setting.
@@ -329,29 +327,29 @@ Please remember to click **"Add Action"** button after each setting.
 
 (3)  **Action 2:** modify Z-axis coordinate of lower joints as the picture shown. And set the time as 500ms. Then, click **"Add Action"** button. 
 
-<img class="common_img" src="../_static/media/chapter_10/section_4/image6.png" style="width:4.72441in;height:2.75591in" />
+<img class="common_img" src="../_static/media/chapter_10/section_4/image6.png" />
 
-<img class="common_img" src="../_static/media/chapter_10/section_4/image7.png" style="width:4.72441in;height:0.92259in" />
+<img class="common_img" src="../_static/media/chapter_10/section_4/image7.png" />
 
 (4) **Action 3:** modify the Z-axis coordinate of two front upper joints to lift up front half its body. Then, click **"Add Action"** button.
 
-<img class="common_img" src="../_static/media/chapter_10/section_4/image8.png" style="width:4.72441in;height:2.75591in" />
+<img class="common_img" src="../_static/media/chapter_10/section_4/image8.png" />
 
 (5)  **Action 4:** repeat action2 to make PuppyPi lean forward. Then, click **"Add Action"** button.
 
-<img class="common_img" src="../_static/media/chapter_10/section_4/image6.png" style="width:4.72441in;height:2.75591in" />
+<img class="common_img" src="../_static/media/chapter_10/section_4/image6.png" />
 
 (6)  **Action5:** repeat action3 to lift up front half its body. Then, click **"Add Action"** button
 
-<img class="common_img" src="../_static/media/chapter_10/section_4/image8.png" style="width:4.72441in;height:2.75591in" />
+<img class="common_img" src="../_static/media/chapter_10/section_4/image8.png" />
 
 (7)  **Action6:** click **"Reset Coordinate"** button to make PuppyPi return to initial posture. Then, click **"Add Action"** button
 
-<img class="common_img" src="../_static/media/chapter_10/section_4/image9.png" style="width:4.72441in;height:2.44639in" />
+<img class="common_img" src="../_static/media/chapter_10/section_4/image9.png"/>
 
 The servo parameters of these actions are listed below.
 
-<img class="common_img" src="../_static/media/chapter_10/section_4/image10.png" style="width:5.76389in;height:1.04861in" />
+<img class="common_img" src="../_static/media/chapter_10/section_4/image10.png"/>
 
 :::{Note}
  the values in red are the values required to adjust in the previous steps.
@@ -361,11 +359,11 @@ The servo parameters of these actions are listed below.
 
 (1) Click **"Save Action File"** to save this action group.
 
-<img class="common_img" src="../_static/media/chapter_10/section_4/image11.png" style="width:4.72441in;height:1.6404in" />
+<img class="common_img" src="../_static/media/chapter_10/section_4/image11.png"/>
 
 (2)  Save the action group to **"/home/pi/PuppyPi_PC_Software/ActionGroups"** and we can name it **"Lean_forward"**. Then click **"Save"**.
 
-<img class="common_img" src="../_static/media/chapter_10/section_4/image12.png" style="width:5.51181in;height:2.49113in" />
+<img class="common_img" src="../_static/media/chapter_10/section_4/image12.png"/>
 
 ## 5.5 Integrate Action File
 
@@ -375,7 +373,7 @@ Integrating action files is to integrate two action groups to form a new action 
 
 In this project, we will integrate **"raise_hands"** and **"sit"** action groups.
 
-<p id="anchor_5_2"></p>
+<p id="anchor_5_5_2"></p>
 
 ### 5.5.2 Normal Mode
 
@@ -385,49 +383,49 @@ In this project, we will integrate **"raise_hands"** and **"sit"** action groups
 
 (2) Click **"Open Action File"** button, and then double click **"raise_hands"** action group to open it.
 
-<img class="common_img" src="../_static/media/chapter_10/section_5/image3.png" style="width:4.72441in;height:1.58239in" />
+<img class="common_img" src="../_static/media/chapter_10/section_5/image3.png"/>
 
-<img class="common_img" src="../_static/media/chapter_10/section_5/image4.png" style="width:4.72441in;height:1.93788in" />
+<img class="common_img" src="../_static/media/chapter_10/section_5/image4.png"/>
 
 At this time, the parameters of "**raise_hands**" is updated to the action list
 
-<img class="common_img" src="../_static/media/chapter_10/section_5/image5.png" style="width:5.76389in;height:1.20486in" />
+<img class="common_img" src="../_static/media/chapter_10/section_5/image5.png" />
 
 (3) Click **"Integrate Action File"**, and then open **"sit.d6a"** to completer integration.
 
-<img class="common_img" src="../_static/media/chapter_10/section_5/image6.png" style="width:4.72441in;height:1.58239in" />
+<img class="common_img" src="../_static/media/chapter_10/section_5/image6.png" />
 
-<img class="common_img" src="../_static/media/chapter_10/section_5/image7.png" style="width:4.72441in;height:1.90774in" />
+<img class="common_img" src="../_static/media/chapter_10/section_5/image7.png" />
 
 At this time, parameters of "**sit**" is added behind the parameters of "**raise_hands**".
 
-<img class="common_img" src="../_static/media/chapter_10/section_5/image8.png" style="width:5.76389in;height:1.60625in" />
+<img class="common_img" src="../_static/media/chapter_10/section_5/image8.png" />
 
 (4) Click "**Run**" button. Then PuppyPi will execute this new action group.
 
-<img class="common_img" src="../_static/media/chapter_10/section_5/image9.png" style="width:4.72441in;height:1.58239in" />
+<img class="common_img" src="../_static/media/chapter_10/section_5/image9.png" />
 
 (5) Click **"Save Action File"** button, name this new action group **"raise_hands_sit"**, and the click **"Save"**.
 
-<img class="common_img" src="../_static/media/chapter_10/section_5/image10.png" style="width:4.72441in;height:1.58239in" />
+<img class="common_img" src="../_static/media/chapter_10/section_5/image10.png" />
 
-<img class="common_img" src="../_static/media/chapter_10/section_5/image11.png" style="width:4.72441in;height:2.0141in" />
+<img class="common_img" src="../_static/media/chapter_10/section_5/image11.png" />
 
 ### 5.5.3 Coordinate Mode
 
 Double click <img src="../_static/media/chapter_10/section_5/image1.png" style="width:0.31458in;height:0.31458in" /> to open PC software. Then select **"Coordinate Mode"**.
 
-<img class="common_img" src="../_static/media/chapter_10/section_5/image12.png" style="width:5.76389in;height:3.12639in" />
+<img class="common_img" src="../_static/media/chapter_10/section_5/image12.png" />
 
-The operation under Coordinate Mode is the same as that under Normal Mode. For the operation steps, please refer to "[**5.5.2 Normal Mode**]()".
+The operation under Coordinate Mode is the same as that under Normal Mode. For the operation steps, please refer to "[**5.5.2 Normal Mode**](#anchor_5_5_2)".
 
 ## 5.6 APP Customized Control
 
 ### 5.6.1 Project Goal
 
-In "[**5.4 Coordinate Mode Introduction**](#anchor_4)", we have edited an action group `Lean_forward`. And in this project, we will make PuppyPi execute this action group with customized function on the APP.
+In "[**5.4 Coordinate Mode Introduction**](#anchor_5_4)", we have edited an action group `Lean_forward`. And in this project, we will make PuppyPi execute this action group with customized function on the APP.
 
-<p id="anchor_6_2"></p>
+<p id="anchor_5_6_2"></p>
 
 ### 5.6.2 Getting Ready
 
@@ -470,7 +468,7 @@ cd software/puppypi_control/ActionGroups
 ```
 
 :::{Note}
-we can input randomly in the bar of "**Action Name**". But in the bar of "**Action File Name**", we need to enter the accurate file names of the existed action groups. And we can follow the steps in "[**6.2 Getting Ready**]()" to check.
+we can input randomly in the bar of "**Action Name**". But in the bar of "**Action File Name**", we need to enter the accurate file names of the existed action groups. And we can follow the steps in "[**5.6.2 Getting Ready**](#anchor_5_6_2)" to check.
 :::
 
 (5)  Click "**Custom**" button, and then select "**Lean Forward**" action. Then PuppyPi will execute this action.

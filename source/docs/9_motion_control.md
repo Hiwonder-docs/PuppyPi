@@ -56,7 +56,7 @@ rosed puppy_control puppy_demo.py
 
 (4) You can find the code calling the gait at the location indicated in the following image. The program is default to execute Trot gait, hence the codes can be called directly.
 
-<img src="../_static/media/chapter_9/section_1/image7.png"  />
+<img src="../_static/media/chapter_9/section_1/image7.png" class="common_img" />
 
 (5) There is no need for modification. Press **"Esc"**, and input **":wq"** to save and exit.
 
@@ -174,7 +174,7 @@ Walk is static gait where 3 legs are on the ground at least and 1 leg swings at 
 
  The sequence of different legs to swing is right front->left hind->left front->right hind, that is 1->2->3->4 as the picture shown. 
 
-<img src="../_static/media/chapter_9/section_2/image2.png"  />
+<img src="../_static/media/chapter_9/section_2/image2.png" class="common_img" />
 
 In (a), NO.1 leg of PuppyPi will lift and swing forward, and NO. 2, 3 and 4 legs are in support of the body.
 
@@ -212,11 +212,11 @@ rosed puppy_control puppy_demo.py
 
 (4) Jump to 24th line to find the called codes. The program is default to execute Trot gait. Then press **"i"** key to enter editing mode.
 
-<img src="../_static/media/chapter_9/section_2/image9.png"  />
+<img src="../_static/media/chapter_9/section_2/image9.png" class="common_img"  />
 
 (5)  Modify **"Trot"** as **"Walk"**.
 
-<img src="../_static/media/chapter_9/section_2/image11.png"  />
+<img src="../_static/media/chapter_9/section_2/image11.png" class="common_img"  />
 
 (6) Press **"Esc"**, and input **":wq"** to save and exit.
 
@@ -236,7 +236,7 @@ rosrun puppy_control puppy_demo.py
 
 After the game starts, PuppyPi will walk, that is to say its three legs are on the ground at least and one leg is lifted at most. The leg sequence diagram is as follow.
 
-<img src="../_static/media/chapter_9/section_2/image16.png"  alt="" />
+<img src="../_static/media/chapter_9/section_2/image16.png" class="common_img"  alt="" />
 
 ### 4.2.5 Program Analysis
 
@@ -332,7 +332,7 @@ Amble is static gait which is considered as accelerated Walk gait. During motion
 
 The motion process of Amble gait is the same as that of Walk gait. And the sequence of different legs to swing is right front->left hind->left front->right hind, that is 1->2->3->4 as the picture shown.
 
-<img src="../_static/media/chapter_9/section_3/image2.png"  alt="" />
+<img src="../_static/media/chapter_9/section_3/image2.png" class="common_img"  alt="" />
 
 The difference between Amble and Walk gait is NO.2 leg is lifted after NO.1 leg touch the ground under Walk gait, while under Amble gait, NO.2 leg is lifted after NO.1leg is lifted but not touch the ground. 
 
@@ -354,11 +354,11 @@ rosed puppy_control puppy_demo.py
 
 (4)  Jump to 24th line to find the called codes. The program is default to execute Trot gait. Then press **"i"** key to enter editing mode.
 
-<img src="../_static/media/chapter_9/section_3/image9.png"  />
+<img src="../_static/media/chapter_9/section_3/image9.png" class="common_img"  />
 
 (5) Modify **"Trot"** as **"Ample"**.
 
-<img src="../_static/media/chapter_9/section_3/image11.png"  />
+<img src="../_static/media/chapter_9/section_3/image11.png"  class="common_img" />
 
 (6) After modification, press **"Esc"**, input **":wq"** and press Enter to save and exit.
 
@@ -378,7 +378,7 @@ rosrun puppy_control puppy_demo.py
 
 PuppyPi will amble with two legs in support of the body at least and two legs swinging at most. Amble gait is the accelerated Walk gait. The leg sequence diagram is as follow.
 
-<img src="../_static/media/chapter_9/section_3/image2.png"  alt="" />
+<img src="../_static/media/chapter_9/section_3/image2.png" class="common_img"  alt="" />
 
 ### 4.3.5 Program Analysis
 
@@ -473,11 +473,11 @@ rosed puppy_control puppy_demo.py
 
 (4) Locate to these codes 
 
-<img src="../_static/media/chapter_9/section_4/image8.png"  />
+<img src="../_static/media/chapter_9/section_4/image8.png" class="common_img"  />
 
 (5) Press **"i**" to enter editing mode, and then modify the code as **"set_mark_time_srv(True)"**
 
-<img src="../_static/media/chapter_9/section_4/image10.png"  />
+<img src="../_static/media/chapter_9/section_4/image10.png" class="common_img"  />
 
 (6) After modification, press **"Esc"** key, input **":wq"** and press Enter to save and exit editing.
 
@@ -497,7 +497,7 @@ rosrun puppy_control puppy_demo.py
 
 After the game starts, PuppyPi will march on the spot with Trot gait. The legs at diagonal opposite ends of the body lift or touch the ground together. The leg sequence diagram is as the figure below.
 
-<img src="../_static/media/chapter_9/section_4/image15.png"  />
+<img src="../_static/media/chapter_9/section_4/image15.png" class="common_img"  />
 
 ### 4.4.3 Program Analysis
 
@@ -542,7 +542,7 @@ rosed puppy_control puppy_demo.py
 
 (5) Press "**i**" to enter editing mode. For example, make PuppyPi turn 10°/s counterclockwise. Therefore, we should modify the codes as **"PuppyMove = {'x':6, 'y':0, 'yaw_rate':0.18}"**.
 
-<img src="../_static/media/chapter_9/section_5/image10.png"  />
+<img class="common_img" src="../_static/media/chapter_9/section_5/image10.png"  />
 
 (6) After modification, press **"Esc"**, input **":wq"** and press Enter to save and exit the editing.
 
@@ -704,7 +704,7 @@ rosed puppy_control puppy_demo.py
 :wq
 ```
 
-<img src="../_static/media/chapter_9/section_6/image10.png"  />
+<img src="../_static/media/chapter_9/section_6/image10.png" class="common_img"  />
 
 :::{Note}
 
@@ -734,7 +734,7 @@ Therefore, the communication architecture of ROS is the soul of ROS and also the
 
 In ROS, topics use an asynchronous communication mechanism. They employ a publish/subscribe model, where data is transmitted from publishers to subscribers. Multiple subscribers or publishers can exist for the same topic. The topic model is illustrated in the following diagram:
 
-<img src="../_static/media/chapter_9/section_7/image2.png"  alt="image108" />
+<img class="common_img" src="../_static/media/chapter_9/section_7/image2.png"  alt="image108" />
 
 Service adopts Synchronous Communication Mechanism and uses client/ server model. In this model, client will send request, and server will response after processing.
 
@@ -1015,19 +1015,19 @@ print(joint_angles*57.3)
 The unit of the **"joint_angles"** is radian. And joint_angles times 57.3 equals the final servo angle in degree. 
 The angle of corresponding servo is as the figure below.
 
-<img class="common_img" src="../_static/media/chapter_9/section_10/image24.png"  />
+<img class="common_img" src="../_static/media/chapter_9/section_10/image24.png" style="width:600px"  />
 
-<img class="common_img" src="../_static/media/chapter_9/section_10/image26.png"  />
+<img class="common_img" src="../_static/media/chapter_9/section_10/image26.png" style="width:600px" />
 
 Let's take a look at the relationship between servo angle and PuppyPi's posture. Take ID1 and ID2 for example.
 In this program, the angle of ID1 servo is 57.33238425, and the current posture of PuppyPi is as the figure below shown.
 
-<img src="../_static/media/chapter_9/section_10/image27.png"  alt="image22" />
+<img class="common_img" style="width:780px" src="../_static/media/chapter_9/section_10/image27.png"  alt="image22" />
 
 When the angle of ID1 servo is positive, the corresponding leg will swing backward. When it is negative, the leg will swing forward.
 The angle of ID2 servo is 14.31023196, and the current posture of PuppyPi is as the figure below shown.
 
-<img src="../_static/media/chapter_9/section_10/image28.png"  alt="image16" />
+<img class="common_img" style="width:780px" src="../_static/media/chapter_9/section_10/image28.png"  alt="image16" />
 
 When the value is positive, the servo arm of ID2 servo is below the horizontal. When it is negative, the servo arm is above the horizontal.
 
@@ -1116,13 +1116,13 @@ rosed puppy_control puppy_demo.py
 
 (4) Press "**i**" key to start editing. For better observation, set the speed as 0, that is set **"x"** in **"PuppyMove"** as 0.
 
-<img src="../_static/media/chapter_9/section_12/image10.png"  />
+<img src="../_static/media/chapter_9/section_12/image10.png" class="common_img" />
 
-<img src="../_static/media/chapter_9/section_12/image11.png"  />
+<img src="../_static/media/chapter_9/section_12/image11.png" class="common_img" />
 
 (5) Modify "**roll**" and "**pitch**" in "**PuppyPose**". "**roll**" represents roll angle, and "**pitch**" represents pitch angle, both ranging from -31 to 31 degree. 
 
-<img src="../_static/media/chapter_9/section_12/image13.png"  />
+<img src="../_static/media/chapter_9/section_12/image13.png" class="common_img" />
 
 <img src="../_static/media/chapter_9/section_12/image15.png"  />
 
@@ -1136,7 +1136,7 @@ we should take PuppyPi as first-person perspective when making adjustment. When 
 :wq
 ```
 
-<img src="../_static/media/chapter_9/section_12/image16.png"  />
+<img src="../_static/media/chapter_9/section_12/image16.png" class="common_img" />
 
 (7) Input command **"rosrun puppy_control puppy_demo.py"** and press Enter to run the program.
 
@@ -1163,13 +1163,13 @@ Gait is used to describe how animal walks.
 In terms of balance method, PuppyPi's gaits are divided into three types, including static gait, dynamic gait and quasi-static gait. 
 And Walk is static gait, Trot is dynamic gait and Amble quasi-static gait.
 
-<img src="../_static/media/chapter_9/section_13/image2.png"  alt="" />
+<img src="../_static/media/chapter_9/section_13/image2.png" class="common_img"  alt="" />
 
 ### 4.13.3 Leg Distribution
 
 The legs of PuppyPi are numbered in this order as the picture shown.
 
-<img src="../_static/media/chapter_9/section_13/image3.png"  alt="path66" />
+<img class="common_img" style="width:600px;" src="../_static/media/chapter_9/section_13/image3.png"  alt="path66" />
 
 ### 4.13.4 Dynamic Gait Control
 
@@ -1186,9 +1186,9 @@ The input command should be case sensitive. And the key words can be complemente
 
 ①  Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-② Click<img src="../_static/media/chapter_9/section_13/image6.png"  />to open command line terminal
+② Click <img src="../_static/media/chapter_9/section_13/image6.png"  /> to open command line terminal
 
-③ Input the command "rosed puppy_control puppy_demo.py" to edit "puppy_demo.py"
+③ Input the command to edit "**puppy_demo.py**"
 
 ```bash
 rosed puppy_control puppy_demo.py
@@ -1196,7 +1196,7 @@ rosed puppy_control puppy_demo.py
 
 ④ The codes of gait is in 24th line. The program is default to execute Trot gait, therefore the program can be called directly.
 
-<img src="../_static/media/chapter_9/section_13/image11.png"  />
+<img src="../_static/media/chapter_9/section_13/image11.png" class="common_img" />
 
 **(3)  Dynamic Gait Setting**
 
@@ -1204,7 +1204,7 @@ We need to set three parameters, including the time when 4 legs all touch the gr
 
 ]The codes to be set are in the red frame. 
 
-<img src="../_static/media/chapter_9/section_13/image13.png"  />
+<img src="../_static/media/chapter_9/section_13/image13.png" class="common_img" />
 
 overlap_time represents the time when 4 legs all touch the ground, swing_time refers to the time when one leg lifts, and clearance_time is interval to switch between front leg and hind leg.
 
@@ -1212,7 +1212,7 @@ Please ensure clearance_time=0, overlap_time＞0 and swing_time＞0 when setting
 
 In Trot gait, PuppyPi's four legs switch in this sequence, 1 2→3 4→1 2, as shown in the below figure.
 
-<img src="../_static/media/chapter_9/section_13/image15.png"  alt="image77" />
+<img src="../_static/media/chapter_9/section_13/image15.png"  alt="image77" class="common_img" style="width:820px;" />
 
 The bulge represents that the leg is lifted, ② represents the time when four legs all touch the ground and ③ represents the time when one leg lifts the ground.
 
@@ -1242,11 +1242,11 @@ rosed puppy_control puppy_demo.py
 
 ④ You can find the code calling the gait at the location indicated in the following image. The program is default to execute Trot gait, therefore we need to modify the program. Press "**i**" key to enter editing mode. 
 
-<img src="../_static/media/chapter_9/section_13/image11.png"  />
+<img src="../_static/media/chapter_9/section_13/image11.png" class="common_img" />
 
 ⑤ Modify **"Trot"** as **"Walk"**.
 
-<img src="../_static/media/chapter_9/section_13/image17.png"  />
+<img src="../_static/media/chapter_9/section_13/image17.png" class="common_img" />
 
 **(3) Static Gait Setting**
 
@@ -1254,7 +1254,7 @@ We need to set three parameters, including the time when 4 legs all touch the gr
 
 The codes to be set are in the red frame.
 
-<img src="../_static/media/chapter_9/section_13/image19.png"  />
+<img src="../_static/media/chapter_9/section_13/image19.png" class="common_img" />
 
 overlap_time represents the time when 4 legs all touch the ground, swing_time refers to the time when one leg lifts, and clearance_time is interval to switch between front leg and hind leg.
 
@@ -1262,7 +1262,7 @@ Please ensure that clearance_time＞swing_time and overlap_time＞0 when setting
 
 In Walk gait, PuppyPi's four legs switch in this sequence, 1→2→3→4→1, as shown in the below figure.
 
-<img src="../_static/media/chapter_9/section_13/image21.png"  alt="image78" />
+<img src="../_static/media/chapter_9/section_13/image21.png"  alt="image78" class="common_img" style="width:820px;" />
 
 The bulge represents that the leg is lifted, 
 
@@ -1287,7 +1287,7 @@ Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
 ② Click <img src="../_static/media/chapter_9/section_13/image6.png" style="width:0.32292in;height:0.30208in" /> to open command line terminal
 
-③ Input the command **"rosed puppy_control puppy_demo.py"** to edit **"puppy_demo.py"**.
+③ Input the command to edit **"puppy_demo.py"**.
 
 ```bash
 rosed puppy_control puppy_demo.py
@@ -1295,25 +1295,25 @@ rosed puppy_control puppy_demo.py
 
 ④ You can find the code calling the gait at the location indicated in the following image. The program is default to execute Trot gait, therefore we need to modify the program. Press "**i**" key to enter editing mode
 
-<img src="../_static/media/chapter_9/section_13/image11.png"  />
+<img src="../_static/media/chapter_9/section_13/image11.png" class="common_img" />
 
 ⑤ Modify **"Trot"** as **"Amble"**.
 
-<img src="../_static/media/chapter_9/section_13/image22.png"  />
+<img src="../_static/media/chapter_9/section_13/image22.png" class="common_img" />
 
 **(3) Quasi-static Gait Setting**
 
 We need to set three parameters, including the time when 4 legs all touch the ground, the time when one leg lifts and the interval to switch between front leg and hind leg.
 The codes to be set are in the red frame.
 
-<img src="../_static/media/chapter_9/section_13/image24.png"  />
+<img src="../_static/media/chapter_9/section_13/image24.png" class="common_img" />
 
 overlap_time represents the time when 4 legs all touch the ground, swing_time refers to the time when one leg lifts, and clearance_time is interval to switch between front leg and hind leg.
 Please ensure that 0<clearance_time<swing_time and overlap_time＞0 when setting.
 
 In Amble gait, PuppyPi's four legs switch in this sequence, 1→2→3→4→1, as shown in the below figure.
 
-<img src="../_static/media/chapter_9/section_13/image26.png"  alt="image79" />
+<img src="../_static/media/chapter_9/section_13/image26.png"  alt="image79" class="common_img" style="width:820px;" />
 
 The bulge represents that the leg is lifted, 
 
@@ -1412,13 +1412,13 @@ rosed puppy_control puppy_demo.py
 
 (4) Press **"i"** key to start editing. For better observation, set the speed as 0, that is set **"x"** in **"PuppyMove"** as 0, as the picture shown.
 
-<img src="../_static/media/chapter_9/section_14/image10.png"  />
+<img src="../_static/media/chapter_9/section_14/image10.png"  class="common_img"/>
 
-<img src="../_static/media/chapter_9/section_14/image11.png"  />
+<img src="../_static/media/chapter_9/section_14/image11.png" class="common_img" />
 
 (5) Modify **"height"** in **"PuppyPose"** to adjust PuppyPi's height within -15~-5 cm.
 
-<img src="../_static/media/chapter_9/section_14/image13.png"  />
+<img src="../_static/media/chapter_9/section_14/image13.png" class="common_img" />
 
 :::{Note} 
  the smaller the value, the higher the height. -15 is the maximum height and -5 is the minimum height.
@@ -1430,7 +1430,7 @@ rosed puppy_control puppy_demo.py
 :wq
 ```
 
-<img src="../_static/media/chapter_9/section_14/image15.png"  />
+<img src="../_static/media/chapter_9/section_14/image15.png" class="common_img" />
 
 (7) Input command and press Enter to run the program.
 
@@ -1473,7 +1473,7 @@ rosed puppy_control puppy_demo.py
 
 (4) Modify **"x"** in **"PuppyMove"** to adjust PuppyPi's speed within -20~20 cm/s.
 
-<img src="../_static/media/chapter_9/section_15/image10.png"  />
+<img src="../_static/media/chapter_9/section_15/image10.png" class="common_img" />
 
 :::{Note}
 ① When the parameter is positive, PuppyPi will move forward. When the parameter is negative, PuppyPi will move backward.
@@ -1487,7 +1487,7 @@ rosed puppy_control puppy_demo.py
 :wq
 ```
 
-<img src="../_static/media/chapter_9/section_15/image12.png"  />
+<img src="../_static/media/chapter_9/section_15/image12.png" class="common_img" />
 
 The modification of the backward speed follows the same procedure. Everyone can try different speed settings to compare the changes in the robot dog's speed.
 
@@ -1530,19 +1530,19 @@ rosed puppy_control puppy_demo.py
 
 (4) Press "**i**" to start editing. For better observation, we need to modify "**x**" in **"PuppyMove"** as 0 to set the speed as 0.
 
-<img src="../_static/media/chapter_9/section_16/image10.png"  />
+<img src="../_static/media/chapter_9/section_16/image10.png" class="common_img" />
 
-<img src="../_static/media/chapter_9/section_16/image11.png"  />
+<img src="../_static/media/chapter_9/section_16/image11.png" class="common_img" />
 
 (5) Modify "**pitch**" in "**PuppyPose**" within -31°~31°. "**pitch**" represents the pitch angle. When the value is positive, PuppyPi will look up. When it is negative, PuppyPi will look down. For example, we modify "**pitch**" as -15 to make PuppyPi look down 15° . 
 
-<img src="../_static/media/chapter_9/section_16/image13.png"  />
+<img src="../_static/media/chapter_9/section_16/image13.png" class="common_img" />
 
-<img src="../_static/media/chapter_9/section_16/image14.png"  />
+<img src="../_static/media/chapter_9/section_16/image14.png" class="common_img" />
 
 (6) Then set the gait. Please jump to 24th line to check the gait type. If the current gait is "**Trot**", remain the default setting. If not, we need to modify it as "**Trot**".
 
-<img src="../_static/media/chapter_9/section_16/image16.png"  />
+<img src="../_static/media/chapter_9/section_16/image16.png" class="common_img"  />
 
 (7) Lastly, modify "**x**" in "**PuppyMove**". For example, we modify it as 5 to make PuppyPi trot forward with head down in 5cm/s. After modification, press "**Esc**" and input ":wq" to keep the modified data.
 
@@ -1550,7 +1550,7 @@ rosed puppy_control puppy_demo.py
 :wq
 ```
 
-<img src="../_static/media/chapter_9/section_16/image18.png"  />
+<img src="../_static/media/chapter_9/section_16/image18.png" class="common_img" />
 
 :::{Note}
 * You also can modify other gaits in this way.
