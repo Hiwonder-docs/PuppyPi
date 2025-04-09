@@ -329,7 +329,7 @@ It is inconvenient to input command in the terminator terminal every time. There
 
 <img class="common_img" src="../_static/media/chapter_8/section_3/image11.png"  />
 
-(3)  In the  column, input command **"docker exec -it -u ubuntu -w /home/ubuntu 82df /bin/bash"** to enter the container. 
+(3)  In the  column, input command **"xhost + && docker exec -it -u ubuntu -w /home/ubuntu puppypi /bin/zsh"** to enter the container. 
 
 :::{Note}
 
@@ -338,7 +338,7 @@ It is inconvenient to input command in the terminator terminal every time. There
 :::
 
 ```bash
-host + && docker exec -it -u ubuntu -w /home/ubuntu puppypi /bin/zsh
+xhost + && docker exec -it -u ubuntu -w /home/ubuntu puppypi /bin/zsh
 ```
 
 <img class="common_img" src="../_static/media/chapter_8/section_3/image12.png"  />

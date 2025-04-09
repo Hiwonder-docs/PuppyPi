@@ -216,7 +216,7 @@ The complete code is as below:
 
 (6) Click "**Power on this Virtual Machine**" to run it.
 
-<img src="../_static/media/chapter_11/section_2/image5.png"  class="common_img"/>
+<img src="../_static/media/chapter_11/section_2/image5.png"  class="common_img" style="width:347px;"/>
 
 ### 6.2.2 Open Robot Dog URDF Model File
 
@@ -279,7 +279,9 @@ This section defines a Gazebo plugin, "**gazebo_ros_control**", which is used fo
 
 **(2) Macro Definitions**
 
-This section defines several Xacro macros, which are used to easily set the color and physical properties of the robot's links. The "**model_color**" macro is used to set the color of a link, while the "**link_setup_block**" macro is used to define the physical properties of a link. <img src="../_static/media/chapter_11/section_2/image30.png" style="width:5.76597in;height:1.02292in" />
+This section defines several Xacro macros, which are used to easily set the color and physical properties of the robot's links. The "**model_color**" macro is used to set the color of a link, while the "**link_setup_block**" macro is used to define the physical properties of a link. 
+
+<img src="../_static/media/chapter_11/section_2/image30.png" style="width:5.76597in;height:1.02292in" />
 
 **(3) Using Macro**
 
@@ -461,11 +463,11 @@ Virtual Machine PuppyPi_VM：[PuppyPi_VM](https://pan.baidu.com/share/init?surl=
 
 (1) Turn on the PuppyPi robot. On the computer with VMware installed, connect to the robot's hotspot. The hotspot name typically follows the format:
 
-<img class="common_img" src="../_static/media/chapter_11/section_4/image10.png" style="width:3.75in;height:2.38542in" />
+<img class="common_img" src="../_static/media/chapter_11/section_4/image10.png" />
 
 (2) After successfully connecting to the hotspot, open VMware and click "**Edit > Virtual Network Editor**" in the menu. 
 
-<img src="../_static/media/chapter_11/section_4/image12.png" class="common_img" />
+<img src="../_static/media/chapter_11/section_4/image12.png" class="common_img" style="width:358px;" />
 
 (3) In the network card list under "**Bridge Mode**", select the wireless network adapter of your computer. The name of the wireless network adapter may vary by device but typically includes "**802.11ac**" in its name. Select the adapter with "**802.11ac**", and click "**OK**" to confirm.
 
@@ -479,7 +481,7 @@ Virtual Machine PuppyPi_VM：[PuppyPi_VM](https://pan.baidu.com/share/init?surl=
 
 (5) Once on the Ubuntu desktop, right-click anywhere, select **"Open in Terminal"** to launch the terminal. 
 
-<img src="../_static/media/chapter_11/section_4/image15.png" class="common_img" />
+<img src="../_static/media/chapter_11/section_4/image15.png" class="common_img" style="width:750px;" />
 
 (6) Enter the following command and press Enter. The red box in the terminal output will display the IP address of the Ubuntu system.
 
