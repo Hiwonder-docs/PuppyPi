@@ -1,486 +1,485 @@
-# ROS机器狗仿真课程
+# 6. ROS1-Simulation Course
 
-## 1. URDF模型简介与入门
+## 6.1 Introduction to URDF Models and Getting Started
 
-### 1.1 URDF模型简介
+### 6.1.1 URDF Model Introduction
 
-URDF是一种基于XML规范、用于描述机器人结构的格式。这一格式的目的在于提供一种尽可能通用的机器人描述规范。
+The Unified Robot Description Format (URDF) is an XML file format widely used in ROS (Robot Operating System) to comprehensively describe all components of a robot.
 
-机器人通常被建模成由多个连杆和关节组成的结构，连杆可以理解成有质量的刚性物体，关节可以理解成，用于连接和限制两个连杆之间的相对运动。
+Robots are typically composed of multiple links and joints. A link is defined as a rigid object with certain physical properties, while a joint connects two links and constrains their relative motion.
 
-当多个连杆通过关节相互连接又相互限制，就构成了一个机器人运动模型。URDF文档即描述了这样的一系列关节与连杆的相对关系、惯性属性、几何特点和碰撞模型。
+By connecting links with joints and imposing motion restrictions, a kinematic model is formed. The URDF file specifies the relationships between joints and links, their inertial properties, geometric characteristics, and collision models.
 
-### 1.2 xacro模型与URDF模型比较
+### 6.1.2 Comparison between xacro and URDF Model
 
-URDF模型是比较简单的机器人模型描述文件，它有结构明了，容易理解的特点，若用URDF模型来描述比较复杂的机器人结构时，就会出现描述文件冗长，无法简洁的描述机器人模型。
+The URDF model serves as a description file for simple robot models, offering a clear and easily understandable structure. However, when it comes to describing complex robot structures, using URDF alone can result in lengthy and unclear descriptions.
 
-xacro模型是URDF模型的拓展形式， 本质上两者是一样的。若使用xacro格式来描述机器人，则可以通过更高级的方式来简洁化机器人描述文件，能提高描述代码的复用性，一定程度上解决URDF模型的冗长问题。
+To address this limitation, the xacro model extends the capabilities of URDF while maintaining its core features. The xacro format provides a more advanced approach to describe robot structures. It greatly improves code reusability and helps avoid excessive description length.
 
-例如，我们需要描述一个人形机器人的双腿，若使用URDF模型，我们需要将单腿单独描述，若使用的是xacro模型，则只需要描述单腿，进行复用。
+For instance, when describing the two legs of a humanoid robot, the URDF model would require separate descriptions for each leg. On the other hand, the xacro model allows for describing a single leg and reusing that description for the other leg, resulting in a more concise and efficient representation.
 
-### 1.3 URDF模型基本语法
+### 6.1.3 Basic Syntax of URDF Model
 
-- #### 1.3.1 XML基础语法
+- #### XML Basic Syntax
 
-由于URDF模型是基于XML规范编写的，我们需要了解XML格式的基本构成。
+The URDF model is written using XML standard. 
 
-(1) **元素：**
+**(1) Elements:**
 
-元素可以根据我们想要定义的名字去定义，定义元素的时候我们可以根据下列公式：
-
-```xml
-<元素>
-</元素>
-```
-
-(2) **属性：**
-
-属性是被包含到元素内部，用于定义一个元素的一些性质和参数，定义元素的时候可以根据下列公式：
+An element can be defined as desired using the following formula:
 
 ```xml
-<元素
-    属性_1 = "属性值1"
-    属性_2 = "属性值2">
-</元素>
+<element>
+</element>
 ```
 
-(3) **注释：**
+**(2) Properties:**
 
-注释不影响其他属性和元素，定义注释时可以根据下列公式：
+Properties are included within elements to define characteristics and parameters. Please refer to the following formula to define an element with properties:
 
 ```xml
-<!-- 注释内容>
+<element
+property_1="property value1"
+property_2="property value2">
+</element>
 ```
 
-- #### 1.3.2 连杆的介绍
+**(3) Comments:**
 
-连杆在URDF模型中以"link"作为标签，它描述了机器人某个刚体部分的外观和物理属性，编写连杆动作会用到下图标签：
+Comments have no impact on the definition of other properties and elements. Please use the following formula to define a comment:
+
+```xml
+<!-- comment content -->
+```
+
+- #### Link
+
+The Link element describes the visual and physical properties of the robot's rigid component. The following tags are commonly used to define the motion of a link:
 
 <img class="common_img" src="../_static/media/chapter_11/section_1/image2.png"  />
 
-(1) \<visual\>：描述机器人link部分的外观参数，如尺寸、颜色、形状等。
+(1) \<visual\>：Describe the appearance of the link, such as size, color and shape.
 
-(2) \<inertial\>：描述link的惯性参数，主要用到机器人动力学的运算部分。
+(2) \<inertial\>：Describe the inertia parameters of the link, which will used in dynamics calculation.
 
-(3) \<collision\>：描述link的碰撞属性。
+(3) \<collision\>：Describe the collision inertia property of the link.
 
-每个标签都含相应的子标签和不同的作用，可以参考下表：
+Each tag contains the corresponding child tag. The functions of the tags are listed below.
 
-| **标签** | **作用** |
+| Tag | Function |
 |:---|:---|
-| origin | 对连杆位姿的描述。内部有两个参数：xyz描述的是连杆在仿真地图中的位姿，rpy描述的是连杆在仿真地图中的姿态。 |
-| mess | 描述连杆的质量 |
-| inertia | 描述连杆的惯性，由于惯性矩阵的对称性，需要填入六个参数ixx, ixy, ixz, iyy, iyz, izz作为属性。这些参数需要通过计算得到。 |
-| geometry | 描述连杆的形状，它有用mesh参数加载纹理文件，用filename参数加载纹理的路径地址。还有三个子标签：box、cylinder、sphere，分别表示矩形、圆柱、球。 |
-| material | 描述连杆的材质，参数name为必填项。通过子标签color可以调节颜色和透明度。 |
+| origin | Describe the pose of the link. It contains two parameters, including xyz and rpy. Xyz describes the pose of the link in the simulated map. Rpy describes the pose of the link in the simulated map. |
+| mess | Describe the mess of the link |
+| inertia | Describe the inertia of the link. As the inertia matrix is symmetrical, these six parameters need to be input, ixx, ixy, ixz, iyy, iyz and izz, as properties. These parameters can be calculated. |
+| geometry | Describe the shape of the link. It uses mesh parameter to load texture file, and em[ploys filename parameters to load the path for texture file. It has three child tags, namely box, cylinder and sphere. |
+| material | Describe the material of the link. The parameter name is the required filed. The tag color can be used to change the color and transparency of the link. |
 
 <p id="anchor_1_3_3"></p>
 
-- #### 1.3.3 关节
+- #### Joint
 
-关节在URDF模型中以"joint"作为标签，描述机器人关节的运动学和动力学属性，以及运动的位置和速度限制。根据运动的形式，将关节分为下表中六种类型：
+The "Joint" tag describes the kinematic and dynamic properties of the robot's joints, including the joint's range of motion, target positions, and speed limitations. In terms of motion style, joints can be categorized into six types.
 
-|                  **类型和说明**                  |  **标签**  |
-|:------------------------------------------------:|:----------:|
-|          旋转关节：可以围绕单轴无限旋转          | continuous |
-| 旋转关节：类似于continuous，但是有旋转的角度限制 |  revolute  |
-|   滑动关节：沿某一轴线移动的关节，带有位置极限   | prismatic  |
-|    平面关节：允许在平面正交方向上平移或者旋转    |   planar   |
-|         浮动关节：允许进行平移、旋转运动         |  floating  |
-|          固定关节：不允许运动的特殊关节          |   fixed    |
+<img src="../_static/media/chapter_11/section_1/image1.png"  />
 
-编写关节动作会用到下图标签：
+The following tags will be used to write joint motion.
 
 <img src="../_static/media/chapter_11/section_1/image3.png"  />
 
-(1) \<parent_link\>：父连杆。
+(1) \<parent_link\>： Parent link
 
-(2) \<child_link\>：子连杆。
+(2) \<child_link\>：Child link
 
-(3) \<calibration\>：用于校准关节角度。
+(3) \<calibration\>：Calibrate the joint angle
 
-(4) \<dynamics\>：描述运动的一些物理属性。
+(4) \<dynamics\>：Describes some physical properties of motion
 
-(5) \<limit\>：描述运动的一些极限值。
+(5) \<limit\>：Describes some limitations of the motion
 
-每个标签都含相应的子标签和不同的作用，可以参考下表：
+The function of each tag is listed below. Each tag involves one or several child tags.
 
-| **标签** | **作用** |
+| Tag | Function |
 |:--:|:--:|
-| origin | 对父连杆位姿的描述。内部有两个参数：xyz描述的是连杆在仿真地图中的位姿，rpy描述的是连杆在仿真地图中的姿态。 |
-| axis | 设置子连杆对父连杆的XYZ三轴中任意一轴做转动。 |
-| limit | 限制子连杆，lower属性和upper属性限制了旋转的弧度范围，effort属性限制的是转动过程中的受力范围。(正负value值，单位为牛或N)，velocity属性限制了转动时的速度，单位为米/秒或m/s。 |
-| mimic | 描述该关节与其他关节的关系 |
-| safety_controller | 描述安全控制器参数，用于保护机器人的关节运动。 |
+| origin | Describe the pose of the parent link. It involves two parameters, including xyz and rpy. Both xyz and rpy describe the pose of the link in simulated map. |
+| axis | Control the child link to rotate around any axis of the parent link. |
+| limit | The motion of the child link is constrained using the lower and upper properties, which define the limits of rotation for the child link. The effort properties restrict the allowable force range applied during rotation (values: positive and negative; units: N). The velocity properties confine the rotational speed, measured in meters per second (m/s). |
+| mimic | Describe the relationship between joints. |
+| safety_controller | Describes the parameters of the safety controller used for protecting the joint motion of the robot. |
 
-- #### 1.3.4 robot标签
+- #### robot Tag
 
-完整的机器人最顶层的标签，\<link\>标签和\<joint\>标签必须包含在\<robot\>内，格式如下：
+The complete top tags of a robot, including the <link> and <joint> tags, must be enclosed within the <robot> tag. The format is as follows:
 
 <img src="../_static/media/chapter_11/section_1/image4.png"  />
 
-- #### 1.3.5 gazebo标签
+- #### gazebo Tag
 
-配合gazebo仿真器使用，可以设置一些仿真参数，使用此标签引入gazebo插件、gazebo物理属性设置等等。
+This tag is used in conjunction with the Gazebo simulator. Within this tag, you can define simulation parameters and import Gazebo plugins, as well as specify Gazebo's physical properties, and more.
 
 <img src="../_static/media/chapter_11/section_1/image5.png"  />
 
-- #### 1.3.6 编写简单的URDF模型
+- #### Write Simple URDF Model
 
-<img src="../_static/media/chapter_11/section_1/image6.png"  />
+**(1) Name the model of the robot**
 
-(1) **设置机器人模型名称**
-
-在编写URDF模型最开始时，我们需要设置机器人模型的名字："**\<robot name="机器人模型名称"\>**"。在模型编写的最后输入"**\</robot\>**"，表示该机器人模型编写完成。
+To start writing the URDF model, we need to set the name of the robot following this format: "<robot name="robot model name">". Lastly, input "</robot>" at the end to represent that the model is written successfully.
 
 <img src="../_static/media/chapter_11/section_1/image7.png"  />
 
 <img src="../_static/media/chapter_11/section_1/image8.png"  />
 
-(2) **设置连杆**
+**(2) Set links**
 
-① 编写第一个连杆，用缩进表示此连杆属于此次设置的模型内，然后需要设置连杆的名称："**\<link name="连杆名称"\>**"。在连杆编写的最后需要输入"**\</link\>**"，表示该连杆编写完成。
+① To write the first link and use indentation to indicate that it is part of the currently set model. Set the name of the link using the following format: <link name="link name">. Finally, conclude with "</link>" to indicate the successful completion of the link definition.
 
 <img src="../_static/media/chapter_11/section_1/image9.png"  />
 
 <img src="../_static/media/chapter_11/section_1/image10.png"  />
 
-② 编写连杆描述部分，用缩进表示此描述用于此次设置的连杆内，需要在描述的开头输入"\<**visual**\>"开始描述，在描述结束后输入"**\</visual\>**"。
+② Write the link description and use indentation to indicate that it is part of the currently set link, and conclude with "</visual>". 
 
 <img src="../_static/media/chapter_11/section_1/image11.png"  />
 
 <img src="../_static/media/chapter_11/section_1/image12.png"  />
 
-③ "**\<geometry\>**"是对连杆形状的描述，描述完毕后需要输入"**\</geometry\>**"，在其中，用缩进表示其内部是对连杆外形的具体描述。下图描述了一个连杆外形："**\<cylinder length="0.01"radius="0.2"/\>**"，其中，length="0.01"表示该连杆的长度为0.01米，radius="0.2"该连杆半径为0.2米，是一个圆柱体。
+③ The "<geometry>" tag is employed to define the shape of a link. Once the description is complete, include "</geometry>". Within the "<geometry>" tag, indentation is used to specify the detailed description of the link's shape. The following example demonstrates a link with a cylindrical shape: "<cylinder length="0.01" radius="0.2"/>". In this instance, "length="0.01"" signifies a length of 0.01 meters for the link, while "radius="0.2"" denotes a radius of 0.2 meters, resulting in a cylindrical shape.
 
 <img src="../_static/media/chapter_11/section_1/image13.png"  />
 
-④ "**\<origin\>**"是对连杆位置的描述，用缩进表示对连杆位置的具体描述。下图描述了一个连杆位置："**\<origin rpy="0 0 0" xyz="0 0 0"/\>**"，其中rpy为连杆的角度，xyz为连杆的坐标位置。表示连杆在坐标系中的位置为原点。
+④ The "<origin>" tag is utilized to specify the position of a link, with indentation used to indicate the detailed description of the link's position. The following example demonstrates the position of a link: "<origin rpy="0 0 0" xyz="0 0 0" />". In this example, "rpy" represents the roll, pitch, and yaw angles of the link, while "xyz" represents the coordinates of the link's position. This particular example indicates that the link is positioned at the origin of the coordinate system.
 
 <img src="../_static/media/chapter_11/section_1/image14.png"  />
 
-⑤ "**\<material\>**"是对连杆位置的描述，用缩进表示对连杆颜色的具体描述，需要在描述的开头输入"\<**material**\>"开始描述，在描述结束后输入"**\</material\>**"。下图描述了将连杆设置成黄色："**\<color rgba="1 1 0 1"/\>**"，rgba="1 1 0 1"为设置颜色阈值。
+⑤ The "<material>" tag is used to define the visual appearance of a link, with indentation used to specify the detailed description of the link's color. To start describing the color, include "<material>", and end with "</material>" when the description is complete. The following example demonstrates setting a link color to yellow: "<color rgba="1 1 0 1" />". In this example, "rgba="1 1 0 1"" represents the color threshold for achieving a yellow color.
 
 <img src="../_static/media/chapter_11/section_1/image15.png"  />
 
-(3) **设置关节**
+**(3) Set joint**
 
-① 编写第一个关节，用缩进表示此关节属于此次设置的模型内，然后需要设置关节的名称和类型："**\<joint name="关节名称" type="关节类型"\>**"。在关节编写的最后需要输入"**\</joint\>**"，表示该关节编写完成。
+① To write the first joint, use indentation to indicate that the joint belongs to the current model being set. Then, specify the name and type of the joint as follows: "<joint name="joint name" type="joint type">". Finally, include "</joint>" to indicate the completion of the joint definition.
 
 :::{Note}
-关节类型可以前往"[1.3 URDF模型基本语法\ 关节](#anchor_1_3_3)"进行学习。
+to learn about the type of the joint, please refer to "[1.3 Basic Syntax of URDF Model->1.3.3 joint](#anchor_1_3_3)". 
 :::
 
 <img src="../_static/media/chapter_11/section_1/image16.png"  />
 
 <img src="../_static/media/chapter_11/section_1/image17.png"  />
 
-② 编写关节连接连杆描述部分，用缩进表示此描述用于此次设置的关节内，需要设置parent参数和child参数。可以根据以下公式设置："**\<parent link="父连杆"/\>**"、"**\<child link="子连杆"/\>**"。当关节转动的时候，会以父连杆为支店，转动子连杆。
+② Write the description section for the connection between the link and the joint. Use indentation to indicate that it is part of the currently defined joint. The parent parameter and child parameter should be set using the following format: "<parent link="parent link"/>", and "<child link="child link" />". With the parent link serving as the pivot, the joint rotates the child link.
 
 <img src="../_static/media/chapter_11/section_1/image18.png"  />
 
-③ "**\<origin\>**"是对关节位置的描述，用缩进表示对关节位置的具体描述。下图描述了一个关节位置："**\<origin xyz="0 0 0.1"/\>**"，其中，xyz为关节的坐标位置，表示关节在坐标系的具体位置为x=0、y=0、z=0.1。
+③ "<origin>" describes the position of the joint using indention. This example describes the position of the joint: "<origin xyz="0 0 0.1" />". xyz is the coordinate of the joint.
 
 <img src="../_static/media/chapter_11/section_1/image19.png"  />
 
-④ "**\<axis\>**"是对关节位置的描述，用缩进表示对关节姿态的具体描述。下图描述了一个关节姿态："**\<axis xyz="0 0 1"/\>**"，其中，xyz为关节的姿态位置。
+④ "<axis>" describes the position of the joint adopting indention. "<axis xyz="0 0 1" />" describes one posture of a joint. Xyz specifies the pose of the joint.
 
 <img src="../_static/media/chapter_11/section_1/image20.png"  />
 
-⑤ "**\<limit\>**"是对关节运动进行限制，用缩进表示对关节角度限制的具体描述。下图描述了关节限制了转动关节最大的力不超过300牛，转动弧度的上线为3.14，下限为-3.14。其中，根据以下公式设置:effort="**关节的力度（牛）**"、velocity="**关节运动的速度**"、lower="**弧度下限**"、upper="**弧度上限**"。
+⑤ "<limit>" imposes restrictions on the joint using indention. The below picture The "<limit>" tag is used to restrict the motion of a joint, with indentation indicating the specific description of the joint angle limitations. The following example describes a joint with a maximum force limit of 300 Newtons, an upper limit of 3.14 radians, and a lower limit of -3.14 radians. The settings are defined as follows: "effort="joint force (N)", velocity="joint motion speed", lower="lower limit in radians", upper="upper limit in radians".
 
 <img src="../_static/media/chapter_11/section_1/image21.png"  />
 
-⑥ "**\<dynamics\>**"是对关节位动力学的描述，用缩进表示对关节姿态的具体描述。下图描述了一个关节的动力学参数："\<**dynamics damping="50"friction="1"/\>**"，其中，damping="**阻尼值**"、friction="**摩檫力**"。
+⑥ "<dynamics>" describes the dynamics of the joint using indention. "<dynamics damping="50" friction="1" />" describes dynamics parameters of a joint.
 
 <img src="../_static/media/chapter_11/section_1/image22.png"  />
 
+The complete code is as below:
 
-## 2. ROS机器狗URDF模型说明
+<img src="../_static/media/chapter_11/section_1/image6.png"  />
 
-### 2.1 导入虚拟机
+## 6.2 ROS Robot Dog URDF Model Description
 
-- #### 1. 安装虚拟机软件
+### 6.2.1 Import Virtual Machine
 
-虚拟机镜像 PuppyPi_VM：[百度网盘](https://pan.baidu.com/share/init?surl=U1ybIJ--KNu5fvi1ayAtGw)
+- #### Start and Import the Virtual Machine
 
-虚拟机软件的安装可以参考："**[虚拟机安装与导入](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/appendix/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E5%AF%BC%E5%85%A5.docx)**"中的教程进行安装。
+(1)  1)Extract the virtual machine files located in the same directory to any non-Chinese path.
 
-- #### 2. 虚拟机的打开和导入
-
-(1)  将同目录下的虚拟机文件解压到任意非中文路径下。
-
-(2)  将虚拟机文件"**PuppyPi_VM.zip**"解压以后打开客户端。
+(2)  Extract and open the client from the "PuppyPi_VM.zip" file 
 
 <img class="common_img" src="../_static/media/chapter_11/section_2/image1.png"  />
 
-(3)  点击"**打开虚拟机**"。
+(3)  Open a virtual machine.
 
 <img class="common_img" src="../_static/media/chapter_11/section_2/image2.png"  />
 
-(4)  前往虚拟机解压的路径，选择"**PuppyPi_VM.ovf**"，点击"**打开。**
+(4) Navigate to the location where the virtual machine was extracted, select the "PuppyPi_VM.ovf" file, and click "Open."
 
 <img src="../_static/media/chapter_11/section_2/image3.png"  />
 
-(5)  点击"**浏览**"设置虚拟机存放路径，建议存放至固态硬盘，因为存放磁盘的读写速度将会影响虚拟机的速度，最后点击"**导入**"。
+(5) Click "Browse" to set the virtual machine storage path. It is recommended to store it on a solid-state drive (SSD), as the read/write speed of the storage drive will affect the virtual machine's performance. Finally, click "Import".
 
 <img class="common_img" src="../_static/media/chapter_11/section_2/image4.png"  />
 
-(6)  点击"**开启此虚拟机。**
+(6) Click "Power on this Virtual Machine" to run it.
 
 <img src="../_static/media/chapter_11/section_2/image5.png"  />
 
-### 2.2 打开机器狗URDF模型文件
+### 6.2.2 Open Robot Dog URDF Model File
 
-(1)  在VMware虚拟机的Ubuntu系统中按下"Ctrl+Alt+T"打开终端，输入以下指令进入储存URDF模型的文件夹："**cd puppy_sim/src/puppy_description/urdf**"
+(1) In the Ubuntu system of the VMware virtual machine, press "Ctrl+Alt+T" to open the terminal. Then, enter the following command to navigate to the folder where the URDF model is stored："**cd puppy_sim/src/puppy_description/urdf**".
 
 <img src="../_static/media/chapter_11/section_2/image14.png"  />
 
-(2)  以"**pug.urdf.xacro**"为例，在该目录下输入指令"**vim puppy.urdf.xacro**"，用vim 打开ROSPug机器狗的URDF模型。
+(2) For example, to open the robot dog's URDF model, enter the following command in this directory:
+
+```py
+vim puppy.urdf.xacro
+```
 
 <img src="../_static/media/chapter_11/section_2/image16.png"  />
 
-(3)  出现下图则证明打开了ROSPug机器狗URDF模型文件：
+(3) If the screen appears as shown below, it confirms that the PuppyPi robot dog's URDF model file has been successfully opened.
 
 <img src="../_static/media/chapter_11/section_2/image18.png"  />
 
-### 2.3 URDF模型分析和理解
+### 6.2.3 Analysis and Understanding of the URDF Model
 
-- #### 2.3.1 URDF模型的结构
+- #### Structure of the URDF Model
 
-ROSPug的URDF模型文件由3个文件组成，分别是：**"puppy.urdf.xacro"、"puppy.gazebo.xacro"、"puppy.transmission.xacro"**，其中puppy.urdf.xacro是整个机器人的主URDF文件，通过include其他2个xacro文件，使整个URDF的各个文件组合在一起，就定义了这个ROSPug的整个机械结构、动力学、仿真等信息。文件之间通过include和宏引用组织在一起，这样可以划分功能模块，便于阅读和维护最终形成一个完整的URDF模型文件。
+The URDF model of the PuppyPi robot consists of three files: **"puppy.urdf.xacro"**, **"puppy.gazebo.xacro"**, and **"puppy.transmission.xacro"**. Among these, puppy.urdf.xacro is the main URDF file for the entire robot. It includes the other two xacro files, puppy.gazebo.xacro and puppy.transmission.xacro, which together define the robot's complete mechanical structure, dynamics, and simulation information.
+The files are organized using include directives and macros, which allow for functional modularization. This makes the model easier to read, maintain, and update, ultimately forming a complete and organized URDF model.
 
-- #### 2.3.2 puppy.urdf.xacro分析
+- #### Analysis of puppy.urdf.xacro 
 
-它定义了机器人的基本结构，包括机身、关节、连接等。这个文件中也包含了一些宏定义和属性定义，这些定义在代码中可以被多次使用，以简化代码和避免出现重复的代码。由于代码较长，所以这里将分为3个部分并举例介绍，主要包括以下部分：
+This file defines the basic structure of the robot, including the body, joints, and connections. It also includes some macro and property definitions, which can be reused multiple times in the code to simplify it and avoid redundancy. Since the code is relatively long, it will be divided into three parts for easier explanation, covering the following sections:
 
-(1) **模型声明和属性定义**
+**(1)  Model Declaration and Property Definitions**
 
-"**robot**"标签定义了机器人模型的名称为"**puppy**"，"**property**"标签定义了一些属性值，分别代表最大力矩和关节最大速度。
+The <robot> tag defines the robot model's name as "puppy." The <property> tag defines various property values, such as maximum torque and maximum joint speed.
 
-"**include**"引入了两个文件，分别是puppy.transmission.xacro和pug.gazebo.xacro。这些文件包含了机器人传输系统和在Gazebo仿真环境中的一些属性。
+The <include> directive includes two files: puppy.transmission.xacro and puppy.gazebo.xacro. These files contain information about the robot's transmission system and its properties in the Gazebo simulation environment.
 
 <img src="../_static/media/chapter_11/section_2/image21.png"  />
 
-(2) **连杆的定义**
+**(2) Link Definition**
 
-Link元素表示机器人模型中的一个刚体，它可以包含惯性信息、可视化信息、碰撞信息等。下面是一个Link元素的示例代码，包含了惯性信息、可视化信息和碰撞信息：
+The <link> element represents a rigid body in the robot model and can contain information such as inertia, visualization, and collision data. Below is an example code for a <link> element that includes inertia, visualization, and collision information:
 
 <img src="../_static/media/chapter_11/section_2/image23.png"  />
 
-(3) **关节的定义**
+**(3) Joint Definition** 
 
-Joint元素表示机器人模型中的一个关节，它连接两个Link，并定义了它们之间的相对运动。下面是一个Joint元素的示例代码，包含了关节的类型、连接的Link、关节轴的方向和关节限制等信息：<img src="../_static/media/chapter_11/section_2/image25.png" style="width:5.14583in;height:1.15625in" />
+The <joint> element represents a joint in the robot model, connecting two links and defining their relative motion. Below is an example code for a <joint> element that includes joint type, connected links, joint axis direction, and joint limits:<img src="../_static/media/chapter_11/section_2/image25.png" style="width:5.14583in;height:1.15625in" />
 
-- #### 2.3.3 puppy.gazebo.xacro分析
+- #### Analysis of puppy.gazebo.xacro
 
-主要用于Gazebo仿真器中创建机器人模型。它定义了一个机器人的各个部件的物理特性、关节控制、传感器等信息，以便在Gazebo中进行仿真、控制和测试。由于代码较长，所以这里将分为3个部分并举例介绍，主要包括以下部分：
+This section is primarily used to define the physical characteristics, joint controls, sensors, and other information of the robot's components for simulation, control, and testing in the Gazebo environment. Since the code is relatively long, it will be divided into three parts for easier explanation, covering the following sections:
 
-(1) Gazebo插件定义
+**(1) Gazebo Plugin Definition**
 
-这个部分定义了一个Gazebo插件"**gazebo_ros_control**"，用于实现机器人的控制。这个插件的具体实现是由"**libgazebo_ros_control.so**"这个库提供的。并对Gazebo仿真类型和命名空间进行设定。
+This section defines a Gazebo plugin, "gazebo_ros_control", which is used for controlling the robot. The actual implementation of this plugin is provided by the library "libgazebo_ros_control.so". Additionally, it sets the Gazebo simulation type and defines the namespace for the robot model.
 
 <img src="../_static/media/chapter_11/section_2/image27.png" style="width:5.76736in;height:1.22222in" />
 
-(2) 宏定义
+**(2) Macro Definitions**
 
-这个标签定义了几个Xacro的宏（macro），用于方便地设置机器人模型中各个Link的颜色和物理属性。其中"**model_color**"宏用于设置Link的颜色，"**link_setup_block**"宏用于设置Link的物理属性。<img src="../_static/media/chapter_11/section_2/image30.png" style="width:5.76597in;height:1.02292in" />
+This section defines several Xacro macros, which are used to easily set the color and physical properties of the robot's links. The "model_color" macro is used to set the color of a link, while the "link_setup_block" macro is used to define the physical properties of a link.<img src="../_static/media/chapter_11/section_2/image30.png" style="width:5.76597in;height:1.02292in" />
 
-(3) 使用宏
+**(3) Using Macro**
 
-使用下述宏来设置机器人模型中各个Link的颜色和物理属性。定义model_color宏来简化连杆颜色的设置。这个宏接受一个link_name参数，并为指定的连杆设置黑色材料和重力开启。
+Use the following macros to set the color and physical properties of each link in the robot model. The "model_color" macro simplifies the process of setting the link's color. This macro accepts a link_name parameter and assigns the specified link a black material while enabling gravity for that link.
 
 <img src="../_static/media/chapter_11/section_2/image32.png" style="width:5.76736in;height:5.24931in" /> 
 
-- #### 2.3.4 puppy.transmissions.xacro分析
+- #### Analysis of puppy.transmissions.xacro
 
-这个transmissions.xacro文件定义了机器人模型中的传动系统，包括各个关节和电机之间的传动方式。在运行时，ROS会将"**transmissions.xacro**"文件转换为机器人模型中的传动系统。主要包含以下2个部分：
+The transmissions.xacro file defines the transmission system within the robot model, including the transmission methods between joints and motors. During runtime, ROS will convert the 'transmissions.xacro' file into the robot's transmission system. This file consists of the following two main parts:
 
-(1). xacro宏定义
+**(1) Xacro Macro Definitions**
 
-使用了Xacro宏定义\<xacro:macro\>来定义传动系统的模板。其中，\<transmission\>标签用于定义传动系统的类型和名称，\<joint\>标签用于指定关节驱动器接口，\<actuator\>标签用于指定机械减速比等相关属性。
+Xacro macros are used to define templates for the transmission system using the <xacro:macro> tag. The <transmission> tag specifies the type and name of the transmission system, the <joint> tag defines the joint actuator interface, and the <actuator> tag sets the mechanical reduction ratio and other related properties.
 
 <img src="../_static/media/chapter_11/section_2/image33.png" style="width:5.76597in;height:1.60278in" />
 
-(2) 定义不同的传动类型
+**(2) Defining Different Transmission Types**
 
-调用transmission块xacro宏，为每个joint定义对应的transmission。这样可以通过配置文件统一定义机器人的transmission系统。
+The transmission block Xacro macro is invoked to define the corresponding transmission for each joint. This allows the robot's transmission system to be consistently defined through configuration files.
 
 <img src="../_static/media/chapter_11/section_2/image35.png" style="width:5.76389in;height:1.26597in" />
 
-## 3. Gazebo简介与入门
+## 6.3 Gazebo Introduction
 
-### 3.1 Gazebo简介
+### 6.3.1 Gazebo Introduction
 
-Gazebo是一款3D动态模拟器，能够在复杂的室内和室外环境中准确有效地模拟机器人。与游戏引擎提供高保真度的视觉模拟功能类似，Gazebo提供高保真度的物理模拟，并提供一整套传感器模型，以及对用户和程序非常友好的交互方式。
+Gazebo is a 3D dynamic simulator that accurately and effectively simulates robots in complex indoor and outdoor environments. Similar to game engines providing high-fidelity visual simulation, Gazebo offers high-fidelity physics simulation. It provides a comprehensive set of sensor models and a user-friendly interaction method for both users and programs.
 
-(1)  Gazebo的典型用途：
+**(1)  Typical applications of Gazebo:**
 
-① 测试机器人算法
-② 设计机器人
-③ 用现实场景进行回归测试
+① Testing robot algorithms
 
-(2) Gazebo的一些主要特点：
+② Designing robots
 
-① 包含多个物理引擎
-② 包含丰富的机器人模型和环境库
-③ 包含各种各样的传感器
-④ 程序设计方便和具有简单的图形界面
+③ Conducting regression tests in real-world scenarios
 
-(3) Gazebo官方建议，Gazebo目前最好在Ubuntu或者其他的Linux发行版上运行。同时您的计算机需要具有以下功能：
+**(2) Key features of Gazebo:**
 
-① 专用GPU：Nvidia卡往往在Ubuntu中运行良好
-② 至少是Intel I5或同等产品的CPU
-③ 至少500MB的可用磁盘空间
-④ 安装尽可能高版本的Ubuntu Trusty
+① Incorporates multiple physics engines
 
-### 3.2 Gazebo的系统结构
+② Includes a diverse range of robot models and environment libraries
 
-Gazebo 使用分布式架构，其中包含用于通信、物理模拟、渲染、传感器生成和用户界面的单独库。此外，gazebo 提供两个用于运行模拟的可执行程序：
+③ Offers various sensors
 
-(1)  服务器 gzserver 用于模拟物理，渲染，和传感器；
+④ Convenient programming and a simple graphical interface
 
-(2)  客户端 gzclient 提供图形界面以可视化模拟并与模拟交互的；
+(3)  Gazebo's official recommendation is to run on Ubuntu or other Linux distributions. Additionally, your computer should have the following capabilities:
 
-(3)  客户端和服务器使用 Gazebo 通信库进行通信。
+① Dedicated GPU: Nvidia cards often perform well on Ubuntu
 
-Gazebo 的Master类似ros系统通信机制的主节点，不过它是话题（topic），提供topic名字的搜索和topic的管理。一个单独的Master可以管理多个物理环境的仿真、传感器的产生和图形界面。
+② At least an Intel I5 or equivalent CPU
 
-(1)  通信有关的库
+③ Minimum of 500MB available disk space
 
-这个库充当 Gazebo 的通信和传输机制，目前仅支持发布/订阅。通信有关的库是所有子库实现的基础，一般情况下都会包含这个库。
+④ Install the highest version of Ubuntu Trusty whenever possible
 
-① 依赖的库：Protobuf 和 boot::ASIO
+### 6.3.2 Gazebo System Structure
 
-② 外部接口：支持通过命名主题与 Gazebo 节点通信
+Gazebo employs a distributed architecture that encompasses separate libraries for communication, physics simulation, rendering, sensor generation, and the user interface. Additionally, Gazebo provides two executable programs for running simulations:
 
-③ 内部接口：没有
+(1) The server, `gzserver` is responsible for simulating physics, rendering, and sensors.
 
-④ 广播的话题：没有
+(2) The client `gzclient`  furnishes a graphical interface for visualizing the simulation and interacting with it.
 
-⑤ 订阅的话题：没有
+(3) Communication between the client and server occurs through the Gazebo communication library.
 
-(2)  物理环境的库
+Gazebo's Master is akin to the master node in the ROS system's communication mechanism but operates with topics. It facilitates topic name discovery and management. A single Master can oversee the simulation of multiple physical environments, sensor generation, and graphical interfaces.
 
-这个物理环境的库为仿真的基本部分提供一个简单和基本的界面，包括刚体、碰撞形状、关节的相关约束。这个接口已经内嵌入四个开源的物理引擎：Open Dynamics Engine(ODE)、Bullet、Simbody、Dynamic Animation and Robottics Toolkit(DART)。
+* **Communication Related Library**
 
-通过SDF格式物理描述模型的xml格式文件能够被这些物理引擎加载。它们提供不同的实现算法和仿真特性。
+This library serves as Gazebo's communication and transport mechanism, currently supporting only publish/subscribe. The communication-related library is the foundation for the implementation of all sub-libraries and is typically included in them.
 
-① 依赖的库：依赖:动力学引擎的库（内部的碰撞检测）
+① Dependent Libraries: Protobuf and boot::ASIO
 
-② 外部接口：为物理模拟提供简单通用的接口
+② External Interface: Supports communication with Gazebo nodes through named topics
 
-③ 内部接口：提供第三方动态引擎定义物理库的基本接口
+③ Internal Interface: None
 
-(3)  渲染的库
+④ Broadcast Topics: None
 
-这个解析库使用OGRE提供一个解析三维的场景的简单界面。包括灯光、纹理和天空的仿真，可以为渲染引擎编写插件。
+⑤ Subscribed Topics: None
 
-① 依赖的库：OGRE
+* **Library for Physics Environment**
 
-② 外部接口：允许加载、初始化和场景的创建
+This physics environment library provides a simple and fundamental interface for the essential components of simulation, including rigid bodies, collision shapes, and constraints related to joints. This interface is embedded with four open-source physics engines: Open Dynamics Engine (ODE), Bullet, Simbody, and Dynamic Animation and Robotics Toolkit (DART).
 
-③ 内部接口：存储用于可视化的元数据，调用 OGRE API实现模型的渲染
+Model descriptions in XML format, based on the SDF (Simulation Description Format), can be loaded by these physics engines. They offer different implementation algorithms and simulation characteristics.
 
-(4)  传感器数据生成库
+① Dependent Libraries: Dependencies include internal collision detection libraries from dynamic engine libraries.
 
-这个传感器库能够实现各种类型的传感器从物理环境仿真中监听仿真环境的更新，并根据传感器的特性去产生不同的数据。
+② External Interface: Provides a simple, general interface for physics simulation.
 
-① 依赖的库：渲染库和物理环境库
+③ Internal Interface: Offers a basic interface defining the physics library for third-party dynamic engines
 
-② 外部接口：提供基本的传感器的初始化和传感器的设置
+* **Rendering Library**
 
-③ 内部接口：TBD
+This parsing library utilizes OGRE to provide a simple interface for parsing three-dimensional scenes. It includes simulation of lighting, textures, and the sky, allowing for the creation of plugins for rendering engines.
 
-(5)  GUI
+① Dependent Library：OGRE
 
-GUI 库使用QT创建图形小部件，供用户模拟交互。用户可以通过 GUI小部件暂停或更改时间步长来控制时间流。用户还可以通过添加、修改或删除模型来修改场景。此外，还有一些用于可视化和记录模拟传感器数据的工具。
+② External Interface: Allows loading, initialization, and scene creation.
 
-① 依赖的库：渲染库和QT
+③ Internal Interface: Stores metadata for visualization and calls the OGRE API to render models.
 
-② 外部的接口：无
+* **Sensor Data Generation Library**
 
-③ 内部的接口：无
+This sensor library enables various types of sensors to listen to updates from the simulated environment in the physics library. It generates different data based on the characteristics of each sensor.
 
-### 3.3 Gazebo坐标系
+① Dependent Libraries: Dependencies include the rendering library and the physics environment library.
 
-坐标系是进行正、逆运动学分析比不可少的。下面，我们按照ROSPug模型，给大家介绍几种常用的坐标系。
+② External Interface: Provides basic sensor initialization and settings.
 
-(1)  世界坐标系
+③ Internal Interface: To be determined (TBD).
 
-世界坐标系 (World Coordinate System)是一个位于"地面"上的静止参考坐标系。它不会随着时间的改变发生平移或旋转变化。 当然，这里的"地面"是广义上的"地面"。比如，机器人位于桌面上，那么世界坐标系就位于这个桌子的平面上。
+* **GUI**
 
-(2)  腿部坐标系
+The GUI library uses QT to create graphical widgets for user simulation interaction. Users can control the flow of time by pausing or changing the time step through GUI widgets. Additionally, users can modify the scene by adding, modifying, or removing models. There are also tools for visualizing and recording simulated sensor data.
 
-腿部坐标系(Joint Coordinate System)顾名思义就是定义在腿部的坐标系。同样，腿部坐标系的建立也遵循右手定则。因此，在下图示例的机器人模型中，红轴为X轴，绿轴为Y轴，蓝轴为Z轴。
+① Dependent Libraries: Dependencies include the rendering library and QT.
 
-腿部坐标系的数量并不固定，它主要和腿的数量相关。所以，大家在建立关节坐标系时需要格外注意。  
+② External Interface: None
+
+③ Internal Interface: None
+
+### 6.3.3 Coordinate System
+
+Coordinate systems are essential for both forward and inverse kinematic analyses. Below, we'll use the PuppyPi robot model in the Gazebo environment as an example to introduce several commonly used coordinate systems.
+
+**(1)  World Coordinate System**
+
+The World Coordinate System is a stationary reference coordinate system located on the 'ground.' It undergoes no translation or rotation changes over time. Of course, here, the term 'ground' is broadly defined. For example, if the robot is on a tabletop, the world coordinate system would be situated on the plane of that table.
+
+**(2)  Leg Coordinate System**
+
+The establishment of the joint coordinate system follows the right-hand rule. Therefore, in the example robot model in the diagram below, the red axis represents the X-axis, the green axis represents the Y-axis, and the blue axis represents the Z-axis.
+
+The number of joint coordinate systems is not fixed and is mainly related to the number of legs. Therefore, extra attention should be paid when establishing joint coordinate systems.  
 
 <img src="../_static/media/chapter_11/section_3/image2.png" class="common_img"/>
 
-## 4. Gazebo仿真及运动规划
+## 6.4 Gazebo Simulation & Motion Planning
 
 :::{Note}
-①  开始仿真前，需确保机器狗有充足的电量，最好是在充满的状态下进行。
-②  注意： 以下操作全部操作需要结合VM虚拟机和机器狗进行，请提前开启机器狗。
-③  该仿真建议将机器人设置在直连模式，以直连模式来体验该玩法。
+
+* Before starting the simulation, ensure that the robot dog has sufficient battery power, preferably fully charged.
+* Please note: All the following steps require the use of both the VM virtual machine and the robot dog. Make sure to power on the robot dog in advance.
+* It is recommended to set the robot in direct connection mode to fully experience this simulation feature.
+
 :::
 
-### 4.1 安装虚拟机
+### 6.4.1 Install Virtual Machine
 
-- #### 1. 安装虚拟机软件
+- #### Install Virtual Machine Software
 
-虚拟机镜像 PuppyPi_VM：[百度网盘](https://pan.baidu.com/share/init?surl=U1ybIJ--KNu5fvi1ayAtGw)
+Virtual Machine PuppyPi_VM：[PuppyPi_VM](https://pan.baidu.com/share/init?surl=U1ybIJ--KNu5fvi1ayAtGw)
 
-虚拟机软件的安装可以参考："**[虚拟机安装与导入](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/appendix/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E5%AF%BC%E5%85%A5.docx)**"中的教程进行安装。
+- #### Open and Import the Virtual Machine
 
-- #### 2. 虚拟机的打开和导入
+(1) Extract the virtual machine files from the provided archive to any directory with a non-Chinese path.
 
-(1) 将同目录下的虚拟机文件解压到任意非中文路径下。
-
-(2) 将虚拟机文件"**PuppyPi_VM.zip**"解压以后打开客户端。
+(2) Navigate to the directory "[Software Tools->PuppyPi_VM.zip]()". Then, open the virtual machine client. 
 
 <img class="common_img" src="../_static/media/chapter_11/section_4/image1.png" style="width:0.88542in;height:0.94792in" />
 
-(3) 点击"**打开虚拟机**"。
+(3) Click-on **'Open a Virtual Machine'.**
 
-<img class="common_img" src="../_static/media/chapter_11/section_4/image2.png" style="width:5.76389in;height:1.25in" />
+<img class="common_img" src="../_static/media/chapter_11/section_4/image2.png" style="" />
 
-(4) 前往虚拟机解压的路径，选择"**PuppyPi_VM.ovf**"，点击"**打开。**
+(4) Navigate to the extracted virtual machine directory, select **'PuppyPi_VM,.ovf'**, and click "Open".
 
 <img class="common_img" src="../_static/media/chapter_11/section_4/image3.png"  />
 
-(5) 点击"浏览"设置虚拟机存放路径，建议存放至固态硬盘，因为存放磁盘的读写速度将会影响虚拟机的速度，最后点击"导入"。
+(5) Click **"Browse"** to set the storage path for the virtual machine. It is recommended to use an SSD (Solid State Drive) for storage, as the read/write speed of the storage disk will affect the performance of the virtual machine. Finally, click **"Import"**.
 
 <img class="common_img" src="../_static/media/chapter_11/section_4/image4.png"  />
 
-### 4.2 配置虚拟机网络
+### 6.4.2 Configure the Virtual Machine Network
 
-(1) 首先启动PuppyPi机器狗，使用上面安装好VMware虚拟机的电脑连接机器狗的热点，热点一般以"**HW-XXXXXXXX**"格式为名，本文以"**HW-84E02404**"为例，密码为：**hiwonder**。
+(1) Turn on the PuppyPi robot. On the computer with VMware installed, connect to the robot's hotspot. The hotspot name typically follows the format:
 
 <img class="common_img" src="../_static/media/chapter_11/section_4/image10.png" style="width:3.75in;height:2.38542in" />
 
-(2) 连接成功后返回VMware虚拟机，在软件界面点击"**编辑—\>虚拟机网络配置**"。
+(2) After successfully connecting to the hotspot, open VMware and click "Edit > Virtual Network Editor" in the menu. 
 
 <img src="../_static/media/chapter_11/section_4/image12.png"  />
 
-(3) 在弹出的"**虚拟网络编辑器**"窗口中点击底部的"**更改设置**"按钮。
+(3) In the network card list under "Bridge Mode", select the wireless network adapter of your computer. The name of the wireless network adapter may vary by device but typically includes "802.11ac" in its name. Select the adapter with "802.11ac", and click "OK" to confirm.
 
-<img class="common_img" src="../_static/media/chapter_11/section_4/image13.png"  />
-
-(4) 在"**桥接模式**"处的网卡列表中选择电脑的无线网卡，不同电脑的无线网卡可能不一样，但无线网卡名称中一般会包含"**802.11ac**"文字，选择名称中包含"**802.11ac**"的网卡即可，最后点击确定即可。
+<img class="common_img" src="../_static/media/chapter_11/section_4/image5.png"  />
 
 <img class="common_img" src="../_static/media/chapter_11/section_4/image14.png"  />
 
-(5) 点击"**开启此虚拟机**"，等待开机完成即可。
+(4) Click **"Power on this Virtual Machine"** and wait for the boot process to complete.
 
 <img class="common_img" src="../_static/media/chapter_11/section_4/image9.png"  />
 
-(6) 进入 Ubuntu 系统桌面，单击鼠标右键，选择"**Open in Terminal**"打开命令栏。
+(5) Once on the Ubuntu desktop, right-click anywhere, select **"Open in Terminal"** to launch the terminal. 
 
 <img src="../_static/media/chapter_11/section_4/image15.png"  />
 
-(7) 输入以下指令，并按下回车。红框内为 Ubuntu 系统 IP。
+(6) Enter the following command and press Enter. The red box in the terminal output will display the IP address of the Ubuntu system.
 
 ```bash
 ifconfig
@@ -489,39 +488,39 @@ ifconfig
 <img src="../_static/media/chapter_11/section_4/image17.png"  />
 
 :::{Note}
-如果输入"**ifconfig**"指令后无法找到 **IP** ，则需要检查是否正确连接到 **Puppy** 的热点，确认无误后若还是没有**IP**则可输入"**sudo dhclient ens33**"来手动获取其 **IP**。其中，ens33 默认情况下网卡的名称。
+If the IP address is not displayed after entering the ifconfig command, please check whether you are properly connected to the Puppy hotspot. If the connection is correct but the IP is still not found, you can manually obtain the IP address by entering the command sudo dhclient ens33. By default, ens33 is the name of the network interface.
 :::
 
-### 4.3 配置系统环境
+### 6.4.3 Confirm System Environment 
 
-(1) 进入 Ubuntu 系统桌面，单击鼠标右键，选择"**Open in Terminal**"打开命令栏。
+(1) Go to the Ubuntu desktop, right-click, and select **"Open in Terminal"** to open the command line.
 
 <img src="../_static/media/chapter_11/section_4/image15.png"  />
 
-(2) 在命令栏输入指令,进入配置网络文件。
+(2) In the terminal, enter the following command to open the network configuration file:
 
 ```bash
 sudo vim /etc/hosts
 ```
 
-(3) 我们将下图所示的2行和3行的IP，分别替换为虚拟机、树莓派的IP。
+(3) Replace the IP addresses on lines 2 and 3 (shown in the image) with the IP addresses of the virtual machine and Raspberry Pi.
 
 <img src="../_static/media/chapter_11/section_4/image20.png"  />
 
 <img src="../_static/media/chapter_11/section_4/image21.png"  />
 
 :::{Note}
-① 在修改 **ip** 的时候，我们要保证缩进与上行的相同。
-② 直连模式下 **PuppyPi** 的 **IP** 默认为 **192.168.149.1**
+① Ensure that the indentation of the new IP addresses matches that of the previous lines.
+② In direct connection mode, the default IP of PuppyPi is 192.168.149.1.
 :::
 
-(4) 在命令栏输入指令,更新配置。
+(4) Enter the following command to update the configuration.
 
 ```bash
 source ~/.bashrc
 ```
 
-(5) 进入 VNC ，打开命令栏，输入以下指令：**将 PuppyPi 的动作数据传入 gazebo。
+(5) Access VNC, open the terminal, and enter the following command to send PuppyPi's action data to Gazebo:
 
 ```bash
 rosparam set /puppy_control/joint_state_controller_pub_topic true
@@ -529,9 +528,9 @@ rosparam set /puppy_control/joint_state_controller_pub_topic true
 
 <img src="../_static/media/chapter_11/section_4/image23.png"  />
 
-### 4.4 启动Gazebo仿真工具
+### 6.4.4 Start Gazebo Simulation Tool
 
-(1) 在虚拟机终端中输入以下指令，开启gazebo仿真，等待服务启动完成，如出现下图所示内容则代表gazebo成功启动。
+(1) In the virtual machine terminal, enter the following command to launch Gazebo simulation and wait for the service to start. If the content shown in the image below appears, it means that Gazebo has successfully started:
 
 ```bash
 roslaunch puppy_description gazebo.launch
@@ -539,31 +538,29 @@ roslaunch puppy_description gazebo.launch
 
 <img src="../_static/media/chapter_11/section_4/image24.png"  />
 
-(2) 点击虚拟机Ubuntu系统页面左侧任务栏的gazebo仿真软件图标即可进入仿真页面，然后gazebo仿真页面下方的启动按钮即可开启gazebo仿真。
+(2) Click the Gazebo simulation software icon on the left taskbar of the Ubuntu system page to enter the simulation interface. Then, click the **"Start"** button at the bottom of the Gazebo simulation page to begin the simulation.
 
 <img src="../_static/media/chapter_11/section_4/image26.png"  />
 
-### 4.5 Gazebo GUI简介
+### 6.4.5 Gazebo GUI Introduction
 
-仿真软件界面如下图：
+The simulation interface is as below:
 
 <img src="../_static/media/chapter_11/section_4/image27.png"  />
 
-各个位置具体作用见下表：
+|    Name    |                           Function                           |
+| :--------: | :----------------------------------------------------------: |
+|  Menu Bar  | Used for configuring or modifying simulation software parameters, and for various interactive features. |
+|  Toolbar   | Provides the most commonly used options for interacting with the simulator. |
+| Timestamp  |   Allows you to control the time within the virtual space    |
+| Action Bar |   Allows you to manipulate the model and modify parameters   |
+|   Scene    | The main section of the simulator, where the simulation models are displayed |
 
-|  名称  |                     作用                     |
-|:------:|:--------------------------------------------:|
-| 菜单栏 | 配置或修改仿真软件的参数，以及一些交互功能。 |
-| 工具栏 |     提供一些与模拟器交互时最常用的选项。     |
-| 时间戳 |       可以对虚拟空间内的时间进行操作。       |
-| 动作栏 |       对模型进行操作，并可以修改参数。       |
-|  场景  |   模拟器的主要部分，是仿真模型显示的地方。   |
+### 6.4.6 Using the Simulation Software
 
-### 4.6 使用仿真软件
+We will use the Trot gait as an example.
 
-我们以Trot步态为例进行使用
-
-(1) 我们回到VNC，在VNC输入指令，查看步态是否为 Trot。
+(1) First, go back to the VNC and enter the following command to check if the gait is set to Trot:
 
 ```bash
 rosed puppy_control puppy_demo.py
@@ -571,17 +568,17 @@ rosed puppy_control puppy_demo.py
 
 <img src="../_static/media/chapter_11/section_4/image29.png"  />
 
-(2) 接着再输入指令，并按下回车，启动 Trot 步态。
+(2) Next, enter the following command and press Enter to start the Trot gait:
 
 ```bash
 rosrun puppy_control puppy_demo.py
 ```
 
-(3). 可以观察到机器狗开始运行 Trot 步态，仿真软件内部，机器狗也开始移动。
+(3) You will observe that the robot dog starts running with the Trot gait, and it begins to move in the simulation software as well.
 
-<img class="common_img" src="../_static/media/chapter_11/section_4/image31.jpeg"  />
+<img class="common_img" src="../_static/media/chapter_11/section_4/image31.png"  />
 
-(4) 程序内默认为 Trot 步态，如需切换其它步态，可以在VNC输入指令，重新找到下图中的位置。例如 Amble，则在下图代码"**gait = 'Trot'**"里， 将Trot 修改为 Amble ，修改后为"**gait = 'Amble'**"。
+(4) By default, the program is set to the Trot gait. If you want to switch to another gait, enter the command in VNC to locate the section in the code shown below. For example, to change to the Amble gait, replace `gait = 'Trot' with "gait = 'Amble'`.
 
 ```bash
 rosed puppy_control puppy_demo.py
@@ -589,13 +586,13 @@ rosed puppy_control puppy_demo.py
 
 <img src="../_static/media/chapter_11/section_4/image29.png"  />
 
-(5) 按下"ESC"，进入下拉命令模式，输入":wq"，保存修改。
+(5) Press **"ESC"** to enter the command mode, then type **":wq"** to save the changes: 
 
 ```bash
 :wq
 ```
 
-<img src="../_static/media/chapter_11/section_4/image32.png"  />
+
 
 
 

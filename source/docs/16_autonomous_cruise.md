@@ -1,335 +1,444 @@
-# AI自主巡航项目
+# 10. ROS1-AI Vision Line Following Course
 
-## 1. 线条定位
+## 10.1 Line Locating
 
-### 1.1 玩法简要说明
+### 10.1.1 Program Logic
 
-PuppyPi机器狗在进行自主巡线行走之前，需要先对线条进行定位。
+Before line following, program PuppyPi to locate the line first.
 
-首先，对线条颜色进行识别，此处使用Lab颜色空间进行处理，将图像颜色空间由RGB转换为Lab，随后对图像进行二值化、腐蚀、膨胀等操作，获得只包含目标颜色的轮廓，并用矩形将其标识出来。
+Firstly, program to recognize color. Use Lab color space to convert the image from RGB into Lab. Then, perform binaryzation, corrosion, dilation, etc., on the image to obtain the contour which contains the target color. Next, mark the contour with rectangle.
 
-接着，获取矩形的对角点，并且画出线条的中心点。
+Next, acquire the diagonal points of the rectangle, and draw the center of line.
 
-最后，在终端上显示线条的中心点信息。
+Lastly, display the information about the center of line on the terminal.
 
-### 1.2 玩法开启及关闭步骤
+### 10.1.2 Operation Steps
 
 :::{Note}
-指令输入需严格区分大小写及空格。
+The input command should be case and space sensitive.
 :::
 
-(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_16/section_1/image3.png"  />，打开Terminator终端。
+(2) Click<img src="../_static/media/chapter_16/section_1/image3.png"  />to open LX terminal.
 
-(3)  输入启动玩法的指令，按下回车。
+(3) Input command and press Enter to start the game.
 
 ```bash
 rosrun puppy_advanced_functions visual_patrol_demo.py
 ```
 
-(4)  如需关闭此玩法，可在LX终端界面按下"**Ctrl+C**"，如关闭失败，可多次按下。
+(4) If want to close this game, we can press "Ctrl+C". If it fails to close the game, please try again.
 
-### 1.3 功能实现
+### 10.1.3 Program Outcome
 
 :::{Note}
-程序默认检测颜色为红色。
+The program is default to recognize red.
 :::
 
-将红色的电工胶带铺设在所用场地，并将PuppyPi机器狗置于红色线条上。启动玩法后，机器狗识别到线条后，会在回传画面中框出线条，并画出中心点，同时在终端上显示中心点坐标。
+Use red electrical tape to set the line. Then place PuppyPi on the red line. After the line is recognized by PuppyPi, the line will be framed on the camera returned image and the center of line will be drawn. At the same time, the coordinate of the line center will be displayed on the terminal.
 
 <img src="../_static/media/chapter_16/section_1/image8.png"  />
 
-### 1.4 程序参数说明
+### 10.1.4 Program Analysis
 
-- #### 1.4.1 处理图像
+The source code of this program is stored in [/home/ubuntu/puppy_pi/src/puppy_advanced_functions/scripts/visual_patrol_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/16/visual_patrol_demo.py)
 
-[下载源代码](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/16/visual_patrol_demo.py)
+- #### Image Processing
 
-(1) **导入功能包**
+**(1) Import Function Package**
 
-<img src="../_static/media/chapter_16/section_1/image13.png"  />
+```py
+import sys
+import cv2
+import math
+import time
+import rospy
+import threading
+import numpy as np
+from threading import RLock, Timer
+from ros_robot_controller.msg import RGBState, RGBsState
+from std_srvs.srv import *
+from sensor_msgs.msg import Image
+from object_tracking.srv import *
+from puppy_control.msg import Velocity, Pose, Gait
 
-通过 import 语句导入所需模块：math提供了一系列数学函数和常数,用于进行相关计算；rospy用于ROS通信；from sensor_msgs.msg import Image: 是从 sensor_msgs.msg 包中导入 Image 消息类型。sensor_msgs 包提供了各种传感器数据的消息定义,相机图像。puppy_control导入动作组
+from common import Misc
+```
 
-(2) **获取最大面积轮廓**
+Import the required modules through import statements: math provides a range of mathematical functions and constants for related calculations; rospy is used for ROS communication; from sensor_msgs.msg import Image: import Image information type from sensor_msgs.msg. Sensor_msgs package provides information definition and camera image of various sensor data. Puppy control imports action group.
 
-<img src="../_static/media/chapter_16/section_1/image15.png"  />
+**(2) Obtain the Maximal Contour**
 
-设置巡线颜色设置为红色
+```py
+if debug:
+   enter_func(1)
+   start_running()
+   __target_color = 'red'
+```
 
-(3) **高斯滤波**
+Set the line color to red.
 
-在将图像的颜色空间由RGB转换为Lab前，需要先对其进行降噪处理，此处用到cv2库中的GaussianBlur()函数，该函数用于对图像进行高斯滤波处理。
+**(3) Gussian Filtering**
 
-<img src="../_static/media/chapter_16/section_1/image18.png"  />
+Before converting the image from RGB into Lab space, denoise the image and use GaussianBlur() function in cv2 library for Gaussian filtering.
 
-函数括号内的参数含义如下：
+```py
+frame_gb = cv2.GaussianBlur(frame_resize, (3, 3), 3) 
+```
 
-第一个参数"**frame_resize**"是输入图像；
+The meaning of the parameters in bracket is as follow
 
-第二个参数"**(3, 3)**"是高斯内核大小；
+The first parameter `frame_resize` is the input image
 
-第三个参数"**3**"是在高斯滤波中其平均值附近允许的方差大。该值越大，平均值周围允许的方差越大；数值越小，平均值周围允许的方差越小。
+The second parameter `(3, 3)` is the size of Gaussian kernel
 
-(4) **二值化处理**
+The third parameter `3` is the allowable variance around the average in Gaussian filtering. 
 
-采用cv2库中的inRange()函数对图像进行二值化处理。
+The larger the value, the larger the allowable variance.
 
-<img src="../_static/media/chapter_16/section_1/image19.png"  />
+**(4) Binaryzation Processing**
 
-函数括号内的第一个参数是输入图像；第二个、第三个参数分别是阈值的下限和上限。当像素点RGB的颜色数值处于上、下限之间时，该像素点被赋值为1，否则为0。
+Adopt `inRange()` function in cv2 library to perform binaryzation on the image.
 
-(5) **开运算和闭运算**
+```py
+frame_mask = cv2.inRange(frame_lab,
+                              (color_range_list[detect_color]['min'][0],
+                              color_range_list[detect_color]['min'][1],
+                              color_range_list[detect_color]['min'][2]),
+                              (color_range_list[detect_color]['max'][0],
+                              color_range_list[detect_color]['max'][1],
+                              color_range_list[detect_color]['max'][2]))  #对原图像和掩模进行位运算(perform bitwise operation to original image and mask)
+```
 
-:::{Note}
-为了降低干扰，令图像更平滑，需要对图像进行处理。
-:::
+The first parameter in the bracket is the input image.
 
-<img src="../_static/media/chapter_16/section_1/image21.png"  />
+ The second and the third parameters respectively are the lower limit and upper limit of the threshold. When the RGB value of the pixel is between the upper limit and lower limit, the pixel is assigned 1, otherwise, 0.
 
-cv2.MORPH_OPEN 进行开运算，指的是先进行腐蚀操作，再进行膨胀操作；cv2.MORPH_CLOSE 进行闭运算，指的是先进行膨胀操作，再进行腐蚀操作。
-
-以代码"**opened = cv2.morphologyEx(frame_mask, cv2.MORPH_OPEN, np.ones((6, 6), np.uint8))** "为例，括号内的参数含义如下：
-
-第一个参数"**frame_mask**"是输入图像；
-
-第二个参数"**cv2.MORPH_OPEN**"是进行变化的方式，为开运算；
-
-第三个参数"**np.ones((6, 6), np.uint8)**"是方框的大小。
-
-(6) **获取最大面积轮廓**
-
-完成上述的图像处理后，需要获取识别目标的轮廓，此处涉及cv2库中的findContours()函数。
-
-<img src="../_static/media/chapter_16/section_1/image23.png"  />
-
-函数括号内的第一个参数是输入图像；第二个参数是轮廓的检索模式；第三个参数是轮廓的近似方法。
-
-在获得的轮廓中寻找面积最大的轮廓，而为了避免干扰，需要设定一个最小值，仅当面积大于该值时，目标轮廓才有效。
-
-<img src="../_static/media/chapter_16/section_1/image25.png"  />
-
-- #### 1.4.2 获取位置信息
-
-(1) **框出线条**
-
-通过drawContours()函数，设置矩形图案，将线条框出。
-
-<img src="../_static/media/chapter_16/section_1/image27.png"  />
-
-(2) **画出中心点**
-
-接着，获取矩形的对角点，通过circle()画出线条的中心点。
-
-<img src="../_static/media/chapter_16/section_1/image29.png"  />
-
-最后在终端显示，矩形中心点的信息。
-
-<img src="../_static/media/chapter_16/section_1/image31.png"  />
-
-## 2. 自主巡线行走
+**(5) Open Operation and Close Operation**
 
 :::{Note}
-如果演示效果不佳，可根据文档内"[关闭调试画面和终端打印数据 ](#anchor_2_4_1)"进行调试。
+To reduce interference and make the image smoother, it is necessary to process the image.
 :::
 
-### 2.1 玩法简要说明
+```py
+opened = cv2.morphologyEx(frame_mask, cv2.MORPH_OPEN, np.ones((6, 6), np.uint8))  # 开运算(opening operation)
+closed = cv2.morphologyEx(opened, cv2.MORPH_CLOSE, np.ones((6, 6), np.uint8))  # 闭运算(closing operation)
+```
 
-巡线是机器人比赛中的常见项目，传统的巡线项目通过二路或者四路巡线传感器来进行实现，而在PuppyPi机器狗仅需通过视觉模块识别线条颜色，再经过图像算法处理，即可实现自主巡线行走。
+cv2.MORPH_OPEN refers to open operation where corrosion will be conducted first, then dilation. cv2.MORPH_CLOSE indicates close operation where dilation will be conducted first, then corrosion.
+Take `opened = cv2.morphologyEx(frame_mask, cv2.MORPH_OPEN, np.ones((6, 6), np.uint8))` for example. The meaning of the parameters in bracket is as follow.
+The first parameter `frame_mask` is the input image.
+The second parameter `cv2.MORPH_OPEN` refers to processing method, open operation.
+The third parameter `np.ones((6, 6), np.uint8)` is frame size.
 
-首先，需要对线条颜色进行识别，此处使用Lab颜色空间进行处理，将图像颜色空间由RGB转换为Lab，随后对图像进行二值化、腐蚀、膨胀等操作，获得只包含目标颜色的轮廓，并用矩形将其标识出来。
+**(6) Acquire the Maximum Contour**
 
-完成颜色识别后，根据图像中线条位置的反馈进行计算，控制PuppyPi机器狗沿着线条移动，从而达到自主巡线行走的效果。
+After processing the image, acquire the contour of the target to be recognized, which involves `findContours()` function in cv2 library.
 
-### 2.2 玩法开启及关闭步骤
+```py
+cnts = cv2.findContours(closed , cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_TC89_L1)[-2]#找出所有轮廓(find out all the contours)
+```
+
+The first parameter in parentheses is the input image; 
+
+the second parameter is the retrieval mode of the contour;
+
+ the third parameter is the approximation method of the contour.
+
+Find the contour of the maximum area among the obtained contours. To avoid interference, please set a minimum value. Only when the area is greater than this value, the target contour is valid.
+
+```py
+# 找出面积最大的轮廓(find out the contour with the maximal area)
+# 参数为要比较的轮廓的列表(the parameter is the list of contour to be compared)
+def getAreaMaxContour(contours):
+    contour_area_temp = 0
+    contour_area_max = 0
+    area_max_contour = None
+
+    for c in contours:  # 历遍所有轮廓(iterate through all contours)
+        contour_area_temp = math.fabs(cv2.contourArea(c))  # 计算轮廓面积(calculate the contour area)
+        if contour_area_temp > contour_area_max:
+            contour_area_max = contour_area_temp
+            if contour_area_temp > 50:  # 只有在面积大于50时，最大面积的轮廓才是有效的，以过滤干扰(only contours with an area greater than 50 are considered valid, filtering out interference)
+                area_max_contour = c
+
+    return area_max_contour, contour_area_max  # 返回最大的轮廓(return the maximal contour)
+```
+
+- #### Acquire the Position
+
+**(1) Frame the Line**
+
+Call  `drawContours()` function to set the rectangle pattern and frame the line.
+
+```py
+cv2.drawContours(img, [box], -1, (0,0,255,255), 2)#画出四个点组成的矩形(draw a rectangle formed by connecting the four points)
+```
+
+**(2) Draw the Center**
+
+Next, acquire the diagonal points of the rectangle, and draw the line center through `circle()` function.
+
+```py
+#获取矩形的对角点(get the diagonal points of the rectangle)
+pt1_x, pt1_y = box[0, 0], box[0, 1]
+pt3_x, pt3_y = box[2, 0], box[2, 1]            
+center_x, center_y = (pt1_x + pt3_x) / 2, (pt1_y + pt3_y) / 2#中心点(center point)
+cv2.circle(img, (int(center_x), int(center_y)), 5, (0,0,255), -1)#画出中心点(draw the center point)
+```
+
+Lastly, display the information about the center of rectangle on the terminal.
+
+```py
+if weight_sum is not 0:
+    #求最终得到的中心点(calculate the final resulting center point)
+    cv2.circle(img, (line_centerx, int(center_y)), 10, (0,255,255), -1)#画出中心点(draw the center point)
+    line_centerx = int(centroid_x_sum / weight_sum)  
+    print('line_centerx',line_centerx)
+else:
+    line_centerx = -1
+```
+
+## 10.2 Auto Line Following
 
 :::{Note}
-指令输入需严格区分大小写及空格。
+
+ if PuppyPi's performance is not desired, we can debug according to "[10.2.5 Function Extension -> Close Debugging Interface and Printed Data ](#anchor_2_4_1)".
 :::
 
-(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+### 10.2.1 Program Logic
 
-(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_16/section_2/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+PuppyPi can recognize the color of line and use algorithm to process the image so as to realize line following.  
 
-(3)  输入启动玩法的指令，按下回车。
+Firstly, program to recognize the color of line. Use Lab color space to convert the image from RGB into Lab. Then, perform binaryzation, corrosion, dilation, etc., on the image to obtain the contour which contains the target color. Next, mark the contour with rectangle.
+
+
+After color recognition, perform calculation based on the location of line in the image to control PuppyPi to move along the line.
+
+### 10.2.2 Operation Steps
+
+:::{Note}
+The input command should be case and space sensitive.
+:::
+
+(1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
+
+(2) Click<img src="../_static/media/chapter_16/section_2/image4.png" style="width:0.32292in;height:0.30208in" />to open command line terminal.
+
+(3) Input command "rosrun puppy_advanced_functions visual_patrol_demo.py" and press Enter to start the game.
 
 ```bash
 rosrun puppy_advanced_functions visual_patrol_demo.py
 ```
 
-(4)  如需关闭此玩法，可在LX终端界面按下"**Ctrl+C**"，如关闭失败，可多次按下。
+(4) If want to close this game, we can press **"Ctrl+C"**. If it fails to close the game, please try again.
 
-### 2.3 功能实现
+### 10.2.3 Program Outcome
 
 :::{Note}
-程序默认检测颜色为红色。
+The program is default to detect red.
 :::
 
-将红色的电工胶带铺设在所用场地，并将PuppyPi机器狗置于红色线条上。启动玩法后，机器狗将巡红色线条进行移动。
+Use the red electrical tape to set the line, and place PuppyPi on the red line. After the game starts, it will move along the red line.
 
-### 2.4 功能延伸
+### 10.2.4 Program Analysis
+
+The source code of this program is stored in [/home/ubuntu/puppy_pi/src/puppy_advanced_functions/scripts/visual_patrol_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/16/visual_patrol_demo.py)
+
+**(1) Set the line color**
+
+```py
+if debug:
+    enter_func(1)
+    start_running()
+    __target_color = 'red'
+```
+
+Set the line color to red.
+
+**(2) Move Following the Line**
+
+After locating the line, control PuppyPi to move following the line according to the coordinate of the center of line.
+
+```py
+def move():
+    global PuppyMove
+    global draw_color
+
+    global line_centerx
+    rospy.sleep(1)
+    while True:
+        if __isRunning:
+            if line_centerx != -1:
+                if abs(line_centerx - img_centerx) <= 50:
+                    PuppyMove['x'] = 10
+                    PuppyMove['yaw_rate'] = math.radians(0)
+                elif line_centerx - img_centerx > 50:
+                    PuppyMove['x'] = 8
+                    PuppyMove['yaw_rate'] = math.radians(-15)
+                elif line_centerx - img_centerx < -50:
+                    PuppyMove['x'] = 8
+                    PuppyMove['yaw_rate'] = math.radians(15)
+                
+                PuppyVelocityPub.publish(x=PuppyMove['x'], y=PuppyMove['y'], yaw_rate=PuppyMove['yaw_rate'])
+            else:
+                PuppyMove['x'] = 0
+                PuppyMove['yaw_rate'] = math.radians(0)
+                PuppyVelocityPub.publish(x=PuppyMove['x'], y=PuppyMove['y'], yaw_rate=PuppyMove['yaw_rate'])
+            time.sleep(0.001)
+        else:
+            time.sleep(0.001)
+        if is_shutdown:break
+```
+
+**(3) Walk**
+
+`PuppyPosePub.publish()`, `PuppyGaitConfigPub.publish` and `PuppyVelocityPub.publish` functions are used to control PuppyPi to walk. 
+
+```py
+# 初始位置(initial position)
+def initMove(delay=True):
+    global GaitConfig
+    PuppyMove['x'] = 0
+    PuppyMove['yaw_rate'] = math.radians(0)
+    PuppyVelocityPub.publish(x=PuppyMove['x'], y=PuppyMove['y'], yaw_rate=PuppyMove['yaw_rate'])
+    rospy.sleep(0.2)
+    rospy.ServiceProxy('/puppy_control/go_home', Empty)()
+    PuppyPosePub.publish(stance_x=PuppyPose['stance_x'], stance_y=PuppyPose['stance_y'], x_shift=PuppyPose['x_shift']
+            ,height=PuppyPose['height'], roll=PuppyPose['roll'], pitch=PuppyPose['pitch'], yaw=PuppyPose['yaw'], run_time = 500)
+    
+    rospy.sleep(0.2)
+    PuppyGaitConfigPub.publish(overlap_time = GaitConfig['overlap_time'], swing_time = GaitConfig['swing_time']
+                    , clearance_time = GaitConfig['clearance_time'], z_clearance = GaitConfig['z_clearance'])
+                    
+    with lock:
+        pass
+    if delay:
+        rospy.sleep(0.5)
+```
+
+PuppyPosePub.publish() function is used to control motion posture of PuppyPi.   
+
+Take `PuppyPosePub.publish(stance_x=PuppyPose['stance_x'], stance_y=PuppyPose['stance_y'], x_shift=PuppyPose['x_shift'],height=PuppyPose['height'],roll=PuppyPose['roll'], pitch=PuppyPose['pitch'], yaw=PuppyPose['yaw'], run_time = 500)` for example. The meaning of the parameters in bracket is as follow.
+
+① The first parameter `stance_x` refers to the distance in cm that front legs and hind legs move in the opposite direction on x axis.
+
+② The second parameter `stance_y` refers to the distance in cm that front legs and hind legs move in the opposite direction on y axis. As there is no servo controlling legs to move along Y axis, this parameter is useless.
+
+③ The third parameter `x_shift` is the distance that 4 legs move in the same direction on x axis. The smaller the value, the greater PuppyPi leans forward. The greater the value, the greater PuppyPi leans backward. We can adjust x_shift to balance PuppyPi during it is walking.
+
+④ The fourth parameter `height` refers to PuppyPi's height that the perpendicular distance between foothold and the upper joint in cm.
+
+⑤ The fifth parameter `roll` is PuppyPi's roll angle in degree.
+
+⑥ The sixth parameter `pitch` is PuppyPi's pitch angle in degree.
+
+⑦ The seventh parameter `yaw` is yaw angle in degree.
+
+⑧ The eighth parameter `run_time` is the motion time in ms.
+
+`PuppyGaitConfigPub.publish` function is used to control PuppyPi's gait.  
+
+Take `PuppyGaitConfigPub.publish(overlap_time = GaitConfig['overlap_time'], swing_time = GaitConfig['swing_time'] , clearance_time = GaitConfig['clearance_time'], z_clearance = GaitConfig['z_clearance'])` for example. The meaning of the parameter in bracket is as follow.
+
+① The first parameter `overlap_time` is the time when all the lower legs of PuppyPi touch the ground. The unit is s.
+
+② The second parameter `swing_time` is the time when two lower legs are off the ground. The unit is s.
+
+③ The third parameter `clearance_time` is the interval to switch between front leg and hind leg. The unit is s.
+
+④ The fourth parameter `z_clearance` is the lifted height of lower leg. The unit is s.
+`PuppyVelocityPub.publish()` is used to control PuppyPi's motion status. 
+
+Take `PuppyVelocityPub.publish(x=PuppyMove['x'], y=PuppyMove['y'], 
+yaw_rate=PuppyMove['yaw_rate'])` for example. The meaning of the parameters in bracket is as follow.
+
+① The first parameter `x` is the speed in cm/s of moving forward.Forward is taken as the positive direction.
+
+② The second parameter `y` is the speed in cm/s of moving sideways. Left is taken as the positive direction. As PuppyPi cannot move sideways, this parameter is useless.
+
+③ The third parameter `yaw_rate` is the speed in rad/s of turning. Counterclockwise is taken as the positive direction.
+
+
+### 10.2.5 Function Extension
 
 <span id="anchor_2_4_1" class="anchor"></span>
 
-- #### 2.4.1 关闭调试画面和终端打印数据
+- #### Close Debugging Interface and Printed Data
 
-由于调试画面和终端打印数据不断刷新，会占用树莓派一定的CPU资源，所以如果出现运行不流畅的情况，可通过关闭调试画面和终端打印数据来改善，具体步骤如下：
+As the continuous refresh of debugging interface and printed data on terminal will occupy CPU of Raspberry Pi, we can close debugging interface and printed data to tackle choppy running.
 
-(1)  输入指令，用来编辑自主巡线行走玩法程序，按下回车。
+(1) Input **"rosed puppy_advanced_functions visual_patrol_demo.py"** command and press Enter to edit the program file.
 
 ```bash
 rosed puppy_advanced_functions visual_patrol_demo.py
 ```
 
-(2)  找到下图所示代码：
+(2) Next, jump to this line of code.
 
 <img src="../_static/media/chapter_16/section_2/image11.png"  />
 
 <img src="../_static/media/chapter_16/section_2/image13.png"  />
 
 :::{Note}
-在键盘输入代码位置序号后，按下"Shift+G"键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
+we can input the line code and press **"Shift+G"** to jump to the corresponding line.
 :::
 
-(3)  按下"**i**"键进入编辑模式，在代码前面添加"**\#**"，进行注释。
+(3)  Press **"i"** key to enter editing mode. Then add **"#"** in front of the codes in the red frame to comment.
 
 <img src="../_static/media/chapter_16/section_2/image15.png"  />
 
 <img src="../_static/media/chapter_16/section_2/image17.png"  />
 
-(4)  修改完成后，按下"**Esc**"键，输入指令并按下回车，进行保存与退出。
+(4) After modification, press **"Esc"** and input **":wq"** and press Enter to save and exit editing.
 
 ```bash
 :wq
 ```
 
-(5)  输入指令，重新启动玩法，即可查看修改后的玩法效果。
+(5) Input the command  to restart the game and check PuppyPi's performance.
 
 ```bash
 rosrun puppy_advanced_functions visual_patrol_demo.py
 ```
 
-(6)  如需再次查看调试画面（摄像头实时回传画面）和终端打印数据，可将步骤3）框出的内容进行反注释，即将代码前面的"**\#**"去掉，再进行保存，如下图所示：
+(6) If you need to view the debugging screen again (real-time feedback from the camera), you can uncomment the content boxed in step 3, i.e., remove the "#" in front of the code, then save, as shown in the following figure:
 
 <img src="../_static/media/chapter_16/section_2/image11.png"  />
 
 <img src="../_static/media/chapter_16/section_2/image13.png"  />
 
-- #### 2.4.2 更改巡线颜色
+- #### Change the Followed Color
 
-**玩法默认巡线颜色是红色，如需更改巡线颜色，比如黑色，可参照以下步骤：**
+The program is default to follow red line. If you need to change the followed color, for example black, please follow the below steps to operate.
 
-(1) 输入指令，用来编辑 自主巡线行走玩法程序，按下回车。
+(1) Enter **"rosed puppy_advanced_functions visual_patrol_demo.py"** and press Enter to edit the auto line following program.
 
 ```bash
 rosed puppy_advanced_functions visual_patrol_demo.py
 ```
 
-(2)  找到下图所示代码：
+(2) Next, jump to this line of code.
 
 <img src="../_static/media/chapter_16/section_2/image22.png"  />
 
 :::{Note}
-在键盘输入代码位置序号后，按下"Shift+G"键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
+we can input the line code and press **"Shift+G"** to jump to the corresponding line.
 :::
 
-(3)  按下"**i**"键进入编辑模式，将"**red**"改为"**black**"。
+(3) Press **"i"** key to enter editing mode. Modify **"red"** as **"black"**.
 
 <img src="../_static/media/chapter_16/section_2/image24.png"  />
 
-(4)  修改完成后，按下"**Esc**"键，输入"**:wq**"并回车，进行保存与退出。
+(4)  After modification, press **"Esc"** and input **":wq"** and press Enter to save and exit editing.
 
 ```bash
 :wq
 ```
 
-(5)  输入指令并按下回车，重新启动玩法，即可查看修改后的玩法效果。
+(5) Input the command  to restart the game and check PuppyPi's performance.
 
 ```bash
 rosrun puppy_advanced_functions visual_patrol_demo.py
 ```
-
-### 2.5 程序参数说明
-
-[下载源代码](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/16/visual_patrol_demo.py)
-
-(1) **设置巡线颜色**
-
-<img src="../_static/media/chapter_16/section_2/image30.png"  />
-
-设置巡线颜色为红色
-
-(2) **控制巡线**
-
-第一课我们介绍了如何给线条进行定位，接下来可以根据线条的中心坐标信息，控制机器人沿着线条行走，如下图：
-
-<img src="../_static/media/chapter_16/section_2/image32.png"  />
-
-(3) **控制行走**
-
-我们主要通过调用PuppyPosePub.publish()、PuppyGaitConfigPub.publish和
-
-PuppyVelocityPub.publish函数控制机器狗行走。
-
-<img src="../_static/media/chapter_16/section_2/image35.png"  />
-
-PuppyPosePub.publish()函数用于控制机器狗运动时的姿态。
-
-以代码 
-
-```python
-PuppyPosePub.publish(stance_x=PuppyPose['stance_x'],stance_y=PuppyPose['stance_y'],x_shift=PuppyPose['x_shift'],height=PuppyPose['height'],roll=PuppyPose['roll'],pitch=PuppyPose['pitch'],yaw=PuppyPose['yaw'], run_time = 500)
-```
-
- 为例，括号内的参数含义如下：
-
-① 第一个参数"**stance_x**"是4条腿在x轴上额外分开的距离，单位为cm；
-
-② 第二个参数"**stance_y**"是4条腿在y轴上额外分开的距离，单位为cm；
-
-③ 第三个参数"**x_shift**"是4条腿在x轴上同向移动的距离，越小，走路越前倾，越大越后仰,通过调节x_shift可以调节机器狗走路的平衡，单位为cm；
-
-④ 第四个参数"**height**"是机器狗的高度，脚尖到大腿转动轴的垂直距离，单位为cm；
-
-⑤ 第五个参数"**roll**"是机器狗的滚转角，单位为度；
-
-⑥ 第六个参数"**pitch**"是机器狗的的俯仰角，单位为度；
-
-⑦ 第七个参数"**yaw**"是机器狗的偏航脚，单位为度；
-
-⑧ 第八个参数"**run_time**"是运动时间，单位为ms。
-
-PuppyGaitConfigPub.publish函数用于控制机器狗运动时的步态。
-
-以代码 
-
-```python
-PuppyGaitConfigPub.publish(overlap_time = GaitConfig['overlap_time'], swing_time = GaitConfig['swing_time'],clearance_time = GaitConfig['clearance_time'],z_clearance = GaitConfig['z_clearance'])
-```
-
-为例，括号内的参数含义如下：
-
-① 第一个参数"**overlap_time**"是4个膝关节末端全部着地的时间，单位为s；
-
-② 第二个参数"**swing_time**"是2个膝关节末端全部脱离地面的时间，单位为s；
-
-③ 第三个参数"**clearance_time**"是前后脚间隔时间，单位为s；
-
-④ 第四个参数"**z_clearance**"是移动时，膝关节所抬起的末端高度距离，单位为cm。
-
-**PuppyVelocityPub.publish()** 函数用于控制机器狗运动时的状态。
-
-以代码 
-
-```python
-PuppyVelocityPub.publish(x=PuppyMove['x'], y=PuppyMove['y'],yaw_rate=PuppyMove['yaw_rate'])
-```
-
-为例，括号内的参数含义如下：
-
-① 第一个参数"**x**"是机器狗的直行速度，前进方向为正方向，单位cm/s；
-
-② 第二个参数"**y**"是机器狗的侧移速度，左侧方向为正方向，单位cm/s，目前无此功能；
-
-③ 第三个参数"**yaw_rate**"是机器狗的转弯速度，逆时针方向为正方向，单位rad/s。

@@ -1,248 +1,234 @@
-# 自主导航课程
+# 15. ROS1-SLAM Autonomous Navigation
 
-## 1. ROS机器人自主导航原理
+## 15.1 ROS Robot Autonomous Navigation Principle
 
-### 1.1 自主导航简介
+### 15.1.1 Autonomous Navigation Introduction
 
-所谓自主导航，就是让机器人从A点能够自己移动到B点。而要实现这样的功能，就需要机器人自带的固定组件：全局地图、自身定位、路径规划、运动控制和环境感知。通过这些组件才能实现后续自主导航的功能，具体可以参考以下图片：
+The so-called autonomous navigation refers to the ability of the robot to move from point A to point B on its own. To achieve this functionality, the robot requires fixed components: global map, self-localization, path planning, motion control, and environmental perception. It is through these components that the subsequent autonomous navigation functionality can be realized. You can refer to the following image for more details:
 
 <img src="../_static/media/chapter_21/section_1/image1.png"  alt="loading" />
 
-### 1.2 自主导航原理
+### 15.1.2 Autonomous Navigation Principle
 
-我们已经知道，要实现自主导航，就需要机器人带有：全局地图、自身定位、路径规划、运动控制和环境感知这五个组件，而这些组件对应的就是机器人内部的功能包。
+The five essential components mentioned earlier correspond to different feature packs inside a robot.
 
-首先是**全局地图**：它可以为机器人的导航提供全局性质的地图，而对应的地图则是通过SLAM来进行构建的，对应有关SLAM的原理可以参考"**[SLAM建图课程\1. SLAM地图构建原理](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/20_slam_mapping.html#id1)**"进行学习。
+**Global map:** The robot builds a global map of the environment through the process of Simultaneous Localization and Mapping (SLAM) for navigation. To learn more about SLAM, please refer to the file "[ROS1- SLAM Mapping  Lesson ->1.SLAM Mapping Principle](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/20_slam_mapping.html#id1)".
 
-**自身定位**：通过算法来计算出机器人在地图中的位置。
+**Self-localization:** The robot usually utilizes algorithms to calculate its current location. Two commonly used algorithms include using odometry to calculate the robot's position relative to a known origin, and using Lidar to sense the environment and compare the received information with the feature points of the map to determine the robot's location.
 
-一般采用算法有两种：一种是通过里程计计算出当前位置与原点位置的进而得出当前机器人在地图上的位置；另一种是通过雷达传感器来感知周边的环境信息再与当前地图的特征点进行对比进而得出机器人位置。
+**Path planning:** The robot plans its path by utilizing both the global map and local map. The robot builds a global map through SLAM mapping and obtains a local map through real-time LIDAR scanning.
 
-**路径规划**：通过全局地图和本地地图来对路径进行规划。全局地图是通过SLAM建图得到的，本地地图可通过雷达传感器进行实时扫描更新进而对路径进行规划。
+**Motion control:** The robot's movement can be controlled by sending messages to it.
 
-**运动控制**：通过发送信息给机器人进而控制其运动。
+**Environment perception:** The robot perceives its surroundings through lidar, which is helpful for SLAM mapping, self-localization, and navigation.
 
-**环境感知**：通过雷达传感器对周围环境进行感知，对SLAM构建地图、自身定位以及后续的导航功能都有帮助。
+## 15.2 Adaptive Monte Carlo Localization
 
-## 2. AMCL自适应蒙特卡洛定位
+### 15.2.1 AMCL Localization
 
-### 2.1 AMCL定位
+Localization involves estimating the robot's position in the global map. While SLAM includes localization algorithms, SLAM's localization is used to construct the global map and is part of the pre-navigation phase. Current localization is used during navigation when the robot needs to move along a predefined route. Through localization, we can assess whether the robot's actual trajectory matches the expected one. The ROS navigation function package, ros-navigation, provides the AMCL localization system for implementing robot localization during navigation.
+AMCL (Adaptive Monte Carlo Localization) is a probabilistic localization system designed for 2D mobile robots. It implements the adaptive Monte Carlo localization method, which uses a particle filter to estimate the robot's position based on the existing map.
+Localization resolves the association issue between robots and obstacles, as path planning essentially involves decision-making based on obstacles around the robot. In theory, as long as the robot's global positioning is known and real-time obstacle avoidance is achieved through sensor scan information from devices like laser radar, navigation tasks can be accomplished. However, the real-time accuracy of global positioning is generally not high, provided by local positioning methods such as odometers and IMUs, which ensure the real-time accuracy of the robot's motion trajectory with the IMU. The amcl node in the navigation function package provides global positioning by publishing map_odom. Global positioning by amcl is not mandatory; users can replace amcl global positioning with other methods that can provide map_odom, such as using SLAM, UWB, or QR code positioning.
+Global positioning and local positioning have established a dynamic set of TF coordinates: map_odom, base_footprint, and the static TF coordinates between various sensors in the robot are provided through the robot's URDF model. This part of the TF relationship resolves the association problem between the robot and obstacles. For example, if a laser radar detects an obstacle 3 meters ahead, using the TF coordinates between the laser radar and the robot's chassis, the transformation from base_link to laser_link can be obtained, which reveals the relationship between the obstacle and the robot's chassis.
 
-定位就是推算机器人自身在全局地图中的位置，SLAM 中也包含定位算法实现，不过 SLAM 的定位是用于构建全局地图的，是属于导航开始之前的阶段。当前定位是用于导航中，机器人需要按照设定的路线运动，通过定位可以判断机器人的实际轨迹是否符合预期。在 ROS 的导航功能包集ros-navigation 中提供了 AMCL定位系统，用于实现导航中的机器人定位。
+AMCL Learning Wiki：http://wiki.ros.org/amcl
 
-AMCL(adaplive Monte CarloLocalizalion) 是用于二维移动机器人的概率定位系统，它实现了自适应蒙特卡罗定位方法，可以根据已有地图使用粒子滤波器推算机器人位置。
+AMCL Package Link：https://github.com/ros-planning/navigation/tree/melodic-devel/amcl
 
-定位解决了机器人与障碍物之间的关联问题，因为路径规划本质上就是基于机器人周围障碍物进行决策的过程。理论上只要已知机器人全局定位并借助激光雷达等传感器扫描信息实时避障，就能完成导航任务。但全局定位的实时性和精度一般不高，由里程计、IMU 等局部定位提供,就能保证机器人的运动轨迹跟IMU的实时性和精度。导航功能包中的 amcl节点通过发布 map_odom来提供全局定位。amcl全局定位并不是必需的，用户可以将amcl 全局定位替换成其他能提供 map_odom 的全局定位，例如使用SLAM、UWB、二维码定位等方式。
+### 15.2.2 Particle Filter
 
-全局定位和局部定位已经构建起一套动态tf坐标map_odom base_footprint,机器人中各个传感器之间的静态 tf坐标通过机器人 URDF 型提供。这部分 TF 关系解决了机器人与障碍物之间的关联问题，比如激光雷达探测到前方 3m 处有一个障碍物，那么利用激光雷达与机器人底盘之间的tf坐标，base_link到 laser_link 的。标变换，可以知道该障碍物与机器人底盘之间的关系。
-
-[AMCL学习Wiki](http://wiki.ros.org/amcl)
-
-[AMCL包链接](https://github.com/ros-planning/navigation/tree/melodic-devel/amcl)
-
-### 2.2 粒子滤波
-
-蒙特卡罗定位过程拟了一个一维机器人的粒子更新。首先随机生成一群粒子，粒子可以有位置、方向、或需要估计的状态变量，每种方法都有一个权重，表示它与系统实际状态匹配的相似度。然后预测每个粒子下一时刻的状态，可根据预测真实系统的行为来移动粒子。之后根据测量更新粒子的权重，与测量值更匹配的粒子将赋予更高的权粒之后进行重采样，丢弃极不可能的粒子，用更可能的拉子替换。最后计算粒子集的加权平均值和协方差以获得状态估计值。
+Monte Carlo Localization (MCL) involves a particle update process for a one-dimensional robot. Initially, a group of particles is randomly generated, each representing possible states of the robot, including position, direction, or other estimated state variables. Each particle has a weight, indicating its similarity to the actual system state. Next, the state of each particle for the next time step is predicted based on the expected behavior of the real system. Subsequently, the weights of particles are updated based on measurements, with particles that match the measurement being assigned higher weights. Afterward, resampling is performed, discarding highly unlikely particles and replacing them with more probable ones. Finally, the weighted mean and covariance of the particle set are calculated to obtain the estimated state.
 
 <img src="../_static/media/chapter_21/section_2/image2.png"  />
 
 <img src="../_static/media/chapter_21/section_2/image3.png"  />
 
-蒙特卡罗方法各不相同，但趋于遵循一个特定的模式：
+Monte Carlo methods vary, but tend to follow a specific pattern:
 
-(1) 定义可能输入的域
+(1) Define the domain of possible inputs.
 
-(2) 从域上的概率分布随机生成输入
+(2) Randomly generate inputs from the probability distribution over the domain.
 
-(3) 对输入进行确定性计算
+(3) Perform deterministic computations on the inputs.
 
-(4) 汇总结果
+(4) Summarize the results.
 
-有两个重要的考虑因素：
+Two important considerations are:
 
-(1) 如果这些点不是均匀分布的，那么近似效果就会很差。
+(1) If these points are not uniformly distributed, the approximation may be poor.
 
-(2) 这一过程需要很多点。如果整个正方形中只有几个点是随机放置的，那么这个近似值通常是很差的。平均而言，随着放置更多的点，近似值精度会提升。
+(2) This process requires many points. If only a few points are randomly placed within the entire square, the approximation is usually poor. On average, increasing the number of points improves the accuracy of the approximation.
 
-蒙特卡罗粒子滤波算法算有许多的应用领域非常广泛，例如：物理科学、工程学、气候学和计算机生物学。
+The Monte Carlo particle filtering algorithm has wide-ranging applications in various fields such as physics, engineering, climatology, and computational biology.
 
-### 2.3 自适应蒙特卡罗定位
+### 15.2.3 Adaptive Monte Carlo Localization
 
-AMCL可以看作是蒙特卡罗定位算法的改进版本，它通过在蒙特卡罗定位算法中使用少量样本来减少执行时间，以此提高实时性能。它实现了自适应或 KLD 采样的蒙特卡罗定位方法，其中针对已有地图使用粒子滤波跟踪一个机器人的姿态
+AMCL can be regarded as an improved version of the Monte Carlo localization algorithm. It reduces execution time and enhances real-time performance by employing a small number of samples in the Monte Carlo localization algorithm. It implements an adaptive or KLD-sampling Monte Carlo localization method, which utilizes particle filtering to track a robot's pose with respect to a known map.
+The Adaptive Monte Carlo Localization (AMCL) node primarily utilizes laser scans and laser map data to propagate messages and compute pose estimates. In the implementation process, it first initializes the particle filter of the Adaptive Monte Carlo Localization algorithm based on various initialization parameters provided by the ROS system. If the initial pose is not specified, the AMCL algorithm assumes that the robot starts running from the origin of the coordinate system, which can lead to relatively complex calculations.
+Therefore, it is recommended to set the initial pose using the "2D Pose Estimate" button in rviz. For more information about Adaptive Monte Carlo Localization, you can also refer to the wiki page at the following link: https://github.com/ros-planning/navigation
 
-自适应蒙特卡罗定位节点主要使用激光扫描和激光雷达地图。传递消息并完成位姿估计的计算。实现过程先针对 ROS 系统提供的各个初始化参数，完成自适应蒙特卡罗定位算法粒子滤波器的初始化。如果没有设定初始化位姿，自适应蒙特卡罗定位算法会假定机器人从坐标系原点开始运行这样计算会相对复杂。
+### 15.2.4 Costmap
 
-因此，建议在 rviz 中通过 2D Pose Estimate 按钮来设定初始化位姿，关于自适应蒙特卡罗定位内容同样可以参考wiki 地址链接: https://github.com/ros-planning/navigation
+Whether generated by a laser scanner or depth camera, 2D or 3D SLAM maps cannot be directly used for actual navigation. They must be converted into costmaps. In ROS, costmaps are typically represented in grid format. Each grid cell in the grid map occupies one byte, which is eight bits, capable of storing data from 0 to 255. This means that each cell cost (the value of the grid) ranges from 0 to 255, with only three scenarios considered: Occupied (presence of obstacles), Free (open space without obstacles), and Unknown Space (areas where information is lacking).
 
-### 2.4 代价地图
-
-无论是激光雷达还是深度相机作为传感器跑出的2D或3D SLAM地图，都不能直接用于实际的导航，必须将地图转化为costmap(代价地图),ROS的costmap通常采用grid(网格)形式。栅格地图一个栅格占1个字节，也就是八位，可以存0-255中数据，也就是每个cell cost（网格的值）从0~255我们只需要三种情况：Occupied被占用（有障碍）, Free自由区域（无障碍）,  Unknown Space未知区域。
-
-在介绍costmap_2d之前，要先介绍个算法bresenham算法，Bresenham直线算法是用来描绘由两点所决定的直线的算法，它会算出一条线段在n维光栅上最接近的点。这个算法只会用到较为快速的整数加法、减法和位元移位，常用于绘制电脑画面中的直线。是计算机图形学中最先发展出来的算法。
+Before introducing costmap_2d, let's first talk about the Bresenham algorithm. The Bresenham Line Algorithm is used to draw a straight line determined by two points. It calculates the closest points on an n-dimensional grid to the line segment. This algorithm only requires relatively fast integer addition, subtraction, and bit shifting operations, making it commonly used for drawing lines in computer graphics. It is one of the earliest developed algorithms in computer graphics.
 
 <img class="common_img" src="../_static/media/chapter_21/section_2/image4.png"  />
 
-过各行各列像素中心构造一组虚拟网格线如上图。按直线从起点到终点的顺序计算直线与各垂直网格线的交点，然后根据误差项的符号确定该列像素中与此交点最近的像素。
-
-算法核心思想：假设：k=dy/dx。因为直线的起始点在像素中心，所以误差项d的初值d0＝0。X下标每增加1，d的值相应递增直线的斜率值k，即d＝d＋k。一旦d≥1，就把它减去1，这样保证d在0、1之间。当d≥0.5时，最接近于当前像素的右上方像素（x+1,y+1）而当d\<0.5时，更接近于右方像素(x+1,y）为方便计算，令e＝d-0.5，e的初值为-0.5，增量为k。当e≥0时，取当前像素（xi，yi）的右上方像素（x+1,y+1）而当e\<0时，更接近于右方像素(x+1,y）可以改用整数以避免除法。由于算法中只用到误差项的符号，因此可作如下替换：e1 = 2\*e\*dx。
+Scan through the center of pixels in each row and column to construct a set of virtual grid lines as shown in the diagram above. Calculate the intersections of the line with each vertical grid line in the order from the starting point to the endpoint of the line, and then determine the pixel closest to this intersection point within the column of pixels based on the sign of the error term.
+Algorithm Core Idea: Assume: k = dy/dx. Because the starting point of the line is at the center of a pixel, the initial value of the error term d is set to d0 = 0. As X increases by 1, the value of d increases correspondingly by the slope value k of the line, that is, d = d + k. Once d ≥ 1, subtract 1 from it to ensure that d remains between 0 and 1. When d ≥ 0.5, the pixel closest to the current pixel is the one at the upper right corner (x+1, y+1), and when d < 0.5, it is closer to the right pixel (x+1, y). For convenience in computation, let e = d - 0.5, where the initial value of e is -0.5, and the increment is k. When e ≥ 0, take the pixel at the upper right corner of the current pixel (xi, yi) as (x+1, y+1), and when e < 0, it is closer to the right pixel (x+1, y). To avoid division, integers can be used. Since only the sign of the error term is used in the algorithm, it can be replaced as follows: e1 = 2*e*dx.
 
 <img class="common_img" src="../_static/media/chapter_21/section_2/image5.png"  />
 
-Costmap2D类维护了每个栅格的代价值。Layer类是虚基类，它统一了各插件costmap层的接口。其中最主要的接口函数有：
+The Costmap2D class maintains the cost values for each grid. The Layer class is a virtual base class that provides a unified interface for various plugin costmap layers. The most important interface functions include:
+The "initialize" function, which calls the "onInitialize" function, initializes each costmap layer separately.
+The "matchSize" function, used in both the StaticLayer and ObstacleLayer classes, calls the "matchSize" function of the CostmapLayer class. This function initializes the size, resolution, origin, and default cost of each costmap layer, ensuring consistency with the layered_costmap. For the InflationLayer class, it calculates a cost table that varies with distance based on the inflation radius. This allows for querying the cost values of inflated grid cells based on distance. Additionally, the "seen_" array is defined to mark whether a grid cell has been traversed. For the VoxelLayer class, it initializes the size of voxel grids.
 
-initialize函数，它调用onInitialize函数，分别对各costmap层进行初始化；
+The "updateBounds" function adjusts the size range that the current costmap layer needs to update. For the StaticLayer class, it sets the update range of the costmap to the size of the static map (note: the static layer is generally used only in the global costmap). For the ObstacleLayer class, it traverses the sensor data in "clearing_observations" to determine the boundaries of the obstacles.
 
-matchSize函数，在StaticLayer类和ObstacleLayer类中，该函数调用了CostmapLayer类的matchSize函数，初始化各costmap层的size，分辨率，原点和默认代价值，并保持与layered_costmap一致。对于inflationLayer类，根据膨胀半径计算了随距离变化的cost表。后面就可以用距离来查询膨胀栅格的cost值。同时定义了seen_数组，该数组用于标记栅格是否已经被遍历过。对于VoxelLayer类，则初始化了体素方格的size；
+The "initialize" and "matchSize" functions are executed only once. The "updateBounds" and "updateCosts" functions are executed periodically, with their execution frequency determined by `map_update_frequency`.
 
-updateBounds函数，调整当前costmap层需要更新的大小范围。对于StaticLayer类，确定costmap的更新范围为静态地图的大小（注意：静态层一般只用在全局costmap中。）。对于ObstacleLayer类，遍历clearing_observations中的传感器数据，确定障碍物的边界。
-
-其中initialize函数和matchSize函数分别只执行一次。updateBounds函数和updateCosts函数则会周期执行，其执行频率由map_update_frequency决定。
-
-CostmapLayer类同时继承了Layer类和Costmap2D类，并提供了几个更新cost值的操作方法。StaticLayer类和ObstacleLayer类需要保存实例化costmap层的cost值，所以都继承了CostmapLayer类。StaticLayer类使用静态栅格地图数据更新自己的costmap。ObstacleLayer类使用传感器数据更新自己的costmap。VoxelLayer类相对于ObstacleLayer类则多考虑了z轴的数据。效果的区别主要体现在障碍物的清除方面。一个是二维层面的清除，一个是三维里的清除。
+The CostmapLayer class inherits from both the Layer class and the Costmap2D class and provides several methods for updating cost values. The StaticLayer and ObstacleLayer classes need to store the cost values of the instantiated costmap layer, so they both inherit from the CostmapLayer class. The StaticLayer class updates its costmap using static grid map data, while the ObstacleLayer class updates its costmap using sensor data. The VoxelLayer class, compared to the ObstacleLayer class, additionally considers data along the z-axis. The main difference in their effects is reflected in the clearing of obstacles: one performs clearing in a two-dimensional plane, while the other handles it in three dimensions.
 
 <img class="common_img" src="../_static/media/chapter_21/section_2/image6.png"  />
 
-Costmap 度量障碍非常灵活，可以根据需求创建特定的图层，然后在该图层上维护需要关注的障碍信息。如果机器人上只安装了激光雷达，那么需创建一个 Obstacles 图层来维护激光雷达扫描到的障碍信息。如果机器人上添加了超声波，那么需要新建一个 Sonar 图层来维护声波传感器扫描到的障碍信息。每个图层都可以有自己的障碍更新规则，例如添加障碍、删除障碍、更新障碍点的置信度等，极大地提高了导航系统的可扩展性。
+The costmap is highly flexible in measuring obstacles, allowing for the creation of specific layers as needed, where obstacle information can be maintained. If the robot is equipped only with a laser scanner, an Obstacles layer should be created to maintain the obstacle information detected by the laser scanner. If the robot also has ultrasonic sensors, a new Sonar layer should be created to maintain the obstacle information detected by the sonar sensors. Each layer can have its own rules for updating obstacles, such as adding obstacles, removing obstacles, and updating the confidence of obstacle points, which greatly enhances the scalability of the navigation system.
 
-更多内容可以参考：
+**For more information, you can refer to:**
 
-[ROS navigation wiki](http://wiki.ros.org/navigation)
+ROS navigation wiki: http://wiki.ros.org/navigation 
 
-[ROS move_base wiki](http://wiki.ros.org/move_base)
+ROS move_base wiki: http://wiki.ros.org/move_base
 
-### 2.5 全局路径规划
+### 15.2.5 Global Path Planning
 
-前言：根据移动机器人对环境的了解情况、环境性质以及使用的算法，可将路径规划分为基于环境的路径规划算法、基于地图知识的路径规划算法和基于完备性的路径规划算法，
+Preface: Based on the mobile robot's understanding of the environment, the nature of the environment, and the algorithms used, path planning can be divided into environment-based path planning algorithms, map-based path planning algorithms, and completeness-based path planning algorithms.
 
 <img class="common_img" src="../_static/media/chapter_21/section_2/image7.png"  />
 
-机器人自主导航中比较常用的路径规划算法包括 Diikstra、A\*、D\*、PRM、RRT、遗传算法蚁群算法、模糊算法等。
+Commonly used path planning algorithms in robot autonomous navigation include Dijkstra, A*, D*, PRM, RRT, genetic algorithms, ant colony algorithms, fuzzy algorithms, and others.
 
-机器人中用到的 Dijkstra、A\*属于基于图结构的路径搜索算法。导航功能包中集成了 navfn、global planner 和 carrot planner 全局路规划插件。用户可以从中选择一种加载到 move_base 中使用，也可以选择第三方全局路径规划插件加载到move_base中使用，例 SBPL_Lattice_Planner、srl_global_planner，或者根据nav_core 的接口规范自己开发所需的全局路径规划插件。
+Dijkstra and A* are both graph-based path search algorithms commonly used in robotics. The navigation package integrates global path planning plugins such as navfn, global planner, and carrot planner. Users can choose one of them to load into move_base for navigation. Alternatively, third-party global path planning plugins like SBPL_Lattice_Planner and srl_global_planner can be selected and loaded into move_base. Additionally, users have the option to develop their own global path planning plugins according to the nav_core interface specifications.
 
 <img class="common_img" src="../_static/media/chapter_21/section_2/image8.png"  />
 
-移动机器人导航通过路径规划使其可以到达目标点。导航规划层可以分为全局路径规划层、局部路径规划层、行为执行层等。
+Robot navigation utilizes path planning to enable it to reach its destination. The navigation planning layer can be divided into global path planning layer, local path planning layer, behavior execution layer, and so on.
+**(1) Global Path Planning Layer:** Based on the given target, it accepts costmap information to generate a global costmap, plans the global path from the starting point to the target location, and serves as a reference for local path planning.
+**(2) Local Path Planning Layer:** As the local planning part of the navigation system, it accepts the generated local costmap information based on the costmap, and performs local path planning based on nearby obstacle information.
+**(3) Behavior Execution Layer:** Combining the commands sent from the upper layers and the path planning results, it determines the current behavior of the mobile robot.
+As a key focus area in mobile robot research, the quality of path planning algorithms largely determines the efficiency of the robot's operations.
 
-(1) **全局路径规划层**：依据给定的目标，接受权值地图信息生成全局权值地图，规划出从起点到目标位置的全局路径，作为局部路径规划的参考。
+- #### Dijkstra algorithm
 
-(2) **局部路径规划层**：作为导航系统的局部规划部分，接受权值地图生成的局部权值地图信息，依据附近的障碍物信息进行局部路径规划。
+The Dijkstra algorithm is a typical shortest path algorithm. It is a single-source shortest path algorithm characterized by expanding outward from the starting point in a breadth-first search manner until reaching the destination. It is a breadth-first algorithm that considers edge weights and is one of the most commonly used algorithms in global path planning problems.
 
-(3) **行为执行层**：结合上层发送的指令以及路径规划，给出移动机器人的当前行为。
+Below is an illustration of the Dijkstra algorithm.
 
-作为移动机器人研究的一个重点领域，移动机器人路径规划算法的优劣很大程度上决定了机器人的工作效率。
-
-- #### 2.5.1 Dijkstra 算法
-
-迪杰斯特拉(Dijkstra)算法是典型最短路径算法，Dijkstra是一种单源最短路径算法，主要特点是以起始点为中心向外层层扩展，即广度优先搜索思想，直到扩展到终点为止，是一种带有边权值考量的广度优先算法，是全局路径规划问题中最常用的算法之一。
-
-下面是Dijkstra算法图解：
-
-(1)  开始时我们把dis\[start\]初始化为0,其余点初始化为inf。
+(1)  At the beginning, we initialize dis[start] to 0, and the rest of the points are initialized to inf.
 
 <img class="common_img" src="../_static/media/chapter_21/section_2/image9.png" style="width:50%"  />
 
-(2)  第一轮循环找到dis值最小的点1,将1变成白点,对所有与1相连的蓝点的dis值进行修改,使得dis\[2\]=2,dis\[3\]=4,dis\[4\]=7。
+(2)  In the first loop, we find the point 1 with the minimum dis value. We then mark 1 as visited and update the dis values of all adjacent blue points. Specifically, we set dis[2] = 2, dis[3] = 4, and dis[4] = 7.
 
 <img class="common_img" src="../_static/media/chapter_21/section_2/image10.png" style="width:50%" />
 
-(3)  第二轮循环找到dis值最小的点2,将2变成白点,对所有与2相连的蓝点的dis值进行修改,使得dis\[3\]=3,dis\[5\]=4。
+(3)  In the second loop, we find the point 2 with the minimum dis value. We then mark 2 as visited and update the dis values of all adjacent blue points. Specifically, we set dis[3] = 3 and dis[5] = 4.
 
 <img class="common_img" src="../_static/media/chapter_21/section_2/image11.png" style="width:50%" />
 
-(4)  第三轮循环找到dis值最小的点3,将3变成白点,对所有与2相连的蓝点的dis值进行修改,使得dis\[4\]=4。
+(4)  In the third loop, we find the point 3 with the minimum dis value. We then mark 3 as visited and update the dis value of the adjacent blue point. Specifically, we set dis[4] = 4.
 
 <img class="common_img" src="../_static/media/chapter_21/section_2/image12.png" style="width:50%" />
 
-(5)  接下来两轮循环分别将4,5设为白点,算法结束,求出所有点的最短路
+(5) In the following two loops, we mark points 4 and 5 as visited, respectively, and the algorithm ends. We have found the shortest paths from the start node to all other nodes.
 
-关于 Dijkstra 算法介绍和使用方法，可以登录 wiki 查看链接: http://wiki.ros.org/navfn
+For information and usage instructions on the Dijkstra algorithm, you can visit the following link:  http://wiki.ros.org/navfn
 
-- #### 2.5.2 A星算法
+- #### A* algorithm
 
-A星是对Dijkstra算法的修改，该算法针对单个目的地进行了优化。Dijkstra算法可以找到所有位置的路径；A星查找到一个位置或几个位置中最近的位置的路径。它优先考虑那些似乎更接近目标的路径。
+A* algorithm is a modification of the Dijkstra algorithm, optimized for a single destination. While Dijkstra's algorithm can find paths to all locations, A* searches for the closest path to one or several locations. It prioritizes paths that appear to be closer to the goal.
 
-A星算法的公式为：F = G + H，其中G值是起点移动到指定方格的移动代价H是指定的方格移动到终点的估算成本，H值的计算方式有如下两种：
+A* algorithm's formula is: F = G + H, where G is the cost of moving from the starting point to the specified grid, and H is the estimated cost of moving from the specified grid to the endpoint. There are two common methods to calculate the H value: 
 
-(1)  计算横向和纵向移动的距离，无法斜向计算（曼哈顿距离）。
+(1)  Calculate the distance of horizontal and vertical movement; diagonal movement is not considered (Manhattan distance).
 
 <img src="../_static/media/chapter_21/section_2/image13.png"  class="common_img" />
 
-(2)  计算横向和纵向移动的距离，可以斜向计算（对角线距离）。
+(2)  Calculate the distance of horizontal and vertical movement, allowing diagonal movement (Euclidean distance).
 
 <img src="../_static/media/chapter_21/section_2/image14.png" class="common_img" />
 
-关于A\*算法介绍和使用方法，请参考视频教程，或者登录 wiki 查看链接: http://wiki.ros.org/global planner
+For information and instructions on using the A* algorithm, please refer to the video tutorials or visit the following link on the wiki: http://wiki.ros.org/global planner
 
-以及redblobgames网站：
+And redblobgames website：
 
 https://www.redblobgames.com/pathfinding/a-star/introduction.html#graphs
 
-## 3. 雷达定点及多点导航与避障
+## 15.3 Single-point and Multi-points Navigation and Obstacle Avoidance
 
-### 3.1 虚拟机的安装和配置
+### 15.3.1 Virtual Machine Installation and Configuration
 
-由于树莓派计算能力有限，所以需要将建图的一部分工作放到虚拟机来完成。建图和导航都需要虚拟机和PuppyPi互相通信，我们需要在修改两者的配置。
+Due to the limited computing power of Raspberry Pi, virtual machine will take over part of mapping work. Mapping and navigation both require communication between the virtual machine and PuppyPi. We need to modify the configurations of both to enable this communication
 
-- #### 3.1.1 安装虚拟机软件
+- #### Install Virtual Machine
 
-虚拟机的安装可以参考"**[虚拟机安装.docx](https://store.hiwonder.com.cn/docs/common/Mirror_burning_tool/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E5%AF%BC%E5%85%A5.docx)**"
+You can refer to the document "[Virtual Machine Installation.docx](https://store.hiwonder.com.cn/docs/common/Mirror_burning_tool/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E5%AF%BC%E5%85%A5.docx)" in the same directory for instructions on installing the virtual machine.
 
-- #### 3.1.2 虚拟机的打开和导入
+- #### Open and Import Virtual Machine
 
-(1)  将同目录下的虚拟机文件解压到任意非中文路径下。
+(1) Unzip the virtual machine files in any non-Chinese directory within the same directory.
 
 <img src="../_static/media/chapter_21/section_3/image2.png"  />
 
-(2)  打开虚拟机软件，点击"**打开虚拟机**"。
+(2) Open a virtual machine.
 
 <img src="../_static/media/chapter_21/section_3/image3.png"  />
 
-(3)  找到虚拟机文件解压的路径，点击打开。
+(3) Select the folder where virtual machine file is extracted, then open it.
 
 <img src="../_static/media/chapter_21/section_3/image4.png"  />
 
-(4)  根据自己的需求，设置虚拟机的名称和存储路径，设置完成后，点击导入。
+(4) Enter the name and set the storage path for virtual machine. Then click "Import".
 
 <img class="common_img" src="../_static/media/chapter_21/section_3/image5.png"  />
 
 :::{Note}
-导入完成后，下次打开可以直接选择设置的虚拟机存储路径，直接打开虚拟机，无需再次导入
+after the first importing, you can directly select the storage path for the previous virtual machine, and open it without importing it again.
 :::
 
-- #### 3.1.3 虚拟机的网络配置
+- #### Network Configuration of Virtual Machine
 
 :::{Note}
-台式机进行以下配置时，需要确保装配有无线网卡或准备好一个USB无线网卡。
+if you are using desktop computer, please prepare a wireless LAN adapter or USB wireless adapter.
 :::
 
-(1)  首先，启动机器狗，并用电脑主机连接机器狗的热点。
+(1) Firstly, start PuppyPi, and join the WiFi created by PuppyPi on computer.
 
 <img class="common_img" src="../_static/media/chapter_21/section_3/image6.png"  />
 
-(2)  返回虚拟机，点击"**编辑**"，再点击"**虚拟机网络配置**"。
+(2) Return to the virtual machine interface, and click **"edit->virtual machine editor"**.
 
 <img src="../_static/media/chapter_21/section_3/image7.png"  />
 
-(3)  在桥接模式处，选择自己的无线网卡，然后点击确定。
+(3) Select the wireless network card to be bridged. Then click OK.
 
 <img class="common_img" src="../_static/media/chapter_21/section_3/image8.png"  alt="loading" />
 
 <img class="common_img" src="../_static/media/chapter_21/section_3/image9.png"  />
 
-(4)  开启虚拟机，等待开机完成。
+(4) Open virtual machine, and power on virtual machine.
 
 <img src="../_static/media/chapter_21/section_3/image10.png"  />
 
-(5)  进入系统桌面后，桌面右键点击，打开命令行终端。
+(5) When entering the system desktop, right click the desktop and select **"open in terminal"**.
 
 <img src="../_static/media/chapter_21/section_3/image11.png"  />
 
 :::{Note}
-输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
+The input command should be case sensitive and the keywords can be complemented by "Tab" key.
 :::
 
-(6)  输入指令，按下回车，查看虚拟机的IP，如红框处所示。
+(6) Input command **"ifconfig"** and press Enter to check the IP of virtual machine. And the IP is as the red frame shown.
 
 ```bash
 ifconfig
@@ -250,37 +236,37 @@ ifconfig
 
 <img src="../_static/media/chapter_21/section_3/image13.png"  />
 
-(7)  再次右键系统桌面，打开一个新的命令行终端，输入指令，按下回车，配置网络。
+(7)  Right click the system desktop, and open a new command line terminal. Then input command **"sudo nano /etc/hosts"** and press Enter to configure the network.
 
 ```bash
 sudo nano /etc/hosts
 ```
 
-(8)  将下图第2行和第3行的IP修改为查看到的虚拟机IP和树莓派的IP，虚拟机IP按实际查看情况填写，树莓派IP在直连模式下，固定为"**192.168.149.1**"。
+(8) Modify the IP in the second and the third lines as the IP of virtual machine and Raspberry Pi you got in the previous step. And the fixed IP of Raspberry Pi under direct connection mode is "192.168.149.1".
 
 <img src="../_static/media/chapter_21/section_3/image15.png"  />
 
 :::{Note}
-在修改ip的时候，我们要保证缩进与上行的相同。
+When modifying the IP, please ensure the indent is consistent.
 :::
 
-(9)  修改完成后按"**Ctrl+x**"，按下Y键保存，再按下回车确定。
+(9) After modification, press Ctrl+x, and Y key to save modified buffer, then press Enter.
 
 <img src="../_static/media/chapter_21/section_3/image16.png"  />
 
-- #### 3.1.4 PuppyPi的网络配置
+- #### PuppyPi Network Configuration
 
-(1)  接着通过VNC远程连接树莓派桌面。
+(1) Get access to Raspberry Pi desktop via VNC.
 
-(2)  单击桌面左上角的的图标<img src="../_static/media/chapter_21/section_3/image17.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键"**Ctrl+Alt+T**"，打开命令行终端。
+(2)  Click<img src="../_static/media/chapter_21/section_3/image17.png" style="width:0.31458in;height:0.27361in" /> or use shortcut **"Ctrl+Alt+T"** to open terminal
 
-(3)  输入指令，并按下回车，修改PuppyPi网络配置。
+(3) Enter command "sudo vim /etc/hosts" and press Enter to change network configuration.
 
 ```bash
 sudo vim /etc/hosts
 ```
 
-(4)  找到下图红框位置，输入修改成自己的虚拟机IP（上文1.2获得）。按下"**Esc**"键，输入指令，按下回车保存并退出。
+(4) Find the code marked in the below figure, then enter the IP of virtual machine which can be obtained in step 1.2. After that， press **"Esc"** key, enter **":wq"** and press Enter key to save and exit.  
 
 ```bash
 :wq
@@ -288,37 +274,37 @@ sudo vim /etc/hosts
 
 <img src="../_static/media/chapter_21/section_3/image19.png"  />
 
-(5)  输入指令，并按下回车，更新配置。
+(5) Run the command **"source .bashrc"** to update the configuration.
 
 ```bash
 source .bashrc
 ```
 
-### 3.2 配置导航
+### 15.3.2 Configure Navigation
 
-(1)  打开PuppyPi系统，点击系统桌面左上角的图标<img src="../_static/media/chapter_21/section_3/image21.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端.
+(1)  Connect to PuppyPi system. Then open the terminal<img src="../_static/media/chapter_21/section_3/image21.png" style="width:0.32292in;height:0.30208in" />.
 
-(2)  输入指令并按下回车，开启导航服务。
+(2) Input command "roslaunch puppy_navigation navigation.launch" and press Enter to open navigation service.
 
 ```bash
 roslaunch puppy_navigation navigation.launch
 ```
 
 :::{Note}
-默认情况下此处录取的地图为map1。
+By default, the map selected here is map1.
 :::
 
-出现下图内容则打开成功：
+When you receive the following messages, PuppyPi navigation service is enabled successfully.
 
 <img src="../_static/media/chapter_21/section_3/image24.png"  />
 
-(3)  打开虚拟机，输入指令，并按下回车，开启模型查看节点。
+(3) Open virtual machine, then input command **"rosparam set /puppy_control/joint_state_pub_topic true"** and press Enter to open the model to check node.
 
 ```bash
 rosparam set /puppy_control/joint_state_pub_topic true
 ```
 
-(4)  打开新的命令行终端窗口，输入开启模型查看软件的指令 ，并按下回车。
+(4) Open a new command line terminal, then input command **"roslaunch puppy_description rviz_with_urdf.launch"** and press Enter to open model viewing software.
 
 ```bash
 roslaunch puppy_description rviz_with_urdf.launch
@@ -326,100 +312,100 @@ roslaunch puppy_description rviz_with_urdf.launch
 
 <img src="../_static/media/chapter_21/section_3/image29.png"  />
 
-(5)  根据下图提示，打开建图文件。点击"**File-\>Open Config**"。
+(5)  Click **"File->Open Config"**.
 
 <img src="../_static/media/chapter_21/section_3/image30.png"  />
 
-如下图，打开对应的路径，选择"**navigation.rviz**"，然后点击"**Open**"。
+As shown in the image below, navigate to the corresponding path, select **"navigation.rviz",** and then click **"Open"**.
 
 <img src="../_static/media/chapter_21/section_3/image31.png"  />
 
 <img src="../_static/media/chapter_21/section_3/image32.png"  />
 
-### 3.3 开始导航
+### 15.3.3 Start Navigation
 
-可以根据下图红框内容，对机器狗下达指令，我们在进行导航时，需要使用第一个工具设置机器狗的初始位置，使用第二个工具可以设置机器狗的目标点，使用第三个工具，可以设置多个目标点。机器狗会根据地图，自动设置路线，躲开障碍，达到目标点。
+You can issue commands to the robot dog based on the content highlighted in the red box in the image below. When navigating, we need to use the first tool to set the initial position of the robot dog. The second tool can be used to set the target point of the robot dog, while the third tool allows setting multiple target points. The robot dog will automatically set its route based on the map, avoiding obstacles to reach the target point.
 
 :::{Note}
-若需要中断导航，在机器狗所在的位置上用第二个工具设置目标点即可。若拿起机器狗或被外力改变了位置，则需要我们重新设置位置。
+If you need to interrupt the navigation, simply use the second tool to set a target point at the current location of the robot dog. If you pick up the robot dog or its position is altered by external forces, you will need to reset its position manually.
 :::
 
 <img src="../_static/media/chapter_21/section_3/image33.png" class="common_img"  />
 
-(1)  软件菜单栏中，"**2D Pose Estimate**"用于设置PuppyPi机器狗的初始位置；
+(1) In the software menu bar, **"2D Pose Estimate"** is used to set the initial position of the PuppyPi robot dog.
 
 <img src="../_static/media/chapter_21/section_3/image34.png"  />
 
 <img src="../_static/media/chapter_21/section_3/image35.png"  />
 
-(2)  "**2D Nav Goal**"用于设置机器人的单个目标点。点击图标<img src="../_static/media/chapter_21/section_3/image36.png" style="width:0.72908in;height:0.19685in" />，并在地图界面选择一处作为目标点，在该点处按下鼠标左键，然后拖动鼠标，选择机器人所需要到达的目的地以及朝向，选择完成后，机器人会自动生成路线，并移动至目标点。
+(2)  **"2D Nav Goal"** is used to set a single target point for the robot. Click the icon and select a location on the map as the target point. Press the left mouse button at that point, then drag the mouse to select both the destination and orientation for the robot. After selection, the robot will automatically generate a route and move to the target point.
 
 <img src="../_static/media/chapter_21/section_3/image37.png"  />
 
 <img src="../_static/media/chapter_21/section_3/image38.png"  />
 
-当设置好目标点后，会生成红色和绿色两条线，红色的线是机器狗距离目标的直线距离，绿色的线是机器狗自行规划的路线。
+Once the target point is set, two lines will be generated: a red line and a green line. The red line represents the straight-line distance from the robot dog to the target, while the green line represents the route planned by the robot dog itself.
 
 <img src="../_static/media/chapter_21/section_3/image39.png"  />
 
-## 4. APP导航
+## 15.4 App Navigation
 
-### 4.1 准备工作
+### 15.4.1 Preparation
 
-我们可以通过手机来控制机器狗和查看机器狗的建图画面，并且用手机给机器狗设置目标点进行导航。
+Via the app, you can control PuppyPi's movement, view its mapping process and set the target point.
 
-(1) 本节课需要用到手机APP"**Make A APP**"和"**Map Nav**"，前者用于建图，后者用于导航。
+(1) **"Make A APP"** app is used for mapping and **"Map Nav"** app is used for navigation. 
 
-(2) 目前仅支持安卓系统：软件安装包位于本目录下，用户可将其导入手机进行安装。
+(2) These two apps only support Android system, and the installation pack is stored in the same folder.
 
-(3) 确保已参照"**[SLAM建图课程\5. APP建图](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/20_slam_mapping.html#app)**"进行了建图。
+### 15.4.2 Navigation
 
-### 4.2 导航操作
+- #### Enable App Navigation Service
 
-- #### 4.2.1 APP导航服务的开启
+(1) Start PuppyPi, then access Raspberry Pi desktop via VNC.
 
-(1)  开启机器狗，接着通过VNC远程连接树莓派桌面。
+(2)  Click-on <img src="../_static/media/chapter_21/section_4/image2.png" style="width:0.32292in;height:0.30208in" />at upper left corner to open the Terminator terminal.
 
-(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_21/section_4/image2.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
-
-(3)  输入指令，并按下回车，开启APP导航服务。
+(3) Run the command **"/home/ubuntu/puppy_pi/src/puppy_navigation/scripts/navigation_app.sh"** and press Enter to enable app navigation service.
 
 ```bash
 . /home/ubuntu/puppypi/src/puppy_navigation/scripts/navigation_app.sh
 ```
 
-- #### 4.2.2 APP导航
+- #### App Navigation
 
-(1) 启动机器狗，将其连接至远程控制软件VNC。
+(1) Turn on PuppyPi, then connect it to the remote control software VNC.
 
-(2) 开启APP服务，具体操作步骤可参考"3.1 APP导航服务的开启"。
+(2) Enable app service according to the instructions in "[**15.4.2 Navigation -> Enable App Navigation Service**]()".
 
-(3) 前往手机的设置界面，连接机器狗生成的热点。
+(3) Move to **"settings"**, and connect to the Wi-Fi generated by the robot.
 
 <img class="common_img" src="../_static/media/chapter_21/section_4/image6.png"  />
 
-(4) 打开APP"**Map Nav**"，将"**Master URI**"一栏为"**http://192.168.149.1:11311**"，并点击"**CONNECT**"按键。
+(4) Open the app **"Map Nav"**, and input "**http://192.168.149.1:11311**" in the filed **"Master URI"**. Then click **"CONNECT"** button. 
 
 <img class="common_img" src="../_static/media/chapter_21/section_4/image7.png" style="width:50%" />
 
 :::{Note}
-下图"CHOOSE A MAP"按键无实际作用，地图将会自动加载。
+The "CHOOSE A MAP" has no practical function. The map will be updated automatically.
 :::
 
-"**Map Nav**"的界面可分为3个区域。绿色方框用于显示地图；红色方框用于控制机器狗的移动；蓝框内选项"**Set Pose**"、"**Set Goal**"搭配绿色方框使用，用于设置机器狗的初始位置与导航目标点。
+The app interface is divided into 3 parts:
+
+**① Green area:** display the map
+
+**② Red frame:** control robot's movement
+
+**③ Blue frame:** the options **"Set Pose"** and **"Set Goal"** are used in conjunction with the green square. Set the initial position and the target position
 
 <img src="../_static/media/chapter_21/section_4/image22.png"  />
 
-(5) 选中"**Set Pose**"，长按地图内的某一点即可将该点设置为机器狗的初始位置。
+(5) Select **"Set Pose"**. Then press one point on the map to set it as the initial position for the robot.
 
-(6) 将红色方框内的箭头标识朝四周拖动，控制机器人移动以进行位置校准。
+(6) To calibrate robot's position, drag the arrow at upper right corner to control robot to go forward, downward, and turn left, right.
 
-将箭头标识依次朝上、下、左、右四个方向拖动，分别可以控制机器狗进行前进、后退、左转、右转。
+(7) Select **"Set Goal"** and press one point on the map to set it as the target point.
 
-(7) 选中"**Set Goal**"，长按地图内的某一点即可将该点设置为导航目标点。
-
-(8) 完成初始位置与导航目标点的设置后，机器狗会自动生成路线，并按照路线由初始位置移动至目标点。
-
-机器狗移动过程中，红色方框内会以百分数形式来显示机器狗的移动速度。
-
+(8) After the initial position and the target point are set, the robot will generate the path automatically, then move from the initial position to the target point based on this path.
+During PuppyPi is moving, its speed will be displayed in red area.
 

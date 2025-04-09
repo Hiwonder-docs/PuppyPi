@@ -1,272 +1,375 @@
-# AI自主追踪踢球项目
+# 9. ROS1-AI Auto Tracking and Shooting Course
 
-## 1. 小球寻找与定位
+## 9.1 Ball Searching and Locating
 
-### 1.1 玩法简要说明
+### 9.1.1 Program Logic
 
-首先，需要对颜色进行识别，本节使用的是Lab颜色空间进行处理，将图像颜色空间由RGB转换为Lab，随后对图像进行二值化、腐蚀、膨胀等操作，获得只包含目标颜色的轮廓，并用圆圈将其标识出来。
+Firstly, program to recognize color. Use Lab color space to convert the image from RGB into Lab. Then, perform binaryzation, corrosion, dilation, etc., on the image to obtain the contour which contains the target color. Next, circle the contour.
 
-接着，判断小球颜色，如果小球为红色，获取小球的坐标。
+Next, judge the ball color. If it is red, acquire the coordinate of the ball.
 
-最后，在终端打印出小球的X轴坐标。
+Lastly, print the x-axis coordinate of the ball on the terminal.
 
-### 1.2 玩法开启及关闭步骤
+### 9.1.2 Operation Steps 
 
 :::{Note}
-指令输入需严格区分大小写及空格。
+The input command should be case and space sensitive.
 :::
 
-(1) 启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-(2) 点击系统桌面左上角的图标<img src="../_static/media/chapter_15/section_1/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2) Click<img src="../_static/media/chapter_15/section_1/image4.png" style="width:0.32292in;height:0.30208in" /> to open LX terminal
 
-(3) 输入启动玩法的指令，按下回车。
+(3) Input the command and press Enter to start the game.
 
 ```bash
 rosrun puppy_advanced_functions kick_ball_demo.py
 ```
 
-(4) 如需关闭此玩法，可在LX终端界面按下"**Ctrl+C**"。如果关闭失败，可多次按下。
+(4) If want to close this game, we can press "Ctrl+C". If it fails to close the game, please try again.
 
-### 1.3 功能实现
+### 9.1.3 Program Outcome
 
 :::{Note}
-程序默认检测颜色为红色。
+The program is default to recognize red.
 :::
 
-当识别到红色小球后，回传画面内会使用矩形标识出小球，并在终端打印出X轴坐标。
+When a red ball is recognized, a rectangle will be used to highlight the ball ibn the feedback screen, and the X-axis coordinate will be printed in the terminal. 
 
 <img src="../_static/media/chapter_15/section_1/image9.png" class="common_img"  />
 
-### 1.4 程序参数说明
+### 9.1.4 Program Analysis
 
-[下载源代码](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/15/kick_ball_demo.py)
+The source code is located in 
 
-- #### 1.4.2 导入功能包
+[/home/ubuntu/puppy_pi/src/puppy_advanced_functions/scripts/kick_ball_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/15/kick_ball_demo.py)
 
-<img src="../_static/media/chapter_15/section_1/image12.png"  />
+- #### Import Function Package
 
-通过 import 语句导入所需模块：math提供了一系列数学函数和常数,用于进行相关计算；rospy用于ROS通信，from object_tracking.srv import \*: 导入目标跟踪相关的服务。from puppy_control.msg import Velocity, Pose, Gait: 导入控制和传递机器人的速度、姿态和步态服务。
+```PY
+import sys
+import cv2
+import time
+import math
+import threading
+import numpy as np
+from enum import Enum
 
-- #### 1.4.2 处理图像
+from common import Misc
 
-(1) **高斯滤波**
-
-在将图像的颜色空间由RGB转换为Lab前，需要先对其进行降噪处理，此处用到cv2库中的GaussianBlur()函数，该函数用于对图像进行高斯滤波处理。
-
-<img src="../_static/media/chapter_15/section_1/image14.png"  />
-
-括号内的参数含义如下：
-
-第一个参数"**frame_resize**"是输入图像；
-
-第二个参数"**(3, 3)**"是高斯内核大小；
-
-第三个参数"**3**"是在高斯滤波中其平均值附近允许的变化范围大小。该值越大，平均值周围允许的变化范围越大；数值越小，平均值周围允许的变化范围越小。
-
-(2) **二值化处理**
-
-采用cv2库中的inRange()函数对图像进行二值化处理。
-
-<img src="../_static/media/chapter_15/section_1/image16.png"  />
-
-括号内的第一个参数是输入图像；第二个、第三个参数分别是阈值的下限和上限。当像素点RGB的颜色数值处于上、下限之间时，该像素点被赋值为1，否则为0。
-
-(3) **腐蚀膨胀处理**
-
-:::{Note} 
-为了降低干扰，令图像更平滑，需要对图像进行腐蚀和膨胀处理。
-:::
-
-<img src="../_static/media/chapter_15/section_1/image18.png"  />
-
-erode()函数用于对图像进行腐蚀操作。
-
-以代码
-
-```python
-eroded = cv2.erode(frame_mask, cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3)))
+import rospy
+from std_srvs.srv import *
+from sensor_msgs.msg import Image
+from ros_robot_controller.msg import RGBState, RGBsState
+from object_tracking.srv import *
+from puppy_control.msg import Velocity, Pose, Gait
+from puppy_control.srv import SetRunActionName
 ```
 
-为例，括号内的参数含义如下：
+Import the required module through import statements: math provides a range of mathematical functions and constants for related calculations; rospy is used for ROS communication; from sensor_msgs.msg import Image: import target tracking related service. from puppy_control.msg import Velocity, Pose, Gait: import services for controlling and transmitting the velocity, pose, and gait of the robot.
 
-第一个参数"**frame_mask**"是输入图像；
+- #### Image Processing
 
-第二个参数"**cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))**"是决定操作性质的结构元素或内核。其中，括号内的第一个参数是内核形状，第二个参数是内核尺寸。
+**(1) Gaussian Filtering**
 
-dilate()函数用于对图像进行膨胀操作。此函数括号内参数的含义与erode()函数的相同。
+Before converting the image from RGB into Lab space, denoise the image and use GaussianBlur() function in cv2 library for Gaussian filtering.
 
-(4) **获取最大面积轮廓**
+```PY
+rame_gb = cv2.GaussianBlur(frame_resize, (3, 3), 3)
+```
 
-完成上述的图像处理后，需要获取识别目标的轮廓，此处涉及cv2库中的findContours()函数。
+The meaning of the parameters in bracket is as follow
 
-<img src="../_static/media/chapter_15/section_1/image20.png"  />
+The first parameter `frame_resize` is the input image
 
-括号内的第一个参数是输入图像；第二个参数是轮廓的检索模式；第三个参数是轮廓的近似方法。
+The second parameter `(3, 3)` is the size of Gaussian kernel 
 
-在获得的轮廓中寻找面积最大的轮廓，而为了避免干扰，需要设定一个最小值，仅当面积大于该值时，目标轮廓才有效。
+The third parameter `3` is the allowable range of variation around the average in Gaussian filtering. The larger the value, the larger the allowable range of variation.
 
-<img src="../_static/media/chapter_15/section_1/image22.png"  />
+**(2) Binaryzation Processing**
 
-获得最大面积轮廓后，通过调用cv2库中的minAreaRect()、drawContours()函数，获取并标识出目标轮廓的最小外接矩形。
+Adopt `inRange()` function in cv2 library to perform binaryzation on the image.
 
-<img src="../_static/media/chapter_15/section_1/image24.png"  />
+```PY
+frame_mask = cv2.inRange(frame_lab,
+                             (color_range_list[i]['min'][0],
+                              color_range_list[i]['min'][1],
+                              color_range_list[i]['min'][2]),
+                             (color_range_list[i]['max'][0],
+                              color_range_list[i]['max'][1],
+                              color_range_list[i]['max'][2]))  #对原图像和掩模进行位运算(perform bitwise operation to original image and mask)
+```
 
-- #### 1.4.3 显示坐标
+The first parameter in the bracket is the input image. 
 
-最后在终端显示红色小球的X轴坐标，如下图所示：
+The second and the third parameters respectively are the lower limit and upper limit of the threshold. When the RGB value of the pixel is between the upper limit and lower limit, the pixel is assigned 1, otherwise, 0.
 
-<img src="../_static/media/chapter_15/section_1/image26.png"  />
+**(3) Erode and Dilate**
 
-## 2. 自主追踪踢球
-
-:::{Note}
-如果演示效果不佳，可根据文档内"[关闭调试画面](#anchor_2_4_1)"进行调试。
+:::{Note} 
+To reduce interference and make the image smoother, it is necessary to process the image.
 :::
 
-### 2.1 实验原理
+```PY
+eroded = cv2.erode(frame_mask, cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3)))  #腐蚀(corrosion)
+dilated = cv2.dilate(eroded, cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))) #膨胀(dilation)
+```
 
-首先，需要对颜色进行识别，本节使用的是Lab颜色空间进行处理，将图像颜色空间由RGB转换为Lab，随后对图像进行二值化、腐蚀、膨胀等操作，获得只包含目标颜色的轮廓，并用圆圈将其标识出来。
+erode() function is used for image erosion. 
 
-机器狗不断进行颜色识别，识别到红色小球后，获取小球的坐标位置；然后靠近红色小球；稳定后，根据红色小球的X轴坐标，控制机器狗执行对应动作组踢球，从而达到智能踢球的效果。
+Take `eroded = cv2.erode(frame_mask, cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3)))` for example. The meaning of the parameters in bracket is as follow.
 
-### 2.2 玩法开启及关闭步骤
+The first parameter `frame_mask` is the input image.
+
+The second parameter `cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))` is the structural element or kernel deciding the nature of operation. And, the first parameter in the bracket is the shape of kernel, and the second parameter is the dimension of the kernel.
+
+`dilate()` function is used for image dilation. The meaning of the parameters in bracket is the same as that of `erode()` function.
+
+**(4) Acquire the Maximum Contour**
+
+After processing the image, acquire the contour of the target to be recognized, which involves `findContours()` function in cv2 library.
+
+```PY
+contours = cv2.findContours(dilated, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)[-2]  #找出轮廓(find out the contour)
+```
+
+The first parameter in parentheses is the input image; 
+
+the second parameter is the retrieval mode of the contour; 
+
+the third parameter is the approximation method of the contour.
+
+Find the contour of the maximum area among the obtained contours. Obtain and identify the minimum bounding rectangle of the target contour through calling the `minAreaRect()` and `drawContours()` function in the cv2 library.
+
+```PY
+# 找出面积最大的轮廓(find out the contour with the maximal area)
+# 参数为要比较的轮廓的列表(the parameter is the list of contour to be compared)
+def getAreaMaxContour(contours):
+    contour_area_temp = 0
+    contour_area_max = 0
+    area_max_contour = None
+
+    for c in contours:  # 历遍所有轮廓(iterate through all contours)
+        contour_area_temp = math.fabs(cv2.contourArea(c))  # 计算轮廓面积(calculate the contour area)
+        if contour_area_temp > contour_area_max:
+            contour_area_max = contour_area_temp
+            if contour_area_temp >= 5:  # 只有在面积大于300时，最大面积的轮廓才是有效的，以过滤干扰(only when the area is greater than 300, the contour with the largest area is considered valid to filter out interference)
+                area_max_contour = c
+
+    return area_max_contour, contour_area_max  # 返回最大的轮廓(return the maximal contour)
+```
+
+After obtaining the contour with the maximum area, use the `minAreaRect()` and `drawContours()` functions from the cv2 library to obtain and mark the minimum bounding rectangle of the target contour.
+
+```PY
+rect = cv2.minAreaRect(areaMaxContour_max)#最小外接矩形(the minimal bounding rectangle)
+            
+box = np.int0(cv2.boxPoints(rect))#最小外接矩形的四个顶点(the four vertices of the minimum bounding rectangle)
+centerX = int(Misc.map(rect[0][0], 0, size[0], 0, img_w))
+centerY = int(Misc.map(rect[0][1], 0, size[1], 0, img_h))
+sideX = int(Misc.map(rect[1][0], 0, size[0], 0, img_w))
+sideY = int(Misc.map(rect[1][1], 0, size[1], 0, img_h))
+angle = rect[2]
+for i in range(4):
+    box[i, 1] = int(Misc.map(box[i, 1], 0, size[1], 0, img_h))
+for i in range(4):                
+     box[i, 0] = int(Misc.map(box[i, 0], 0, size[0], 0, img_w))
+cv2.drawContours(img, [box], -1, (0,0,255,255), 2)#画出四个点组成的矩形(draw a rectangle formed by connecting the four points)
+```
+
+- #### Display Coordinate
+
+Lastly, the x-axis coordinate of the red ball will be displayed on the terminal.
+
+```PY
+puppyStatus = PuppyStatus.CLOSE_TO_TARGET_FINE_TUNE
+print('expect_center[X] , target_info[centerX]',expect_center['X'] , target_info['centerX'])
+```
+
+## 9.2 Auto Tracking and Shooting
 
 :::{Note}
-指令输入需严格区分大小写及空格。
+if the demonstration effect is not satisfactory, you can debug the device according to "[4.1 Close Debugging Interface](#anchor_2_4_1)".
 :::
 
-(1) 启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+### 9.2.1 Program Logic
 
-(2) 点击系统桌面左上角的图标<img src="../_static/media/chapter_15/section_2/image3.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+Firstly, program to recognize color. Use Lab color space to convert the image from RGB into Lab. Then, perform binaryzation, corrosion, dilation, etc., on the image to obtain the contour which contains the target color. Next, circle the contour.
 
-(3) 输入启动玩法的指令，按下回车。
+PuppyPi will execute color recognition continuously till red ball is recognized. Then acquire the coordinate of ball, and approach it. When PuppyPi stops in front of the ball, control it to shoot the ball according to the X-axis coordinate. 
+
+### 9.2.2 Operation Steps
+
+:::{Note}
+The input command should be case and space sensitive.
+:::
+
+(1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
+
+(2) Click<img src="../_static/media/chapter_15/section_2/image3.png" style="width:0.32292in;height:0.30208in" />to open LX terminal
+
+(3) Input command **"rosrun puppy_advanced_functions kick_ball_demo.py"** and press Enter to start the game.
 
 ```bash
 rosrun puppy_advanced_functions kick_ball_demo.py
 ```
 
-(4) 如需关闭此玩法，可在LX终端界面按下"**Ctrl+C**"。如果关闭失败，可多次按下。
+(4) If want to close this game, we can press "Ctrl+C". If it fails to close the game, please try again.
 
-### 2.3 功能实现
+### 9.2.3 Program Outcome
 
 :::{Note}
-程序默认识别颜色为红绿蓝三种颜色。
+The program is default to recognize red, green and blue.
 :::
 
-当识别到红色小球后，PuppyPi机器狗会根据小球位置，自动靠近小球，完成对应踢球动作。此外，回传画面内会使用对应颜色的圆圈标识出小球，并打印小球颜色。
+When recognizing red ball, PuppyPi will approach the ball autonomously according to the location of PuppyPi, and then shoot the ball. Besides, the red ball will be marked with red circle and its color will be printed on the camera returned image.
 
-### 2.4 功能延伸
+
+
+### 9.2.4 Program Analysis
+
+The source code of this program is stored in [/home/ubuntu/puppy_pi/src/puppy_advanced_functions/scripts/kick_ball_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/15/kick_ball_demo.py)
+
+**(1) Direction Judging**
+
+After locating the ball, judge whether the ball is at left or right according to the coordinate of the ball.
+
+```PY
+if expect_center['X'] > target_info['centerX']:
+    which_foot_kick_ball = 'left'
+else:
+    which_foot_kick_ball = 'right'
+```
+
+**(2) Approach the Red Ball**
+
+According to the coordinate of the ball, control PuppyPi to approach the red ball.
+
+```PY
+            if target_info['centerY'] < expect_center_kick_ball_left['Y']:
+                PuppyVelocityPub.publish(x=4, y=0, yaw_rate = math.radians(0))
+                time.sleep(0.1)
+            elif which_foot_kick_ball == 'left' and target_info['centerX'] > expect_center_kick_ball_left['X']:
+                PuppyVelocityPub.publish(x=0, y=0, yaw_rate = math.radians(-8))
+                time.sleep(0.1)
+            elif which_foot_kick_ball == 'right' and target_info['centerX'] < expect_center_kick_ball_right['X']:
+                PuppyVelocityPub.publish(x=0, y=0, yaw_rate = math.radians(8))
+                time.sleep(0.1)
+            else:# 最后一次微调(the final fine-tuning)
+                if which_foot_kick_ball == 'left':
+                    PuppyVelocityPub.publish(x=5, y=0, yaw_rate = math.radians(-10))
+                else:
+                    PuppyVelocityPub.publish(x=5, y=0, yaw_rate = math.radians(10))
+                time.sleep(1.8)
+                PuppyVelocityPub.publish(x=0, y=0, yaw_rate = math.radians(0))
+                puppyStatus = PuppyStatus.KICK_BALL
+            # PuppyVelocityPub.publish(x=0, y=0, yaw_rate = math.radians(0))
+            # time.sleep(0.1)#停下来需要稳定的时间(the time required to come to a stable stop)
+            time.sleep(0.1)
+            break
+```
+
+PuppyVelocityPub.publish function will be used to control PuppyPi to move.
+
+`PuppyVelocityPub.publish()` is used to control the motion status of PuppyPi. Take `PuppyVelocityPub.publish(x=4, y=0, yaw_rate = math.radians(0))` for example. The meaning of the parameters in bracket is as follow.
+
+The first parameter `x` is the speed in cm/s of moving straight. Moving forward is taken as the positive direction.
+
+The second parameter `y` is the speed in cm/s of moving sideways. Left is taken as the positive direction. However, PuppyPi cannot move sideways, and this parameter is useless. 
+
+The third parameter `yaw_rate` is the speed in rad/s of turning. Counterclockwise is taken as positive direction.
+
+**(3) Shoot the Ball**
+
+After PuppyPi approaches the red ball, call the action group to make PuppyPi shoot the ball according to the direction of the ball.
+
+```PY
+with lock:
+     PuppyVelocityPub.publish(x=0, y=0, yaw_rate = math.radians(0))
+     time.sleep(0.2)
+     if which_foot_kick_ball == 'left':
+          runActionGroup_srv('kick_ball_left.d6ac',True)
+      else:
+          runActionGroup_srv('kick_ball_right.d6ac',True)
+      puppyStatus = PuppyStatus.LOOKING_FOR
+      haved_detect = False
+```
+
+
+
+
+### 9.2.5 Function Extension
 
 <span id="anchor_2_4_1" class="anchor"></span>
 
-- #### 2.4.1 关闭调试画面
+- #### Close Debugging Interface
 
-由于调试画面不断刷新，会占用树莓派一定的CPU资源，所以如果出现运行不流畅的情况，可通过关闭调试画面来改善，具体步骤如下：
+As the continuous refresh of debugging interface will occupy CPU of Raspberry Pi, we can close debugging interface to tackle choppy running.
 
-(1)  输入指令，用来编辑自主追踪踢球玩法程序，按下回车。
+(1) Input the command and press Enter to edit the program file.
 
 ```bash
 rosed puppy_advanced_functions kick_ball_demo.py
 ```
 
-(2)  找到下图所示代码：
+(2) Next, jump to this line of code.
 
 <img src="../_static/media/chapter_15/section_2/image7.png"  />
 
 :::{Note}
-在键盘输入代码位置序号后，按下"Shift+G"键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
+we can input the line code and press **"Shift+G"** to jump to the corresponding line.
 :::
 
-(3)  按下"**i**"键进入编辑模式，在代码前面添加"**\#**"，进行注释。
+(3) Press **"i"** key to enter editing mode. Then add **"#"** in front of the codes in the red frame to comment.
 
 <img src="../_static/media/chapter_15/section_2/image8.png"  />
 
-(4)  修改完成后，按下"**Esc**"键，输入并回车，进行保存与退出。
+(4) After modification, press **"Esc"** and input **":wq"** and press Enter to save and exit editing.
 
 ```bash
 :wq
 ```
 
-(5)  输入指令，重新启动玩法，即可查看修改后的玩法效果。
+(5) Input the command  to restart the game and check PuppyPi's performance.
 
 ```bash
 rosrun puppy_advanced_functions kick_ball_demo.py
 ```
 
-(6)  如需再次查看调试画面（摄像头实时回传画面），可将步骤3）框出的内容进行反注释，即将代码前面的"**\#**"去掉，再进行保存，如下图所示：
+(6) If you need to view the debugging screen again (real-time feedback from the camera), you can uncomment the content boxed in step 3), i.e., remove the "#" in front of the code, then save, as shown in the following figure:
 
 <img src="../_static/media/chapter_15/section_2/image7.png"  />
 
-- #### 2.4.2 更改小球颜色
+- #### Change Ball Color
 
-**玩法默认识别红色小球后开始踢球，如需更改小球颜色，比如蓝色，可参照以下步骤：**
+**The program is default to recognize and shoot the red ball. If you need to change the color, please follow the below steps to operate.**
 
-(1)  输入指令，用来编辑自主追踪踢球玩法程序，按下回车。
+(1) Input the command and press Enter to edit auto tracking and shooting program.
 
 ```bash
 rosed puppy_advanced_functions kick_ball_demo.py
 ```
 
-(2)  找到下图所示代码：
+(2) Next, jump to this line of code.
 
 <img src="../_static/media/chapter_15/section_2/image11.png"  />
 
 :::{Note}
-在键盘输入代码位置序号后，按下"Shift+G"键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
+we can input the line code and press **"Shift+G"** to jump to the corresponding line.
 :::
 
-(3)  按下"**i**"键进入编辑模式，将"**red**"改为"**blue**"。
+(3) Press **"i"** key to enter editing mode. Modify **"red"** as **"blue"**.
 
 <img src="../_static/media/chapter_15/section_2/image12.png"  />
 
-(4)  修改完成后，按下"**Esc**"键，输入指令并按下回车，进行保存与退出。
+(4) After modification, press **"Esc"** and input **":wq"** and press Enter to save and exit editing.
 
 ```bash
 :wq
 ```
 
-(5)  输入指令，重新启动玩法，即可查看修改后的玩法效果。
+(5) Input the command to restart the game and check PuppyPi's performance.
 
 ```bash
 rosrun puppy_advanced_functions kick_ball_demo.py
 ```
-
-### 2.5 程序参数说明
-
-[下载源代码](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/15/kick_ball_demo.py)
-
-(1) **判断左右位置**
-
-第一课我们介绍了小球的寻找觉定位，接下来可以小球的坐标信息，判断小球的左右位置，如下图：
-
-<img src="../_static/media/chapter_15/section_2/image15.png"  />
-
-(2) **靠近红色小球**
-
-接下根据小球坐标，控制机器狗不断靠近红色小球，如下图：
-
-<img src="../_static/media/chapter_15/section_2/image16.png"  />
-
-控制机器狗行走时，主要通过调用PuppyVelocityPub.publish函数。
-
-PuppyVelocityPub.publish()函数用于控制机器狗运动时的状态。以代码
-
-```python
-PuppyVelocityPub.publish(x=4, y=0, yaw_rate = math.radians(0))
-```
-
-为例，括号内的参数含义如下：
-
-第一个参数"**x**"是机器狗的直行速度，前进方向为正方向，单位cm/s；
-
-第二个参数"**y**"是机器狗的侧移速度，左侧方向为正方向，单位cm/s，目前无此功能；
-
-第三个参数"**yaw_rate**"是机器狗的转弯速度，逆时针方向为正方向，单位rad/s。
-
-(3) **开始踢球**
-
-靠近红色小球后，通过小球左右位置，调用对应动作组，执行踢球动作，如下图：
-
-<img src="../_static/media/chapter_15/section_2/image17.png"  />
-

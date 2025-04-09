@@ -1,1347 +1,2157 @@
-# 机械臂扩展课程
+# 16. ROS1-ROS Robot with Robot Arm
 
-## 1.机械臂的安装与开机检验
+## 16.1 The Installation of Robotic Arm and Power-on Test
 
-### 1.1 机械臂的安装
+### 16.1.1 The Installation of Robotic Arm
 
-Puppypi机械臂安装的教学视频可以参考同目录下的"**机械臂的安装**"。下文为Puppypi机械臂安装的示意图：
+The installation tutorial video for the Puppypi robotic arm can be referred to in the same directory under "Robotic Arm Installation." Below is a schematic diagram for the installation of the Puppypi robotic arm:
 
-使用**4颗M4\*6圆头机械螺丝**将机械臂固定在Puppypi上（**由于Puppypi钣金件新旧版本更替的现象，部分钣金件只能安装两颗M4\*6圆头机械螺丝，具体以实际Puppypi钣金件为主**）。
+Use four M4\*6 round head machine screw to secure the robotic arm to the Puppypi. Due to the replacement of old and new versions of Puppypi sheet metal parts, some sheet metal parts can only be installed with two M4*6 round head machine screws. Please refer to the actual Puppypi sheet metal parts for specifics.
 
 <img class="common_img" style="width:70%" src="../_static/media/chapter_22/section_1/image2.png"  alt="5" />
 
 <img class="common_img" style="width:70%" src="../_static/media/chapter_22/section_1/image3.png"  alt="5-1" />
 
-M4\*6圆头机械螺丝
-
-将机械臂上的ID9、10、11号舵机接到树莓派扩展板上的9、10、11号PWM舵机接口，如下图所示。
+Connect the servos ID9, ID10, and ID11 on the robotic arm to the PWM servo interfaces 9, 10, and 11 on the Raspberry Pi expansion board as pictured:
 
 <img src="../_static/media/chapter_22/section_1/image4.png"  alt="IMG_256" />
 
-### 1.2 开机检验
+### 16.1.2 Power-on Inspection
 
 :::{Note}
-(1) 请勿在粗糙崎岖的地面上启动PuppyPi。
-(2) 开机后不要强行掰动舵机，避免舵机产生损伤。
-:::
 
-(1)  开机前，为避免舵机突然发力而造成受损，请将PuppyPi呈卧姿放置在平面上，机械臂需要朝前摆放，如下图所示：
+* Do not start PuppyPi on rough or uneven surfaces.
+* Do not forcibly move the servos after powering on to avoid damaging them.
+  :::
+
+(1) Before powering on, to avoid servo damage from sudden movement, place PuppyPi in a lying position on a flat surface. The robotic arm should be positioned facing forward, as shown in the diagram below:
 
 <img src="../_static/media/chapter_22/section_1/image5.png"  />
 
 :::{Note}
-开机前机械臂需要朝正前方摆放，禁止下垂摆放，防止舵机上电后发力对机械臂造成损坏。
+Before powering on, the robotic arm must be positioned facing straight forward. Do not position it hanging downwards to prevent damage to the robotic arm when the servos are powered on.
 :::
 
 <img src="../_static/media/chapter_22/section_1/image6.png"  />
 
 <img src="../_static/media/chapter_22/section_1/image7.png"  />
 
-(2)  然后将扩展板的开关由"**OFF**"推到"**ON**"，开机以后，机器狗尾部的数码管会显示电池当前电量（下图所示点亮为8V，当电池电量低于6.8V时需尽快给电池充电），且LED1和LED2会亮起微弱蓝灯，稍等片刻后，LED1将常亮，LED2将每隔两秒闪烁，代表网络配置已经准备完毕。然后等待蜂鸣器发出"嘀"的一声，说明ROS配置完成，设备启动完毕。
+(2) Then, push the switch on the expansion board from "OFF" to "ON". After powering on, the digital display at the tail of the robot dog will show the current battery level (it lights up at 8V as pictured). when the battery level is below 6.8V, the battery needs to be charged as soon as possible. LED1 and LED2 will emit a faint blue light. After a short wait, LED1 will stay on continuously, and LED2 will blink every two seconds, indicating that the network configuration is ready. Finally, wait for a "beep" from the buzzer, indicating that the ROS configuration is complete and the device has successfully started.
 
 <img class="common_img" style="width:450px" src="../_static/media/chapter_22/section_1/image8.jpeg"  alt="4 (3)" />
 
 <img class="common_img" style="width:450px" src="../_static/media/chapter_22/section_1/image10.jpeg"  alt="4 (2)" />
 
-(3)  设备出厂默认为AP直连模式，开机成功后，将产生一个以"**HW**"开头的热点。
+(3) The device defaults to AP direct connection mode out of the factory. After successful boot-up, it will generate a hotspot starting with "HW".
 
-<img class="common_img" src="../_static/media/chapter_22/section_1/image11.jpeg"  alt="2021-09-29_14-27-29" />
+<img class="common_img" src="../_static/media/chapter_22/section_1/image11.png"  alt="2021-09-29_14-27-29" />
 
-## 2. 上位机的使用
+## 16.2 Use of PC Software
 
-### 2.1 启动上位机
+### 16.2.1 Open the PC Software
 
-- #### 2.1.1 采用桌面图标启动（初学者推荐）
+- #### Start device via desktop icons (recommended for beginners)
 
-(1)  双击桌面图标<img src="../_static/media/chapter_22/section_2/image2.png" style="width: 45px"  />。
+(1)   Double-click the desktop icon<img src="../_static/media/chapter_22/section_2/image2.png" style="width: 45px"  />。
 
-(2)  在弹出的提示窗口处单击"**Execute**"选项，即可打开上位机。
+(2)  Click "Execute" option in the pop-up prompt window to open the PC software.
 
 <img class="common_img" src="../_static/media/chapter_22/section_2/image3.png"  />
 
-- #### 2.1.2 采用命令行形式启动
+- #### Start device via command line
 
-(1)  点击系统桌面左上角的图标<img src="../_static/media/chapter_22/section_2/image5.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(1) Click on the icon<img src="../_static/media/chapter_22/section_2/image5.png" style="width:0.32292in;height:0.30208in" /> at the top left corner of the desktop, or use the shortcut **"Ctrl+Alt+T"** to open the command line terminal.
 
-(2)  输入指令，并按下回车，打开上位机。
+(2) Input command **"sudo python3 PuppyPi_PC_Software/PuppyPi.py"** and press Enter to open the PC software.
 
 ```bash
 python3 /home/ubuntu/software/puppypi_control/PuppyPi.py
 ```
 
-### 2.2 上位机使用介绍
+### 16.2.2 Usage Introduction of PC
 
-上位机启动成功后，我们在普通模式下方"**机械臂**"的选项勾选上，界面上就会出现对应机械臂舵机的控制区域。
+After the upper computer successfully starts, when we select the option "Robotic Arm" in normal mode, the corresponding control area for the robotic arm servos will appear on the interface.
 
 <img src="../_static/media/chapter_22/section_2/image9.png" class="common_img" />
 
 <img src="../_static/media/chapter_22/section_2/image10.png"  />
 
-舵机ID9、10、11分别对应了机械臂的三个舵机。
+The servos ID9, ID10, and ID11 correspond to the three servos of the robotic arm.
 
 <img class="common_img" style="width:60%;" src="../_static/media/chapter_22/section_2/image11.png"  />
 
-普通模式的界面可分为舵机操控区域、动作详情列表、动作组设置区域和偏差设置区域。
+The interface in normal mode can be divided into four parts: servo control area, action details list, action group settings area, and deviation settings area.
 
 <img src="../_static/media/chapter_22/section_2/image12.png"  />
 
-(1) **舵机操控区域**
+**(1) servo control area**
 
 :::{Note}
-可通过调整对应舵机的数值，对PuppyPi机器狗的姿态进行调整。
+You can adjust the posture of the PuppyPi by adjusting the values corresponding to the respective servos.
 :::
 
-| **图标** | **功能说明** |
+| Icon | Function |
 |:--:|:--:|
-| <img src="../_static/media/chapter_22/section_2/image13.png" style="width:0.98403in;height:0.16389in" /> | 舵机ID编号。 |
-| <img src="../_static/media/chapter_22/section_2/image14.png" style="width:0.98403in;height:0.53264in" /> | 用于调整舵机的角度位置，取值范围是500至2500。 |
-| <img src="../_static/media/chapter_22/section_2/image15.png" style="width:0.98403in;height:0.25417in" /> | 用于调整舵机偏差，取值范围是-100至100。 |
+| <img src="../_static/media/chapter_22/section_2/image13.png" style="width:0.98403in;height:0.16389in" /> | Servo ID number. |
+| <img src="../_static/media/chapter_22/section_2/image14.png" style="width:0.98403in;height:0.53264in" /> | The range of values used to adjust the angle position of the servo is from 500 to 2500. |
+| <img src="../_static/media/chapter_22/section_2/image15.png" style="width:0.98403in;height:0.25417in" /> | The range of values used to adjust the servo deviation is from -100 to 100. |
 
-(2) **动作详情列表**
+**(2) action details list**
 
 :::{Note}
-可在动作详情列表内查看动作的执行时间及舵机参数。
+You can check the execution time and servo parameter of actions in the action details list.
 :::
 
 <img src="../_static/media/chapter_22/section_2/image16.png"  />
 
-| **图标** | **功能说明** |
+| Icon | Function |
 |:--:|:--:|
-| <img src="../_static/media/chapter_22/section_2/image17.png" style="width:0.78681in;height:0.21181in" /> | 动作编号。 |
-| <img src="../_static/media/chapter_22/section_2/image18.png" style="width:0.78681in;height:0.21181in" /> | 动作运行时间，即执行该动作所用时间。 |
-| <img src="../_static/media/chapter_22/section_2/image19.png" style="width:0.78681in;height:0.21181in" /> | 对应ID舵机的角度数值，可双击数值进行修改。 |
-| <img src="../_static/media/chapter_22/section_2/image20.png" style="width:0.78681in;height:0.19653in" /> | 运行当前选择动作。 |
+| <img src="../_static/media/chapter_22/section_2/image17.png" style="width:0.78681in;height:0.21181in" /> | Action number. |
+| <img src="../_static/media/chapter_22/section_2/image18.png" style="width:0.78681in;height:0.21181in" /> | Action running time refers to the time taken to execute the action. |
+| <img src="../_static/media/chapter_22/section_2/image19.png" style="width:0.78681in;height:0.21181in" /> | You can double-click on the numerical value corresponding to the ID servo to modify it. |
+| <img src="../_static/media/chapter_22/section_2/image20.png" style="width:0.78681in;height:0.19653in" /> | Run the currently selected action. |
 
-(3) **动作组设置区域**
+**(3) action group setting area**
 
-| **图标** | **功能说明** |
+| Icon | Function |
 |:--:|:--:|
-| <img src="../_static/media/chapter_22/section_2/image21.png" style="width:1.18056in;height:0.30903in" /> | 运行单个动作所需的时间，可直接在方框内修改数值。 |
-| <img src="../_static/media/chapter_22/section_2/image22.png" style="width:1.18056in;height:0.18681in" /> | 运行完整动作组所需的时间。 |
-| <img src="../_static/media/chapter_22/section_2/image23.png" style="width:0.7874in;height:0.69291in" /> | 将当前舵机操控区域的舵机数值作为一个动作，添加至动作详情列表的最后一行。 |
-| <img src="../_static/media/chapter_22/section_2/image24.png" style="width:0.7874in;height:0.32283in" /> | 将动作详情列表内选择动作的舵机参数替换为当前舵机操控区域的数值，动作运行时间替换为"**动作时间**"的设定值。 |
-| <img src="../_static/media/chapter_22/section_2/image25.png" style="width:0.7874in;height:0.32283in" /> | 在动作详情列表内选择动作的上方插入一个动作，舵机参数取舵机操控区域的数值，动作时间取"**动作时间**"的设定值。 |
-| <img src="../_static/media/chapter_22/section_2/image26.png" style="width:0.7874in;height:0.32283in" /> | 将动作详情列表内的选择动作与其上一个动作进行位置交换。 |
-| <img src="../_static/media/chapter_22/section_2/image27.png" style="width:0.7874in;height:0.32283in" /> | 删除动作详情列表内的选择动作。 |
-| <img src="../_static/media/chapter_22/section_2/image28.png" style="width:0.7874in;height:0.32283in" /> | 删除动作详情列表内的所有动作。 |
-| <img src="../_static/media/chapter_22/section_2/image29.png" style="width:0.7874in;height:0.32283in" /> | 将动作详情列表内的选择动作与其下一个动作进行位置交换。 |
-| <img src="../_static/media/chapter_22/section_2/image30.png" style="width:0.59055in;height:1.04987in" /> | 运行一次动作详情列表内的动作，勾选"**循环**"代表循环运行动作。 |
-| <img src="../_static/media/chapter_22/section_2/image31.png" style="width:0.7874in;height:0.36507in" /> | 打开所需的动作组文件。 |
-| <img src="../_static/media/chapter_22/section_2/image32.png" style="width:0.7874in;height:0.36507in" /> | 将动作详情列表内的动作保存至指定位置。 |
-| <img src="../_static/media/chapter_22/section_2/image33.png" style="width:0.7874in;height:0.36507in" /> | 通过按键"**打开动作文件**"打开一个动作组后，点击此按键打开另一个动作组，可将两者串联。 |
-| <img src="../_static/media/chapter_22/section_2/image34.png" style="width:1.1811in;height:0.26961in" /> | 可在上位机中显示已保存的动作组。 |
-| <img src="../_static/media/chapter_22/section_2/image35.png" style="width:0.59055in;height:0.34102in" /> | 刷新选择的动作组。 |
-| <img src="../_static/media/chapter_22/section_2/image36.png" style="width:0.7874in;height:0.29349in" /> | 删除当前选择的动作组文件。 |
-| <img src="../_static/media/chapter_22/section_2/image37.png" style="width:0.7874in;height:0.29349in" /> | （**慎点**）删除所有动作组文件。 |
-| <img src="../_static/media/chapter_22/section_2/image38.png" style="width:0.7874in;height:0.29349in" /> | 执行一次选择的动作组。 |
-| <img src="../_static/media/chapter_22/section_2/image39.png" style="width:0.7874in;height:0.29349in" /> | 停止正在运行的动作组。 |
-| <img src="../_static/media/chapter_22/section_2/image40.png" style="width:1.37795in;height:0.24629in" /> | 退出上位机操作界面。 |
+| <img src="../_static/media/chapter_22/section_2/image21.png" style="width:1.18056in;height:0.30903in" /> | The time required to run a single action can be directly modified within the corresponding box. |
+| <img src="../_static/media/chapter_22/section_2/image22.png" style="width:1.18056in;height:0.18681in" /> | The time required to run the entire action group. |
+| <img src="../_static/media/chapter_22/section_2/image23.png" style="width:0.7874in;height:0.69291in" /> | Add the current servo values from the servo control area as a new action to the last row of the action details list. |
+| <img src="../_static/media/chapter_22/section_2/image24.png" style="width:0.7874in;height:0.32283in" /> | Replace the servo parameters of the selected action in the action details list with the current servo values from the servo control area, and replace the action runtime with the set value of "action time". |
+| <img src="../_static/media/chapter_22/section_2/image25.png" style="width:0.7874in;height:0.32283in" /> | Insert a new action above the selected action in the action details list. Set the servo parameters to the values from the servo control area, and set the action time to the value of "action time". |
+| <img src="../_static/media/chapter_22/section_2/image26.png" style="width:0.7874in;height:0.32283in" /> | Swap the selected action in the action details list with the action above it. |
+| <img src="../_static/media/chapter_22/section_2/image27.png" style="width:0.7874in;height:0.32283in" /> | Delete the selected action from the action details list. |
+| <img src="../_static/media/chapter_22/section_2/image28.png" style="width:0.7874in;height:0.32283in" /> | Delete all the action from the action details list. |
+| <img src="../_static/media/chapter_22/section_2/image29.png" style="width:0.7874in;height:0.32283in" /> | Swap the selected action in the action details list with the action below it. |
+| <img src="../_static/media/chapter_22/section_2/image30.png" style="width:0.59055in;height:1.04987in" /> | Run the selected action in the action details list once. Check "loop" to indicate looping the action. |
+| <img src="../_static/media/chapter_22/section_2/image31.png" style="width:0.7874in;height:0.36507in" /> | Open the action group file required for the action group. |
+| <img src="../_static/media/chapter_22/section_2/image32.png" style="width:0.7874in;height:0.36507in" /> | Save the action of the action details list to the specified position. |
+| <img src="../_static/media/chapter_22/section_2/image33.png" style="width:0.7874in;height:0.36507in" /> | By clicking the "Open Action File" button to open one action group, and then clicking this button again to open another action group, you can link them together. |
+| <img src="../_static/media/chapter_22/section_2/image34.png" style="width:1.1811in;height:0.26961in" /> | The saved action groups can be displayed in the PC software. |
+| <img src="../_static/media/chapter_22/section_2/image35.png" style="width:0.59055in;height:0.34102in" /> | Refresh the selected action group. |
+| <img src="../_static/media/chapter_22/section_2/image36.png" style="width:0.7874in;height:0.29349in" /> | Delete the currently selected action group file. |
+| <img src="../_static/media/chapter_22/section_2/image37.png" style="width:0.7874in;height:0.29349in" /> | **(Caution)** Delete all action group files. |
+| <img src="../_static/media/chapter_22/section_2/image38.png" style="width:0.7874in;height:0.29349in" /> | Execute the selected action group once. |
+| <img src="../_static/media/chapter_22/section_2/image39.png" style="width:0.7874in;height:0.29349in" /> | Stop the currently running action group. |
+| <img src="../_static/media/chapter_22/section_2/image40.png" style="width:1.37795in;height:0.24629in" /> | Exit PC software interface. |
 
 :::{Note}
-动作组文件统一保存至Docker容器中的"/home/ubuntu/software/puppypi_control/ActionGroups"。
+All action group files are uniformly saved to the directory `/home/pi/PuppyPi_PC_Software/ActionGroups`.
 :::
 
-(4) **偏差设置区域（PuppyPi机器狗出厂前已调好偏差，此区域功能按键仅做了解）**
+**(4) Deviation setting area (The PuppyPi robot dog has been calibrated for deviation before leaving the factory. The functionality of this area's buttons is provided for informational purposes only.)**
 
-| **图标** | **功能说明** |
+| Icon | Function |
 |:--:|:--:|
-| <img src="../_static/media/chapter_22/section_2/image41.png" style="width:0.7874in;height:0.36119in" /> | 将调整后的偏差保存至PuppyPi机器狗。 |
-| <img src="../_static/media/chapter_22/section_2/image42.png" style="width:0.7874in;height:0.36842in" /> | 将舵机操控区域内所有舵机的数值恢复至1500。 |
-| <img src="../_static/media/chapter_22/section_2/image43.png" style="width:0.7874in;height:0.36842in" /> | 点击后，可手动调整舵机转动角度。 |
+| <img src="../_static/media/chapter_22/section_2/image41.png" style="width:0.7874in;height:0.36119in" /> | Save the adjusted deviation to the PuppyPi. |
+| <img src="../_static/media/chapter_22/section_2/image42.png" style="width:0.7874in;height:0.36842in" /> | Restore all servo values in the servo control area to 1500. |
 
-### 2.3 机械臂偏差调节
+### 16.2.3 Robotic Arm Deviation Adjustment
 
 :::{Note}
-PuppyPi 在出厂时就已经调节好了偏差，用户无需再调节，如因更换舵机或者其** **他操作导致发生变化，则需要重新调试偏差。
+PuppyPi has already been adjusted for deviation before leaving the factory, so users not need to adjust it again. However, if any changes occur due to replacing servos or other operations, it may be necessary to recalibrate the deviation.
 :::
 
-如果 PuppyPi 机械臂与身体部分互相垂直，机械臂两连杆呈直角姿态，机械爪正常闭合，则无需调整偏差。如下图所示：
+If the robotic arm on the PuppyPi is perpendicular to the body part, the two links of the robotic arm are in a right-angle position, and the gripper is properly closed, then no deviation adjustment is needed. As shown in the diagram below:
 
 <img src="../_static/media/chapter_22/section_2/image44.png"  />
 
-而例如出现下图这类情况，则需要调节偏差。
+If a situation like the one shown in the diagram below occurs, deviation adjustment is required.
 
 <img src="../_static/media/chapter_22/section_2/image45.png"  />
 
-- #### 2.3.1 偏差产生的原因
+- #### Causes of deviation
 
-偏差通常在以下情况下产生：
+ Deviation typically occurs under the following circumstances:
 
-(1)  舵机在中位的情况下，安装舵盘时转动了舵机主轴的角度，导致初始位置发生了角度偏差（出厂默认的舵机角度为中位位置）。
+(1) When the servos is in the middle position, rotating the servo shaft angle during servo horn installation causes an angle deviation from the initial position (the factory default servo angle is the middle position).
 
-(2)  舵机安装舵盘时未转动主轴角度，但固定到支撑架方向或角度存在小的偏移，导致细微偏差。另外，偏差值在 100 以内（角度 30°内），属于正常可调范围。如果产生的偏差较大，超出 100，将无法通过软件进行调整，需要将偏差较大的舵机主轴螺丝拆下，调整至正确方向的姿态再安装一次。
+(2) If the servo horn is installed without rotating the shaft angle, but there is a slight offset in the direction or angle fixed to the support bracket, it results in minor deviation. In addition, deviation values within 100 (i.e., within 30°) are considered within the normal adjustable range. If the deviation is larger, exceeding 100, it cannot be adjusted through software. In this case, the servo shaft screw with significant deviation needs to be removed, adjusted to the correct orientation, and then reinstalled.
 
-- #### 2.3.2 调节方法
+- #### Adjustment method
 
-本节课以调节 10号舵机为例进行调节。（已进行"**复位舵机**"操作）
+This lesson will use adjusting servo 10 as an example for calibration. The **"Reset Servos"** operation has been performed.
 
 <img src="../_static/media/chapter_22/section_2/image45.png"  />
 
-(1)  在"**普通模式**"中，勾选"**机械臂**"观察机械臂各个位置舵机的姿态。可以看到需要调节10号舵机的偏差值。
+(1) In **"Normal Mode"**, check **"Robotic Arm"** to observe the posture of each servo in the robotic arm. You can see the deviation value that needs to be adjusted for servo 10.
 
 <img src="../_static/media/chapter_22/section_2/image46.png"  />
 
-(2)  上位机会自动读取偏差，再根据实际的舵机情况，点击 ID10 舵机图标下方的小滑杆，使机械臂两连杆互相垂直。可多次点击鼠标左键或者滑动鼠标滚轮来微调滑杆数值。
+(2) The PC software will automatically read the deviation. Then, based on the actual servo situation, click on the small slider below the ID10 servo icon to make the two links of the robotic arm perpendicular to each other. You can click the left mouse button multiple times or scroll the mouse wheel to fine-tune the slider value.
 
-(3)  调节完毕后点击"**保存偏差**"，再点击"**OK**"，将偏差保存到控制板中。
+(3) After adjustment, click on **"Save Deviation"**, then click **"OK"** to save the deviation to the control board.
 
 <img class="common_img" src="../_static/media/chapter_22/section_2/image47.png"  />
 
-## 3. 颜色识别夹取
+## 16.3 Color Recognition Gripping
 
-### 3.1 实现流程
+### 16.3.1 Program Logic
 
-首先，需要订阅摄像头节点发布的话题消息，获取实时图像数据，将RGB颜色空间转换为灰度图，再读取相机内置参数。
+First, subscribe to the topic messages published by the camera node to obtain real-time image data. Then, convert the RGB color space to grayscale and read the camera's intrinsic parameters.
 
-接着对图像进行二值化、腐蚀、膨胀处理，以获取图像内目标颜色的最大轮廓，并将识别到的颜色框出；
+Next, perform thresholding, erosion, and dilation on the image to obtain the largest contour of the target color within the image, and outline the detected color.
 
-最后，控制PuppyPi机器狗执行反馈动作。当检测到红色，控制机器狗执行"**夹取**"的动作。
+Finally, control the PuppyPi to perform feedback actions. When red is detected, control the robot to perform the "grasping" action.
 
 <p id="anchor_3_2"></p>
 
-### 3.2 玩法开启及关闭步骤
+### 16.3.2 Operation Steps
 
 :::{Note}
-指令输入需严格区分大小写及空格。
+Command input must strictly differentiate between uppercase and lowercase letters as well as spaces.
 :::
 
-(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。 
+(1) Turn on PuppyPi, and connect it to Raspberry Pi desktop via VNC.
 
-(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_22/section_3/image5.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2) Click the icon <img src="../_static/media/chapter_22/section_3/image5.png" style="width:0.32292in;height:0.30208in" />on the upper left corner to open the Terminator terminal.
 
-(3)  输入关闭自启玩法的指令，并按下回车。
+(3) Input command **"sudo ./.stop_ros.sh"** and press Enter to close auto-start program.
 
 ```bash
 sudo ./.stop_ros.sh
 ```
 
-(4)  输入开启机械臂玩法的指令，按下回车。
+(4) Input command **"roslaunch puppy_pi_bringup start_node_with_arm.launch"** and press Enter start robotic arm game.
 
 ```bash
 roslaunch puppy_bringup start_node_with_arm.launch
 ```
 
-(6)  打开新的终端，输入开启颜色识别抓取的指令，按下回车，启动玩法。
+(5) Open the new terminal. Input color recognition command **"roslaunch puppy_with_arm color_detect_with_arm.launch"** and press Enter to start the program.
 
 ```bash
 roslaunch puppy_with_arm color_detect_with_arm.launch
 ```
 
-(7)  如需关闭此玩法，可在Terminator终端界面按下"**Ctrl+C**"。如果关闭失败，可多次按下。
+(6) To close this program, press **"Ctrl+C"** in the LX terminal interface. If closing fails, try pressing multiple times.
 
-(8)  玩法关闭后，按下"Ctrl+Alt+T"打开LX终端，输入指令并按下回车，开启APP自启服务。
+(7) After closing the program, you still need to enter the command **"sudo systemctl restart start_node.service"** and press Enter to start the app auto-start service.
 
 ```bash
 sudo systemctl restart start_node.service
 ```
 
-在启动完成后，蜂鸣器会短鸣"**滴**"一声。
+After startup completion, the buzzer will emit a short beep sound **"beep"**.
 
 :::{Note}
-如未启动 APP 自启服务，则会影响 APP 对应玩法的正常实现。如未输入命令进行自启，将机器人重启也会重新启动 APP 自启服务。
+ If the app auto-start service is not initiated, it will affect the normal implementation of the corresponding game in the app. If the command for auto-start is not entered, restarting the robot will also initiate the app auto-start service again.
 :::
 
-### 3.3 实现效果
+### 16.3.3 Program Outcome
 
 :::{Note}
-启动玩法后，请确保摄像头的视野范围内不存在其他包含识别颜色的物体，以免影响玩法的实现效果。
+After starting the game, please ensure that there are no other objects with the recognized color within the field of view of the camera, to avoid affecting the implementation effect of the game.
 :::
 
-玩法开启后，将色块放置在PuppyPi前面。当识别到色块后，会用对用颜色的圆圈标识出目标色块，并把颜色名称打印在窗口中间。程序能识别"**红色**"、"**蓝色**"和"**绿色**"的色块，但只对红色色块进行"**夹取**"操作。
+After starting the game, place the color block in front of PuppyPi. When the color block is recognized, it will be identified with a circle in the corresponding color, and the color name will be printed in the center of the window. The program can recognize color blocks of "red," "blue," and "green," but only performs "grasping" operation on red color blocks.
 
 :::{Note}
-若颜色识别不准，可参照"**[ROS+OpenCV视觉识别与追踪项目\1. 颜色阈值调节](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/13_visual_recognition_and_tracking.html#id1)**"对其进行调节。
+
+If the color recognition is inaccurate, please refer to "[ROS1-AI Visual and Tracking Course->7.1 Color Threshold Adjustment](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/13_visual_recognition_and_tracking.html#id1)" for adjustment.
 :::
 
-<img src="../_static/media/chapter_22/section_3/image15.png" class="common_img"  />
+### 16.3.4 Program Analysis
 
-### 3.4 功能延伸
+:::{Note}
+before making any program modifications, it is essential to backup the original factory program. Avoid directly modifying the source code files to prevent accidentally changing parameters in the wrong way, leading to robot malfunctions that cannot be repaired!
+:::
 
-**玩法默认识别红色后，机器狗执行"夹取"和"放置"色块动作，如需更改识别的颜色，比如"绿色"色块，可参照以下步骤：**
+**(1) launch file analysis**
 
-(1)  输入指令，用来编辑颜色识别夹取玩法程序，按下回车。
+During the execution of the functionality, the launch file of the current package will be started (color_detect_with_arm.launch) as pictured:
 
-```bash
-rosed puppy_with_arm** **color_detect_with_arm.py
+<img class="common_img" src="../_static/media/chapter_22/section_3/image25.png"  />
+
+From the above diagram, it can be seen that the node name for this game functionality is "color_detect_with_arm," and this node is located in the package "puppy_with_arm." The node displays the processed information through the terminal.
+Finally, the color recognition and gripping function is executed by calling the source code file "color_detect_with_arm.py".
+
+**(2)  Source code program analysis**
+
+The source code of this program is stored at: **[/home/ubuntu/puppypi/src/puppy_with_arm/scripts/color_detect_with_arm.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/22/color_detect_with_arm.py)**.
+
+```py
+import sys
+import cv2
+import math
+import rospy
+import time
+import threading
+import numpy as np
+from threading import RLock, Timer
+from ros_robot_controller.msg import BuzzerState
+from std_srvs.srv import *
+from std_msgs.msg import Float32,Header
+from sensor_msgs.msg import Image
+from puppy_control.srv import SetRunActionName
+from common import Misc
+
+
+ROS_NODE_NAME = 'color_detect_with_arm'
+
+sys.path.append('/home/ubuntu/software/puppypi_control/')
+from servo_controller import setServoPulse
+
+color_range_list = {}
+detect_color = 'None'
+color_list = []
+
+action_finish = True
 ```
 
-(2)  找到下图所示代码：
+① sys is used for handling command-line arguments and exiting the program;
+
+② cv2 is used for OpenCV image processing;
+
+③ math is used for mathematical calculations;
+
+④ rospy is used for ROS communication;
+
+⑤ time is used for timing and delays;
+
+⑥ threading is used for implementing parallel processing;
+
+⑦ Rlock、Time are used for thread synchronization;
+
+⑧ Import service types from "std_srvs.srv".
+
+⑨ Import message types from "sensor_msgs.msg".
+
+⑩ Import corresponding message types and service types from hiwonder_interfaces;
+
+⑪ Import ROS image message module from sensor_msgs.msg for processing image messages;
+
+⑫ Import action groups from puppy_control.srv.
+
+**(3) Main program**
+
+Subscribes to the "/usb_cam/image_raw" topic to receive image messages and calls the image_callback function for processing. Additionally, it retrieves a list of color ranges from the parameter server and creates proxies for motion control services and a buzzer publisher. Upon execution, the program initializes movement operations and then enters a loop to wait for incoming image messages. If an exception occurs, the program prints the log message "Shutting down". The overall logic is to implement image processing and control robot movement within the ROS environment.
+
+```py
+if __name__ == '__main__':
+    rospy.init_node(ROS_NODE_NAME, log_level=rospy.DEBUG)
+    
+    color_range_list = rospy.get_param('/lab_config_manager/color_range_list', {})
+    rospy.Subscriber('/usb_cam/image_raw', Image, image_callback)
+    
+    runActionGroup_srv = rospy.ServiceProxy('/puppy_control/runActionGroup', SetRunActionName)
+    buzzer_pub = rospy.Publisher('/ros_robot_controller/set_buzzer', BuzzerState, queue_size=1)
+    initMove()
+    rospy.sleep(0.2)
+    
+    try:
+        rospy.spin()
+    except :
+        rospy.loginfo("Shutting down")
+```
+
+① Use `rospy. Subscriber` to create a message subscriber to handle camera information.
+
+```py
+color_range_list = rospy.get_param('/lab_config_manager/color_range_list', {})
+rospy.Subscriber('/usb_cam/image_raw', Image, image_callback)
+```
+
+The first parameter `/usb_cam/image_raw` indicates the topic name of image data;
+
+The second parameter `Image` indicates message type.
+
+The third parameter indicates calling `image_callback` function to process the returned image.
+
+② Create `buzzer_pub`  buzzer publisher. Use `rospy.Publisher` to create a message publisher.
+
+```py
+buzzer_pub = rospy.Publisher('/ros_robot_controller/set_buzzer', BuzzerState, queue_size=1)
+initMove()
+```
+
+The first parameter `/sensor/buzzer` indicates the topic name of buzzer control.
+
+The second parameter `Float32` indicates message type.
+
+The third parameter `queue_size=1` specify the size of message queue.
+
+**(4) image_callback callback function**
+
+The following image is a screenshot of the code inside the image_callback callback function:
+
+```py
+def image_callback(ros_image):
+
+    image = np.ndarray(shape=(ros_image.height, ros_image.width, 3), dtype=np.uint8,
+                       buffer=ros_image.data)  # 将自定义图像消息转化为图像(convert the customized image information to image)
+    cv2_img = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+    cv2_img = cv2.flip(cv2_img, 1)
+    frame = cv2_img.copy()
+    frame_result = run(frame)
+    cv2.imshow('Frame', frame_result)
+    key = cv2.waitKey(1)
+```
+
+First, convert the ROS image message to a numpy array format of image data and convert it from RGB format to BGR format. Then, horizontally flip the image and create a copy of the image data for further processing. Next, call a function named `run` to process the image and obtain the processing result. Finally, use the cv2 module to display the processed image and wait for key input. The overall logic is to process the received image upon receiving the image message and display the processing result in real-time for monitoring and debugging of the image processing algorithm.
+
+**(5) Run image process function**
+
+The following image is a screenshot of part of the code for the `run` function:
+
+<img src="../_static/media/chapter_22/section_3/image37.png"  />
+
+First, preprocess the image, including resizing and Gaussian blur. Then, based on the preset color ranges, locate the color blocks in the image and mark them using minimum enclosing circles. Next, based on the matching between the detected color blocks and the target colors, display the corresponding text in the image. The overall logic is to detect target color blocks, mark them, and display text based on image processing and color matching.
+
+① Preprocess the image, including resizing, Gaussian blur, and converting RGB colors to LAB space.
+
+```py
+img_copy = img.copy()
+img_h, img_w = img.shape[:2]
+
+frame_resize = cv2.resize(img_copy, size, interpolation=cv2.INTER_NEAREST)
+frame_gb = cv2.GaussianBlur(frame_resize, (3, 3), 3)      
+frame_lab = cv2.cvtColor(frame_gb, cv2.COLOR_BGR2LAB)  # 将图像转换到LAB空间(convert the image to LAB space)
+```
+
+② Iterate through each element in the color range list (color_range_list) for the three colors (red, green, blue), and perform a mask operation on the image based on the specified color range.
+
+```py
+for i in color_range_list:
+    if i in ['red', 'green', 'blue']:
+       frame_mask = cv2.inRange(frame_lab,
+                                       (color_range_list[i]['min'][0],
+                                       color_range_list[i]['min'][1],
+                                       color_range_list[i]['min'][2]),
+                                       (color_range_list[i]['max'][0],
+                                        color_range_list[i]['max'][1],
+                                        color_range_list[i]['max'][2]))  #对原图像和掩模进行位运算(perform bitwise operation to original image and mask)
+```
+
+③ After the mask operation, perform erosion and dilation operations on the image, as well as cropping the image. Then, call the getAreaMaxContour() function for contour detection, and finally find the contour with the largest area and its corresponding color.
+
+```py
+eroded = cv2.erode(frame_mask, cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3)))  #腐蚀(corrosion)
+dilated = cv2.dilate(eroded, cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))) #膨胀(dilation)
+dilated[0:120,:] = 0
+dilated[:,0:80] = 0
+dilated[:,240:320] = 0
+# cv2.imshow(i, dilated)
+contours = cv2.findContours(dilated, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)[-2]  #找出轮廓(find out the contour)
+areaMaxContour, area_max = getAreaMaxContour(contours)  #找出最大轮廓(find out the contour with the maximal area)
+                
+if areaMaxContour is not None:
+     if area_max > max_area:#找最大面积(find out the maximal area)
+          max_area = area_max
+          #print(max_area)
+          color_area_max = i
+          areaMaxContour_max = areaMaxContour
+```
+
+④ Calculate the pixel value of the contour and filter out those with less than 8500 to ensure that the recognized colors are target color blocks. Use the cv2.minEnclosingCircle() function to obtain the center point (centerX, centerY) and radius (radius) of the minimum enclosing circle of the contour with the largest area, and use the cv2.circle() function to draw the minimum enclosing circle on the image with the color corresponding to the color block.
+
+```py
+if max_area > 4000:  # 有找到最大面积,面积取大一点，确保色块放入方块里的面积足够大(the largest ares has been found, to ensure that the color block fits well into the square, use a larger area)
+            
+((centerX, centerY), radius) = cv2.minEnclosingCircle(areaMaxContour_max)  # 获取最小外接圆(get the minimum circumcircle)
+centerX = int(Misc.map(centerX, 0, size[0], 0, img_w))
+centerY = int(Misc.map(centerY, 0, size[1], 0, img_h))
+radius = int(Misc.map(radius, 0, size[0], 0, img_w))            
+cv2.circle(img, (centerX, centerY), radius, range_rgb[color_area_max], 2)#画圆(draw circle)
+```
+
+⑤ Differentiate the largest color block based on color, and mark the colors as 1 (red), 2 (green), or 3 (blue), and add them to the color_list. By repeatedly checking the length of the color_list, assign the corresponding color value to detect_color and draw_color.
+
+```py
+if color_area_max == 'red':  #红色最大(red is the maximal area)
+     color = 1
+elif color_area_max == 'green':  #绿色最大(green is the maximal area)
+     color = 2
+elif color_area_max == 'blue':  #蓝色最大(blue is the maximal area)
+      color = 3
+else:
+      color = 0
+ color_list.append(color)
+
+if len(color_list) == 3:  #多次判断(multiple judgement)
+     # 取平均值(take average value)
+     color = int(round(np.mean(np.array(color_list))))
+     color_list = []
+     if color == 1:
+         detect_color = 'red'
+         draw_color = range_rgb["red"]
+     elif color == 2:
+         detect_color = 'green'
+         draw_color = range_rgb["green"]
+     elif color == 3:
+         detect_color = 'blue'
+         draw_color = range_rgb["blue"]
+      else:
+          detect_color = 'None'
+          draw_color = range_rgb["yellow"]     
+      print('detect_color is',detect_color)          
+else:
+     detect_color = 'None'
+     draw_color = range_rgb["yellow"]
+cv2.rectangle(img,(190,270),(450,480),(0,255,255),2)
+```
+
+⑥ Based on the matching between the detected color (detect_color) and the target color (target_color), use the cv2.putText() function to draw the text "Color: " + detect_color on the image, with the position (225, 210), font cv2.FONT_HERSHEY_SIMPLEX, size 1, color draw_color, line width 2, and return the processed image.
+
+```py
+if detect_color == target_color:
+   cv2.putText(img, "Target Color" , (225, 250), cv2.FONT_HERSHEY_SIMPLEX, 1, draw_color, 2)  
+else:
+   cv2.putText(img, "Not Target Color" , (200, 250), cv2.FONT_HERSHEY_SIMPLEX, 1, draw_color, 2)      
+cv2.putText(img, "Color: " + detect_color, (225, 210), cv2.FONT_HERSHEY_SIMPLEX, 1, draw_color, 2)
+    
+return img
+```
+
+**(6) move execute action function**
+
+The following image is a screenshot of part of the code for the `move` function:
+
+```py
+def move():
+    global action_finish 
+    global draw_color
+    global detect_color
+    global target_color
+    
+    while not rospy.is_shutdown():
+            
+        if detect_color == target_color:
+            msg = BuzzerState()
+            msg.freq = 1900
+            msg.on_time = 0.1
+            msg.off_time = 0.9
+            msg.repeat = 1
+            buzzer_pub.publish(msg)
+            action_finish = False
+            rospy.sleep(0.8)
+            runActionGroup_srv('grab.d6a', True)
+            rospy.sleep(0.5)
+            setServoPulse(9,1200,300)
+            rospy.sleep(0.3)
+            setServoPulse(9,1500,300)
+            runActionGroup_srv('look_down.d6a', True)
+                                
+            rospy.sleep(0.8)
+            detect_color = 'None'
+            draw_color = range_rgb["yellow"]
+        action_finish = True                
+        rospy.sleep(0.01)  
+        
+    runActionGroup_srv('stand_with_arm.d6a', True) 
+```
+
+Based on the matching between the detected color and the target color, control the robot to perform the corresponding actions. If the color matches (red), send a buzzer signal of 0.1 second duration using buzzer_pub.publish(0.1), execute a series of actions (grabbing and placing actions), and then reset the detected color to "None". If the colors do not match, do not execute the action group.
+
+**(7)  Execute sub-thread**
+
+Create a sub-thread named `th` and pass the move function as the target function to the sub-thread. Set the daemon parameter to True, indicating that the sub-thread is set as a daemon thread. Use th.start() to start the sub-thread, causing it to begin executing the move function.
+
+```py
+# 运行子线程(run sub-thread)
+th = threading.Thread(target=move,daemon=True)
+th.start()     
+```
+
+By creating a sub-thread and passing the move function as the target function to the sub-thread, it's possible to execute other tasks in the main thread simultaneously without blocking the execution of the move function. The move function in the sub-thread can execute in the background and can run concurrently with the main thread.
+
+**(8) getAreaMaxContour function**
+
+The following image is a screenshot of part of the code for the `getAreaMaxContour` function:
+
+```py
+# 找出面积最大的轮廓(find out the contour with the maximal area)
+# 参数为要比较的轮廓的列表(the parameter is the list of contour to be compared)
+def getAreaMaxContour(contours):
+    contour_area_temp = 0
+    contour_area_max = 0
+    area_max_contour = None
+
+    for c in contours:  # 历遍所有轮廓(iterate through all contours)
+        contour_area_temp = math.fabs(cv2.contourArea(c))  # 计算轮廓面积(calculate the contour area)
+        if contour_area_temp > contour_area_max:
+            contour_area_max = contour_area_temp
+            if contour_area_temp > 50:  # 只有在面积大于50时，最大面积的轮廓才是有效的，以过滤干扰(only when the area is greater than 50, the contour with the maximal area is valid to filter the interference)
+                area_max_contour = c
+
+    return area_max_contour, contour_area_max  # 返回最大的轮廓(return the contour with the maximal area)
+```
+
+From a group of contours, find the contour with the largest area. The function iterates through all contours, calculates their areas, and retains the contour with the largest area. Additionally, a condition is added during area calculation to consider only contours with an area greater than or equal to 50, filtering out smaller disturbances. Finally, the function returns the found largest contour and its corresponding area.
+
+### 16.3.5 Function Extension
+
+When recognizing red, PuppyPi executes action of **"gripping"** and **"placing"** color block. To change to color to be detected, such as the **"green"** color block, follow these steps: 
+
+(1) Input command **"rosed puppy_with_arm color_detect_with_arm.py"** to edit color recognition gripping program. Then press Enter.
+
+```bash
+rosed puppy_with_arm color_detect_with_arm.py
+```
+
+(2)  Find the code as pictured:
 
 <img src="../_static/media/chapter_22/section_3/image18.png"  />
 
 :::{Note}
-在键盘输入代码位置序号后，按下"Shift+G"键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
+ After entering the code position number on the keyboard, press the **"Shift+G"** keys to directly navigate to the corresponding position. The code position number shown in the illustration is for reference only, please refer to the actual position.
 :::
 
-(3)  按下"**i**"键进入编辑模式，将"**red**"改为"**green**"。
+(3)  Press **"i"** to go to the editing mode. And change **"red"** to **"green"**.
 
 <img src="../_static/media/chapter_22/section_3/image20.png"  />
 
-(4)  修改完成后，按下"**Esc**"键，输入指令并按下回车，进行保存与退出。
+(4) After modification, press Esc and input **":wq"**. Then press Enter to save and exit.
 
 ```bash
 :wq
 ```
 
-(5)  参照"[3.2 玩法开启及关闭步骤](#anchor_3_2)"，重新启动玩法，即可查看修改后的玩法效果。
+(5)  Refer to "[16.3.2 Operation Steps](#anchor_3_2)" to restart the program to check the modified game effects.
 
-### 3.5 程序分析
+## 16.4 Auto Recognition Gripping
 
-:::{Note}
-在程序修改前务必将原有出厂程序进行备份，再进行修改，禁止直接在源代码
-:::
+### 16.4.1 Program Logic
 
-**文件中进行修改，避免以错误的方式修改参数之后导致机器人异常且无法修复！！！**
+First, subscribe to the topic messages published by the camera node to obtain real-time image data. Then, convert the RGB color space to grayscale and read the camera's intrinsic parameters.
 
-(1) **launch文件分析**
+Next, perform thresholding, erosion, and dilation on the image to obtain the largest contour of the target color within the image, and outline the detected color.
 
-在功能执行的过程当中，会启动当前功能包的launch文件（**color_detect_with_arm.launch**），内容如下图所示：
+Then, control the PuppyPi to perform feedback actions. When red is detected, control the robot to perform the "grasping" action.
 
-<img class="common_img" src="../_static/media/chapter_22/section_3/image25.png"  />
-
-从上图可以看出，该功能玩法的节点名称（**color_detect_with_arm**）和该节点是位于哪个功能包（**puppy_with_arm**），节点通过终端显示处理后的信息。
-
-最后通过调用**color_detect_with_arm.py**的源码文件去执行颜色识别夹取的功能。
-
-(2) **源码程序分析**
-
-该程序的源代码位于Docker容器中的：**[/home/ubuntu/puppypi/src/puppy_with_arm/scripts/color_detect_with_arm.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/22/color_detect_with_arm.py)**。
-
-<img src="../_static/media/chapter_22/section_3/image27.png"  />
-
-① **sys** 用于处理命令行参数和退出程序；
-
-② **cv2** 用于 Opencv 图像处理；
-
-③ **math** 用于数学计算；
-
-④ **rospy** 用于 ROS 通信；
-
-⑤ **time** 用于计时和延时；
-
-⑥ **threading** 用于实现并行处理；
-
-⑦ **Rlock、Timer** 用于线程同步；
-
-⑧ 从 **std_srvs.srv** 导入服务类型；
-
-⑨ 从 **sensor_msgs.msg** 导入消息类型；
-
-⑩ 从 **hiwonder_interfaces** 导入相应的消息类型和服务类型；
-
-⑪ 从**sensor_msgs.msg**导入ROS图像消息模块，用于处理图像消息；
-
-⑫ 从 **puppy_control.srv** 导入动作组；
-
-(3) **主程序**
-
-通过订阅'**/usb_cam/image_raw**'主题接收图像消息，并调用**image_callback**函数进行处理。同时，它还从参数服务器获取颜色范围列表，并创建了运动控制服务代理和蜂鸣器发布者。程序执行时会先进行初始化移动操作，然后进入循环等待图像消息的到来。如果发生异常，程序会打印日志信息"**Shutting down**"。整体逻辑是在ROS环境中实现图像处理和控制机器人运动的功能。
-
-<img src="../_static/media/chapter_22/section_3/image29.png"  />
-
-① 使用"**rospy.Subscriber**"创建了一个信息订阅器，来处理相机信息。
-
-<img src="../_static/media/chapter_22/section_3/image31.png"  />
-
-第一个参数"**/usb_cam/image_raw**"表示接受图像数据的话题名称；
-
-第二个参数"**Image**"消息类型；
-
-第三个参数表示调用"**image_callback**"函数，处理回传画面；
-
-② 创建buzzer_pub蜂鸣器发布者，使用"**rospy.Publisher**"创建了一个信息发布器。
-
-<img src="../_static/media/chapter_22/section_3/image33.png"  />
-
-第一个参数"**/sensor/buzzer**"表示蜂鸣器控制的话题名称；
-
-第二个参数"**Float32**"消息类型；
-
-第三个参数"**queue_size=1**"指定了消息队列的大小。
-
-(4) **image_callback回调函数**
-
-下图是image_callback回调函数里面的代码截图：
-
-<img src="../_static/media/chapter_22/section_3/image35.png"  />
-
-首先，将ROS的图像消息转换为numpy数组形式的图像数据，并将其从RGB格式转换为BGR格式。然后，对图像进行水平翻转，并复制一份图像数据用于后续处理。接下来，调用名为"**run**"的函数对图像进行处理，获取处理结果。最后，使用cv2模块展示处理后的图像，并等待按键输入。整体逻辑是，在接收到图像消息时对其进行处理，并实时显示处理结果，以便进行图像处理算法的监测和调试。
-
-(5) **run图形处理函数**
-
-下图是run函数的部分代码截图：
-
-<img src="../_static/media/chapter_22/section_3/image37.png"  />
-
-首先对图像进行预处理，包括调整大小和高斯模糊。然后，根据预设的颜色范围，找到图像中的色块，并通过最小外接圆进行标记。接着，根据检测到的色块颜色和目标颜色的匹配情况，在图像中显示相应的文字。整体逻辑是通过图像处理和颜色匹配来检测目标色块并进行标记和显示。
-
-① 对图像进行预处理，包括调整大小、高斯模糊和将RGB颜色转换成LAB空间。
-
-<img src="../_static/media/chapter_22/section_3/image39.png"  />
-
-② 遍历颜色范围列表（color_range_list）中的每个元素（红、绿、蓝三种颜色），并根据指定的颜色范围对图像进行掩膜操作。
-
-<img src="../_static/media/chapter_22/section_3/image41.png"  />
-
-③ 掩膜操作后对图像进行腐蚀和膨胀操作，以及对图像进行裁剪，并调用getAreaMaxContour()函数进行轮廓检测，最后找到最大面积的轮廓及其对应的颜色。
-
-<img src="../_static/media/chapter_22/section_3/image43.png"  />
-
-④ 计算出轮廓的像素值，将小于8500的过滤掉，保证识别到的颜色是目标色块。使用cv2.minEnclosingCircle()函数获取最大面积轮廓的最小外接圆的中心点(centerX,centerY)和半径(radius)，并使用cv2.circle()函数在图像上绘制最小外接圆，颜色为对应色块的颜色。
-
-<img src="../_static/media/chapter_22/section_3/image45.png"  />
-
-⑤ 根据颜色区分最大的色块，将颜色标记为1（红色）、2（绿色）或3（蓝色），并将其添加到color_list列表中。通过判断多次判断color_list的长度，将对应的颜色值赋给detect_color和draw_color。
-
-<img src="../_static/media/chapter_22/section_3/image47.png"  />
-
-⑥ 根据检测到的颜色（detect_color）与目标颜色（target_color）的匹配情况，使用cv2.putText()函数在图像上"Color: " + detect_color文字，位置为(225, 210)，字体为cv2.FONT_HERSHEY_SIMPLEX，大小为1，颜色为draw_color，线宽为2，并返回处理后的图像。
-
-<img src="../_static/media/chapter_22/section_3/image49.png"  />
-
-(6) **move执行动作函数**
-
-下图是move函数的代码截图：
-
-<img src="../_static/media/chapter_22/section_3/image51.png"  />
-
-根据检测到的颜色与目标颜色的匹配情况，控制机器人执行相应的动作。如果颜色匹配（红色）,通过buzzer_pub.publish(0.1)发送一个0.1秒的蜂鸣器信号，执行一系列动作（抓取和放置动作），然后将检测到的颜色重置为"None"；如果颜色不匹配，则不执行动作组。
-
-(7) **执行子线程**
-
-创建一个名为th的子线程，并将move函数作为目标函数传递给子线程。设置daemon参数为True，表示将子线程设置为守护线程。使用th.start()启动子线程，使其开始执行move函数。
-
-<img src="../_static/media/chapter_22/section_3/image53.png"  />
-
-通过创建子线程并将move函数作为目标函数传递给子线程，可以实现在主线程中同时执行其他任务，而不会阻塞move函数的执行。子线程中的move函数可以在后台执行，并且可以与主线程同时运行。
-
-(8) **getAreaMaxContour函数**
-
-下图是getAreaMaxContour函数的代码截图：
-
-<img src="../_static/media/chapter_22/section_3/image55.png"  />
-
-从一组轮廓中找到面积最大的轮廓。函数通过迭代所有轮廓，计算其面积，并保留面积最大的轮廓。在计算面积时，还添加了一个条件，仅考虑面积大于等于50的轮廓，以过滤掉较小的干扰。最终，函数返回找到的最大轮廓以及其对应的面积。
-
-## 4. 自主识别夹取
-
-### 4.1 实验原理
-
-首先，需要订阅摄像头节点发布的话题消息，获取实时图像数据，将RGB颜色空间转换为灰度图，再读取相机内置参数；
-
-接着对图像进行二值化、腐蚀、膨胀处理，以获取图像内目标颜色的最大轮廓，并将识别到的颜色框出；
-
-然后，控制PuppyPi机器狗执行反馈动作。当检测到红色，控制机器狗执行"**夹取**"的动作，将色块夹取起来；
-
-最后，PuppyPi机器狗往前走再向左转寻找红色放置点。当检测到红色，控制机器狗执行"放置"的动作，将色块放置在红色放置点中。
+Finally, PuppyPi moves forward and then turns left to search for the red placement point. When red is detected, control the robot to perform the "placement" action, placing the color block at the red placement point.
 
 <p id="anchor_4_2"></p>
 
-### 4.2 玩法开启及关闭步骤
+### 16.4.2 Operation Steps
 
 :::{Note}
-指令输入需严格区分大小写及空格。
+Instructions must be entered with strict attention to case sensitivity and spacing.
 :::
 
-(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1) Turn on PuppyPi, and connect it to Raspberry Pi desktop via VNC.
 
-(2)  单击桌面左上角的的图标<img src="../_static/media/chapter_22/section_4/image3.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键"**Ctrl+Alt+T**"，打开LX终端。
+(2) Click the icon <img src="../_static/media/chapter_22/section_4/image3.png" style="width:0.31458in;height:0.27361in" />on the upper left corner, or use shortcut **"Ctrl+Alt+T"** to open the LX terminal.
 
-(3)  输入关闭按键控制服务的指令，并按下回车。
+(3) Input command **"sudo systemctl stop button_scan.service"** and press Enter to close the auto-start program.
 
 ```bash
 sudo systemctl stop button_scan.service
 ```
 
-(4)  点击系统桌面左上角的图标<img src="../_static/media/chapter_22/section_4/image6.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(4) Click the icon <img src="../_static/media/chapter_22/section_4/image6.png" style="width:0.32292in;height:0.30208in" /> on the upper left corner to open Terminator terminal.
 
-(5)  输入关闭自启玩法的指令，并按下回车。
+(5) Input command **"sudo ./.stop_ros.sh"** and press Enter to close auto-start program.
 
 ```bash
 sudo ./.stop_ros.sh
 ```
 
-(6)  输入启动玩法的指令，并按下回车。
+(6) Input command **"roslaunch puppy_with_arm color_grab.launch"** and press Enter to start the auto-start program.
 
 ```bash
 roslaunch puppy_with_arm color_grab.launch
 ```
 
-(7)  按下树莓派扩展板上的KEY1开始启动自主识别夹取，按下KEY2可以暂停玩法。
+(7) Pressing KEY1 on the Raspberry Pi expansion board starts autonomous recognition and grasping, while pressing KEY2 can pause the game.
 
-<img class="common_img" src="../_static/media/chapter_22/section_4/image11.png"  />
+(8) If you need to close this game, you can press **"Ctrl+C"** in the LX terminal interface. If closing fails, you can try pressing multiple times.
 
-(8)  如需关闭此玩法，可在Terminator终端界面按下"**Ctrl+C**"。如果关闭失败，可多次按下。
-
-(9)  玩法关闭后还需在LX终端输入指令并按下回车，开启APP自启服务。
+(9) After closing the game, you also need to enter the command "sudo systemctl restart start_node.service" and press Enter to start the app auto-start service. 
 
 ```bash
 sudo systemctl restart start_node.service
 ```
 
-在启动完成后，蜂鸣器会短鸣"**滴**"一声。
+After the startup is completed, the buzzer will emit a short beep sound **'beep'**.
 
 :::{Note}
-如未启动 APP 自启服务，则会影响 APP 对应玩法的正常实现。如未输入命令进行自启，将机器狗重启也会重新启动 APP 自启服务。
+If the app auto-start service is not enabled, it will affect the normal implementation of the corresponding gameplay in the app. If the command is not entered for auto-start, restarting the robot dog will also restart the app auto-start service.
 :::
 
-(10) 还需输入指令并按下回车，开启按键检测服务。
+(10) Additionally, input command "sudo systemctl restart button_scan.service" and press Enter to open the button detection service.
 
 ```bash
 sudo systemctl restart button_scan.service
 ```
 
-### 4.3 实现效果
+### 16.4.3 Program Outcome
 
-玩法开启后，会在回传画面中将识别到的红色色块框选出来，PuppyPi会走向色块，对色块进行夹取，夹取完成之后向前走一小段，再向左转，然后开始进入寻找放置点的行为，这里我们采用红色方框作为放置点（可以根据个人需求进行选择），找到红色方框后将色块放入方框中。
-
-<img src="../_static/media/chapter_22/section_4/image16.png"  />
-
-<img src="../_static/media/chapter_22/section_4/image17.png"  />
+After the game is initiated, the recognized red color block will be outlined in the feedback screen. PuppyPi will move towards the color block, grasp it, take a small step forward after grasping, then turn left, and proceed to search for the placement point. Here, we use a red box as the placement point (you can choose according to your preference). Once the red box is found, the color block will be placed inside the box.
 
 :::{Note}
-若颜色识别不准，可参照"**[ROS+OpenCV视觉识别与追踪项目\1. 颜色阈值调节](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/13_visual_recognition_and_tracking.html)**"对其进行调节。
+If the color recognition is inaccurate, please refer to "[ROS1-AI Visual and Tracking Course->7.1 Color Threshold Adjustment](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/13_visual_recognition_and_tracking.html)" for adjustment.
 :::
 
-若出现夹取位置不准的情况，可修改程序中**block_center_point\[1\]**的参数。数值越大，末端夹持器位置越靠后，反之则越靠前。
+If the gripping position is inaccurate, you can modify the parameter block_center_point[1] in the program. A larger value will move the gripper towards the rear, while a smaller value will move it towards the front. Adjusting this parameter will help to fine-tune the gripping position.
 
 <img src="../_static/media/chapter_22/section_4/image18.png"  />
 
-### 4.4 功能延伸
+### 16.4.4 Program Analysis
 
-**玩法默认识别红色后，机器狗执行"夹取"和"放置"色块动作，如需更改识别的颜色，比如"绿色"色块，可参照以下步骤：**
+**(1) launch file analysis**
 
-(1)  输入指令并按下回车，打开用来编辑颜色识别夹取玩法程序。
+The source code of this program is stored at  **[/home/ubuntu/puppypi/src/puppy_with_arm/launch/color_grab.launch](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/22/color_detect_with_arm.launch)**
+
+<img src="../_static/media/chapter_22/section_4/image29.png"  />
+
+The first <node> tag is used to launch a node named  `puppy_control`, which controls the movement of the robotic dog. Its definition is as follows:
+
+name="puppy_control"：Node name is puppy_control.
+
+pkg="puppy_control": The software package where the node resides is puppy_control.
+
+type="puppy"：Node type is puppy, which indicates the execution of an executable file named "puppy.py".
+
+required="flase"：This node is not essential. Setting it to "false" means that even if this node fails to start, it will not affect the overall execution of the launch file.
+
+output="screen"：Specify that the output of the node will be displayed on the screen.
+
+The second <node> tag is used to launch a node named "color_grab", which is the main source file for the game. Its definition is as follows:
+
+name="color_grab"： Set the node name to "color_grab".
+
+pkg="puppy_with_arm"：Specify the software package that the node belongs to as "puppy_with_arm".
+
+type="color_grab.py"：It indicates the execution of an executable file named "color_grab.py".
+
+required="false"：Similar to the first node, setting it to "false" means that its failure to start will not affect the entire launch process.
+
+output="screen"：The output of the node will be displayed on the screen.
+
+The third <node> tag is used to launch a node named puppy_control_joystick, which is used for controlling the robotic arm. Its definition is as follows:
+
+name="puppy_control_joystick": set the name of the node to `puppy_control_joystick`.
+
+pkg="puppy_control": Specify the software package that the node belongs to as "puppy_control".
+
+type="remote_control_joystick.py": Indicate the executable file named "remote_control_joystick.py" to be launched.
+
+required="false"： Like other nodes, setting it to false means that a failed launch will not affect the entire startup process.
+
+output="screen"： The output of the node will be displayed on the screen.
+
+**(2) Source code program analysis**
+
+The source code of this program is stored at:  **[/home/ubuntu/puppypi/src/puppy_with_arm/scripts/color_grab.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/22/color_grab.py)**
+
+**(3) Import related application library**
+
+```py
+import sys
+import cv2
+import time
+import math
+import threading
+import numpy as np
+from enum import Enum
+from arm_kinematics.ArmMoveIK import ArmIK
+from common import Misc
+from common import Camera
+from common import yaml_handle
+
+import gpiod
+```
+
+① sys is used for handling command-line arguments and exiting the program;
+
+② cv2 is used for OpenCV image processing;
+
+③ math is used for mathematical calculations;
+
+④ rospy is used for ROS communication;
+
+⑤ time is used for timing and delays;
+
+⑥ threading is used for implementing parallel processing;
+
+⑦ Import Raspberry Pi GPIO library
+
+```py
+sys.path.append('/home/ubuntu/software/puppypi_control/') 
+from servo_controller import setServoPulse
+from action_group_control import runActionGroup, stopActionGroup
+from HiwonderPuppy import HiwonderPuppy, PWMServoParams
+```
+
+A variable named HomePath is defined to represent the main directory path as `/home/pi`. Then, '/home/pi/PuppyPi_PC_Software' is added to Python's module search path using sys.path.append.
+The function setServoPulse is imported from the module ServoCmd. This indicates that the ServoCmd module contains a function named setServoPulse, which is used to control the pulse signal of servo motors.
+The functions runActionGroup and stopActionGroup are imported from the ActionGroupControl module. These functions can now be used directly in the current code without needing to call them with the full module name.
+The HiwonderPuppy and PWMServoParams classes are imported from the HiwonderPuppy module. Instances of HiwonderPuppy and PWMServoParams are created in the current code, allowing their methods and properties to be used.
+
+**(4) Main program**
+
+Initialize the stance and gait configurations by calling the "stance_config" and "gait_config" methods on the `puppy` object. Start the robot dog with `puppy.start()`. Set the Debug mode to determine whether the robot dog should move. Open the camera to capture images. In the main loop, continuously capture images and call the "run()" function for image processing. The overall logic is to complete the program environment initialization, image acquisition and display, and state machine control running loop. Use the Debug mode to decide whether to enable the robot for line following and object grasping tasks.
+
+```py
+if __name__ == '__main__':
+
+    puppy.stance_config(stance(PuppyPose['stance_x'],PuppyPose['stance_y'],PuppyPose['height'],PuppyPose['x_shift']), PuppyPose['pitch'], PuppyPose['roll'])
+    puppy.gait_config(overlap_time = GaitConfig['overlap_time'], swing_time = GaitConfig['swing_time']
+                            , clearance_time = GaitConfig['clearance_time'], z_clearance = GaitConfig['z_clearance'])
+    # overlap_time:4脚全部着地的时间，swing_time：2脚离地时间，z_clearance：走路时，脚抬高的距离(overlap_time: The time when all four feet touch the ground, swing_time: The time when two feet are off the ground, z_clearance: The height at which the feet are lifted during walking)
+
+    puppy.start() # 启动(start)
+    puppy.move_stop(servo_run_time = 500)
+
+    AK.setPitchRangeMoving((8.51,0,3.3),500)
+    setServoPulse(9,1500,500)
+    time.sleep(0.5)
+    
+    
+    Debug = False
+```
+
+① Use `puppy.stance_config` to configure the stance of the robot dog's four legs in a stationary state.
+
+```py
+puppy.stance_config(stance(PuppyPose['stance_x'],PuppyPose['stance_y'],PuppyPose['height'],PuppyPose['x_shift']), PuppyPose['pitch'], PuppyPose['roll'])
+```
+
+The first parameter `PuppyPose['stance_x']` indicates the additional separation distance of the four legs on the X-axis, in centimeters.
+
+The second parameter `PuppyPose['stance_y']` indicates the additional separation distance of the four legs on the Y-axis, in centimeters.
+
+The third parameter `PuppyPose['height']` indicates the height of the dog, which is the vertical distance from the tips of the feet to the leg pivot axis, in centimeters.
+
+The fourth parameter `PuppyPose['x_shift']` represents the distance that all legs move in the same direction along the X-axis. The smaller the value, the more the dog leans forward while walking; the larger the value, the more it leans backward.
+
+The fifth parameter `PuppyPose['pitch']` represents the pitch angle of the robot dog's body, in radians.
+
+The sixth parameter `PuppyPose['roll']` represents the roll angle of the robot dog's body, in radians.
+
+② Use `puppy.gait_config` to configure the parameters for the gait motion of the robot fog.
+
+```py
+puppy.stance_config(stance(PuppyPose['stance_x'],PuppyPose['stance_y'],PuppyPose['height'],PuppyPose['x_shift']), PuppyPose['pitch'], PuppyPose['roll'])
+    puppy.gait_config(overlap_time = GaitConfig['overlap_time'], swing_time = GaitConfig['swing_time']
+                            , clearance_time = GaitConfig['clearance_time'], z_clearance = GaitConfig['z_clearance'])
+    # overlap_time:4脚全部着地的时间，swing_time：2脚离地时间，z_clearance：走路时，脚抬高的距离(overlap_time: The time when all four feet touch the ground, swing_time: The time when two feet are off the ground, z_clearance: The height at which the feet are lifted during walking)
+```
+
+The first parameter `overlap_time` represents the time during which all four legs are simultaneously in contact with the ground.
+
+The second parameter `swing_time` represents the time duration for a single leg to swing off the ground.
+
+The third parameter `clearace_time` represents the time interval between the front and rear legs.
+
+The fourth parameter `z_clearance` represents the height of the feet off the ground during the gait process
+
+③ Start the robot dog, set its initial posture, and trigger the buzzer to sound.
+
+```py
+puppy.start() # 启动(start)
+puppy.move_stop(servo_run_time = 500)
+
+AK.setPitchRangeMoving((8.51,0,3.3),500)
+setServoPulse(9,1500,500)
+time.sleep(0.5)
+```
+
+④ Set the Debug variable to toggle between Running modes. If Debug is True, it's a non-real-time mode where only image processing is performed while the robot dog remains stationary. If Debug is False, it's a real-time mode where both image processing and robot dog line following and object grasping tasks are performed simultaneously.
+
+```py
+    if Debug:
+        PuppyPose = Bend.copy()
+        puppy.stance_config(stance(PuppyPose['stance_x'],PuppyPose['stance_y'],PuppyPose['height'],PuppyPose['x_shift']), PuppyPose['pitch'], PuppyPose['roll'])
+        time.sleep(0.5)
+        
+    else:
+        th.start() 
+    #   开启机器狗移动线程(start the moving thread of robot dog)
+    #   如果只是想看摄像头画面，调试画面，不想让机器人移动，可以把Debug设置为True，同时不要去按按钮(if you only want to view the camera feed and debug the image without moving the robot, you can set Debug to True, and avoid pressing any buttons)
+    #   等调试完再把Debug设置为False，观察实际运行情况(once debugging is complete, set Debug to False, and observe the actual operation)
+```
+
+⑤ Enter the real-time image processing loop. Capture images from the camera, run processing functions on the images, and display the processed images. Additionally, detect the states of two buttons to set the robot dog's state to start or stop. Continue looping until the user presses 'Crtl+C' to exit. Finally, close the camera and release resources.
+
+```py
+while True:
+    img = my_camera.frame
+    if img is not None:
+        frame = img.copy()
+        Frame = run(frame)           
+        cv2.imshow('Frame', Frame)
+        key = cv2.waitKey(1)
+        if key == 27:
+            break
+     else:
+         time.sleep(0.01)
+
+     if key1.get_value() == 0:
+        time.sleep(0.05)
+        if key1.get_value() == 0:
+            puppyStatus = PuppyStatus.START
+      if key2.get_value() == 0:
+          time.sleep(0.05)
+          if key2.get_value() == 0:
+              puppyStatus = PuppyStatus.STOP
+              stopActionGroup()
+my_camera.camera_close()
+cv2.destroyAllWindows()
+```
+
+**(5) stance function**
+
+```py
+def stance(x = 0, y = 0, z = -11, x_shift = 2):# 单位cm(unit: cm)
+    # x_shift越小，走路越前倾，越大越后仰,通过调节x_shift可以调节小狗走路的平衡(the smaller the x_shift, the more forward-leaning the walk; the larger, the more backward-leaning. Adjusting x_shift can balance the robot dog's gait)
+    return np.array([
+                        [x + x_shift, x + x_shift, -x + x_shift, -x + x_shift],
+                        [y, y, y, y],
+                        [z, z, z, z],
+                    ])#此array的组合方式不要去改变(please refrain from altering the combination of this array)
+```
+
+By changing the parameters within the function, describe the spatial relationship between the four limbs of the robot dog in various postures. The returned coordinate array serves as a reference for subsequent posture control and motion calculation modules.
+
+**(6) getAreaMaxContour contour processing function**
+
+By comparing the area of contours and filtering out those with an area less than 50, return the contour object along with its corresponding area value.
+
+```py
+# 找出面积最大的轮廓(find out the contour with the maximal area)
+# 参数为要比较的轮廓的列表(the parameter is the list of contour to be compared)
+def getAreaMaxContour(contours):
+    contour_area_temp = 0
+    contour_area_max = 0
+    area_max_contour = None
+
+    for c in contours:  # 历遍所有轮廓(iterate through all contours)
+        contour_area_temp = math.fabs(cv2.contourArea(c))  # 计算轮廓面积(calculate the contour area)
+        if contour_area_temp > contour_area_max:
+            contour_area_max = contour_area_temp
+            if contour_area_temp >= 5:  # 只有在面积大于300时，最大面积的轮廓才是有效的，以过滤干扰(only when the area is greater than 300, the contour with the maximal area is valid to filter the interference)
+                area_max_contour = c
+
+    return area_max_contour, contour_area_max  # 返回最大的轮廓(return the contour with the maximal area)
+```
+
+**(7) run image processing function**
+
+```py
+def run(img):
+    
+    global puppyStatus, block_center_point
+    global block_color
+    global color_list
+    global Debug
+    
+    img_copy = img.copy()
+    img_h, img_w = img.shape[:2]
+    
+    frame_resize = cv2.resize(img_copy, size, interpolation=cv2.INTER_NEAREST)
+    frame_gb = cv2.GaussianBlur(frame_resize, (3, 3), 3)   
+                       
+    frame_lab_all = cv2.cvtColor(frame_gb, cv2.COLOR_BGR2LAB)  # 将图像转换到LAB空间(convert the image to LAB space)
+    max_area = 0
+    color_area_max = None    
+    areaMaxContour_max = 0
+
+    for i in lab_data:
+        if i in ['red']:
+            frame_mask = cv2.inRange(frame_lab_all,
+                                            (lab_data[i]['min'][0],
+                                            lab_data[i]['min'][1],
+                                            lab_data[i]['min'][2]),
+                                            (lab_data[i]['max'][0],
+                                            lab_data[i]['max'][1],
+                                            lab_data[i]['max'][2]))  #对原图像和掩模进行位运算(perform bitwise operation to original image and mask)
+            eroded = cv2.erode(frame_mask, cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3)))  #腐蚀(corrosion)
+            dilated = cv2.dilate(eroded, cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))) #膨胀(dilation)
+            
+            contours = cv2.findContours(dilated, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)[-2]  #找出轮廓(find out the contour)
+            areaMaxContour, area_max = getAreaMaxContour(contours)  #找出最大轮廓(find out the contour with the maximal area)
+```
+
+Firstly, preprocess the image by resizing and applying Gaussian blur. Then, identify lines in different ROI regions based on predefined color ranges, calculate the center point positions of the line contours, compute the parameters of the circumscribed circles of the largest area color blocks in the image, determine the recognition status, output different recognition results, and display them in the image. The overall logic involves color recognition and contour extraction from the image, calculating key points of lines, and controlling robot dog movement based on recognition results.
+
+① Preprocess the image, including resizing and applying Gaussian blur.
+
+```py
+frame_resize = cv2.resize(img_copy, size, interpolation=cv2.INTER_NEAREST)
+frame_gb = cv2.GaussianBlur(frame_resize, (3, 3), 3) 
+```
+
+② Segment the preprocessed image ROI into three regions: upper, middle, and lower. Convert the RGB color of the image blocks in these three regions to the LAB color space, and perform bitwise operations with the mask.
+
+```py
+for i in lab_data:
+    if i in ['red']:
+        frame_mask = cv2.inRange(frame_lab_all,
+                                       (lab_data[i]['min'][0],
+                                        lab_data[i]['min'][1],
+                                        lab_data[i]['min'][2]),
+                                        (lab_data[i]['max'][0],
+                                        lab_data[i]['max'][1],
+                                        lab_data[i]['max'][2]))  #对原图像和掩模进行位运算(perform bitwise operation to original image and mask)
+```
+
+③ After the mask operation, perform opening and closing operations on the image using mathematical morphology. Extract the outer contours of the targets using the `cv2.findContours()` function, and call the `getAreaMaxContour()` function to detect contours, filtering out those with smaller areas.
+
+```py
+eroded = cv2.erode(frame_mask, cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3)))  #腐蚀(corrosion)
+dilated = cv2.dilate(eroded, cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))) #膨胀(dilation)
+            
+contours = cv2.findContours(dilated, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)[-2]  #找出轮廓(find out the contour)
+areaMaxContour, area_max = getAreaMaxContour(contours)  #找出最大轮廓(find out the contour with the maximal area)
+```
+
+④ Find the contours of color blocks in the image and filter out those with a maximum contour area less than 200 to improve recognition accuracy. Finally, use the `cv2.circle()` function to draw the minimum enclosing circle on the image with a yellow color.
+
+```py
+     if areaMaxContour is not None:
+         if area_max > max_area:#找最大面积(find the maximal area)
+            max_area = area_max
+            color_area_max = i
+            areaMaxContour_max = areaMaxContour
+if max_area > 200:  # 有找到最大面积(the maximal area is found)
+   ((centerX, centerY), radius) = cv2.minEnclosingCircle(areaMaxContour_max)  # 获取最小外接圆(get the minimum circumcircle)
+   centerX = int(Misc.map(centerX, 0, size[0], 0, img_w))
+   centerY = int(Misc.map(centerY, 0, size[1], 0, img_h))
+   radius = int(Misc.map(radius, 0, size[0], 0, img_w))  
+   block_center_point = (centerX,centerY)  
+```
+
+⑤ Differentiate the largest color block based on color, marking them as 1 (red), 2 (green), or 3 (blue), and assign the result to `block_color`. Then, check if `weight_sum` is not equal to 0. If it is, draw the center point of the image based on the calculated center point coordinates. Finally, return the processed image based on the values of  `block_center_point`  and  `line_centerx`.
+
+```py
+if color_area_max == 'red':  #红色最大(red is the maximal area)
+   color = 1
+elif color_area_max == 'green':  #绿色最大(green is the maximal area)
+   color = 2
+elif color_area_max == 'blue':  #蓝色最大(blue is the maximal area)
+    color = 3
+else:
+     color = 0
+color_list.append(color)
+
+if len(color_list) == 3:  #多次判断(multiple judgements)
+# 取平均值(take average value)
+    color = int(round(np.mean(np.array(color_list))))
+    color_list = []
+    if color == 1:
+        block_color = 'red'
+                
+    elif color == 2:
+        block_color = 'green'
+                
+    elif color == 3:
+         block_color = 'blue'
+                
+     else:
+         block_color = 'None'
+```
+
+**(8) move execution action function**
+
+During the startup phase (PuppyStatus.START), the robot dog stops moving and initializes its posture. In the normal forward phase (PuppyStatus.NORMAL), the robot dog's movement direction and speed are controlled based on the position relationship between the image center point and the color block center point. If a red color block is detected (PuppyStatus.FOUND_TARGET), execute the grasping action, and then turn the robot dog to the left for a certain distance. During the placing phase (PuppyStatus.PLACE), start searching for red placing points. If a red placing point is found, execute the placing action.
+
+```py
+def move():
+    global line_centerx, puppyStatus, puppyStatusLast, block_center_point
+    global block_color
+
+    while True:
+        while(puppyStatus == PuppyStatus.START) :  # 启动阶段，初始化姿态(startup stage, initialize the posture)
+            
+            puppy.move_stop(servo_run_time = 500)
+            PuppyPose = Bend.copy()
+            puppy.stance_config(stance(PuppyPose['stance_x'],PuppyPose['stance_y'],PuppyPose['height'],PuppyPose['x_shift']), PuppyPose['pitch'], PuppyPose['roll'])
+            time.sleep(0.5)
+            
+            puppyStatus = PuppyStatus.NORMAL
+            break
+
+        while(puppyStatus == PuppyStatus.NORMAL) : # 
+            
+            if block_center_point[1] > 355 and block_center_point[1] < 370 and block_color == 'red' and abs(block_center_point[0] - img_centerx) < 50: # 已经发现目标物块,只有物块在线上才满足(target object has been found, it is considered valid only when the block is on the line)
+                puppyStatus = PuppyStatus.FOUND_TARGET
+                puppy.move_stop(servo_run_time = 500)
+                time.sleep(0.5)
+                break
+            value = block_center_point[0] - img_centerx
+            if block_center_point[1] <= 300:
+                PuppyMove['x'] = 10
+                PuppyMove['yaw_rate'] = math.radians(0)
+            elif abs(value) > 80:
+                PuppyMove['x'] = 5
+                PuppyMove['yaw_rate'] = math.radians(-11 * np.sign(value))
+            elif abs(value) > 50:
+                PuppyMove['x'] = 5
+                PuppyMove['yaw_rate'] = math.radians(-5 * np.sign(value))
+            elif block_center_point[1] <= 355:
+                PuppyMove['x'] = 8
+                PuppyMove['yaw_rate'] = math.radians(0)
+            elif block_center_point[1] >= 370:
+```
+
+**(9) getAreaMaxContour function**
+
+Here is a screenshot of the code for the getAreaMaxContour function:
+
+```py
+# 找出面积最大的轮廓(find out the contour with the maximal area)
+# 参数为要比较的轮廓的列表(the parameter is the list of contour to be compared)
+def getAreaMaxContour(contours):
+    contour_area_temp = 0
+    contour_area_max = 0
+    area_max_contour = None
+
+    for c in contours:  # 历遍所有轮廓(iterate through all contours)
+        contour_area_temp = math.fabs(cv2.contourArea(c))  # 计算轮廓面积(calculate the contour area)
+        if contour_area_temp > contour_area_max:
+            contour_area_max = contour_area_temp
+            if contour_area_temp >= 5:  # 只有在面积大于300时，最大面积的轮廓才是有效的，以过滤干扰(only when the area is greater than 300, the contour with the maximal area is valid to filter the interference)
+                area_max_contour = c
+
+    return area_max_contour, contour_area_max  # 返回最大的轮廓(return the contour with the maximal area)
+```
+
+From a group of contours, find the contour with the largest area. The function iterates through all the contours, calculates their areas, and retains the contour with the largest area. Additionally, a condition is added during area calculation to consider only contours with an area greater than or equal to 5, filtering out smaller disturbances. Finally, the function returns the found largest contour along with its corresponding area.
+
+### 16.4.5 Function Extension
+
+When recognizing red, PuppyPi executes action of "gripping" and "placing" color block. To change to color to be detected, such as the "green" color block, follow these steps:
+
+(1) Input command "rosed puppy_with_arm color_grab.py" to edit color recognition gripping program. Then press Enter.
 
 ```bash
 rosed puppy_with_arm color_grab.py
 ```
 
-(2)  找到下图所示代码：
+(2) Find the code as pictured:
 
 <img src="../_static/media/chapter_22/section_4/image22.png"  />
 
 :::{Note}
-在键盘输入代码位置序号后，按下"Shift+G"键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
+ after entering the code position number on the keyboard, press the "Shift+G" keys to directly navigate to the corresponding position. The code position number shown in the illustration is for reference only, please refer to the actual position.
 :::
 
-(3)  按下"**i**"键进入编辑模式，将"**red**"改为"**green**"。
+(3)  Press **"i"** to go to the editing mode. And change **"red"** to **"green"**.
 
 <img src="../_static/media/chapter_22/section_4/image24.png"  />
 
-(4)  修改完成后，按下"**Esc**"键，输入指令并按下回车，进行保存与退出。
+(4) After modification, press Esc and input **":wq"**. Then press Enter to save and exit.
 
 ```bash
 :wq
 ```
 
-(5)  参照"[4.2 玩法开启及关闭步骤](#anchor_4_2)"，重新启动玩法，即可查看修改后的玩法效果。
+(5)  Refer to "[16.4.2 Operation Steps](#anchor_4_2)" to restart the program to check the modified game effects.
 
-### 4.5 程序分析
+## 16.5 Line Following Gripping
 
-(1) **launch文件分析**
+### 16.5.1 Program Logic
 
-该程序的源代码位于Docker容器中的： **[/home/ubuntu/puppypi/src/puppy_with_arm/launch/color_grab.launch](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/22/color_detect_with_arm.launch)**
+First, it's necessary to recognize the line colors. Here, we're using the Lab color space for processing. We'll convert the image color space from RGB to Lab.
 
-<img src="../_static/media/chapter_22/section_4/image29.png"  />
+Next, perform operations such as binarization, erosion, and dilation on the image to obtain contours containing only the target color, and mark them with rectangles.
 
-第一个 \<node\> 标签用于启动名为 puppy_control 的节点，用于控制机器狗运动
+After completing color recognition, calculate based on the feedback of line positions in the image, and control the PuppyPi robot dog to move along the lines, thus achieving autonomous line-following walking.
 
-其定义如下：
-
-name="**puppy_control**"：节点名称为 puppy_control。
-
-pkg="**puppy**\_**control**"：节点所在的软件包为 puppy_control。
-
-type="**puppy**"：节点类型为 puppy，表示将运行名为 puppy.py 的可执行文件。 
-
-required="**flase**"：此节点是否为必需的，设置为 false 表示即使该节点启动失败也不会影响整个 launch 文件的运行。
-
-output="**screen**"：指定节点的输出将显示在屏幕上。
-
-第二个 \<node\> 标签用于启动名为color_grab 的节点，为玩法的主要源文件，其定义如下：
-
-name="**color_grab**"： 节点的名称设置为 "**color_grab**"。
-
-pkg="**puppy_with_arm**"： 指定节点所在的软件包为 "**puppy_with_arm**"。
-
-type="**color_grab.py**"： 表示将启动名为 "**color_grab.py**" 的可执行文件。
-
-required="**false**"： 类似于第一个节点，设置为 false 意味着启动失败不会影响整个启动过程。
-
-output="**screen**"： 节点的输出将显示在屏幕上。
-
-第三个 \<node\> 标签用于启动名为puppy_control_joystick 的节点，用于机械臂的控制，其定义如下：
-
-name="**puppy_control_joystick"： 节点的名称设置为 "puppy_control_joystick"。
-
-pkg="**puppy_control**"： 指定节点所在的软件包为 "**puppy_control**"。
-
-type="**remote_control_joystick.py**"： 表示将启动名为 "**remote_control_joystick**.py" 的可执行文件。
-
-required="**false**"： 与其他节点类似，设置为 false 意味着启动失败不会影响整个启动过程。
-
-output="**screen**"： 节点的输出将显示在屏幕上。
-
-(2) **源码程序分析**
-
-该程序的源代码位于Docker容器中的： **[/home/ubuntu/puppypi/src/puppy_with_arm/scripts/color_grab.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/22/color_grab.py)**
-
-(3) **导入相关应用库**
-
-<img src="../_static/media/chapter_22/section_4/image30.png"  />
-
-① sys 用于处理命令行参数和退出程序；
-
-② cv2 用于 Opencv 图像处理；
-
-③ math 用于数学计算；
-
-④ time 用于计时和延时；
-
-⑤ threading 用于实现并行处理；
-
-⑥ 从 arm_kinematics.ArmMoveIK导入ArmIK用于逆运动学控制；
-
-⑦ 导入树莓派GPIO库。
-
-<img src="../_static/media/chapter_22/section_4/image32.png"  />
-
-定义了一个名为 HomePath 的变量，表示主目录路径为 '/home/pi'。然后，通过 sys.path.append 将 '/home/pi/PuppyPi_PC_Software' 添加到 Python 的模块搜索路径中。
-
-从模块 ServoCmd 中导入了 setServoPulse 函数。这表明 ServoCmd 模块中包含了一个名为 setServoPulse 的函数，用于控制伺服舵机的脉冲信号。
-
-从 ActionGroupControl 模块中导入了 runActionGroup 和 stopActionGroup 两个函数。可以在当前代码中直接使用这两个函数，而不需要使用完整的模块名来调用。
-
-从 HiwonderPuppy 模块中导入了 HiwonderPuppy 类和 PWMServoParams 类。
-
-在当前代码中创建 HiwonderPuppy 和 PWMServoParams 的实例，并使用它们提供的方法和属性。
-
-(4) **主程序**
-
-调用puppy对象的stance_config和gait_config进行姿态和步态的初始化设置，启动小狗puppy.start()，设置Debug模式是否控制机器狗的移动，然后打开相机获取图像，在主循环中获取图像，调用run()函数进行图像处理。整体逻辑是完成程序环境初始化，图像获取显示，状态机控制运行循环。通过判断Debug模式来选择是否控制机器人开启巡线夹取任务。
-
-<img src="../_static/media/chapter_22/section_4/image34.png"  />
-
-①  使用"**puppy.stance_config**"来配置机器狗四脚在静止状态下的姿态。
-
-<img src="../_static/media/chapter_22/section_4/image36.png"  />
-
-第一个参数"**PuppyPose\['stance_x'\]**"表示四条腿在X轴上的额外分开距离，单位cm；
-
-第二个参数"**PuppyPose\['stance_y'\]**"表示四条腿在Y轴上的额外分开距离，单位cm；
-
-第三个参数"**PuppyPose\['height'\]**"表示狗的高度，脚尖到腿转轴的垂直距离，单位cm；
-
-第四个参数"**PuppyPose\['x_shift'\]**"表示四条腿在X轴上同向移动的距离，值越小走路越前倾，值越大越后仰；
-
-第五个参数"**PuppyPose\['pitch'\]**"表示机器狗身体的俯仰角度，单位弧度；
-
-第六个参数"**PuppyPose\['roll'\]**"表示机器狗身体的滚动角度，单位弧度；
-
-② 使用"**puppy.gait_config**"来配置机器狗步态动作参数。
-
-<img src="../_static/media/chapter_22/section_4/image38.png"  />
-
-第一个参数"**overlap_time**"表示四条腿同时着地时间；
-
-第二个参数"**swing_time**"表示单脚离地摆动时间；
-
-第三个参数"**clearace_time**"表示前后脚间隔时间；
-
-第四个参数"**z_clearance**"表示步态过程中脚离地高度；
-
-③ 启动机器狗，设置机器狗的初始姿态，触发蜂鸣器响声。
-
-<img src="../_static/media/chapter_22/section_4/image40.png"  />
-
-④ 设置Debug变量来进行Running模式的切换，如果Debug为True是非实时模式，只处理图像机器狗不动，如果Debug为Falses是实时运行模式，同时处理图像和机器狗巡线夹取。
-
-<img src="../_static/media/chapter_22/section_4/image42.png"  />
-
-⑤ 进行实时图像处理的循环。从摄像头获取图像，在图像上运行处理函数，然后显示处理后的图像。同时，通过检测两个按键的状态，可以设置机器狗的状态为启动或停止。循环持续执行，直到用户按下 '**Crtl+C**' 键退出。最后，关闭摄像头并释放资源。
-
-<img src="../_static/media/chapter_22/section_4/image44.png"  />
-
-(5) **stance函数**
-
-<img src="../_static/media/chapter_22/section_4/image46.png"  />
-
-通过改变函数内的参数，描述出机器狗各种姿态下的四肢的空间关系，返回的坐标数组为后续姿态控制和运动计算模块提供参考。
-
-(6) **getAreaMaxContour轮廓处理函数**
-
-通过比较轮廓的面积大小，并过滤掉面积小于50的轮廓，并返回该轮廓对象和对应的面积值。
-
-<img src="../_static/media/chapter_22/section_4/image48.png"  />
-
-(7) **run图形处理函数**
-
-<img src="../_static/media/chapter_22/section_4/image50.png"  />
-
-首先对图像进行预处理，包括调整大小和高斯模糊。然后，根据预设的颜色范围在不同ROI区域识别线条，并计算线条轮廓中心点位置，对画面识别最大面积的色块计算其轮廓外接圆的参数，根据判断识别状态输出不同的识别结果，并在图像中显示识别结果。整体逻辑是通过对图像画面进行颜色识别、轮廓提取，计算出线条关键点位置，输出识别结果控制机器狗运动。
-
-① 对图像进行预处理，包括调整大小、高斯模糊。
-
-<img src="../_static/media/chapter_22/section_4/image52.png"  />
-
-② 将预处理后的图像ROI分割成上中下三个区域，对三个区域的图像块RGB颜色转换成LAB颜色空间，然后进行和掩膜进行位运算。
-
-<img src="../_static/media/chapter_22/section_4/image54.png"  />
-
-③ 掩膜操作后对图像进行腐蚀和膨胀运算操作，通过cv2.findContours()函数提取出目标的外层轮廓，并调用getAreaMaxContour()函数进行轮廓检测，过滤掉较小面积的轮廓。
-
-<img src="../_static/media/chapter_22/section_4/image56.png"  />
-
-④ 找到图像中的色块轮廓，将最大轮廓的面积小于200的过滤掉，提高识别精度，最后使用cv2.circle()函数在图像上绘制最小外接圆，颜色为黄色。
-
-<img src="../_static/media/chapter_22/section_4/image58.png"  />
-
-⑤ 根据颜色区分最大的色块，将颜色标记为1（红色）、2（绿色）或3（蓝色），并将其赋值给block_color。接着，判断weight_sum是否不为0。如果是，则根据计算得到的中心点坐标绘制图像中心点。最后，根据block_center_point和line_centerx的值，返回处理后的图像。
-
-<img src="../_static/media/chapter_22/section_4/image60.png"  />
-
-(8) **move执行动作函数**
-
-在启动阶段（PuppyStatus.START），机器狗停止运动并初始化姿态。在正常前进（PuppyStatus.NORMAL），根据图像中心点和色块中心点的位置关系，控制机器狗的运动方向和速度。如果发现红色色块（PuppyStatus.FOUND_TARGET），执行抓取动作，然后机器狗向左转一段距离。在放置物块（PuppyStatus.PLACE），开始寻找红色放置点，如果发现红色放置点，执行放置动作。
-
-<img src="../_static/media/chapter_22/section_4/image62.png"  />
-
-(9) **getAreaMaxContour函数**
-
-下图是getAreaMaxContour函数的代码：
-
-<img src="../_static/media/chapter_22/section_4/image64.png"  />
-
-从一组轮廓中找到面积最大的轮廓。函数通过迭代所有轮廓，计算其面积，并保留面积最大的轮廓。在计算面积时，还添加了一个条件，仅考虑面积大于等于5的轮廓，以过滤掉较小的干扰。最终，函数返回找到的最大轮廓以及其对应的面积。
-
-## 5. 巡线夹取
-
-### 5.1 实现流程
-
-首先，需要对线条颜色进行识别，此处使用 Lab 颜色空间进行处理，将图像颜色空间由RGB 转换为 Lab，随后对图像进行二值化、腐蚀、膨胀等操作，获得只包含目标颜色的轮廓，并用矩形将其标识出来。完成颜色识别后，根据图像中线条位置的反馈进行计算，控制 PuppyPi 机器狗沿着线条移动，从而达到自主巡线行走的效果。
-
-在巡线途中，发现目标颜色的色块，会通过调用动作组来抓取和搬运色块，搬运结束后，重新回到自主巡线的任务中。
+During line following, if color blocks of the target color are detected, the robot will call action groups to grasp and transport the color blocks. After the transport is completed, it will return to the task of autonomous line following.
 
 <p id="anchor_5_2"></p>
 
-### 5.2 玩法开启及关闭步骤
+### 16.5.2 Operation Steps
 
 :::{Note}
-指令输入需严格区分大小写及空格。
+Instructions must be entered with strict attention to case sensitivity and spacing.
 :::
 
-(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1) Turn on PuppyPi, and connect it to Raspberry Pi desktop via VNC.
 
-(2)  单击桌面左上角的的图标<img src="../_static/media/chapter_22/section_5/image3.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键"**Ctrl+Alt+T**"，打开LX终端。
+(2) Click the icon <img src="../_static/media/chapter_22/section_5/image3.png" style="width:0.31458in;height:0.27361in" /> on the upper left corner, or use shortcut **"Ctrl+Alt+T"** to open the LX terminal.
 
-(3)  输入关闭按键控制服务的指令，并按下回车。
+(3) Input command **"sudo systemctl stop button_scan.service "** and press Enter to stop button control service.
 
 ```bash
 sudo systemctl stop button_scan.service
 ```
 
-(4)  点击系统桌面左上角的图标<img src="../_static/media/chapter_22/section_5/image6.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(4) Click the icon<img src="../_static/media/chapter_22/section_5/image6.png" style="width:0.32292in;height:0.30208in" /> on the upper left corner to open the Terminator terminal.
 
-(5)  输入关闭自启玩法的指令，并按下回车。
+(5) Input command **"sudo ./.stop_ros.sh"** and press Enter to close auto-start program.
 
 ```bash
 sudo ./.stop_ros.sh
 ```
 
-(6)  输入开启巡线夹取玩法的指令，按下回车，启动玩法程序。
+(6) Input the line follow gripping command **"roslaunch puppy_with_arm visual_patrol_with_arm.launch"** and press Enter to start the program.
 
 ```bash
 roslaunch puppy_with_arm visual_patrol_with_arm.launch
 ```
 
-(7)  按下扩展板上的Key1按键，启动玩法
+(7) Press Key1 on the expansion board to start the program.
 
-(8) 如需关闭此玩法，可在Terminator终端界面按下"**Ctrl+C**"。如果关闭失败，可多次按下。
+(8) If you need to close this game, you can press **"Ctrl+C"** in the LX terminal interface. If closing fails, you can try pressing multiple times.
 
-(9) 玩法关闭后还需在LX终端输入指令并按下回车，开启APP自启服务。
+(9) After closing the game, you still need to enter the command "sudo systemctl restart start_node.service" and press Enter to start the app's auto-start service.
 
 ```bash
 sudo systemctl restart start_node.service
 ```
 
-在启动完成后，蜂鸣器会短鸣"**滴**"一声。
+After startup is complete, the buzzer will emit a short beep sound, like **"beep"**.
 
 :::{Note}
-如未启动 APP 自启服务，则会影响 APP 对应玩法的正常实现。如未输入命令进行自启，将机器狗重启也会重新启动 APP 自启服务。
+If the app's auto-start service is not initiated, it will affect the normal implementation of the corresponding game in the app. If the command for auto-start is not entered, restarting the robot dog will also restart the app's auto-start service.
 :::
 
-(10) 还需输入指令并按下回车，开启按键检测服务。
+(10) Additionally, you need to input command **"sudo systemctl restart button_scan.service"** and press Enter to start button detection service.
 
 ```bash
 sudo systemctl restart button_scan.service
 ```
 
-### 5.3 实现效果
+### 16.5.3 Program Outcome
 
 :::{Note}
-启动玩法后，请确保摄像头的视野范围内不存在其他包含识别颜色的物体，以免影响玩法的实现效果。
+ After starting the game, please ensure that there are no other objects containing the recognized colors within the field of view of the camera, to avoid affecting the implementation of the game.
 :::
 
-将PuppyPi机器狗放置黑色线条上，启动玩法后，机器狗将巡黑色线条进行移动，如果识别到前面线条上有色块阻挡，则会执行"搬运"动作。夹取红色色块放置于线条左边，夹取绿色或蓝色色块放置于线条右边，执行完夹取动作后继续进行巡线任务。
-
-<img src="../_static/media/chapter_22/section_5/image14.png"  alt="" class="common_img" />
+After placing the PuppyPi robot dog on a black line, starting the gameplay will prompt the robot dog to move along the black line. If a color block is detected blocking the line ahead, the robot will perform a "transport" action. It will pick up red color blocks and place them on the left side of the line, and pick up green or blue color blocks and place them on the right side of the line. After completing the pick-up action, it will continue with the line-following task.
 
 :::{Note}
-若颜色识别不准，可参照"**[ROS+OpenCV视觉识别与追踪项目\1.  颜色阈值调节](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/13_visual_recognition_and_tracking.html#id1)**"对其进行调节。
+
+If the color recognition is inaccurate, you can refer to "[ROS1-AI Visual and Tracking Course->7.1 Color Threshold Adjustment](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/13_visual_recognition_and_tracking.html#id1) " to adjust.
 :::
 
-若出现夹取位置不准的情况，可修改程序中**block_center_point\[1\]**的参数。数值越大，末端夹持器位置越靠后，反之则越靠前。
+If there are instances of inaccurate gripping positions, you can modify the parameter  `block_center_point[1]`  in the program. A larger value will position the gripper further back, while a smaller value will position it further forward.
 
 <img src="../_static/media/chapter_22/section_5/image15.png"  />
 
-### 5.4 功能延伸
+### 16.5.4 Program Analysis
 
-**玩法默认识别红色后，机器狗执行"夹取"动作组，将红色色块放置于线条左边；玩法默认识别绿色后，机器狗执行"夹取"动作组，将绿色色块放置于线条右边。如需更改放置的位置，比如"红色"和"绿色"色块互换位置，可参照以下步骤：**
+:::{Note}
+Before modifying the program, it is essential to back up the original factory program. Avoid making direct modifications in the source code files to prevent unintentional changes to parameters that could lead to robot malfunctions and be irreparable!
+:::
 
-(1)  输入指令并按下回车，用来编辑巡线夹取玩法程序，按下回车。
+Based on the camera feed, obtain real-time visual information and use color thresholding algorithms to extract the color lines required for line following. Calculate the robot's required movement speed and heading angle based on the offset of the lines in the image, correcting its position to keep the lines centered in the frame in real-time. If a target color block is detected in front of the line-following position, execute a grasping action to place the color block aside and continue with the line-following task.
 
-```bash
-rosed puppy_with_arm** **visual_patrol_with_arm.py
+**(1) launch file analysis**
+
+During the execution of the functionality, the launch file of the current package will be started (color_detect_with_arm.launch) as pictured:
+
+<img src="../_static/media/chapter_22/section_5/image26.png"  />
+
+From the above diagram, it can be seen that the node name for this game functionality is "color_detect_with_arm," and this node is located in the package "puppy_with_arm." The node displays the processed information through the terminal.
+
+Finally, the line following gripping function is executed by calling the source code file **"visual_patrol_with_arm.py".**
+
+**(2) Source code program analysis**
+
+The source code of this program is stored at: ：**[/home/ubuntu/puppypi/src/puppy_with_arm/scripts/visual_patrol_with_arm.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/22/visual_patrol_with_arm.py)**
+
+```py
+import sys
+import cv2
+import time
+import math
+import threading
+import numpy as np
+from enum import Enum
+from arm_kinematics.ArmMoveIK import ArmIK
+from common import Misc
+from common import Camera
+from common import yaml_handle
+import gpiod
+
+
+sys.path.append('/home/ubuntu/software/puppypi_control/') 
+from servo_controller import setServoPulse
+from action_group_control import runActionGroup, stopActionGroup
+from HiwonderPuppy import HiwonderPuppy, PWMServoParams
+
+puppy = HiwonderPuppy(setServoPulse = setServoPulse, servoParams = PWMServoParams(), dof = '8')
 ```
 
-(2)  找到下图所示代码：
+① sys is used for handling command-line arguments and exiting the program;
+
+② cv2 is used for OpenCV image processing;
+
+③ math is used for mathematical calculations; 
+
+④ time is used for timing and delays;
+
+⑤ threading is used for implementing parallel processing;
+
+⑥ numpy is used for scientific computing.
+
+⑦ enum is used to define program running states.
+
+⑧ ArmMoveIK is used to control robotic arm movement.
+
+⑨ pigpio is used for GPIO control, facilitating communication with peripheral hardware.
+
+⑩ Iimport functions from servoCmd for setting servo pulse width.
+
+⑪ Import action groups from ActionGroupControl.
+
+**(3) Main program**
+
+Initialize the posture and gait settings using the "stance_config" and "gait_config" methods of the puppy object, then start the robot dog with "puppy.start()". Set the Debug mode to control whether the robot dog moves. Next, open the camera to capture images. In the main loop, continuously capture images and call the "run()" function for image processing. The overall logic involves initializing the program environment, acquiring and displaying images, running a state machine control loop, and optionally enabling line-following and object grasping tasks based on the Debug mode.
+
+```py
+if __name__ == '__main__':
+
+    puppy.stance_config(stance(PuppyPose['stance_x'],PuppyPose['stance_y'],PuppyPose['height'],PuppyPose['x_shift']), PuppyPose['pitch'], PuppyPose['roll'])
+    puppy.gait_config(overlap_time = GaitConfig['overlap_time'], swing_time = GaitConfig['swing_time']
+                            , clearance_time = GaitConfig['clearance_time'], z_clearance = GaitConfig['z_clearance'])
+    # overlap_time:4脚全部着地的时间，swing_time：2脚离地时间，z_clearance：走路时，脚抬高的距离(overlap_time: The time when all four feet touch the ground, swing_time: The time when two feet are off the ground, z_clearance: The height at which the feet are lifted during walking)
+
+    puppy.start() # 启动(start)
+    puppy.move_stop(servo_run_time = 500)
+
+    AK.setPitchRangeMoving((8.51,0,3.3),500)
+    setServoPulse(9,1500,500)
+    time.sleep(0.5)
+    
+    
+    Debug = False
+    
+    if Debug:
+        PuppyPose = Bend.copy()
+        puppy.stance_config(stance(PuppyPose['stance_x'],PuppyPose['stance_y'],PuppyPose['height'],PuppyPose['x_shift']), PuppyPose['pitch'], PuppyPose['roll'])
+        time.sleep(0.5)
+        puppyStatus = PuppyStatus.NORMAL
+    else:
+        th.start() 
+    #   开启机器狗移动线程(start the moving thread of robot dog)
+    #   如果只是想看摄像头画面，调试画面，不想让机器人移动，可以把Debug设置为True，同时不要去按按钮(if you only want to view the camera feed and debug the image without moving the robot, you can set Debug to True, and avoid pressing any buttons)
+    #   等调试完再把Debug设置为False，观察实际运行情况(once debugging is complete, set Debug to False, and observe the actual operation)
+
+    my_camera = Camera.Camera()
+    my_camera.camera_open()
+    
+    while True:
+        img = my_camera.frame
+        if img is not None:
+            frame = img.copy()
+            Frame = run(frame)           
+            cv2.imshow('Frame', Frame)
+            key = cv2.waitKey(1)
+            if key == 27:
+                break
+        else:
+            time.sleep(0.01)
+
+        if key1.get_value() == 0:
+            time.sleep(0.05)
+            if key1.get_value() == 0:
+                puppyStatus = PuppyStatus.START
+        if key2.get_value() == 0:
+            time.sleep(0.05)
+            if key2.get_value() == 0:
+                puppyStatus = PuppyStatus.STOP
+                stopActionGroup()
+    my_camera.camera_close()
+    cv2.destroyAllWindows()
+```
+
+① Use `puppy.stance_config` to configure the stance of the robot dog's four legs in a stationary state.
+
+```py
+puppy.stance_config(stance(PuppyPose['stance_x'],PuppyPose['stance_y'],PuppyPose['height'],PuppyPose['x_shift']), PuppyPose['pitch'], PuppyPose['roll'])
+```
+
+The first parameter `PuppyPose['stance_x']` indicates the additional separation distance of the four legs on the X-axis, in centimeters.
+
+The second parameter `PuppyPose['stance_y']` indicates the additional separation distance of the four legs on the Y-axis, in centimeters.
+
+The third parameter `PuppyPose['height']` indicates the height of the dog, which is the vertical distance from the tips of the feet to the leg pivot axis, in centimeters.
+
+The fourth parameter `PuppyPose['x_shift']` represents the distance that all legs move in the same direction along the X-axis. The smaller the value, the more the dog leans forward while walking; the larger the value, the more it leans backward.
+
+The fifth parameter `PuppyPose['pitch']` represents the pitch angle of the robot dog's body, in radians.
+
+The sixth parameter `PuppyPose['roll']` represents the roll angle of the robot dog's body, in radians.
+
+② Use `puppy.gait_config` to configure the parameters for the gait motion of the robot fog.
+
+```py
+puppy.gait_config(overlap_time = GaitConfig['overlap_time'], swing_time = GaitConfig['swing_time']
+```
+
+The first parameter `overlap_time` represents the time during which all four legs are simultaneously in contact with the ground.
+
+The second parameter `swing_time` represents the time duration for a single leg to swing off the ground.
+
+The third parameter `clearace_time` represents the time interval between the front and rear legs.
+
+The fourth parameter `z_clearance` represents the height of the feet off the ground during the gait process.
+
+③ Set the Debug variable to toggle between Running modes. If Debug is True, it's a non-real-time mode where only image processing is performed while the robot dog remains stationary. If Debug is False, it's a real-time mode where both image processing and robot dog line following and object grasping tasks are performed simultaneously.
+
+```py
+    if Debug:
+        PuppyPose = Bend.copy()
+        puppy.stance_config(stance(PuppyPose['stance_x'],PuppyPose['stance_y'],PuppyPose['height'],PuppyPose['x_shift']), PuppyPose['pitch'], PuppyPose['roll'])
+        time.sleep(0.5)
+        puppyStatus = PuppyStatus.NORMAL
+    else:
+        th.start() 
+    #   开启机器狗移动线程(start the moving thread of robot dog)
+    #   如果只是想看摄像头画面，调试画面，不想让机器人移动，可以把Debug设置为True，同时不要去按按钮(if you only want to view the camera feed and debug the image without moving the robot, you can set Debug to True, and avoid pressing any buttons)
+    #   等调试完再把Debug设置为False，观察实际运行情况(once debugging is complete, set Debug to False, and observe the actual operation)
+```
+
+**(4)  Stance function** 
+
+The following is a screenshot of the code inside the run function:
+
+```py
+def stance(x = 0, y = 0, z = -11, x_shift = 2):# 单位cm(unit: cm)
+    # x_shift越小，走路越前倾，越大越后仰,通过调节x_shift可以调节小狗走路的平衡(the smaller the x_shift, the more forward-leaning the walk; the larger, the more backward-leaning. Adjusting x_shift can balance the robot dog's gait)
+    return np.array([
+                        [x + x_shift, x + x_shift, -x + x_shift, -x + x_shift],
+                        [y, y, y, y],
+                        [z, z, z, z],
+                    ])#此array的组合方式不要去改变(please refrain from altering the combination of this array)
+```
+
+By altering the parameters within the function, describe the spatial relationship of the robot dog's four limbs in various postures. The returned coordinate array provides reference for subsequent posture control and motion calculation modules.
+
+(5) **run image processing function**
+
+The following is a screenshot of the code inside the run function:
+
+<img src="../_static/media/chapter_22/section_5/image40.png"  />
+
+First, preprocess the image, including resizing and applying Gaussian blur. Then, identify lines in different ROI regions based on predefined color ranges, calculate the center point positions of the line contours, and compute the parameters of the minimum enclosing circle for the largest area color block detected in the image. Based on the judgment of recognition status, output different recognition results such as line center points and color block types, and display them in the image. The overall logic involves color recognition and contour extraction from the image, calculating key points of lines, and outputting recognition results for motion control.
+
+① Preprocess the image, including resizing and applying Gaussian blur.
+
+```py
+frame_resize = cv2.resize(img_copy, size, interpolation=cv2.INTER_NEAREST)
+frame_gb = cv2.GaussianBlur(frame_resize, (3, 3), 3)
+```
+
+② Segment the preprocessed image ROI into three regions: upper, middle, and lower. Convert the RGB color of the image blocks in these three regions to the LAB color space, and perform bitwise operations with the mask.
+
+```py
+    centroid_x_sum = 0
+    weight_sum = 0
+   
+    n = 0
+
+    center_x_3 = [None]*3
+    #将图像分割成上中下三个部分，这样处理速度会更快，更精确(segment the image into top, middle, and bottom sections. This approach will improve processing speed and accuracy)
+    for r in roi:
+        roi_h = roi_h_list[n]
+        n += 1       
+        blobs = frame_gb[r[0]:r[1], r[2]:r[3]]
+        frame_lab = cv2.cvtColor(blobs, cv2.COLOR_BGR2LAB)  # 将图像转换到LAB空间(convert the image to LAB space)
+        
+        for i in lab_data:
+            if i in line_color:
+                
+                frame_mask = cv2.inRange(frame_lab,
+                                             (lab_data[i]['min'][0],
+                                              lab_data[i]['min'][1],
+                                              lab_data[i]['min'][2]),
+                                             (lab_data[i]['max'][0],
+                                              lab_data[i]['max'][1],
+                                              lab_data[i]['max'][2]))  #对原图像和掩模进行位运算(operate the bitwise operation to original image and mask)
+```
+
+③ After the mask operation, perform opening and closing operations on the image using mathematical morphology. Extract the outer contours of the targets using the `cv2.findContours()` function, and call the `getAreaMaxContour()` function to detect contours, filtering out those with smaller areas.
+
+```py
+opened = cv2.morphologyEx(frame_mask, cv2.MORPH_OPEN, np.ones((6, 6), np.uint8))  # 开运算(opening operation)
+closed = cv2.morphologyEx(opened, cv2.MORPH_CLOSE, np.ones((6, 6), np.uint8))  # 闭运算(closing operation)
+               
+cnts = cv2.findContours(closed , cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_TC89_L1)[-2]#找出所有轮廓(find out all the contours)
+```
+
+④ By checking if `cnt_large` is not empty, it indicates the detection of the target color. Using the `cv2.minAreaRect()` function, calculate the minimum bounding rectangle of `cnt_large` and assign the processed result to `rect`. Then, use the `cv2.boxPoints()` function to obtain the four vertices of the minimum bounding rectangle and draw this rectangle and its center point on the image. Additionally, add the X-coordinate of the rectangle's center point to `centroid_x_sum` based on the weight value for subsequent calculations.
+
+```py
+if cnt_large is not None:#如果轮廓不为空(if contour is not none)
+    rect = cv2.minAreaRect(cnt_large)#最小外接矩形(the minimum bounding rectangle)
+    box = np.int0(cv2.boxPoints(rect))#最小外接矩形的四个顶点(the four vertices of the minimum bounding rectangle)
+    for i in range(4):
+        box[i, 1] = box[i, 1] + (n - 1)*roi_h + roi[0][0]
+        box[i, 1] = int(Misc.map(box[i, 1], 0, size[1], 0, img_h))
+    for i in range(4):
+        box[i, 0] = int(Misc.map(box[i, 0], 0, size[0], 0, img_w))
+                
+    cv2.drawContours(img, [box], -1, (0,0,255), 2)#画出四个点组成的矩形(draw the rectangle formed by the four points)
+            
+    #获取矩形的对角点(obtain the diagonal points of the rectangle)
+    pt1_x, pt1_y = box[0, 0], box[0, 1]
+    pt3_x, pt3_y = box[2, 0], box[2, 1]            
+    center_x, center_y = (pt1_x + pt3_x) / 2, (pt1_y + pt3_y) / 2#中心点(center point)
+    cv2.circle(img, (int(center_x), int(center_y)), 5, (0,0,255), -1)#画出中心点(draw the center point)
+    center_x_3[n-1] = center_x
+                                   
+    #按权重不同对上中下三个中心点进行求和(sum the weighted values of the top, middle, and bottom centroids, each with a different weight)
+    centroid_x_sum += center_x * r[4]
+    weight_sum += r[4]
+```
+
+⑤ By checking the value of `puppyStatus`, it indicates that the robot is currently performing the line-following and object grasping task. Then, the image is converted to the LAB color space. Based on the color threshold ranges defined in "lab_data", bitwise operations, erosion, and dilation operations are performed on the image to find color block contours. Contours with a maximum area less than 200 are filtered out to improve recognition accuracy. Finally, the "cv2.circle()" function is used to draw the minimum enclosing circle on the image with the color corresponding to the color block.
+
+```py
+    if puppyStatus == PuppyStatus.NORMAL :
+        
+        frame_lab_all = cv2.cvtColor(frame_gb, cv2.COLOR_BGR2LAB)  # 将图像转换到LAB空间(convert the image to LAB space)
+        max_area = 0
+        color_area_max = None    
+        areaMaxContour_max = 0
+    
+        for i in lab_data:
+            if i in ['red', 'green','blue']:
+                frame_mask = cv2.inRange(frame_lab_all,
+                                                (lab_data[i]['min'][0],
+                                                lab_data[i]['min'][1],
+                                                lab_data[i]['min'][2]),
+                                                (lab_data[i]['max'][0],
+                                                lab_data[i]['max'][1],
+                                                lab_data[i]['max'][2]))  #对原图像和掩模进行位运算(perform bitwise operation to original image and mask)
+                eroded = cv2.erode(frame_mask, cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3)))  #腐蚀(corrosion)
+                dilated = cv2.dilate(eroded, cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))) #膨胀(dilation)
+                
+                contours = cv2.findContours(dilated, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)[-2]  #找出轮廓(find out the contour)
+                areaMaxContour, area_max = getAreaMaxContour(contours)  #找出最大轮廓(find out the contour with the maximal area)
+                if areaMaxContour is not None:
+                    if area_max > max_area:#找最大面积(find the maximal area)
+                        max_area = area_max
+                        color_area_max = i
+                        areaMaxContour_max = areaMaxContour
+        if max_area > 200:  # 有找到最大面积(the maximal area is found)
+            ((centerX, centerY), radius) = cv2.minEnclosingCircle(areaMaxContour_max)  # 获取最小外接圆(obtain the minimum circumcircle)
+            centerX = int(Misc.map(centerX, 0, size[0], 0, img_w))
+            centerY = int(Misc.map(centerY, 0, size[1], 0, img_h))
+            radius = int(Misc.map(radius, 0, size[0], 0, img_w))  
+            block_center_point = (centerX,centerY)   
+            
+            if Debug:
+                # print("block_center_x",block_center_point[0])   
+                print("block_center_y",block_center_point[1])     
+            cv2.circle(img, (centerX, centerY), radius, (0,255,255), 2)#画圆(draw circle)
+```
+
+⑥ Differentiate the largest color block based on color, marking them as 1 (red), 2 (green), or 3 (blue), and assign the result to "block_color". Then, check if "weight_sum" is not equal to 0. If it is, draw the center point of the image based on the calculated center point coordinates. Finally, return the processed image based on the values of "block_center_point" and "line_centerx".
+
+```py
+if color_area_max == 'red':  #红色最大(red is the maximal area)
+    color = 1
+elif color_area_max == 'green':  #绿色最大(green is the maximal area)
+    color = 2
+elif color_area_max == 'blue':  #蓝色最大(blue is the maximal area)
+    color = 3
+else:
+    color = 0
+color_list.append(color)
+
+if len(color_list) == 3:  #多次判断(multiple judgement)
+     # 取平均值(take average value)
+     color = int(round(np.mean(np.array(color_list))))
+     color_list = []
+     if color == 1:
+         block_color = 'red'
+                    
+     elif color == 2:
+         block_color = 'green'
+                    
+      elif color == 3:
+          block_color = 'blue'
+                   
+       else:
+           block_color = 'None'
+                    
+       if Debug:
+            print('block_color is',block_color)          
+else:
+    block_color = 'None'
+           
+else:
+    block_center_point = (0,0)
+```
+
+**(6) move execution action function**
+
+ The following is a screenshot of the code portion inside the move function:
+
+<img src="../_static/media/chapter_22/section_5/image54.png"  />
+
+During the startup phase (PuppyStatus.START), the robot dog stops moving and initializes its posture. During normal line-following phase (PuppyStatus.NORMAL), the robot dog's movement direction and speed are controlled based on the position relationship between the image center point and the block center point. If a color block is detected (PuppyStatus.FOUND_TARGET), the corresponding action group is executed based on the color of the block. If the block is red, the robot first performs the grasping action, then moves to the left side of the line, and finally executes the placing action. If the block is green or blue, the robot first performs the grasping action, then moves to the right side of the line, and finally executes the placing action.
+
+**(7) getAreaMaxContour  function**
+
+The following is a screenshot of the code portion inside the getAreaMaxContour function:
+
+<img src="../_static/media/chapter_22/section_5/image56.png"  />
+
+From a group of contours, find the contour with the largest area. The function iterates through all the contours, calculates their areas, and retains the contour with the largest area. Additionally, a condition is added during area calculation to consider only contours with an area greater than or equal to 5, filtering out smaller disturbances. Finally, the function returns the found largest contour along with its corresponding area.
+
+### 16.5.5 Function Extension
+
+When the game default recognizes red, the robot dog executes the "grasping" action group and places the red color block on the left side of the line. When the game default recognizes green, the robot dog executes the "grasping" action group and places the green color block on the right side of the line. If you need to change the placement position, for example, swapping the positions of the "red" and "green" color blocks, you can follow these steps:
+
+(1)  Input command "rosed puppy_with_arm visual_patrol_with_arm.py" and press Enter to edit the line following gripping program.
+
+```bash
+rosed puppy_with_arm visual_patrol_with_arm.py
+```
+
+(2) Find the following code:
 
 <img src="../_static/media/chapter_22/section_5/image19.png"  />
 
 :::{Note}
-在键盘输入代码位置序号后，按下"Shift+G"键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
+after entering the code position number on the keyboard, press the "Shift+G" keys to directly navigate to the corresponding position. The code position number shown in the illustration is for reference only, please refer to the actual position.
 :::
 
-(3)  按下"**i**"键进入编辑模式，将"**red**"和"**green**"两个颜色的位置互换一下。
+(3) Press "i" to go to the editing mode. And swap the positions of the "red" and "green".
 
 <img src="../_static/media/chapter_22/section_5/image21.png"  />
 
-(4)  修改完成后，按下"**Esc**"键，输入指令并回车，进行保存与退出。
+(4) After modification, press Esc and input ":wq". Then press Enter to save and exit.
 
 ```bash
 :wq
 ```
 
-(5)  参照"[5.2 玩法开启及关闭步骤](#anchor_5_2)"，重新启动玩法，即可查看修改后的玩法效果。
+(5)  Refer to "[5.2 Operation Steps](#anchor_5_2)" to restart the program to check the modified game effects. 
 
-### 5.5 程序分析
+## 16.6 Gesture Control Robotic Arm
+
+### 16.6.1 Program Logic
+
+First, subscribe to the topic messages published by the camera node to obtain real-time image data.
+Next, use the Mediapipe library to connect the recognized keypoints of the hand. Normalize the coordinates of the keypoints of the thumb and index finger, then convert them to pixel coordinates in the image. Calculate the distance between these two points.
+Finally, the robotic gripper performs opening and closing movements based on the calculated distance.
+
+### 16.6.2 Operation Steps
 
 :::{Note}
-在程序修改前务必将原有出厂程序进行备份，再进行修改，禁止直接在源代码
+Instructions must be entered with strict attention to case sensitivity and spacing.
 :::
 
-**文件中进行修改，避免以错误的方式修改参数之后导致机器人异常且无法修复！！！**
+(1) Turn on PuppyPi, and connect it to Raspberry Pi desktop via VNC.
 
-根据摄像头的消息，获取实时视觉信息，利用颜色阈值算法从中提取需要巡线的颜色线条。根据线条在图像中的位置偏移情况，计算出机器狗应有的移动速度和航向角来矫正位置，使线条实时保持在画面中心。如果识别到目标色块在前方巡线位置上，执行夹取动作，将色块放置线条一旁，继续进行巡线任务。
+(2) Click the icon<img src="../_static/media/chapter_22/section_6/image3.png" style="width:0.32292in;height:0.30208in" /> on the upper left corner to open the Terminator terminal.
 
-(1) **launch文件分析**
-
-在功能执行的过程当中，会启动当前功能包的launch文件（**visual_patrol_with_arm.launch**），内容如下图所示：
-
-<img src="../_static/media/chapter_22/section_5/image26.png"  />
-
-从上图可以看出，该功能玩法的名称（**visual_patrol_with_arm**）和该节点是位于哪个功能包（**puppy_with_arm**），节点通过终端显示处理后的信息。
-
-最后通过调用**visual_patrol_with_arm.py**的源码文件去执行巡线夹取的功能。
-
-(2) **源码程序分析**
-
-该程序的源代码位于Docker容器中的：**[/home/ubuntu/puppypi/src/puppy_with_arm/scripts/visual_patrol_with_arm.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/22/visual_patrol_with_arm.py)**
-
-<img src="../_static/media/chapter_22/section_5/image28.png"  />
-
-①**sys** 用于处理命令行参数和退出程序；
-
-② **cv2** 用于 Opencv 图像处理；
-
-③ **math** 用于数学计算；
-
-④ **time** 用于计时和延时；
-
-⑤ **threading** 用于实现并行处理；
-
-⑥ **numpy** 用于科学计算；
-
-⑦ **enum** 用于定义程序运行状态；
-
-⑧ **ArmMoveIK** 用于控制机械臂运动；
-
-⑨ **pigpio** 用于GPIO控制，与外设硬件通信；
-
-⑩ 从**servoCmd**导入设置舵机脉宽的函数；
-
-⑪ 从 **ActionGroupControl** 导入动作组；
-
-(3) **主程序**
-
-调用puppy对象的stance_config和gait_config进行姿态和步态的初始化设置，启动小狗puppy.start()，设置Debug模式是否控制机器狗的移动，然后打开相机获取图像，在主循环中获取图像，调用run()函数进行图像处理。整体逻辑是完成程序环境初始化，图像获取显示，状态机控制运行循环。通过判断Debug模式来选择是否控制机器人开启巡线夹取任务。
-
-<img src="../_static/media/chapter_22/section_5/image30.png"  />
-
-① 使用"**puppy.stance_config**"来配置机器狗四脚在静止状态下的姿态。
-
-<img src="../_static/media/chapter_22/section_5/image32.png"  />
-
-第一个参数"**PuppyPose\['stance_x'\]**"表示四条腿在X轴上的额外分开距离，单位cm；
-
-第二个参数"**PuppyPose\['stance_y'\]**"表示四条腿在Y轴上的额外分开距离，单位cm；
-
-第三个参数"**PuppyPose\['height'\]**"表示狗的高度，脚尖到腿转轴的垂直距离，单位cm；
-
-第四个参数"**PuppyPose\['x_shift'\]**"表示四条腿在X轴上同向移动的距离，值越小走路越前倾，值越大越后仰；
-
-第五个参数"**PuppyPose\['pitch'\]**"表示机器狗身体的俯仰角度，单位弧度；
-
-第六个参数"**PuppyPose\['roll'\]**"表示机器狗身体的滚动角度，单位弧度；
-
-② 使用"**puppy.gait_config**"来配置机器狗步态动作参数。
-
-<img src="../_static/media/chapter_22/section_5/image34.png"  />
-
-第一个参数"**overlap_time**"表示四条腿同时着地时间；
-
-第二个参数"**swing_time**"表示单脚离地摆动时间；
-
-第三个参数"**clearace_time**"表示前后脚间隔时间；
-
-第四个参数"**z_clearance**"表示步态过程中脚离地高度；
-
-③ 设置Debug变量来进行Running模式的切换，如果Debug为True是非实时模式，只处理图像机器狗不动，如果Debug为Falses是实时运行模式，同时处理图像和机器狗巡线夹取。
-
-<img src="../_static/media/chapter_22/section_5/image36.png"  />
-
-(4) **stance函数**
-
-下图是stance函数里面的代码截图：
-
-<img src="../_static/media/chapter_22/section_5/image38.png"  />
-
-通过改变函数内的参数，描述出机器狗各种姿态下的四肢的空间关系，返回的坐标数组为后续姿态控制和运动计算模块提供参考。
-
-(5) **run图形处理函数**
-
-下图是run函数的部分代码截图：
-
-<img src="../_static/media/chapter_22/section_5/image40.png"  />
-
-首先对图像进行预处理，包括调整大小和高斯模糊。然后，根据预设的颜色范围在不同ROI区域识别线条，并计算线条轮廓中心点位置，对画面识别最大面积的色块计算其轮廓外接圆的参数，根据判断识别状态输出不同的识别结果，如线条中心点、色块类型等，并在图像中显示识别结果。整体逻辑是通过对图像画面进行颜色识别、轮廓提取，计算出线条关键点位置，输出识别结果供控制运动。
-
-① 对图像进行预处理，包括调整大小、高斯模糊。
-
-<img src="../_static/media/chapter_22/section_5/image42.png"  />
-
-② 将预处理后的图像ROI分割成上中下三个区域，对三个区域的图像块RGB颜色转换成LAB颜色空间，然后进行和掩膜进行位运算。
-
-<img src="../_static/media/chapter_22/section_5/image44.png"  />
-
-③ 掩膜操作后对图像进行开和闭运算操作，通过cv2.findContours()函数提取出目标的外层轮廓，并调用getAreaMaxContour()函数进行轮廓检测，过滤掉较小面积的轮廓。
-
-<img src="../_static/media/chapter_22/section_5/image46.png"  />
-
-④ 通过判断cnt_large不为空来说明识别到目标颜色，使用cv2.minAreaRect()函数计算cnt_large的最小外接矩形，并将处理后的结果赋值给rect，然后使用cv2.boxPoints()函数获取最小外接矩形的四个顶点，并在图像上绘制该矩形和中心点，同时根据权重值将矩形中心点的X坐标添加到centroid_x_sum中，以便后续计算使用。
-
-<img src="../_static/media/chapter_22/section_5/image48.png"  />
-
-⑤ 通过判断puppyStatus的值来说明正进行巡线夹取任务，将图像转换到LAB空间，然后根据lab_data中定义的颜色阈值范围，对图像进行位运算、腐蚀和膨胀操作，找到图像中的色块轮廓，将最大轮廓的面积小于200的过滤掉，提高识别精度，最后使用cv2.circle()函数在图像上绘制最小外接圆，颜色为对应色块的颜色。
-
-<img src="../_static/media/chapter_22/section_5/image50.png"  />
-
-⑥ 根据颜色区分最大的色块，将颜色标记为1（红色）、2（绿色）或3（蓝色），并将其赋值给block_color。接着，判断weight_sum是否不为0。如果是，则根据计算得到的中心点坐标绘制图像中心点。最后，根据block_center_point和line_centerx的值，返回处理后的图像。
-
-<img src="../_static/media/chapter_22/section_5/image52.png"  />
-
-(6) **move执行动作函数**
-
-下图是move函数的代码部分截图：
-
-<img src="../_static/media/chapter_22/section_5/image54.png"  />
-
-在启动阶段（PuppyStatus.START），机器狗停止运动并初始化姿态。在正常巡线阶段（PuppyStatus.NORMAL），根据图像中心点和区块中心点的位置关系，控制机器狗的运动方向和速度。如果发现色块（PuppyStatus.FOUND_TARGET），根据色块的颜色执行相应的动作组。如果色块是红色，先执行抓取动作，然后将机器狗移动到线条的左侧，再执行放置动作。如果色块是绿色或蓝色，先执行抓取动作，然后将机器狗移动到线条的右侧，再执行放置动作。
-
-(7) **getAreaMaxContour函数**
-
-下图是getAreaMaxContour函数的代码截图：
-
-<img src="../_static/media/chapter_22/section_5/image56.png"  />
-
-从一组轮廓中找到面积最大的轮廓。函数通过迭代所有轮廓，计算其面积，并保留面积最大的轮廓。在计算面积时，还添加了一个条件，仅考虑面积大于等于5的轮廓，以过滤掉较小的干扰。最终，函数返回找到的最大轮廓以及其对应的面积。
-
-## 6. 手势控制机械臂
-
-### 6.1 实验原理
-
-首先，需要订阅摄像头节点发布的话题消息，获取实时图像数据；
-
-接着，再调用mediapipe库将识别到的手部关键点连接起来，将大拇指和食指的手部关键点的归一化坐标转换为图像的像素坐标，计算出两点距离；
-
-最后，机械爪根据计算出来的距离进行张合运动。
-
-### 6.2 玩法开启及关闭步骤
-
-:::{Note}
-指令输入需严格区分大小写及空格。
-:::
-
-(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
-
-(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_22/section_6/image3.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
-
-(3)  输入关闭自启玩法的指令，并按下回车。
+(3) Input command "sudo ./.stop_ros.sh" and press Enter to close the auto-start program.
 
 ```bash
 sudo ./.stop_ros.sh
 ```
 
-(4)   输入启动玩法的指令，按下回车。
+(4) Input command "roslaunch puppy_with_arm hand_control_with_arm.launch" and press Enter to start the program.
 
 ```bash
 roslaunch puppy_with_arm hand_control_with_arm.launch
 ```
 
-这里为了减少内存占用，保证玩法的正常使用，没有显示回传画面，如果想要开启相机回传画面可以按照下面的步骤进行。
+To reduce memory usage and ensure the normal use of the game here, the camera feed is not displayed. If you want to enable the camera feed, you can follow the steps below.
 
 :::{Note}
-启动相机回传前需要保证手势控制玩法正常运行，否则可能无法启动相机回传。
+Before starting the camera feed, ensure that the gesture control gameplay is functioning properly, as otherwise, the camera feed may not start properly.
 :::
 
-玩法启动后，由于VNC没有显示摄像头画面，对此可以通过打开**"web_video_server"**服务在浏览器中查看摄像头画面。
+After starting the game, if the camera feed is not displayed via VNC, you can view the camera feed in a web browser by opening the "web_video_server" service.
 
-(5)  使用任意浏览器，输入地址"**192.168.149.1:8080**"。
+(5)  Use any web browser and enter the address "192.168.149.1:8080".
 
 <img src="../_static/media/chapter_22/section_6/image10.png"  />
 
-(6)  选择对应节点的图像进行查看。
+(6)  Select the corresponding node's image to view.
 
 <img class="common_img" src="../_static/media/chapter_22/section_6/image11.png"  />
 
-(7)  进入手势控制机械臂玩法的相机回传界面，如下图所示：
+(7) Enter the camera feedback interface for gesture-controlled robotic arm game as pictured:
 
 <img class="common_img" src="../_static/media/chapter_22/section_6/image12.png"  />
 
-(8)  如需关闭此玩法，可在Terminator终端界面按下"**Ctrl+C**"。如果关闭失败，可多次按下。
+(8)  If you need to close this game, you can press "Ctrl+C" in the LX terminal interface. If closing fails, you can try pressing multiple times.
 
-(9) 玩法关闭后，按下"Ctrl+Alt+T"打开LX终端，输入指令并按下回车，开启APP自启服务。
+(9) After closing the game, you still need to enter the command and press Enter to start the app auto-start service.
 
 ```bash
 sudo systemctl restart start_node.service
 ```
 
-在启动完成后，蜂鸣器会短鸣"**滴**"一声。
+After the startup is completed, the buzzer will emit a short beep sound 'beep'.
 
 :::{Note}
-如未启动 APP 自启服务，则会影响 APP 对应玩法的正常实现。如未输入命令进行自启，将机器狗重启也会重新启动 APP 自启服务。
+ If the app auto-start service is not enabled, it will affect the normal implementation of the corresponding gameplay in the app. If the command for auto-start is not entered, restarting the robot dog will also restart the app auto-start service.
 :::
 
-### 6.3 实现效果
+### 16.6.3 Program Outcome
 
-玩法开启后，当识别到手部特征时，会将手部特征用圆点和线条连接起来，用黄线将大拇指和食指相连，识别出大拇指和食指之间的距离，并在左下角打印出来，Puppypi的机械爪会跟随大拇指和食指的距离变化而变化。
+After the game starts, when hand features are recognized, they will be connected by dots and lines. A yellow line connects the thumb and index finger, and the distance between them is calculated and displayed in the lower-left corner. The mechanical gripper of Puppypi will follow the changes in distance between the thumb and index finger.
 
-<img class="common_img" src="../_static/media/chapter_22/section_6/image12.png"  />
+### 16.6.4 Program Analysis 
 
-### 6.4 程序分析
+**(1) launch file analysis**
 
-(1) **launch文件分析**
-
-该程序的源代码位于Docker容器中的： **[/home/ubuntu/puppypi/src/puppy_with_arm/launch/hand_control_with_arm.launch](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/22/color_detect_with_arm.launch)**
+The source code of this program is stored at  **[/home/ubuntu/puppypi/src/puppy_with_arm/launch/hand_control_with_arm.launch](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/22/color_detect_with_arm.launch)**
 
 <img src="../_static/media/chapter_22/section_6/image16.png"  />
 
-使用 \<include\> 标签引入了名为 config_manager.launch 的 launch 文件，该文件位于 puppy_pi_bringup 软件包中的 launch 文件夹内。里面包含一些标签和颜色的配置参数。
-
-使用\<include\> 标签引入了名为 start_camera.launch 的 launch 文件，该文件位于 puppy_pi_bringup 软件包中的 launch 文件夹内。用于启动摄像头节点。
+The <include> tag is used to include the launch file named "config_manager.launch", which is located in the "launch" folder of the "puppy_pi_bringup" package. This file contains some tags and configuration parameters related to colors.
+The <include> tag is used to include the launch file named "start_camera.launch", which is located in the `launch` folder of the "puppy_pi_bringup" package. This file is used to start the camera node.
 
 <img src="../_static/media/chapter_22/section_6/image18.png"  />
 
-第一个 \<node\> 标签用于启动名为 web_video_server 的节点，用于摄像头网页传输
+The first <node> tag is used to launch a node named "web_video_server", which is used for camera web transmission. Its definition is as follows:
 
-其定义如下：
+name="web_video_server"：Node name is web_video_server.
 
-name="**web_video_server**"：节点名称为 web_video_server。
+pkg="web_video_server"：The software package where the node resides is web_video_server.
 
-pkg="**web_video_server**"：节点所在的软件包为 web_video_server。
+type="web_video_server"：Node type is puppy, which indicates the execution of an executable file named "web_video_server".
 
-type="**web_video_server**"：节点类型为 web_video_server，表示将运行名为 web_video_server 的可执行文件。
+required="true"：This node is not essential. Setting it to "true" means that if this node fails to start, it will cause the entire launch file to stop.
 
-required="**true**"：此节点是否为必需的，设置为 true 表示如果该节点启动失败会 导致整个 launch 文件停止。
+output="screen"：The output of the specified node will be displayed on the scree.
 
-output="**screen**"：指定节点的输出将显示在屏幕上。
+The second <node> tag is used to launch a node named "hand_control", which is used to control the robotic arm. Its definition is as follows:
 
-第二个 \<node\> 标签用于启动名为 hand_control 的节点，用于机械臂的控制，其定义如下：
+name="hand_control"：Then node name is hand_control.
 
-name="**hand_control**"：节点名称为 hand_control。
+pkg="puppy_with_arm"：The software package where the node belongs to is puppy_with_arm.
 
-pkg="**puppy_with_arm**"：节点所在的软件包为 puppy_with_arm。
+type="hand_control_with_arm.py"：The node type is hand_control_with_arm.py, which indicates running a Python executable file named "hand_control_with_arm.py".
 
-type="**hand_control_with_arm.py**"：节点类型为 hand_control_with_arm.py，表示将运行名为 hand_control_with_arm.py 的 Python 可执行文件。
+required="false"：This node is essential. Setting it to "false" means that even if this node fails to start, it will not affect the overall execution of the launch file.
 
-required="**false**"：此节点是否为必需的，设置为 false 表示即使该节点启动失败也不会影响整个 launch 文件的运行。
+output="screen"：Specify that the output of the node will be displayed on the screen.
 
-output="**screen**"：指定节点的输出将显示在屏幕上。
+**(2) Source code program analysis**
 
+The source code of this program is stored at: **[/home/ubuntu/puppypi/src/puppy_with_arm/scripts/hand_control_with_arm.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/22/hand_control_with_arm.py)**
 
-(2) **源码程序分析**
+**(3) Import related application library**
 
-该程序的源代码位于Docker容器中的： **[/home/ubuntu/puppypi/src/puppy_with_arm/scripts/hand_control_with_arm.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/22/hand_control_with_arm.py)**
+```py
+import sys
+import cv2
+import math
+import time
+import rospy
+import mediapipe as mp
+from collections import deque
+import threading
+import numpy as np
+from common import Misc
+from common import PID
+from std_msgs.msg import Header
+from sensor_msgs.msg import Image
+from arm_kinematics.ArmMoveIK import ArmIK
+from std_srvs.srv import *
+```
 
-(3) **导入相关应用库**
+① sys is used for handling command-line arguments and exiting the program;
 
-<img src="../_static/media/chapter_22/section_6/image20.png"  />
+② cv2 is used for OpenCV image processing;
 
-① sys 用于处理命令行参数和退出程序；
+③ math is used for mathematical calculations;
 
-② cv2 用于 Opencv 图像处理；
+④ rospy is used for ROS communication;
 
-③ math 用于数学计算；
+⑤ time is used for timing and delays;
 
-④ rospy 用于 ROS 通信；
+⑥ mediapipe is used for gesture recognition
 
-⑤ time 用于计时和延时；
+⑦ threading is used for implementing parallel processing.
 
-⑥ mediapipe 用于手势识别；
+⑧ Misc、PID are used for PID control of robotic arm movement;
 
-⑦ threading 用于实现并行处理；
+⑨ Import service type from "std_srvs.srv".
 
-⑧ Misc、PID用于机械臂运动的PID控制；
+⑩ Import ROS image message module from sensor_msgs.msg for handling image messages;
 
-⑨ 从 std_srvs.srv 导入服务类型；
+⑪ Import ArmIK from arm_kinematics.ArmMoveIK for inverse kinematics control;
 
-⑩ 从sensor_msgs.msg导入ROS图像消息模块，用于处理图像消息；
+⑫ Import all service types from the std_srvs.srv package.
 
-⑪ 从 arm_kinematics.ArmMoveIK导入ArmIK用于逆运动学控制；
+```py
+sys.path.append('/home/ubuntu/software/puppypi_control/')
+from servo_controller import setServoPulse
+```
 
-⑫ 从 std_srvs.srv 包中导入所有的服务类型。
+A variable named HomePath is defined to represent the main directory path as '/home/pi'. Then, '/home/pi/PuppyPi_PC_Software' is added to Python's module search path using sys.path.append.
 
-<img src="../_static/media/chapter_22/section_6/image22.png"  />
+The function setServoPulse is imported from the module ServoCmd. This indicates that the ServoCmd module contains a function named setServoPulse, which is used to control the pulse signal of servo motors.
 
-定义了一个名为 HomePath 的变量，表示主目录路径为 '/home/pi'。然后，通过 sys.path.append 将 '/home/pi/PuppyPi_PC_Software' 添加到 Python 的模块搜索路径中。
+**(4) Distance calculation between two points**
 
-从模块 ServoCmd 中导入了 setServoPulse 函数。这表明 ServoCmd 模块中包含了一个名为 setServoPulse 的函数，用于控制伺服舵机的脉冲信号。
+```py
+def distance(point_1, point_2):
+    """
+    计算两个点间的距离(calculate the distance between two points)
+    :param point_1: 点1(point 1)
+    :param point_2: 点2(point 2)
+    :return: 两点间的距离(distance between two points)
+    """
+    return math.sqrt((point_1[0] - point_2[0]) ** 2 + (point_1[1] - point_2[1]) ** 2)
+```
 
-(4) **两点距离计算**
+Using the Python math library, the Euclidean distance between two points is calculated. It computes the distance between two points (point_1[0], point_1[1]) and (point_2[0], point_2[1]) on a two-dimensional plane.
+(point_1[0] - point_2[0]) ** 2 and (point_1[1] - point_2[1]) ** 2: These calculate the squares of the differences in the x and y directions, respectively. Then, these squares are added together to obtain the square of the Euclidean distance.
+math.sqrt：Calculate the square root of the sum to obtain the final Euclidean distance.
 
-<img src="../_static/media/chapter_22/section_6/image24.png"  />
+**(5) Coordinates conversion**
 
-使用了 Python 中的数学库"**math**"，计算了两点之间的欧氏距离。它计算了二维平面上两个点 (point_1\[0\], point_1\[1\]) 和 (point_2\[0\], point_2\[1\]) 之间的距离。
+```py
+def get_hand_landmarks(img, landmarks):
+    """
+    将landmarks从medipipe的归一化输出转为像素坐标(convert the landmarks from mediapipe's normalized output to pixel coordinates)
+    :param img: 像素坐标对应的图片(the image corresponding to the pixel coordinates)
+    :param landmarks: 归一化的关键点(normalized key points)
+    :return:
+    """
+    h, w, _ = img.shape
+    landmarks = [(lm.x * w, lm.y * h) for lm in landmarks]
+    return np.array(landmarks)
+```
 
-(point_1\[0\] - point_2\[0\]) \*\* 2 和 (point_1\[1\] - point_2\[1\]) \*\* 2：分别计算 x 方向和 y 方向上的差值的平方，将两个平方相加，得到欧氏距离的平方。
+landmarks = [(lm.x * w, lm.y * h) for lm in landmarks]：Using list comprehension, multiply each key point's x and y coordinates by the width and height of the image, respectively, to obtain the actual coordinates. Here, "lm" represents the object containing key points.
 
-math.sqrt：计算欧氏距离的平方根，得到最终的欧氏距离。
+return np.array(landmarks)：Convert the mapped key point coordinates to a NumPy array and return it as the function's result.
 
-(5) **坐标转换**
+**(6) Convert the OpenCV image to the image message of the ROS**
 
-<img src="../_static/media/chapter_22/section_6/image26.png"  />
+```py
+def cv2_image2ros(image, frame_id=''):
+    image = image[:,:,::-1]
+    ros_image = Image()
+    header = Header(stamp=rospy.Time.now())
+    header.frame_id = frame_id
+    ros_image.height = image.shape[:2][0]
+    ros_image.width = image.shape[:2][1]
+    ros_image.encoding = 'rgb8'
+    ros_image.data = image.tostring()
+    ros_image.header = header
+    ros_image.step = ros_image.width * 3
 
-landmarks = \[(lm.x \* w, lm.y \* h) for lm in landmarks\]：通过列表推导式，将每个关键点的 x 和 y 坐标乘以图像的宽度和高度，得到实际的坐标。lm 是表示关键点的对象。
+    return ros_image
+```
 
-return np.array(landmarks)：将映射后的关键点坐标转换为 NumPy 数组，并将其作为函数的返回值。
+The function cv2_image2ros converts an image in OpenCV format to the ROS image message format. It first converts the image channels from BGR to RGB, then creates a ROS image message, setting its header information, dimensions, encoding, and data. Finally, it returns the converted ROS image message.
 
-(6) **OpenCV 图像转换为 ROS 中的图像消息**
+**(7) HandControlWithArmNode class initialization**
 
-<img src="../_static/media/chapter_22/section_6/image28.png"  />
+```py
+class HandControlWithArmNode:
+    def __init__(self, name):
+        rospy.init_node(name)  # launch里的name会覆盖此处的name，所以要修改name，需要修改launch里的name, 为了一致性此处name会和launch name保持一致(the "name" in the "launch" file will override the name here. To change "name", you need to modify it in the "launch" file. For consistency, the name here will match the name in the launch file)
+        self.mpHands = mp.solutions.hands
+        self.hands = self.mpHands.Hands(static_image_mode=False,
+                        max_num_hands=1,
+                        min_detection_confidence=0.7,
+                        min_tracking_confidence=0.7)
+        self.mpDraw = mp.solutions.drawing_utils
+        self.ak = ArmIK()
+        self.last_time = time.time()
+        self.last_out = 0
+        
 
-函数cv2_image2ros将OpenCV格式的图像转换为ROS的图像消息格式。它首先将图像的通道从BGR转换为RGB，然后创建一个ROS图像消息，设置其头部信息、尺寸、编码和数据。最后，它返回转换后的ROS图像消息。
+        self.frames = 0
+        
+        self.window_size = 5  # 定义滑动窗口大小（滤波窗口大小）(define the size of slider window(filter window size))
+        self.distance_measurements = deque(maxlen=self.window_size) # 创建一个队列用于存储最近的距离测量数据(create a queue to store recent distance measurement data)
+        
+        self.filtered_distance = 0
+        self.th = threading.Thread(target=self.move,daemon=True)
+        self.th.start()
+        self.name = name
+        self.image = None
+        
+        rospy.Subscriber('/usb_cam/image_raw', Image, self.image_callback)
+        self.result_publisher = rospy.Publisher('~image_result', Image, queue_size=1)  # 图像处理结果发布,# 使用~可以自动加上前缀名称(image processing result publish, use "~" can automatically add the prefix name)
+```
 
-(7) **HandControlWithArmNode类初始化**
+① rospy.init_node(name): Initialize a ROS noce. The node name is "name".
 
-<img src="../_static/media/chapter_22/section_6/image30.png"  />
+② self.mpHands = mp.solutions.hands: Import hands module of the mp library.
 
-① rospy.init_node(name): 初始化一个ROS节点，name是该节点的名称。
-
-② self.mpHands = mp.solutions.hands: 导入mp库中的hands模块。
-
-③ self.hands = self.mpHands.Hands(...): 创建一个手部检测对象，配置了一 些参数，如是否使用静态图像模式、最大手部数量、检测和跟踪的最小置信度等。
-
-④ self.mpDraw = mp.solutions.drawing_utils: 导入绘图工具模块。
-
-⑤ self.ak = ArmIK(): 创建一个ArmIK对象，=用于逆向运动学解算。
-
-⑥ self.last_time = time.time(): 记录当前时间。
-
-⑦ self.last_out = 0: 初始化一个变量。
-
-⑧ self.frames = 0: 初始化一个帧计数器。
-
-⑨ self.window_size = 5: 定义滑动窗口的大小为5。
-
-⑩ self.distance_measurements = deque(maxlen=self.window_size): 创建一个双端队列，用于存储最近的距离测量数据，最多存储5个数据。
-
-⑪ self.filtered_distance = 0: 初始化一个滤波后的距离变量。
-
-⑫ self.th = threading.Thread(target=self.move,daemon=True): 创建一个新线程来执行move方法，并设置为守护线程。
-
-⑬ self.th.start(): 启动新线程。
-
-⑭ self.name = name: 将传入的name值赋给self.name。
-
-⑮ self.image = None: 初始化一个图像变量为None。
-
-⑯ rospy.Subscriber('/usb_cam/image_raw', Image, self.image_callback): 订阅名为/usb_cam/image_raw的ROS话题，消息类型为Image，当收到消息时调用self.image_callback回调函数。
-
-⑰ self.result_publisher = rospy.Publisher('~image_result', Image, queue_size=1): 创建一个发布者，发布名为~image_result的ROS话题，消息类型为Image，队列大小为1。
-
-(8) **图像回调函数**
-
-<img src="../_static/media/chapter_22/section_6/image32.png"  />
-
-定义了一个名为image_callback的回调函数，用于处理ROS图像消息。它使用NumPy创建一个数组，将ROS图像数据转换为RGB格式，并存储在对象的image属性中。
-
-(9) **设置机械臂的初始状态**
-
-<img src="../_static/media/chapter_22/section_6/image34.png"  />
-
-使用"**setServoPulse**"函数来控制舵机，这里以"**setServoPulse(9,1500,300)**"为例：
-
-第一个参数"9"为舵机ID；第二个参数"1500"为舵机脉冲宽度；第三个参数"300"为舵机运动时间，单位为毫秒。
-
-(10) **爪子运动函数**
-
-<img src="../_static/media/chapter_22/section_6/image36.png"  />
-
-在循环中，代码检查了 self.filtered_distance 的值是否在 0 到 100 之间。如果是，则进行一些操作：
-
-使用 Misc.map 函数将 self.filtered_distance 映射到一个新的范围，具体映射关系为 \[15, 90\] 映射到 \[1500, 900\]。这个映射用于将测量到两指间的值映射到控制信号范围内。
-
-调用 setServoPulse 函数，将映射后的值作为参数传递给伺服舵机（第一个参数是舵机的ID，第二个参数是脉冲宽度，第三个参数是时间，将运行时间设置为 0 表示舵机执行一次移动到目标位置的动作。）。这个函数用于调整爪子舵机的位置。
-
-如果 self.filtered_distance 的值不在 0 到 100 之间，通过 rospy.sleep(0.001) 休眠 0.001 秒。
-
-(11) **主函数**
-
-<img src="../_static/media/chapter_22/section_6/image38.png"  />
-
-self.init()：调用 init 方法进行进行了一些参数设置和 ROS 相关的初始化。
-
-主循环 while not rospy.is_shutdown()：在 ROS 节点没有关闭的情况下执行循环。
-
-if self.image is not None:检查是否有图像数据。如果有，执行以下操作：
-
-① 图像处理：
-
-先将图像水平翻转，将图像大小调整为 (320, 240)，再清空原始图像，最后将 RGB 格
-
-式的图像转换为 BGR 格式。
-
-② 手部姿势检测：
-
-使用 MediaPipe 进行手部姿势检测，获取手部关键点的坐标，然后在图像上绘制手部关键点和连接线。
-
-计算手指间的距离，并更新距离测量列表 self.distance_measurements，计算距离的均值，更新 self.filtered_distance，在图像上显示距离信息。
-
-③ 统计帧率信息：
-
-记录帧数和计算帧率，在图像上显示帧率信息。
-
-④ 发布结果图像：
-
-self.result_publisher.publish(cv2_image2ros(cv2.resize(bgr_image, (640, 480)), self.name))：通过 ROS 发布处理后的图像。
-
-## 7. 机械臂逆运动学分析
-
-### 7.1 逆运动学介绍
-
-(1) **逆运动学简介**
-
-逆运动学是决定要达成所需要的姿势所要设置的关节可活动对象的参数的过程。
-
-机械臂的逆运动学问题是其轨迹规划与控制的重要基础，逆运动学求解是否快速准确将直接影响到机械臂轨迹规划与控制的精度，因此针对机械臂，设计一种快速准确的逆运动学求解方法是十分重要的。
-
-(2) **逆运动学简析**
-
-对于机械臂而言，就是给出夹持器的末端位置和朝向后求出每个关节的旋转角度。机械臂的三维运动是比较复杂的，这里为了简化模型，我们去掉机械臂的末端夹持器，这样就可以进行逆运动学分析了。
-
-进行逆运动学分析一般要进行大量的矩阵运算，过程复杂计算量大所以实现起来较难。为了更好的适应我们的需要，我们使用几何法对机械臂进行分析。
+③ self.hands = self.mpHands.Hands(...): Create a hand detection object configured with parameters such as whether to use static image mode, maximum number of hands, minimum confidence for detection and tracking.
+
+④ self.mpDraw = mp.solutions.drawing_utils: Import the drawing tool module.
+
+⑤ self.ak = ArmIK(): Create a ArmIK object, = is used for inverse kinematics computation.
+
+⑥ self.last_time = time.time(): Record current time.
+
+⑦ self.last_out = 0: Initialize a variable.
+
+⑧ self.frames = 0: Initialize a frame counter.
+
+⑨ self.window_size = 5: Define the size of the sliding window as 5.
+
+self.distance_measurements = deque(maxlen=self.window_size): Create a double-ended queue to store the most recent distance measurement data, with a maximum capacity of 5 data points.
+
+⑩ self.filtered_distance = 0: Initialize a filtered distance variable.
+
+⑪ self.th = threading.Thread(target=self.move,daemon=True): Create a new thread to execute the move method and set it as a daemon thread.
+
+⑫ self.th.start(): Start new thread.
+
+⑬ self.name = name: Assign the passed name value to self.name.
+
+⑭ self.image = None: Initialize a image variable to None.
+
+⑮ rospy.Subscriber('/usb_cam/image_raw', Image, self.image_callback): Subscribe to the ROS topic named /usb_cam/image_raw with the message type Image. When a message is received, call the self.image_callback callback function.
+
+⑯ self.result_publisher = rospy.Publisher('~image_result', Image, queue_size=1): Create a publisher that publishes on the ROS topic named ~image_result, with the message type Image and a queue size of 1.
+
+**(8) Image callback function**
+
+```py
+def image_callback(self, ros_image):
+    self.image = np.ndarray(shape=(ros_image.height, ros_image.width, 3), dtype=np.uint8, buffer=ros_image.data) # 原始 RGB 画面(original RGB image)
+```
+
+A callback function named image_callback is defined to handle ROS image messages. It uses NumPy to create an array, converts ROS image data to RGB format, and stores it in the object's image attribute.
+
+**(9) Set the initial state of robotic arm**
+
+```py
+def init(self):
+    setServoPulse(9,1500,300)
+    setServoPulse(10,800,300)
+    setServoPulse(11,850,300)
+    time.sleep(0.3)
+```
+
+Use  `setServoPulse`  function to control servo. Take  `setServoPulse(9,1500,300)` as example here:
+
+The first parameter `9` is servo ID; 
+
+the second parameter `1500` is servo pulse-width; 
+
+the third parameter `300` is the servo running time in ms.
+
+**(10) Claw movement function**
+
+```py
+def move(self):
+    while not rospy.is_shutdown():
+            
+        if self.filtered_distance > 0 and self.filtered_distance < 100:
+                
+                
+            out = Misc.map(self.filtered_distance, 15, 90, 1500, 900)
+            setServoPulse(9,int(out),0)
+ 
+        else:
+            rospy.sleep(0.001)
+```
+
+Within the loop, the code checks if the value of `self.filtered_distance` is between 0 and 100. If it is, some operations are performed:
+
+The `Misc.map` function is used to map `self.filtered_distance` to a new range, specifically mapping [15, 90] to [1500, 900]. This mapping is used to scale the measured distance between the two fingers into the range of control signals.
+
+The `setServoPulse` function is called, passing the mapped value as a parameter to the servo motor. The function takes three parameters: the servo ID, the pulse width, and the time. Setting the time to 0 indicates that the servo will execute a single movement to the target position. This function is used to adjust the position of the claw servo motor.
+
+If the value of `self.filtered_distance` is not between 0 and 100, the code sleeps for 0.001 seconds using  `rospy.sleep(0.001)`.
+
+**(11) Main function**
+
+```py
+    def run(self):
+        
+        self.init()
+        while not rospy.is_shutdown():
+            if self.image is not None:
+                image_flip = cv2.flip(self.image, 1)
+                image_re = cv2.resize(image_flip, (320,240), interpolation=cv2.INTER_NEAREST)
+                self.image = None
+                bgr_image = cv2.cvtColor(image_re, cv2.COLOR_RGB2BGR)
+                try:
+                    
+                       
+                    results = self.hands.process(image_re)
+                    if results.multi_hand_landmarks:
+                        
+                        for hand_landmarks in results.multi_hand_landmarks:
+                            ## mediapipe中首部关键结点的连线(lines connecting the key points at the beginning of the MediaPipe)
+                            self.mpDraw.draw_landmarks(bgr_image, hand_landmarks, self.mpHands.HAND_CONNECTIONS)
+                            landmarks = get_hand_landmarks(image_re, hand_landmarks.landmark)
+                            
+                            cv2.line(bgr_image, (int(landmarks[4][0]), int(landmarks[4][1])), (int(landmarks[8][0]), int(landmarks[8][1])), (0, 255, 255), 2)
+                            cv2.circle(bgr_image, (int(landmarks[8][0]), int(landmarks[8][1])), 4, (0, 255, 255), -1)
+                            cv2.circle(bgr_image, (int(landmarks[4][0]), int(landmarks[4][1])), 4, (0, 255, 255), -1)
+
+                            distanceSum = distance(landmarks[8], landmarks[4])
+                           
+                            distanceSum = max(15, min(distanceSum, 90))
+                            self.distance_measurements.append(distanceSum)
+                            self.filtered_distance = np.mean(self.distance_measurements)
+                            self.filtered_distance = round(self.filtered_distance,2)
+                            cv2.putText(bgr_image,'DST: '+str(self.filtered_distance), (5,220), cv2.FONT_HERSHEY_PLAIN, 2, (255,0,255), 2)
+                                
+                                
+                    self.frames +=1
+                    delta_time = time.time() - self.last_time
+                    cur_fps = np.around(self.frames / delta_time, 1)
+                    cv2.putText(bgr_image,'FPS: '+str(cur_fps), (5,30), cv2.FONT_HERSHEY_PLAIN, 2, (255,0,255), 2)
+                except Exception as e:
+                    print(e)
+```
+
+self.init()：The "init" method is called to perform some parameter settings and initialize ROS-related components.
+The main loop `while not rospy.is_shutdown()` executes the loop as long as the ROS node is not shut down.
+if self.image is not None: Check if there is image data available. If there is image data, perform the following operations:
+
+① Image processing: First, flip the image horizontally. Resize the image to (320, 240). Clear the original image. Finally, convert the RGB format image to BGR format.
+
+② Hand pose detection: 
+Perform hand pose detection using MediaPipe to obtain the coordinates of hand keypoints, then draw the hand keypoints and connecting lines on the image.
+Calculate the distance between fingers, update the distance measurement list "self.distance_measurements", compute the mean distance, update "self.filtered_distance", and display the distance information on the image.
+
+③ Compute the frame rate information: Record the frame count and calculate the frame rate, then display the frame rate information on the image.
+
+④ Publish result image: self.result_publisher.publish(cv2_image2ros(cv2.resize(bgr_image, (640, 480)), self.name))：Publish the processed image via ROS.
+
+## 16.7 Inverse Kinematics Analysis of Robotic Arm
+
+### 16.7.1 Inverse Kinematics Introduction
+
+**(1) Brief Introduction of Inverse Kinematics**
+
+Inverse kinematics is the process of determining the parameters of the joint movable object to be set to achieve the required posture.
+The inverse kinematics of the robotic arm is an important foundation for its trajectory planning and control. Whether the inverse kinematics solution is fast and accurate will directly affect the accuracy of the robotic arm's trajectory planning and control. so it is important to design a fast and accurate inverse kinematics solution method for a six-degree-of-freedom robotic arm.
+
+**(2) Brief Analysis of Inverse Kinematics**
+
+For the robotic arm, the position and orientation of the gripper are given to obtain the rotation angle of each joint. The three-dimensional motion of the robotic arm is complicated. In order to simplify the model, we remove the rotation joint of the pan-tilt so that the kinematics analysis can be performed on a two-dimensional plane.
+Inverse kinematics analysis generally requires a large number of matrix operations, and the process is complex and computationally expensive, so it is difficult to implement. In order to better meet our needs, we use geometric methods to analyze the robotic arm
 
 <img src="../_static/media/chapter_22/section_7/image2.png"  />
 
-我们将机械臂的模型简化，去掉XOY平面，和末端执行器得到机械臂的主体。从上图看到机械臂的夹持器末端P的坐标为（X,Y,Z），由于机械臂没有旋转量，所以P的坐标可写成（X,Z）。其中上图的theta和beta就是我们要求解机械臂的旋转角度。据此我们可以列出下式：
+We simplify the model of the robotic arm by removing the XOY plane, leaving us with the main body of the arm. From the diagram, we can see that the coordinates of the end effector P of the gripper are (X, Y, Z). Since the robotic arm has no rotation, the coordinates of P can be written as (X, Z). In this case, theta and beta in the diagram represent the rotation angles of the robotic arm that we need to solve for. Based on this, we can formulate the following equations:
 
 <img src="../_static/media/chapter_22/section_7/image1.png"  class="common_img" />
 
-### 7.2 机械臂逆运动学分析 
+### 16.7.2 Inverse Kinematics Analysis of Robotic Arm
 
 <img src="../_static/media/chapter_22/section_7/image3.png"  />
 
-根据机器狗的结构设计，我们可以得出l1的长度为4.21厘米，l2的长度为3.3厘米，l3的长度为12.7厘米，则PA的长度为$\sqrt{{l2}^{2} + {l3}^{2}}$。
+According to the structure design of the robot dog, we can determine that the length of l1 is 4.21 centimeters, the length of l2 is 3.3 centimeters, and the length of l3 is 12.7 centimeters. Therefore, the length of PA is $\sqrt{{l2}^{2} + {l3}^{2}}$。
 
-该程序的源代码位于：**[puppy_pi/src/puppy_common\kinematics_sdk\arm_kinematics/InverseKinematics.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/22/InverseKinematics.py)**
+The source code of this program is stored at:**[puppy_pi/src/puppy_common\kinematics_sdk\arm_kinematics/InverseKinematics.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/22/InverseKinematics.py)**
 
-<img src="../_static/media/chapter_22/section_7/image4.png"  />
 
-### 7.3 逆运动学求解及程序实现
+
+### 16.7.3 Inverse Kinematics Solution and Program Implementation
 
 :::{Note}
-指令输入需严格区分大小写及空格。
+Instructions must be entered with strict attention to case sensitivity and spacing.
 :::
 
-(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1) Turn on PuppyPi, and connect it to Raspberry Pi desktop via VNC.
 
-(2) 点击系统桌面左上角的图标<img src="../_static/media/chapter_22/section_7/image6.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2) Click the icon <img src="../_static/media/chapter_22/section_7/image6.png" style="width:0.32292in;height:0.30208in" />on the upper left corner to open the Terminator terminal.
 
-(3)  输入指令并按下回车，切换到逆运动学程序文件所在目录。
+(3) Input command "cd  puppypi/src/puppy_common/kinematics_sdk/arm_kinematics" and press Enter to switch to the directory containing the inverse kinematics program file.
 
 ```bash
 cd puppypi/src/puppy_common/kinematics_sdk/arm_kinematics
 ```
 
-(4)  输入指令并按下回车，打开逆运动学程序文件。
+(4) Input the command "vim InverseKinematics.py" and press Enter to open the inverse kinematics program file.
 
 ```bash
 vim InverseKinematics.py
 ```
 
-(5)  以下是InverseKinematics.py的部分代码截图：
+(5) Here is a screenshot of the code for the InverseKinematics.py function.
 
 <img src="../_static/media/chapter_22/section_7/image12.png"  />
 
-- #### 7.3.1 俯仰关节beta转动角度的求解
+- #### The Calculation of the Pitch Angle beta
 
 <img src="../_static/media/chapter_22/section_7/image3.png"  />
 
-(1) 根据余弦定理，计算出$\cos{OAP}$的值，然后将值四舍五入保留到小数点后四位。
+(1) According to the cosine theorem, calculate the value, then round it to four decimal places.
 
-<img src="../_static/media/chapter_22/section_7/image14.png"  />
+```py
+cos_OAP = (pow(self.l1,2)+pow(PA,2)-pow(PO,2))/(2*self.l1*PA)#根据余弦定理(according to the law of cosines)
+cos_OAP = round(cos_OAP,4) #取四位小数点(take four decimal places)
+```
 
-(2) 由于余弦值的范围是\[-1,1\]，判断$\cos{OAP}$的绝对值是否大于1，如果大于1说明给定的末端坐标无法构成连杆结构。
+(2) Because the range of the cosine value is [-1, 1], check if the absolute value is greater than 1. If it is greater than 1, it means that the given end coordinates cannot form a linkage structure.
 
-<img src="../_static/media/chapter_22/section_7/image16.png"  />
+```py
+if abs(cos_OAP) > 1:
+   print('ERROR:不能构成连杆结构, abs(cos_OAP)为%s > 1' %(abs(cos_OAP)) )
+   return False
+```
 
-(3) 接着计算出$\cos{PAC}$的值，然后将值四舍五入保留到小数点后四位。
+(3) Next, calculate the cosPAC value, and then round it to four decimal places.
 
-<img src="../_static/media/chapter_22/section_7/image18.png"  />
+```py
+cos_PAC = (pow(self.l2,2)+pow(PA,2)-pow(self.l3,2))/(2*self.l2*PA)#根据余弦定理(according to the law of cosines)
+cos_PAC = round(cos_PAC,4) #取四位小数点(take four decimal places)
+```
 
-(4) 再次判断$\cos{PAC}$的绝对值是否大于1。
+(4) Check again whether the absolute value exceeds 1.
 
-<img src="../_static/media/chapter_22/section_7/image20.png"  />
+```py
+if abs(cos_PAC) > 1:
+   print('ERROR:不能构成连杆结构, abs(cos_PAC)为%s > 1' %(abs(cos_PAC)))
+   return False
+```
 
-(5) 接下来，用反余弦函数求出夹角OAP和PAC的弧度值并相加，得到夹角OAC的值。
+(5) Next, use the inverse cosine function to find the angle in radians for both OAP and PAC, then add them together to get the angle for OAC.
 
-<img class="common_img" src="../_static/media/chapter_22/section_7/image22.png"  />
+```py
+OAP = acos(cos_OAP)
+PAC = acos(cos_PAC)
+OAC = OAP + PAC
+```
 
-(6) 最后，将夹角OAC的弧度值转换为角度值，并减去90度（机械臂初始俯仰关节），即可得到俯仰关节beta转动角度。
+(6) Finally, convert the angle value of OAC from radians to degrees, and subtract 90 degrees (initial pitch joint angle of the arm) to obtain the pitch joint angle beta rotation.
 
-<img class="common_img" src="../_static/media/chapter_22/section_7/image24.png"  />
+```py
+beta = degrees(OAC) - 90
+```
 
-- #### 7.3.2 基座关节theta转动角度的求解
+- #### The Calculation of the Base Joint Angle theta
 
 <img src="../_static/media/chapter_22/section_7/image3.png"  />
 
-(1) 根据余弦定理，计算出$\cos{AOP}$的值，然后将值四舍五入保留到小数点后四位。
+(1) According to the cosine theorem, calculate the value, then round it to four decimal places.
 
-<img src="../_static/media/chapter_22/section_7/image26.png"  />
+```py
+cos_AOP = (pow(self.l1,2)+pow(PO,2)-pow(PA,2))/(2*self.l1*PO)#根据余弦定理(according to the law of cosines)
+cos_AOP = round(cos_AOP,4) #取四位小数点(take four decimal places)
+```
 
-(2) 由于余弦值的范围是\[-1,1\]，判断$\cos{AOP}$的绝对值是否大于1，如果大于1说明给定的末端坐标无法构成连杆结构。
+(2) Because the range of the cosine value is [-1, 1], check if the absolute value of cosAOP is greater than 1. If it is greater than 1, it means that the given end coordinates cannot form a linkage structure.
 
-<img src="../_static/media/chapter_22/section_7/image28.png"  />
+```py
+if abs(cos_AOP) > 1:
+   print('ERROR:不能构成连杆结构, abs(cos_AOP)为%s > 1' %(abs(cos_AOP)))
+   return False
+```
 
-(3) 接着计算出$\sin{POB}$的值，并将值四舍五入保留到小数点后四位，再次判断$\sin{POB}$的绝对值是否大于1。
+(3) Then calculate the sinPOB value, round it to four decimal places, and check again whether its absolute value is greater than 1.
 
-<img src="../_static/media/chapter_22/section_7/image30.png"  />
+```py
+sin_POB = round(PB/PO,4)
+if abs(sin_POB) > 1:
+   print('ERROR:不能构成连杆结构, abs(sin_POB)为%s > 1' %(abs(sin_POB)) )
+   return False
+```
 
-(4) 接下来，用反余弦函数和反正弦函数求出夹角AOP和POB的弧度值并相加，得到夹角AOB的值。
+(4) Next, use the inverse cosine function and the inverse sine function to find the radians of the angles AOP and POB, then add them together to obtain the value of the angle AOB.
 
-<img class="common_img" src="../_static/media/chapter_22/section_7/image32.png"  />
+```py
+AOB = acos(cos_AOP) + asin(sin_POB) #l1与x轴的夹角(the angle between l1 and the X-axis)
+```
 
-(5) 最后，180度减去转换为角度值的夹角AOB，即可得到基座关节theta转动角度。
+(5) Finally, subtract the angle OAB, converted to degrees, from 180 degrees to obtain the rotation angle of the base joint theta.
 
-<img class="common_img" src="../_static/media/chapter_22/section_7/image34.png"  />
+```py
+theta = 180 - degrees(AOB)
+```

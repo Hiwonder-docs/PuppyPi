@@ -1,69 +1,149 @@
-# 学前先看
+# 1. Quick Start Guide
 
-## 1. 认识PuppyPi
+## 1.1 PuppyPi Introduction
 
-### 1.1 产品简介
+**1.1.1 Product Introduction**
 
-PuppyPi是一款基于树莓派5开发的AI视觉四足机器人。它的机身采用铝合金结构，并搭载8个高性能舵机，腿部采用连杆结构设计，动作灵活丰富，可以轻松实现自由行走、上下台阶等基本步态。
-
-机器人拥有第一视觉，能实现更多有趣的AI玩法，如目标追踪、人脸检测、视觉巡航、自主攀爬等。
-
-PuppyPi机器人采用ROS操作系统，支持Gazebo编程，能满足用户对机器视觉、机器人运动学、四足步态控制等算法的学习和验证。
-
-### 1.2 产品清单
+Powered by Raspberry Pi 5, PuppyPi is an AI vision quadruped robot. It is made of aluminium alloy and loaded with 8 powerful coreless servos. Linkage mechanism on its leg attributes to flexible and diverse actions and enables it to walk, step up and down stair, etc.
+The robot possesses first-person vision, enabling a variety of intriguing AI gameplay, such as target tracking, facial detection, visual patrolling, autonomous climbing, and more.
+PuppyPi is based on ROS (robot operating system) and supports Gazebo simulation. It serves as a great platform for you to learn and verify machine vision, robot kinematics, quadruped gait controlling and other algorithms.
 
 <img class="common_img" src="../_static/media/chapter_1/section_1/image1.png" />
 
-<img class="common_img" src="../_static/media/chapter_1/section_1/image2.png" />
+**1.1.2 Usage Precautions**
 
-<img class="common_img" src="../_static/media/chapter_1/section_1/image3.png"  />
+Please pay attention to the following points when using and storing this product:
 
-<img class="common_img" src="../_static/media/chapter_1/section_1/image4.png"  />
+This product contains conductive components. Avoid contact with metal objects when powered on.
 
-## 2. 首次开机
+After the robot is powered on, do not forcibly move the servo, as this may cause damage.
 
-### 2.1 充电方法
+If the robot runs for an extended period, the servos may become hot. Allow the robot to "**rest**" and wait for the servos to cool before resuming operation.
 
-(1)  充电前，用螺丝刀将机器狗腹部的铝合钣金拆下:
+Keep your face, glasses, and other body parts away from the robot while it is operating. Do not place fingers within the joint movement range to prevent injury. Also, be cautious of falls from high edges.
+
+The robot's servos are precision components and consumable parts. They may need replacement after long-term or intensive use.
+
+If the product will not be used for an extended period, fully charge the battery, remove it, and store it in a cool, dry place.
+
+**1.1.3 Copyright Notice**
+
+This manual is the property of Shenzhen Hiwonder Technology Co., Ltd. No organization or individual is permitted to reproduce, copy, translate, or distribute any content from this manual without authorization.
+
+Any unauthorized use or infringement of this manual's copyright will be subject to legal action by our company.
+
+**1.1.4 Disclaimer** 
+
+The product described in this manual (including hardware, software, etc.) is provided "**as is**". Every effort has been made to ensure the accuracy of this manual, but we cannot guarantee it is completely free from errors or omissions. This document is regularly reviewed, and we welcome feedback for improvements.
+
+Product features and specifications may change with version upgrades. For the latest product information, please contact customer service when placing your order.
+
+Furthermore, unless explicitly stated by Hiwonder, we are not responsible for any losses resulting from product malfunctions or damage under extreme conditions outside of typical use cases.
+
+
+## 1.2 Packing List
+
+**(1) PuppyPi Standard Packing List**
+
+| **No.** | **Components**                  | **Quantity** | **Picture** |
+| ------- | ------------------------------- | ------------ | ----------- |
+|         | PuppyPi(with camera)            | 1            |             |
+|         | 8.4V charger                    | 1            |             |
+|         | HPS-0618SG Spare coreless servo | 1            |             |
+|         | Card Reader                     | 1            |             |
+|         | 4cm Balls                       | 3            |             |
+|         | 65*65mm Tags                    | 3            |             |
+|         | Screwdriver                     | 1            |             |
+|         | Manual                          | 1            |             |
+
+**(2) PuppyPi Advanced Packing List**
+
+| **No.** | Components           | **Quantity** | **Picture** |
+| ------- | -------------------- | ------------ | ----------- |
+|         | PuppyPi(with camera)            | 1            |             |
+|         | 8.4V charger                    | 1            |             |
+|         | HPS-0618SG Spare coreless servo | 1            |             |
+|         | Card Reader                     | 1            |             |
+|         | PS2 wireless handle |             |             |
+|         | Dot matrix display              |             ||
+|         | Touch sensor |              |             |
+|         | Glowing ultrasonic sensor |              |             |
+|         | MP3 module |              |             |
+|         | Bracket(for ultransion sensor) |              |             |
+|         | 4cm Balls                       |              |             |
+| | 65*65mm Tags                    | | |
+| | 4PIN wire                       | | |
+| | Screwdriver                     | | |
+| | Accessory bag<br>(M4 *5 Black single-pass nylon column * 6<br>M4 *6 round head screw *12<br>M2 *6 round head screw * 6<br>M3 *6 Black round head screw * 6) | | |
+| | Manual                          | | |
+
+
+**(3) PuppyPi Pro Packing List**
+
+| **No.** | Components                      | **Quantity** | **Picture** |
+| ------- | ------------------------------- | ------------ | ----------- |
+|         | PuppyPi(with camera)            |              |             |
+|         | 8.4V charger                    |              |             |
+|         | HPS-0618SG Spare coreless servo |              |             |
+|         | Card Reader                     |              |             |
+|         | PS2 wireless handle             |              |             |
+|         | Dot matrix display              |              |             |
+|         | Touch sensor                    |              |             |
+|         | Glowing ultrasonic sensor       |              |             |
+|         | MP3 module                      |              |             |
+|         | Bracket(for ultransion sensor)  |              |             |
+|         | 4cm Balls                       |              |             |
+| | 65*65mm Tags                    | | |
+| | 4PIN wire                       | | |
+| | Screwdriver                     | | |
+| | Accessory bag<br>(M4 *5 Black single-pass nylon column * 6<br>M4 *6 round head screw *12<br>M2 *6 round head screw * 6<br>M3 *6 Black round head screw * 6) | | |
+| | Manual                          | | |
+|         | TOF Lidar(with bracket) |              |             |
+
+## 1.3 Start PuppyPi
+
+**1.3.1 Charging**
+
+(1) Before charging, please remove the metal plate on the dog's belly with the screwdriver.
 
 <img class="common_img" src="../_static/media/chapter_1/section_2/image1.png"  alt="" />
 
-(2)  在对接前需要将扩展板的开关拨动到OFF。
+(2)  Before wiring, please push the switch on expansion board to OFF.
 
-(3)  掏出电池，将对接线以**红对红**、**黑对黑**的形式连接，如下图所示：
+(3)  Take out the battery, and connect red wire to red wire and black to black.
 
 <img class="common_img" src="../_static/media/chapter_1/section_2/image3.png"  alt="" />
 
-(4)  对接完成以后，将电池顺着方向塞入电池槽内，并将后盖装上。（螺丝无需拧的太紧，能固定即可）
+(4)  After connection, insert the battery back to the battery slot, and then fix the metal plate on PuppyPi. The screws don't need to be tightened too much, just enough to secure them in place.
 
 <img class="common_img" src="../_static/media/chapter_1/section_2/image5.png"  alt="" />
 
-(5)  拿出附带的适配器，将插头端连接至树莓派扩展板的圆孔内，如下图所示：
+(5) Insert the included power adaptor into the round hole on Raspberry Pi expansion board.
 
 <img class="common_img" src="../_static/media/chapter_1/section_2/image7.png"  alt="" />
 
-(6)  等待充电完成。适配器指示灯在未通电的状态下为绿色，通电后指示灯为红色代表充电中（**充电时长约为1个半小时左右**），当指示灯由红色变为绿色代表充电完成。充电完成后，请尽快拔掉充电器，切勿一直充电！
+(6)  Please wait until PuppyPi is fully charged. The indicator on power adaptor is green without plugged in. When plugged in, its indicator will turn red which indicates PuppyPi is charging. The charging time is approximately one and a half hours.When the indicator turns green again, PuppyPi gets fully charged. After charging, please unplug the power adaptor as soon as possible.
 
-### 2.2 开机
+**1.3.2 Boot up PuppyPi**
 
 :::{Note}
-请勿在粗糙崎岖的地面上启动PuppyPi。
-开机后不要强行掰动舵机，避免舵机产生损伤。
+
+* Please do not place PuppyPi on rough and uneven surface.
+* After PuppyPi turns on, please don't move the servo violently to avoid damage to the servo.
 :::
 
-(1)  开机前，为避免舵机突然发力而造成受损，请将PuppyPi呈卧姿放置在平面上，如下图所示：
+(1) Before booting up, please place PuppyPi as pictured to avoid the damage caused by sudden force from servos.
 
 <img class="common_img" src="../_static/media/chapter_1/section_2/image9.png" alt="" />
 
-(2)  然后将扩展板的开关由"**OFF**"推到"**ON**"，开机以后，机器狗尾部的数码管会显示电池当前电量（下图所示点亮为8V，当电池电量低于6.8V时需尽快给电池充电），且LED1和LED2会亮起微弱蓝灯，稍等片刻后，LED1将常亮，LED2将每隔两秒闪烁，代表网络配置已经准备完毕。然后等待蜂鸣器发出"嘀"的一声，说明Ros配置完成，设备启动完毕。
+(2) Then push the switch on expansion board to "ON". After booting up, current battery voltage will be displayed on digital tube at the back (Charge the robot at once when the voltage is below 6.8V), and LED1 and LED2 will turn blue. Later, LED1 will keep lighting up and LED2 will flash continuously, which means that the network configuration is done. Please wait until the buzzer beeps, at this time, Ros finishes configuration and PuppyPi completely boots up.
 
 <img class="common_img" src="../_static/media/chapter_1/section_2/image11.png"  alt="" />
 
 <img class="common_img" src="../_static/media/chapter_1/section_2/image13.png"  alt="" />
 
-(3)  设备出厂默认为AP直连模式，开机成功后，将产生一个以"**HW**"开头的热点。
+(3) The default network mode is AP Direct Connection Mode. After successful booting up, PuppyPi will generate a WiFi starting with "HW".
 
-<img class="common_img" src="../_static/media/chapter_1/section_2/image15.jpeg" alt="" />
+<img class="common_img" src="../_static/media/chapter_1/section_2/image15.png" alt="" />
 
-接下来可前往"**[上手试玩](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/2_play_first_hand.html)**"继续学习后续内容。
-
+After successfully booting up PuppyPi, please move to "[Quick User Experience]()" to experience PuppyPi's function.

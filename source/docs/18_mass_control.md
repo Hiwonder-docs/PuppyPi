@@ -1,44 +1,43 @@
-# 群发控制课程
+# 12. ROS1-ROS Robot Group Sending Control
 
-## 1. 主从机配置工作
+## 12.1 Master and Slave Machine Configuration
 
-### 1.1 准备工作
+### 12.1.1 Getting Ready
 
-(1)  至少准备2台及以上的PuppyPi（本节课以2台PuppyPi为例进行示范）。
+(1)  Please prepare at least 2 or more PuppyPi. Two PuppyPi are used in this lesson for demonstration.
 
-(2)  开发环境搭建，参照"**[远程工具安装及容器进入方法\1. 远程桌面工具安装与连接](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/8_remote_tool.html#)**"，下载并安装远程连接工具 VNC。
+(2) Set development environment. Please download and install VNC according to "[Remote Desktop Tool Installation and Connection](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/8_remote_tool.html#)". 
 
-### 1.2 实现原理
+### 12.1.2 Working Principle
 
-通过将主机与从机配置在同一个网络内，主机通过群发程序向从机发送动作指令，达到 控制从机的效果
+By configuring the master and the slave machine in the same network, the master sends motion commands to the slave via a multicast program, achieving the effect of controlling the slave.
 
-### 1.3 实验步骤
+### 12.1.3 Operation Steps
 
 <p id="anchor_1_3_1"></p>
 
-- #### 1.3.1 网络配置
+- #### Network Configuration
 
-(1) **配置主机网络**
+**(1) Configure Master Network**
 
-① 首先，选取一台PuppyPi作为主机，将它开机，然后远程连接它的系统桌面。
+① Firstly, select one PuppyPi as the master, power it on, and then remotely connect to its system desktop.
 
-②  按下"Ctrl+Alt+T"打开命令行终端，进入到文件所在目录。输入指令，按下回车。
-      
+② Then open the command line terminal to go to the directory. Input command  and press Enter.
+
 ```bash
 cd hiwonder-toolbox
 ```
 
-③ 使用vim编辑器打开Wi-Fi 配置文件，输入指令，按下回车。
-      
+③ Use vim editor to open Wi-Fi. Configure file and input command **"sudo vim wifi_conf.py"**. Then press Enter.
 ```bash
 sudo vim wifi_conf.py
 ```
 
-④ 按下键盘上的"**i** "键，进入编辑模式。修改主机热点密码，先找到下图框选的这两行代码。
+④ After modification, press Esc to exit editing mode. Then input **":wq"** to save and exit.
 
 <img src="../_static/media/chapter_18/section_1//image5.png"  />
 
-⑤ 修改完成之后，按下"**Esc** "键，退出编辑模式。再输入"**:wq** "保存并退出。
+⑤ After modification, press Esc to exit editing mode. Then input **":wq"** to save and exit.
 
 ```bash
 :wq
@@ -46,90 +45,86 @@ sudo vim wifi_conf.py
 
 <img src="../_static/media/chapter_18/section_1//image6.png"  />
 
-⑥ 输入指令重启主机。
+⑥ Input the command to restart the master.
+
 ```bash
 sudo systemctl restart wifi.service
 ```
 
-⑦ 待主机重启完成后，再连接主机的Wi-Fi 时，需输入Wi-Fi密码"**hiwonder** "。
+⑦ After the master restarts, when reconnecting to the master's Wi-Fi, you will need to enter the Wi-Fi password "hiwonder."
 
-(2) **配置从机网络**
+**(2) Configure Slave Network**
 
-① 将从机开机，远程连接从机的系统桌面。
+① Turn on the slave, and remote connect it to the system desktop.
 
-② 打开命令行终端，进入到文件所在目录。输入指令，按下回车。
+② Open the command line terminal. Input the command and press Enter.
 
 ```bash
 cd hiwonder-toolbox
 ```
 
-③ 使用vim编辑器打开Wi-Fi 配置文件，输入指令，按下回车。
+③ Use vim editor to open wifi. Configure the file and input command **"sudo vim wifi_conf.py"**. Then press Enter.
 
 ```bash
 sudo vim wifi_conf.py
 ```
 
-④ 输入键盘上的"**i**"键，进入编辑模式，将WI-FI名称和密码这两行代码改成如下图所示。
-
-:::{Note}
-找到框选出的这四行代码。
-:::
+④ Press **"i"** to go to the editing mode. Change the two lines of code for the WI-FI name and password as shown in the figure below. Find the four lines of code highlighted in the box.
 
 <img src="../_static/media/chapter_18/section_1//image8.png"  />
 
-将从机的网络模式设置为"**2**"即为局域网模式，"**HW-123**"和"**hiwonder**"则为**配置主机网络**设置的主机WI-FI名称和密码。
+Setting the network mode of the slave device to '2' will be in LAN mode, while 'HW-123' and 'hiwonder' refer to configuring the host WI-FI name and password in  [Network Configuration Configure Master Network]().
 
-⑤ 修改完成之后，按一下"**Esc** "键，退出编辑模式。再输入" **:wq** "保存并退出。
+⑤ After modification, press Esc once to exit the editing mode. Then type **":wq"** and press Enter to save and exit.
 
 ```bash
 :wq
 ```
 
-<img src="../_static/media/chapter_18/section_1//image9.png"  />
-
-⑥ 输入命令将设备重启。（**此步不可跳过！**）
+⑥ Input command **"sudo reboot"** to restart the device. Do not skip this step!
 
 ```bash
-sudo systemctl restart wifi.service
+sudo reboot
 ```
 
-## 2. 群控启动方法
+## 12.2 Group Sending Control Startup Method
 
-### 2.1 启动群发控制
+### 12.2.1 Enable Group Sending Control
 
 :::{Note}
-指令输入需严格区分大小写及空格。
+Commands must be entered with strict attention to capitalization and 
+spaces.
 :::
 
-(1)  选择一个PuppyPi机器狗作为主机并启动，通过VNC远程连接树莓派桌面。
+(1) Select a PuppyPi robot dog as the host and start it, then connect to the Raspberry Pi desktop remotely via VNC.
 
-(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_18/section_2//image3.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2) Click <img src="../_static/media/chapter_18/section_2//image3.png" style="width:0.32292in;height:0.30208in" />on the upper left corner to open the Terminator terminal.
 
-(3)  输入关闭自启玩法的指令，并按下回车。
+(3) Input the command and press Enter to close auto-start program.
 
 ```bash
 sudo ./.stop_ros.sh
 ```
 
-(4) 输入指令配置主机环境变量。
+(4) Input the  command  to configure master the host's environment variable.
 
 ```bash
 source multi_master_env.sh
 ```
 
-(5)  再回到从机的终端界面，输入关闭自启玩法的指令，并按下回车。
+(5) Return to the terminal interface of the slave device, enter the command "**sudo ./.stop_ros.sh**" to disable the automatic startup feature, and press Enter.
 
 ```bash
 sudo ./.stop_ros.sh
 ```
 
-(6)  在从机的终端界面，输入指令启动从机群发控制程序。
+(6) In the terminal interface of the slave device, enter the command  to start the slave group control program.
 
 ```bash
 rosrun puppy_control puppy_mul.py
 ```
 
-(7)  接着再打开一个新的终端输入"**ssh 192.168.149.119**"按下回车，输入密码"**raspberrypi**"与"**source multi_slave_env.sh 192.168.149.1**"配置为从机环境变量（这里是为了启动群发控制的话题，也可将其配置为主机环境变量再启动8~11步）
+(7) Then open a new terminal, type 'ssh 192.168.149.119' and press Enter, enter the password 'raspberrypi', and type 'source multi_slave_env.sh 192.168.149.1' to set up the environment variables for the slave (this is for starting the multi-slave control topic, and you can also set it up as host environment variables before proceeding with steps 8 to 11). The command is "ssh 192.168.149.119 source multi_slave_env.sh 192.168.149.1".
 
 ```bash
 ssh 192.168.149.119
@@ -139,36 +134,36 @@ ssh 192.168.149.119
 source multi_slave_env.sh 192.168.149.1
 ```
 
-(8)  输入以下指令可查看主/从机的话题信息。（**若未出现主/从机话题信息，则是主/从机对应的群发控制程序没有启动，需参照上文"1~6步重新操作** **"**）
+(8) Enter the command  to view the topic information of the master/slave (if the topic information of the master/slave does not appear, it means that the corresponding multi-slave control program of the master/slave is not started, refer to the previous 'steps 1~6' for reoperation).
 
 ```bash
 rostopic info /multi_robot/runActionGroup
 ```
 
-(9)  输入" **rostopic** **pub** **/multi_robot/runActionGroup** "，再按3下Tab键将命令补齐为"**rostopic** **pub** **/multi_robot/runActionGroup** **std_msgs/String** **"data:** **''"** "
+(9) Enter 'rostopic pub /multi_robot/runActionGroup', then press the Tab key 3 times to complete the command as 'rostopic pub /multi_robot/runActionGroup std_msgs/String "data: ''" '.
 
 ```bash
 rostopic pub /multi_robot/runActionGroup std_msgs/String "data: ''"
 ```
 
-(10) 在data: ''中填入动作组的名称（动作组可在 "**/home/ubuntu/software/puppypi_control/ActionGroups**" 目录中可以找到）
+(10) Fill in the name of the action group in 'data: '' (The action group can be found in the directory '/home/ubuntu/software/puppypi_control/ActionGroups').
 
 <img src="../_static/media/chapter_18/section_2//image13.png"  />
 
-(11) 动作组执行完毕后，可以在主机和从机运行群发控制程序的终端界面，看到打印的动作组名称。
+(11) After the action group is executed, you can see the printed action group name in the terminal interface where the multi-slave control program is running on both the host and the slave.
 
 <img class="common_img" src="../_static/media/chapter_18/section_2//image14.jpeg"  />
 
-(12) 若要执行其它的动作，在启动群发控制话题的终端按下"Ctrl+c "，将其关闭，再 按下键盘的" ↑ "方向按键，修改动作组名称，按下回车即可执行。
+(12) If you want to execute other actions, in the terminal where the multi-slave control topic is started, press 'Ctrl+c' to close it, then press the '↑' arrow key on the keyboard, modify the action group name, and press Enter to execute.
 
 <img src="../_static/media/chapter_18/section_2//image15.png"  />
 
-(13) 如需关闭此玩法，可在LX终端界面按下"**Ctrl+C**"，如关闭失败，可多次按下。
+(13)  If you need to close this gameplay, you can press 'Ctrl+C' in the LX terminal interface. If closing fails, you can press it multiple times.
 
-(14) 接着在主机与从机的终端界面参考"**[1.3 主从机配置工作\ 配置主机网络](#anchor_1_3_1)**"，将Wi-Fi配置文件的注释添加上。将其恢复成直连模式。
+(14) Next, in the terminal interface of both the host and the slave, refer to '[1.3 Host Network Configuration](#anchor_1_3_1) ' and add comments to the Wi-Fi configuration file. Restore it to direct connection mode.
 
-### 2.2 功能实现
+### 12.2.2 Program Outcome
 
-玩法启动后，主机与从机将执行同样的动作。在动作组执行完毕后，也可以在主机和从 机运行群发控制程序的终端界面，看到打印的动作组名称 。
+Once the game is initiated, both the master and the slave will execute the same actions. After the action group is completed, you can also observe the printed action group names in the terminal interface of both the master and the slave running the multicast control program.
 
 <img class="common_img" src="../_static/media/chapter_18/section_2//image16.jpeg"  />

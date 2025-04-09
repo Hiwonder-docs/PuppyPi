@@ -1,145 +1,166 @@
-# 上手试玩
+# 2. APP and Handle Control
 
 <p id="anchor_1"></p>
 
-## 1. 手机APP安装与连接
+## 2.1 APP Installation and Connection 
 
-### 1.1 准备工作
-(1) APP安装
-
-**[安卓系统](https://play.google.com/store/apps/details?id=com.Wonder.Pi)**： 需要注意，请务必在手机设置内为APP开启所有权限，否则可能会影响正常功能实现！
-
-**[iOS系统](https://apps.apple.com/cn/app/wonderpi/id1477946178)**
-
-(2) 设备开机
-
-按照"**[学前先看\ 2. 首次开机](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/1_read_before_studying.html#id4)**"内容，打开树莓派扩展板电源开关，等待开机完成。
-
-### 1.2 设备连接
-
-机器狗开机成功后，会进入AP直连模式并生成一个以"**HW**"开头的热点，使用手机APP连接该热点后，即可启动其对应玩法。
-
-设备的连接方法有两种分别是直连模式与局域 网模式。
-
-- #### 1.2.1 连接模式简介
-
-以下为PuppyPi的两种网络模式：
-
-(1)  **AP 直连模式**：开发板能够开启热点被手机连接上。(但不能联通外部网络)
-
-(2)  **STA局域网模式**：开发板能够主动去连接指定的热点/Wi-Fi。(可联通外部网络)
-
-局域网模式不能和直连模式共存，PuppyPi默认为AP 直连模式，用户无论是选择AP直连还是STA局域网模式，PuppyPi玩法功能都一致。
+The following instructions use TurboPi as an example and apply to other Hiwonder Raspberry Pi series products as well.
+In this section, you will learn how to use APP "**WonderPi**" to control TurboPi. The installation method is as follows.
 
 :::{Note}
-这里建议用户先学习直连模式的配置方法进行相应功能的体验，局域网模式可根据需求来选看。
+
+① Make sure all APP permissions are turned on in settings, otherwise APP functions will be limited!
+
+② Turn on Location and WiFi before operation.
+
 :::
 
-- #### 1.2.2 直连模式连接方法（必看）
+### 2.1.1 Installation
 
-本小节教程以安卓版本为例，操作流程也适用于苹果版本。
+**[APP Installation Pack (Android)](https://play.google.com/store/apps/details?id=com.Wonder.Pi)**
 
-在开始前，请先打开PuppyPi机器狗。
-
-(1)  打开手机APP，在主界面选择"**进阶平台-\>PuppyPi**"。
-
-<img class="common_img" src="../_static/media/chapter_2/section_1/image6.jpeg"  alt="loading" />
-
-(2)  点击界面右下角的"**+**"按钮，选择"**直连模式**"。
-
-<img class="common_img" src="../_static/media/chapter_2/section_1/image7.png"  alt="loading" />
-
-(3)  按照画面提示，前往手机设置连接"**HW**"名开头的热点。
-
-<img class="common_img" src="../_static/media/chapter_2/section_1/image8.jpeg"  alt="loading" />
-
-<img class="common_img" src="../_static/media/chapter_2/section_1/image9.jpeg" style="width:300px;"  alt="loading" />
+**[APP Installation Pack (iOS)](https://apps.apple.com/cn/app/wonderpi/id1477946178)**
 
 :::{Note}
-若使用苹果手机进行操作，在连接热点时，切记要等待手机上方出现了Wi-Fi连接成功的图标之后再返回APP，否则可能会搜索不到设备。出现此情况可点击<img src="../_static/media/chapter_2/section_1/image10.png" style="width:0.31496in;height:0.31496in" />进行刷新，一般来说多刷新几次，就可以搜索到设备。
+- Please turn TurboPi on before connecting. 
+
+- Make sure all APP permissions are turned on in settings, otherwise APP functions will be limited!
+
+- Turn on Location and WiFi before operation.
+
 :::
 
-(4)  连接热点后，返回手机APP，APP将自动连接设备。稍等片刻，当搜索到下图所示图标时，即为连接成功。
+### 2.1.2 APP Connection
 
-<img class="common_img" src="../_static/media/chapter_2/section_1/image11.jpeg"  alt="loading" />
+(1) Start robot. (The switch is on Raspberry Pi expansion board). For detailed instruction, please refer to the file in "[Getting Ready\1.3 Start PuppyPi]()".
+
+(2) After TurboPi boots up successfully, it enters AP direct connection mode, and generates a WiFi starting with **"HW"**. Join this WiFi, and then you can experience robot games
+
+* **Introduction to Connection Mode**
+
+There are two connection modes, namely direct connection mode and LAN mode. APP functions are the same under these two modes.
+
+(1) AP direct connection mode: RaspberryPi generates a WiFi which can be connected by phones. But this WiFi has no internet access. 
+
+(2) STA LAN mode: Raspberry Pi actively connects to specific WiFi. In this mode, you can access internet.
+
+* **Direct Connection Mode (MUST-READ)** 
 
 :::{Note}
-若手机出现"**网络不可用，是否继续连接**"的提示弹窗，单击"**保持连接**"按键即可。
+After TurboPi boots up successfully, it enters AP direct connection mode, and generates a WiFi starting with **"HW"**.
 :::
 
-- #### 1.2.3局域网模式连接方法（选看）
+(1) Open"**WonderPi**". Select **"Standard ->TurboPi"** in sequence.
 
-本小节教程以苹果版本为例，操作流程也适用于安卓版本。
+<img src="../_static/media/chapter_2/section_1/image3.jpeg"   />
 
-在开始前，请先打开PuppyPi机器狗。
+(2) Tap **"+"** in bottom right corner, and then select **Direct Connection Mode**.
 
-(1)  首先，在打开的WonderPi手机APP界面单击右下角"**+**"按钮，选择"**局域网模式**"，根据界面提示前往手机设置连接Wi-Fi。
+<img src="../_static/media/chapter_2/section_1/image4.jpeg"   />
 
-<img class="common_img" src="../_static/media/chapter_2/section_1/image13.png"  alt="loading" />
+(3) Tap **"Go to connect device hotspot"**. Join WiFi starting with "**HW**". The password is **"hiwonder"**.
 
-<img class="common_img" src="../_static/media/chapter_2/section_1/image14.png"  alt="loading" />
+<img src="../_static/media/chapter_2/section_1/image5.jpeg"   />
 
-(2)  点击想要连接的Wi-Fi（这里以"**Hiwonder**"为例）。
+<img src="../_static/media/chapter_2/section_1/image6.jpeg"  style="width:350px" class="common_img"  />
 
-<img class="common_img" src="../_static/media/chapter_2/section_1/image15.png"  style="width:300px;"  alt="loading" />
+(4) Return back to APP after connection.
 
-(3)  连接完成后返回APP，再次点击界面右下角"**+**"按钮，选择"**局域网模式**"。
+<img src="../_static/media/chapter_2/section_1/image7.jpeg" style="width:350px" class="common_img"  />
 
-<img class="common_img" src="../_static/media/chapter_2/section_1/image13.png"  alt="loading" />
+:::{Note}
+ for iOS user, please don't return to APP until WiFi icon appears on status bar, otherwise robot cannot be searched. If robot cannot be searched by APP, tap <img src="../_static/media/chapter_2/section_1/image8.png" style="width:45px" /> to refresh.
+:::
 
-(4)  此时，APP会提示输入所要连接的Wi-Fi的密码（若没有自动弹出可再次点击"**局域网模式**"），输入Wi-Fi密码hiwonder，输入完成后点击"**下一步**"。（请确认Wi-Fi密码是否输入正确，如果输入错误会导致连接失败。）
+(5) APP automatically connects to robot. When robot icon below occurs, connection completes. 
 
-<img class="common_img" src="../_static/media/chapter_2/section_1/image16.png"  alt="loading" />
+<img src="../_static/media/chapter_2/section_1/image9.jpeg"   />
 
-(5)  根据APP提示，再次前往设置，连接以"**HW**"开头的热点。
+:::{Note}
+if you are informed of **"No Internet. Whether to keep connection",** just select "**keep connected**".
+:::
 
-<img class="common_img" src="../_static/media/chapter_2/section_1/image17.png"  alt="loading" />
+(6) Tap robot icon to enter mode selection interface.
 
-(6)  连接热点后返回APP，此时可以看到APP已经开始自动连接了。连接过程中如出现是否加入的提示，点击"**加入**"即可。
+<img src="../_static/media/chapter_2/section_1/image10.jpeg"   />
 
-<img class="common_img" src="../_static/media/chapter_2/section_1/image18.png"  alt="loading" />
+For detailed introduction to robot games, please refer to the file in "**[2.2 APP Control](#anchor_2)**".
 
-<img class="common_img" src="../_static/media/chapter_2/section_1/image19.png"  alt="loading" />
+**1.2.3  LAN Connection Mode**
 
-(7)  稍等片刻，界面会自动切回APP主界面，同时树莓派扩展板上的LED2将停止闪烁，和LED1一样保持常亮状态，此时即表示树莓派联网成功。
+(1) Disconnect the WiFi generated by TurboPi. Connect your phone to a WiFi. Take **"Hiwonder"** as example.
 
-<img class="common_img" style="width:450px" src="../_static/media/chapter_2/section_1/image20.jpeg"  alt="loading" />
+<img src="../_static/media/chapter_2/section_1/image11.jpeg" style="width:350px" class="common_img"  />
 
-(8)  长按APP中的机器狗图标，可以查看分配给机器狗的IP地址和ID。
+(2) After connection, open **"WonderPi"**. Select **"Standard ->TurboPi"** in sequence.
 
-<img class="common_img"  src="../_static/media/chapter_2/section_1/image21.png" style="width:250px;"  alt="loading" />
+<img src="../_static/media/chapter_2/section_1/image12.jpeg"   />
 
-(9)  若要回到直连模式，可长按扩展板上的KEY1，直到LED2闪烁
+(3) Tap **"+"** in bottom right corner, and then select LAN Mode.
 
-<img class="common_img" style="width:450px" src="../_static/media/chapter_2/section_1/image22.jpeg"  alt="loading" />
+<img src="../_static/media/chapter_2/section_1/image13.jpeg"   />
 
-## 2. 手机APP试玩
+(4) Input the password of the WiFi your phone joins. Ensure the password you input is correct, otherwise APP fails to connect to robot. Tap **"OK"**.
 
-### 2.1 准备工作
+<img src="../_static/media/chapter_2/section_1/image14.jpeg"   />
 
-请参照目录"**[上手试玩\1. 手机APP安装与连接](#anchor_1)**"下的文档，安装手机APP，并连接PuppyPi机器狗。
+(5) Tap **"Go to connect device hotspot"**.
 
-### 2.2 开始试玩
+<img src="../_static/media/chapter_2/section_1/image15.jpeg"   />
 
-点击PuppyPi机器狗图标，进入玩法选择界面。
+(6) Join the WiFi starting with **"HW".** The password is **"hiwonder"**. After connection, return back to APP.
+
+<img src="../_static/media/chapter_2/section_1/image6.jpeg" style="width:48%"  />
+
+<img src="../_static/media/chapter_2/section_1/image7.jpeg" style="width:48%"  />
+
+(7) APP automatically configures network.
+
+<img src="../_static/media/chapter_2/section_1/image18.jpeg"   />
+
+(8) After a while, robot icon below occurs, and LED on expansion board keeps on.
+
+<img src="../_static/media/chapter_2/section_1/image19.jpeg"   />
+
+(9) Long press robot icon to check TurboPi's IP and ID.
+
+<img src="../_static/media/chapter_2/section_1/image20.jpeg"   />
+
+(10) Tap robot icon to enter mode selection interface.
+
+<img src="../_static/media/chapter_2/section_1/image21.jpeg"   />
+
+For detailed introduction to robot games, please refer to the file in"**[2.2 APP Control](#anchor_2)**".
+
+## 2.2 Start AI Games via APP
+
+### 2.2.1 Getting Ready
+
+Please install the APP and connect it to PuppyPi according to "[APP and Handle Control->2.1 APP Installation and Connection]()".
+
+### 2.2.2 Have a Try
+
+Click the PuppyPi icon to enter the game selection interface.
 
 <img class="common_img" src="../_static/media/chapter_2/section_2/image2.jpeg"  alt="loading" />
 
-<img class="common_img" src="../_static/media/chapter_2/section_2/image3.jpeg"  alt="loading" />
+<img class="common_img" src="../_static/media/chapter_2/section_2/image3.png"  alt="loading" />
 
-- #### 2.2.1 机体遥控
+- #### Remote Control
 
-(1)  在功能选择界面中点击"**机体遥控**"，进入玩法界面后，PuppyPi机器狗会立即恢复初始姿态。此玩法分为两种模式：**普通模式、高级模式** 。
+(1) Select **"Remote Control"**. When we successfully enter the game interface, PuppyPi will return to initial posture. There are two modes, including normal mode and advanced mode.
 
-① 普通模式可实现较为简单的控制，通过滑动摇杆即可控制机器狗运动。
+①  In normal mode, you can control PuppyPi to do some simple movements through dragging the button.
+
+
 
 <img class="common_img" src="../_static/media/chapter_2/section_2/image4.jpeg"  alt="loading" />
 
-② 高级模式可以控制运动速度、高度及姿态。
+② In advanced mode, PuppyPi's motion speed, height and posture can be controlled.
 
 <img class="common_img" src="../_static/media/chapter_2/section_2/image5.jpeg"  alt="loading" />
 
-下表为两种模式的按键功能说明：
+The functions of the buttons under different modes are listed below.
 
 <table class="docutils-nobg" border="1">
     <colgroup>
@@ -148,277 +169,368 @@
     </colgroup>
     <tbody>
     <tr>
-        <td style="text-align: center;"><strong>模式</strong></td>
-        <td style="text-align: center;"><strong>图标</strong></td>
-        <td style="text-align: center;"><strong>对应功能</strong></td>
+        <td style="text-align: center;"><strong>Mode</strong></td>
+        <td style="text-align: center;"><strong>Icon</strong></td>
+        <td style="text-align: center;"><strong>Function</strong></td>
     </tr>
     <tr>
-        <td style="text-align: center;"><p>普通模式</p>
+        <td style="text-align: center;"><p>Normal mode</p>
         <td style="text-align: center;"><p><img src="../_static/media/chapter_2/section_2/image30.png" style="width:0.7874in;height:0.7874in" alt="loading" /></p></td>
-        <td style="text-align: left;">拖动摇杆可控制机器狗朝各个方向运动。</td>
+        <td style="text-align: left;">Drag the button to control PuppyPi's moving direction</td>
     </tr>
     <tr>
-        <td rowspan="4" style="text-align: center;">高级模式</td>
+        <td rowspan="4" style="text-align: center;">Advanced mode</td>
         <td style="text-align: center;"><img src="../_static/media/chapter_2/section_2/image31.png" style="width:0.7874in;height:0.7874in" alt="loading" /></td>
-        <td style="text-align: left;">显示速度等级，等级范围为0-10级。</td>
+        <td style="text-align: left;">Display the level of speed from 0 to 10</td>
     </tr>
     <tr>
         <td style="text-align: center;"><img src="../_static/media/chapter_2/section_2/image29.png" style="width:0.7874in;height:0.7874in" alt="loading" /></td>
-        <td style="text-align: left;">拖动摇杆可控制机器狗的运动速度。摇杆离中心点越远，速度越快；离中心点越近，速度越慢。 </td>
+        <td style="text-align: left;">Drag the button to control PuppyPi's motion speed. The further you drag the button, the faster PuppyPi moves. </td>
     </tr>
     <tr>
         <td style="text-align: center;"><img src="../_static/media/chapter_2/section_2/image32.png" style="width:1.77165in;height:0.3432in" alt="loading" /></td>
-        <td style="text-align: left;">拖动滑杆可调节机器狗的Pitch值，即俯仰角度。</td>
+        <td style="text-align: left;">Drag the slider to adjust the Pitch angle</td>
     </tr>
     <tr>
         <td style="text-align: center;"><img src="../_static/media/chapter_2/section_2/image33.png" style="width:0.59055in;height:1.49278in" alt="loading" /></td>
-        <td style="text-align: left;">拖动滑杆可调节机器狗的高度。</td>
+        <td style="text-align: left;">Drag the slider to adjust PuppyPi's height.</td>
     </tr>
     <tr>
-        <td style="text-align: center;" rowspan="3"><p>通用</p>
+        <td style="text-align: center;" rowspan="3"><p>general</p>
         <td style="text-align: center;"><img src="../_static/media/chapter_2/section_2/image8.png" style="width:0.3937in;height:0.3937in" alt="loading" /></td>
-        <td style="text-align: left;">点击图标，可将当前回传画面保存至手机相册。</td>
+        <td style="text-align: left;">Capture the current camera returned image and save it to phone gallery</td>
     </tr>
     <tr>
         <td style="text-align: center;"><img src="../_static/media/chapter_2/section_2/image9.png" style="width:0.3937in;height:0.3937in" alt="loading" /></td>
-        <td style="text-align: left;">点击图标，可隐藏当前导航栏。</td>
+        <td style="text-align: left;">Hide the top menu bar</td>
     </tr>
     <tr>
         <td style="text-align: center;"><img src="../_static/media/chapter_2/section_2/image10.png" style="width:0.3937in;height:0.3937in" alt="loading" /></td>
-        <td style="text-align: left;">点击图标，联系我们，了解更多产品详情。</td>
+        <td style="text-align: left;">Contact with Hiwonder team for more information</td>
     </tr>
     </tbody>
 </table>
 
-(2)  如需返回到玩法选择界面，点击当前界面的空白区域，调出标题栏，随后点击按键<img src="../_static/media/chapter_2/section_2/image11.png" style="width:0.31496in;height:0.31496in" />即可。
 
-- #### 2.2.2 表演模式
+(2)  If you want to return to the game selection interface, click the blank area to make the menu bar pop up. Then click <img src="../_static/media/chapter_2/section_2/image11.png" style="width:0.31496in;height:0.31496in" /> to go back to the game selection interface.
 
-(1) 点击"**表演模式**"，进入玩法界面。该界面分为两部分：
+- #### Performance Mode
 
-① 界面左侧是动作选择区域，有内置动作和自定义动作可供选择；
+(1) Click **"Performance Mode"** to enter the game interface. The interface is divided into two parts.
 
-② 界面右侧是自平衡功能区域。
+① At the left side, it is the action list consisting of built-in actions and customized actions.
+
+② At the right side, it is the self-balancing area.
 
 <img class="common_img" src="../_static/media/chapter_2/section_2/image12.jpeg"  alt="loading" />
 
-自定义动作的使用请参考文档"**[ROS机器狗动作编辑课程\ 6. APP自定义控制](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/10_action_editing.html#app)**"。
-
-(2)  点击界面左侧的动作名称，PuppyPi机器狗将执行对应的动作。
-
-(3)  点击界面右侧的"**自平衡**"按钮，机器狗将会根据平面的倾斜度，自主调整自身姿态，以维持稳定站姿。
-
-下表为此玩法界面的按键功能说明：
-
-| **按钮图标** | **功能说明** |
-|:--:|:--:|
-| <img src="../_static/media/chapter_2/section_2/image13.jpeg" style="width:0.7874in;height:0.36795in" alt="loading" /> | 以趴下动作组按钮为例，按下此按钮后，机器狗将执行此内置动作。 |
-| <img src="../_static/media/chapter_2/section_2/image14.jpeg" style="width:0.7874in;height:0.35518in" alt="loading" /> | 开启/关闭机器狗自平衡功能（倾斜角度请勿超过30度） |
-
-(4)  如需返回到玩法选择界面，点击当前界面的空白区域，调出标题栏，随后点击按键<img src="../_static/media/chapter_2/section_2/image11.png" style="width:0.31496in;height:0.31496in" />即可。
-
-- #### 2.2.3 颜色识别
-
 :::{Note}
-(1) 请在光线充足的室内环境下进行，但尽量避免在强光直射下进行。
-(2) 识别时，摄像头画面内请勿应无同目标颜色相同或相近的杂物，避免干扰识别。
-(3) 如识别效果不佳，可前往目录"**[上手试玩\3. 颜色阈值调试](#anchor_3)**"学习颜色阈值的调节方式。
+
+For how to customize action, please refer to the tutorial in "[5. ROS1-PC Software Action Editing Course->5.6 APP Customized Control]()".
+
 :::
 
-(1)  点击"**颜色识别**"，进入玩法界面。该界面分为两部分：
+(2)  Select the actions at left randomly, and then PuppyPi will execute the corresponding action.
 
-① 界面左侧是识别开关区域；
+(3) Click **"keep balance"** button at right to make PuppyPi adjust and balance its posture automatically according to the tilt of surface.
 
-② 界面右侧是摄像头回传画面区域。
+The functions of buttons are as follow.
+
+| Icon | Function |
+|:--:|:--:|
+| <img src="../_static/media/chapter_2/section_2/image13.jpeg" style="width:0.7874in;height:0.36795in" alt="loading" /> | Take **"Lie Down"** for example. When we click this button, PuppyPi will lie down. |
+| <img src="../_static/media/chapter_2/section_2/image14.jpeg" style="width:0.7874in;height:0.35518in" alt="loading" /> | **"keep balance"** function.<br> (Note: The tilt should not exceed 30 degree.) |
+
+(4)  If you want to return to the game selection interface, click the blank area to make the menu bar pop up. Then click  <img src="../_static/media/chapter_2/section_2/image11.png" style="width:0.31496in;height:0.31496in" />to go back to the game selection interface.
+
+- #### Color Recognition
+
+:::{Note}
+
+* Please operate in the well-lit indoor and avoid the direct glare 
+* Apart from the target object, please remove other stuffs in same or similar color to the target to avoid disturbance.
+  * If the recognition result isn't accurate, we need to adjust the color threshold according to the tutorial in "[Quick User Experience->2.3 Adjust Color Threshold]()"
+    :::
+
+
+(1) Click **"Color Recognition"** to enter the game interface. The game interface is divided into two parts.
+
+① At left, it is the button to start or stop the game.
+
+② At right, it is the real-time image transmitted by camera.
 
 <img class="common_img" src="../_static/media/chapter_2/section_2/image15.jpeg"  alt="loading" />
 
-(2)  点击"**开始识别**"按钮，可依次将红色、蓝色、绿色的物体单独放置于摄像头前，当识别到不同颜色的物体，PuppyPi机器狗会执行对应的反馈动作。
+(2) Click **"Start Recognition"**, and then face red, blue and green objects to the camera in sequence. When recognizing the object of different color, PuppyPi will give different feedback.
 
-当识别到红色物体，机器狗会执行"**点头**"动作；当识别到蓝色或绿色物体，机器狗会执行"**摇头**"动作。
+When recognizing red object, it will nod. When recognizing blue or green object, it will **"shake its head"**.
 
-| **按钮图标** | **功能说明** |
+| Icon | Function |
 |:--:|:--:|
-| <img src="../_static/media/chapter_2/section_2/image16.jpeg" style="width:1.1811in;height:0.23932in" alt="loading" /> | 开启/关闭玩法。 |
+| <img src="../_static/media/chapter_2/section_2/image16.jpeg" style="width:1.1811in;height:0.23932in" alt="loading" /> | Start or stop the game |
 
-(3)  如需返回到玩法选择界面，点击当前界面的空白区域，调出标题栏，随后点击按键<img src="../_static/media/chapter_2/section_2/image11.png" style="width:0.31496in;height:0.31496in" />即可。
+(3)  If you want to return to the game selection interface, click the blank area to make the menu bar pop up. Then click<img src="../_static/media/chapter_2/section_2/image11.png" style="width:0.31496in;height:0.31496in" /> to go back to the game selection interface.
 
-- #### 2.2.4 目标追踪
+- #### Target Tracking
 
 :::{Note}
-(1) 请在光线充足的室内环境下进行，但尽量避免在强光直射下进行。
-(2) 识别时，摄像头画面内请勿应无同目标颜色相同或相近的杂物，避免干扰识别。
-(3) 如识别效果不佳，可前往目录"**[上手试玩\3. 颜色阈值调试](#anchor_3)**"查看文档，学习颜色阈值的调节方式。
-:::
 
-(1)  点击"**目标追踪**"，进入玩法界面。该界面分为两部分：
+*  Please operate in the well-lit indoor and avoid the direct glare
+*  Apart from the target object, please remove other stuffs in same or similar color to the target to avoid disturbance.
+*  If the recognition result isn't accurate, we need to adjust the color threshold according to the tutorial in "[Quick User Experience->2.3 Adjust Color Threshold Setting]()".
+  :::
 
-① 界面左侧是追踪开关区域；
+(1) Click **"Target Tracking"** to enter the game interface. The game interface is divided into two parts.
 
-② 界面右侧是摄像头回传画面区域。
+① At left, it is the button to start or stop the game.
+
+②  At right, it is the real-time image transmitted by camera.
 
 <img class="common_img" src="../_static/media/chapter_2/section_2/image17.jpeg"  alt="loading" />
 
-(2)  选择目标颜色后，点击"**开始追踪**"按钮。PuppyPi机器狗将跟随选定的颜色目标运动。
+(2) Having selected the tracked color, click **"Start Tracking"** button. Then PuppyPi will move with the target color.
 
-| **按钮图标** | **功能说明** |
+| Icon | Function |
 |:--:|:--:|
-| <img src="../_static/media/chapter_2/section_2/image18.jpeg" style="width:1.5748in;height:0.24323in" alt="loading" /> | 开启/关闭玩法。 |
-| <img src="../_static/media/chapter_2/section_2/image19.jpeg" style="width:0.59055in;height:0.98897in" alt="loading" /> | 选择追踪的目标颜色。 |
-| <img src="../_static/media/chapter_2/section_2/image20.jpeg" style="width:0.59055in;height:0.57294in" alt="loading" /> | 显示目标颜色信息。 |
+| <img src="../_static/media/chapter_2/section_2/image18.jpeg" style="width:1.5748in;height:0.24323in" alt="loading" /> | Start or stop the game |
+| <img src="../_static/media/chapter_2/section_2/image19.jpeg" style="width:0.59055in;height:0.98897in" alt="loading" /> | Select the tracked color |
+| <img src="../_static/media/chapter_2/section_2/image20.jpeg" style="width:0.59055in;height:0.57294in" alt="loading" /> | Display the color we selected |
 
-(3)  如需返回到玩法选择界面，点击当前界面的空白区域，调出标题栏，随后点击按键<img src="../_static/media/chapter_2/section_2/image11.png" style="width:0.31496in;height:0.31496in" />即可。
+(3)  If you want to return to the game selection interface, click the blank area to make the menu bar pop up. Then click <img src="../_static/media/chapter_2/section_2/image11.png" style="width:0.31496in;height:0.31496in" />to go back to the game selection interface.
 
-- #### 2.2.5 标签识别
+- #### Tag Recognition
 
 :::{Note}
-(1) 请在光线充足的室内环境下进行。
-(2) 请保持标签纸面的完整性，如缺角、污渍可能会影响到该玩法的识别效果。
-:::
 
-(1)  点击"**标签识别**"，进入玩法界面。该界面分为两部分：
+*  Please operate in the well-lit indoor
+*  Please ensure the tag is intact. Missing part and dirt will influence the recognition result.
+  :::
 
-① 界面左侧是识别开关区域；
+(1) Click **"Tag Recognition"** to enter the game interface. The game interface is divided into two parts.
 
-② 界面右侧是摄像头回传画面区域。
+① At left, it is the button to start or stop the game. 
+
+② At right, it is the real-time image transmitted by camera.
 
 <img class="common_img" src="../_static/media/chapter_2/section_2/image21.jpeg"  alt="loading" />
 
-(2)  点击"**开始识别**"按钮，将标签逐张放置于摄像头前，当识别到不同ID的标签，PuppyPi机器狗会执行对应的反馈动作。
+(2) Click **"Start Recognition"**, and then face the tags in sequence to the camera
 
-当识别到ID1，机器狗执行"**打招呼**"动作；当识别到ID2时，机器狗执行"**趴下**"动作；当识别到ID3，机器狗执行"**俯卧撑**"动作。
+When recognizing ID1, PuppyPi will **"greet"** you. When recognizing ID2, it will lie down. When recognizing ID3, it will do push-up.
 
-| **按钮图标** | **功能说明** |
+| Icon | Function |
 |:--:|:--:|
-| <img src="../_static/media/chapter_2/section_2/image16.jpeg" style="width:1.1811in;height:0.23932in" alt="loading" /> | 开启/关闭玩法。 |
+| <img src="../_static/media/chapter_2/section_2/image16.jpeg" style="width:1.1811in;height:0.23932in" alt="loading" /> | Start or stop the game |
 
-(3)  如需返回到玩法选择界面，点击当前界面的空白区域，调出标题栏，随后点击按键<img src="../_static/media/chapter_2/section_2/image11.png" style="width:0.31496in;height:0.31496in" />即可。
+(3)  If you want to return to the game selection interface, click the blank area to make the menu bar pop up. Then click <img src="../_static/media/chapter_2/section_2/image11.png" style="width:0.31496in;height:0.31496in" /> to go back to the game selection interface.
 
-- #### 2.2.6 人脸检测
+- #### Face Detection
 
 :::{Note}
-戴口罩不影响正常识别，且支持画面内多张人脸同时识别。
+face with mask on also can be recognized. And PuppyPi can recognize multiple faces at the same time.
 :::
 
-(1)  点击"**人脸检测**"，进入玩法界面。该界面分为两部分：
+(1)  Click **"Color Recognition"** to enter the game interface. The game interface is divided into two parts
 
-① 界面左侧是检测开关区域；
+① At left, it is the button to start or stop the game.
 
-② 界面右侧是摄像头回传画面区域。
+② At right, it is the real-time image transmitted by camera.
 
 <img class="common_img" src="../_static/media/chapter_2/section_2/image22.jpeg"  alt="loading" />
 
-(2)  点击"**开始检测**"按钮，机器狗会检测方圆1米内的人脸。当识别到人脸，PuppyPi机器狗会执行"**招手**"动作。
+(2) Click **"Start Detection"**. Then PuppyPi will detect human face within 1m. When recognizing human face, it will "wave hand".
 
-| **按钮图标** | **功能说明** |
+| Icon | Function |
 |:--:|:--:|
-| <img src="../_static/media/chapter_2/section_2/image23.jpeg" style="width:1.18056in;height:0.29514in" alt="loading" /> | 开启/关闭玩法。 |
+| <img src="../_static/media/chapter_2/section_2/image23.jpeg" style="width:1.18056in;height:0.29514in" alt="loading" /> | Start or stop the game |
 
-(3)  如需返回到玩法选择界面，点击当前界面的空白区域，调出标题栏，随后点击按键<img src="../_static/media/chapter_2/section_2/image11.png" style="width:0.31496in;height:0.31496in" />即可。
+(3) If you want to return to the game selection interface, click the blank area to make the menu bar pop up. Then click <img src="../_static/media/chapter_2/section_2/image11.png" style="width:0.31496in;height:0.31496in" /> to go back to the game selection interface.
 
-- #### 2.2.7 视觉巡线
+- #### Line Following
 
 :::{Note}
-(1) 请在光线充足的室内环境下进行，但尽量避免在强光直射下进行。
-(2) 识别时，摄像头画面内请勿应无同目标颜色相同或相近的杂物，避免干扰识别。
-(3) 如识别效果不佳，可前往目录"**[上手试玩\3. 颜色阈值调试](#anchor_3)**"查看文档，学习颜色阈值的调节方式。
-:::
 
-(1)  点击"**视觉巡线**"，进入玩法界面。该界面分为两部分：
+*  Please operate in the well-lit indoor and avoid the direct glare
+*  Apart from the target object, please remove other stuffs in same or similar color to the target to avoid disturbance.
+*  If the recognition result isn't accurate, we need to adjust the color threshold according to the tutorial in " [Quick User Experience->2.3 Adjust Color Threshold]()"
+  :::
 
-① 界面左侧是巡线开关区域；
+(1)  Click **"Line Following"** to enter the game interface. The game interface is divided into two parts.
 
-②界面右侧是摄像头回传画面区域。
+① At left, it is the button to start or stop the game.
 
-<img class="common_img" src="../_static/media/chapter_2/section_2/image24.jpeg"  alt="loading" />
+② At right, it is the real-time image transmitted by camera.<img class="common_img" src="../_static/media/chapter_2/section_2/image24.jpeg"  alt="loading" />
 
-(2) 点击"**开始巡线**"按钮，并选择选择巡线颜色，PuppyPi机器狗将沿着带有目标颜色的线条行进。
+(2) Click **"Start"** button, and then select the followed color. Then PuppyPi will move along the line.
 
-| **按钮图标** | **功能说明** |
+| Icon | Function |
 |:--:|:--:|
-| <img src="../_static/media/chapter_2/section_2/image25.png" style="width:1.1811in;height:0.24586in" /> | 开启/关闭玩法。 |
-| <img src="../_static/media/chapter_2/section_2/image26.png" style="width:0.98425in;height:0.74912in" /> | 选择巡线目标颜色。 |
+| <img src="../_static/media/chapter_2/section_2/image25.png" style="width:1.1811in;height:0.24586in" /> | Start or stop the game |
+| <img src="../_static/media/chapter_2/section_2/image26.png" style="width:0.98425in;height:0.74912in" /> | Select the followed color |
 
-(3) 如需返回到玩法选择界面，点击当前界面的空白区域，调出标题栏，随后点击按键<img src="../_static/media/chapter_2/section_2/image11.png" style="width:0.31496in;height:0.31496in" />即可。
+(3) If you want to return to the game selection interface, click the blank area to make the menu bar pop up. Then click  <img src="../_static/media/chapter_2/section_2/image11.png" style="width:0.31496in;height:0.31496in" /> to go back to the game selection interface.
 
 <p id="anchor_3"></p>
 
-## 3. 颜色阈值调试
+## 2.3 Adjust Color Threshold
 
-在体验PuppyPi视觉玩法的过程中，周围环境的光线可能会对某些玩法的实现效果存在干扰。通过调节颜色阈值，可以解决这个问题（此处以安卓手机为例进行讲解），具体步骤如下：
+Different light source will have different influence on the colors, which will result in recognition discrepancy. To tackle this problem, you can adjust color threshold via "**WonderPi**" APP.
 
-(1)  进入玩法主界面，点击右上角的设置按键，进入阈值调节界面。
+### 2.3.1 Preparation
 
-<img class="common_img" src="../_static/media/chapter_2/section_3/image2.jpeg"  alt="loading" />
+Start TurboPi. Open "WonderPi" APP, and connect it to TurboPi. For how to connect robot to APP, operate referring to "**[2.1 APP Installation and Connection ](#anchor_1)**".
 
-(2)  本节以调节红色为例，将红色方块放置在摄像头的视野范围内，在"**选择颜色**"处点击红色按键。
+### 2.3.2 Interface Layout
 
-<img class="common_img" src="../_static/media/chapter_2/section_3/image3.png"  alt="loading" />
+Tap  in upper right corner to enter color threshold adjustment interface.
 
-(3)  点击界面右下角的"**操作说明**"按键，进入帮助界面。根据Lab颜色模型图可知，红色位于"**+a**"附近，因此需要将阈值区间往该处调整。
+<img src="../_static/media/chapter_2/section_3/image2.jpeg"   />
 
-<img class="common_img" src="../_static/media/chapter_2/section_3/image4.png"  alt="loading" />
+<img src="../_static/media/chapter_2/section_3/image3.png"  />
 
-<img class="common_img" src="../_static/media/chapter_2/section_3/image5.png"  alt="loading" />
+The table below list function of specific icon.
 
-(4)  点击"**好的**"按键以返回阈值设置界面，将L、A、B三个颜色分量的数值范围都调整为0~255，即所有_min的参数都为0，所有_max的参数都为255。
+<table class="docutils-nobg" border="1">
+<colgroup>
+<col  />
+<col  />
+</colgroup>
+<tbody>
+<tr>
+<td ><strong>Icon</strong></td>
+<td ><strong>Function</strong></td>
+</tr>
+<tr>
+<td ><img src="../_static/media/chapter_2/section_3/image4.png" style="width:300px" /></td>
+<td ><p>Processed camera returned image.</p>
+<p>Target object is white, and other area is black.</p></td>
+</tr>
+<tr>
+<td ><img src="../_static/media/chapter_2/section_3/image4.png" style="width:300px" /></td>
+<td >Raw camera returned image.</td>
+</tr>
+<tr>
+<td ><img src="../_static/media/chapter_2/section_3/image5.png" style="width:200px" /></td>
+<td >Select the color to be adjusted.</td>
+</tr>
+<tr>
+<td ><img src="../_static/media/chapter_2/section_3/image6.png"style="width:200px"  /><img src="../_static/media/chapter_2/section_3/image7.png" style="width:200px" /></td>
+<td ><p>Adjust L component of camera returned image. "L_min" is lower limit and "L_max" is upper limit.</p>
+</tr>
+<tr>
+<td ><img src="../_static/media/chapter_2/section_3/image10.png" style="width:200px" /><img src="../_static/media/chapter_2/section_3/image11.png" style="width:200px" /></td>
+<td ><p>Adjust A component of camera returned image. "a_min" is lower limit and "a_max" is upper limit.</p>
+</tr>
+<tr>
+<td ><img src="../_static/media/chapter_2/section_3/image12.png" style="width:200px" /><img src="../_static/media/chapter_2/section_3/image13.png" style="width:200px" /></td>
+<td ><p>Adjust B component of camera returned image. "b_min" is lower limit and "b_max" is upper limit.</p>
+</tr>
+<tr>
+<td ><img src="../_static/media/chapter_2/section_3/image14.png" style="width:200px" /></td>
+<td >Get instruction to check how to adjust color threshold.</td>
+</tr>
+<tr>
+<td ><img src="../_static/media/chapter_2/section_3/image15.png" style="width:100px" /></td>
+<td >Save the adjusted color threshold.</td>
+</tr>
+<tr>
+<td ><img src="../_static/media/chapter_2/section_3/image16.png" style="width:60px" /></td>
+<td >Return back to mode selection interface.</td>
+</tr>
+<tr>
+<td ><img src="../_static/media/chapter_2/section_3/image17.png" style="width:60px" /></td>
+<td >Hide navigation bar.</td>
+</tr>
+<tr>
+<td ><img src="../_static/media/chapter_2/section_3/image18.png" style="width:60px" /></td>
+<td >Display Hiwonder info.</td>
+</tr>
+</tbody>
+</table>
 
-<img class="common_img" src="../_static/media/chapter_2/section_3/image6.png"  alt="loading" />
+### 2.3.3 Adjust Color Threshold
 
-(5)  保持"**A**"分量中"**a_max**"的数值不变，将"**a_min**"的数值增大，直至画面显示区上方的颜色物体区域变为白色，其它区域变为黑色。
+(1) Select color to be adjusted. Take red as example.
 
-<img class="common_img" src="../_static/media/chapter_2/section_3/image7.png"  alt="loading" />
+<img src="../_static/media/chapter_2/section_3/image19.png"  />
 
-(6)  根据所处环境来调整L分量和B分量。若红色物体在环境下颜色偏浅，增大亮度的最小值(L_min)；在环境下颜色偏深，则减小亮度的最大值(L_max)。若红色物体在环境下偏暖色调，增大色度的最小值(b_min)；在环境下偏冷色调，减小色度的最大值(b_max)。
+(2) Put red object within camera recognition zone. Set L_min, a_min and b_min to 0, and L_max, a_max and b_max to 255.
 
-(7)  调节完成后，点击"**保存**"按键。
+<img src="../_static/media/chapter_2/section_3/image20.png"  />
 
-<img class="common_img" src="../_static/media/chapter_2/section_3/image8.png"  alt="loading" />
+(3) Tap "**Instruction**" icon to check how to adjust color threshold.
 
+<img src="../_static/media/chapter_2/section_3/image21.png"  />
 
-## 4. 无线手柄遥控教程
-
-### 4.1 准备工作
-
-(1) 将手柄接收器插入PuppyPi机器狗的任意一个USB接口。
+<img src="../_static/media/chapter_2/section_3/image22.png"  />
 
 :::{Note}
-手柄接收器请在设备开机前插入，如已插入则忽略本步骤。
+if you need to close Instruction window, select "**OK**".
 :::
 
-(2) 自备两节7号干电池，取出手柄后壳，将电池插入电池槽内，注意正负极请勿插反。
+(4) Red approaches "**+a**" zone, so you need to adjust A component.
+
+<img src="../_static/media/chapter_2/section_3/image23.png" style="width:300px" class="common_img"  />
+
+(5) Keep "**a_max**" value the same, and then increase "**a_min**" value till red object turns white and other area is black.
+
+<img src="../_static/media/chapter_2/section_3/image24.png"  />
+
+(6) Adjust "**L**" and "**B**" values. If it belongs to light red, increase L_min. Otherwise, decrease L_max. If it belongs to warm tone, increase B_min. Otherwise, decrease B_max.
+
+<img src="../_static/media/chapter_2/section_3/image25.png"  />
+
+(7) Remember to save the value after adjustment.
+
+<img src="../_static/media/chapter_2/section_3/image26.png"  />
+
+## 2.4 Wireless Handle Control
+
+### 2.4.1 Getting Ready
+
+(1)  Step 1: insert the handle receiver into any USB interface on PuppyPi.
+
+:::{Note}
+please insert the handle receiver before the device boots up.
+:::
+
+(2) Step 2: please bring your own two AAA dry batteries. And insert them into the battery slot and please don't invert the positive and negative electrode.
 
 <img class="common_img" src="../_static/media/chapter_2/section_4/image2.png"  alt="loading" />
 
-### 4.2 设备连接
+### 2.4.2 Device connection
 
-(1) 打开机器狗开关。
+(1) Turn on PuppyPi.
 
-(2) 打开手柄开关，此时手柄上两个LED灯（红色、绿色）将同时闪烁。
+(2) Turn on the switch on the handle. At this time, two LED lights will flash simultaneously.
 
-(3) 等待几秒，机器狗将和手柄自动配对，配对成功后，绿色灯将常亮。
+(3) Please wait for a while. Then the robot will pair with the handle automatically. After successful pairing, the green light will keep lighting up.
 
-打开手柄开关后30秒内未连接机器狗，或连接后5分钟内对手柄无任何操作，手柄将进入睡眠模式。若需唤醒手柄，按下"**START**"键即可。
+:::{Note}
 
-### 4.3 按键说明
+If the handle doesn't connect to the robot within 30s or there is no operation on the handle within 5 minutes after turning on, it will enter sleep mode. And you can press "START" to activate the handle.
 
-手柄按键和机器狗动作的对应关系如下表所示（以PuppyPi机器狗自身为参考点）：
+:::
 
-|    **按键**    |            **功能**            |
-|:--------------:|:------------------------------:|
-|     START      |       机体恢复初始化姿态       |
-|       L1       |              上仰              |
-|       L2       |              下俯              |
-|       R1       |              前倾              |
-|       R2       |              后倾              |
-| ↑ / 左滑杆向上 |              前进              |
-| ↓ / 左滑杆向下 |              后退              |
-| ← / 左滑杆向左 |              左转              |
-| → / 左滑杆向右 |              右转              |
-| △ / 右滑杆向上 |          提升机体高度          |
-| × / 右滑杆向下 |          降低机体高度          |
-| ◻ / 右滑杆向左 | 减速（需配合按键"↑"、"↓"使用） |
-| ○ / 右滑杆向右 | 加速（需配合按键"↑"、"↓"使用） |
+### 2.4.3 Key Function
+
+The functions of the keys are listed below.
+
+|                  Key                  |                     Function                     |
+| :-----------------------------------: | :----------------------------------------------: |
+|                 START                 |        PuppyPi returns to initial posture        |
+|                  L1                   |                  raise its head                  |
+|                  L2                   |                  bend its head                   |
+|                  R1                   |                   tilt forward                   |
+|                  R2                   |                  tilt backward                   |
+|  ↑ /  Drag the left joystick upwards  |                   move forward                   |
+| ↓ / Drag the left joystick downwards  |                  move backward                   |
+|  ← / Drag the left joystick to left   |                    turn left                     |
+| → /  Drag the left joystick to right  |                    turn right                    |
+|  △ / Drag the right joystick upwards  |               increase body height               |
+| × / Drag the right joystick downwards |               decrease body height               |
+|  ◻ / Drag the right joystick to left  | speed down (combine with the "↑" and "↓" button) |
+| ○ / Drag the right joystick to right  |  speed up (combine with the "↑" and "↓" button)  |
 
 
 

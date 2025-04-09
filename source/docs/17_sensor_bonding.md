@@ -1,530 +1,551 @@
-# 传感器开发课程
+# 11. ROS1-Sensor Development Course
 
 <span id="anchor_1_1" class="anchor"></span>
 
-## 1. 发光超声波控制
+## 11.1 Glowy Ultrasonic Sensor Control
 
-### 1.1 发光超声波传感器安装
+### 11.1.1 Glowy Ultrasonic Sensor Installation
 
 <img class="common_img" src="../_static/media/chapter_17/section_1/image1.png"  alt="loading" style="width:70%" />
 
 <img class="common_img" src="../_static/media/chapter_17/section_1/image2.png"  alt="loading" style="width:70%"/>
 
-### 1.2 准备工作
+### 11.1.2 Getting Ready
 
-准备一个超声波传感器，并通过4PIN线将其连接至树莓派扩展板上的任意一个IIC接口，接线效果如下图所示：
+Prepare a glowy ultrasonic sensor and connect it to any IIC interface on Raspberry Pi expansion board with 4PIN wire as the picture shown.
 
 <img class="common_img" src="../_static/media/chapter_17/section_1/image14.png"  alt="loading" style="width:70%"/>
 
 :::{Note}
-4PIN线采用防反插设计，切勿硬塞。
+4PIN wire adopts anti-reverse plug in design, please don't insert violently.
 :::
 
-### 1.3 使用模块
+### 11.1.3 Glowy Ultrasonic Sensor Introduction
 
-本节课超声波测距芯片内部集成超声波发射电路、接收电路、数字处理电路等。模块采用IIC通信接口，能利用IIC通信读取测量的距离。
+The ultrasonic ranging chip integrates ultrasonic transmitting circuit, receiving circuit, digital processing circuit, etc. This module adopts IIC communication interface through which the measured distance can be read.
 
-此外，超声波探头位置集成两个RGB灯，不仅能调节灯光亮度，还可以通过修改红(R)、绿(G)、蓝(B)三个颜色通道的参数，实现多彩颜色变化。
+Besides, on each probe, there is RGB light whose brightness can be adjusted and parameters of color channel can be modified to change the color. 
 
-### 1.4 实验原理
+### 11.1.4 Program Logic
 
-首先设置测距，然后通过高低电平的变化控制RGB彩灯的亮灭，最后通过改变各颜色分量数值来控制显示的灯光颜色。
+Firstly, set the distance range. Then control RGB colored light to light on or get out though the change of the level. Lastly, control the color of light through changing the parameter of color channels.
 
-[下载源代码](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/17/sonar_control_demo.py)
+The source code of this program is stored in [/home/ubuntu/puppy_pi/src/puppy_extend_demo/scripts/sonar_control_demo.py ](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/17/sonar_control_demo.py)
 
-### 1.5 玩法开启及关闭步骤
+### 11.1.5 Operation Steps
 
 :::{Note}
-指令输入需严格区分大小写及空格。
+Commands must be entered with strict attention to capitalization and spaces.
 :::
 
-(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1) Turn on PuppyPi, and connect it to Raspberry Pi desktop via VNC.
 
-(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_17/section_1/image5.png"  />，打开Terminator终端。
+(2) Click <img src="../_static/media/chapter_17/section_1/image5.png"  /> at upper left corner to to open Terminator.
 
-(3)  输入指令，按下回车，运行玩法程序。
+(3) Enter command and press Enter to run the game program.
 
 ```bash
 rosrun puppy_extend_demo sonar_control_demo.py
 ```
 
-(4)  如需关闭此程序，可按下"**Ctrl+C**",若关闭失败，可多次按下。
+(4) If need to close this program, we can press **"Ctrl+C"**. If it fails to close, please try again.
 
-### 1.6 功能实现
+### 11.1.6 Program Outcome
 
-程序运行后，在超声波传感器前方放置障碍物，终端界面会打印测得距离，且RGB灯显示对应的灯光颜色。灯光颜色与距离范围对应如下：
+After the program starts, place an obstacle in front of the glowy ultrasonic sensor. Then the measured distance will be printed on the terminal. And the RGB colored light will illuminate in corresponding color according to the distance.
 
-当间距小于或等于300mm时，RGB灯显示红色灯光；
+**① Distance ≤ 300mm:** red light on.
 
-当间距大于300mm且小于500mm时，RGB灯显示绿色灯光；
+**② 300mm≤ Distance ≤ 500mm:** green light on.
 
-当间距大于500mm时，RGB灯显示蓝色灯光。
+**③ Distance ≥500mm:** blue light on.
 
-### 1.7 功能延伸
+### 11.1.7 Function Extension
 
 <span id="anchor_1_7_1" class="anchor"></span>
 
-- #### 1.7.1 修改探测距离
+- #### Modify Distance Range
 
-我们可以修改RGB灯颜色对应的距离范围，这里以将RGB亮绿色的距离范围"**300\<distance\<500**"修改为"**300\<distance\<550**"，将RGB亮蓝色的距离范围"**distance\>550**"修改为"**distance\>550**"为例进行示范，可参考以下步骤进行：
+The corresponding distance range of different light colors can be modified. For example, we set green light to turn on when 300<distance<550, and blue light to turn on when distance>550.  
 
-(1)  点击系统桌面左上角的图标<img src="../_static/media/chapter_17/section_1/image5.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(1) Click <img src="../_static/media/chapter_17/section_1/image5.png" style="width:0.32292in;height:0.30208in" /> at upper left corner to open Terminator.
 
-(2)  输入指令，回车，打开玩法程序文件。
+(2) Enter command **"rosed puppy_extend_demo sonar_control_demo.py"** and press Enter to open the program file.
 
 ```bash
 rosed puppy_extend_demo sonar_control_demo.py
 ```
 
-(3)  找到如下图框出的代码，按一下键盘的"**i**"键，进入编辑模式。
+(3) Next, scroll down to the codes in the red frame. Press **"i"** key to enter the editing mode.
 
 <img src="../_static/media/chapter_17/section_1/image9.png"  />
 
-(4)  修改数据，如下图所示：
+(4) Modify the values as the picture shown.
 
 <img src="../_static/media/chapter_17/section_1/image10.png"  />
 
-(5)  修改完成之后，按一下键盘的"**Esc**"键，再依次输入指令（注意wq前为冒号：），回车，即可保存修改内容。
+(5) After modification, press **"Esc"**, input **":wq"** and press Enter to save and exit editing.
 
 ```bash
 :wq
 ```
 
-- #### 1.7.2 自定义RGB颜色
+- #### Customize RGB Color
 
-同样，我们也可以更改RGB彩灯的颜色，这里以将RGB彩灯的颜色由红色更改为黄色为例进行示范，可按照以下步骤进行修改：
+Likewise, we can change the color of RGB light, for example yellow.
 
-(1)  参考"[6.1 修改探测距离](#anchor_1_7_1)"的步骤1、2，打开玩法程序文件。
+(1)  According to step (1) and (2) in "[11.1.7 Function Extension -> Modify Distance Range]()", open program file. 
 
-(2)  在打开的界面中，找到如下图所示代码，按一下键盘的"i"键，进入编辑模式。
+(2)  Locate the codes in the red frame. Press "i" key to enter editing mode.
 
-<img src="../_static/media/chapter_17/section_1/image12.png"  />
-
-(3)  可通过修改RGB的值来修改发光颜色。将"**setRGB(1,(255,0,0))**"和"**setRGB(0,(255,0,0))**"修改为"**setRGB(1,(255,255,0))**"和"**setRGB(0,(255,255,0))**"，如下图所示：
+(3)  The color of RGB light can be changed through modifying RGB values. Modify `setRGB(1,(255,0,0))` as `setRGB(1,(255,255,0))`, and `setRGB(0,(255,0,0))` as `setRGB(0,(255,255,0))`.
 
 <img src="../_static/media/chapter_17/section_1/image13.png"  />
 
-RGB值指某种颜色中红（Red）、绿（Green）、蓝（Blue）成分，理论上讲，红绿蓝三种基色按照不同的比例混合可以调配出任何一种颜色。某种颜色的RGB值越近就越接近灰色或黑白，数值越大就越白，反之越黑。
+RGB value refers to the content of Red, Green and Blue colors in one color. And all the colors can be constructed from the combination of the Red, Green and Blue colors.
 
-(4)  修改完成之后，按一下键盘的"**Esc**"键，再依次输入指令（注意wq前为冒号：），按下回车，即可保存修改内容。
+(4)  After modification, press **"Esc"**, input **":wq"** and press Enter to save the modified data.
 
 ```bash
 :wq
 ```
 
-## 2. 机器狗超声波测距避障
+## 11.2 Distance Ranging and Obstacle Avoidance
 
-[发光超声波传感器安装](#anchor_1_1)
+[ Glowy Ultrasonic Sensor Installation](#anchor_1_1)
 
-### 2.1 准备工作
+### 11.2.1 Getting Ready
 
-准备一个超声波传感器，并通过4PIN线将其连接至树莓派扩展板上的任意一个IIC接口，接线效果如下图所示：
+Prepare a ultrasonic sensor and connect it to any IIC interface on Raspberry Pi expansion board with 4PIN wire as the picture shown.
 
-<img class="common_img" src="../_static/media/chapter_17/section_2/image2.png"  alt="loading" style="width:70%" />
+<img class="common_img" src="../_static/media/chapter_17/section_1/image14.png"  alt="loading" style="width:70%"/>
 
 :::{Note}
-4PIN线采用防反插设计，切勿硬塞。
+4PIN wire adopts anti-reverse plug in design, please don't insert violently.
 :::
 
-### 2.2 使用模块
+### 11.2.2 Ultrasonic Sensor Introduction
 
-本节课超声波测距芯片内部集成超声波发射电路、接收电路、数字处理电路等。模块采用IIC通信接口，能利用IIC通信读取测量的距离。
+The ultrasonic ranging chip integrates ultrasonic transmitting circuit, receiving circuit, digital processing circuit, etc. This module adopts IIC communication interface through which the measured distance can be read.
 
-此外，超声波探头位置集成两个RGB灯，不仅能调节灯光亮度，还可以通过修改红(R)、绿(G)、蓝(B)三个颜色通道的参数，实现多彩颜色变化。
+Besides, on each probe, there is RGB light whose brightness can be adjusted and parameters of color channel can be modified to change the color.
 
-### 2.3 实验原理
+### 11.2.3 Program Logic
 
-首先设置测距，然后通过高低电平的变化来判断前方是否有障碍物，再根据判断来执行不同的动作
+Firstly, set the distance range. Then judge whether there is obstacle ahead through the change of level. Next, program PuppyPi to execute different actions based on the previous judgement.
 
-[下载源代码](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/17/sonar_avoidance.py)
+The source code of this program is stored in: [/home/ubuntu/puppy_pi/src/puppy_extend_demo/scripts/sonar_avoidance.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/17/sonar_avoidance.py)
 
-### 2.4 玩法开启及关闭步骤
+### 11.2.4 Operation Steps
 
-(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1) Turn on PuppyPi and connect it to RaspberryPi desktop via VNC.
 
-(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_17/section_2/image6.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2) Click <img src="../_static/media/chapter_17/section_2/image6.png" style="width:0.32292in;height:0.30208in" /> at upper left corner to enter Terminator terminal.
 
-(3)  输入指令，按下回车，运行玩法程序。
+(3) Enter command "rosrun puppy_extend_demo sonar_avoidance.py" and press Enter to run the game program.
 
 ```bash
 rosrun puppy_extend_demo sonar_avoidance.py
 ```
 
-(4)  如需关闭此程序，可按下"**Ctrl+C**",若关闭失败，可多次按下。
+(4) If need to close this program, we can press **"Ctrl+C"**. If it fails to close, please try again.
 
-### 2.5 功能实现
+### 11.2.5 Program Outcome
 
-程序运行后，在超声波传感器前方放置障碍物，终端界面会打印测得距离，当间距大于300mm，RGB灯显示蓝色灯光且机器狗会保持前进；当间距小于或等于300mm时，RGB灯显示红色灯光且机器狗会一直左转。
+After the program starts, place an obstacle in front of the glowy ultrasonic sensor. Then the measured distance will be printed on the terminal. When distance is greater than 300mm, RGB light will emit blue light and PuppyPi will keep moving forward. When the distance is less than or equal to 300mm, RGB light will emit red light and PuppyPi will keep turning left.
 
-## 3. 触摸传感器检测
+## 11.3 Touch Sensor
 
-### 3.1 触摸传感器安装
+### 11.3.1 Touch Sensor Installation
 
 <img class="common_img" src="../_static/media/chapter_17/section_3/image3.png"  alt="loading" style="width:70%" />
 
 <img class="common_img" src="../_static/media/chapter_17/section_3/image7.png"  alt="loading" style="width:70%" />
 
-### 3.2 准备工作
+### 11.3.2 Getting Ready
 
-准备一个触摸传感器，并通过4PIN线将其连接至树莓派扩展板上的"5V GND IO22 IO24"接口，接线效果如下图所示：
+Prepare a touch sensor and connect it to **5V GND IO22 IO24** interface on Raspberry Pi expansion board with 4PIN wire as the picture shown.
 
 <img class="common_img" src="../_static/media/chapter_17/section_3/image2.png"  alt="loading" style="width:60%"/>
 
 :::{Note}
-4PIN线采用防反插设计，切勿硬塞。
+4PIN wire adopts anti-reverse plug in design, please don't insert violently.
 :::
 
-### 3.3 使用模块
+### 11.3.3 Touch Sensor Introduction 
 
-触摸传感器是一款基于电容感应原理的触摸传感器，人体或金属触碰传感器上的镀金接触面时，传感器会有所感应；此外，隔着一定厚度的塑料、纸张等材料的接触也可以被传感器所感应到，且感应的灵敏度与接触面的大小和覆盖材料的厚度有关。
+Based on capacitive sensing, Hiwonder touch sensor can sense the touch from human body or metal. In addition, the contact between plastic, paper and other materials of certain thickness can also be sensed. Its sensitivity is related to contact area and material thickness.
+After powering, signal terminals OUT will output high-level signal when sensor does not sense the touch signal. When the touch signal is sensed, signal terminal OUT will output low-level signal. It is applicable in switch control, such as light switch and doorbell touch buttons. The holes on the module are compatible with Lego for more creative DIY designs.
 
-这个传感器可应用于设备的开关控制，比如控制开关灯、门铃触摸按键等。传感器板载了乐高兼容孔位，可进行更多创意DIY设计。
+### 11.3.4 Program Logic
 
-### 3.4 实验原理
+When sensing the touch, touch sensor will output high level, otherwise out low level. We can judge the status of the sensor through the level change of I/O interface. 
 
-当感应到触摸时，传感器会输出高电平，否则输出低电平。我们可以通过I/O口的电平变化来判断传感器当前的状态。
+The source code of this program is stored in [/home/ubuntu/puppy_pi/src/puppy_extend_demo/scripts/touch_detect_demo.py ](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/17/touch_detect_demo.py)
 
-[下载源代码](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/17/touch_detect_demo.py)
+```py
+```
 
-主要通过GPIO.input函数获取触摸传感器反馈的数值，从而判断当前的状态。
 
-### 3.5 玩法开启及关闭步骤
 
-(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+GPIO.input function is used to acquire the value given by touch sensor so as to judge the status of the sensor.
 
-(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_17/section_3/image5.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+### 11.3.5 Operation Steps
 
-(3)  输入指令，按下回车，运行玩法程序。
+(1) Turn on PuppyPi and connect it to Raspberry Pi desktop via VNC.
+
+(2)  Click <img src="../_static/media/chapter_17/section_3/image5.png" style="width:0.32292in;height:0.30208in" />at upper left corner to enter Terminator terminal.
+
+(3) Enter the command  and press Enter to run the game program.
 
 ```bash
 rosrun puppy_extend_demo touch_detect_demo.py
 ```
 
-(4)  如需关闭此程序，可按下"**Ctrl+C**"，若关闭失败，可多次按下。
+(4) If need to close this program, we can press "Ctrl+C". If it fails to close, please try again.
 
-### 3.6 功能实现
+### 11.3.6 Program Outcome
 
-程序运行后，触碰传感器的金属片，当感应到后，蜂鸣器会短鸣一次。
+After the program starts, buzzer will beep once when sensing the touch on metal plate.
 
-## 4. 点阵模块显示
+## 11.4 Dot Matrix Display
 
-### 4.1 点阵模块的安装
+### 11.4.1 Dot-matrix Installation
 
 <img class="common_img" src="../_static/media/chapter_17/section_4/image1.png"  alt="loading"  style="width:70%"/>
 
 <img class="common_img" src="../_static/media/chapter_17/section_4/image7.png"  alt="loading" style="width:70%" />
 
-### 4.2 准备工作
+### 11.4.2 Getting Ready
 
-需要准备点阵屏显示模块，并通过4PIN线将点阵屏显示模块连接至树莓派扩展板上的"**5V GND IO7 IO8**"接口，接线效果如下图所示：
+Prepare a dot matrix display and connect it to **5V GND IO7 IO8** interface on Raspberry Pi expansion board with 4PIN wire as the picture shown.
 
 <img class="common_img" src="../_static/media/chapter_17/section_4/image2.png"  alt="loading" style="width:70%" />
 
 :::{Note}
-4PIN线采用防反插设计，切勿硬塞。
+ 4PIN wire adopts anti-reverse plug in design. Please do not insert it to the interface violently.
 :::
 
-### 4.3 使用模块
+### 11.4.3 Dot Matrix Display Introduction
 
-本节课所用到的点阵屏显示模块由两个红色8x8 LED点阵屏组成，通过驱动控制芯片，可实现对点阵屏的控制。其具备显示亮度高，显示时无闪烁，接线方便等特点，能显示数字、文本、图案等内容。
+Dot matrix display module composed of two 8x8 LED dot matrix screens, which can be controlled through driving the control chip. It features high brightness, no-flicker display, convenient wiring, etc. And it can display various content, including number, text, pattern, etc. 
 
-### 4.4 实现原理
+### 11.4.4 Program Logic
 
-我们来看下本节课的实现思路：
-
-实验中我们通过利用一组十六进制数据控制点阵显示图案，一组数据共有16个数据，控 制时，每个数据控制点阵显示一列LED。
+In this program, a set of hexadecimal data is used to control the dot matrix screen to display the content. A set of hexadecimal data consists of 16 data each of which controls a column of LED.
 
 <img class="common_img"  style="width:40%"  src="../_static/media/chapter_17/section_4/image3.png"  alt="loading" />
 
-每组数据设置方法非常简单，我们以本节示例课程为例。实验中，我们控制点阵模块显示"**Hello**"字符。
+It is simple to set the data. For example, control the dot matrix display to display "Hello".
 
-<img src="../_static/media/chapter_17/section_4/image4.png"  />
+{lineno-start=28}
 
-在控制代码的32和33行中就是设置点阵显示图案的数组。数组中的第1个元素是0x7f， 转换为二进制数是01111111，它代表第一列LED从下往上的灯光状态为：灭亮亮亮亮亮亮亮。 同理，后面的15个元素，就是控制其他15列LED亮灭，最终让点阵显示"**Hello**"字符。
+```py
+if __name__ == '__main__':
+    # 显示'Hello'(display 'Hello')
+    while True:
+        try:
+            dms.display_buf=(0x7f, 0x08, 0x7f, 0x00, 0x7c, 0x54, 0x5c, 0x00,
+                              0x7c, 0x40, 0x00,0x7c, 0x40, 0x38, 0x44, 0x38)
+```
+
+The parameter in brackets of 32nd and 33rd line are the array for setting the displayed pattern. The converted binary number of its first element **"0x7f"** is 01111111 which represents the light status, that is off on on on on on on on.
+As the same, the rest 15 elements are also for controlling the LED lights to display "Hello".
 
 :::{Note}
-大家可以在本节同目录下看到"字模软件的使用方法"，利用字模软件快速获取控制数组。
+ You can find "Instructions for Using the Font Software" in the same directory of this section, where you can quickly obtain control arrays using the font software.
 :::
 
-[下载源代码](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/17/lattice_display_demo.py)
+The source code of this program locates in [/home/ubuntu/puppy_pi/src/puppy_extend_demo/scripts/lattice_display_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/17/lattice_display_demo.py)
+
+{lineno-start=28}
+
+```
+if __name__ == '__main__':
+    # 显示'Hello'(display 'Hello')
+    while True:
+        try:
+            dms.display_buf=(0x7f, 0x08, 0x7f, 0x00, 0x7c, 0x54, 0x5c, 0x00,
+                              0x7c, 0x40, 0x00,0x7c, 0x40, 0x38, 0x44, 0x38)
+            dms.update_display()
+            time.sleep(5)
+        except KeyboardInterrupt:
+            dms.display_buf = [0]*16
+            dms.update_display()
+            break
+```
 
 <p id="anchor_4_5"></p>
 
-### 4.5 玩法开启及关闭步骤
+### 11.4.5 Operation Steps
 
-(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1) Turn on PuppyPi, and connect it to Raspberry Pi desktop via VNC.
 
-(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_17/section_4/image8.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2) Click <img src="../_static/media/chapter_17/section_4/image8.png" style="width:0.32292in;height:0.30208in" /> to enter Terminator terminal.
 
-(3)  输入运行玩法的指令，按下回车即可。
+(3) to enter Terminator terminal.
 
 ```bash
 rosrun puppy_extend_demo lattice_display_demo.py
 ```
 
-(4)  如需关闭此程序，可按下"**Ctrl+C**"。
+(4) If want to close this program, press "Ctrl+C".
 
-### 4.6 功能实现
+### 11.4.6 Project Outcome
 
-程序运行后，点阵显示"**Hello**"字符5秒钟，然后自动退出程序，关闭点阵显示。
+After the program runs, the dot matrix display will display "Hello" for 5s. Then, the program will automatically exit and the dot matrix display will be closed.
 
-### 4.7 功能延伸
+### 11.4.7 Function Extension
 
-本节程序默认点阵显示内容为"**Hello**"，如需修改显示的字样，例如修改为"**Love**"。可参照以下步骤：
+The current displayed content is "Hello". If you need to modify the content, like "Love", please follow the below steps to operate.
 
-修改之前，我们需要获取字母在点阵显示的地址符，这里我们通过取模软件来获取。
+Before modification, we need to obtain the address of the character on the dot matrix display through the Internet.
 
-(1)  在本节同目录下双击打开取模软件。
+(1) Double-click to open the CharacterMatrix software in this directory.
 
 <img class="common_img" src="../_static/media/chapter_17/section_4/image12.png"  alt="loading" />
 
-(2)  先点击"**新建图像**"，在弹出的设置框设置点阵模块的尺寸参数，这里设置为"**16\*8**"，设置完成后，点击"**确定**"。
+(2) First, click on "New Image", then in the pop-up settings box, set the size parameters for the dot matrix module. Here, set it to "16*8". After setting, click "OK".
 
 <img src="../_static/media/chapter_17/section_4/image13.png"  alt="loading" />
 
-(3)  依次点击"**模拟动画**"和"**放大格点**"，将右侧点阵模拟区域放大。
+(3) Then click **"Simulated Animation"** and **"Enlarge Grid"** in order to enlarge the dot matrix simulation area on the right side.
 
 <img src="../_static/media/chapter_17/section_4/image14.png"  alt="loading" />
 
-(4)  然后通过点击鼠标的方式，在右侧区域绘制显示内容。
+(4) Then, use the mouse to click and draw the display content in the right area.
 
 <img class="common_img" src="../_static/media/chapter_17/section_4/image15.png"  alt="loading" />
 
-(5)  绘制完成之后，依次点击"**取模方式**"、"**51格式**"，即可得到地址符（这一步请将地址符记下，后续步骤需用到）。
+(5) After finishing the drawing, click "Modeling Method" and then "51 Format" in sequence to obtain the address symbol (please remember the address symbol for the subsequent steps).
 
 <img src="../_static/media/chapter_17/section_4/image16.png"  alt="loading" />
 
-(6)  输入指令，按下回车，打开玩法程序文件。
+(6) Next, input command rosed puppy_extend_demo lattice_display_demo.py and press Enter to open the game program file.
 
 ```bash
 rosed puppy_extend_demo lattice_display_demo.py
 ```
 
-(7)  在打开界面找到如下图所示代码。
+(7) Find the following code in the interface.
 
 <img src="../_static/media/chapter_17/section_4/image19.png"  />
 
-(8)  按一下键盘的"**i**"键，进入编辑模式。
+(8) Press "i" key on the keyboard to enter the editing mode.
 
 <img src="../_static/media/chapter_17/section_4/image21.png"  />
 
-(9)  将程序默认的地址符替换为取模软件得出的地址符，如下图所示：
+(9) Replace the default address symbol in the program with the address symbol obtained from the font software, as shown in the following figure:
 
 <img src="../_static/media/chapter_17/section_4/image24.png"  />
 
-(10) 修改完成之后，按一下键盘的"**Esc**"键，再依次输入指令（注意wq前为冒号：），回车，即可保存修改内容。
+(10) After modification, press "Esc" and enter ":wq" and the press Enter to save the modified content
 
 ```bash
 :wq
 ```
 
-(11) 重复本文档"[4.5 玩法开启及关闭步骤](#anchor_4_5)"的步骤，即可实现更改效果。
+(11) Repeat the operations in"[11.4.5 Operation Steps](#anchor_4_5)" of this document to apply the changes.
 
-## 5. 语音识别传感器实验
+## 11.5 Voice Recognition Sensor
 
-### 5.1 语音识别模块安装
+### 11.5.1 Voice Recognition Module Installation
 
 <img class="common_img" src="../_static/media/chapter_17/section_5/image1.png"  alt="loading"  style="width:70%"  />
 
-<img class="common_img" src="../_static/media/chapter_17/section_5/image2.png"  alt="loading"  style="width:70%"  />
+<img class="common_img" src="../_static/media/chapter_17/section_5/image6.png"  alt="loading"  style="width:70%"  />
 
-### 5.2 准备工作
+### 11.5.2 Getting Ready
 
-准备一个语音识别传感器模块，并通过4PIN线将其连接至树莓派扩展板上的任意一个IIC接口，接线效果如下图所示：
+Prepare a voice recognition sensor module and connect it to I2C interface on Raspberry Pi expansion board with 4PIN wire as the picture shown.
 
 <img class="common_img" src="../_static/media/chapter_17/section_5/image2.png"  alt="loading"  style="width:70%"  />
 
 :::{Note}
-4PIN线采用防反插设计，切勿硬塞。
+4PIN wire adopts anti-reverse plug in design, please don't insert violently.
 :::
 
-### 5.3 使用模块
+### 11.5.3 Module Usage
 
-采用 IIC 通信，用户只需要把识别的关键词语以字符串的形式传送进芯片，即可在下次识别中立即生效。
+Using I2C communication, the user only needs to transmit the recognized keywords into the chip in the form of a string. This will take effect immediately in the next recognition.
+The module has three usage modes. Users can set two different usage modes through programming.
 
-该模块有三种使用模式，用户可通过编程，设置两种不同的使用模式。
+Button Detection Mode: When the system's main control MCU receives an external trigger (such as the user pressing a button), it will start a timed recognition process on the chip (e.g., 5 seconds). During this timed process, the user needs to speak the voice keywords to be recognized. After this process ends, the user needs to trigger it again to start a new recognition process.
 
-按钮检测模式：系统的主控 MCU 在接收到外界一个触发后（比如用户按下按键）， 将会启动芯片上的一个定时识别过程（比如 5 s），此时需要用户在这个定时过程中说出要识别的语音关键词语。当这个过程结束后，需要用户再次触发才能再次启动一个识别过程。循环检测模式：系统的主控 MCU 反复启动的识别过程。如果没有人说话就没有别结果，则每次识别过程的定时到时后会再启动一个识别过程；如果有识别结果，则根据识别作相应处理后（比如播放某个声音作为回答）再启动一个识别过程。
+Loop Detection Mode: The system's main control MCU repeatedly starts the recognition process. If no one speaks and there is no recognition result, a new recognition process will start after each timed recognition process ends. If there is a recognition result, the system will perform the corresponding action based on the recognition (e.g., play a sound as a response) and then start a new recognition process.
 
-口令检测模式：口令模式需要一个关键词来唤醒，唤醒后才可以进行识别，默认唤醒关键词为第一句，识别结束后，想再次进行识别，还需唤醒它，类似小艾同学。
+Password Detection Mode: The password mode requires a keyword to wake up the system. After waking up, the system can perform recognition. The default wake-up keyword is the first phrase. After the recognition ends, to perform recognition again, it needs to be woken up again, similar to how the AI Xiao Ai operates.
 
-### 5.4 实现原理
+### 11.5.4 Program Logic
 
-[下载源代码](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/17/ASR_detect_demo.py)
+The source code of this program is stored in [/home/ubuntu/puppy_pi/src/puppy_extend_demo/scripts/ASR_detect_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/17/ASR_detect_demo.py)
 
-通过asr.setMode函数设置识别模式，此行代码"**asr.setMode(2)**"中的参数"**2**"为选择口令模式，再通过asr.addWords函数添加词条，以代码"**asr.addWords(1, ‘kai shi’)**"为例，参数"**1**"为词条的序号，参数"**kai shi**"为词条"**开始**"的拼音
+By using the asr.setMode function, you can set the recognition mode. In the code line asr.setMode(2), the parameter 2 means the command mode. You can then add entries using the asr.addWords function. For example, in the code asr.addWords(1, 'kai shi'), the parameter 1 is the index of the entry, and the parameter kai shi is the pinyin for the entry "开始" (which means "start").
 
 <p id="anchor_5_5"></p>
 
-### 5.5 玩法开启及关闭步骤
+### 11.5.5 Operation Steps
 
-(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1) Turn on PuppyPi, and connect it to Raspberry Pi via VNC.
 
-(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_17/section_5/image5.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2) Click <img src="../_static/media/chapter_17/section_5/image5.png" style="width:0.32292in;height:0.30208in" />at upper left corner to enter Terminator terminal.
 
-(3)  输入指令，按下回车，运行玩法程序。
+(3) Enter command "rosrun puppy_extend_demo ASR_detect_demo.py" and press Enter to run the game program.
 
 ```bash
 rosrun puppy_extend_demo ASR_detect_demo.py
 ```
 
-(4)  如需关闭此程序，可按下"**Ctrl+C**"，若关闭失败，可重复按下。
+(4) If need to close this program, we can press "Ctrl+C". If it fails to close, please try again.
 
-### 5.6 功能实现
+### 11.5.6 Program Outcome
 
-程序运行后，说"开始"，识别到后，接着说"红色"，树莓派扩展板上的彩灯会变成红色；再说出"绿色"，彩灯会变成绿色；再说出"蓝色"，彩灯会变成蓝色。
+After the program runs, it says "Start." Upon recognizing this, it then says "Red," and the RGB LED on the Raspberry Pi extension board will turn red. When "Green" is said, the RGB LED will turn green. When "Blue" is said, the RGB LED will turn blue.
 
-### 5.7 功能延伸
+### 11.5.7 Function Extension
 
-程序默认是红绿蓝三种颜色的词条，如果想要修改词条的颜色，可按照以下步骤进行，本节以更换红色为黄色为例进行说明。
+The program defaults to entries in red, green, and blue. If you need to change the color of the entry,please follow the below steps to operate. Take replacing the red to yellow for example.
 
-(1)  点击系统桌面左上角的图标<img src="../_static/media/chapter_17/section_5/image5.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(1) Click<img src="../_static/media/chapter_17/section_5/image5.png" style="width:0.32292in;height:0.30208in" />at upper left corner to enter Terminator terminal.
 
-(2)  输入指令，按下回车，打开玩法程序文件。
+(2) Input command **"rosed puppy_extend_demo ASR_detect_demo.py"** and press Enter to open the program file.
 
 ```bash
 rosed puppy_extend_demo ASR_detect_demo.py
 ```
 
-(3)  找到如下图框出的代码。
+(3) Then find the codes in red frame.
 
 <img src="../_static/media/chapter_17/section_5/image11.png"  />
 
-(4)  按一下键盘的"**i**"键，进入编辑模式，将"**hong se**"修改为"**huang se**"，set_rgb_show函数中的数值修改为"**255，255，0**"如下图所示。
+(4) Press **"i"** key to enter editing mode. Modify **"hong se"** to **"huang se"**, and modify the value in the "set_rgb_show" function to "255，255，0".
 
 <img src="../_static/media/chapter_17/section_5/image13.png"  />
 
-(5)  修改完成之后，按一下键盘的"**Esc**"键，再依次输入指令（注意wq前为冒号：），回车，即可保存修改内容。
+(5) After modification, press "Esc" and input command ": wq"again. Then press Enter to save the modification.
 
 ```bash
 :wq
 ```
 
-(6)  重复本文档"[5.5 玩法开启及关闭步骤](#anchor_5_5)"的步骤，即可实现更改效果。
+(6)  Repeat the step "[11.5.5 Operation Steps](#anchor_5_5)"" to realize the modified effect.
 
-## 6. 机器狗触摸检测感应
+## 11.6 Touch Detection
 
-### 6.1 触摸传感器安装
+### 11.6.1 Touch Sensor Installation
 
 <img class="common_img" src="../_static/media/chapter_17/section_6/image1.png"  alt="loading"  style="width:70%"/>
 
 <img class="common_img" src="../_static/media/chapter_17/section_6/image7.png"  alt="loading" style="width:70%"/>
 
-### 6.2 准备工作
+### 11.6.2 Getting Ready
 
-准备一个触摸传感器，并通过4PIN线将其连接至树莓派扩展板上的"**5V GND IO22 IO24**"接口，接线效果如下图所示：
+Prepare a touch sensor and connect it to **5V GND IO22 IO24** interface on Raspberry Pi expansion board with 4PIN wire as the picture shown.
 
 <img class="common_img" src="../_static/media/chapter_17/section_6/image2.png"  alt="loading" style="width:60%"/>
 
 :::{Note}
-4PIN线采用防反插设计，切勿硬塞。
+4PIN wire adopts anti-reverse plug in design, please don't insert violently.
 :::
 
-此外，也可以用3根母对母杜邦线将触摸传感器连接至树莓派扩展板上，如下图所示：
+### 11.6.3 Touch Sensor Introduction
 
-<img class="common_img" src="../_static/media/chapter_17/section_6/image3.png"  alt="loading" style="width:60%" />
+Based on capacitive sensing, Hiwonder touch sensor can sense the touch from human body or metal. In addition, the contact between plastic, paper and other materials of certain thickness can also be sensed. Its sensitivity is related to contact area and material thickness.
+After powering, signal terminals OUT will output high-level signal when sensor does not sense the touch signal. When the touch signal is sensed, signal terminal OUT will output low-level signal. It is applicable in switch control, such as light switch and doorbell touch buttons. The holes on the module are compatible with Lego for more creative DIY designs.
 
-### 6.3 使用模块
+### 11.6.4 Program Logic
 
-触摸传感器是一款基于电容感应原理的触摸传感器，人体或金属触碰传感器上的镀金接触面时，传感器会有所感应；此外，隔着一定厚度的塑料、纸张等材料的接触也可以被传感器所感应到，且感应的灵敏度与接触面的大小和覆盖材料的厚度有关。
+When sensing the touch, touch sensor will output high level, otherwise out low level. We can judge the status of the sensor through the level change of I/O interface.
 
-这个传感器可应用于设备的开关控制，比如控制开关灯、门铃触摸按键等。传感器板载了乐高兼容孔位，可进行更多创意DIY设计。
+The source code of this program is stored in [/home/ubuntu/puppy_pi/src/puppy_extend_demo/scripts/touch_control_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/17/touch_control_demo.py)
 
-### 6.4 实验原理
+GPIO.input function is used to acquire the value given by touch sensor so as to judge the status of the sensor.
 
-当感应到触摸时，传感器会输出高电平，否则输出低电平。我们可以通过I/O口的电平变化来判断传感器当前的状态。
+### 11.6.5 Operation Steps
 
-[下载源代码](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/17/touch_control_demo.py)
+(1) Turn on PuppyPi and connect it to Raspberry Pi desktop via VNC.
 
-主要通过GPIO.input函数获取触摸传感器反馈的数值，从而判断当前的状态，再根据触摸传感器状态执行不同的动作。
+(2) Click<img src="../_static/media/chapter_17/section_6/image6.png" style="width:0.32292in;height:0.30208in" />at upper left corner to enter Terminator terminal.
 
-### 6.5 玩法开启及关闭步骤
-
-(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
-
-(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_17/section_6/image6.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
-
-(3)  输入指令，按下回车，运行玩法程序。
+(3) Enter command **"rosrun puppy_extend_demo touch_control_demo.py"** and press Enter to run the game program.
 
 ```bash
 rosrun puppy_extend_demo touch_control_demo.py
 ```
 
-(4)  如需关闭此程序，可按下"**Ctrl+C**"，若关闭失败，可多次按下。
+(4) If need to close this program, we can press **"Ctrl+C"**. If it fails to close, please try again.
 
-### 6.6 功能实现
+### 11.6.6 Program Outcome
 
-程序运行后，机器狗会保持站立姿态，首次触碰传感器的金属片，当感应到后，机器狗会切换成下蹲姿态；再次触碰传感器的金属片，连续触碰2次，机器狗会做出抖一抖的动作。
+After the program starts, PuppyPi will keep standing. When we first touch the metal plate of touch sensor, PuppyPi will squat when sensing the touch. When we touch the metal plate twice, PuppyPi will shake.  
 
-## 7. MP3模块实验
+## 11.7 MP3 Module
 
-### 7.1 MP3模块安装
+### 11.7.1 MP3 Module Installation
 
 <img class="common_img" src="../_static/media/chapter_17/section_7/image1.png"  alt="loading" style="width:70%" />
 
 <img class="common_img" src="../_static/media/chapter_17/section_7/image5.png"  alt="loading" style="width:70%" />
 
-### 7.2 准备工作
+### 11.7.2 Getting Ready
 
-准备一个MP3模块，并通过4PIN线将其连接至树莓派扩展板上的任意一个IIC接口，接线效果如下图所示：
+Prepare a MP3 module and connect it to IIC interface on Raspberry Pi expansion board with 4PIN wire as the picture shown.
 
 <img class="common_img" src="../_static/media/chapter_17/section_7/image2.png"  alt="loading" style="width:60%"/>
 
 :::{Note}
-4PIN线采用防反插设计，切勿硬塞。
+4PIN wire adopts anti-reverse plug in design, please don't insert violently.
 :::
 
-### 7.3 使用模块
+### 11.7.3 MP3 Module Introduction
 
-本节课所用到的MP3模块采用了IIC通信，通过数字信号器的DSP即可完成对MP3文件的处理、传输及解码工作。
+MP3 module adopts IIC communication. MP3 files can be processed, transferred and decoded through digital signaler DSP. 
 
-### 7.4 实现原理
+### 11.7.4 Program Logic
 
-MP3模块最大支持32G的SD卡，支持FAT16， FAT32文件系统，支持MP3， WAV，WMA格式歌曲，先在SD卡内建立一个名称为"**MP3**"的文件夹，然后在文件夹里放入需要播放的歌曲，歌曲格式如下0001+歌曲名，例如歌曲小苹果可以命名如下：0001小苹果，也可以不加歌曲名即0001,其他以此类推0010, 0100, 1000等。
+MP3 module can support SD card of 32G at most, FAT16 as well as FAT32 file system and songs in MP3, WAV and WMA format. Firstly, create a new folder named "MP3", and then put the songs into this folder. The name format is "0001+ name of the song". For example, we can name "A Little Apple" 0001 A Little Apple. Or we can directly name it four numbers, like 0001. Similarly, repeat for others such as 0010, 0100, 1000, and so on.
 
-[下载源代码](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/17/mp3_moonwalk_demo.py)
+The source code of this program is stored in [/home/ubuntu/puppy_pi/src/puppy_extend_demo/scripts/mp3_moonwalk_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/17/mp3_moonwalk_demo.py)
 
-<img src="../_static/media/chapter_17/section_7/image4.png"  />
+### 11.7.5 Operation Steps
 
-### 7.5 玩法开启及关闭步骤
+(1) Turn on PuppyPi and connect it to Raspberry Pi via VNC.
 
-(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(2) Click <img src="../_static/media/chapter_17/section_7/image6.png" style="width:0.32292in;height:0.30208in" /> at upper left corner to enter Terminator terminal.
 
-(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_17/section_7/image6.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
-
-(3)  输入指令，按下回车，运行玩法程序。
+(3) Enter the  command and press Enter to run the game program.
 
 ```bash
 rosrun puppy_extend_demo mp3_moonwalk_demo.py
 ```
 
-(4)  如需关闭此程序，可按下"**Ctrl+C**"，若关闭失败，可重复按下。
+(4) If need to close this program, we can press "Ctrl+C". If it fails to close, please try again.
 
-### 7.6 功能实现
+### 11.7.6 Function Extension
 
-程序运行后，MP3模块会播放SD卡中设置的音乐，并跳一个舞蹈。
+After the program starts, MP3 module will play the music in SD card and PuppyPi will dance.
 
-### 7.7 功能延伸
+### 11.7.7 Function Extension
 
-如需修改音乐，可按照以下步骤进行，本节以更换编号为"0007"的曲目为例进行说明。
+If you need to change the song, please follow the below steps to operate. Take replacing the original song with "0007" song for example.
 
 :::{Note}
-替换曲目需下载至MP3的SD卡内，并以数字命名，例如命名为0007
+we need to download the substitute to the SD card of MP3 module, and name it four numbers, such as 0007. 
 :::
 
-(1)  点击系统桌面左上角的图标<img src="../_static/media/chapter_17/section_7/image6.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(1) Click <img src="../_static/media/chapter_17/section_7/image6.png" style="width:0.32292in;height:0.30208in" /> at upper left corner to enter Terminator terminal.
 
-(2)  输入指令，并按下回车，打开玩法程序文件。
+(2) Input the command and press Enter to open program file.
 
 ```bash
-rosed puppy_extend_demo** **mp3_moonwalk_demo.py
+rosed puppy_extend_demo mp3_moonwalk_demo.py
 ```
 
-(3)  找到如下图框出的代码，按一下键盘的"i"键，进入编辑模式。
+(3) Then find the codes in red frame. And press "**i**" key to enter editing mode.
 
 <img src="../_static/media/chapter_17/section_7/image12.png"  />
 
-(4)  playNum函数中的参数就是歌曲的编号，我们修改为7，修改完成之后，按一下键盘的"**Esc**"键，再依次输入指令，按下回车，即可保存修改内容。
+(4) The parameter in parenthesis of playNum function is the number of the song. And we modify the parameter as 7. After modification, press "Esc", input ":wq" and press Enter to save the modified content.
 
 ```bash
 :wq
@@ -533,58 +554,59 @@ rosed puppy_extend_demo** **mp3_moonwalk_demo.py
 <img src="../_static/media/chapter_17/section_7/image14.png"  />
 
 :::{Note}
-函数中填写歌曲编号时可以省略前面的0，例如"0007"可以写成"7"
+ when inputting the number of song, we can omit "000" and directly input "7".
 :::
 
-## 8. 机器狗语音识别交互
+## 11.8 Voice Recognition and Interaction
 
-### 8.1 语音识别模块安装
+### 11.8.1 Voice Recognition Module Installation
 
 <img class="common_img" src="../_static/media/chapter_17/section_8/image1.png"  alt="loading" style="width:70%" />
 
 <img class="common_img" src="../_static/media/chapter_17/section_8/image4.png"  alt="loading" style="width:70%" />
 
 
-### 8.2 准备工作
+### 11.8.2 Getting Ready
 
-准备好语音合成传感器模块，并通过4PIN线将连接至树莓派扩展板上的任意IIC接口，接线效果如下图所示：
+Prepare a voice synthesis sensor module and connect it to I2C interface on Raspberry Pi expansion board with 4PIN wire as the picture shown.
 
 <img class="common_img" src="../_static/media/chapter_17/section_8/image2.png"  alt="loading" style="width:60%" />
 
 :::{Note}
-4PIN线采用防反插设计，切勿硬塞。
+4PIN wire adopts anti-reverse plug in design, please don't insert violently.
 :::
 
-### 8.3 使用模块
+### 11.8.3 Module Usage
 
-语音识别传感器采用 IIC 通信，用户只需要把识别的关键词语以字符串的形式传送进芯片，即可在下次识别中立即生效。
+Using I2C communication, the user only needs to transmit the recognized keywords into the chip in the form of a string. This will take effect immediately in the next recognition.
+The module has three usage modes. Users can set two different usage modes through programming.
 
-该模块有三种使用模式，用户可通过编程，设置两种不同的使用模式。
+Button Detection Mode: When the system's main control MCU receives an external trigger (such as the user pressing a button), it will start a timed recognition process on the chip (e.g., 5 seconds). During this timed process, the user needs to speak the voice keywords to be recognized. After this process ends, the user needs to trigger it again to start a new recognition process.
 
-按钮检测模式：系统的主控 MCU 在接收到外界一个触发后（比如用户按下按键），将会启动芯片上的一个定时识别过程（比如 5 s），此时需要用户在这个定时过程中说出要识别的语音关键词语。当这个过程结束后，需要用户再次触发才能再次启动一个识别过程。循环检测模式：系统的主控 MCU 反复启动的识别过程。如果没有人说话就没有识别结果，则每次识别过程的定时到时后会再启动一个识别过程；如果有识别结果，则根据识别作相应处理后（比如播放某个声音作为回答）再启动一个识别过程。
+Loop Detection Mode: The system's main control MCU repeatedly starts the recognition process. If no one speaks and there is no recognition result, a new recognition process will start after each timed recognition process ends. If there is a recognition result, the system will perform the corresponding action based on the recognition (e.g., play a sound as a response) and then start a new recognition process.
 
-口令检测模式：口令模式需要一个关键词来唤醒，唤醒后才可以进行识别，默认唤醒关键词为第一句，识别结束后，想再次进行识别，还需唤醒它，类似小艾同学。
+Password Detection Mode: The password mode requires a keyword to wake up the system. After waking up, the system can perform recognition. The default wake-up keyword is the first phrase. After the recognition ends, to perform recognition again, it needs to be woken up again, similar to how the AI Xiao Ai operates.
 
-### 8.4 实现原理
+### 11.8.4 Working Principle
 
-[下载源代码](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/17/voice_interaction_demo.py)
+The source code of this program is stored in [/home/ubuntu/puppy_pi/src/puppy_extend_demo/scripts/voice_interaction_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/17/voice_interaction_demo.py)
 
-通过asr.setMode函数设置识别模式，此行代码"**asr.setMode(2)**"中的参数"**2**"为选择口令模式，再通过asr.addWords函数添加词条，以代码"**asr.addWords(1, ‘kai shi’)**"为例，参数"**1**"为词条的序号，参数"**kai shi**"为词条"**开始**"的拼音
+By using the asr.setMode function, you can set the recognition mode. In the code line asr.setMode(2), the parameter 2 means the command mode. You can then add entries using the asr.addWords function. For example, in the code asr.addWords(1, 'kai shi'), the parameter 1 is the index of the entry, and the parameter kai shi is the pinyin for the entry "开始" (which means "start").
 
-### 8.5 玩法开启及关闭步骤
+### 11.8.5 Operation Steps
 
-(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1) Turn on PuppyPi, and connect it to Raspberry Pi desktop via VNC.
 
-(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_17/section_8/image5.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2) Click<img src="../_static/media/chapter_17/section_8/image5.png" style="width:0.32292in;height:0.30208in" />at upper left corner to enter Terminator terminal.
 
-(3)  输入指令，按下回车，运行玩法程序。
+(3) Input command "rosrun puppy_extend_demo voice_interaction_demo.py" and press Enter to run the game program.
 
 ```bash
 rosrun puppy_extend_demo voice_interaction_demo.py
 ```
 
-(4)  如需关闭此程序，可按下"**Ctrl+C**"，若关闭失败，可重复按下。
+(4) If need to close this program, we can press "Ctrl+C". If it fails to close, please try again.
 
-### 8.6 功能实现
+### 11.8.6 **Program Outcome**
 
-程序运行后，机器狗会保持站立，说"开始"，识别到后，接着说"抬头"，机器狗会做出抬头的动作；再说出"趴下"，机器狗会切换成趴下姿态；再说出"立正"，机器狗会回到站立姿态；再说出"原地踏步"，机器狗会开始原地踏步。
+After the program starts running, the robotic dog will remain standing. Upon saying "start" and recognizing it, the system will then say "lift head". Following this command, the robotic dog will perform the action of lifting its head. Subsequently, saying "lie down" will prompt the robotic dog to switch to a lying down position. Saying "stand at attention" will cause the robotic dog to return to a standing position. Finally, saying "march in place" will initiate the robotic dog to start marching in place.

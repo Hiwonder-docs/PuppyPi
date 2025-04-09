@@ -1,555 +1,705 @@
-# 运动控制课程
+# 4. ROS1-Motion Control Course
 
 <p id="anchor_1"></p>
 
-## 1. Trot步态了解
+## 4.1 Trot Introduction
 
-### 1.1 步态概念说明
+### 4.1.1 Gait Definition
 
-步态是对动物走路特征进行周期性的总结描述。通俗而言，就是描述动物是如何走路的。四足动物常见的步态特征有小跑（Trot）、行走（Walk）、缓行（Amble）和踱步（Pace）等。
+Gait is the pattern of movement of the limbs of animals. Generally speaking, it is used to describe how the animal walks. The common quadruped gaits include Trot, Walk, Amble, Pace, etc.
 
-下表列举了步态说明中部分常见名词：
+The explanation for nouns used in gait is as follow.  
 
-| **名词** |                          **说明**                          |
-|:--------:|:----------------------------------------------------------:|
-|   相位   |            最直接理解是角度，周期运动中的位置。            |
-|  相位差  |              不同腿之间运动超前或滞后的差异。              |
-|  摆动相  |                  腿部抬起，处于腾空状态。                  |
-|  支撑相  |                     腿部处于着地状态。                     |
-|   周期   | 行进过程中，一侧足跟从着地到下一次着地的全过程是一个周期。 |
-| 步态频率 |                单位时间内完成的步态周期数。                |
-|   步长   |         一个周期内，从抬腿到着地，足端移动的距离。         |
-|   步幅   |                一个周期内，机身移动的距离。                |
-|  占空比  |           单腿处于支撑相的时间与步态周期的比值。           |
+|       Noun       |                         Explanation                          |
+| :--------------: | :----------------------------------------------------------: |
+|      phase       | Interpreted as Angle which indicates the position in cyclic motion. |
+| phase difference |       The angle difference between two motion position       |
+|   swing phase    |    When the legs are lifted, the body is without support.    |
+|  support phase   |                  The legs touch the ground                   |
+|      cycle       | The legs in one side from first to next touching ground is a cycle |
+|  gait frequency  |         The number of completed cycle per unit time          |
+|   step length    | The motion distance of the leg between lifting and touching ground in one cycle |
+|  stride length   |         The motion distance of the body in one cycle         |
+|    Duty ratio    | The ratio of the duration of one leg on ground to the gait cycle. |
 
-### 1.2 Trot步态说明 
+### 4.1.2 Trot Illustration
 
-Trot步态是一种中低速的动步态，通俗而言就是前后交叉的腿，同时抬起与落地。该步态具有较大的运动速度范围，兼具稳定性与速度，是最常用的四足步态。
-
-当PuppyPi机器狗处于Trot步态，其对角线上的脚同时着地。接下来会以下图为例，对Trot步态进行分析说明：
+Trot is a gait in medium to low speed where the feet at diagonal opposite ends of the body strike the ground together. This most frequently used quadruped gait has a wide motion range, and combines stability and speed. 
+When PuppyPi is in Trot gait, its feet at diagonal opposite ends of the body strike the ground together. Take the figure below for example.
 
 <img class="common_img" src="../_static/media/chapter_9/section_1/image2.png"  />
 
-如图（a）所示，PuppyPi机器狗的1、2号腿抬起并向前摆动，3、4号腿则用于支撑机身，确保机器狗重心位于对角线交汇处。此时，1、2号腿为摆动相，3、4号腿为支撑相。
+In (a), NO.1 and 2 legs of PuppyPi will lift and swing forward, and NO.3 and 4 legs are in support of the body to ensure that the center of gravity is at the intersection of the diagonal lines. At this time, NO.1 and 2 legs are in swing phase while NO. 3 and 4 legs are in support phase.
 
-如图（b）所示，4条腿同时着地，1、2、3、4号腿都为支撑相。
+In (b), four legs touch the ground at the same time. All the legs are in support phase.
 
-如图（c）所示，3、4号腿抬起并向前摆动，1、2号腿则用于支撑机身，确保机器狗重心位于对角线交汇处。此时，3、4号腿为摆动相，1、2号腿为支撑相。
+In (c), NO.3 and 4 legs will lift and swing forward, and NO.1 and 2 legs are in support of the body to ensure that the center of gravity is at the intersection of the diagonal lines. At this time, NO.3 and 4 legs are in swing phase while NO. 1 and 2 legs are in support phase. 
 
-如图（d）所示，4条腿同时着地，1、2、3、4号腿都为支撑相。
+In (d), four legs touch the ground at the same time. All the legs are in support phase.
+Completing (a), (b), (c) and (d) actions indicates that PuppyPi finish a integrate cycle of action.
 
-当完成（a）、（b）、（c）和（d）4组动作时。此时，PuppyPi机器狗即完成了一个完整周期的动作。
-
-### 1.3 玩法开启及关闭步骤
+### 4.1.3 Operation Steps
 
 :::{Note}
-输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
+The input command should be case sensitive. And the key words can be complemented by **"Tab"** key.
 :::
 
-(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_1/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2) Click <img src="../_static/media/chapter_9/section_1/image4.png" style="width:0.32292in;height:0.30208in" /> open command line terminal
 
-(3)  输入指令，并按下回车，打开程序文件。
+(3) Enter command **"rosed puppy_control puppy_demo.py"** and press Enter to open the program files
 
 ```bash
 rosed puppy_control puppy_demo.py
 ```
 
-(4)  可以在下图所示位置中找到调用步态的代码，程序默认是执行Trot步态，所以可以直接调用运行。
+(4) You can find the code calling the gait at the location indicated in the following image. The program is default to execute Trot gait, hence the codes can be called directly.
 
 <img src="../_static/media/chapter_9/section_1/image7.png"  />
 
-(5)  这里我们无需任何修改，按下"**Esc**"，输入指令，退出并保存。
+(5) There is no need for modification. Press **"Esc"**, and input **":wq"** to save and exit.
 
 ```bash
 :wq
 ```
 
-(6)  输入指令，并按下回车，启动玩法。
+(6) Enter command **"rosrun puppy_control puppy_demo.py"** and press Enter to start the game.
 
 ```bash
 rosrun puppy_control puppy_demo.py
 ```
 
-(7) 如需关闭此玩法，可在终端界面按下"**Ctrl+C**"。若关闭失败，请反复尝试。
+(7) If want to close this game, press **"Ctrl+C"**. If it fails to close, please try again.
 
-### 1.4 实现效果
+### 4.1.4 Program Outcome
 
-玩法开启后，PuppyPi机器狗会以Trot步态行进，对角的两腿成对运动，同时抬起或着地。下图是相位关系：
+After the game starts, PuppyPi will trot, that is to say its feet at diagonal opposite ends of the body lift or strike the ground together at the same time. The leg sequence diagram is as follow.
 
 <img src="../_static/media/chapter_9/section_1/image15.png"  alt="详细运动-动态" />
 
-### 1.5 程序参数说明
+### 4.1.5 Program Analysis
 
-该程序的源代码位于Docker容器中的：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
+The source code of this program is stored in ：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
 
-(1) **步态选择**
+**(1) Gait Selection**
 
-程序内提供了三种步态：Trot步态、Amble步态、Walk步态。其中，Trot步态是程序默认的初始步态。
+There are three built-in gaits, including Trot, Amble and Walk. And Trot is the initial gait by default. 
 
-<img src="../_static/media/chapter_9/section_1/image16.png"  />
+{lineno-start=27}
 
-若需要修改步态选择，可将当前步态对应的代码进行修改操作，比如更改为Walk步态，直接在红框内将"**Trot**"修改为"**Walk**"即可。
+```
+gait = 'Trot'
+# overlap_time:4脚全部着地的时间，单位秒(the time when all four legs touch the ground, measured in seconds)
+# swing_time：单脚离地时间，单位秒(the time duration when a single leg is off the ground, measured in second)
+# clearance_time：前后交叉脚相位间隔时间，单位秒(the time interval between the phases when the front and rear legs cross each other, measured in seconds)
+# z_clearance：走路时，脚尖要抬高的距离，单位cm(the distance the paw needs to be raised during walking, measured in centimeters)
 
-<img src="../_static/media/chapter_9/section_1/image18.png"  />
+if gait == 'Trot':
+    GaitConfig = {'overlap_time':0.2, 'swing_time':0.3, 'clearance_time':0.0, 'z_clearance':5}
+    PuppyPose['x_shift'] = -0.6
+    # Trot步态 clearance_time = 0(Trot gait clearance_time = 0)
 
-(2) **行走频率调节**
+elif gait == 'Amble':
+    GaitConfig = {'overlap_time':0.1, 'swing_time':0.2, 'clearance_time':0.1, 'z_clearance':5}
+    PuppyPose['x_shift'] = -0.9
+    # Amble步态 0 ＜ clearance_time ＜ swing_time( Amble gait 0 ＜ clearance_time ＜ swing_time)
+    
+elif gait == 'Walk':
+    GaitConfig = {'overlap_time':0.1, 'swing_time':0.2, 'clearance_time':0.3, 'z_clearance':5}
+    PuppyPose['x_shift'] = -0.65
+    # Walk步态   swing_time ≤ clearance_time(Walk gait   swing_time ≤ clearance_time)
+```
 
-通过修改下方对应参数，可调整该步态下的行走频率。时间越短，频率越快，时间越长，频率越慢。
+If want to change the gait, we can directly modify **"Trot"** as **"Walk"**.
 
-<img src="../_static/media/chapter_9/section_1/image19.png"  />
+{lineno-start=27}
 
-其中，括号内的参数含义如下：
+```
+gait = 'Trot'
+```
 
-第一个参数"**overlap_time**"是4脚全部着地的时间，单位为秒；
+**(2) Walking Frequency Adjustment**
 
-第二个参数"**swing_time**"是单脚离地的时间，单位为秒；
+We can modify the following parameters to adjust its walking frequency. The shorter the time, the higher the frequency. The longer the time, the lower the frequency.
 
-第三个参数"**clearance_time**"是前后交叉脚相位的间隔时间，单位为秒；
+{lineno-start=27}
 
-第四个参数"**z_clearance**"是机器狗走路时，脚尖要抬高的距离，单位为厘米。
+```
+if gait == 'Trot':
+    GaitConfig = {'overlap_time':0.2, 'swing_time':0.3, 'clearance_time':0.0, 'z_clearance':5}
+    PuppyPose['x_shift'] = -0.6
+    # Trot步态 clearance_time = 0(Trot gait clearance_time = 0)
+```
 
-Trot步态下需要注意，设置的时候，clearance_time必须为0。
+The meaning of the parameters in bracket is as follow.
 
-Trot步态下需要注意，设置的时候需遵循clearance_time=0，overlap_time＞0，swing_time＞0条件。如果想要更好的观察，我们可以延长swing_time和overlap_time时间，但频率变慢以后，走路稳定性会受到影响。例如我们这里将swing_time改为5，overlap_time改为2。
+The first parameter `overlap_time` is the time when all the legs touch the ground. The unit is second.
 
-<img src="../_static/media/chapter_9/section_1/image21.png"  />
+The second parameter `swing_time` is the time when one leg is off the ground. The unit is second. 
 
-## 2. Walk步态了解
+The third parameter `clearance_time` is interval between the lifts of legs at diagonal opposite ends of the body. The unit is second.
 
-### 2.1 步态概念说明
+The fourth parameter `z_clearance` is the lifted height in cm during walking. 
+Pay attention, under Trot gait, clearance_time must be 0.
 
-步态是对动物走路特征进行周期性的总结描述。通俗而言，就是描述动物是如何走路的。四足动物常见的步态特征有小跑（Trot）、行走（Walk）、缓行（Amble）和踱步（Pace）等。
+:::{Note}
 
-下表列举了步态说明中部分常见名词：
+Under Trot gait, please ensure that clearance_time=0, overlap_time＞0 and swing_time＞0. If you want to better observe the Trot gait, we can extend swing_time and overlap_time, but the walking stability will be influenced due to slower frequency. For example, we modify swing_time as5 and overlap_time as 2.  
 
-| **名词** |                          **说明**                          |
-|:--------:|:----------------------------------------------------------:|
-|   相位   |            最直接理解是角度，周期运动中的位置。            |
-|  相位差  |              不同腿之间运动超前或滞后的差异。              |
-|  摆动相  |                  腿部抬起，处于腾空状态。                  |
-|  支撑相  |                     腿部处于着地状态。                     |
-|   周期   | 行进过程中，一侧足跟从着地到下一次着地的全过程是一个周期。 |
-| 步态频率 |                单位时间内完成的步态周期数。                |
-|   步长   |         一个周期内，从抬腿到着地，足端移动的距离。         |
-|   步幅   |                一个周期内，机身移动的距离。                |
-|  占空比  |           单腿处于支撑相的时间与步态周期的比值。           |
+:::
 
-### 2.2 Walk步态说明
+## 4.2 Walk Introduction
 
-Walk步态是静步态，即任何时刻至少有3条腿着地，至多有1条腿摆动。
+### 4.2.1 Gait Definition
 
-PuppyPi机器狗的摆动腿轮换顺序为：右前-\>左后-\>左前-\>右后，对应下图序号为：1-\>2-\>3-\>4。接下来会以下图为例，对Walk步态进行分析说明：
+Gait is the pattern of movement of the limbs of animals. Generally speaking, it is used to describe how the animal walks. The common quadruped gaits include Trot, Walk, Amble, Pace, etc.
+The explanation for nouns used in gait is as follow.
+
+|       Noun       |                         Explanation                          |
+| :--------------: | :----------------------------------------------------------: |
+|      phase       | Interpreted as Angle which indicates the position in cyclic motion. |
+| phase difference |       The angle difference between two motion position       |
+|   swing phase    |    When the legs are lifted, the body is without support.    |
+|  support phase   |                  The legs touch the ground                   |
+|      cycle       | The legs in one side from first to next touching ground is a cycle |
+|  gait frequency  | The legs in one side from first to next touching ground is a cycle |
+|   step length    | The motion distance of the leg between lifting and touching ground in one cycle |
+|  stride length   |         The motion distance of the body in one cycle         |
+|    Duty ratio    | The ratio of the duration of one leg on ground to the gait cycle. |
+
+### 4.2.2 Walk Illustration
+
+Walk is static gait where 3 legs are on the ground at least and 1 leg swings at most. 
+
+ The sequence of different legs to swing is right front->left hind->left front->right hind, that is 1->2->3->4 as the picture shown. 
 
 <img src="../_static/media/chapter_9/section_2/image2.png"  />
 
-如图（a）所示，PuppyPi机器狗的1号腿抬起并向前摆动，2、3、4号腿则用于支撑机身。此时，1号腿为摆动相，2、3、4号腿为支撑相。
+In (a), NO.1 leg of PuppyPi will lift and swing forward, and NO. 2, 3 and 4 legs are in support of the body.
 
-如图（b）所示，4条腿同时着地，1、2、3、4号腿都为支撑相。
+In (b), 4 legs are on the ground.
 
-如图（c）所示，PuppyPi机器狗的2号腿抬起并向前摆动，1、3、4号腿则用于支撑机身。此时，2号腿为摆动相，1、3、4号腿为支撑相。
+In (c), NO.2 leg will lift and swing forward, and NO. 1, 3 and 4 legs are in support of the body.
 
-如图（d）所示，4条腿同时着地，1、2、3、4号腿都为支撑相。
+In (d), 4 legs are on the ground.
 
-如图（e）所示，PuppyPi机器狗的3号腿抬起并向前摆动，1、2、4号腿则用于支撑机身。此时，3号腿为摆动相，1、2、4号腿为支撑相。
+In (e), NO.3 leg will lift and swing forward, and NO. 1, 2 and 4 legs are in support of the body.
 
-如图（f）所示，4条腿同时着地，1、2、3、4号腿都为支撑相。
+In (f), 4 legs are on the ground.
 
-如图（g）所示，PuppyPi机器狗的4号腿抬起并向前摆动，1、2、3号腿则用于支撑机身。此时，4号腿为摆动相，1、2、3号腿为支撑相。
+In (g), NO.4 leg will lift and swing forward, and NO. 1, 2 and 3 legs are in support of the body.
 
-如图（h）所示，4条腿同时着地，1、2、3、4号腿都为支撑相。
+In (h), 4 legs are on the ground.
 
-当完成（a）、（b）、（c）、（d）、（e）、（f）、（g）和（h）8组动作时。此时，PuppyPi机器狗即完成了一个完整周期的动作。
+Completing (a), (b), (c), (d), (e), (f), (g) and (h) actions indicates that PuppyPi finish a integrate cycle of action.
 
-### 2.3 玩法开启及关闭步骤
+### 4.2.3 Operation Steps
 
 :::{Note}
-输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
+The input command should be case sensitive. And the key words can be complemented by "Tab" key.
 :::
 
-(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_2/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2) Click<img src="../_static/media/chapter_9/section_2/image4.png" style="width:0.32292in;height:0.30208in" /> to open command line terminal
 
-(3)  输入指令，并按下回车，打开程序文件。
+(3) Enter command "rosed puppy_control puppy_demo.py" and press Enter to open the program files
 
 ```bash
 rosed puppy_control puppy_demo.py
 ```
 
-(4)  可以在下图所示位置中找到调用步态的代码，程序默认是执行Trot步态。按下"I"键，进入编辑模式。
+(4) Jump to 24th line to find the called codes. The program is default to execute Trot gait. Then press **"i"** key to enter editing mode.
 
 <img src="../_static/media/chapter_9/section_2/image9.png"  />
 
-(5)  将"**Trot**"修改为"**Walk**"。
+(5)  Modify **"Trot"** as **"Walk"**.
 
 <img src="../_static/media/chapter_9/section_2/image11.png"  />
 
-(6)  修改完成后，按下"Esc"键，输入"指令并按下回车，进行保存与退出。
+(6) Press **"Esc"**, and input **":wq"** to save and exit.
 
 ```bash
 :wq
 ```
 
-(7)  输入指令，并按下回车，启动玩法。
+(7) Enter command **"rosrun puppy_control puppy_demo.py"** and press Enter to start the game.
 
 ```bash
 rosrun puppy_control puppy_demo.py
 ```
 
-(8)  如需关闭此玩法，可在终端界面按下"**Ctrl+C**"。若关闭失败，请反复尝试。
+(8) If want to close this game, press **"Ctrl+C"**. If it fails to close, please try again.
 
-### 2.4 实现效果
+### 4.2.4 Program Outcome
 
-玩法开启后，PuppyPi机器狗会以Walk步态前进，任意时刻始终有三条腿着地，至多有一条腿抬起。下图是相位关系：
+After the game starts, PuppyPi will walk, that is to say its three legs are on the ground at least and one leg is lifted at most. The leg sequence diagram is as follow.
 
 <img src="../_static/media/chapter_9/section_2/image16.png"  alt="" />
 
-### 2.5 程序参数说明
+### 4.2.5 **Program Analysis**
 
-该程序的源代码位于Docker容器中的：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
+The source code of this program is stored in ：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
 
-(1) **步态选择**
+**(1) Gait Selection**
 
-程序内提供了三种步态：Trot步态、Amble步态、Walk步态。其中，Trot步态是程序默认的初始步态。
+There are three built-in gaits, including Trot, Amble and Walk. And Trot is the initial gait by default.
 
-<img src="../_static/media/chapter_9/section_2/image17.png"  />
+{lineno-start=27}
 
-若需要修改步态选择，可将当前步态对应的代码进行修改操作，比如更改为Walk步态，直接在红框内将"**Trot**"修改为"**Walk**"即可。
+```
+gait = 'Trot'
+# overlap_time:4脚全部着地的时间，单位秒(the time when all four legs touch the ground, measured in seconds)
+# swing_time：单脚离地时间，单位秒(the time duration when a single leg is off the ground, measured in second)
+# clearance_time：前后交叉脚相位间隔时间，单位秒(the time interval between the phases when the front and rear legs cross each other, measured in seconds)
+# z_clearance：走路时，脚尖要抬高的距离，单位cm(the distance the paw needs to be raised during walking, measured in centimeters)
 
-<img src="../_static/media/chapter_9/section_2/image19.png"  />
+if gait == 'Trot':
+    GaitConfig = {'overlap_time':0.2, 'swing_time':0.3, 'clearance_time':0.0, 'z_clearance':5}
+    PuppyPose['x_shift'] = -0.6
+    # Trot步态 clearance_time = 0(Trot gait clearance_time = 0)
 
-(2) **行走频率调节**
+elif gait == 'Amble':
+    GaitConfig = {'overlap_time':0.1, 'swing_time':0.2, 'clearance_time':0.1, 'z_clearance':5}
+    PuppyPose['x_shift'] = -0.9
+    # Amble步态 0 ＜ clearance_time ＜ swing_time( Amble gait 0 ＜ clearance_time ＜ swing_time)
+    
+elif gait == 'Walk':
+    GaitConfig = {'overlap_time':0.1, 'swing_time':0.2, 'clearance_time':0.3, 'z_clearance':5}
+    PuppyPose['x_shift'] = -0.65
+    # Walk步态   swing_time ≤ clearance_time(Walk gait   swing_time ≤ clearance_time)
+```
 
-通过修改对应参数。可以调整PuppyPi机器狗的行走频率。时间越短，频率越快。时间越长，频率越慢。
+If want to change the gait, we can directly modify "Trot" as "Walk".
 
-<img src="../_static/media/chapter_9/section_2/image21.png"  />
+{lineno-start=27}
 
-其中，括号内的参数含义如下：
+```
+gait = 'Trot'
+```
 
-第一个参数"**overlap_time**"是4脚全部着地的时间，单位为秒；
+**(2)  Walking Frequency Adjustment**
 
-第二个参数"**swing_time**"是单脚离地的时间，单位为秒；
+We can modify the following parameters to adjust its walking frequency. The shorter the time, the higher the frequency. The longer the time, the lower the frequency.
 
-第三个参数"**clearance_time**"是前后交叉脚相位的间隔时间，单位为秒；
+{lineno-start=42}
 
-第四个参数"**z_clearance**"是机器狗走路时，脚尖要抬高的距离，单位为厘米。
+```
+elif gait == 'Walk':
+    GaitConfig = {'overlap_time':0.1, 'swing_time':0.2, 'clearance_time':0.3, 'z_clearance':5}
+    PuppyPose['x_shift'] = -0.65
+    # Walk步态   swing_time ≤ clearance_time(Walk gait   swing_time ≤ clearance_time)
+```
 
-Walk步态下需要注意，设置的时候需遵循clearance_time＞swing_time，overlap_time＞0条件。如果想要更好的观察，我们可以延长clearance_time、swing_time和overlap_time时间，但频率变慢以后，走路稳定性会受到影响。例如我们这里将clearance_time改为5，swing_time改为3，overlap_time改为2。
+The meaning of the parameters in bracket is as follow.
 
-<img src="../_static/media/chapter_9/section_2/image23.png"  />
+The first parameter `overlap_time` is the time when all the legs touch the ground. The unit is second.
 
-## 3. Amble步态了解
+The second parameter `swing_time` is the time when one leg is off the ground. The unit is second.
 
-### 3.1 步态概念说明
+The third parameter `clearance_time` is interval between the lifts of legs at diagonal opposite ends of the body. The unit is second.
 
-步态是对动物走路特征进行周期性的总结描述。通俗而言，就是描述动物是如何走路的。四足动物常见的步态特征有小跑（Trot）、行走（Walk）、缓行（Amble）和踱步（Pace）等。
+The fourth parameter `z_clearance`  is the lifted height in cm during walking.
 
-下表列举了步态说明中部分常见名词：
+:::{Note}
 
-| **名词** |                          **说明**                          |
-|:--------:|:----------------------------------------------------------:|
-|  相位差  |              不同腿之间运动超前或滞后的差异。              |
-|  摆动相  |                  腿部抬起，处于腾空状态。                  |
-|  支撑相  |                     腿部处于着地状态。                     |
-|   周期   | 行进过程中，一侧足跟从着地到下一次着地的全过程是一个周期。 |
-| 步态频率 |                单位时间内完成的步态周期数。                |
-|   步长   |         一个周期内，从抬腿到着地，足端移动的距离。         |
-|   步幅   |                一个周期内，机身移动的距离。                |
-|  占空比  |           单腿处于支撑相的时间与步态周期的比值。           |
+under Walk gait, please ensure clearance_time＞swing_time and overlap_time＞0. If you want to better observe the Walk gait, we can extend swing_time and overlap_time, but the walking stability will be influenced due to lower frequency. For example, we modify clearance_time as 5, swing_time as 3, and overlap_time as 2.
 
-### 3.2 Amble步态说明
+:::
 
-Amble步态是静步态，可以将其视为加速后的Walk步态。在运动过程中至少有两台条腿处于支撑相，最多有两条腿处于摆动相。
+## 4.3 Amble Introduction
 
-由于Amble步态的实现过程与Walk步态的相同类似，所以摆动腿轮换顺序依然为：右前-\>左后-\>左前-\>右后，对应下图序号为：1-\>2-\>3-\>4。
+### 4.3.1 Gait Definition
+
+Gait is the pattern of movement of the limbs of animals. Generally speaking, it is used to describe how the animal walks. The common quadruped gaits include Trot, Walk, Amble, Pace, etc.
+The explanation for nouns used in gait is as follow.
+
+|      Noun      |                         Explanation                          |
+| :------------: | :----------------------------------------------------------: |
+|     phase      | Interpreted as Angle which indicates the position in cyclic motion. |
+|     phase      |       The angle difference between two motion position       |
+| support phase  |    When the legs are lifted, the body is without support.    |
+|     cycle      |                  The legs touch the ground                   |
+| gait frequency | The legs in one side from first to next touching ground is a cycle |
+|  step length   |         The number of completed cycle per unit time          |
+| stride length  |         The motion distance of the body in one cycle         |
+|   Duty ratio   | The ratio of the duration of one leg on ground to the gait cycle. |
+
+### 4.3.2 Amble Illustration
+
+Amble is static gait which is considered as accelerated Walk gait. During motion, 2 legs are on the ground at least and 2 legs swings at most.
+
+The motion process of Amble gait is the same as that of Walk gait. And the sequence of different legs to swing is right front->left hind->left front->right hind, that is 1->2->3->4 as the picture shown.
 
 <img src="../_static/media/chapter_9/section_3/image2.png"  alt="详细运动-准静态" />
 
-同Walk的区别在于：Walk步态是在第1条腿放下后再抬起第2条腿。而Amble步态则是在第1条腿抬起后，还未放下时，就开始抬起第2条腿。比如说右前腿抬起后，在还未放下时，左后腿即开始抬起。
+The difference between Amble and Walk gait is NO.2 leg is lifted after NO.1 leg touch the ground under Walk gait, while under Amble gait, NO.2 leg is lifted after NO.1leg is lifted but not touch the ground. 
 
-### 3.3 玩法开启及关闭步骤
+### 4.3.3 Operation Steps
 
 :::{Note}
-输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
+The input command should be case sensitive. And the key words can be complemented by "Tab" key.
 :::
 
-(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_3/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2) Click <img src="../_static/media/chapter_9/section_3/image4.png" style="width:0.32292in;height:0.30208in" /> to open command line terminal.
 
-(3)  输入指令，并按下回车，打开程序文件。
+(3) Enter command **"rosed puppy_control puppy_demo.py"** and press Enter to open the program files
 
 ```bash
 rosed puppy_control puppy_demo.py
 ```
 
-(4)  可以在下图所示位置中找到调用步态的代码，程序默认是执行Trot步态。按下"**I**"键，进入编辑模式。
+(4)  Jump to 24th line to find the called codes. The program is default to execute Trot gait. Then press **"i"** key to enter editing mode.
 
 <img src="../_static/media/chapter_9/section_3/image9.png"  />
 
-(5)  将"**Trot**"修改为"**Amble**"。
+(5) Modify **"Trot"** as **"Ample"**.
 
 <img src="../_static/media/chapter_9/section_3/image11.png"  />
 
-(6)  修改完成后，按下"**Esc**"键，输入指令并回车，进行保存与退出。
+(6) After modification, press **"Esc"**, input **":wq"** and press Enter to save and exit.
 
 ```bash
 :wq
 ```
 
-(7)  输入指令，并按下回车，启动玩法。
+(7) Enter command **"rosrun puppy_control puppy_demo.py"** and press Enter to start the game.
 
 ```bash
 rosrun puppy_control puppy_demo.py
 ```
 
-(8)  如需关闭此玩法，可在终端界面按下"**Ctrl+C**"。若关闭失败，请反复尝试。
+(8) Enter command **"rosrun puppy_control puppy_demo.py"** and press Enter to start the game.
 
-### 3.4 实现效果
+### 4.3.4 Program Outcome
 
-PuppyPi机器狗会以Amble步态行进，至少有两台条腿处于支撑相，最多有两条腿处于摆动相。Amble步态相当于加速后的Walk步态。下图是相位关系：
+PuppyPi will amble with two legs in support of the body at least and two legs swinging at most. Amble gait is the accelerated Walk gait. The leg sequence diagram is as follow.
 
 <img src="../_static/media/chapter_9/section_3/image2.png"  alt="详细运动-准静态" />
 
-### 3.5 程序参数说明
+### 4.3.5 Program Analysis
 
-该程序的源代码位于Docker容器中的：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
+The source code lies in ：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
 
-(1) **步态选择**
+(1) Gait Selection
 
-程序内提供了三种步态：Trot步态、Amble步态、Walk步态。其中，Trot步态是程序默认的初始步态。
+There are three built-in gaits, including Trot, Amble and Walk. And Trot is the initial gait by default.
 
-<img src="../_static/media/chapter_9/section_3/image16.png"  />
+{lineno-start=27}
 
-若需要修改步态选择，可将当前步态对应的代码进行修改操作，比如更改为Amble步态，直接在红框内将"**Trot**"修改为"**Amble**"即可。
+```
+gait = 'Trot'
+# overlap_time:4脚全部着地的时间，单位秒(the time when all four legs touch the ground, measured in seconds)
+# swing_time：单脚离地时间，单位秒(the time duration when a single leg is off the ground, measured in second)
+# clearance_time：前后交叉脚相位间隔时间，单位秒(the time interval between the phases when the front and rear legs cross each other, measured in seconds)
+# z_clearance：走路时，脚尖要抬高的距离，单位cm(the distance the paw needs to be raised during walking, measured in centimeters)
 
-<img src="../_static/media/chapter_9/section_3/image18.png"  />
+if gait == 'Trot':
+    GaitConfig = {'overlap_time':0.2, 'swing_time':0.3, 'clearance_time':0.0, 'z_clearance':5}
+    PuppyPose['x_shift'] = -0.6
+    # Trot步态 clearance_time = 0(Trot gait clearance_time = 0)
 
-(2) **行走频率调节**
+elif gait == 'Amble':
+    GaitConfig = {'overlap_time':0.1, 'swing_time':0.2, 'clearance_time':0.1, 'z_clearance':5}
+    PuppyPose['x_shift'] = -0.9
+    # Amble步态 0 ＜ clearance_time ＜ swing_time( Amble gait 0 ＜ clearance_time ＜ swing_time)
+    
+elif gait == 'Walk':
+    GaitConfig = {'overlap_time':0.1, 'swing_time':0.2, 'clearance_time':0.3, 'z_clearance':5}
+    PuppyPose['x_shift'] = -0.65
+    # Walk步态   swing_time ≤ clearance_time(Walk gait   swing_time ≤ clearance_time)
+```
 
-通过修改对应参数。可以调整PuppyPi机器狗的行走频率。时间越短，频率越快。时间越长，频率越慢。
+If want to change the gait, we can directly modify **"Trot"** as **"Walk"** or **"Ample"**.
 
-<img src="../_static/media/chapter_9/section_3/image20.png"  />
+{lineno-start=27}
 
-其中，括号内的参数含义如下：
+```
+gait = 'Trot'
+```
 
-第一个参数"**overlap_time**"是4脚全部着地的时间，单位为秒；
+**(2) Walking Frequency Adjustment**
 
-第二个参数"**swing_time**"是单脚离地的时间，单位为秒；
+We can modify the following parameters to adjust its walking frequency. The shorter the time, the higher the frequency. The longer the time, the lower the frequency.
 
-第三个参数"**clearance_time**"是前后交叉脚相位的间隔时间，单位为秒；
+{lineno-start=38}
 
-第四个参数"**z_clearance**"是机器狗走路时，脚尖要抬高的距离，单位为厘米。
+```
+elif gait == 'Amble':
+    GaitConfig = {'overlap_time':0.1, 'swing_time':0.2, 'clearance_time':0.1, 'z_clearance':5}
+    PuppyPose['x_shift'] = -0.9
+    # Amble步态 0 ＜ clearance_time ＜ swing_time( Amble gait 0 ＜ clearance_time ＜ swing_time)
+```
 
-Amble步态下需要注意，设置的时候需遵循0\<clearance_time\<swing_time，overlap_time＞0条件。如果想要更好的观察，我们可以延长clearance_time、swing_time和overlap_time时间，但频率变慢以后，走路稳定性会受到影响。例如我们这里将clearance_time改为3，swing_time改为5，overlap_time改为2。
+The meaning of the parameters in bracket is as follow.
 
-<img src="../_static/media/chapter_9/section_3/image22.png"  />
+The first parameter `overlap_time` is the time when all the legs touch the ground. The unit is second.
 
+The second parameter `swing_time` is the time when one leg is off the ground. The unit is second.
 
-## 4. Trot步态原地踏步
+The third parameter `clearance_time`  is interval between the lifts of legs at diagonal opposite ends of the body. The unit is second.
 
-关于Trot步态的详细说明，可前往目录"**[ROS机器狗运动控制课程\ 1. Trot步态了解](#anchor_1)**"查看文档。
-
-### 4.1 玩法开启及关闭步骤
+The fourth parameter `z_clearance`  is the lifted height in cm during walking.
 
 :::{Note}
-输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
+
+under Amble gait, please ensure 0<clearance_time<swing_time and overlap_time＞0. If you want to better observe the Amble gait, we can extend clearance_time, swing_time and overlap_time, but the walking stability will be influenced due to lower frequency. For example, we modify clearance_time as 3, swing_time as 5, and overlap_time as 2.
+
 :::
 
-(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
 
-(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_4/image3.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+## 4.4 March on Spot under Trot Gait
 
-(3)  输入指令，并按下回车，打开程序文件。
+For detailed introduction to Trot, please move to the file [4.1 Trot Introduction]().
+
+### 4.4.1 Operation Steps
+
+:::{Note}
+The input command should be case sensitive. And the key words can be complemented by "Tab" key.
+:::
+
+(1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
+
+(2)  Click <img src="../_static/media/chapter_9/section_4/image3.png" style="width:0.32292in;height:0.30208in" />  to open command line terminal
+
+(3)  Input command **"rosed puppy_control puppy_demo.py"** and press Enter to open the program file.
 
 ```bash
 rosed puppy_control puppy_demo.py
 ```
 
 
-(4)  找到下图所示代码：
+(4) Locate to these codes 
 
 <img src="../_static/media/chapter_9/section_4/image8.png"  />
 
-(5)  点击"**i**"键进入编辑模式。将代码修改为"**set_mark_time_srv(True)**"。
+(5) Press "i" to enter editing mode, and then modify the code as **"set_mark_time_srv(True)"**
 
 <img src="../_static/media/chapter_9/section_4/image10.png"  />
 
-(6)  修改完成后，按下"**Esc**"键，输入指令并回车，进行保存与退出。
+(6) After modification, press **"Esc"** key, input **":wq"** and press Enter to save and exit editing.
 
 ```bash
 :wq
 ```
 
-(7)  输入指令，并按下回车，启动玩法。
+(7) Enter command **"rosrun puppy_control puppy_demo.py"** and press Enter to start the game.
 
 ```bash
 rosrun puppy_control puppy_demo.py
 ```
 
-(8)  如需关闭此玩法，可在终端界面按下"**Ctrl+C**"。若关闭失败，请反复尝试。
+(8) If want to close this game, we can press **"Ctrl+C"**. If it fails to close, please try again. 
 
-### 4.2 实现效果 
+### 4.4.2 Project Outcome 
 
-玩法开启后，PuppyPi机器狗会以Trot步态下进行原地踏步，对角的两腿成对运动，同时原地抬起或着地。下图是相位关系：
+After the game starts, PuppyPi will march on the spot with Trot gait. The legs at diagonal opposite ends of the body lift or touch the ground together. The leg sequence diagram is as the figure below.
 
 <img src="../_static/media/chapter_9/section_4/image15.png"  />
 
-### 4.3 程序参数说明 
+### 4.4.3 Program Analysis
 
-该程序的源代码位于Docker容器中的：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
+The source code of this program is stored in ：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
 
-通过发送对应的服务请求，可使PuppyPi机器狗进行原地踏步。
+Through sending the corresponding command, we can control PuppyPi to march on the spot.
 
-<img src="../_static/media/chapter_9/section_4/image16.png"  />
+{lineno-start=75}
 
-其中，括号内的参数用于控制是否发送服务，初始默认为"**False**"，即不发送服务，启动玩法后，PuppyPi机器狗会以当前选择步态行进。值为"**True**"时，机器狗会执行原地踏步。
+```
+    set_mark_time_srv(False)
+    ## 如果原地踏步期间，小狗仍然在缓慢的向前或向后，那就需要重新调整小狗重心，微调PuppyPose['x_shift']即可(if the dog continues to move slowly forward on backward while stepping in place, it is necessary to readjust the dog's center of gravity. simply fine-tune 'x_shift' in PuppyPose)
+```
 
-此外，在原地踏步的过程中，PuppyPi机器狗若出现位置偏移，可以通过调整其中心来解决此问题，关于重心调节详细内容，可参考"**[ROS机器狗运动控制课程\ 6. 机器狗重心调节](#anchor_6)**"。
+The parameter in the bracket decides whether to send service or not, and it is "False" by default, which means that the service will not be sent. After the game starts, PuppyPi will move in the selected gait, for example Trot. When the parameter in the bracket is "True", PuppyPi will march on the spot.
+If PuppyPi deviates during marching on the spot, we can adjust its center of gravity to tackle this problem. For detailed tutorial, please move to the folder "3.6 Center of Gravity Adjustment".
 
-## 5. Trot步态转弯
+## 4.5 Turn under Trot Gait
 
-关于Trot步态的详细说明，可前往目录"**[ROS机器狗运动控制课程\1. Trot步态了解](#anchor_1)**"查看文档。
+For detailed introduction to Trot, please move to the folder "4.1Trot Introduction".
+This lesson is based on Trot. Through modifying the corresponding parameter, PuppyPi will turn under Trot gait.
 
-本节课会以Trot步态为基础，通过修改对应参数，令PuppyPi机器狗在Trot步态下进行前进转弯。
-
-### 5.1 玩法开启及关闭步骤
+### 4.5.1 Operation Steps
 
 :::{Note}
-输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
+The input command should be case sensitive. And the key words can be complemented by "Tab" key.
 :::
 
-(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_5/image3.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2) Click <img src="../_static/media/chapter_9/section_5/image3.png" style="width:0.32292in;height:0.30208in" /> to open command line terminal.
 
-(3)  输入指令，并按下回车，打开程序文件。
+(3) Input command "rosed puppy_control puppy_demo.py" and press Enter to open the program file.
 
 ```bash
 rosed puppy_control puppy_demo.py
 ```
 
-(4)  找到下图所示代码：
+(4) Locate to these codes
 
 <img class="common_img" src="../_static/media/chapter_9/section_5/image8.png"  />
 
-(5)  点击"**i**"键进入编辑模式。例如将机器狗逆时针转0.18rad/s，转换后代码应修改为"**PuppyMove = {'x':6, 'y':0, 'yaw_rate':0.18}**"。
+(5) Press "i" to enter editing mode. For example, make PuppyPi turn 10°/s counterclockwise. Therefore, we should modify the codes as **"PuppyMove = {'x':6, 'y':0, 'yaw_rate':0.18}"**.
 
 <img src="../_static/media/chapter_9/section_5/image10.png"  />
 
-(6)  修改完成后，按下"**Esc**"键，输入指令并按下回车，进行保存与退出。
+(6) After modification, press **"Esc"**, input **":wq"** and press Enter to save and exit the editing.
 
 ```bash
 :wq
 ```
 
-(7)  输入指令，并按下回车，启动玩法。
+(7) Input command **"rosrun puppy_control puppy_demo.py"** and press Enter to start the game.
 
 ```bash
 rosrun puppy_control puppy_demo.py
 ```
 
-(8)  如需关闭此玩法，可在终端界面按下"Ctrl+C"。若关闭失败，请反复尝试。
+(8)  If want to close this game, we can press "Ctrl+C". If it fails to close the game, please try again.
 
-### 5.2 实现效果
+### 4.5.2 Program Outcome
 
-PuppyPi机器狗会在Trot步态下，且持续朝设定的方向前进转弯。
+Under Trot gait, PuppyPi will turn in the set direction.
 
-### 5.3 程序参数说明
+### 4.5.3 Program Analysis
 
-该程序的源代码位于Docker容器中的：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
+The source code of this program lies in ：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
 
-- #### 5.3.1 移动参数调节
+- #### Motion Parameter Adjustment
 
-通过设置对应参数，可以调整PuppyPi机器狗的行进方向。
+Through setting the corresponding parameters, adjust PuppyPi's moving direction.
 
-<img src="../_static/media/chapter_9/section_5/image15.png"  />
+{lineno-start=13}
 
-其中，括号内的参数含义如下：
+```python
+PuppyMove = {'x':6, 'y':0, 'yaw_rate':0}
+# x:直行控制，  前进方向为正方向，单位cm/s(straightforward control, with the forward direction as the positive direction, measured in cm/s)
+# y:侧移控制，左侧方向为正方向，单位cm/s，目前无此功能(lateral movement control, with the left direction as the positive direction, measured in cm/s. currently, this feature is bot available)
+# yaw_rate：转弯控制，逆时针方向为正方向，单位rad/s(turning control, with counterclockwise direction as the positive direction, measured in rad/s)
+```
 
-第三个参数"yaw_rate"用于控制机器狗转弯，设置为正数，逆时针转弯。为负数，则顺时针转弯，数值范围为"-0.89~0.89，单位为rad/s。数值的绝对值越大，机器狗的转弯幅度越大。
+The meaning of parameter in the bracket is as follow.
+The third parameter`yaw_rate` is used to control PuppyPi to turn, ranging from -0.89~0.89 rad/s. When the value is positive, PuppyPi will turn counterclockwise. When the value is negative, PuppyPi will turn clockwise. The greater the absolute value, the greater the turning angle.
+Take the camera at front as the first-person perspective, and the rotation direction is as the picture shown. 
 
-这里的转动方向是以机器狗正前方摄像头为第一视角，如下图所示：
+<img src="../_static/media/chapter_9/section_5/image17.png"  alt="" />
 
-<img src="../_static/media/chapter_9/section_5/image17.png"  alt="puppy俯视2" />
+1rad/s corresponds to 57.3°/s. For example, if you want to set the rotation speed as 30°/s, we should set "yaw_rate" as 0.52. (30/57.3≈0.52)
 
-设置时，1rad/s对应57.3°/s，例如，如果转动速度设置为30°/s，"yaw_rate"的数值就是30/57.3≈0.52。
+- #### Gait Adjustment
 
-- #### 5.3.2步态调节
+**(1) Gait Selection**
 
-(1) **步态选择**
+There are three built-in gaits, including Trot, Amble and Walk. And Trot is the initial gait by default.
 
-程序内提供了三种步态：Trot步态、Amble步态、Walk步态。其中，Trot步态是程序默认的初始步态。
+{lineno-start=27}
 
-<img src="../_static/media/chapter_9/section_5/image18.png"  />
+```
+gait = 'Trot'
+# overlap_time:4脚全部着地的时间，单位秒(the time when all four legs touch the ground, measured in seconds)
+# swing_time：单脚离地时间，单位秒(the time duration when a single leg is off the ground, measured in second)
+# clearance_time：前后交叉脚相位间隔时间，单位秒(the time interval between the phases when the front and rear legs cross each other, measured in seconds)
+# z_clearance：走路时，脚尖要抬高的距离，单位cm(the distance the paw needs to be raised during walking, measured in centimeters)
 
-若需要修改步态选择，可将当前步态对应的代码进行修改操作，比如更改为Walk步态，直接在红框内将"**Trot**"修改为"**Walk**"即可。
+if gait == 'Trot':
+    GaitConfig = {'overlap_time':0.2, 'swing_time':0.3, 'clearance_time':0.0, 'z_clearance':5}
+    PuppyPose['x_shift'] = -0.6
+    # Trot步态 clearance_time = 0(Trot gait clearance_time = 0)
 
-<img src="../_static/media/chapter_9/section_5/image20.png"  />
+elif gait == 'Amble':
+    GaitConfig = {'overlap_time':0.1, 'swing_time':0.2, 'clearance_time':0.1, 'z_clearance':5}
+    PuppyPose['x_shift'] = -0.9
+    # Amble步态 0 ＜ clearance_time ＜ swing_time( Amble gait 0 ＜ clearance_time ＜ swing_time)
+    
+elif gait == 'Walk':
+    GaitConfig = {'overlap_time':0.1, 'swing_time':0.2, 'clearance_time':0.3, 'z_clearance':5}
+    PuppyPose['x_shift'] = -0.65
+    # Walk步态   swing_time ≤ clearance_time(Walk gait   swing_time ≤ clearance_time)
+```
 
-(2) **行进速度调节**
+If need to change the gait, we can uncomment the code of the target gait while comment the codes of the rest two gaits.
 
-通过修改对应参数。可以调整PuppyPi机器狗的行进速度。
+{lineno-start=27}
 
-<img src="../_static/media/chapter_9/section_5/image21.png"  />
+```
+gait = 'Trot'
+```
 
-其中，括号内的参数含义如下：
+**(2) Speed Adjustment**
 
-第一个参数"**overlap_time**"是PuppyPi机器狗四条腿全部着地的时间，单位为秒。
+Through adjusting the corresponding parameter, we can adjust PuppyPi's moving speed.
 
-第二个参数"**swing_time**"是机器狗单脚离地的时间，单位为秒。
+{lineno-start=34}
 
-第三个参数"**clearance_time**"是机器狗前后交叉脚相位间隔时间，单位为秒。
+```
+    GaitConfig = {'overlap_time':0.2, 'swing_time':0.3, 'clearance_time':0.0, 'z_clearance':5}
+```
 
-第四个参数"**z_clearance**"是走路时，机器狗脚尖要抬高的距离，单位为厘米。
+The meaning of the parameters in bracket is as follow.
+
+The first parameter `overlap_time` is the time when all the legs touch the ground. The unit is second.
+
+The second parameter  `swing_time`  is the time when one leg is off the ground. The unit is second.
+
+The third parameter  `clearance_time`  is interval between the lifts of legs at diagonal opposite ends of the body. The unit is second.
+
+The fourth parameter `z_clearance`  is the lifted height in cm during walking.
 
 <p id="anchor_6"></p>
 
-## 6. 机器狗重心调节
+## 4.6 Center of Gravity Adjustment
 
-### 6.1 重心说明
+### 4.6.1 **Center of Gravity** 
 
-机器狗的重心位于机身前后左右都能平均分配的一点，所以在行走的过程中，是处于一个动态平衡状态，需要不断的调整身体其它部位以保持重心在稳定阈内。
+The center of gravity of an object is the point at which weight is evenly dispersed and all sides are in balance. Therefore PuppyPi is in dynamic equilibrium during walking. To achieve dynamic equilibrium, PuppyPi needs to adjust different parts of its body to ensure the center of gravity is within the threshold. 
 
-在一般情况下，无需对机器狗的默认重心进行调节，当其需要承担其它开发需求时，则需通过将重心维持在稳定阈内，从而避免机体发生偏转、倾倒等情况。
+In normal case, there is no need to adjust its center of gravity. However, in secondary development case, it is necessary to lock the center of gravity within the threshold to avoid body deviation and tilt. 
 
-这点可以理解为人正常走路时，抱着东西或背着东西走路时的重心是不同的，所以这是调节重心的意义。
+Take human for example. Our center of gravity is different when we hold the object with our hands or carry it on back. Hence, we need to adjust our center of gravity to avoid falling down.
 
-### 6.2 程序设置说明
+### 4.6.2 Program Explanation
 
-该程序的源代码位于Docker容器中的：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
+The source code of this program is stored in **[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
 
-我们以默认的Trot步态为例进行说明：
+Take Trot gait for example.
 
-<img src="../_static/media/chapter_9/section_6/image2.png"  />
+{lineno-start=18}
 
-如上图在程序中，参数"**x_shift**"是机器狗四条腿在X轴上同向移动的距离，范围是"**-10~10**"，单位为厘米，可通过调节该值来改变机器狗行走时的平衡。
+```
+PuppyPose = {'roll':math.radians(0), 'pitch':math.radians(0), 'yaw':0.000, 'height':-10, 'x_shift':0.5, 'stance_x':0, 'stance_y':0}
+# PuppyPose = {'roll':math.radians(0), 'pitch':math.radians(0), 'yaw':0.000, 'height':-10, 'x_shift':-0.5, 'stance_x':0, 'stance_y':0}
+# stance_x：4条腿在x轴上额外分开的距离，单位cm(the distance extra apart for each of the four legs on the X-axis, measured in centimeters)
+# stance_y：4条腿在y轴上额外分开的距离，单位cm(the distance extra apart for each of the four legs on the Y-axis, measured in centimeters)
+# x_shift: 4条腿在x轴上同向移动的距离，越小，走路越前倾，越大越后仰,通过调节x_shift可以调节小狗走路的平衡，单位cm(the distance traveled by the four legs along the x-axis determines the degree of forward or backward tilt during walking: smaller distances lead to more forward tilt, while larger distances result in more backward tilt. Adjusting the x_shift parameter can help maintain balance during the dog's movement, measured in centimeters)
+# height： 狗的高度，脚尖到大腿转动轴的垂直距离，单位cm(the height of the dog, measured from the toe to the axis  of rotation of the thigh, is in centimeters)
+# pitch： 狗身体的俯仰角，单位弧度(the pitch angle of the dog's body, measured in radians)
+```
 
-需要注意的是数值"**-0.6**"，可称为Trot步态下默认的平衡值，由于不同步态下行走方式不一样，所以 x_shift 的平衡点值不同。
+In the program above, parameter `x_shift` is the distance that PuppyPi' s four legs move in the same direction on X axis. It ranges from -10 to 10 cm. We can adjust this value to balance PuppyPi's body. 
+`-0.6` is the default balance value under Trot gait. As PuppyPi walks in different way under different gaits, the balance value varies.
+The smaller the x_shift, the greater PuppyPi leans forward. The larger the x_shift, the greater PuppyPi leans back. 
 
-在调整该参数时，步态平衡点的值越小，机器狗向前倾幅度越大；值越大，则后仰幅度越大。
+### 4.6.3 Operation Steps
 
-### 6.3 玩法开启及关闭步骤
-
-此处以**PuppyPi机器狗向前倾2cm**为例，具体的操作步骤如下：
+Take controlling PuppyPi to lean 2cm forward. Please follow the steps below to operate.
 
 :::{Note}
-输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
+The input command should be case sensitive. And the key words can be complemented by **"Tab"** key.
 :::
 
-(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_6/image5.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2) Click<img src="../_static/media/chapter_9/section_6/image5.png" style="width:0.32292in;height:0.30208in" />to open command line terminal.
 
-(3)  输入指令，并按下回车，打开程序文件。
+(3) Input command **"rosed puppy_control puppy_demo.py"** and press Enter to open the program file.
 
 ```bash
 rosed puppy_control puppy_demo.py
 ```
 
-(4)  "**PuppyPose\[‘x_shift’\]**"的参数，Trot 步态默认平衡值为-0.6，我们这里把数值修改为-2，比平衡值小，所以机器狗会向前倾。更改完成后，按下"**Esc**"键，接着按下指令进行保存。
+(4) The parameter `PuppyPose['x_shift']` for the Trot gait has a default balance value of -0.6. Here, we modify the value to -2, which is smaller than the balance value, causing the robot dog to lean forward. After modification, press **"Esc"**, and then input **":wq"** to save the modified data.
 
 ```bash
 :wq
@@ -558,328 +708,353 @@ rosed puppy_control puppy_demo.py
 <img src="../_static/media/chapter_9/section_6/image10.png"  />
 
 :::{Note}
-① 该修改方法不只是适用于 Trot 步态，其他步态也同样适用。
-② 本次示例大幅度调整是为了让变化效果更明显，以方便观察。实际调节时则建议小幅度范围调整。
-:::
 
-(5) 输入指令，并按下回车，即可查看调整效果。
+* This modification is also applicable to the rest two gaits.
+* For obvious change and better observation, we greatly adjust the value, but it is recommended to make minor adjustment on the value. 
+  :::
+
+(5) Input command **"rosrun puppy_control puppy_demo.py"** and press Enter to check the adjustment effect.
 
 ```bash
 rosrun puppy_control puppy_demo.py
 ```
 
-(6)  如需关闭此玩法，可在终端界面按下"**Ctrl+C**"。若关闭失败，请反复尝试。
+(6) If want to close this game, we can press **"Ctrl+C"**. If it fails to close, please try again.
 
-### 6.4 功能实现
+### 4.6.4 Program Outcome
 
-玩法开启后，PuppyPi 机器狗就会在Trot步态下向前倾的行走。
+After the game starts, PuppyPi will walk with body leaning forward under Trot gait.
 
-## 7. ROS机器人基本通讯
 
-### 7.1 通讯方式介绍
 
-ROS系统是一个分布式计算环境，它不仅可以在一台机器人上运行多个节点，而且还可以在多台相互通信的机器人上运行，只需要这些机器在同一个网络上。
+## 4.7 Basic Communication of ROS Robot
 
-所以ROS的通信架构是ROS的灵魂，也是整个ROS能够正常运行的关键。ROS的通信方式有四种：Topic（话题）、Service（服务）、Parameter Service（参数服务器）、Actionlib（动作库）。
+### 4.7.1 Communication Method
 
-ROS中 话题(Topic)采用异步通信机制，它使用发布/订阅模型，数据由发布者传输到订阅者，同一个话题的订阅者或发布者可以不唯一。话题模型如下图所示：
+The ROS system is a distributed computing environment. It not only allows multiple nodes to run on a single robot but also enables them to run on multiple robots that communicate with each other, as long as these robots are on the same network.
+
+Therefore, the communication architecture of ROS is the soul of ROS and also the key to the normal operation of the entire ROS system. There are four communication methods in ROS: Topic (topics), Service (services), Parameter Service (parameter server), and Actionlib (action library).
+
+In ROS, topics use an asynchronous communication mechanism. They employ a publish/subscribe model, where data is transmitted from publishers to subscribers. Multiple subscribers or publishers can exist for the same topic. The topic model is illustrated in the following diagram:
 
 <img src="../_static/media/chapter_9/section_7/image2.png"  alt="image108" />
 
-服务(Service)采用同步通信机制，它使用客户端/服务器（C/S）模型，客户端发送请求数据，服务器完成处理后返回应答数据。服务模型如下图所示：
+Service adopts Synchronous Communication Mechanism and uses client/ server model. In this model, client will send request, and server will response after processing.
 
 <img class="common_img" src="../_static/media/chapter_9/section_7/image3.png" width="200px"  alt="image20" />
 
-### 7.2 话题通讯
+### 4.7.2 Topic Communication
 
-- #### 7.2.1 查看话题通讯
+- #### Check Topic Communication
 
-ROS机器人系统能自带RQT工具，可以通过调用对应工具，查看机器狗节点之间的通讯过程，具体的操作步骤如下：
+ROS comes with RQT tool. And we can use the corresponding tool to check the communication between the nodes of PuppyPi.
 
 :::{Note}
-输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
+The input command should be case sensitive, and the key words can be complemented by "Tab" key.
 :::
 
-(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_7/image5.png"  />，打开Terminator终端。
+(2) Click <img src="../_static/media/chapter_9/section_7/image5.png"  /> to open command line terminal
 
-(3)  输入指令，并按下回车，打开工具。
+(3) Input command "rqt_graph" and press Enter to open the tool
 
 ```bash
 rqt_graph
 ```
 
-(4)  找到下图所示代码，在界面中设置为"Nodes/Topics(all)"，显示如下图：
+(4) Please find the codes as the figure below shown, and set it as **"Nodes/Topics(all)"**
 
 <img src="../_static/media/chapter_9/section_7/image10.png"  />
 
-界面中包含当前环境下的通讯流程图，其中方框图片里的是话题信息，椭圆图片里的是节点信息。里面的通讯流程是机器人开机后，自动开启通讯的流程图。
+The communication flow chart under current environment is displayed on the interface. Topics are in the frame, and nodes are in ellipse. The communication process is that the robot automatically starts communication after booting up.
 
-图片中，有些节点没有发布话题，例如<img src="../_static/media/chapter_9/section_7/image11.png" style="width:0.99931in;height:0.40694in" />，这代表代码相关功能没有开启。这里开启人脸识别玩法后，再次观察通讯的流程图，显示如下：
+In the picture above, we can notice that some nodes didn't publish topic, like <img src="../_static/media/chapter_9/section_7/image11.png" style="width:0.99931in;height:0.40694in" />， which means that the corresponding function of the code isn't turned on. After the game of face recognition starts, the communication flow chart changes, as the picture below shown.
 
 <img src="../_static/media/chapter_9/section_7/image12.png"  />
 
-- #### 7.2.2 话题通讯分析
+- #### Analysis of Topic Communication
 
-为了方便理解，这里以人脸识别玩法的流程为例进行分析，所涉流程如下图：
+For better understanding, let's take the process of face recognition as example for analysis. 
 
 <img src="../_static/media/chapter_9/section_7/image13.png"  alt="image19" />
 
-具体步骤如下：
+The communication process is as follow.
 
-(1) <img src="../_static/media/chapter_9/section_7/image17.png" style="width:0.63264in;height:0.28819in" alt="image19" />节点发布<img src="../_static/media/chapter_9/section_7/image18.png" style="width:0.91042in;height:0.46667in" alt="image19" />话题。
+(1) <img src="../_static/media/chapter_9/section_7/image17.png" style="width:0.63264in;height:0.28819in" alt="image19" />node publishes <img src="../_static/media/chapter_9/section_7/image18.png" style="width:0.91042in;height:0.46667in" alt="image19" />topic
 
-(2) <img src="../_static/media/chapter_9/section_7/image19.png" style="width:0.72431in;height:0.26389in" alt="image19" />节点订阅<img src="../_static/media/chapter_9/section_7/image20.png" style="width:0.63264in;height:0.28819in" alt="image19" />节点发布的<img src="../_static/media/chapter_9/section_7/image21.png" style="width:0.91042in;height:0.46667in" alt="image19" />话题，同时发布<img src="../_static/media/chapter_9/section_7/image22.png" style="width:1.06319in;height:0.44583in" alt="image19" />话题。
+(2) <img src="../_static/media/chapter_9/section_7/image19.png" style="width:0.72431in;height:0.26389in" alt="image19" />node subscribes<img src="../_static/media/chapter_9/section_7/image21.png" style="width:0.91042in;height:0.46667in" alt="image19" />topic published by <img src="../_static/media/chapter_9/section_7/image22.png" style="width:1.06319in;height:0.44583in" alt="image19" />话题。
 
-(3) <img src="../_static/media/chapter_9/section_7/image23.png" style="width:1.05694in;height:0.28958in" alt="image19" />节点订阅<img src="../_static/media/chapter_9/section_7/image24.png" style="width:0.72431in;height:0.26389in" alt="image19" />节点发布的<img src="../_static/media/chapter_9/section_7/image25.png" style="width:1.06319in;height:0.44583in" alt="image19" />话题。
+(3) <img src="../_static/media/chapter_9/section_7/image23.png" style="width:1.05694in;height:0.28958in" alt="image19" /> node subscribes<img src="../_static/media/chapter_9/section_7/image25.png" style="width:1.06319in;height:0.44583in" alt="image19" /> topic published by <img src="../_static/media/chapter_9/section_7/image24.png" style="width:0.72431in;height:0.26389in" alt="image19" />
 
-### 7.3 服务通讯
+### 4.7.3 Service Communication
 
-- #### 7.3.1查看服务通讯
+- #### Check Service Communication
 
-通过观察"**puppy.py**"文件，可以查看到机器狗的服务通讯。
+We can check the service communication of PuppyPi in "puppy.py" file.
+This file is stored in the path [/home/ubuntu/puppy_pi/src/puppy_control/scripts/puppy.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy.py)
 
-[下载源代码（puppy.py）](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy.py)
-
-通过观察，可以知道，服务通讯中主要发送"**set_running**"、"**go_home**"、"**set_self_balancing**"、"**runActionGroupFun**"和"**set_mark_time**"这些请求，如下图：
+In this file, we can find that **"set_running"**, **"go_home"**, **"set_self_balancing"**, **"runActionGroupFun"** and **"set_mark_time"** requests are mainly sent in service communication.
 
 <img src="../_static/media/chapter_9/section_7/image16.png"  />
 
-对应功能如下表格：
+The functions of the service are listed below.
 
-|      **服务**      |         **功能**         |
-|:------------------:|:------------------------:|
-|    set_running     |  设置机器狗的停止和启动  |
-|      go_home       | 设置机器狗恢复到初始姿态 |
-| set_self_balancing |     设置机器狗自平衡     |
-| runActionGroupFun  |    设置机器狗的动作组    |
-|   set_mark_time    |    设置机器狗原地踏步    |
+|      Service       |                Function                |
+| :----------------: | :------------------------------------: |
+|    set_running     |         stop and start PuppyPi         |
+|      go_home       | make PuppyPi return to initial posture |
+| set_self_balancing |  make PuppyPi perform self-balancing   |
+| runActionGroupFun  |    set the action group of PuppyPi     |
+|   set_mark_time    |     make PuppyPi march on the spot     |
 
-## 8. ROS机器狗上位机遥控
+## 4.8 PC Software Control
 
 :::{Note}
-(1) 为了避免操控冲突及出现问题，在使用电脑端控制软件时，请断开手机APP控制。
-(2) 如无法打开软件，可在本节目录下安装驱动包。
-:::
 
-### 8.1 上位机软件打开
+* To avoid interference, please cut off the connection to APP first, then control PuppyPi through PC software.
 
-在本节文件夹下将电脑端控制软件解压至任意英文路径下，然后打开文件夹内的图示应用（在打开应用时请关闭防火墙）。
+* If the software cannot be opened, please install the driver which can be found in the same folder.
+
+  :::
+
+### 4.8.1 Open PC Software
+
+Extract the PC software to any English path, then find the application below and open it. Please turn off the firewall before opening the PC software.
 
 <img class="common_img" src="../_static/media/chapter_9/section_8/image2.png" style="width:1.375in;height:1.29167in" />
 
-### 8.2 上位机软件连接
+### 4.8.2 PC Software Connection
 
-(1)  打开机器狗的开关。
+(1) Turn on PuppyPi.
 
-(2)  等待Ros系统启动完成以后，蜂鸣器会发出"**滴**"的一声。打开电脑（台式电脑需自备无线网卡）网络设定，选择该热点。
+(2) Please wait until the buzzer beeps, at this time ROS system boots up successfully. Then connect your computer to the WiFi starting with HW. Note: if you are using desktop computer, wireless network card is required.
 
 <img class="common_img" src="../_static/media/chapter_9/section_8/image3.png"  />
 
-(3)  然后打开上位机软件，点击"**连接**"，等待片刻，上位机即可连接完成。
+(3) Open PC software, and then click **"Connect"**. After a while, PC software will connect to the PuppyPi.
 
 <img src="../_static/media/chapter_9/section_8/image4.png"  />
 
 <img class="common_img" src="../_static/media/chapter_9/section_8/image5.png" style="width:3.14931in;height:2.32014in" />
 
-### 8.3 界面说明
+### 4.8.3 Interface Layout
 
 <img src="../_static/media/chapter_9/section_8/image6.png"  />
 
-(1) **移动控制区域**
+**(1) Motion Control Area**
 
-| **图标** | **功能说明** |
+| Icon | Function |
 |:--:|:--:|
-| <img src="../_static/media/chapter_9/section_8/image7.png" style="width:3.14444in;height:0.31944in" /> | 机器狗行走时，脚尖能抬升的最大距离，单位为mm。 |
-| <img src="../_static/media/chapter_9/section_8/image8.png" style="width:3.17778in;height:0.34028in" /> | 机器狗行走的速度设置，单位为mm/s。 |
-| <img src="../_static/media/chapter_9/section_8/image9.png" style="width:3.25486in;height:0.31944in" /> | 一个步态完整的周期时间，单位为ms。 |
-| <img src="../_static/media/chapter_9/section_8/image10.png" style="width:1.625in;height:0.54167in" /> | 可切换Trot、Amble、Walk三种任意一个步态。 |
-| <img src="../_static/media/chapter_9/section_8/image11.png" style="width:1.80625in;height:1.63264in" /> | 移动操控按钮，鼠标点按或使用对应按键皆可。 |
+| <img src="../_static/media/chapter_9/section_8/image7.png" style="width:3.14444in;height:0.31944in" /> | The maximum lifted height of leg during walking in mm |
+| <img src="../_static/media/chapter_9/section_8/image8.png" style="width:3.17778in;height:0.34028in" /> | Moving speed in mm/s |
+| <img src="../_static/media/chapter_9/section_8/image9.png" style="width:3.25486in;height:0.31944in" /> | Time taken to complete one gait |
+| <img src="../_static/media/chapter_9/section_8/image10.png" style="width:1.625in;height:0.54167in" /> | Switch between Trot, Amble and Walk gait. |
+| <img src="../_static/media/chapter_9/section_8/image11.png" style="width:1.80625in;height:1.63264in" /> | Buttons for motion control. Click the button or press corresponding key to realize control |
 
-(2) **姿态控制区域**
+**(2) Posture Control Area**
 
-| **图标** | **功能说明** |
+| Icon | Function |
 |:--:|:--:|
-| <img src="../_static/media/chapter_9/section_8/image12.png" style="width:3.23958in;height:0.49097in" /> | 调节机器狗高中低三种站立姿态。 |
-| <img src="../_static/media/chapter_9/section_8/image13.png" style="width:3.36111in;height:0.59722in" /> | 俯视仰视的角度，以机器狗为第一视角；设置为正数时，机器狗仰视；负数时，机器狗俯视。数值的绝对值越大，仰视或俯视的角度越大。 |
-| <img src="../_static/media/chapter_9/section_8/image14.png" style="width:3.39097in;height:0.52431in" /> | 左右倾斜的角度，以机器狗为第一视角；设置为正数时，机器狗向右倾斜；负数时，机器狗向左倾斜。数值的绝对值越大，倾斜的角度越大。 |
+| <img src="../_static/media/chapter_9/section_8/image12.png" style="width:3.23958in;height:0.49097in" /> | Adjust PuppyPi to high, medium or low standing posture |
+| <img src="../_static/media/chapter_9/section_8/image13.png" style="width:3.36111in;height:0.59722in" /> | Angle for PuppyPi to look up and down. When it is positive, PuppyPi will look up. When it is negative, PuppyPi will look down. The greater the absolute value, the larger the pitch angle. |
+| <img src="../_static/media/chapter_9/section_8/image14.png" style="width:3.39097in;height:0.52431in" /> | Angle of left and right tilt. When it is positive, PuppyPi will tilt to right. When it is negative, PuppyPi will tilt to left. The greater the absolute value, the larger the roll angle. |
 
-(3) **重心调节区域**
+**(3) Center of Gravity Control**
 
-| **图标** | **功能说明** |
+| Icon | Function |
 |:--:|:--:|
-| <img src="../_static/media/chapter_9/section_8/image15.png" style="width:3.23472in;height:0.60278in" /> | 默认值为-5，相对默认值越小，机器狗走路越往前倾；值越大，就越往后仰。 |
+| <img src="../_static/media/chapter_9/section_8/image15.png" style="width:3.23472in;height:0.60278in" /> | The default value is -5. The smaller the value, the more it leans forward; The larger the value, the more it leans back. |
 
-## 9. 机器狗坐标系的建立
+## 4.9 Coordinate System Establishing
 
-### 9.1 坐标系介绍
+### 4.9.1 Coordinate System Introduction
 
-在控制PuppyPi机器狗运动时，可通过输入机器狗4条腿的落脚点坐标，使用逆运动学，输出所有舵机的转动角度，达到控制机器狗行走的目的。
+We take two steps to control PuppyPi to walk. Firstly, input the coordinate of foothold of PuppyPi's four legs. Secondly, use inverse kinematics to output the rotation angle of all the servos.
+Therefore, coordinate system of PuppyPi should be established in the beginning. With the center of 4 upper joints as the origin (0,0,0), set the coordinate of foothold of PuppyPi's four legs.
 
-所以说，首先需要建立机器狗的坐标体系。建立坐标系时，以机器狗的4个髋关节的中心点为原点坐标（0,0,0），设置4条腿的落脚点坐标，如下图所示：
+ <img src="../_static/media/chapter_9/section_9/image2.png"  alt="image21" />
 
-<img src="../_static/media/chapter_9/section_9/image2.png"  alt="image21" /> 
+ And we just need to set the X axis and Z axis values of coordinate of foothold of PuppyPi's four legs, because there is no servo for controlling PuppyPi to move on Y axis.
 
-设置坐标时，只需设置4条腿落脚点坐标的X轴和Z轴数值。由于Y轴方向没有舵机控制，因此控制Y轴数值设置无效。
+### 4.9.2 Coordinate Explanation
 
-### 9.2 坐标说明
-
-为方便理解，这里以机器狗的站立姿态坐标为例进行说明。 机器狗的站立时对应的坐标如下图：
+For better understanding, take coordinate of standing posture as example for explanation. 
+The coordinate is as the picture shown.
 
 <img src="../_static/media/chapter_9/section_9/image3.png"  />
 
-图片中FR、FL、BR和BL代表了机器狗的4条腿的位置。这里以机器狗为第一视角，对应位置如下表格：
+In PuppyPi's first-person perspective, FR, FL, BL and BL represent the position of 4 legs.
 
-|   FR   |   FL   |   BR   |   BL   |
-|:------:|:------:|:------:|:------:|
-| 右前方 | 左前方 | 右后方 | 左后方 |
+|     FR      |     FL     |      BR      |     BL      |
+| :---------: | :--------: | :----------: | :---------: |
+| front right | front left | behind right | behind left |
 
-坐标中坐标值对应的是单位为厘米的距离，站立时，PuppyPi机器狗四肢坐标皆为（0，0，-10），Z轴的坐标-10代表机器狗的落脚点和原点的垂直距离是10cm。
+The coordinate corresponds to the distance in cm. When PuppyPi is standing, the coordinate of its four legs are (0, 0, -10). Coordinate of Z axis -10 represents the perpendicular distance between its foothold and the origin is 10cm.
 
-X轴的坐标为0，代表机器狗落脚点和原点的连线与地面垂直。 如果需要向前移动，例如移动2厘米，X轴的坐标就改为2。
+When the coordinate of X axis is 0, it means that the line connecting the foothold and the origin is perpendicular to the ground. If you want to make PuppyPi move froward 2cm, you can set the coordinate of X axis as 2.
 
-## 10. 逆运动学简要分析
+## 4.10 Inverse Kinematics Analysis
 
-### 10.1 逆运动学简介
+### 4.10.1 Inverse Kinematics Introduction
 
-机器狗的逆运动学是其轨迹规划与控制的重要基础，逆运动学求解是否快速准确，将直接影响到机器狗轨迹规划与控制的精度，因此设计一种快速准确的逆运动学求解方法是十分重要的。
+Inverse kinematics matters in PuppyPi's path planning and control, because whether the inverse kinematics solution is fast and accurate directly affect the precision of PuppyPi's path planing and control. Therefore, fast and accurate inverse kinematics solution is essential.
 
-对于PuppyPi机器狗而言，逆运动学就是根据其足端坐标，求解髋关节与膝关节的旋转角度，关节位置如下图所示：
+For PuppyPi, what inverse kinematics is that solve the rotation angle of upper joint and lower joint according to the foot coordinate. The joint distribution is as the picture shown.
 
-<img class="common_img" src="../_static/media/chapter_9/section_10/image2.jpeg"  />
+<img class="common_img" src="../_static/media/chapter_9/section_10/image2.png"  />
 
-PuppyPi机器狗髋关节的旋转角度由机器狗机身上的4个舵机控制，如下图所示：
+The rotation angle of upper joint is controlled by ID1,3, 5 and 7 servos on PuppyPi's body.
 
 <img class="common_img" src="../_static/media/chapter_9/section_10/image3.png"  />
 
-PuppyPi机器狗膝关节的旋转角度由机器狗机髋关节上的4个舵机控制，控制时使用了二连杆结构，如下图所示：
+And the rotation angle of lower joint is controlled by ID 2, 4, 6 and 8 servos on upper joints. Linkage mechanism is adopted in the control.
 
 <img class="common_img" src="../_static/media/chapter_9/section_10/image4.png"  />
 
-根据逆运动学分析，其求解步骤如下：
+The solution procedure is divided into two steps.
 
-(1)  根据足端坐标，计算膝关节和髋关节的运动位置，进而求解对应舵机的旋转角度。
+(1) Calculate the position to which the upper and lower joints move so as to solve the rotation angle of the corresponding servo.
 
-(2)  通过舵机的旋转角度，计算出对应数值，直接控制舵机转动，达到控制机器狗的目的。
+(2) According to the rotation angle of servo, calculate the corresponding value, and then directly control the servo to rotate. 
 
-### 10.2 案例分析
+### 4.10.2 Case Analysis
 
-(1) **源码路径**
+**(1) Storage Path of Source Code**
 
-为方便理解，这里结合控制程序，对机器狗的逆运动学进行分析。
+For better understanding, we will combine program control and inverse kinematics to analyze.
 
-[下载源代码（puppy_IK_demo.py）](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_IK_demo.py)
+The source code of this program is stored in [/home/ubuntu/puppy_pi/src/puppy_control/scripts/puppy_IK_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_IK_demo.py)
 
-### 10.3 玩法开启及关闭步骤
+### 4.10.3 Operation Steps
 
 :::{Note}
-指令的输入需严格区分大小写，另外可按键盘"Tab"键进行关键词补齐。
+The input command should be case sensitive. And the key words can be complemented by "Tab" key.
 :::
 
-(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_10/image8.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2) Click<img src="../_static/media/chapter_9/section_10/image8.png" style="width:0.32292in;height:0.30208in" />to open command line terminal.
 
-(3)  输入运行程序的指令并按下回车。
+(3) Enter command **"rosrun puppy_control puppy_IK_demo.py"** and press Enter to open the program files.
 
 ```bash
 rosrun puppy_control puppy_IK_demo.py
 ```
 
-(4)  如需关闭此玩法，只需要在LX终端界面中按下"Ctrl+C"。如果关闭失败，可多次按下。
+(4) If want to close this game, press **"Ctrl+C"**. If it fails to close, please try again.
 
-(5) **功能实现**
+### **4.10.4 Program Outcome**
 
-玩法开启后，PuppyPi机器狗上所有舵机会根据设置好的坐标，转动到对应角度，并在终端打印出所有舵机的转动角度。
+After the game starts, all the servos will rotate to the corresponding angle based on the set coordinate. And the rotation angle of all the servos will be printed on the terminal.
 
 <img class="common_img" src="../_static/media/chapter_9/section_10/image13.png"  />
 
-### 10.4 程序分析
+### 4.10.5 Program Analysis
 
-(1) **设置坐标值**
+**(1) Set coordinate**
 
-在控制机器狗状态时，需要设置4个条腿的黑色落脚点坐标，如下图：
+During controlling PuppyPi, we need to set the coordinates of 4 footholds.
 
-<img src="../_static/media/chapter_9/section_10/image15.png"  />
+{lineno-start=15}
 
-图片中FR、FL、BR和BL代表了机器狗的4条腿的位置。这里以机器狗为第一视角，对应位置如下表格：
+```
+                            # FR    FL    BR     BL
+foot_locations = np.array([ [ -1.,  -1.,  -1.,   -1.], # X
+                            [ 0.,    0.,   0.,    0.], # Y
+                            [-10,   -10,  -10,   -10,] # Z
+                            ])
+# 相对4条腿各自坐标系的坐标值，单位cm(coordinates relative to the coordinate system of each of the four legs, measured in centimeters)
+```
 
-|   FR   |   FL   |   BR   |   BL   |
-|:------:|:------:|:------:|:------:|
-| 右前方 | 左前方 | 右后方 | 左后方 |
+With PuppyPi as the first-person perspective, FR, FL, BR and BL respectively represent its 4 legs. 
+
+|     FR      |     FL     |      BR      |     BL      |
+| :---------: | :--------: | :----------: | :---------: |
+| Front right | Front left | Behind right | Behind left |
 
 :::{Note}
-设置坐标时，X轴的坐标范围为"-15 ~ +15"，Z轴的坐标范围为"-15 ~ -1"。
+the coordinate of X axis ranges from -15 to +15, and Z axis ranges from -15 to -1. 
 :::
 
-X轴坐标设置为0时，落脚点和原点的连线与地面垂直；如果X轴坐标为正数，落脚点则在前面，如下图（绿色箭头）：
+When the coordinate of X axis is set as 0, the line connecting foothold and the origin is perpendicular to the ground. If the coordinate of X axis is positive, the foothold is at the front. 
 
 <img src="../_static/media/chapter_9/section_10/image17.png"  alt="image11" />
 
-Z轴坐标设置为越大，落脚点越向上抬起，即落脚点和原点竖直方向上距离越近。
+The larger the coordinate of Z axis, the higher its feet lift, which means that the perpendicular distance between foothold and the origin is shorter. 
 
-(2) **获取舵机角度值**
+**(2) Acquire servo angle**
 
-通过逆运动学，计算出舵机的角度值，如下图：
+Calculate the servo angle through inverse kinematics.
 
-<img src="../_static/media/chapter_9/section_10/image18.png"  />
+{lineno-start=25}
 
-(3) **控制舵机转动**
+```
+joint_angles = puppy.fourLegsRelativeCoordControl(foot_locations)
+# 输入坐标，通过逆运动学计算得到各个舵机的角度值(input coordinates to calculate the angle values of each servo motor through inverse kinematics)
+```
 
-根据舵机角度值，计算舵机的脉冲值，直接控制舵机转动，如下图：
+**(3) Control servo to rotate**
 
-<img src="../_static/media/chapter_9/section_10/image20.png"  />
+Calculate the pulse width of the servo according to the angle value so as to directly control servo rotation.
 
-(4) **显示舵机角度**
+{lineno-start=32}
 
-并且在终端显示舵机的角度，如下图：
+```
+puppy.sendServoAngle(joint_angles, time = 500)
+#将舵机角度发送到舵机，(send the servo angles to the servo motors)
+```
 
-<img src="../_static/media/chapter_9/section_10/image22.png"  />
+**(4)  Display servo angle**
 
-数值"**joint_angles**"的单位是弧度，程序中显示"**joint_angles\*57.3**"，是将弧度转换为度数。
+The servo angle will be displayed on the terminal.
 
-所有舵机对应角度，位置如下图：
+{lineno-start=27}
+
+```
+print(joint_angles*57.3)
+```
+
+The unit of the **"joint_angles"** is radian. And joint_angles times 57.3 equals the final servo angle in degree. 
+The angle of corresponding servo is as the figure below.
 
 <img class="common_img" src="../_static/media/chapter_9/section_10/image24.png"  />
 
 <img class="common_img" src="../_static/media/chapter_9/section_10/image26.png"  />
 
-下面来看下机器狗舵机角度和姿态的对应关系，以ID1和ID2舵机为例，其他舵机类似。
-
-实验中ID1的舵机角度为57.33238425，对应的姿态如下图：
+Let's take a look at the relationship between servo angle and PuppyPi's posture. Take ID1 and ID2 for example.
+In this program, the angle of ID1 servo is 57.33238425, and the current posture of PuppyPi is as the figure below shown.
 
 <img src="../_static/media/chapter_9/section_10/image27.png"  alt="image22" />
 
-ID1舵机的角度为正数数，对应的腿部往后摆；为负数时，腿部往前摆。
-
-ID2的舵机角度为14.31023196，对应的姿态如下图：
+When the angle of ID1 servo is positive, the corresponding leg will swing backward. When it is negative, the leg will swing forward.
+The angle of ID2 servo is 14.31023196, and the current posture of PuppyPi is as the figure below shown.
 
 <img src="../_static/media/chapter_9/section_10/image28.png"  alt="image16" />
 
-ID2舵机的角度为正数时，对应舵机的摆臂在水平方向下方；为负数时，摆臂在水平方向上方。
+When the value is positive, the servo arm of ID2 servo is below the horizontal. When it is negative, the servo arm is above the horizontal.
 
 <p id="anchor_11"></p>
 
-## 11. 姿态参数说明
+## 4.11 Posture Parameter Instruction
 
-### 11.1 简介
+### 4.11.1 Introduction
 
-PuppyPi机器狗的姿态参数，就是指机器狗静止不动时的参数，比如站立时的高度、俯仰角、翻滚角等。
+The parameter of static posture includes standing height, pitch angle, roll angle, etc.
+PuppyPi's posture can be changed through adjusting the coordinates of 4 footholds. And we need to call "puppy_demo.py" file to set the posture.
+This file is stored in 
 
-通过调节机器狗4条腿落脚点的坐标值，可以改变机器狗的姿态。设置姿态时，我们需要调用"**puppy_demo.py**"文件。
+This file is stored in ：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
 
-该程序的源代码位于Docker容器中的：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
+### 4.11.2 Parameter Illustration
 
-### 11.2 参数说明
-
-通过更改参数，可以调节机器狗姿态（静态），参数调节位置如下所示：
+Through modifying the following parameter, we can adjust PuppyPi's posture. 
 
 ```python
 PuppyPose = {'roll':math.radians(0), 'pitch':math.radians(0), 'yaw':0.000, 'height':-10, 'x_shift':-0.6, 'stance_x':0, 'stance_y':0}
 ```
 
-主要设置x_shift、height、pitch和roll参数，具体参数介绍，如下表格：
+And we mainly adjust x_shift, height, pitch and roll. The explanation for the parameters are listed in the table.
 
 <table class="docutils" border="1">
 <colgroup>
@@ -888,78 +1063,77 @@ PuppyPose = {'roll':math.radians(0), 'pitch':math.radians(0), 'yaw':0.000, 'heig
 </colgroup>
 <tbody>
 <tr>
-<td style="text-align: center;"><strong>参数</strong></td>
-<td style="text-align: center;"><strong>说明</strong></td>
+<td style="text-align: center;"><strong>Parameter</strong></td>
+<td style="text-align: center;"><strong>Explanation</strong></td>
 </tr>
 <tr>
 <td style="text-align: center;">x_shift</td>
-<td><p>4个膝关节末端在x轴上同向移动的距离，用来调节机器狗移动时的平衡。相对于本身值越小，移动越前倾，越大，移动越后仰，单位为cm，范围为</p>
+<td><p>It represents that the distance that 4 footholds moves in the same direction on the X axis. It is used to balance PuppyPi's body during moving. It ranges from -10 to +10 cm.</p>
 <p>"<strong>-10 ~ +10</strong>"。</p></td>
 </tr>
 <tr>
 <td style="text-align: center;">height</td>
-<td>机身的高度，膝关节末端到髋关节中心点的垂直距离，单位为cm，范围为"<strong>-15 ~ -5</strong>"。设置时，数值越小，高度越高</td>
+<td>It indicates body height, that is the perpendicular distance between the foothold and the center of upper joint. It ranges from -15 to -5 cm."<strong>-15 ~ -5</strong>".</td>
 </tr>
 <tr>
 <td style="text-align: center;">pitch</td>
-<td>机身的俯仰角，单位为度（角度），范围为"<strong>-31 ~ +31</strong>"。以机器狗为第一视角，设置为正数时，机器狗仰视，负数时，机器狗俯视。数值的绝对值越大，仰视或俯视的角度越大。</td>
+<td>It refers to the pitch angle of the robot body ranging from -31 to +31 degree. With PuppyPi as the first vision, when the pitch angle is positive, it will look up. When the pitch angle is negative, it will look down. The larger the absolute value, the larger the pitch angle. </td>
 </tr>
 <tr>
 <td style="text-align: center;">roll</td>
-<td>机身的滚转角，单位为度（角度），范围为"<strong>-31 ~ +31</strong>"。以机器狗为第一视角；设置为正数时，机器狗向右倾斜；负数时，机器狗向左倾斜。数值的绝对值越大，倾斜的角度越大。</td>
+<td>It represents that the roll angle of the body ranging from -31 to +31 degree. With PuppyPi as the first vision, when the pitch angle is positive, it will tilt to right. When the pitch angle is negative, it will tilt to left. The larger the absolute value, the greater it tills.</td>
 </tr>
 </tbody>
 </table>
 
-以机器狗高度设置为10cm，俯视20°，向右倾斜15°为例，参数设置如下：
+
+For example, set its body height as 10cm, and make it loop down 20° and tilt 15° to the right.
 
 ```python
 PuppyPose = {'roll':math.radians(15), 'pitch':math.radians(-20), 'yaw':0.000, 'height':-10, 'x_shift':-0.6, 'stance_x':0, 'stance_y':0}
 ```
 
-## 12. 站立角度调节
+## 4.12 Standing Angle Adjustment
 
-### 12.1 简介
+### 4.12.1 Introduction
 
-通过调节参数，可以调节PuppyPi 机器狗的姿态，具体参数可以参考"**[ROS机器狗运动控制课程\11. 姿态参数说明](#anchor_11)**"文档。
+Through adjusting the parameter, we can control PuppyPi's posture. For specific parameters, please move to the file "3.11 Posture Parameter Instruction".
+We can adjust PuppyPi's standing angle through the control program. 
+The source code of this program is stored in **[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
 
-这里结合控制程序，对机器狗的站立角度进行调节。
-
-该程序的源代码位于Docker容器中的：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
-
-### 12.2 玩法开启及关闭步骤
+### 4.12.2 Operation Steps
 
 :::{Note}
-指令的输入需严格区分大小写，另外可按键盘"Tab"键进行关键词补齐。
+The input command should be case sensitive. And the key words can be complemented by "Tab" key.
 :::
 
-(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_12/image5.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2)  Click<img src="../_static/media/chapter_9/section_12/image5.png" style="width:0.32292in;height:0.30208in" />to open command line terminal
 
-(3)  输入编辑"**puppy_demo.py**"的指令，并按下回车。
+(3) Input the command **"rosed puppy_control puppy_demo.py" to edit "puppy_demo.py"**
 
 ```bash
 rosed puppy_control puppy_demo.py
 ```
 
-4)  按下"**i**"开始更改，为方便观察，需要把速度设置为0，即将"**PuppyMove**"中的参数"**x**"修改为0，如下图：
+(4) Press "i" key to start editing. For better observation, set the speed as 0, that is set **"x"** in **"PuppyMove"** as 0.
 
 <img src="../_static/media/chapter_9/section_12/image10.png"  />
 
 <img src="../_static/media/chapter_9/section_12/image11.png"  />
 
-5)  修改"**PuppyPose**"中的"**roll**"和"**pitch**"参数，其中"**roll**"代表翻转角，"**pitch**"代表俯仰角，两者角度范围都是"**-31°~31°**"，单位为度。
+(5) Modify "roll" and "pitch" in "PuppyPose". "roll" represents roll angle, and "pitch" represents pitch angle, both ranging from -31 to 31 degree. 
 
 <img src="../_static/media/chapter_9/section_12/image13.png"  />
 
 <img src="../_static/media/chapter_9/section_12/image15.png"  />
 
 :::{Note}
-调节以机器狗为第一视角，"**roll**"设置为正数时，机器狗向左倾斜；设置为负数时，机器狗向右倾斜。"**pitch**"代表俯仰角，设置为正数时，机器狗向上仰视前方；设置为负数时，机器狗向下俯视前方。
+we should take PuppyPi as first-person perspective when making adjustment. When the value of "roll" is positive, PuppyPi will tilt to left. When it is negative, PuppyPi will tilt to right. When the value of "pitch" is positive, PuppyPi will look up. When it is negative, PuppyPi will look down.
 :::
 
-6)  我们这里让机器狗实现向左倾斜15度为例，把"**roll**"修改为15，更改完成后，按下"**Esc**"键，接着输入指令并按下回车进行保存。
+(6) For example, make PuppyPi tilt 15° to the left, so modify the value in bracket as "15" as the figure below shown. After modification, press **"Esc"** and input **":wq"** to save.
 
 ```bash
 :wq
@@ -967,264 +1141,293 @@ rosed puppy_control puppy_demo.py
 
 <img src="../_static/media/chapter_9/section_12/image16.png"  />
 
-其他方向的修改也是相同的操作，大家可以自行按需修改。
-
-7)  输入运行程序的指令，并按下回车。
+(7) Input command **"rosrun puppy_control puppy_demo.py"** and press Enter to run the program.
 
 ```bash
 rosrun puppy_control puppy_demo.py
 ```
 
-8)  如需关闭此玩法，只需要在LX终端界面中按下"**Ctrl+C**"。如果关闭失败，可多次按下。
+(8) If want to close this game, we can press "Ctrl+C". If it fails to close the game, please try again.
 
-### 12.3 功能实现
+### 4.12.3 Program Outcome
 
-玩法开启后，PuppyPi机器狗就会按照设置的角度站立。
+After the game starts, PuppyPi will stand as tilting 15° to the left.
 
 <img src="../_static/media/chapter_9/section_12/image20.png"  />
 
-## 13. 步态参数说明
+## 4.13 Gait Parameter
 
-### 13.1 步态的概念
+### 4.13.1 Gait Definition
 
-步态就是描述动物走路的一种周期性现象。（描述动物是怎样走的）
+Gait is used to describe how animal walks.
 
-### 13.2 种类简介
+### 4.13.2 Types of Gait
 
-按照平衡方式来分，PuppyPi机器狗的步态可以分为静态步态，动态步态和准静态步态三种。
-
-其中PuppyPi机器狗使用的静态步态是Walk步态（行走），动态步态是Trot步态（小跑），准静态步态是Amble（缓行）步态。
+In terms of balance method, PuppyPi's gaits are divided into three types, including static gait, dynamic gait and quasi-static gait. 
+And Walk is static gait, Trot is dynamic gait and Amble quasi-static gait.
 
 <img src="../_static/media/chapter_9/section_13/image2.png"  alt="图片11" />
 
-### 13.3 位置编号
+### 4.13.3 Leg Distribution
 
-PuppyPi机器狗的4条腿位置编号如下图：
+The legs of PuppyPi are numbered in this order as the picture shown.
 
 <img src="../_static/media/chapter_9/section_13/image3.png"  alt="path66" />
 
-### 13.4 动态步态的控制方式
+### 4.13.4 Dynamic Gait Control
 
-(1) **控制简介**
+**(1) Gait Introduction**
 
-Trot步态是一种动态步态，其特征是以对角的两条腿成对运动，即腿1和腿2运动一致，腿3和腿4运动一致，理想情况下对角腿同时抬起并同时着地。
+Trot is a dynamic gait in which the feet at diagonal opposite ends of the body lift and strike the ground together. For example, NO.1 and NO.2 leg, or NO.3 and NO.4 leg, move synchronously.
+We can control the gait through the control program.
 
-这里结合机器狗的控制程序，来看下动态步态的控制方式。
-
-(2) **玩法开启及关闭步骤**
+**(2) Operation Steps**
 
 :::{Note}
-输入指令时需要严格区分大小写，且可使用"**Tab**"键补齐关键词。
+The input command should be case sensitive. And the key words can be complemented by "Tab" key. 
 :::
 
-①  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+①  Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-②  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_13/image6.png"  />，打开Terminator终端。
+② Click<img src="../_static/media/chapter_9/section_13/image6.png"  />to open command line terminal
 
-③  输入编辑"**puppy_demo.py**"的指令并按下回车。
+③ Input the command "rosed puppy_control puppy_demo.py" to edit "puppy_demo.py"
 
 ```bash
 rosed puppy_control puppy_demo.py
 ```
 
-④ 可以在下图所示位置中找到调用步态的代码，程序默认是执行Trot步态，所以可以直接调用运行。
+④ The codes of gait is in 24th line. The program is default to execute Trot gait, therefore the program can be called directly.
 
 <img src="../_static/media/chapter_9/section_13/image11.png"  />
 
-(3) **动态步态的设置**
+**(3)  Dynamic Gait Setting**
 
-设置时，需设置4条腿全部着地的时间、单条腿脱离地面的时间和前后脚间隔时间3个参数。
+We need to set three parameters, including the time when 4 legs all touch the ground, the time when one leg lifts and the interval to switch between front leg and hind leg.
 
-设置代码如下所示：
+]The codes to be set are in the red frame. 
 
 <img src="../_static/media/chapter_9/section_13/image13.png"  />
 
-参数中overlap_time是4条腿全部着地的时间，swing_time是单条腿脱离地面的时间，clearance_time是前后脚间隔时间，单位为秒。
+overlap_time represents the time when 4 legs all touch the ground, swing_time refers to the time when one leg lifts, and clearance_time is interval to switch between front leg and hind leg.
 
-其设置条件为：前后脚间隔时间为0，全部着地的时间和脱离地面的时间大于0。即：clearance_time=0，overlap_time＞0，swing_time＞0。
+Please ensure clearance_time=0, overlap_time＞0 and swing_time＞0 when setting. 
 
-机器狗在Trot步态四条腿的轮换顺序为1 2→3 4→1 2，控制方式如下图：
+In Trot gait, PuppyPi's four legs switch in this sequence, 1 2→3 4→1 2, as shown in the below figure.
 
 <img src="../_static/media/chapter_9/section_13/image15.png"  alt="image77" />
 
-图中凸起部分代表腿部抬起，②代表4条腿全部着地的时间，③代表单条腿脱离地面的时间。
+The bulge represents that the leg is lifted, ② represents the time when four legs all touch the ground and ③ represents the time when one leg lifts the ground.
 
-### 13.5 静态步态的控制方式
+### 4.13.5 Static Gait Control
 
-(1) **控制简介**
+**(1) Gait Introduction**
 
-Walk步态是一种静态步态，其特征是在运动过程中始终有三条腿处于支撑相，至多只有一条腿处于摆动相。
+Walk is a static gait in which three legs are in support of the body at least and one leg swings at most during moving.
 
-这里结合机器狗的控制程序，来看下静态步态的控制方式。
+We can control the gait through the control program.
 
-(2) **玩法开启及关闭步骤**
+**(2) Operation Steps**
 
 :::{Note}
-输入指令时需要严格区分大小写，且可使用"**Tab**"键补齐关键词。
+The input command should be case sensitive. And the key words can be complemented by "Tab" key.
 :::
 
-① 启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+① Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-② 点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_13/image6.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+② Click <img src="../_static/media/chapter_9/section_13/image6.png" style="width:0.32292in;height:0.30208in" /> to open command line terminal
 
-③ 输入指令，并按下回车，打开程序文件。
+③ Input the command "rosed puppy_control puppy_demo.py" to edit "puppy_demo.py"
 
 ```bash
 rosed puppy_control puppy_demo.py
 ```
 
-④ 可以在下图所示位置中找到调用步态的代码，程序默认是执行Trot步态。按下"**i**" 键，进入编辑模式。
+④ You can find the code calling the gait at the location indicated in the following image. The program is default to execute Trot gait, therefore we need to modify the program. Press "i" key to enter editing mode. 
 
 <img src="../_static/media/chapter_9/section_13/image11.png"  />
 
-⑤ 将"**Trot**"修改为"**Walk**"。
+⑤ Modify **"Trot"** as **"Walk"**.
 
 <img src="../_static/media/chapter_9/section_13/image17.png"  />
 
-(3) **静态步态的设置**
+**(3) Static Gait Setting**
 
-设置时，需设置4条腿全部着地的时间、单条腿脱离地面的时间和前后脚间隔时间3个参数。
+We need to set three parameters, including the time when 4 legs all touch the ground, the time when one leg lifts and the interval to switch between front leg and hind leg.
 
-设置代码如下所示：
+The codes to be set are in the red frame.
 
 <img src="../_static/media/chapter_9/section_13/image19.png"  />
 
-参数中overlap_time是4条腿全部着地的时间，swing_time是单条腿脱离地面的时间，clearance_time是前后脚间隔时间，单位为秒。
+overlap_time represents the time when 4 legs all touch the ground, swing_time refers to the time when one leg lifts, and clearance_time is interval to switch between front leg and hind leg.
 
-其设置条件为：前后脚间隔时间大于脱离地面的时间，全部着地的时间大于0。即clearance_time＞swing_time，overlap_time＞0。
+Please ensure that clearance_time＞swing_time and overlap_time＞0 when setting.
 
-机器狗在Walk步态中四条腿的轮换顺序为1→2→3→4→1，控制方式如下图：
+In Walk gait, PuppyPi's four legs switch in this sequence, 1→2→3→4→1, as shown in the below figure.
 
 <img src="../_static/media/chapter_9/section_13/image21.png"  alt="image78" />
 
-图中凸起部分代表腿部抬起，①代表前后脚间隔时间，②代表4条腿全部着地的时间，③代表单条腿脱离地面的时间。
+The bulge represents that the leg is lifted, 
 
-### 13.6 准静态步态的控制方式
+① represents that the interval to switch between front leg and hind leg, 
 
-(1) **控制简介**
+② represents the time when four legs all touch the ground and ③ represents the time when one leg lifts the ground.
 
-Amble步态是一种准静态步态，可视为加速后的Walk步态，其特征是在运动过程中至少有两台条腿处于支撑相，最多有两条腿处于摆动相。
+### 4.13.6 Quasi-static Gait Control
 
-这里结合机器狗的控制程序，来看下静态步态的控制方式。
+**(1) Gait Introduction**
 
-(2) **玩法开启及关闭步骤**
+Amble is a quasi-static gait which is also considered as the accelerated version of Walk gait. Under this gait, two legs are in support of the body at least and two legs swing at most.
+We can control the gait through the control program
+
+**(2) Operation Steps**
 
 :::{Note}
-输入指令时需要严格区分大小写，且可使用"**Tab**"键补齐关键词。
+Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 :::
 
-① 启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+① Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-② 点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_13/image6.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+② Click<img src="../_static/media/chapter_9/section_13/image6.png" style="width:0.32292in;height:0.30208in" /> to open command line terminal
 
-③ 输入指令，并按下回车，打开程序文件。
+③ Input the command **"rosed puppy_control puppy_demo.py"** to edit **"puppy_demo.py"**.
 
 ```bash
 rosed puppy_control puppy_demo.py
 ```
 
-④ 可以在下图所示位置中找到调用步态的代码，程序默认是执行Trot步态。按下"**i**" 键，进入编辑模式。
+④ You can find the code calling the gait at the location indicated in the following image. The program is default to execute Trot gait, therefore we need to modify the program. Press "i" key to enter editing mode
 
 <img src="../_static/media/chapter_9/section_13/image11.png"  />
 
-⑤ 将"**Trot**"修改为"**Amble**"。
+⑤ Modify **"Trot"** as **"Amble"**.
 
 <img src="../_static/media/chapter_9/section_13/image22.png"  />
 
-(3) **准静态步态的设置**
+**(3) Quasi-static Gait Setting**
 
-设置时，需设置4条腿全部着地的时间、单条腿脱离地面的时间和前后脚间隔时间3个参数。
-
-设置代码如下所示：
+We need to set three parameters, including the time when 4 legs all touch the ground, the time when one leg lifts and the interval to switch between front leg and hind leg.
+The codes to be set are in the red frame.
 
 <img src="../_static/media/chapter_9/section_13/image24.png"  />
 
-参数中overlap_time是4条腿全部着地的时间，swing_time是单条腿脱离地面的时间，clearance_time是前后脚间隔时间，单位为秒。
+overlap_time represents the time when 4 legs all touch the ground, swing_time refers to the time when one leg lifts, and clearance_time is interval to switch between front leg and hind leg.
+Please ensure that 0<clearance_time<swing_time and overlap_time＞0 when setting.
 
-其设置条件为：脱离地面的时间大于前后脚间隔时间，所有时间都大于0。即0\<clearance_time\<swing_time，overlap_time＞0。
-
-机器狗在Amble步态中四条腿的轮换顺序为1→2→3→4→1，控制方式如下图：
+In Amble gait, PuppyPi's four legs switch in this sequence, 1→2→3→4→1, as shown in the below figure.
 
 <img src="../_static/media/chapter_9/section_13/image26.png"  alt="image79" />
 
-图中凸起部分代表腿部抬起，①代表前后脚间隔时间，②代表4条腿全部着地的时间，③代表单条腿脱离地面的时间。
+The bulge represents that the leg is lifted, 
 
-### 13.7 程序相关参数说明
+① represents that the interval to switch between front leg and hind leg, 
 
-机器狗运动时的参数，主要包含运动参数和步态参数两部分。其中步态参数包含全部着地时间、全部脱离地面时间和前后脚间隔时间，运动参数包含前进速度和转弯速度。
+② represents the time when four legs all touch the ground and ③ represents the time when one leg lifts the ground.
 
-设置时，我们需要调用"**puppy_demo.py**"文件，
+### 4.13.7 Program Analysis
 
-该程序的源代码位于Docker容器中的：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
+During PuppyPi is moving, there are two types of parameters, including motion parameter and gait parameter. The gait parameters include the time when 4 legs all touch the ground, the time when all leg lifts and the interval to switch between front leg and hind leg. And motion parameter includes moving speed and rotation speed.
 
-通过更改参数，可以调节机器狗的运动状态。
+We need to call "puppy_demo.py" file to set the parameter. This file is stored in ：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
 
-参数调节位置如下方二图所示：
+The motion status can be adjusted through modifying the parameters.
 
-其中图一红框所示为运动参数，图二红框所示为步态参数：
+The parameters to be adjusted is in the red frame.
 
-<img src="../_static/media/chapter_9/section_13/image29.png"  /> 
+The parameters in picture 1 is the motion parameters, and picture 2 is the gait parameters.
 
-<img src="../_static/media/chapter_9/section_13/image31.png"  />
+{lineno-start=13}
 
-具体参数介绍，如下表格：
+```
+PuppyMove = {'x':6, 'y':0, 'yaw_rate':0}
+# x:直行控制，  前进方向为正方向，单位cm/s(straightforward control, with the forward direction as the positive direction, measured in cm/s)
+# y:侧移控制，左侧方向为正方向，单位cm/s，目前无此功能(lateral movement control, with the left direction as the positive direction, measured in cm/s. currently, this feature is bot available)
+# yaw_rate：转弯控制，逆时针方向为正方向，单位rad/s(turning control, with counterclockwise direction as the positive direction, measured in rad/s)
+```
 
-| **参数** | **说明** |
+{lineno-start=33}
+
+```
+if gait == 'Trot':
+    GaitConfig = {'overlap_time':0.2, 'swing_time':0.3, 'clearance_time':0.0, 'z_clearance':5}
+    PuppyPose['x_shift'] = -0.6
+    # Trot步态 clearance_time = 0(Trot gait clearance_time = 0)
+
+elif gait == 'Amble':
+    GaitConfig = {'overlap_time':0.1, 'swing_time':0.2, 'clearance_time':0.1, 'z_clearance':5}
+    PuppyPose['x_shift'] = -0.9
+    # Amble步态 0 ＜ clearance_time ＜ swing_time( Amble gait 0 ＜ clearance_time ＜ swing_time)
+    
+elif gait == 'Walk':
+    GaitConfig = {'overlap_time':0.1, 'swing_time':0.2, 'clearance_time':0.3, 'z_clearance':5}
+    PuppyPose['x_shift'] = -0.65
+    # Walk步态   swing_time ≤ clearance_time(Walk gait   swing_time ≤ clearance_time)
+```
+
+The explanation for the parameter is listed below.
+
+| Parameter | Explanation |
 |:--:|:--:|
-| overlap_time | 4个膝关节末端全部着地的时间，单位为s。 |
-| swing_time | 2个膝关节末端全部脱离地面的时间，单位为s。 |
-| clearance_time | 前后脚间隔时间，单位为s。 |
-| z_clearance | 移动时，膝关节所抬起的末端高度距离，单位为cm。 |
-| x | 机器狗向前移动时的速度，单位为cm/s，范围为"-20 ~ +20"。设置为正数时，机器狗前进；负数时，机器狗后退。数值的绝对值越大，运动速度越快。 |
-| yaw_rate | 机器狗更改方向时的速度，单位为rad/s，范围为"-0.89 ~ +0.89"。以机器狗为第一视角；设置为正数时，机器狗顺时针转弯；负数时，机器狗逆时针转弯。数值的绝对值越大，转弯的速度越快。 |
+| overlap_time | Time when the ends of 4 legs all touch the ground. The unit is s. |
+| swing_time | Time when the ends of 2 legs all lift. The unit is s. |
+| clearance_time | Interval to switch between front leg and hind leg. The unit is s. |
+| z_clearance | During moving, the lifted height of the end of the leg. The unit is cm |
+| x | The moving speed ranging from -20 to +20 cm/s. When the value is positive, PuppyPi moves forward. When it is negative, it moves backward. The larger the absolute value, the faster PuppyPi moves. |
+| yaw_rate | Turning speed ranging from -0.89 to +0.89 rad/s. With PuppyPi as first-person perspective, when the value is positive, PuppyPi turn clockwise. When it is negative, PuppyPi turns counterclockwise. The larger the absolute value, the faster PuppyPi turns. |
 
-**以控制机器狗在Trot步态下逆时针转弯，向转弯速度为30°/s，前进速度为5cm/s为例**，参数设置如下：
+For example, we make PuppyPi turns counterclockwise in 30°/s and moves in 5cm/s. And the parameters are set as the figure shown.
 
-<img src="../_static/media/chapter_9/section_13/image33.png"  />
+{lineno-start=13}
 
-这里的0.52单位为rad/s，转换为角度速度为0.52\*57.3°/s≈30°/s
+```
+PuppyMove = {'x':6, 'y':0, 'yaw_rate':0}
+# x:直行控制，  前进方向为正方向，单位cm/s(straightforward control, with the forward direction as the positive direction, measured in cm/s)
+# y:侧移控制，左侧方向为正方向，单位cm/s，目前无此功能(lateral movement control, with the left direction as the positive direction, measured in cm/s. currently, this feature is bot available)
+# yaw_rate：转弯控制，逆时针方向为正方向，单位rad/s(turning control, with counterclockwise direction as the positive direction, measured in rad/s)
+```
 
-## 14. 行走高度调节
+The unit of 0.52 is rad/s and the converted angular velocity is 30°/s (0.52*57.3°/s≈30°/s)
 
-### 14.1 简介
+## 4.14 Walking Height Adjustment
 
-控制PuppyPi 机器狗行走过程中，可通过调节参数，达到调节行走高度的目的，具体参数可以参考"**[ROS机器狗运动控制课程\11. 姿态参数说明](#anchor_11)**"文档。
+### 4.14.1 Introduction
 
-这里结合控制程序，对机器狗的行走高度进行调节。
+PuppyPi's walking height can be adjusted through adjusting the parameters. For specific parameters, please move to the file folder"**[ ROS Robot Motion Control and Simulation-11 Static Posture Parameter](#anchor_11)**".
 
-该程序的源代码位于Docker容器中的：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
+We can adjust PuppyPi's walking height in the control program.
+The source code of this program is stored in：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
 
-### 14.2 玩法开启及关闭步骤
+### 4.14.2 Operation Steps
 
 :::{Note}
-输入指令时需要严格区分大小写，且可使用"**Tab**"键补齐关键词。
+The input command should be case sensitive. And the key words can be complemented by "Tab" key.
 :::
 
-(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_14/image5.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2)  Click<img src="../_static/media/chapter_9/section_14/image5.png" style="width:0.32292in;height:0.30208in" />to open command line terminal.
 
-(3)  输入编辑"**puppy_demo.py**"的指令并按下回车。
+(3) Input the command "rosed puppy_control puppy_demo.py" to edit "puppy_demo.py".
 
 ```bash
 rosed puppy_control puppy_demo.py
 ```
 
-(4)  按下"**i**"开始更改，为方便观察，需要把速度设置为0，即将"**PuppyMove**"中的参数"**x**"修改为0，此时，机器狗会停止运动，后续需要设置行走高度时，将其再改为默认值即可。如下图：
+(4) Press **"i"** key to start editing. For better observation, set the speed as 0, that is set **"x"** in **"PuppyMove"** as 0, as the picture shown.
 
 <img src="../_static/media/chapter_9/section_14/image10.png"  />
 
 <img src="../_static/media/chapter_9/section_14/image11.png"  />
 
-(5)  修改"**PuppyPose**"中"**height**"参数，该参数用于调节机器狗的高度，调节范围为"**-15 ~ -5**"，单位为cm。
+(5) Modify **"height"** in **"PuppyPose"** to adjust PuppyPi's height within -15~-5 cm.
 
 <img src="../_static/media/chapter_9/section_14/image13.png"  />
 
 :::{Note} 
-调节时，数值越小，高度越高，-15为最大高度，-5为最小高度。
+ the smaller the value, the higher the height. -15 is the maximum height and -5 is the minimum height.
 :::
 
-(6)  我们这里让机器狗高度增加为例，把"**height**"修改为-15，更改完成后，按下"**Esc**"键，接着输入指令并按下回车进行保存。
+(6) For example, we modify "height" as -15. After modification, press "Esc", and input ":wq" to save.
 
 ```bash
 :wq
@@ -1232,59 +1435,56 @@ rosed puppy_control puppy_demo.py
 
 <img src="../_static/media/chapter_9/section_14/image15.png"  />
 
-其他的高度调节也是同样的操作，大家可以自行尝试。
-
-(7)  输入运行程序的指令，并按下回车。
+(7) Input command **"rosrun puppy_control puppy_demo.py"** and press Enter to run the program.
 
 ```bash
 rosrun puppy_control puppy_demo.py
 ```
 
-(8)  如需关闭此玩法，只需要在LX终端界面中按下"**Ctrl+C**"。如果关闭失败，可多次按下。
+(8) If want to close this game, we can press "Ctrl+C". If it fails to close the game, please try again.
 
-### 14.3 功能实现
+### 4.14.3 Program Outcome
 
-玩法开启后，PuppyPi机器狗就会调整到设置的高度。
+After the game starts, the body height will be lifted to the set height.
 
 <img class="common_img" src="../_static/media/chapter_9/section_14/image19.png"  />
 
-## 15. 行走速度调节
+## 4.15 Walking Speed Adjustment
 
-### 15.1 简介
+### 4.15.1 Introduction
 
-控制PuppyPi 机器狗行走过程中，可通过调节参数，达到调节行走速度的的目的，具体参数可以参考"**[ROS机器狗运动控制课程\11. 姿态参数说明](#anchor_11)**"文档。
+PuppyPi's walking speed can be adjusted by parameters. For specific parameters, please move to the folder"**[ROS Robot Motion Control and Simulation-> 11.Posture Parameter Instruction](#anchor_11)**".
 
-这里结合控制程序，对机器狗的行走速度进行调节。
+We can adjust PuppyPi's walking speed in the control program.
+The source code of this program is stored in：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
 
-该程序的源代码位于Docker容器中的：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
-
-### 15.2 玩法开启及关闭步骤
+### 4.15.2 Operation Steps
 
 :::{Note}
-输入指令时需要严格区分大小写，且可使用"**Tab**"键补齐关键词。
+ The input command should be case sensitive. And the key words can be complemented by "Tab" key.
 :::
 
-(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_15/image5.png"  />，打开Terminator终端。
+(2)  Click<img src="../_static/media/chapter_9/section_15/image5.png"  />to open command line terminal
 
-(3)  输入编辑"**puppy_demo.py**"的指令并按下回车。
+(3) Input the command **"rosed puppy_control puppy_demo.py"** to edit **"puppy_demo.py"**
 
 ```bash
 rosed puppy_control puppy_demo.py
 ```
 
-(4)  我们需要更改"**PuppyMove**"中的"**x**"参数，该参数可以调节机器狗的速度，调整范围是"**-20~20**"，单位为cm/s。
+(4) Modify **"x"** in **"PuppyMove"** to adjust PuppyPi's speed within -20~20 cm/s.
 
 <img src="../_static/media/chapter_9/section_15/image10.png"  />
 
 :::{Note}
-① 数为正数时，机器狗前进；参数为负数时，机器狗后退。
-② 调节时，数值绝对值越大，机器狗速度越快。
-③ 不同步态下，速度的调节会对机器狗的稳定性有一定的影响，需根据实际的情况进行调节。
+① When the parameter is positive, PuppyPi will move forward. When the parameter is negative, PuppyPi will move backward.
+② The larger the absolute value of the parameter, the faster the robot moves.
+③ Under different gaits, speed adjustment has influence on its stability, therefore we should adjust the speed base on the  actual performance of robot.
 :::
 
-(5)  我们这里让机器狗前进的速度调整为12cm/s为例，把"**x**"修改为12，更改完成后，按下"**Esc**"键，接着按下指令进行保存。
+(5) For example, we modify "x" as 12 to set the moving speed as 12 cm/s. After modification, press "Esc" and then input ":wq" to save.
 
 ```bash
 :wq
@@ -1292,63 +1492,62 @@ rosed puppy_control puppy_demo.py
 
 <img src="../_static/media/chapter_9/section_15/image12.png"  />
 
-后退的速度修改也是同样的操作，大家可以自行尝试不同速度的设置，对比机器狗速度的变化。
+The modification of the backward speed follows the same procedure. Everyone can try different speed settings to compare the changes in the robot dog's speed.
 
-(6)  输入运行程序的指令，并按下回车。
+(6) Input command "rosrun puppy_control puppy_demo.py" to press Enter to run the program.
 
 ```bash
 rosrun puppy_control puppy_demo.py
 ```
 
-(7)  如需关闭此玩法，只需要在LX终端界面中按下"**Ctrl+C**"。如果关闭失败，可多次按下。
+(7) If want to close this game, we can press "Ctrl+C". If it fails to close the game, please try again.
 
-### 15.3 功能实现
+### 4.15.3 Program Outcome
 
-玩法开启后，PuppyPi机器狗就会按照设置的速度行走。
+After the game starts, PuppyPi will move in the set speed.
 
-## 16. Trot步态俯身前行
+## 4.16 Trot with Head Down 
 
-### 16.1 简介
+### 4.16.1 Introduction
 
-控制PuppyPi 机器狗运动时，通过程序，可同时调整机器狗的姿态（静态）和运动参数，如站立角度（静态）、运动速度（动态）和运动步态（动态）等。
+PuppyPi's gait and dynamic parameters can be adjusted simultaneously through the program, such as standing angle (static), moving speed (dynamic) and moving gait (dynamic).
+We can make PuppyPi trot with head down through modifying the program.
 
-这里结合机器狗的控制程序，来看下Trot步态俯身前行的控制方式。
+The source code of this program is stored in ：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
 
-该程序的源代码位于Docker容器中的：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
-
-### 16.2 玩法开启及关闭步骤
+### 4.16.2 Operation Steps
 
 :::{Note}
-输入指令时需要严格区分大小写，且可使用"**Tab**"键补齐关键词。
+The input command should be case sensitive. And the key words can be complemented by "Tab" key.
 :::
 
-(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1)  Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_9/section_16/image5.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2)  Click<img src="../_static/media/chapter_9/section_16/image5.png" style="width:0.32292in;height:0.30208in" />to open command line terminal
 
-(3)  输入编辑"**puppy_demo.py**"的指令并按下回车。
+(3)  Input the command **"rosed puppy_control puppy_demo.py"** to edit **"puppy_demo.py"**
 
 ```bash
 rosed puppy_control puppy_demo.py
 ```
 
-(4)  按下"**i**"开始更改，为方便观察，需要把速度设置为0，即将"**PuppyMove**"中的参数"**x**"修改为0，此时，机器狗会停止运动，后续需要设置机械狗行走时，将其再改为默认值即可。，如下图：
+(4) Press "i" to start editing. For better observation, we need to modify "x" in **"PuppyMove"** as 0 to set the speed as 0.
 
 <img src="../_static/media/chapter_9/section_16/image10.png"  />
 
 <img src="../_static/media/chapter_9/section_16/image11.png"  />
 
-(5)  修改"**PuppyPose**"中的"**pitch**"参数，该参数代表俯仰角，角度范围是"**-31°~31°**"，单位为度。设置为正数时，机器狗向上仰视前方；设置为负数时，机器狗向下俯视前方。我们这里让机器狗实现向下俯视15度为例，把"**pitch**"修改为-15。
+(5) Modify "pitch" in "PuppyPose" within -31°~31°. "pitch" represents the pitch angle. When the value is positive, PuppyPi will look up. When it is negative, PuppyPi will look down. For example, we modify "pitch" as -15 to make PuppyPi look down 15° . 
 
 <img src="../_static/media/chapter_9/section_16/image13.png"  />
 
 <img src="../_static/media/chapter_9/section_16/image14.png"  />
 
-(6)  接着设置机器狗为Trot步态，找到并查看"**gait**"的参数是否为"**Trot**",程序默认是Trot步态，无需修改，如果不是则需修改为"**Trot**"。
+(6) Then set the gait. Please jump to 24th line to check the gait type. If the current gait is "Trot", remain the default setting. If not, we need to modify it as "Trot".
 
 <img src="../_static/media/chapter_9/section_16/image16.png"  />
 
-(7)  最后更改"**PuppyMove**"中的参数"**x**"，这里以把数值修改为默认的5为例，让机器狗以5cm/s的速度俯身前进。更改完成后，按下"**Esc**"键，接着输入指令进行保存。
+(7) Lastly, modify "x" in "PuppyMove". For example, we modify it as 5 to make PuppyPi trot forward with head down in 5cm/s. After modification, press "Esc" and input ":wq" to keep the modified data.
 
 ```bash
 :wq
@@ -1357,18 +1556,20 @@ rosed puppy_control puppy_demo.py
 <img src="../_static/media/chapter_9/section_16/image18.png"  />
 
 :::{Note}
-① 该修改方法不只是适用于Trot步态，其他步态也同样适用。
-② 俯视角度的调整要根据实际情况来修改，避免影响实际运行效果。
-:::
 
-(8)  输入运行程序的指令，并按下回车。
+* You also can modify other gaits in this way.
+
+* The pitch angle should be modified based on the actual situation to avoid the influence on running.
+  :::
+
+(8) Input command "rosrun puppy_control puppy_demo.py" and press Enter to run the program.
 
 ```bash
 rosrun puppy_control puppy_demo.py
 ```
 
-(9)  如需关闭此玩法，只需要在LX终端界面中按下"**Ctrl+C**"。如果关闭失败，可多次按下。
+(9) If want to close this game, we can press **"Ctrl+C"**. If it fails to close the game, please try again.
 
-### 16.3 功能实现
+### 4.16.3 Program Outcome
 
-玩法开启后，PuppyPi机器狗就会按照Trot步态俯身前行。
+After the game starts, PuppyPi will Trot with head down.

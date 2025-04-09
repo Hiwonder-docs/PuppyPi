@@ -1,160 +1,167 @@
-# SLAM建图课程
+# 14. ROS1-SLAM Mapping Course
 
-## 1. SLAM地图构建原理
+## 14.1 SLAM Mapping Principle
 
-### 1.1 SLAM简介
+### 14.1.1 SLAM Introduction
 
-首先以人为例，在前往目的地前，不管是否有地图，肯定要知道当前所处的位置，只不过人是通过眼睛，机器人则通过"激光雷达"这种方式。SLAM（Simultaneous Localization and Mapping）指的是即时定位和建图。
+Before starting the journey, both humans and robots need to know their current location. However, the way they do it differs. Humans use their eyes, while robots use Lidar sensors.
 
-定位是定位机体在坐标系下的位姿。坐标系的原点和姿态可以由第一帧关键帧、已有的全局地图或路标点、GPS得到。
+SLAM (Simultaneous Localization and Mapping) comprises two processes: localization and mapping. Localization determines the robot's position in the coordinate system. The origin of the coordinate system and the robot's pose can be determined using the first keyframe, the existing global map, road sign points, and GPS.
 
-建图指的是建立机器人所感知周围环境的地图，地图基本几何元素是点。地图的主要作用是定位、导航，导航可拆为导和航，导包括全局规划和局部规划，航即规划完后控制机器人运动。
+Mapping involves creating a map of the robot's surroundings. The primary geometric element of this map is a point. Navigation involves two parts: global planning/local planning and the control of the robot's movements.
 
-### 1.2 SLAM建图原理
+### 14.1.2 Mapping Principle
 
-SLAM建图主要是有以下三个过程：
+Mapping contains three main processes:
 
-(1) 预处理：对雷达的点云原始数据进行优化，剔除一些有问题的数据，或者进行滤波。通俗来说，激光雷达获取的周围环境信息，被称为点云。它是能反映机器人所在环境中"眼睛"能看到的一个部分。其采集到的物体信息呈现出一系列分散的、具有准确角度和距离的信息。
+(1)  Preprocessing: optimize the original point cloud data of Lidar by removing any wrong data and filtering it.
 
-(2) 匹配：把当前这一局部环境的点云数据在已建立的地图上寻找对应的位置，进行匹配。通常，激光SLAM系统通过对不同时刻两片点云的匹配与比对，计算激光雷达相对运动的距离和姿态的改变，也就完成了对机器人自身的定位。
+(2)  Matching: find the position on the map that corresponds to the point cloud data collected in a local area.
 
-(3) 以激光作为信号源，由激光器发射出的脉冲激光，打到周围障碍物上，引起散射。一部分光波会反射到激光雷达的接收器上，再根据激光测距原理计算，就可以得到从激光雷达到目标点的距离。脉冲激光不断地扫描目标物，就可以得到目标物上全部目标点的数据，用此数据进行成像处理后，就可得到精确的三维立体图像。地图融合：将来自激光雷达的新一轮数据拼接到原始地图当中，最终完成地图的更新。
+(3) Map integration: integrate the latest data received by Lidar into the existing map to update it. 
+Lidar uses a pulse laser as the signal source to scan the surrounding obstacles and gather information about the target points. The scattered laser will then be reflected on the receiver of Lidar, enabling it to calculate the distance from the target points. By scanning the target points, the Lidar can gather data for all points and create a 3D image through processing.
 
-### 1.3 地图构建技巧
+### 14.1.3 Mapping Skill
 
-(1)  在开机建图时，机器人最好是面向一堵直墙，或者用封闭的纸箱代替，尽可能让雷达扫到更多的点。
+(1) Place the robot in front of a wall or a box before enabling mapping, which allows the robot to scan more points.
 
 <img src="../_static/media/chapter_20/section_1/image2.png"  />
 
-(2)  尽量走直线，减少机器人旋转运动，否则会造成画面特征点稀疏。当周围环境特征较弱的时候，尽量使机器人贴近环境明显一侧完成建图。
+(2) Try to keep the robot moving straight instead of turning to avoid sparse feature point collection by the Lidar. When the features in the environment are weak, it's best to map areas where feature points are obvious to improve accuracy.
 
 <img class="common_img" src="../_static/media/chapter_20/section_1/image3.png"  />
 
-(3) 在一些大环境应用场景下建图时，最好让机器人先完成建图闭环，再去详细扫描环境里的各个小细节。
+(3) To map large environments effectively, it's recommended that the robot completes the mapping loop first and then focuses on scanning smaller details in the environment.
 
-例如像商场等环境，透明玻璃较多，环境特征不明显。如果在机器人行进的前方有将要路过的相较有特征的环境，如：柱子、左右通道、斜着的墙壁等，可以在合适的位置停下来，然后向着特征位置原地旋转，等雷达扫出了特征环境后再旋转回来继续前进。但旋转的过程中尽量不要后退。
+In environments like shopping malls, which have a lot of transparent glass and unclear environmental features, it's helpful to stop the robot at a suitable location if there are distinct features ahead, such as columns, left and right passages, or diagonal walls. The robot can then rotate in place towards the feature position and wait until the Lidar has scanned the feature environment before rotating back and continuing forward. However, it's best to avoid backing up during the rotation process to ensure accurate mapping.
 
 <img src="../_static/media/chapter_20/section_1/image4.png"  />
 
-### 1.4 地图构建结果判断
+### 14.1.4 Evaluation of Map Building Results
 
-最后在地图构建完成以后，可通过以下点来判断结果是否满足导航的要求：
+After the map construction is completed, the following points can be used to determine if the results meet the navigation requirements:
 
-(1) 地图中障碍物边缘是否清晰；
+(1)  Whether the edges of obstacles in them map are clear.
 
-(2) 地图中是否存和实际环境不一致的区域（如：有无闭环）；
+(2)  Whether there are areas in the map that do not match the actual environment (e.g. loop closures).
 
-(3) 地图中是否存在机器人行动区域内的灰色区域（如：未扫描到的区域）；
+(3) Whether there are gray areas within the robot's operational area in the map (e.g. unscanned areas).
 
-(4) 地图中是否存在后续定位时将不存在的障碍物（如：移动障碍物）；
+(4) Whether there are obstacles in the map that will not exist during subsequent localization (e.g. moving obstacles).
 
-(5) 地图中是否能保证机器人在活动区域内的任何位置，360度的视野范围内，均已探明。
+(5) Whether the map ensures that the robot has explored every position within its operational area, with a 360-degree field of view.
 
-### 1.5 各建图算法使用区别
+### 14.1.5 The Differences of Mapping Algorithms
 
-机器人建图功能包为puppy_slam,已默认安装了Gmapping、Hector、Karto建图。通过功能包中的slam.launch文件来启动不同的建图算法。下表为各建图算法的简要区别，以供用户快速了解（各算法详细说明可参考后文），用户可根据具体需求和环境条件选择最适合的建图算法。
+The robotic mapping function package is called puppy_slam, and it comes with pre-installed mapping algorithms Gmapping, Hector, and Karto. Different mapping algorithms can be started through the slam.launch file in the package. The table below provides a brief comparison of the various mapping algorithms for users to quickly understand (detailed descriptions of each algorithm can be found later). Users can choose the most suitable mapping algorithm based on their specific needs and environmental conditions.
 
-| **算法名称** | **精度** | **即时性** | **计算复杂度** | **要求** | **适用场景** |
+| Algorithm | Accuracy | Real-time Performance | Computational Complexity | Requirements | Suitable Scenarios |
 |:--:|:--:|:--:|:--:|:--:|:--:|
-| Gmapping | 高精度 | 实时 | 中等 | 对地图中的特征和环境的可感知性要求较高。 | 小到中型室内环境，需要实时建图和精确性。 |
-| Hector | 相对准确 | 实时 | 低 | 对激光雷达数据的更新率有较高要求，以适应高速移动机器人的需求。 | 移动速度较快的机器人和存在运动模糊情况的环境 |
-| Karto | 相对准确 | 实时 | 中等 | 对环境中的特征和结构要求较高，以实现准确的扫描匹配和建图。同时，它对计算资源的需求较低，适用于资源有限的平台。 | 小型环境，计算资源有限或设备性能较低的场景。 |
+| Gmapping | High | Real-time | Medium | Requires high perceptibility of features and environment in the map | Small to medium-sized indoor environments requiring real-time mapping and precision. |
+| Hector | Relatively accurate | Real-time | Low | Requires high update rate of laser data to adapt to the needs of fast-moving robots. | Robots with fast movement and environments with motion blur. |
+| Karto | Relatively accurate | Real-time | Medium | Requires high requirements for features and structures in the environment to achieve accurate scan matching and mapping. At the same time, it has low computational resource requirements, suitable for platforms with limited resources. | Small environments, scenes with limited computational resources or low device performance. |
 
-## 2. Gmapping建图算法
+## 14.2 Gmapping Mapping Algorithm
 
 :::{Note}
-开始建图前，需确保机器狗有充足的电量，最好是在充满的状态下进行。
+before mapping, please ensure PuppyPi is with sufficient power, and it is better to fully charge the robot.
 :::
 
-### 2.1 Gmapping简介
+### 14.2.1 Gampping Introduction
 
-Gmapping的理论概念较为简单，它是基于Rao-Blackwellized粒子滤波(RBPF）算法实现的开源SLAM算法，Gmapping算法将定位与建图的过程分离，先通过粒子滤波算法做定位，并通过粒子与已产生地图进行 scanMatch，然后不断矫正里程计误差并添加新的scan做为地图。
+The theoretical concept of Gmapping is relatively simple. It is an open-source SLAM algorithm based on the Rao-Blackwellized Particle Filter (RBPF) algorithm. The Gmapping algorithm separates the process of localization and mapping. It first performs localization using the particle filter algorithm and then performs scan matching between particles and the generated map. It continuously corrects odometry errors and adds new scans to the map.
 
-随着场景增大，所需粒子数会增多，而由于每个粒子都需要携带一副地图，这会导致构建大地图所需的计算量和内存消耗都过大，因此Gmapping算法更适用于构建小场景地图。
+As the scene size increases, the number of particles required will also increase. However, since each particle needs to carry a copy of the map, this leads to excessive computational and memory consumption for constructing large maps. Therefore, the Gmapping algorithm is more suitable for building small-scale maps.
 
 <img src="../_static/media/chapter_20/section_2/image2.png"  />
 
-### 2.2 Gmapping原理
+### 14.2.2 Gmapping Principle
 
-Gmapping算法的实现流程大致为，通过上一时刻的地图及运动模型，预测当前时刻的位姿，随后根据传感器观测值计算权重，执行重采样，更新粒子的地图，并如此往复，便可以完成地图构建。
+The implementation process of the Gmapping algorithm roughly involves predicting the current pose based on the map from the previous time step and the motion model. Then, weights are calculated based on sensor observations, resampling is performed, and particle maps are updated. This process repeats iteratively to complete map construction.
 
-Gmapping在RBpf算法上做了两个主要的改进:改进提议分布和选择性重采样。
+Gmapping makes two main improvements over the RBPF algorithm: improving the proposal distribution and implementing selective resampling.
 
-同其他建图算法相比，Gmapping算法的优点与缺点也比较显著。
+Compared to other mapping algorithms, the advantages and disadvantages of the Gmapping algorithm are also quite significant.
 
-Gmapping算法的优点在于可以实时构建室内地图，在构建小场景地图所需的计算量较小且精度较高。相比Hector对激光雷达频率要求低、鲁棒性高(Hector 在机器人 快速转向时很容易发生错误匹配，建出的地图发生错位，原因主要是优化算法容易陷入局部最小值)﹔而相比Cartographer在构建小场景地图时，Gmapping不需要太多的粒子并且没有回环检测因此计算量小于Cartographer而精度并没有差太多。Gmapping有效利用了车轮里程计信息，这也是Gmapping对激光雷达频率要求低的原因:里程计可以提供机器人的位姿先验。而Hector和Cartographer的设计初衷不是为了解决平面移动机器人定位和建图，Hector主要用于救灾等地面不平坦的情况，因此无法使用里程计。而Cartographer 是用于手持激光雷达完成SLAM过程，也就没有里程计可以用。
+The advantages of the Gmapping algorithm lie in its ability to construct indoor maps in real time, with lower computational requirements and higher accuracy for building small-scale maps. Compared to Hector, Gmapping has lower requirements for laser frequency and higher robustness. Hector is prone to errors in matching when the robot turns quickly, leading to misalignment in the generated map. This is mainly because the optimization algorithm is prone to getting stuck in local minima. Compared to Cartographer, Gmapping requires fewer particles and does not require loop detection when constructing small-scale maps, resulting in lower computational requirements than Cartographer while maintaining similar accuracy.
 
-Gmapping算法的缺点是随着场景增大所需的粒子增加，因为每个粒子都携带一幅地图，因此在构建大地图时所需内存和计算量都会增加。因此不适合构建大场景地图。并且没有回环检测，因此在回环闭合时可能会造成地图错位，虽然增加粒子数目可以使地图闭合但是以增加计算量和内存为代价。所以不能像Cartographer那样构建大的地图，虽然论文生成几万平米的地图，但实际我们使用中建的地图没有几千平米时就会发生错误。Gmapping和Cartographer一个是基于滤波框架SLAM另一个是基于优化框架的SLAM，两种算法都涉及到时间复杂度和空间复杂度的权衡。Gmapping牺牲空间复杂度保证时间复杂度，这就造成Gmapping不适合构建大场景地图，试想一下要构建200x200米的环境地图，栅格分辨率选择5厘米，每个栅格占用一字节内存，那么一个粒子携带的地图就需要16M内存，如果是100个粒子就需要1.6G内存。如果地图变成500乘500米，粒子数为200个，可能电脑就要崩溃了。翻看Cartographer算法，优化相当于地图中只用一个粒子，因此存储空间比较Gmapping会小很多倍，但计算量大，一般的笔记本很难跑出来好的地图，甚至根本就跑不动。优化图需要复杂的矩阵运算，这也是谷歌为什么还要弄个ceres库出来的原因。
+Gmapping effectively utilizes wheel odometry information, which is also why Gmapping has lower requirements for laser frequency: odometry can provide prior pose information for the robot. However, Hector and Cartographer were not originally designed to address the localization and mapping of ground robots. Hector is mainly used for uneven ground conditions such as disaster relief, where odometry cannot be used. Similarly, Cartographer is designed for handheld LiDAR devices to perform the SLAM process, so there is no odometry available.
 
-[Gmapping学习Wiki](http://wiki.ros.org/gmapping)
+The drawback of the Gmapping algorithm is that as the scene size increases, the required number of particles increases. Each particle carries a map, leading to increased memory and computational requirements when building large maps. Therefore, it is not suitable for constructing large-scale maps. Additionally, it lacks loop detection, which can cause map misalignment when loop closures occur. Although increasing the number of particles can help close the map, it comes at the cost of increased computational and memory resources. Therefore, it cannot build large maps like Cartographer. Despite claims of generating maps of tens of thousands of square meters in research papers, errors may occur in practical use even with maps of only a few thousand square meters.
 
-[Slam_Gmapping软件包](https://github.com/ros-perception/slam_gmapping)
+Gmapping and Cartographer are two SLAM algorithms based on different frameworks: Gmapping is based on a filtering framework, while Cartographer is based on an optimization framework. Both algorithms involve a trade-off between time complexity and space complexity. Gmapping sacrifices space complexity to ensure time complexity, which makes it unsuitable for constructing large-scale maps. For example, consider building a map of a 200x200 meter environment with a grid resolution of 5 centimeters, where each grid occupies one byte of memory. In this case, each particle carrying a map would require 16 MB of memory. With 100 particles, this would require 1.6 GB of memory. If the map size increases to 500x500 meters with 200 particles, it could potentially lead to system crashes due to memory constraints.
 
-[OpenSlam_Gmapping开源算法](https://github.com/ros-perception/openslam_gmapping)
+Looking at the Cartographer algorithm, optimization is akin to using only one particle in the map, resulting in significantly smaller storage space compared to Gmapping. However, it requires a large amount of computation, making it difficult for regular laptops to generate good maps, or even run the algorithm at all. Optimization graphs involve complex matrix operations, which is why Google developed the Ceres library.
 
-### 2.3 虚拟机的安装和配置
+* Gmapping learning Wiki: http://wiki.ros.org/gmapping
 
-由于树莓派计算能力有限，所以需要将建图的一部分工作放到虚拟机来完成。建图和导航都需要虚拟机和PuppyPi互相通信，我们需要在修改两者的配置。
+* Slam_Gmapping software package: https://github.com/ros-perception/slam_gmapping
 
-- #### 2.3.1 安装虚拟机软件
+* OpenSlam_Gmapping open source algorithm: https://github.com/ros-perception/openslam_gmapping
 
-虚拟机的安装可以参考同目录下的文档："**虚拟机安装.docx**"。
+### 14.2.3  Virtual Machine Installation and Configuration
 
-- #### 2.3.2 虚拟机的打开和导入
+Due to the limited computing power of Raspberry Pi, virtual machine will take over part of mapping work. Mapping and navigation both require communication between the virtual machine and PuppyPi, so we need to modify the configurations of both.
 
-(1)  将同目录下的虚拟机文件解压到任意非中文路径下。
+- #### Install Virtual Machine Software
+
+You can refer to the document "Virtual Machine Installation.docx" in the same directory for instructions on installing the virtual machine.
+
+- #### Open and Import Virtual Machine
+
+(1) Extract the virtual machine files from the directory to any non-Chinese path you prefer.
 
 <img src="../_static/media/chapter_20/section_2/image4.png"  />
 
-(2)  打开虚拟机软件，点击"**打开虚拟机**"。
+(2) Open a virtual machine.
 
 <img src="../_static/media/chapter_20/section_2/image5.png"  />
 
-(3)  找到虚拟机文件解压的路径，点击打开。
+(3)  Select the folder where virtual machine file is extracted, then open it.
 
 <img src="../_static/media/chapter_20/section_2/image6.png"  />
 
-(4)  根据自己的需求，设置虚拟机的名称和存储路径，设置完成后，点击导入。
+(4) Set the name and storage path of the virtual machine according to your needs. Once set, click on **"Import"** to proceed.
 
 <img class="common_img" src="../_static/media/chapter_20/section_2/image7.png"  />
 
 :::{Note}
-导入完成后，下次打开可以直接选择设置的虚拟机存储路径，直接打开虚拟机，无需再次导入
+after the first importing, you can directly select the storage path for the previous virtual machine, and open it without importing it again.
 :::
 
-- #### 2.3.3 虚拟机的网络配置
+- #### Network Configuration of Virtual Machine
 
 :::{Note}
-台式机进行以下配置时，需要确保装配有无线网卡或准备好一个USB无线网卡。
+if you are using desktop computer, please prepare a wireless LAN adapter or USB wireless adapter.
 :::
 
-(1)  首先，启动机器狗，并用电脑主机连接机器狗的热点。
+(1) Firstly, start PuppyPi, and join the WiFi created by PuppyPi on computer.
 
 <img class="common_img" src="../_static/media/chapter_20/section_2/image8.png"  />
 
-(2)  返回虚拟机，点击"**编辑**"，再点击"**虚拟机网络配置**"。
+(2)  Return to the virtual machine interface, and click **"edit->virtual machine editor"**.
 
 <img src="../_static/media/chapter_20/section_2/image9.png"  />
 
-(3)  在桥接模式处，选择自己的无线网卡，然后点击确定。
+(3) Select the wireless network card to be bridged. Then click OK.
 
 <img src="../_static/media/chapter_20/section_2/image10.png"  alt="loading" />
 
 <img src="../_static/media/chapter_20/section_2/image11.png"  />
 
-(4)  开启虚拟机，等待开机完成。
+(4)  Open virtual machine, and power on virtual machine.
 
 <img src="../_static/media/chapter_20/section_2/image12.png"  />
 
-(5)  进入系统桌面后，桌面右键点击，打开命令行终端。
+(5) When entering the system desktop, right click the desktop and select **"open in terminal"**.
 
 <img src="../_static/media/chapter_20/section_2/image13.png"  />
 
 :::{Note}
-输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
+The input command should be case sensitive and the keywords can be complemented by **"Tab"** key.
 :::
 
-(6)  输入指令，按下回车，查看虚拟机的IP，如红框处所示。
+(6) Input command **"ifconfig"** and press Enter to check the IP of virtual machine. And the IP is as the red frame shown.
 
 ```bash
 ifconfig
@@ -162,37 +169,37 @@ ifconfig
 
 <img src="../_static/media/chapter_20/section_2/image15.png"  />
 
-(7)  再次右键系统桌面，打开一个新的命令行终端，输入指令，按下回车，配置网络。
+(7) Right click the system desktop, and open a new command line terminal. Then input command **"sudo nano /etc/hosts"** and press Enter to configure the network.
 
 ```bash
 sudo nano /etc/hosts
 ```
 
-(8)  将下图第2行和第3行的IP修改为查看到的虚拟机IP和树莓派的IP，虚拟机IP按实际查看情况填写，树莓派IP在直连模式下，固定为"**192.168.149.1**"。
+(8) Modify the IP in the second and the third lines as the IP of virtual machine and Raspberry Pi you got in the previous step. And the fixed IP of Raspberry Pi under direct connection mode is **"192.168.149.1"**.
 
 <img src="../_static/media/chapter_20/section_2/image17.png"  />
 
 :::{Note}
-在修改ip的时候，我们要保证缩进与上行的相同。
+ When modifying the IP, please ensure the indent is consistent.
 :::
 
-(9)  修改完成后按"**Ctrl+x**"，按下Y键保存，再按下回车确定。
+(9)  After modification, press Ctrl+x, and Y key to save modified buffer, then press Enter.
 
 <img src="../_static/media/chapter_20/section_2/image18.png"  />
 
-- #### 2.3.4 PuppyPi的网络配置
+- #### PuppyPi Network Configuration
 
-(1)  接着通过VNC远程连接树莓派桌面。
+(1) Get access to Raspberry Pi desktop via VNC.
 
-(2)  单击桌面左上角的的图标<img src="../_static/media/chapter_20/section_2/image19.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键"**Ctrl+Alt+T**"，打开命令行终端。
+(2) Click <img src="../_static/media/chapter_20/section_2/image19.png" style="width:0.31458in;height:0.27361in" /> or use shortcut **"Ctrl+Alt+T"** to open terminal
 
-(3)  输入指令，并按下回车，修改PuppyPi网络配置。
+(3) Enter command **"sudo vim /etc/hosts"** and press Enter to change network configuration.
 
 ```bash
 sudo vim /etc/hosts
 ```
 
-(4)  找到下图红框位置，输入修改成自己的虚拟机IP（上文1.2获得）。按下"**Esc**"键，输入指令，按下回车保存并退出。
+(4) Find the code marked in the below figure, then enter the IP of virtual machine which can be obtained in step 1.2. After that, press **"Esc"** key, enter **":wq"** and press Enter key to save and exit.  
 
 ```bash
 :wq
@@ -200,197 +207,192 @@ sudo vim /etc/hosts
 
 <img src="../_static/media/chapter_20/section_2/image21.png"  />
 
-(5)  输入指令，并按下回车，更新配置。
+(5) Input command **"source .bashrc"** and press Enter to update the configuration.
 
 ```bash
 source .bashrc
 ```
 
-### 2.4 启动激光雷达建图
+### 14.2.4  Enable Lidar Mapping
 
 :::{Note}
-输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
+The input command should be case sensitive, and the keyword can be complemented by "Tab" key.
 :::
 
-(1)  我们采用PS2手柄手动遥控的方式，让PuppyPi感知周围环境并建图。打开手柄电源开关，按下START按键，连上后，机器狗将处于标准站立姿势。
+(1) Firstly, control PuppyPi with PS2 wireless handle to move around for perceiving the surrounding and start mapping. Turn on the handle, then press START button.
 
-(2)  接着通过VNC远程连接树莓派桌面。
+(2) Connect to Raspberry Pi desktop through VNC.
 
-(3)  点击系统桌面左上角的图标<img src="../_static/media/chapter_20/section_2/image23.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(3) Click<img src="../_static/media/chapter_20/section_2/image23.png" style="width:0.32292in;height:0.30208in" />or press **"Ctrl+Alt+T"** to open the Terminator terminal.
 
-(4) 输入指令，并按下回车开启建模服务。
+(4) Input command **"roslaunch puppy_slam gmapping.launch"**, and press Enter to enable mapping service.
 
 ```bash
 roslaunch puppy_slam gmapping.launch
 ```
 
-(5)  打开虚拟机，打开命令行终端窗口 ，并按下回车开启URDF模型显示节点。
+(5) Open the virtual machine and open the terminal. Then input command **"rosparam set /puppy_control/joint_state_pub_topic true"** and press Enter to enable the node to display URDF model.
 
 ```bash
 rosparam set /puppy_control/joint_state_pub_topic true
 ```
 
-(6)  输入指令，并按下回车，打开建图查看工具。
+(6) Enter command **"roslaunch puppy_description rviz_with_urdf.launch"** and press Enter to open the tool to view mapping process.
 
 ```bash
 roslaunch puppy_description rviz_with_urdf.launch
 ```
 
-(7)  点击左上角的"**File**"，再点击"**Open Config**"，打开配置文件。
+(7) Click **"File->Open Config"** to open configuration file.
 
 <img src="../_static/media/chapter_20/section_2/image28.png"  />
 
-(8) 在"**puppy/puppy_sim/src/puppy_description**"路径下，找到"**mapping.rviz**"文件，点击打开。
+(8) Move to the folder **"puppy/puppy_sim/src/puppy_description"**, select "mapping.rviz" folder and open it.
 
 <img src="../_static/media/chapter_20/section_2/image29.png"  />
 
-(9) 打开后，就会显示出地图，如下图所示。
+(9) After a while, map will appear as pictured.
 
 <img src="../_static/media/chapter_20/section_2/image30.png"  />
 
-(10) 接着我们就可以用手柄控制机器狗，移动到你想要探索建图的区域，同时地图也会不断完善、更新。手柄按键和机器狗动作的对应关系如下：
+(10) Then you can use the wireless handle to control the robot dog to move to anywhere. As PuppyPi is moving, the map will become complete. For how to control PuppyPi to move with handle, please refer to the table below.
 
 :::{Note}
-如果控制PuppyPi移动的过程中，发现行走有些卡顿，我们可以将VNC显示先关掉，避免跟建图抢占CPU资源。
+ If PuppyPi is stuck during walking, you can close VNC which has occupied part of CPU.
 :::
 
-|    **按键**    |            **功能**            |
-|:--------------:|:------------------------------:|
-|     START      |       机体恢复初始化姿态       |
-|       L1       |              上仰              |
-|       L2       |              下俯              |
-|       R1       |              前倾              |
-|       R2       |              后倾              |
-| ↑ / 左滑杆向上 |              前进              |
-| ↓ / 左滑杆向下 |              后退              |
-| ← / 左滑杆向左 |              左转              |
-| → / 左滑杆向右 |              右转              |
-| △ / 右滑杆向上 |          提升机体高度          |
-| × / 右滑杆向下 |          降低机体高度          |
-| ◻ / 右滑杆向左 | 减速（需配合按键"↑"、"↓"使用） |
-| ○ / 右滑杆向右 | 加速（需配合按键"↑"、"↓"使用） |
+|               Key                |               Function               |
+| :------------------------------: | :----------------------------------: |
+|              START               | PuppyPi restores to initial posture  |
+|                L1                |               look up                |
+|                L2                |              Look down               |
+|                R1                |             Tilt forward             |
+|                R2                |            Tilt backward             |
+|  ↑ / move left joystick upward   |              Go forward              |
+| ↓ / move left joystick downward  |             Go backward              |
+|   ← /  move left joystick left   |              Turn left               |
+|   → / move left joystick right   |              Turn right              |
+|  △ / move right joystick upward  |        Raise the body height         |
+| × / move right joystick downward |        Lower the body height         |
+|   ◻ / move right joystick left   | Speed up（Combined with ↑and↓ keys） |
+|  ○ / move right joystick right   | Speed down（Combined with↑and↓keys） |
 
-(11) 探索完区域后，需要将地图保存到树莓派中，回到VNC，重新打开一个命令行终端，输入指令
+(11) After PuppyPi has traveled around the surrounding, you need to save the map to Raspberry Pi. Return back to VNC, and open a new terminal, then input command "rosrun map_server map_saver -f /home/ubuntu/puppy_pi/src/puppy_slam/maps/map1". 
 
 ```bash
 rosrun map_server map_saver -f /home/ubuntu/puppypi/src/puppy_slam/maps/map1
 ```
 
-其中map1可以替换成你想要保存的地图名字，按下回车，等待一会，地图就会保存在此指令的路径下。
+Map1 is the name of the map, and you change it. Press Enter, and after a while, the map will be kept in the specific path.
 
 <img src="../_static/media/chapter_20/section_2/image31.png"  />
 
-(12) 保存的地图在Docker容器中的 "**/homeubuntu/puppy_pi/src/puppy_slam/maps/**" 路径下。
+(12) open the file manager, and you can find the map under the path, "/home/ubuntu/puppy_pi/src/puppy_slam/maps/".
 
 <img src="../_static/media/chapter_20/section_2/image34.png"  />
 
-(13) 此时整个SLAM建图过程就已经完成，可在启动建图重新的终端界面按下"**Ctrl+C**"，关闭程序。
+(13) At this time, SLAM mapping comes to the end. And you can press Crtl+C on terminal interface.
 
-## 3. Hector建图算法
+## 14.3 Hector Mapping Algorithm
 
 :::{Note}
-开始建图前，需确保机器狗有充足的电量，最好是在充满的状态下进行。
+before mapping, please ensure PuppyPi is with sufficient power, and it is better to fully charge the robot.
 :::
 
-### 3.1 Hector简介
+### 14.3.1 Hector Introduction 
 
-Hector算法采用了高斯—牛顿迭代法（Gauss-Newton iteration method），仅根据激光信息便可以构建地图。
+The Hector algorithm utilizes the Gauss-Newton iteration method and is capable of constructing maps solely based on laser information.
 
-Hector算法无需里程计数据，因此可以应用于救灾等地面不平坦的场景。由于需要根据激光雷达数据估算里程计信息，此算法对激光雷达的帧率要求较高。
+The Hector algorithm does not require odometry data, making it suitable for uneven ground scenarios such as disaster relief. However, since it relies on laser data to estimate odometry information, this algorithm has higher requirements for the frame rate of the laser scanner.
 
-Hector算法的整体建图精度要优于Gmapping算法，但它对参数配置要求较高，而Gmapping算法的易用性更好。
+The overall mapping accuracy of the Hector algorithm is generally better than that of the Gmapping algorithm. However, Hector requires higher parameter configuration, while Gmapping is known for its ease of use.
 
 <img src="../_static/media/chapter_20/section_3/image2.png"  />
 
-### 3.2 Hector原理
+### 14.3.2 Hector Principle
 
-Hector算法利用了高斯—牛顿迭代法来解决扫描匹配问题。扫描匹配就是使用当前帧和已有地图数据构建误差函数，并利用高斯—牛顿迭代法获取最优解和偏差量。具体实现流程如下：
-
-首先，在初始时刻，需要将激光雷达自身的坐标与栅格地图坐标系重合，这样即可获取激光雷达在地图中的初始位姿，以及雷达第一帧扫描数据在地图中的坐标。
-
-随后，获取雷达第二帧扫描数据，并测出它在地图中的坐标。此时，第二帧与第一帧的相对位置关系是未知的。
-
-接着，对这两帧数据进行匹配。假设两帧数据无限接近，通过构造最小二乘法等计算步骤，求解出位姿增量。将第一帧位姿与位姿增量相加，即可获得第二帧在地图坐标系下的位姿。
-
-最后，根据第二帧扫描数据的位姿计算出它在地图中的坐标，也就是将其映射至地图上。不断重复上述步骤，即可完成建图。
-
-Hector 的算法流程如下图所示：
+The Hector algorithm utilizes the Gauss-Newton iteration method to solve the scan matching problem. Scan matching involves constructing an error function using the current frame and existing map data, and then utilizing the Gauss-Newton iteration method to obtain the optimal solution and deviation. The specific implementation process is as follows:
+Firstly, at the initial moment, it's necessary to align the coordinates of the LiDAR sensor with the grid map coordinate system. This alignment allows us to obtain the initial pose of the LiDAR sensor in the map, as well as the coordinates of the first scan data frame of the LiDAR in the map.
+Subsequently, the next step involves acquiring the second frame of scan data from the LiDAR and measuring its coordinates in the map. At this point, the relative position relationship between the second frame and the first frame is unknown.
+Continuing, the next step involves matching these two frames of data. Assuming the two frames are infinitesimally close, the position increment is calculated through steps such as constructing a least squares method. By adding the position increment to the pose of the first frame, we can obtain the pose of the second frame in the map coordinate system.
+Finally, based on the pose of the second frame's scan data, calculate its coordinates in the map, effectively mapping it onto the map. By continuously repeating the above steps, the mapping process can be completed.
+The algorithm process of Hector is as shown in the figure below:
 
 <img src="../_static/media/chapter_20/section_3/image3.png"  />
 
-上图不仅是Hector SLAM 的算法流程图，也是Hector 源码的结构图，用户在后期如果要学习Hector SLAM 算法源码，也可借鉴上图的结构进行代码梳理与学习。
+The diagram above serves not only as the algorithm flowchart for Hector SLAM but also as the structural diagram for the Hector source code. Users can refer to this diagram for code organization and study when learning the Hector SLAM algorithm in the later stages.
 
-**HectorSLAM 相关源代码及WIKI 地址：**
+HectorSLAM related source code and WIKI address:
 
-[Hector Mapping ROS Wiki](http://wiki.ros.org/hector_mapping)
+Hector Mapping ROS Wiki: http://wiki.ros.org/hector_mapping
 
-[Hector_slam 软件包](https://github.com/tu-darmstadt-ros-pkg/hector_slam)
+Hector_slam software package: https://github.com/tu-darmstadt-ros-pkg/hector_slam 
 
 <img src="../_static/media/chapter_20/section_3/image4.png"  />
 
-### 3.3 虚拟机的安装和配置
+### 14.3.3 Virtual Machine Installation and Configuration
 
-由于树莓派计算能力有限，所以需要将建图的一部分工作放到虚拟机来完成。建图和导航都需要虚拟机和PuppyPi互相通信，我们需要在修改两者的配置。
+Due to the limited computing power of Raspberry Pi, virtual machine will take over part of mapping work. Mapping and navigation both require communication between the virtual machine and PuppyPi. We need to modify the configurations of both to enable this.
 
-- #### 3.3.1 安装虚拟机软件
+- #### Install Virtual Machine
 
-虚拟机的安装可以参考同目录下的文档："**虚拟机安装.docx**"。
+You can refer to the document **"Virtual Machine Installation.docx"** in the same directory for instructions on installing the virtual machine.
 
-- #### 3.3.2 虚拟机的打开和导入
+- #### Open and Import Virtual Machine
 
-(1)  将同目录下的虚拟机文件解压到任意非中文路径下。
+(1) Extract the virtual machine files from the directory to any non-Chinese path you prefer.
 
 <img src="../_static/media/chapter_20/section_3/image5.png"  />
 
-(2)  打开虚拟机软件，点击"**打开虚拟机**"。
+(2) Open a virtual machine.
 
 <img src="../_static/media/chapter_20/section_3/image6.png"  />
 
-(3)  找到虚拟机文件解压的路径，点击打开。
+(3) Select the folder where virtual machine file is extracted, then open it.
 
 <img src="../_static/media/chapter_20/section_3/image7.png"  />
 
-(4)  根据自己的需求，设置虚拟机的名称和存储路径，设置完成后，点击导入。
+(4)  Enter the name and set the storage path for virtual machine. Then click **"Import"**.
 
 <img class="common_img" src="../_static/media/chapter_20/section_3/image8.png"  />
 
 :::{Note}
-导入完成后，下次打开可以直接选择设置的虚拟机存储路径，直接打开虚拟机，无需再次导入
+After the first importing, you can directly select the storage path for the previous virtual machine, and open it without importing it again.
 :::
 
-- #### 3.3.3 虚拟机的网络配置
+- #### Network Configuration of Virtual Machine
 
 :::{Note}
-台式机进行以下配置时，需要确保装配有无线网卡或准备好一个USB无线网卡。
+if you are using desktop computer, please prepare a wireless LAN adapter or USB wireless adapter.
 :::
 
-(1)  首先，启动机器狗，并用电脑主机连接机器狗的热点。
+(1) Firstly, start PuppyPi, and join the WiFi created by PuppyPi on computer.
 
 <img class="common_img" src="../_static/media/chapter_20/section_3/image9.png"  />
 
-(2)  返回虚拟机，点击"**编辑**"，再点击"**虚拟机网络配置**"。
+(2) Return to the virtual machine interface, and click **"edit->virtual machine editor"**.
 
 <img src="../_static/media/chapter_20/section_3/image10.png"  />
 
-(3)  在桥接模式处，选择自己的无线网卡，然后点击确定。
+(3) Select the wireless network card to be bridged. Then click OK.
 
 <img src="../_static/media/chapter_20/section_3/image11.png"  alt="loading" />
 
 <img src="../_static/media/chapter_20/section_3/image12.png"  />
 
-(4)  开启虚拟机，等待开机完成。
+(4) Open virtual machine, and power on virtual machine.
 
 <img src="../_static/media/chapter_20/section_3/image13.png"  />
 
-(5)  进入系统桌面后，桌面右键点击，打开命令行终端。
+(5) When entering the system desktop, right click the desktop and select "open in terminal".
 
 <img src="../_static/media/chapter_20/section_3/image14.png"  />
 
 :::{Note}
-输入指令时需要严格区分大小写，且可使用"Tab"键补齐关键词。
+The input command should be case sensitive and the keywords can be complemented by **"Tab"** key.
 :::
 
-(6)  输入指令，按下回车，查看虚拟机的IP，如红框处所示。
+(6) Input command **"ifconfig"** and press Enter to check the IP of virtual machine. And the IP is as the red frame shown.
 
 ```bash
 ifconfig
@@ -398,37 +400,37 @@ ifconfig
 
 <img src="../_static/media/chapter_20/section_3/image16.png"  />
 
-(7)  再次右键系统桌面，打开一个新的命令行终端，输入指令，按下回车，配置网络。
+(7) Right click the system desktop, and open a new command line terminal. Then input command **"sudo nano /etc/hosts"** and press Enter to configure the network.
 
 ```bash
 sudo nano /etc/hosts
 ```
 
-(8)  将下图第2行和第3行的IP修改为查看到的虚拟机IP和树莓派的IP，虚拟机IP按实际查看情况填写，树莓派IP在直连模式下，固定为"**192.168.149.1**"。
+(8) Modify the IP in the second and the third lines as the IP of virtual machine and Raspberry Pi you got in the previous step. And the fixed IP of Raspberry Pi under direct connection mode is "192.168.149.1".
 
 <img src="../_static/media/chapter_20/section_3/image18.png"  />
 
 :::{Note}
-在修改ip的时候，我们要保证缩进与上行的相同。
+when modifying the IP, please ensure the indent is consistent.
 :::
 
-(9)  修改完成后按"**Ctrl+x**"，按下Y键保存，再按下回车确定。
+(9) After modification, press Ctrl+x, and Y key to save modified buffer, then press Enter.
 
 <img src="../_static/media/chapter_20/section_3/image19.png"  />
 
-- #### 3.3.4 PuppyPi的网络配置
+- #### PuppyPi Network Configuration
 
-(1)  接着通过VNC远程连接树莓派桌面。
+(1) Get access to Raspberry Pi desktop via VNC.
 
-(2)  单击桌面左上角的的图标<img src="../_static/media/chapter_20/section_3/image20.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键"Ctrl+Alt+T"，打开命令行终端。
+(2)  Click <img src="../_static/media/chapter_20/section_3/image20.png" style="width:0.31458in;height:0.27361in" /> or use shortcut **"Ctrl+Alt+T"** to open terminal
 
-(3)  输入指令，并按下回车，修改PuppyPi网络配置。
+(3)  Enter command **"sudo vim /etc/hosts"** and press Enter to change PuppyPi network configuration.
 
 ```bash
 sudo vim /etc/hosts
 ```
 
-(4)  找到下图红框位置，输入修改成自己的虚拟机IP（上文1.2获得）。按下"**Esc**"键，输入指令，按下回车保存并退出。
+(4) Find the code marked in the below figure, then enter the IP of virtual machine which can be obtained in step 1.2. After that, press **"Esc"** key, enter **":wq"** and press Enter key to save and exit.  
 
 ```bash
 :wq
@@ -436,199 +438,190 @@ sudo vim /etc/hosts
 
 <img src="../_static/media/chapter_20/section_3/image22.png"  />
 
-(5)  输入指令，并按下回车，更新配置。
+(5) Run the command **"source .bashrc"** and press Enter to update the configuration.
 
 ```bash
 source .bashrc
 ```
 
-### 3.4 启动激光雷达建图
+### 14.3.4 Enable Lidar Mapping
 
 :::{Note}
-输入指令时需要严格区分大小写，且可使用"**Tab**"键补齐关键词。
+The input command should be case sensitive, and the keyword can be complemented by "Tab" key.
 :::
 
-(1)  我们采用PS2手柄手动遥控的方式，让PuppyPi感知周围环境并建图。打开手柄电源开关，按下START按键，连上后，机器狗将处于标准站立姿势。
+(1) Firstly, control PuppyPi with PS2 wireless handle to move around for perceiving the surrounding and start mapping. Turn on the handle, then press START button.
 
-(2)  接着通过VNC远程连接树莓派桌面。
+(2) Connect to Raspberry Pi desktop through VNC.
 
-(3)  点击系统桌面左上角的图标<img src="../_static/media/chapter_20/section_3/image24.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(3) Click<img src="../_static/media/chapter_20/section_3/image24.png" style="width:0.32292in;height:0.30208in" /> to open the Terminator terminal.
 
-(4)  输入指令，并按下回车开启建模服务。
+(4) Input command **"roslaunch puppy_slam hector.launch"**, and press Enter to enable mapping service.
 
 ```bash
 roslaunch puppy_slam hector.launch
 ```
 
-(5)  打开虚拟机，打开命令行终端窗口 ，并按下回车开启建模服务。
+(5) Open the virtual machine and open the terminal. Then input command **"rosparam set /puppy_control/joint_state_pub_topic true"** and press Enter to enable the node to display URDF model.
 
 ```bash
 rosparam set /puppy_control/joint_state_pub_topic true
 ```
 
-(6)  输入指令，并按下回车，打开URDF模型显示节点。
+(6) Enter command **"roslaunch puppy_description rviz_with_urdf.launch"** and press Enter to open the tool to view mapping process.
 
 ```bash
 roslaunch puppy_description rviz_with_urdf.launch
 ```
 
-(7) 点击左上角的"**File**"，再点击"**Open Config**"，打开配置文件。
+(7) Click **"File->Open Config"** to open configuration file.
 
 <img src="../_static/media/chapter_20/section_3/image29.png"  />
 
-(8) 在"**puppy/puppy_sim/src/puppy_description**"路径下，找到"**mapping.rviz**"文件，点击打开。
+(8) Move to the folder **"puppy/puppy_sim/src/puppy_description"**, select **"mapping.rviz"** folder and open it.
 
 <img src="../_static/media/chapter_20/section_3/image30.png"  />
 
-(9) 打开后，就会显示出地图，如下图所示。
+(9) After a while, map will appear as pictured.
 
 <img src="../_static/media/chapter_20/section_3/image31.png"  />
 
-(10) 输入接着我们就可以用手柄控制机器狗，移动到你想要探索建图的区域，同时地图也会不断完善、更新。手柄按键和机器狗动作的对应关系如下：
+(10) Then you can use the wireless handle to control the robot dog to move to anywhere. As PuppyPi is moving, the map will become complete. For how to control PuppyPi to move with handle, please refer to the table below.
 
 :::{Note}
-如果控制PuppyPi移动的过程中，发现行走有些卡顿，我们可以将VNC显示先关掉，避免跟建图抢占CPU资源。
+if PuppyPi is stuck during walking, you can close VNC which has occupied part of CPU.
 :::
 
-|    **按键**    |           **功能**           |
-|:--------------:|:--------------------------:|
-|     START      |         机体恢复初始化姿态          |
-|       L1       |             上仰             |
-|       L2       |             下俯             |
-|       R1       |             前倾             |
-|       R2       |             后倾             |
-| ↑ / 左滑杆向上 |             前进             |
-| ↓ / 左滑杆向下 |             后退             |
-| ← / 左滑杆向左 |             左转             |
-| → / 左滑杆向右 |             右转             |
-| △ / 右滑杆向上 |           提升机体高度           |
-| × / 右滑杆向下 |           降低机体高度           |
-| ◻ / 右滑杆向左 |     减速（需配合按键"↑"、"↓"使用）     |
-| ○ / 右滑杆向右 |     加速（需配合按键"↑"、"↓"使用）     |
+|             **按键**             |               Function               |
+| :------------------------------: | :----------------------------------: |
+|              START               | PuppyPi restores to initial posture  |
+|                L1                |               look up                |
+|                L2                |              Look down               |
+|                R1                |             Tilt forward             |
+|                R2                |            Tilt backward             |
+|  ↑ / move left joystick upward   |              Go forward              |
+| ↓ / move left joystick downward  |             Go backward              |
+|   ← / move left joystick left    |              Turn left               |
+|   → / move left joystick right   |              Turn right              |
+|  △ / move right joystick upward  |        Raise the body height         |
+| × / move right joystick downward |        Lower the body height         |
+|   ◻ / move right joystick left   |  Speed up（Combined with↑and↓keys）  |
+|  ○ / move right joystick right   | Speed down（Combined with↑and↓keys） |
 
-(11) 探索完区域后，需要将地图保存到树莓派中，回到VNC，重新打开一个命令行终端<img src="../_static/media/chapter_20/section_3/image24.png" style="width:0.32292in;height:0.30208in" />，输入指令
+(11) After PuppyPi has traveled around the surrounding, you need to save the map to Raspberry Pi. Return back to VNC, and open a new terminal, then input command **"rosrun map_server map_saver -f /home/ubuntu/puppy_pi/src/puppy_slam/maps/map1".** 
 
 ```bash
 rosrun map_server map_saver -f /home/ubuntu/puppypi/src/puppy_slam/maps/map1
 ```
 
-其中map1可以替换成你想要保存的地图名字，按下回车，等待一会，地图就会保存在此指令的路径下。
+map1 is the name of the map, and you change it. Press Enter, and after a while, the map will be kept in the specific path.
 
 <img src="../_static/media/chapter_20/section_3/image32.png"  />
 
-(12) 保存的地图在Docker容器中的"**/home/ubuntu/puppypi/src/puppy_slam/maps/**"路径下 。
+(12) Click  to open the file manager, and you can find the map under the path, "/home/pi/puppy_pi/src/puppy_slam/maps/".
 
 <img src="../_static/media/chapter_20/section_3/image35.png"  />
 
-(13) 此时整个SLAM建图过程就已经完成，可在启动建图重新的终端界面按下"**Ctrl+C**"，关闭程序。
+(13) At this time, SLAM mapping comes to the end. And you can press Crtl+C on terminal interface.
 
-## 4. Karto建图算法
+## 14.4 Karto Mapping Algorithm
 
 :::{Note}
-开始建图前，需确保机器狗有充足的电量，最好是在充满的状态下进行。
+Before mapping, please ensure PuppyPi is with sufficient power, and it is better to fully charge the robot.
 :::
 
-### 4.1 Karto简介
+### 14.4.1 Karto Introduction
 
-Karto算法基于图优化框架，通过非线性最小二乘方法来优化建图过程中累积的误差，在一定程度上替代了基于滤波器的激光SLAM方案。
-
-Karto算法的缺点在于，每次采用局部子图匹配前都需构建子图，因此耗费时间较长。
-
-Karto_SLAM 的 ROS 版本，其中采用的稀疏点调整（the Spare Pose Adjustment(SPA)）与扫描匹配和闭环检测相关。landmark 越多,内存需求越大,然而图优化方式相比其他方法在大环境下制图优势更大，因为他仅包含点的图(robot pose)，求得位姿后再求 map。
-
-Karto SLAM 的算法程序框架如下图所示：
+The Karto algorithm is based on a graph optimization framework and utilizes a nonlinear least squares method to optimize the accumulated errors during the mapping process. To some extent, it replaces filter-based laser SLAM solutions.
+The drawback of the Karto algorithm lies in the fact that it requires the construction of a subgraph before each local subgraph matching, which consumes a considerable amount of time.
+The ROS version of Karto_SLAM utilizes Spare Pose Adjustment (SPA), which is associated with scan matching and loop closure detection. As the number of landmarks increases, the memory requirements also increase. However, the graph optimization method has a greater advantage in mapping large environments compared to other methods because it only involves a graph of points (robot pose), with the map being computed after obtaining the poses.
+The algorithmic framework of Karto SLAM is illustrated in the diagram below:
 
 <img src="../_static/media/chapter_20/section_4/image2.png"  />
 
-从上图中可以看出，其实流程还是相当简单的，slam 传统软实时的运行机制，每进入一帧数据，即进行处理，然后返回。
+From the diagram, it can be seen that the process is quite simple. The traditional soft real-time running mechanism of SLAM operates such that upon entering each frame of data, processing occurs, and then returns.
 
-**KartoSLAM 相关源代码及 WIKI 地址：**
+**KartoSLAM related source code and WIKI address:**
 
-[KartoSLAM ROS Wiki](http://wiki.ros.org/slam_karto)
+* **KartoSLAM ROS Wiki:**http://wiki.ros.org/slam_karto 
 
-[slam_karto 软件包](https://github.com/ros-perception/slam_karto)
+* **slam_karto software package:** https://github.com/ros-perception/slam_karto
 
-[open_karto 开源算法](https://github.com/ros-perception/open_karto)
+* **open_karto open source algorithm:** https://github.com/ros-perception/open_karto
 
-### 4.2 Karto原理
+### 14.4.2 Karto Principle
 
-Karto算法以图优化为基础思想，也就是用图像均值表示地图，每个节点表示机器人轨迹的一个位置点和传感器测量数据集。每当地图加入新节点，会根据节点位置进行约束计算，更新地图信息。
-
-Karto算法的数据处理流程如下：
+The Karto algorithm is based on the principle of graph optimization, where the map is represented by the mean image, and each node represents a position point of the robot's trajectory along with a dataset of sensor measurements. Whenever a new node is added to the map, constraint calculations are performed based on the node's position to update the map information.
+The data processing flow of the Karto algorithm is as follows:
 
 <img src="../_static/media/chapter_20/section_4/image3.png"  alt="loading" />
 
-首先，根据里程计获取机器人的当前位姿，并将其与机器人进行一定范围的平移和旋转后的位姿进行匹配，选择其中可能性最大的位姿。若得到单个位姿，则将此位姿作为匹配后的位姿。若得到多个位姿，则对其求均值，将结果位姿作为匹配后的位姿。
+First, the current pose of the robot is obtained based on odometry. Then, this pose is matched with the poses obtained after translating and rotating the robot within a certain range. Among these possible poses, the one with the highest likelihood is selected. If a single pose is obtained, it is considered as the matched pose. If multiple poses are obtained, their mean is calculated, and the resulting pose is considered as the matched pose.
+Subsequently, a threshold is set for saving the laser scan data. During the scanning process, data that reaches this threshold are saved.
+It's important to note that when the LiDAR moves from one area to another, this movement can result in overlap between the maps of the two areas. In this case, the robot first saves the non-overlapping part of the first map and then incorporates the overlapping part into the second map.
+Finally, the map is updated based on the processed data, completing the map construction process.
 
-随后，设定激光雷达数据保存的阈值，扫描过程中会对达到该阈值的数据进行保存。
+### 14.4.3 Virtual Machine Installation and Configuration
 
-需要注意的是，雷达由一个区域移动至另一个区域时，此移动过程会导致两个区域的地图存在重合。此时，机器人会先保存第一个地图中的未重合部分，然后将重合部分包含至第二个地图中。
+Due to the limited computing power of Raspberry Pi, virtual machine will take over part of mapping work.
 
-最后，根据处理所得的数据更新地图，完成地图构建。
+- #### Install Virtual Machine
 
-### 4.3 虚拟机的安装和配置
+You can refer to the document "**[Virtual Machine Installation.docx](https://store.hiwonder.com.cn/docs/common/Mirror_burning_tool/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E5%AF%BC%E5%85%A5.docx)**". in the same directory for instructions on installing the virtual machine.
 
-由于树莓派计算能力有限，所以需要将建图的一部分工作放到虚拟机来完成。建图和导航都需要虚拟机和PuppyPi互相通信，我们需要在修改两者的配置。
+- #### Open and Import Virtual Machine
 
-- #### 4.3.1 安装虚拟机软件
-
-虚拟机的安装可以参考文档："**[虚拟机安装.docx](https://store.hiwonder.com.cn/docs/common/Mirror_burning_tool/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E5%AF%BC%E5%85%A5.docx)**"。
-
-- #### 4.3.2 虚拟机的打开和导入
-
-(1)  将同目录下的虚拟机文件解压到任意非中文路径下。
+(1)  Extract the virtual machine files from the directory to any non-Chinese path you prefer.
 
 <img src="../_static/media/chapter_20/section_4/image4.png"  />
 
-(2)  打开虚拟机软件，点击"**打开虚拟机**"。
+(2) Open a virtual machine.
 
 <img src="../_static/media/chapter_20/section_4/image5.png"  />
 
-(3)  找到虚拟机文件解压的路径，点击打开。
+(3) Select the folder where virtual machine file is extracted, then open it.
 
 <img src="../_static/media/chapter_20/section_4/image6.png"  />
 
-(4)  根据自己的需求，设置虚拟机的名称和存储路径，设置完成后，点击导入。
+(4) Enter the name and set the storage path for virtual machine. Then click **"Import"**.
 
 <img class="common_img" src="../_static/media/chapter_20/section_4/image7.png"  />
 
 :::{Note}
-导入完成后，下次打开可以直接选择设置的虚拟机存储路径，直接打开虚拟机，无需再次导入
+After the first importing, you can directly select the storage path for the previous virtual machine, and open it without importing it again.
 :::
 
-- #### 4.3.3 虚拟机的网络配置
+- #### Network Configuration of Virtual Machine
 
 :::{Note} 
-台式机进行以下配置时，需要确保装配有无线网卡或准备好一个USB无线网卡。
+If you are using desktop computer, please prepare a wireless LAN adapter or USB wireless adapter.
 :::
 
-(1) 首先，启动机器狗，并用电脑主机连接机器狗的热点。
+(1) Firstly, start PuppyPi, and join the WiFi created by PuppyPi on computer.
 
 <img class="common_img" src="../_static/media/chapter_20/section_4/image8.png"  />
 
-(2) 返回虚拟机，点击"**编辑**"，再点击"**虚拟机网络配置**"。
+(2) Return to the virtual machine interface, and click **"edit->virtual machine editor"**.
 
 <img src="../_static/media/chapter_20/section_4/image9.png"  />
 
-(3) 在桥接模式处，选择自己的无线网卡，然后点击确定。
+(3) Select the wireless network card to be bridged. Then click OK.
 
 <img class="common_img" src="../_static/media/chapter_20/section_4/image10.png"  alt="loading" />
 
 <img class="common_img" src="../_static/media/chapter_20/section_4/image11.png"  />
 
-(4) 开启虚拟机，等待开机完成。
+(4) Open virtual machine, and power on virtual machine.
 
 <img src="../_static/media/chapter_20/section_4/image12.png"  />
 
-(5) 进入系统桌面后，桌面右键点击，打开命令行终端。
-
-<img src="../_static/media/chapter_20/section_4/image13.png"  />
+(5) When entering the system desktop, right click the desktop and select "**open in terminal**".<img src="../_static/media/chapter_20/section_4/image13.png"  />
 
 :::{Note}
-输入指令时需要严格区分大小写，且可使用"**Tab**"键补齐关键词。
+The input command should be case sensitive and the keywords can be complemented by "Tab" key.
 :::
 
-(6)  输入指令，按下回车，查看虚拟机的IP，如红框处所示。
+(6) Input command **"ifconfig"** and press Enter to check the IP of virtual machine. And the IP is as the red frame shown.
 
 ```bash
 ifconfig
@@ -636,37 +629,37 @@ ifconfig
 
 <img src="../_static/media/chapter_20/section_4/image15.png"  />
 
-(7)  再次右键系统桌面，打开一个新的命令行终端，输入指令，按下回车，配置网络。
+(7) Right click the system desktop, and open a new command line terminal. Then input command **"sudo nano /etc/hosts"** and press Enter to configure the network.
 
 ```bash
 sudo nano /etc/hosts
 ```
 
-(8)  将下图第2行和第3行的IP修改为查看到的虚拟机IP和树莓派的IP，虚拟机IP按实际查看情况填写，树莓派IP在直连模式下，固定为"**192.168.149.1**"。
+(8) Modify the IP in the second and the third lines as the IP of virtual machine and Raspberry Pi you got in the previous step. And the fixed IP of Raspberry Pi under direct connection mode is "192.168.149.1".
 
 <img src="../_static/media/chapter_20/section_4/image17.png"  />
 
 :::{Note} 
-在修改ip的时候，我们要保证缩进与上行的相同。
+ when modifying the IP, please ensure the indent is consistent.
 :::
 
-(9)  修改完成后按"**Ctrl+x**"，按下Y键保存，再按下回车确定。
+(9)  After modification, press **Ctrl+x**, and Y key to save modified buffer, then press Enter.
 
 <img src="../_static/media/chapter_20/section_4/image18.png"  />
 
-- #### 4.3.4 PuppyPi的网络配置
+- #### PuppyPi Network Configuration
 
-(1)  接着通过VNC远程连接树莓派桌面。
+(1) Get access to Raspberry Pi desktop via VNC.
 
-(2)  单击桌面左上角的的图标<img src="../_static/media/chapter_20/section_4/image19.png" style="width:0.31458in;height:0.27361in" />，或使用快捷键"**Ctrl+Alt+T**"，打开命令行终端。
+(2) Click <img src="../_static/media/chapter_20/section_4/image19.png" style="width:0.31458in;height:0.27361in" /> or use shortcut **"Ctrl+Alt+T"** to open terminal
 
-(3)  输入指令，并按下回车，修改PuppyPi网络配置。
+(3) Enter command **"sudo vim /etc/hosts"** and press Enter to change PuppyPi network configuration.
 
 ```bash
 sudo vim /etc/hosts
 ```
 
-(4)  找到下图红框位置，输入修改成自己的虚拟机IP（上文1.2获得）。按下"**Esc**"键，输入指令，按下回车保存并退出。
+(4) Find the code marked in the below figure, then enter the IP of virtual machine which can be obtained in step 1.2. After that， press **"Esc"** key, enter **":wq"** and press Enter key to save and exit.  
 
 ```bash
 :wq
@@ -674,173 +667,174 @@ sudo vim /etc/hosts
 
 <img src="../_static/media/chapter_20/section_4/image21.png"  />
 
-(5)  输入指令，并按下回车，更新配置。
+(5) Input command **"source .bashrc"** and press Enter to update the configuration.
 
 ```bash
 source .bashrc
 ```
 
-### 4.4 启动激光雷达建图
+### 14.4.4 Enable Lidar Mapping
 
 :::{Note}
-输入指令时需要严格区分大小写，且可使用"**Tab**"键补齐关键词。
+The input command should be case sensitive, and the keyword can be complemented by "Tab" key.
 :::
 
-(1)  我们采用PS2手柄手动遥控的方式，让PuppyPi感知周围环境并建图。打开手柄电源开关，按下START按键，连上后，机器狗将处于标准站立姿势。
+(1) Firstly, control PuppyPi with PS2 wireless handle to move around for perceiving the surrounding and start mapping. Turn on the handle, then press START button.
 
-(2)  接着通过VNC远程连接树莓派桌面。
+(2) Connect to Raspberry Pi desktop through VNC.
 
-(3)  点击系统桌面左上角的图标<img src="../_static/media/chapter_20/section_4/image23.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(3) Click <img src="../_static/media/chapter_20/section_4/image23.png" style="width:0.32292in;height:0.30208in" />to open the Terminator terminal.
 
-(4)  输入指令，并按下回车开启建模服务。
+(4) Input command **"roslaunch puppy_slam karto.launch"**, and press Enter to enable mapping service.
 
 ```bash
 roslaunch puppy_slam karto.launch
 ```
 
-(5)  打开虚拟机，打开命令行终端窗口 ，并按下回车开启URDF模型显示节点。
+(5) Open the virtual machine and open the terminal. Then input command **"rosparam set /puppy_control/joint_state_pub_topic true"** and press Enter to enable the node to display URDF model.
 
 ```bash
 rosparam set /puppy_control/joint_state_pub_topic true
 ```
 
-(6)  输入指令，并按下回车，打开建图查看工具。
+(6) Enter command **"roslaunch puppy_description rviz_with_urdf.launch"** and press Enter to open the tool to view mapping process.
 
 ```bash
 roslaunch puppy_description rviz_with_urdf.launch
 ```
 
-(7)  点击左上角的"**File**"，再点击"**Open Config**"，打开配置文件。
+(7) Click **"File->Open Config"** to open configuration file.
 
 <img src="../_static/media/chapter_20/section_4/image28.png"  />
 
-(8) 在"**puppy/puppy_sim/src/puppy_description**"路径下，找到"**mapping.rviz**"文件，点击打开。
+(8) Move to the folder **"puppy/puppy_sim/src/puppy_description"**, select **"mapping.rviz"** folder and open it.
 
 <img src="../_static/media/chapter_20/section_4/image29.png"  />
 
-(9) 打开后，就会显示出地图，如下图所示。
+(9) After a while, map will appear as pictured.
 
 <img src="../_static/media/chapter_20/section_4/image30.png"  />
 
-(10) 输入接着我们就可以用手柄控制机器狗，移动到你想要探索建图的区域，同时地图也会不断完善、更新。手柄按键和机器狗动作的对应关系如下：
+(10) Then you can use the wireless handle to control the robot dog to move to anywhere. As PuppyPi is moving, the map will become complete. For how to control PuppyPi to move with handle, please refer to the table below.
 
 :::{Note} 
-如果控制PuppyPi移动的过程中，发现行走有些卡顿，我们可以将VNC显示先关掉，避免跟建图抢占CPU资源。
+if PuppyPi is stuck during walking, you can close VNC which has occupied part of CPU.
 :::
 
-|    **按键**    |            **功能**            |
-|:--------------:|:------------------------------:|
-|     START      |       机体恢复初始化姿态       |
-|       L1       |              上仰              |
-|       L2       |              下俯              |
-|       R1       |              前倾              |
-|       R2       |              后倾              |
-| ↑ / 左滑杆向上 |              前进              |
-| ↓ / 左滑杆向下 |              后退              |
-| ← / 左滑杆向左 |              左转              |
-| → / 左滑杆向右 |              右转              |
-| △ / 右滑杆向上 |          提升机体高度          |
-| × / 右滑杆向下 |          降低机体高度          |
-| ◻ / 右滑杆向左 | 减速（需配合按键"↑"、"↓"使用） |
-| ○ / 右滑杆向右 | 加速（需配合按键"↑"、"↓"使用） |
+|                Key                |               Function               |
+| :-------------------------------: | :----------------------------------: |
+|               START               | PuppyPi restores to initial posture  |
+|                L1                 |               look up                |
+|                L2                 |              Look down               |
+|                R1                 |             Tilt forward             |
+|                R2                 |            Tilt backward             |
+|   ↑ / move left joystick upward   |              Go forward              |
+|  ↓ / move left joystick downward  |             Go backward              |
+|    ← / move left joystick left    |              Turn left               |
+|   → / move left joystick right    |              Turn right              |
+|  △ / move right joystick upward   |        Raise the body height         |
+| × /  move right joystick downward |        Lower the body height         |
+|   ◻ / move right joystick left    |  Speed up（Combined with↑and↓keys）  |
+|   ○ / move right joystick right   | Speed down（Combined with↑and↓keys） |
 
-(11) 探索完区域后，需要将地图保存到树莓派中，回到VNC，重新打开一个命令行终端，输入指令，并按下回车。
+(11) After PuppyPi has traveled around the surrounding, you need to save the map to Raspberry Pi. Return back to VNC, and open a new terminal, then input command "rosrun map_server map_saver -f /home/pi/puppy_pi/src/puppy_slam/maps/map1". 
 
 ```bash
 rosrun map_server map_saver -f /home/ubuntu/puppypi/src/puppy_slam/maps/map1
 ```
 
-其中map1可以替换成你想要保存的地图名字，按下回车，等待一会，地图就会保存在此指令的路径下。
+map1 is the name of the map, and you change it. Press Enter, and after a while, the map will be kept in the specific path
 
 <img src="../_static/media/chapter_20/section_4/image31.png"  />
 
-(12) 保存的地图在Docker容器中的"**/homeubuntu/puppypi/src/puppy_slam/maps/**"路径下 。
+(12) The saved map is located in the Docker container at the path '/homeubuntu/puppypi/src/puppy_slam/maps/'.
 
 <img src="../_static/media/chapter_20/section_4/image35.png"  />
 
-(13) 此时整个SLAM建图过程就已经完成，可在启动建图的终端界面按下"**Ctrl+C**"，关闭程序。
+(13) At this time, SLAM mapping comes to the end. And you can press Crtl+C on terminal interface.
 
-## 5. APP建图
+## 14.5 APP Navigation Algorithm
 
-### 5.1 准备工作
+### 14.5.1 Preparation
 
-我们可以通过手机来控制机器狗和查看机器狗的建图画面，并且用手机给机器狗设置目标点进行导航。
+Via the app, you can control PuppyPi's movement, view its mapping process and set the target point.
 
-(1) 本节课需要用到手机APP"**Make A APP**"和"**Map Nav**"，前者用于建图，后者用于导航。
+(1) **"Make A APP"** app is used for mapping and **"Map Nav"** app is used for navigation. 
 
-(2) 目前仅支持安卓系统：软件安装包位于本目录下，用户可将其导入手机进行安装。
+(2)  These two apps only support Android system, and the installation pack is stored in the same folder.
 
-### 5.2 建图操作
+### 14.5.2 Mapping
 
 <span id="anchor_5_2_1" class="anchor"></span>
 
-- #### 5.2.1 APP建图服务的开启
+- #### Enable App Mapping Service
 
-(1)  开启机器狗，接着通过VNC远程连接树莓派桌面。
+(1) Start PuppyPi, then connect to the Raspberry Pi desktop via VNC.
 
-(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_20/section_5/image2.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。 
+(2)  Click <img src="../_static/media/chapter_20/section_5/image2.png" style="width:0.32292in;height:0.30208in" /> to open the Terminator terminal. 
 
-(3)  输入指令，并按下回车，开启APP建图服务。
+(3) Input command ". /home/ubuntu/puppy_pi/src/puppy_slam/scripts/mapping_app.sh" and press Enter to enable APP mapping service.
 
 ```bash
 . /home/ubuntu/puppypi/src/puppy_slam/scripts/mapping_app.sh
 ```
 
-- #### 5.2.2 APP建图
+- #### App Mapping
 
-(1) 开启机器狗，将其连接至远程控制软件VNC。
+(1) Start robot dog, and connect it to VNC.
 
-(2) 开启APP服务，具体操作步骤可参考"[**APP建图服务的开启**](#anchor_5_2_1)"。
+(2) Enable app service according to the steps in "[**12.5.2 Mapping -> Enable App Mapping Service**](#anchor_5_2_1)".
 
-(3) 前往手机的设置界面，连接机器狗生成的热点。
+(3) Move to phone settings, and join the WiFi generated by robot dog.
 
 <img class="common_img" src="../_static/media/chapter_20/section_5/image6.png"  />
 
-(4) 打开APP"**Make A Map**"，将"**Master URI**"一栏修改为"**http://192.168.149.1:11311**"，并点击"**CONNECT**"按键。
+(4) Open **"Make A Map"**. And input "http://192.168.149.1:11311" in "Master URI" bar, then click **"CONNECT"**.
 
 <img class="common_img" src="../_static/media/chapter_20/section_5/image7.png" style="width:50%" />
 
-APP界面可分为两个区域，黄色方框用于显示构建的地图，蓝色方框用于控制机器狗的移动。
+The APP interface is divided into two parts:
+Yellow area: display mapping process 
 
 <img src="../_static/media/chapter_20/section_5/image8.png"  />
 
-- #### 5.2.3 保存地图
+- #### Save the Map
 
-(1)  探索完区域后，需要将地图保存到树莓派中，回到VNC，重新打开一个命令行终端，输入指令
+(1) After robot completes mapping, save the map onto Raspberry Pi. Open a new terminal, and run this command "rosrun map_server map_saver -f /home/ubuntu/puppy_pi/src/puppy_slam/maps/map1" and press Enter to save the file to the designated path. 
 
 ```bash
 rosrun map_server map_saver -f /home/ubuntu/puppypi/src/puppy_slam/maps/map1
 ```
 
-其中map1可以替换成你想要保存的地图名字，按下回车，等待一会，地图就会保存在此指令的路径下。
+**"map1"** is the name of the map file and you can rename it. Press Enter and wait for a moment. The map will be saved at the specified path under this command.
 
 <img src="../_static/media/chapter_20/section_5/image9.png"  />
 
-(2)  保存的地图在Docker容器中的 "**/homeubuntu/puppypi/src/puppy_slam/maps/**" 路径下。
+(2)  The saved map is located in the Docker container at the path "/homeubuntu/puppypi/src/puppy_slam/maps/"
 
 <img src="../_static/media/chapter_20/section_5/image10.png"  />
 
-(3)  此时整个SLAM建图过程就已经完成，可在启动建图重新的终端界面按下"**Ctrl+C**"，关闭程序。
+(3) Press **"Ctrl+C"** on the terminal where mapping program is running to exit the program.
 
-- #### 5.2.4 使用其他算法建图
+- #### Map with Other Algorithms
 
-(1)  开启机器狗，接着通过VNC远程连接树莓派桌面。
+(1) Start PuppyPi, then access Raspberry Pi desktop through VNC.
 
-(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_20/section_5/image2.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2) Click-on<img src="../_static/media/chapter_20/section_5/image2.png" style="width:0.32292in;height:0.30208in" />at upper left corner to open the Terminator terminal.
 
-(3)  输入指令，并按下回车，进入存放.sh执行文件的文件夹。
+(3)  Run the command **"roscd puppy_slam/scripts/"** and press Enter to navigate to the folder where .sh execution files are stored. 
 
 ```bash
 roscd puppy_slam/scripts/
 ```
 
-(4)  输入指令，并按下回车，查看app建图文件。
+(4) Enter the command **"sudo vim mapping_app.sh"** and press Enter to check app mapping file.
 
 ```bash
 sudo vim mapping_app.sh
 ```
 
-(5) 可以通过修改下图红框位置来修改APP建图所想要使用的算法，一共提供三种算法，他们的文件名称分别为："**gmapping.launch**"、"**hector.launch**"、"**karto.launch**"。将红框位置修改成需要使用的算法对应的文件名后，按下"**Esc**"键，输入指令并按下回车保存并退出。然后执行"[**APP建图服务的开启**](#anchor_5_2_1)"。
+(5) Modify the 8th line indicated in the red frame to "gmapping.launch", "hector.launch" or "karto.launch". Then press "Esc" key and input ":wq" to save and exit the file. Then execute "[5.2.1 Enable APP Mapping Service]()".
 
 ```bash
 :wq

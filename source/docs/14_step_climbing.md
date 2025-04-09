@@ -1,309 +1,393 @@
-# AI识别台阶攀爬项目
+# 8. ROS1-AI Stair Recognition and Negotiating Course
 
-## 1. 台阶识别
+## 8.1 Stair Recognition
 
-### 1.1 玩法简要说明
+### 8.1.1 Program Logic
 
-本节课使用20mm高度的物品做台阶，如木板、坚固的盒子。在物品边缘粘贴红色的电工胶带后，机器狗通过识别胶带的颜色识别台阶。
+Before the game, we need to DIY a stair. We can use 20mm height items as stair, such as board and sturdy box. And paste the red electrical tape on the border, because PuppyPi recognize the stair through recognizing the color.
 
-整体实现的流程如下所示：
+Stair recognition process is as follow.
 
-首先，对线条颜色进行识别，此处使用Lab颜色空间进行处理，将图像颜色空间由RGB转换为Lab，随后对图像进行二值化、腐蚀、膨胀等操作，获得只包含目标颜色的轮廓，并用矩形将其标识出来。
+Firstly, program to recognize the color of line. Use Lab color space to convert the image from RGB into Lab. Then, perform binaryzation, corrosion, dilation, etc., on the image to obtain the contour which contains the target color. Next, mark the contour with rectangle.
 
-接着，获取矩形的对角点，并且画出线条的中心点。
+Then, acquire the diagonal point of the rectangle and draw the center of the line.
+Lastly, display the information about the line center on the terminal.
 
-最后，在终端上显示线条的中心点信息。
-
-### 1.2 玩法开启及关闭步骤
+### 8.1.2 Operation Steps
 
 :::{Note}
-指令输入需严格区分大小写及空格。
+The input command should be case and space sensitive. 
 :::
 
-(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+(1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_14/section_1/image3.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+(2)  Click<img src="../_static/media/chapter_14/section_1/image3.png" style="width:0.32292in;height:0.30208in" /> to open LX terminal.
 
-(3)  输入启动玩法的指令，按下回车。
+(3) Input command and press Enter to start the game.
 
 ```bash
 rosrun puppy_advanced_functions negotiate_stairs_demo.py
 ```
 
-(4)  如需关闭此玩法，可在LX终端界面按下"**Ctrl+C**"，如关闭失败，可多次按下。
+(4) If want to close this game, we can press "**Ctrl+C**". If it fails to close the game, please try again.
 
-### 1.3 功能实现
-
-:::{Note}
-程序默认检测颜色为红色。
-:::
-
-将红色的电工胶带粘贴在台阶上，PuppyPi机器狗放置在台阶前面。启动玩法后，机器狗识别到线条后，会在回传画面中框出线条，并画出中心点。
-
-### 1.4 程序参数说明
-
-[下载源代码](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/14/negotiate_stairs_demo.py)
-
-- #### 1.4.1 导入功能包
-
-<img src="../_static/media/chapter_14/section_1/image10.png" alt="loading" />
-
-通过 import 语句导入所需模块：math提供了一系列数学函数和常数,用于进行相关计算；rospy用于ROS通信，from object_tracking.srv import \*: 导入目标跟踪相关的服务。from puppy_control.msg import Velocity, Pose, Gait: 导入控制和传递机器人的速度、姿态和步态服务。
-
-- #### 1.4.2 处理图像
-
-(1) **高斯滤波**
-
-在将图像的颜色空间由RGB转换为Lab前，需要先对其进行降噪处理，此处用到cv2库中的GaussianBlur()函数，该函数用于对图像进行高斯滤波处理。
-
-<img src="../_static/media/chapter_14/section_1/image11.png" alt="loading" />
-
-函数括号内的参数含义如下：
-
-第一个参数"**frame_resize**"是输入图像；
-
-第二个参数"**(3, 3)**"是高斯内核大小；
-
-第三个参数"**3**"是在高斯滤波中其平均值附近允许的方差大。该值越大，平均值周围允许的方差越大；数值越小，平均值周围允许的方差越小。
-
-(2) **二值化处理**
-
-采用cv2库中的inRange()函数对图像进行二值化处理。
-
-<img src="../_static/media/chapter_14/section_1/image14.png" alt="loading" />
-
-函数括号内的第一个参数是输入图像；第二个、第三个参数分别是阈值的下限和上限。当像素点RGB的颜色数值处于上、下限之间时，该像素点被赋值为1，否则为0。
-
-(3) **开运算和闭运算**
+### 8.1.3 Program Outcome
 
 :::{Note}
-为了降低干扰，令图像更平滑，需要对图像进行处理。
+The program is default to detect red.
 :::
 
-<img src="../_static/media/chapter_14/section_1/image17.png" alt="loading" />
+Paste the red electrical tape on the boarder of the stair, and then place the stair in front of PuppyPi. After the game starts, PuppyPi will recognize the line. When recognized, it will be framed on the camera returned image and its center will be drawn.
 
-cv2.MORPH_OPEN 进行开运算，指的是先进行腐蚀操作，再进行膨胀操作；cv2.MORPH_CLOSE 进行闭运算，指的是先进行膨胀操作，再进行腐蚀操作。
+### 8.1.4 Program Analysis
 
-以代码
+The source code of this program is stored in [/home/ubuntu/puppy_pi/src/puppy_advanced_functions/scripts/negotiate_stairs_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/14/negotiate_stairs_demo.py)
 
-```python
-opened = cv2.morphologyEx(frame_mask, cv2.MORPH_OPEN, np.ones((6, 6), np.uint8))
+- #### Import Function Package
+
+```PY
+import sys
+import cv2
+import time
+import math
+import threading
+import numpy as np
+from enum import Enum
+
+from common import Misc
+
+import rospy
+from std_srvs.srv import *
+from sensor_msgs.msg import Image
+from object_tracking.srv import *
+from puppy_control.msg import Velocity, Pose, Gait
+from puppy_control.srv import SetRunActionName
 ```
 
-为例，括号内的参数含义如下：
+Using import statements to import the required modules: math provides a range of mathematical functions and constants for related calculations; rospy is used for ROS communication. 
 
-第一个参数"**frame_mask**"是输入图像；
+`from object_tracking.srv import *` imports services related to object tracking. 
 
-第二个参数"**cv2.MORPH_OPEN**"是进行变化的方式，为开运算；
+`from puppy_control.msg import Velocity, Pose, Gait` imports services for controlling and transmitting the velocity, pose, and gait of the robot.
 
-第三个参数"**np.ones((6, 6), np.uint8)**"是方框的大小。
+- #### Image Processing
 
-(4) **获取最大面积轮廓**
+**(1) Gaussian Filtering**
 
-完成上述的图像处理后，需要获取识别目标的轮廓，此处涉及cv2库中的findContours()函数。
+Before converting the image from RGB into Lab space, denoise the image and use `GaussianBlur()` function in cv2 library for Gaussian filtering.
 
-<img src="../_static/media/chapter_14/section_1/image21.png" alt="loading" />
+```PY
+frame_gb = cv2.GaussianBlur(frame_resize, (3, 3), 3)
+```
 
-函数括号内的第一个参数是输入图像；第二个参数是轮廓的检索模式；第三个参数是轮廓的近似方法。
+The meaning of the parameters in bracket is as follow
 
-在获得的轮廓中寻找面积最大的轮廓，而为了避免干扰，需要设定一个最小值，仅当面积大于该值时，目标轮廓才有效。
+The first parameter `frame_resize` is the input image
 
-<img src="../_static/media/chapter_14/section_1/image23.png" alt="loading" />
+The second parameter `(3, 3)` is the size of Gaussian kernel
 
-- #### 1.4.3 获取位置信息
+The third parameter `3`  is the allowable range of variation around the average in Gaussian filtering. The larger the value, the larger the allowable range of variation
 
-(1) **框出线条**
+**(2)  Binaryzation Processing**
 
-通过drawContours()函数，设置矩形图案，将线条框出。
+Adopt inRange() function in cv2 library to perform binaryzation on the image.
 
-<img src="../_static/media/chapter_14/section_1/image27.png" alt="loading" />
+```PY
+ frame_mask = cv2.inRange(frame_lab,
+                                 (color_range_list[detect_color]['min'][0],
+                                  color_range_list[detect_color]['min'][1],
+                                  color_range_list[detect_color]['min'][2]),
+                                  (color_range_list[detect_color]['max'][0],
+                                   color_range_list[detect_color]['max'][1],
+                                   color_range_list[detect_color]['max'][2]))  #对原图像和掩模进行位运算(perform bitwise operation to original image and mask)
+```
 
-(2) **画出中心点**
+The first parameter in the bracket is the input image. The second and the third parameters respectively are the lower limit and upper limit of the threshold. When the RGB value of the pixel is between the upper limit and lower limit, the pixel is assigned 1, otherwise, 0.
 
-接着，获取矩形的对角点，通过circle()画出线条的中心点。
-
-<img src="../_static/media/chapter_14/section_1/image29.png" alt="loading" />
-
-## 2. 自主台阶攀爬
-
-:::{Note}
-如果演示效果不佳，可根据文档内"[关闭调试画面](#anchor_2_4_1)"进行调试。
-:::
-
-### 2.1 玩法简要说明
-
-本节课使用20mm高度的物品做台阶，如木板、坚固的盒子。在物品边缘粘贴红色的电工胶带后，PuppyPi会识别胶带，然后靠近胶带，自主攀爬台阶。
-
-整体实现的流程如下所示：
-
-首先，需要对线条颜色进行识别，此处使用Lab颜色空间进行处理，将图像颜色空间由RGB转换为Lab，随后对图像进行二值化、腐蚀、膨胀等操作，获得只包含目标颜色的轮廓，并用矩形将其标识出来。并用红色圆点画出线条的中心点。
-
-接着，控制PuppyPi靠近台阶，靠近线条中心点。
-
-最后，控制PuppyPi执行攀爬台阶的动作，控制机器狗实现自主台阶攀爬的功能。
-
-### 2.2 玩法开启及关闭步骤
+**(3) Open Operation and Close Operation**
 
 :::{Note}
-指令输入需严格区分大小写及空格。
+To reduce interference and make the image smoother, it is necessary to process the image.
 :::
 
-(1)  启动PuppyPi机器狗，通过VNC远程连接树莓派桌面。
+```PY
+opened = cv2.morphologyEx(frame_mask, cv2.MORPH_OPEN, np.ones((6, 6), np.uint8))  # 开运算(opening operation)
+closed = cv2.morphologyEx(opened, cv2.MORPH_CLOSE, np.ones((6, 6), np.uint8))  # 闭运算(closing operation)
+```
 
-(2)  点击系统桌面左上角的图标<img src="../_static/media/chapter_14/section_2/image4.png" style="width:0.32292in;height:0.30208in" />，打开Terminator终端。
+cv2.MORPH_OPEN refers to open operation where corrosion will be conducted first, then dilation. 
 
-(3)  输入启动玩法的指令，按下回车。
+cv2.MORPH_CLOSE indicates close operation where dilation will be conducted first, then corrosion.
+
+Take `opened = cv2.morphologyEx(frame_mask, cv2.MORPH_OPEN, np.ones((6, 6), np.uint8))` for example. The meaning of the parameters in bracket is as follow.
+
+The first parameter `frame_mask` is the input image.
+
+The second parameter `cv2.MORPH_OPEN` refers to processing method, open operation.
+
+The third parameter `np.ones((6, 6), np.uint8)` is frame size.
+
+**(4) Acquire the Maximum Contour**
+
+After processing the image, acquire the contour of the target to be recognized, which involves `findContours()` function in cv2 library.
+
+```PY
+cnts = cv2.findContours(closed , cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_TC89_L1)[-2]#找出所有轮廓(find out all the contours)
+```
+
+The first parameter in parentheses is the input image; 
+
+the second parameter is the retrieval mode of the contour; 
+
+the third parameter is the approximation method of the contour.
+
+Find the contour of the maximum area among the obtained contours. To avoid interference, please set a minimum value. Only when the area is greater than this value, the target contour is valid.
+
+```PY
+# 找出面积最大的轮廓(find out the contour with the maximal area)
+# 参数为要比较的轮廓的列表(the parameter is the list of contour to be compared)
+def getAreaMaxContour(contours):
+    contour_area_temp = 0
+    contour_area_max = 0
+    area_max_contour = None
+
+    for c in contours:  # 历遍所有轮廓(iterate through all contours)
+        contour_area_temp = math.fabs(cv2.contourArea(c))  # 计算轮廓面积(calculate the contour area)
+        if contour_area_temp > contour_area_max:
+            contour_area_max = contour_area_temp
+            if contour_area_temp >= 5:  # 只有在面积大于300时，最大面积的轮廓才是有效的，以过滤干扰(only when the area is greater than 50, the contour with the largest area is considered valid to filter out interference)
+                area_max_contour = c
+    return area_max_contour, contour_area_max  # 返回最大的轮廓(return the maximal contour)
+```
+
+- #### Acquire the Position
+
+**(1) Frame the Line**
+
+Call `drawContours()` function to set the rectangle pattern and frame the line.
+
+```PY
+cv2.drawContours(img, [box], -1, (0,0,255,255), 2)#画出四个点组成的矩形(draw a rectangle formed by the four points)
+```
+
+**(2)  Draw the Center**
+
+Next, acquire the diagonal points of the rectangle, and draw the line center through `circle()` function.
+
+```PY
+centerX = rect[0][0]
+centerY = rect[0][1]
+centerX = int(Misc.map(centerX, 0, size[0], 0, img_w))
+centerY = int(Misc.map(centerY, 0, size[1], 0, img_h))
+for i in range(4):
+    box[i, 1] = int(Misc.map(box[i, 1], 0, size[1], 0, img_h))
+for i in range(4):                
+    box[i, 0] = int(Misc.map(box[i, 0], 0, size[0], 0, img_w))
+            
+cv2.drawContours(img, [box], -1, (0,0,255,255), 2)#画出四个点组成的矩形(draw a rectangle formed by the four points)
+target_centre_point = [centerX, centerY]      
+cv2.circle(img, (int(centerX), int(centerY)), 5, (0,0,255), -1)#画出中心点(draw the center point)
+```
+
+## 8.2 Stair Negotiating
+
+:::{Note}
+
+if PuppyPi's performance is not desired, we can close debugging interface according to "[2.4.1 Close Debugging Interface](#anchor_2_4_1)".
+:::
+
+### 8.2.1 Program Logic
+
+Before the game, we need to DIY a stair. We can use 20mm height items as stair, such as board and sturdy box. And paste the red electrical tape on the border. Then PuppyPi will recognize the red tape and approach it to finish negotiating the stair.
+
+Stair negotiating process is as follow.
+
+Firstly, program to recognize the color of line. Use Lab color space to convert the image from RGB into Lab. Then, perform binaryzation, corrosion, dilation, etc., on the image to obtain the contour which contains the target color. Next, mark the contour with rectangle. And draw the center of line with red dot.
+
+Next, control PuppyPi to approach the line center to come closer to the stair.
+
+Lastly, control PuppyPi to negotiate the stair.
+
+### 8.2.2 Operation Steps
+
+:::{Note}
+The input command should be case and space sensitive.
+:::
+
+(1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
+
+(2) Click<img src="../_static/media/chapter_14/section_2/image4.png" style="width:0.32292in;height:0.30208in" />to open command line terminal
+
+(3) Input command "rosrun puppy_advanced_functions negotiate_stairs_demo.py" and press Enter to start the game.
 
 ```bash
-rosrun puppy_advanced_functions** **negotiate_stairs_demo.py
+rosrun puppy_advanced_functions negotiate_stairs_demo.py
 ```
 
-(4)  如需关闭此玩法，可在LX终端界面按下"**Ctrl+C**"，如关闭失败，可多次按下。
+(4) If want to close this game, we can press "Ctrl+C". If it fails to close the game, please try again.
 
-### 2.3 实现效果
+### 8.2.3 Program Outcome
 
 :::{Note}
-程序默认检测颜色为红色。
+The program is default to detect red.
 :::
 
-将红色的电工胶带粘贴在台阶上，PuppyPi机器狗放置在台阶前面。启动玩法后，机器狗识别到线条后，会自动靠近线条中心点，执行攀爬动作。
+Paste the red electrical tape on the boarder of the stair, and then place the stair in front of PuppyPi. After the game starts, PuppyPi will recognize the line, and then approach the center of the line to negotiate the stair.
 
-### 2.4 功能延伸
+### 8.2.4 Program Analysis
+
+The source code is located in:[/home/ubuntu/puppy_pi/src/puppy_advanced_functions/scripts/negotiate_stairs_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/14/negotiate_stairs_demo.py)
+
+- #### Approach the Stair
+
+After stair recognition, program PuppyPi to approach the stair according to the coordinate of the line center.
+
+```PY
+while(puppyStatus == PuppyStatus.LOOKING_FOR) :
+    if target_centre_point != None and target_centre_point[1] > 400:
+        puppyStatus = PuppyStatus.FOUND_TARGET
+        rospy.sleep(2.1) # 继续往前走一点(continue walking forward)
+        PuppyVelocityPub.publish(x=0, y=0, yaw_rate = math.radians(0))
+        up_stairs_time = time.time()
+        break
+            
+     PuppyVelocityPub.publish(x=10, y=0, yaw_rate = math.radians(0))
+            
+     rospy.sleep(0.01)
+     break
+```
+
+Use `PuppyVelocityPub.publish()` function to control the running state of robotic dog.
+
+Take `PuppyVelocityPub.publish(x=0, y=0, yaw_rate = math.radians(0))` as example. The meanings of the parameters within the parentheses are as follows:
+
+The first parameter `x` is the speed in cm/s of moving straight. Moving forward is taken as the positive direction.
+
+The second parameter `y` is the speed in cm/s of moving sideways. PuppyPi cannot move sideways, hence this parameter is useless.
+
+The third parameter `yaw_rate` is the turning speed in rad/s. Counterclockwise direction is taken ad positive direction.
+
+- #### Negotiate the Stair
+
+After PuppyPi approaches the stair, call the built-in action group "up_stairs_2cm.d6ac" to control it to negotiate the stair.
+
+```PY
+        while(puppyStatus == PuppyStatus.FOUND_TARGET) :
+            runActionGroup_srv('up_stairs_2cm.d6ac',True)
+            if time.time() - up_stairs_time > 25:
+                puppyStatus = PuppyStatus.DOWN_STAIRS
+                PuppyPose = PP['Stand'].copy()
+                PuppyPosePub.publish(stance_x=PuppyPose['stance_x'], stance_y=PuppyPose['stance_y'], x_shift=PuppyPose['x_shift']
+                    ,height=PuppyPose['height'], roll=PuppyPose['roll'], pitch=PuppyPose['pitch'], yaw=PuppyPose['yaw'], run_time = 500)
+                rospy.sleep(0.5)
+            break
+
+        while(puppyStatus == PuppyStatus.DOWN_STAIRS) :
+            PuppyVelocityPub.publish(x=14, y=0, yaw_rate = math.radians(0))
+            rospy.sleep(0.1)
+            break
+
+        if puppyStatusLast != puppyStatus:
+            print('puppyStatus',puppyStatus)
+        puppyStatusLast = puppyStatus
+
+        if is_shutdown:break
+```
+
+`PuppyPosePub.publish()` function is used to control PuppyPi's moving posture.  
+
+Take`PuppyPosePub.publish(stance_x=PuppyPose['stance_x'], stance_y=PuppyPose['stance_y'], x_shift=PuppyPose['x_shift'],height=PuppyPose['height'],roll=PuppyPose['roll'], pitch=PuppyPose['pitch'], yaw=PuppyPose['yaw'], run_time = 500)` for example. The meaning of the parameters in bracket is as follow.
+
+ The first parameter `stance_x` refers to the distance in cm that front legs and hind legs move in the opposite direction on x axis.
+
+The second parameter `stance_y` refers to the distance in cm that front legs and hind legs move in the opposite direction on y axis. As there is no servo controlling legs to move along Y axis, this parameter is useless.
+
+The third parameter `x_shift` is the distance that 4 legs move in the same direction on x axis. The smaller the value, the greater PuppyPi leans forward. The greater the value, the greater PuppyPi leans backward. We can adjust x_shift to balance PuppyPi during it is walking. 
+
+The fourth parameter `height` refers to PuppyPi's height that the perpendicular distance between foothold and the upper joint in cm.
+
+The fifth parameter`roll` is PuppyPi's roll angle in degree.
+
+The sixth parameter `pitch` is PuppyPi's pitch angle in degree. 
+
+The seventh parameter `yaw` is yaw angle in degree.
+
+The eighth parameter `run_time` is the motion time in ms.
+
+### 8.2.5 Function Extension
 
 <span id="anchor_2_4_1"></span>
 
-- #### 2.4.1 关闭调试画面
+- #### Close Debugging Interface
 
-由于调试画面不断刷新，会占用树莓派一定的CPU资源，所以如果出现运行不流畅的情况，可通过关闭调试画面来改善，具体步骤如下：
+As the continuous refresh of debugging interface will occupy CPU of Raspberry Pi, we can close debugging interface to tackle choppy running.
 
-(1)  输入指令，用来编辑自主台阶攀爬玩法程序，按下回车。
+(1) Input **"rosed puppy_advanced_functions negotiate_stairs_demo.py"** command and press Enter to edit the stair negotiating program.
 
 ```bash
 rosed puppy_advanced_functions negotiate_stairs_demo.py
 ```
 
-(2)  找到下图所示代码：
+(2) Next, jump to this line of code.
 
 <img src="../_static/media/chapter_14/section_2/image11.png" alt="loading" />
 
 :::{Note}
-在键盘输入代码位置序号后，按下"Shift+G"键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
+we can input the line code and press "Shift+G" to jump to the corresponding line. The numbering of code positions in the diagram is for reference only, please refer to the actual positions.
 :::
 
-(3)  按下"**i**"键进入编辑模式，在代码前面添加"**\#**"，进行注释。
+(3) Press **"i"** key to enter editing mode. Then add **"#"** in front of the codes in the red frame to comment.
 
 <img src="../_static/media/chapter_14/section_2/image13.png" alt="loading" />
 
-(4)  修改完成后，按下"**Esc**"键，输入"**:wq**"并回车，进行保存与退出。
+(4) After modification, press **"Esc"** and input **":wq"** and press Enter to save and exit editing.
 
 ```bash
 :wq
 ```
 
-(5)  输入指令重新启动玩法，即可查看修改后的玩法效果。
+(5) Input the command  to restart the game and check PuppyPi's performance.
 
 ```bash
 rosrun puppy_advanced_functions negotiate_stairs_demo.py
 ```
 
-<img src="../_static/media/chapter_14/section_2/image17.png" alt="loading" />
-
-(6)  如需再次查看调试画面（摄像头实时回传画面），可将步骤3）框出的内容进行反注释，即将代码前面的"**\#**"去掉，再进行保存，如下图所示：
+(6) If you need to view the debugging screen again (real-time feedback from the camera), you can uncomment the content boxed in step 3), i.e., remove the "#" in front of the code, then save, as shown in the following figure:
 
 <img src="../_static/media/chapter_14/section_2/image11.png" alt="loading" />
 
-- #### 2.4.2 更改边缘线条颜色
+- #### Change Line Color
 
 :::{Note}
-玩法默认台阶边缘线条颜色是红色，如需更改颜色，比如黑色，可参照以下步骤：
+The program is default to recognize red line. And we can change the color, for example black.
 :::
 
-(1)  输入指令，用来编辑自主台阶攀爬玩法程序，按下回车。
+(1) Enter "rosed puppy_advanced_functions negotiate_stairs_demo.py" command and press Enter to edit the program file. 
 
 ```bash
 rosed puppy_advanced_functions** **negotiate_stairs_demo.py
 ```
 
-(2)  找到下图所示代码：
+(2) Next, jump to this line of code. 
 
 <img src="../_static/media/chapter_14/section_2/image18.png" alt="loading" />
 
 :::{Note}
-在键盘输入代码位置序号后，按下"Shift+G"键，可直接跳转到对应位置。（图示代码位置序号仅供参考，请以实际为准。）
+we can input the line code and press "Shift+G" to jump to the corresponding line.
 :::
 
-(3)  按下"**i**"键进入编辑模式，将"**red**"改为"**black**"。
+(3)  Press "i" key to enter editing mode. Modify "red" as "black".
 
 <img src="../_static/media/chapter_14/section_2/image20.png" alt="loading" />
 
-(4)  修改完成后，按下"**Esc**"键，输入指令并按下回车，进行保存与退出。
+(4) After modification, press **"Esc"** and input **":wq"** and press Enter to save and exit editing.
 
 ```bash
 :wq
 ```
 
-(5)  输入指令，重新启动玩法，即可查看修改后的玩法效果。
+(5) Input command **"rosrun puppy_advanced_functions negotiate_stairs_demo.py"** to restart the game and check PuppyPi's performance.
 
 ```bash
 rosrun puppy_advanced_functions negotiate_stairs_demo.py
 ```
-
-<img src="../_static/media/chapter_14/section_2/image24.png" alt="loading" />
-
-### 2.5 程序参数说明
-
-[下载源代码](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/14/negotiate_stairs_demo.py)
-
-- #### 2.5.1 靠近台阶
-
-第一课我们介绍了如何识别台阶，接下来可以根据线条的中心坐标信息，控制机器人靠近台阶，如下图：
-
-<img src="../_static/media/chapter_14/section_2/image26.png" alt="loading" />
-
-PuppyVelocityPub.publish()函数用于控制机器狗运动时的状态。
-
-以代码
-
-```python
-PuppyVelocityPub.publish(x=0, y=0, yaw_rate = math.radians(0))
-```
-
-为例，括号内的参数含义如下：
-
-第一个参数"**x**"是机器狗的直行速度，前进方向为正方向，单位cm/s；
-
-第二个参数"**y**"是机器狗的侧移速度，左侧方向为正方向，单位cm/s，目前无此功能；
-
-第三个参数"**yaw_rate**"是机器狗的转弯速度，逆时针方向为正方向，单位rad/s。
-
-- #### 2.5.2 攀爬台阶
-
-靠近台阶后，直接调用机器狗内置动作组"**up_stairs_2cm.d6ac**"执行攀爬动作。
-
-<img src="../_static/media/chapter_14/section_2/image29.png" alt="loading" />
-
-PuppyPosePub.publish()函数用于控制机器狗运动时的姿态。
-
-以代码
-
-```python
-PuppyPosePub.publish(stance_x=PuppyPose['stance_x'], stance_y=PuppyPose['stance_y'], x_shift=PuppyPose['x_shift'],height=PuppyPose['height'],roll=PuppyPose['roll'], pitch=PuppyPose['pitch'], yaw=PuppyPose['yaw'], run_time = 500)
-```
-
-为例，括号内的参数含义如下：
-
-第一个参数"**stance_x**"是4条腿在x轴上额外分开的距离，单位为cm；
-
-第二个参数"**stance_y**"是4条腿在y轴上额外分开的距离，单位为cm；
-
-第三个参数"**x_shift**"是4条腿在x轴上同向移动的距离，越小，走路越前倾，越大越后仰,通过调节x_shift可以调节机器狗走路的平衡，单位为cm；
-
-第四个参数"**height**"是机器狗的高度，脚尖到大腿转动轴的垂直距离，单位为cm；
-
-第五个参数"**roll**"是机器狗的滚转角，单位为度；
-
-第六个参数"**pitch**"是机器狗的的俯仰角，单位为度；
-
-第七个参数"**yaw**"是机器狗的偏航角，单位为度；
-
-第八个参数"**run_time**"是运动时间，单位为ms。
