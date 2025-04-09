@@ -1,6 +1,6 @@
 # 4. ROS1-Motion Control Course
 
-<p id="anchor_1"></p>
+<p id="anchor_4_1"></p>
 
 ## 4.1 Trot Introduction
 
@@ -48,7 +48,7 @@ The input command should be case sensitive. And the key words can be complemente
 
 (2) Click <img src="../_static/media/chapter_9/section_1/image4.png" style="width:0.32292in;height:0.30208in" /> open command line terminal
 
-(3) Enter command **"rosed puppy_control puppy_demo.py"** and press Enter to open the program files
+(3) Enter command and press Enter to open the program files
 
 ```bash
 rosed puppy_control puppy_demo.py
@@ -64,7 +64,7 @@ rosed puppy_control puppy_demo.py
 :wq
 ```
 
-(6) Enter command **"rosrun puppy_control puppy_demo.py"** and press Enter to start the game.
+(6) Enter command and press Enter to start the game.
 
 ```bash
 rosrun puppy_control puppy_demo.py
@@ -76,11 +76,11 @@ rosrun puppy_control puppy_demo.py
 
 After the game starts, PuppyPi will trot, that is to say its feet at diagonal opposite ends of the body lift or strike the ground together at the same time. The leg sequence diagram is as follow.
 
-<img src="../_static/media/chapter_9/section_1/image15.png"  alt="详细运动-动态" />
+<img src="../_static/media/chapter_9/section_1/image15.png"  alt="" />
 
 ### 4.1.5 Program Analysis
 
-The source code of this program is stored in ：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
+The source code of this program is stored in ：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](../_static/source_code/puppy_demo.zip)**
 
 **(1) Gait Selection**
 
@@ -88,7 +88,7 @@ There are three built-in gaits, including Trot, Amble and Walk. And Trot is the 
 
 {lineno-start=27}
 
-```
+```python
 gait = 'Trot'
 # overlap_time:4脚全部着地的时间，单位秒(the time when all four legs touch the ground, measured in seconds)
 # swing_time：单脚离地时间，单位秒(the time duration when a single leg is off the ground, measured in second)
@@ -115,7 +115,7 @@ If want to change the gait, we can directly modify **"Trot"** as **"Walk"**.
 
 {lineno-start=27}
 
-```
+```python
 gait = 'Trot'
 ```
 
@@ -125,7 +125,7 @@ We can modify the following parameters to adjust its walking frequency. The shor
 
 {lineno-start=27}
 
-```
+```python
 if gait == 'Trot':
     GaitConfig = {'overlap_time':0.2, 'swing_time':0.3, 'clearance_time':0.0, 'z_clearance':5}
     PuppyPose['x_shift'] = -0.6
@@ -197,14 +197,14 @@ Completing (a), (b), (c), (d), (e), (f), (g) and (h) actions indicates that Pupp
 ### 4.2.3 Operation Steps
 
 :::{Note}
-The input command should be case sensitive. And the key words can be complemented by "Tab" key.
+The input command should be case sensitive. And the key words can be complemented by "**Tab**" key.
 :::
 
 (1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
 (2) Click<img src="../_static/media/chapter_9/section_2/image4.png" style="width:0.32292in;height:0.30208in" /> to open command line terminal
 
-(3) Enter command "rosed puppy_control puppy_demo.py" and press Enter to open the program files
+(3) Enter command and press Enter to open the program files
 
 ```bash
 rosed puppy_control puppy_demo.py
@@ -224,7 +224,7 @@ rosed puppy_control puppy_demo.py
 :wq
 ```
 
-(7) Enter command **"rosrun puppy_control puppy_demo.py"** and press Enter to start the game.
+(7) Enter command and press Enter to start the game.
 
 ```bash
 rosrun puppy_control puppy_demo.py
@@ -238,9 +238,9 @@ After the game starts, PuppyPi will walk, that is to say its three legs are on t
 
 <img src="../_static/media/chapter_9/section_2/image16.png"  alt="" />
 
-### 4.2.5 **Program Analysis**
+### 4.2.5 Program Analysis
 
-The source code of this program is stored in ：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
+The source code of this program is stored in ：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](../_static/source_code/puppy_demo.zip)**
 
 **(1) Gait Selection**
 
@@ -248,7 +248,7 @@ There are three built-in gaits, including Trot, Amble and Walk. And Trot is the 
 
 {lineno-start=27}
 
-```
+```python
 gait = 'Trot'
 # overlap_time:4脚全部着地的时间，单位秒(the time when all four legs touch the ground, measured in seconds)
 # swing_time：单脚离地时间，单位秒(the time duration when a single leg is off the ground, measured in second)
@@ -271,11 +271,11 @@ elif gait == 'Walk':
     # Walk步态   swing_time ≤ clearance_time(Walk gait   swing_time ≤ clearance_time)
 ```
 
-If want to change the gait, we can directly modify "Trot" as "Walk".
+If want to change the gait, we can directly modify "**Trot**" as "**Walk**".
 
 {lineno-start=27}
 
-```
+```python
 gait = 'Trot'
 ```
 
@@ -285,7 +285,7 @@ We can modify the following parameters to adjust its walking frequency. The shor
 
 {lineno-start=42}
 
-```
+```python
 elif gait == 'Walk':
     GaitConfig = {'overlap_time':0.1, 'swing_time':0.2, 'clearance_time':0.3, 'z_clearance':5}
     PuppyPose['x_shift'] = -0.65
@@ -332,14 +332,14 @@ Amble is static gait which is considered as accelerated Walk gait. During motion
 
 The motion process of Amble gait is the same as that of Walk gait. And the sequence of different legs to swing is right front->left hind->left front->right hind, that is 1->2->3->4 as the picture shown.
 
-<img src="../_static/media/chapter_9/section_3/image2.png"  alt="详细运动-准静态" />
+<img src="../_static/media/chapter_9/section_3/image2.png"  alt="" />
 
 The difference between Amble and Walk gait is NO.2 leg is lifted after NO.1 leg touch the ground under Walk gait, while under Amble gait, NO.2 leg is lifted after NO.1leg is lifted but not touch the ground. 
 
 ### 4.3.3 Operation Steps
 
 :::{Note}
-The input command should be case sensitive. And the key words can be complemented by "Tab" key.
+The input command should be case sensitive. And the key words can be complemented by "**Tab**" key.
 :::
 
 (1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
@@ -366,23 +366,23 @@ rosed puppy_control puppy_demo.py
 :wq
 ```
 
-(7) Enter command **"rosrun puppy_control puppy_demo.py"** and press Enter to start the game.
+(7) Enter command and press Enter to start the game.
 
 ```bash
 rosrun puppy_control puppy_demo.py
 ```
 
-(8) Enter command **"rosrun puppy_control puppy_demo.py"** and press Enter to start the game.
+(8) Enter command and press Enter to start the game.
 
 ### 4.3.4 Program Outcome
 
 PuppyPi will amble with two legs in support of the body at least and two legs swinging at most. Amble gait is the accelerated Walk gait. The leg sequence diagram is as follow.
 
-<img src="../_static/media/chapter_9/section_3/image2.png"  alt="详细运动-准静态" />
+<img src="../_static/media/chapter_9/section_3/image2.png"  alt="" />
 
 ### 4.3.5 Program Analysis
 
-The source code lies in ：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
+The source code lies in ：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](../_static/source_code/puppy_demo.zip)**
 
 (1) Gait Selection
 
@@ -390,7 +390,7 @@ There are three built-in gaits, including Trot, Amble and Walk. And Trot is the 
 
 {lineno-start=27}
 
-```
+```python
 gait = 'Trot'
 # overlap_time:4脚全部着地的时间，单位秒(the time when all four legs touch the ground, measured in seconds)
 # swing_time：单脚离地时间，单位秒(the time duration when a single leg is off the ground, measured in second)
@@ -417,7 +417,7 @@ If want to change the gait, we can directly modify **"Trot"** as **"Walk"** or *
 
 {lineno-start=27}
 
-```
+```python
 gait = 'Trot'
 ```
 
@@ -427,7 +427,7 @@ We can modify the following parameters to adjust its walking frequency. The shor
 
 {lineno-start=38}
 
-```
+```python
 elif gait == 'Amble':
     GaitConfig = {'overlap_time':0.1, 'swing_time':0.2, 'clearance_time':0.1, 'z_clearance':5}
     PuppyPose['x_shift'] = -0.9
@@ -453,30 +453,29 @@ under Amble gait, please ensure 0<clearance_time<swing_time and overlap_time＞0
 
 ## 4.4 March on Spot under Trot Gait
 
-For detailed introduction to Trot, please move to the file [4.1 Trot Introduction]().
+For detailed introduction to Trot, please move to the file [**4.1 Trot Introduction**](#anchor_4_1).
 
 ### 4.4.1 Operation Steps
 
 :::{Note}
-The input command should be case sensitive. And the key words can be complemented by "Tab" key.
+The input command should be case sensitive. And the key words can be complemented by "**Tab**" key.
 :::
 
 (1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
 (2)  Click <img src="../_static/media/chapter_9/section_4/image3.png" style="width:0.32292in;height:0.30208in" />  to open command line terminal
 
-(3)  Input command **"rosed puppy_control puppy_demo.py"** and press Enter to open the program file.
+(3)  Input command and press Enter to open the program file.
 
 ```bash
 rosed puppy_control puppy_demo.py
 ```
 
-
 (4) Locate to these codes 
 
 <img src="../_static/media/chapter_9/section_4/image8.png"  />
 
-(5) Press "i" to enter editing mode, and then modify the code as **"set_mark_time_srv(True)"**
+(5) Press **"i**" to enter editing mode, and then modify the code as **"set_mark_time_srv(True)"**
 
 <img src="../_static/media/chapter_9/section_4/image10.png"  />
 
@@ -486,7 +485,7 @@ rosed puppy_control puppy_demo.py
 :wq
 ```
 
-(7) Enter command **"rosrun puppy_control puppy_demo.py"** and press Enter to start the game.
+(7) Enter command and press Enter to start the game.
 
 ```bash
 rosrun puppy_control puppy_demo.py
@@ -502,36 +501,36 @@ After the game starts, PuppyPi will march on the spot with Trot gait. The legs a
 
 ### 4.4.3 Program Analysis
 
-The source code of this program is stored in ：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
+The source code of this program is stored in ：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](../_static/source_code/puppy_demo.zip)**
 
 Through sending the corresponding command, we can control PuppyPi to march on the spot.
 
 {lineno-start=75}
 
-```
+```python
     set_mark_time_srv(False)
     ## 如果原地踏步期间，小狗仍然在缓慢的向前或向后，那就需要重新调整小狗重心，微调PuppyPose['x_shift']即可(if the dog continues to move slowly forward on backward while stepping in place, it is necessary to readjust the dog's center of gravity. simply fine-tune 'x_shift' in PuppyPose)
 ```
 
-The parameter in the bracket decides whether to send service or not, and it is "False" by default, which means that the service will not be sent. After the game starts, PuppyPi will move in the selected gait, for example Trot. When the parameter in the bracket is "True", PuppyPi will march on the spot.
-If PuppyPi deviates during marching on the spot, we can adjust its center of gravity to tackle this problem. For detailed tutorial, please move to the folder "3.6 Center of Gravity Adjustment".
+The parameter in the bracket decides whether to send service or not, and it is "**False**" by default, which means that the service will not be sent. After the game starts, PuppyPi will move in the selected gait, for example Trot. When the parameter in the bracket is "**True**", PuppyPi will march on the spot.
+If PuppyPi deviates during marching on the spot, we can adjust its center of gravity to tackle this problem. For detailed tutorial, please move to the folder "**[4.6 Center of Gravity Adjustment](#anchor_4_6)**".
 
 ## 4.5 Turn under Trot Gait
 
-For detailed introduction to Trot, please move to the folder "4.1Trot Introduction".
+For detailed introduction to Trot, please move to the folder "**[4.1 Trot Introduction](#anchor_4_1)**".
 This lesson is based on Trot. Through modifying the corresponding parameter, PuppyPi will turn under Trot gait.
 
 ### 4.5.1 Operation Steps
 
 :::{Note}
-The input command should be case sensitive. And the key words can be complemented by "Tab" key.
+The input command should be case sensitive. And the key words can be complemented by "**Tab**" key.
 :::
 
 (1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
 (2) Click <img src="../_static/media/chapter_9/section_5/image3.png" style="width:0.32292in;height:0.30208in" /> to open command line terminal.
 
-(3) Input command "rosed puppy_control puppy_demo.py" and press Enter to open the program file.
+(3) Input command and press Enter to open the program file.
 
 ```bash
 rosed puppy_control puppy_demo.py
@@ -541,7 +540,7 @@ rosed puppy_control puppy_demo.py
 
 <img class="common_img" src="../_static/media/chapter_9/section_5/image8.png"  />
 
-(5) Press "i" to enter editing mode. For example, make PuppyPi turn 10°/s counterclockwise. Therefore, we should modify the codes as **"PuppyMove = {'x':6, 'y':0, 'yaw_rate':0.18}"**.
+(5) Press "**i**" to enter editing mode. For example, make PuppyPi turn 10°/s counterclockwise. Therefore, we should modify the codes as **"PuppyMove = {'x':6, 'y':0, 'yaw_rate':0.18}"**.
 
 <img src="../_static/media/chapter_9/section_5/image10.png"  />
 
@@ -551,13 +550,13 @@ rosed puppy_control puppy_demo.py
 :wq
 ```
 
-(7) Input command **"rosrun puppy_control puppy_demo.py"** and press Enter to start the game.
+(7) Input command and press Enter to start the game.
 
 ```bash
 rosrun puppy_control puppy_demo.py
 ```
 
-(8)  If want to close this game, we can press "Ctrl+C". If it fails to close the game, please try again.
+(8)  If want to close this game, we can press "**Ctrl+C**". If it fails to close the game, please try again.
 
 ### 4.5.2 Program Outcome
 
@@ -565,9 +564,9 @@ Under Trot gait, PuppyPi will turn in the set direction.
 
 ### 4.5.3 Program Analysis
 
-The source code of this program lies in ：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
+The source code of this program lies in ：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](../_static/source_code/puppy_demo.zip)**
 
-- #### Motion Parameter Adjustment
+* **Motion Parameter Adjustment**
 
 Through setting the corresponding parameters, adjust PuppyPi's moving direction.
 
@@ -586,9 +585,9 @@ Take the camera at front as the first-person perspective, and the rotation direc
 
 <img src="../_static/media/chapter_9/section_5/image17.png"  alt="" />
 
-1rad/s corresponds to 57.3°/s. For example, if you want to set the rotation speed as 30°/s, we should set "yaw_rate" as 0.52. (30/57.3≈0.52)
+1rad/s corresponds to 57.3°/s. For example, if you want to set the rotation speed as 30°/s, we should set "**yaw_rate**" as 0.52. (30/57.3≈0.52)
 
-- #### Gait Adjustment
+* **Gait Adjustment**
 
 **(1) Gait Selection**
 
@@ -596,7 +595,7 @@ There are three built-in gaits, including Trot, Amble and Walk. And Trot is the 
 
 {lineno-start=27}
 
-```
+```python
 gait = 'Trot'
 # overlap_time:4脚全部着地的时间，单位秒(the time when all four legs touch the ground, measured in seconds)
 # swing_time：单脚离地时间，单位秒(the time duration when a single leg is off the ground, measured in second)
@@ -623,7 +622,7 @@ If need to change the gait, we can uncomment the code of the target gait while c
 
 {lineno-start=27}
 
-```
+```python
 gait = 'Trot'
 ```
 
@@ -633,7 +632,7 @@ Through adjusting the corresponding parameter, we can adjust PuppyPi's moving sp
 
 {lineno-start=34}
 
-```
+```python
     GaitConfig = {'overlap_time':0.2, 'swing_time':0.3, 'clearance_time':0.0, 'z_clearance':5}
 ```
 
@@ -647,11 +646,11 @@ The third parameter  `clearance_time`  is interval between the lifts of legs at 
 
 The fourth parameter `z_clearance`  is the lifted height in cm during walking.
 
-<p id="anchor_6"></p>
+<p id="anchor_4_6"></p>
 
 ## 4.6 Center of Gravity Adjustment
 
-### 4.6.1 **Center of Gravity** 
+### 4.6.1 Center of Gravity
 
 The center of gravity of an object is the point at which weight is evenly dispersed and all sides are in balance. Therefore PuppyPi is in dynamic equilibrium during walking. To achieve dynamic equilibrium, PuppyPi needs to adjust different parts of its body to ensure the center of gravity is within the threshold. 
 
@@ -661,13 +660,13 @@ Take human for example. Our center of gravity is different when we hold the obje
 
 ### 4.6.2 Program Explanation
 
-The source code of this program is stored in **[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
+The source code of this program is stored in **[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](../_static/source_code/puppy_demo.zip)**
 
 Take Trot gait for example.
 
 {lineno-start=18}
 
-```
+```python
 PuppyPose = {'roll':math.radians(0), 'pitch':math.radians(0), 'yaw':0.000, 'height':-10, 'x_shift':0.5, 'stance_x':0, 'stance_y':0}
 # PuppyPose = {'roll':math.radians(0), 'pitch':math.radians(0), 'yaw':0.000, 'height':-10, 'x_shift':-0.5, 'stance_x':0, 'stance_y':0}
 # stance_x：4条腿在x轴上额外分开的距离，单位cm(the distance extra apart for each of the four legs on the X-axis, measured in centimeters)
@@ -693,7 +692,7 @@ The input command should be case sensitive. And the key words can be complemente
 
 (2) Click<img src="../_static/media/chapter_9/section_6/image5.png" style="width:0.32292in;height:0.30208in" />to open command line terminal.
 
-(3) Input command **"rosed puppy_control puppy_demo.py"** and press Enter to open the program file.
+(3) Input command and press Enter to open the program file.
 
 ```bash
 rosed puppy_control puppy_demo.py
@@ -713,7 +712,7 @@ rosed puppy_control puppy_demo.py
 * For obvious change and better observation, we greatly adjust the value, but it is recommended to make minor adjustment on the value. 
   :::
 
-(5) Input command **"rosrun puppy_control puppy_demo.py"** and press Enter to check the adjustment effect.
+(5) Input command and press Enter to check the adjustment effect.
 
 ```bash
 rosrun puppy_control puppy_demo.py
@@ -724,8 +723,6 @@ rosrun puppy_control puppy_demo.py
 ### 4.6.4 Program Outcome
 
 After the game starts, PuppyPi will walk with body leaning forward under Trot gait.
-
-
 
 ## 4.7 Basic Communication of ROS Robot
 
@@ -745,19 +742,19 @@ Service adopts Synchronous Communication Mechanism and uses client/ server model
 
 ### 4.7.2 Topic Communication
 
-- #### Check Topic Communication
+* **Check Topic Communication**
 
 ROS comes with RQT tool. And we can use the corresponding tool to check the communication between the nodes of PuppyPi.
 
 :::{Note}
-The input command should be case sensitive, and the key words can be complemented by "Tab" key.
+The input command should be case sensitive, and the key words can be complemented by "**Tab**" key.
 :::
 
 (1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
 (2) Click <img src="../_static/media/chapter_9/section_7/image5.png"  /> to open command line terminal
 
-(3) Input command "rqt_graph" and press Enter to open the tool
+(3) Input command "**rqt_graph**" and press Enter to open the tool
 
 ```bash
 rqt_graph
@@ -773,7 +770,7 @@ In the picture above, we can notice that some nodes didn't publish topic, like <
 
 <img src="../_static/media/chapter_9/section_7/image12.png"  />
 
-- #### Analysis of Topic Communication
+* **Analysis of Topic Communication**
 
 For better understanding, let's take the process of face recognition as example for analysis. 
 
@@ -781,18 +778,18 @@ For better understanding, let's take the process of face recognition as example 
 
 The communication process is as follow.
 
-(1) <img src="../_static/media/chapter_9/section_7/image17.png" style="width:0.63264in;height:0.28819in" alt="image19" />node publishes <img src="../_static/media/chapter_9/section_7/image18.png" style="width:0.91042in;height:0.46667in" alt="image19" />topic
+(1) <img src="../_static/media/chapter_9/section_7/image17.png" style="width:0.63264in;height:0.28819in" alt="image19" /> node publishes <img src="../_static/media/chapter_9/section_7/image18.png" style="width:0.91042in;height:0.46667in" alt="image19" /> topic
 
-(2) <img src="../_static/media/chapter_9/section_7/image19.png" style="width:0.72431in;height:0.26389in" alt="image19" />node subscribes<img src="../_static/media/chapter_9/section_7/image21.png" style="width:0.91042in;height:0.46667in" alt="image19" />topic published by <img src="../_static/media/chapter_9/section_7/image22.png" style="width:1.06319in;height:0.44583in" alt="image19" />话题。
+(2) <img src="../_static/media/chapter_9/section_7/image19.png" style="width:0.72431in;height:0.26389in" alt="image19" /> node subscribes <img src="../_static/media/chapter_9/section_7/image21.png" style="width:0.91042in;height:0.46667in" alt="image19" /> topic published by <img src="../_static/media/chapter_9/section_7/image22.png" style="width:1.06319in;height:0.44583in" alt="image19" />
 
 (3) <img src="../_static/media/chapter_9/section_7/image23.png" style="width:1.05694in;height:0.28958in" alt="image19" /> node subscribes<img src="../_static/media/chapter_9/section_7/image25.png" style="width:1.06319in;height:0.44583in" alt="image19" /> topic published by <img src="../_static/media/chapter_9/section_7/image24.png" style="width:0.72431in;height:0.26389in" alt="image19" />
 
 ### 4.7.3 Service Communication
 
-- #### Check Service Communication
+* **Check Service Communication**
 
-We can check the service communication of PuppyPi in "puppy.py" file.
-This file is stored in the path [/home/ubuntu/puppy_pi/src/puppy_control/scripts/puppy.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy.py)
+We can check the service communication of PuppyPi in "**puppy.py**" file.
+This file is stored in the path [/home/ubuntu/puppy_pi/src/puppy_control/scripts/puppy.py](../_static/source_code/puppy.zip)
 
 In this file, we can find that **"set_running"**, **"go_home"**, **"set_self_balancing"**, **"runActionGroupFun"** and **"set_mark_time"** requests are mainly sent in service communication.
 
@@ -923,20 +920,20 @@ The solution procedure is divided into two steps.
 **(1) Storage Path of Source Code**
 
 For better understanding, we will combine program control and inverse kinematics to analyze.
-
-The source code of this program is stored in [/home/ubuntu/puppy_pi/src/puppy_control/scripts/puppy_IK_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_IK_demo.py)
+../_static/source_code/puppy_demo.zip
+The source code of this program is stored in [/home/ubuntu/puppy_pi/src/puppy_control/scripts/puppy_IK_demo.py](../_static/source_code/puppy_IK_demo.zip)
 
 ### 4.10.3 Operation Steps
 
 :::{Note}
-The input command should be case sensitive. And the key words can be complemented by "Tab" key.
+The input command should be case sensitive. And the key words can be complemented by "**Tab**" key.
 :::
 
 (1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-(2) Click<img src="../_static/media/chapter_9/section_10/image8.png" style="width:0.32292in;height:0.30208in" />to open command line terminal.
+(2) Click <img src="../_static/media/chapter_9/section_10/image8.png" style="width:0.32292in;height:0.30208in" /> to open command line terminal.
 
-(3) Enter command **"rosrun puppy_control puppy_IK_demo.py"** and press Enter to open the program files.
+(3) Enter command and press Enter to open the program files.
 
 ```bash
 rosrun puppy_control puppy_IK_demo.py
@@ -958,7 +955,7 @@ During controlling PuppyPi, we need to set the coordinates of 4 footholds.
 
 {lineno-start=15}
 
-```
+```python
                             # FR    FL    BR     BL
 foot_locations = np.array([ [ -1.,  -1.,  -1.,   -1.], # X
                             [ 0.,    0.,   0.,    0.], # Y
@@ -989,7 +986,7 @@ Calculate the servo angle through inverse kinematics.
 
 {lineno-start=25}
 
-```
+```python
 joint_angles = puppy.fourLegsRelativeCoordControl(foot_locations)
 # 输入坐标，通过逆运动学计算得到各个舵机的角度值(input coordinates to calculate the angle values of each servo motor through inverse kinematics)
 ```
@@ -1000,7 +997,7 @@ Calculate the pulse width of the servo according to the angle value so as to dir
 
 {lineno-start=32}
 
-```
+```python
 puppy.sendServoAngle(joint_angles, time = 500)
 #将舵机角度发送到舵机，(send the servo angles to the servo motors)
 ```
@@ -1011,7 +1008,7 @@ The servo angle will be displayed on the terminal.
 
 {lineno-start=27}
 
-```
+```python
 print(joint_angles*57.3)
 ```
 
@@ -1034,17 +1031,17 @@ The angle of ID2 servo is 14.31023196, and the current posture of PuppyPi is as 
 
 When the value is positive, the servo arm of ID2 servo is below the horizontal. When it is negative, the servo arm is above the horizontal.
 
-<p id="anchor_11"></p>
+<p id="anchor_4_11"></p>
 
 ## 4.11 Posture Parameter Instruction
 
 ### 4.11.1 Introduction
 
 The parameter of static posture includes standing height, pitch angle, roll angle, etc.
-PuppyPi's posture can be changed through adjusting the coordinates of 4 footholds. And we need to call "puppy_demo.py" file to set the posture.
+PuppyPi's posture can be changed through adjusting the coordinates of 4 footholds. And we need to call "**puppy_demo.py**" file to set the posture.
 This file is stored in 
 
-This file is stored in ：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
+This file is stored in ：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](../_static/source_code/puppy_demo.zip)**
 
 ### 4.11.2 Parameter Illustration
 
@@ -1097,43 +1094,43 @@ PuppyPose = {'roll':math.radians(15), 'pitch':math.radians(-20), 'yaw':0.000, 'h
 
 ### 4.12.1 Introduction
 
-Through adjusting the parameter, we can control PuppyPi's posture. For specific parameters, please move to the file "3.11 Posture Parameter Instruction".
+Through adjusting the parameter, we can control PuppyPi's posture. For specific parameters, please move to the file "**[4.11 Posture Parameter Instruction](#anchor_4_11)**".
 We can adjust PuppyPi's standing angle through the control program. 
-The source code of this program is stored in **[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
+The source code of this program is stored in **[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](../_static/source_code/puppy_demo.zip)**
 
 ### 4.12.2 Operation Steps
 
 :::{Note}
-The input command should be case sensitive. And the key words can be complemented by "Tab" key.
+The input command should be case sensitive. And the key words can be complemented by "**Tab**" key.
 :::
 
 (1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-(2)  Click<img src="../_static/media/chapter_9/section_12/image5.png" style="width:0.32292in;height:0.30208in" />to open command line terminal
+(2)  Click <img src="../_static/media/chapter_9/section_12/image5.png" style="width:0.32292in;height:0.30208in" /> to open command line terminal
 
-(3) Input the command **"rosed puppy_control puppy_demo.py" to edit "puppy_demo.py"**
+(3) Input the command to edit "**puppy_demo.py**".
 
 ```bash
 rosed puppy_control puppy_demo.py
 ```
 
-(4) Press "i" key to start editing. For better observation, set the speed as 0, that is set **"x"** in **"PuppyMove"** as 0.
+(4) Press "**i**" key to start editing. For better observation, set the speed as 0, that is set **"x"** in **"PuppyMove"** as 0.
 
 <img src="../_static/media/chapter_9/section_12/image10.png"  />
 
 <img src="../_static/media/chapter_9/section_12/image11.png"  />
 
-(5) Modify "roll" and "pitch" in "PuppyPose". "roll" represents roll angle, and "pitch" represents pitch angle, both ranging from -31 to 31 degree. 
+(5) Modify "**roll**" and "**pitch**" in "**PuppyPose**". "**roll**" represents roll angle, and "**pitch**" represents pitch angle, both ranging from -31 to 31 degree. 
 
 <img src="../_static/media/chapter_9/section_12/image13.png"  />
 
 <img src="../_static/media/chapter_9/section_12/image15.png"  />
 
 :::{Note}
-we should take PuppyPi as first-person perspective when making adjustment. When the value of "roll" is positive, PuppyPi will tilt to left. When it is negative, PuppyPi will tilt to right. When the value of "pitch" is positive, PuppyPi will look up. When it is negative, PuppyPi will look down.
+we should take PuppyPi as first-person perspective when making adjustment. When the value of "**roll**" is positive, PuppyPi will tilt to left. When it is negative, PuppyPi will tilt to right. When the value of "**pitch**" is positive, PuppyPi will look up. When it is negative, PuppyPi will look down.
 :::
 
-(6) For example, make PuppyPi tilt 15° to the left, so modify the value in bracket as "15" as the figure below shown. After modification, press **"Esc"** and input **":wq"** to save.
+(6) For example, make PuppyPi tilt 15° to the left, so modify the value in bracket as "**15**" as the figure below shown. After modification, press **"Esc"** and input **":wq"** to save.
 
 ```bash
 :wq
@@ -1147,7 +1144,7 @@ we should take PuppyPi as first-person perspective when making adjustment. When 
 rosrun puppy_control puppy_demo.py
 ```
 
-(8) If want to close this game, we can press "Ctrl+C". If it fails to close the game, please try again.
+(8) If want to close this game, we can press "**Ctrl+C**". If it fails to close the game, please try again.
 
 ### 4.12.3 Program Outcome
 
@@ -1166,7 +1163,7 @@ Gait is used to describe how animal walks.
 In terms of balance method, PuppyPi's gaits are divided into three types, including static gait, dynamic gait and quasi-static gait. 
 And Walk is static gait, Trot is dynamic gait and Amble quasi-static gait.
 
-<img src="../_static/media/chapter_9/section_13/image2.png"  alt="图片11" />
+<img src="../_static/media/chapter_9/section_13/image2.png"  alt="" />
 
 ### 4.13.3 Leg Distribution
 
@@ -1184,7 +1181,7 @@ We can control the gait through the control program.
 **(2) Operation Steps**
 
 :::{Note}
-The input command should be case sensitive. And the key words can be complemented by "Tab" key. 
+The input command should be case sensitive. And the key words can be complemented by "**Tab**" key. 
 :::
 
 ①  Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
@@ -1230,20 +1227,20 @@ We can control the gait through the control program.
 **(2) Operation Steps**
 
 :::{Note}
-The input command should be case sensitive. And the key words can be complemented by "Tab" key.
+The input command should be case sensitive. And the key words can be complemented by "**Tab**" key.
 :::
 
 ① Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
 ② Click <img src="../_static/media/chapter_9/section_13/image6.png" style="width:0.32292in;height:0.30208in" /> to open command line terminal
 
-③ Input the command "rosed puppy_control puppy_demo.py" to edit "puppy_demo.py"
+③ Input the command to edit "**puppy_demo.py**"
 
 ```bash
 rosed puppy_control puppy_demo.py
 ```
 
-④ You can find the code calling the gait at the location indicated in the following image. The program is default to execute Trot gait, therefore we need to modify the program. Press "i" key to enter editing mode. 
+④ You can find the code calling the gait at the location indicated in the following image. The program is default to execute Trot gait, therefore we need to modify the program. Press "**i**" key to enter editing mode. 
 
 <img src="../_static/media/chapter_9/section_13/image11.png"  />
 
@@ -1288,7 +1285,7 @@ Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
 ① Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-② Click<img src="../_static/media/chapter_9/section_13/image6.png" style="width:0.32292in;height:0.30208in" /> to open command line terminal
+② Click <img src="../_static/media/chapter_9/section_13/image6.png" style="width:0.32292in;height:0.30208in" /> to open command line terminal
 
 ③ Input the command **"rosed puppy_control puppy_demo.py"** to edit **"puppy_demo.py"**.
 
@@ -1296,7 +1293,7 @@ Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 rosed puppy_control puppy_demo.py
 ```
 
-④ You can find the code calling the gait at the location indicated in the following image. The program is default to execute Trot gait, therefore we need to modify the program. Press "i" key to enter editing mode
+④ You can find the code calling the gait at the location indicated in the following image. The program is default to execute Trot gait, therefore we need to modify the program. Press "**i**" key to enter editing mode
 
 <img src="../_static/media/chapter_9/section_13/image11.png"  />
 
@@ -1328,7 +1325,7 @@ The bulge represents that the leg is lifted,
 
 During PuppyPi is moving, there are two types of parameters, including motion parameter and gait parameter. The gait parameters include the time when 4 legs all touch the ground, the time when all leg lifts and the interval to switch between front leg and hind leg. And motion parameter includes moving speed and rotation speed.
 
-We need to call "puppy_demo.py" file to set the parameter. This file is stored in ：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
+We need to call "**puppy_demo.py**" file to set the parameter. This file is stored in ：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](../_static/source_code/puppy_demo.zip)**
 
 The motion status can be adjusted through modifying the parameters.
 
@@ -1338,7 +1335,7 @@ The parameters in picture 1 is the motion parameters, and picture 2 is the gait 
 
 {lineno-start=13}
 
-```
+```python
 PuppyMove = {'x':6, 'y':0, 'yaw_rate':0}
 # x:直行控制，  前进方向为正方向，单位cm/s(straightforward control, with the forward direction as the positive direction, measured in cm/s)
 # y:侧移控制，左侧方向为正方向，单位cm/s，目前无此功能(lateral movement control, with the left direction as the positive direction, measured in cm/s. currently, this feature is bot available)
@@ -1347,7 +1344,7 @@ PuppyMove = {'x':6, 'y':0, 'yaw_rate':0}
 
 {lineno-start=33}
 
-```
+```python
 if gait == 'Trot':
     GaitConfig = {'overlap_time':0.2, 'swing_time':0.3, 'clearance_time':0.0, 'z_clearance':5}
     PuppyPose['x_shift'] = -0.6
@@ -1379,7 +1376,7 @@ For example, we make PuppyPi turns counterclockwise in 30°/s and moves in 5cm/s
 
 {lineno-start=13}
 
-```
+```python
 PuppyMove = {'x':6, 'y':0, 'yaw_rate':0}
 # x:直行控制，  前进方向为正方向，单位cm/s(straightforward control, with the forward direction as the positive direction, measured in cm/s)
 # y:侧移控制，左侧方向为正方向，单位cm/s，目前无此功能(lateral movement control, with the left direction as the positive direction, measured in cm/s. currently, this feature is bot available)
@@ -1392,22 +1389,22 @@ The unit of 0.52 is rad/s and the converted angular velocity is 30°/s (0.52*57.
 
 ### 4.14.1 Introduction
 
-PuppyPi's walking height can be adjusted through adjusting the parameters. For specific parameters, please move to the file folder"**[ ROS Robot Motion Control and Simulation-11 Static Posture Parameter](#anchor_11)**".
+PuppyPi's walking height can be adjusted through adjusting the parameters. For specific parameters, please move to the file folder"**[ 4.11 Posture Parameter Instruction](#anchor_4_11)**".
 
 We can adjust PuppyPi's walking height in the control program.
-The source code of this program is stored in：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
+The source code of this program is stored in：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](../_static/source_code/puppy_demo.zip)**
 
 ### 4.14.2 Operation Steps
 
 :::{Note}
-The input command should be case sensitive. And the key words can be complemented by "Tab" key.
+The input command should be case sensitive. And the key words can be complemented by "**Tab**" key.
 :::
 
 (1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-(2)  Click<img src="../_static/media/chapter_9/section_14/image5.png" style="width:0.32292in;height:0.30208in" />to open command line terminal.
+(2)  Click <img src="../_static/media/chapter_9/section_14/image5.png" style="width:0.32292in;height:0.30208in" />to open command line terminal.
 
-(3) Input the command "rosed puppy_control puppy_demo.py" to edit "puppy_demo.py".
+(3) Input the command to edit "**puppy_demo.py**".
 
 ```bash
 rosed puppy_control puppy_demo.py
@@ -1427,7 +1424,7 @@ rosed puppy_control puppy_demo.py
  the smaller the value, the higher the height. -15 is the maximum height and -5 is the minimum height.
 :::
 
-(6) For example, we modify "height" as -15. After modification, press "Esc", and input ":wq" to save.
+(6) For example, we modify "**height**" as -15. After modification, press "**Esc**", and input "**:wq**" to save.
 
 ```bash
 :wq
@@ -1435,13 +1432,13 @@ rosed puppy_control puppy_demo.py
 
 <img src="../_static/media/chapter_9/section_14/image15.png"  />
 
-(7) Input command **"rosrun puppy_control puppy_demo.py"** and press Enter to run the program.
+(7) Input command and press Enter to run the program.
 
 ```bash
 rosrun puppy_control puppy_demo.py
 ```
 
-(8) If want to close this game, we can press "Ctrl+C". If it fails to close the game, please try again.
+(8) If want to close this game, we can press "**Ctrl+C**". If it fails to close the game, please try again.
 
 ### 4.14.3 Program Outcome
 
@@ -1453,22 +1450,22 @@ After the game starts, the body height will be lifted to the set height.
 
 ### 4.15.1 Introduction
 
-PuppyPi's walking speed can be adjusted by parameters. For specific parameters, please move to the folder"**[ROS Robot Motion Control and Simulation-> 11.Posture Parameter Instruction](#anchor_11)**".
+PuppyPi's walking speed can be adjusted by parameters. For specific parameters, please move to the folder"**[4.11 Posture Parameter Instruction](#anchor_4_11)**".
 
 We can adjust PuppyPi's walking speed in the control program.
-The source code of this program is stored in：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
+The source code of this program is stored in：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](../_static/source_code/puppy_demo.zip)**
 
 ### 4.15.2 Operation Steps
 
 :::{Note}
- The input command should be case sensitive. And the key words can be complemented by "Tab" key.
+ The input command should be case sensitive. And the key words can be complemented by "**Tab**" key.
 :::
 
 (1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-(2)  Click<img src="../_static/media/chapter_9/section_15/image5.png"  />to open command line terminal
+(2)  Click <img src="../_static/media/chapter_9/section_15/image5.png"  /> to open command line terminal
 
-(3) Input the command **"rosed puppy_control puppy_demo.py"** to edit **"puppy_demo.py"**
+(3) Input the command to edit **"puppy_demo.py"**
 
 ```bash
 rosed puppy_control puppy_demo.py
@@ -1484,7 +1481,7 @@ rosed puppy_control puppy_demo.py
 ③ Under different gaits, speed adjustment has influence on its stability, therefore we should adjust the speed base on the  actual performance of robot.
 :::
 
-(5) For example, we modify "x" as 12 to set the moving speed as 12 cm/s. After modification, press "Esc" and then input ":wq" to save.
+(5) For example, we modify "**x**" as 12 to set the moving speed as 12 cm/s. After modification, press "**Esc**" and then input "**:wq**" to save.
 
 ```bash
 :wq
@@ -1494,13 +1491,13 @@ rosed puppy_control puppy_demo.py
 
 The modification of the backward speed follows the same procedure. Everyone can try different speed settings to compare the changes in the robot dog's speed.
 
-(6) Input command "rosrun puppy_control puppy_demo.py" to press Enter to run the program.
+(6) Input command to press Enter to run the program.
 
 ```bash
 rosrun puppy_control puppy_demo.py
 ```
 
-(7) If want to close this game, we can press "Ctrl+C". If it fails to close the game, please try again.
+(7) If want to close this game, we can press "**Ctrl+C**". If it fails to close the game, please try again.
 
 ### 4.15.3 Program Outcome
 
@@ -1513,41 +1510,41 @@ After the game starts, PuppyPi will move in the set speed.
 PuppyPi's gait and dynamic parameters can be adjusted simultaneously through the program, such as standing angle (static), moving speed (dynamic) and moving gait (dynamic).
 We can make PuppyPi trot with head down through modifying the program.
 
-The source code of this program is stored in ：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/9/puppy_demo.py)**
+The source code of this program is stored in ：**[/home/ubuntu/puppypi/src/puppy_control/scripts/puppy_demo.py](../_static/source_code/puppy_demo.zip)**
 
 ### 4.16.2 Operation Steps
 
 :::{Note}
-The input command should be case sensitive. And the key words can be complemented by "Tab" key.
+The input command should be case sensitive. And the key words can be complemented by "**Tab**" key.
 :::
 
 (1)  Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-(2)  Click<img src="../_static/media/chapter_9/section_16/image5.png" style="width:0.32292in;height:0.30208in" />to open command line terminal
+(2)  Click<img src="../_static/media/chapter_9/section_16/image5.png" style="width:0.32292in;height:0.30208in" /> to open command line terminal
 
-(3)  Input the command **"rosed puppy_control puppy_demo.py"** to edit **"puppy_demo.py"**
+(3)  Input the command to edit **"puppy_demo.py"**
 
 ```bash
 rosed puppy_control puppy_demo.py
 ```
 
-(4) Press "i" to start editing. For better observation, we need to modify "x" in **"PuppyMove"** as 0 to set the speed as 0.
+(4) Press "**i**" to start editing. For better observation, we need to modify "**x**" in **"PuppyMove"** as 0 to set the speed as 0.
 
 <img src="../_static/media/chapter_9/section_16/image10.png"  />
 
 <img src="../_static/media/chapter_9/section_16/image11.png"  />
 
-(5) Modify "pitch" in "PuppyPose" within -31°~31°. "pitch" represents the pitch angle. When the value is positive, PuppyPi will look up. When it is negative, PuppyPi will look down. For example, we modify "pitch" as -15 to make PuppyPi look down 15° . 
+(5) Modify "**pitch**" in "**PuppyPose**" within -31°~31°. "**pitch**" represents the pitch angle. When the value is positive, PuppyPi will look up. When it is negative, PuppyPi will look down. For example, we modify "**pitch**" as -15 to make PuppyPi look down 15° . 
 
 <img src="../_static/media/chapter_9/section_16/image13.png"  />
 
 <img src="../_static/media/chapter_9/section_16/image14.png"  />
 
-(6) Then set the gait. Please jump to 24th line to check the gait type. If the current gait is "Trot", remain the default setting. If not, we need to modify it as "Trot".
+(6) Then set the gait. Please jump to 24th line to check the gait type. If the current gait is "**Trot**", remain the default setting. If not, we need to modify it as "**Trot**".
 
 <img src="../_static/media/chapter_9/section_16/image16.png"  />
 
-(7) Lastly, modify "x" in "PuppyMove". For example, we modify it as 5 to make PuppyPi trot forward with head down in 5cm/s. After modification, press "Esc" and input ":wq" to keep the modified data.
+(7) Lastly, modify "**x**" in "**PuppyMove**". For example, we modify it as 5 to make PuppyPi trot forward with head down in 5cm/s. After modification, press "**Esc**" and input ":wq" to keep the modified data.
 
 ```bash
 :wq
@@ -1556,13 +1553,11 @@ rosed puppy_control puppy_demo.py
 <img src="../_static/media/chapter_9/section_16/image18.png"  />
 
 :::{Note}
-
 * You also can modify other gaits in this way.
-
 * The pitch angle should be modified based on the actual situation to avoid the influence on running.
-  :::
+:::
 
-(8) Input command "rosrun puppy_control puppy_demo.py" and press Enter to run the program.
+(8) Input command and press Enter to run the program.
 
 ```bash
 rosrun puppy_control puppy_demo.py

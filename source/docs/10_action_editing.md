@@ -6,7 +6,7 @@
 
 **(1) Open through Desktop Icon**
 
-① Double click <img src="../_static/media/chapter_10/section_1/image2.png" style="width:0.31458in;height:0.31458in" />。
+① Double click <img src="../_static/media/chapter_10/section_1/image2.png" style="width:0.31458in;height:0.31458in" />.
 
 ② Click **"Execute"** in the pop-up window, and then we can open PC software.
 
@@ -14,9 +14,9 @@
 
 **(2) Open through Command**
 
-① Click<img src="../_static/media/chapter_10/section_1/image5.png" style="width:0.32292in;height:0.30208in" />at the upper left corner to open command line terminal
+① Click <img src="../_static/media/chapter_10/section_1/image5.png" style="width:0.32292in;height:0.30208in" /> at the upper left corner to open command line terminal
 
-② Input command **"sudo python3 puppypi_control/PuppyPi.py"** and press Enter to open PC software.
+② Input command and press Enter to open PC software.
 
 ```bash
 python3 software/puppypi_control/PuppyPi.py
@@ -38,7 +38,7 @@ Under normal mode, the interface is divided into 4 zones, including servo contro
 
 **① Servo Control Area**
 
-PuppyPi’s posture can be adjusted through modifying the corresponding servo value.
+PuppyPi's posture can be adjusted through modifying the corresponding servo value.
 
 | Icon | Function |
 |----|----|
@@ -72,7 +72,7 @@ The duration and servo parameter of the action are displayed in the action list.
 | <img src="../_static/media/chapter_10/section_1/image26.png" style="width:0.7874in;height:0.32283in" /> | Delete the selected action in the action list |
 | <img src="../_static/media/chapter_10/section_1/image27.png" style="width:0.7874in;height:0.32283in" /> | Delete all the actions in the action list |
 | <img src="../_static/media/chapter_10/section_1/image28.png" style="width:0.7874in;height:0.32283in" /> | Move the selected action to the next line |
-| <img src="../_static/media/chapter_10/section_1/image29.png" style="width:0.59055in;height:1.04987in" /> | Run the actions in the action list once. If "Loop" is selected, the actions will be ran in loop. |
+| <img src="../_static/media/chapter_10/section_1/image29.png" style="width:0.59055in;height:1.04987in" /> | Run the actions in the action list once. If "**Loop**" is selected, the actions will be ran in loop. |
 | <img src="../_static/media/chapter_10/section_1/image30.png" style="width:0.7874in;height:0.36507in" /> | Open the action group file we want |
 | <img src="../_static/media/chapter_10/section_1/image31.png" style="width:0.7874in;height:0.36507in" /> | Save the actions in the action list to the designated path |
 | <img src="../_static/media/chapter_10/section_1/image32.png" style="width:0.7874in;height:0.36507in" /> | Firstly, click  <img src="../_static/media/chapter_10/section_1/image30.png" style="width:0.7874in;height:0.36507in" />to open a action group, and then click this button to open other action group. After that, two action groups are integrated. |
@@ -104,7 +104,7 @@ Under coordinate mode, the interface is divided into three zones, including coor
 
 **① Coordinate Control Area**
 
-The posture can be adjusted through modifying the coordinate of PuppyPi’s joints.
+The posture can be adjusted through modifying the coordinate of PuppyPi's joints.
 
 | Icon | Function |
 |:--:|:--:|
@@ -125,7 +125,7 @@ we need to take PuppyPi as the first-person perspective.
 |:--:|:--:|
 | <img src="../_static/media/chapter_10/section_1/image47.png" style="width:0.7874in;height:0.2019in" /> | Action number |
 | <img src="../_static/media/chapter_10/section_1/image48.png" style="width:0.7874in;height:0.21199in" /> | The duration of the action |
-| <img src="../_static/media/chapter_10/section_1/image49.png" style="width:0.7874in;height:0.2019in" /> | X-axis coordinate of the upper joint on PuppyPi’s front right leg. We can double click the value to modify. |
+| <img src="../_static/media/chapter_10/section_1/image49.png" style="width:0.7874in;height:0.2019in" /> | X-axis coordinate of the upper joint on PuppyPi's front right leg. We can double click the value to modify. |
 | <img src="../_static/media/chapter_10/section_1/image50.png" style="width:0.7874in;height:0.2019in" /> | Z-axis coordinate of lower joint on front right leg. We can double click the value to modify. |
 | <img src="../_static/media/chapter_10/section_1/image51.png" style="width:0.7874in;height:0.2019in" /> | X-axis coordinate of upper joint on front left leg. We can double click the value to modify. |
 | <img src="../_static/media/chapter_10/section_1/image52.png" style="width:0.7874in;height:0.2019in" /> | Z-axis coordinate of lower joint on front left leg. We can double click the value to modify. |
@@ -155,13 +155,13 @@ This section mainly involves calling the built-in action groups through the Pupp
 
 ### 5.2.2 Calling Action Groups
 
-(1)  Power on the device, and refer to the instructions under"[Remote Desktop Installation and Connection](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/8_remote_tool.html#id2)" to connect using the VNC remote connection tool.
+(1)  Power on the device, and refer to the instructions under"[**Remote Tool Installation and Docker Entry Method**](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/8_remote_tool.html)" to connect using the VNC remote connection tool.
 
 <img src="../_static/media/chapter_10/section_2/image1.png"  />
 
-(2)  Double-click <img src="../_static/media/chapter_10/section_2/image2.png" style="width:0.39375in;height:0.45069in" />and select "Execute" to open the PC software.
+(2)  Double-click <img src="../_static/media/chapter_10/section_2/image2.png" style="width:0.39375in;height:0.45069in" /> and select "**Execute**" to open the PC software.
 
-(3) Click "Open Action File" to open the action group file located in the same directory as this document.
+(3) Click "**Open Action File**" to open the action group file located in the same directory as this document.
 
 <img class="common_img" src="../_static/media/chapter_10/section_2/image4.png"  />
 
@@ -187,7 +187,7 @@ This section mainly involves calling the built-in action groups through the Pupp
 
 ### 5.3.1 Project Goal
 
-There are two control modes on PC software, including normal mode and coordinate mode. Under normal mode, we can adjust PuppyPi’s posture through modifying the servo parameters.
+There are two control modes on PC software, including normal mode and coordinate mode. Under normal mode, we can adjust PuppyPi's posture through modifying the servo parameters.
 In this project, we will edit an action group to make PuppyPi **"wave hand"**, which consists of 13 independent actions.
 
 ### 5.3.2 Action Design
@@ -196,7 +196,7 @@ In this project, we will edit an action group to make PuppyPi **"wave hand"**, w
 
 <img src="../_static/media/chapter_10/section_3/image3.png"  />
 
-(2)  **Action 1**: click <img src="../_static/media/chapter_10/section_3/image1.png" style="width:0.31458in;height:0.31458in" />to make PuppyPi restore to initial posture. And modify the Time as 500ms. Then click <img src="../_static/media/chapter_10/section_3/image24.png" style="width:0.31458in;height:0.31458in" /> to add this action to the action list.
+(2)  **Action 1**: click <img src="../_static/media/chapter_10/section_3/image1.png" style="width:0.31458in;height:0.31458in" /> to make PuppyPi restore to initial posture. And modify the Time as 500ms. Then click <img src="../_static/media/chapter_10/section_3/image24.png" style="width:0.31458in;height:0.31458in" /> to add this action to the action list.
 
 <img class="common_img" src="../_static/media/chapter_10/section_3/image4.png"  />
 
@@ -205,7 +205,7 @@ Then the specific parameters of action1 are updated to the action list.
 <img class="common_img" src="../_static/media/chapter_10/section_3/image5.png"  />
 
 :::{Note}
- please remember to click "Add Action" button after each setting.
+ please remember to click "**Add Action**" button after each setting.
 :::
 
 (3) Drag the upper slider to 1000 position.
@@ -290,7 +290,7 @@ The servo parameters of these 13 actions are listed below.
 
 ### 5.4.1 Project Goal
 
-There are two control modes on PC software, including normal mode and coordinate mode. Under coordinate mode, PuppyPi’s posture can be adjusted through setting the coordinate of the corresponding joint. 
+There are two control modes on PC software, including normal mode and coordinate mode. Under coordinate mode, PuppyPi's posture can be adjusted through setting the coordinate of the corresponding joint. 
 In this project, we will edit an action group to make PuppyPi to lean forward, which consists of 6 independent actions.
 
 ### 5.4.2 Coordinate Explanation
@@ -319,7 +319,7 @@ Take **-10** as critical point. When Z-axis coordinate is greater than **-10**, 
 
 <img class="common_img" src="../_static/media/chapter_10/section_4/image4.png" style="width:4.72441in;height:2.42762in" />
 
-The specific parameters of this action are displayed on the action list. The coordinates of 4 legs are all (0，0，-10), which means that PuppyPi’s height is 10cm.
+The specific parameters of this action are displayed on the action list. The coordinates of 4 legs are all (0，0，-10), which means that PuppyPi's height is 10cm.
 
 <img src="../_static/media/chapter_10/section_4/image5.png" style="width:5.76389in;height:0.21875in" />
 
@@ -379,7 +379,7 @@ In this project, we will integrate **"raise_hands"** and **"sit"** action groups
 
 ### 5.5.2 Normal Mode
 
-(1)  After connecting VNC, double click<img src="../_static/media/chapter_10/section_5/image1.png" style="width:0.31458in;height:0.31458in" /> on the desktop to open PC software. Then select "Normal Mode". 
+(1)  After connecting VNC, double click <img src="../_static/media/chapter_10/section_5/image1.png" style="width:0.31458in;height:0.31458in" /> on the desktop to open PC software. Then select "**Normal Mode**". 
 
 <img src="../_static/media/chapter_10/section_5/image2.png" style="width:5.76389in;height:0.52778in" />
 
@@ -389,7 +389,7 @@ In this project, we will integrate **"raise_hands"** and **"sit"** action groups
 
 <img class="common_img" src="../_static/media/chapter_10/section_5/image4.png" style="width:4.72441in;height:1.93788in" />
 
-At this time, the parameters of "raise_hands" is updated to the action list
+At this time, the parameters of "**raise_hands**" is updated to the action list
 
 <img class="common_img" src="../_static/media/chapter_10/section_5/image5.png" style="width:5.76389in;height:1.20486in" />
 
@@ -399,11 +399,11 @@ At this time, the parameters of "raise_hands" is updated to the action list
 
 <img class="common_img" src="../_static/media/chapter_10/section_5/image7.png" style="width:4.72441in;height:1.90774in" />
 
-At this time, parameters of "sit" is added behind the parameters of "raise_hands".
+At this time, parameters of "**sit**" is added behind the parameters of "**raise_hands**".
 
 <img class="common_img" src="../_static/media/chapter_10/section_5/image8.png" style="width:5.76389in;height:1.60625in" />
 
-(4) Click "Run" button. Then PuppyPi will execute this new action group.
+(4) Click "**Run**" button. Then PuppyPi will execute this new action group.
 
 <img class="common_img" src="../_static/media/chapter_10/section_5/image9.png" style="width:4.72441in;height:1.58239in" />
 
@@ -415,25 +415,25 @@ At this time, parameters of "sit" is added behind the parameters of "raise_hands
 
 ### 5.5.3 Coordinate Mode
 
-Double click<img src="../_static/media/chapter_10/section_5/image1.png" style="width:0.31458in;height:0.31458in" />to open PC software. Then select **"Coordinate Mode"**.
+Double click <img src="../_static/media/chapter_10/section_5/image1.png" style="width:0.31458in;height:0.31458in" /> to open PC software. Then select **"Coordinate Mode"**.
 
 <img class="common_img" src="../_static/media/chapter_10/section_5/image12.png" style="width:5.76389in;height:3.12639in" />
 
-The operation under Coordinate Mode is the same as that under Normal Mode. For the operation steps, please refer to "[5.5.2 Normal Mode]()".
+The operation under Coordinate Mode is the same as that under Normal Mode. For the operation steps, please refer to "[**5.5.2 Normal Mode**]()".
 
 ## 5.6 APP Customized Control
 
 ### 5.6.1 Project Goal
 
-In "[5.4 Coordinate Mode Introduction](#anchor_4)", we have edited an action group `Lean_forward`. And in this project, we will make PuppyPi execute this action group with customized function on the APP.
+In "[**5.4 Coordinate Mode Introduction**](#anchor_4)", we have edited an action group `Lean_forward`. And in this project, we will make PuppyPi execute this action group with customized function on the APP.
 
 <p id="anchor_6_2"></p>
 
 ### 5.6.2 Getting Ready
 
-(1)  After connecting to VNC, click<img src="../_static/media/chapter_10/section_6/image1.png" style="width:0.32292in;height:0.30208in" />at the upper left corner to open Terminator terminal.
+(1)  After connecting to VNC, click <img src="../_static/media/chapter_10/section_6/image1.png" style="width:0.32292in;height:0.30208in" /> at the upper left corner to open Terminator terminal.
 
-(2) Enter the directory "cd software/puppypi_control/ActionGroups ls" to check all the action groups.
+(2) Enter the directory to check all the action groups.
 
 ```bash
 cd software/puppypi_control/ActionGroups
@@ -451,15 +451,15 @@ ls
 
 <img src="../_static/media/chapter_10/section_6/image4.png"  />
 
-(2)  Next, click "Custom" button.
+(2)  Next, click "**Custom**" button.
 
 <img src="../_static/media/chapter_10/section_6/image5.png"  />
 
-(3)  Click "Add" to add the customized action.
+(3)  Click "**Add**" to add the customized action.
 
 <img src="../_static/media/chapter_10/section_6/image6.png" />
 
-(4)  Please enter action name "Lean Forward" and the action file name "Lean_forward". Then click "OK".
+(4)  Please enter action name "**Lean Forward**" and the action file name "**Lean_forward**". Then click "**OK**".
 
 <img src="../_static/media/chapter_10/section_6/image7.png"  />
 
@@ -470,15 +470,13 @@ cd software/puppypi_control/ActionGroups
 ```
 
 :::{Note}
-
-we can input randomly in the bar of "Action Name". But in the bar of "Action File Name", we need to enter the accurate file names of the existed action groups. And we can follow the steps in "[6.2 Getting Ready]()" to check.
-
+we can input randomly in the bar of "**Action Name**". But in the bar of "**Action File Name**", we need to enter the accurate file names of the existed action groups. And we can follow the steps in "[**6.2 Getting Ready**]()" to check.
 :::
 
-(5)  Click "Custom" button, and then select "Lean Forward" action. Then PuppyPi will execute this action.
+(5)  Click "**Custom**" button, and then select "**Lean Forward**" action. Then PuppyPi will execute this action.
 
 <img src="../_static/media/chapter_10/section_6/image9.png"  />
 
-(6)  If need to modify this action, we can long press "Lean Forward". In the pop-up window, you can edit or delete this action.
+(6)  If need to modify this action, we can long press "**Lean Forward**". In the pop-up window, you can edit or delete this action.
 
 <img src="../_static/media/chapter_10/section_6/image10.png"  />

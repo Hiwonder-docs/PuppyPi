@@ -146,4 +146,4 @@ Furthermore, unless explicitly stated by Hiwonder, we are not responsible for an
 
 <img class="common_img" src="../_static/media/chapter_1/section_2/image15.png" alt="" />
 
-After successfully booting up PuppyPi, please move to "[**APP and Handle Control**](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/2_play_first_hand.html)" to experience PuppyPi's function.
+After successfully booting up PuppyPi, please move to "[**2. APP and Handle Control**](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/2_play_first_hand.html)" to experience PuppyPi's function.
