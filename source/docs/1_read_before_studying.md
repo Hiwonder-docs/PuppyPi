@@ -46,59 +46,59 @@ Furthermore, unless explicitly stated by Hiwonder, we are not responsible for an
 **(1) PuppyPi Standard Packing List**
 
 | **No.** | **Components**                  | **Quantity** | **Picture** |
-| ------- | ------------------------------- | ------------ | ----------- |
-|         | PuppyPi(with camera)            | 1            |             |
-|         | 8.4V charger                    | 1            |             |
-|         | HPS-0618SG Spare coreless servo | 1            |             |
-|         | Card Reader                     | 1            |             |
-|         | 4cm Balls                       | 3            |             |
-|         | 65*65mm Tags                    | 3            |             |
-|         | Screwdriver                     | 1            |             |
-|         | Manual                          | 1            |             |
+|---------| ------------------------------- | ------------ | ----------- |
+| 1       | PuppyPi(with camera)            | 1            |             |
+| 2       | 8.4V charger                    | 1            |             |
+| 3       | HPS-0618SG Spare coreless servo | 1            |             |
+| 4       | Card Reader                     | 1            |             |
+| 5       | 4cm Balls                       | 3            |             |
+| 7       | 65*65mm Tags                    | 3            |             |
+| 8       | Screwdriver                     | 1            |             |
+| 9       | Manual                          | 1            |             |
 
 **(2) PuppyPi Advanced Packing List**
 
 | **No.** | Components           | **Quantity** | **Picture** |
-| ------- | -------------------- | ------------ | ----------- |
-|         | PuppyPi(with camera)            | 1            |             |
-|         | 8.4V charger                    | 1            |             |
-|         | HPS-0618SG Spare coreless servo | 1            |             |
-|         | Card Reader                     | 1            |             |
-|         | PS2 wireless handle |             |             |
-|         | Dot matrix display              |             ||
-|         | Touch sensor |              |             |
-|         | Glowing ultrasonic sensor |              |             |
-|         | MP3 module |              |             |
-|         | Bracket(for ultransion sensor) |              |             |
-|         | 4cm Balls                       |              |             |
-| | 65*65mm Tags                    | | |
-| | 4PIN wire                       | | |
-| | Screwdriver                     | | |
-| | Accessory bag<br>(M4 *5 Black single-pass nylon column * 6<br>M4 *6 round head screw *12<br>M2 *6 round head screw * 6<br>M3 *6 Black round head screw * 6) | | |
-| | Manual                          | | |
+|---------| -------------------- | ------------ | ----------- |
+| 1       | PuppyPi(with camera)            | 1            |             |
+| 2       | 8.4V charger                    | 1            |             |
+| 3       | HPS-0618SG Spare coreless servo | 1            |             |
+| 4       | Card Reader                     | 1            |             |
+| 5       | PS2 wireless handle |             |             |
+| 6       | Dot matrix display              |             ||
+| 7       | Touch sensor |              |             |
+| 8       | Glowing ultrasonic sensor |              |             |
+| 9       | MP3 module |              |             |
+| 10      | Bracket(for ultransion sensor) |              |             |
+| 11      | 4cm Balls                       |              |             |
+| 12      | 65*65mm Tags                    | | |
+| 13      | 4PIN wire                       | | |
+| 14      | Screwdriver                     | | |
+| 15      | Accessory bag<br>(M4 *5 Black single-pass nylon column * 6<br>M4 *6 round head screw *12<br>M2 *6 round head screw * 6<br>M3 *6 Black round head screw * 6) | | |
+| 16      | Manual                          | | |
 
 
 **(3) PuppyPi Pro Packing List**
 
 | **No.** | Components                      | **Quantity** | **Picture** |
-| ------- | ------------------------------- | ------------ | ----------- |
-|         | PuppyPi(with camera)            |              |             |
-|         | 8.4V charger                    |              |             |
-|         | HPS-0618SG Spare coreless servo |              |             |
-|         | Card Reader                     |              |             |
-|         | PS2 wireless handle             |              |             |
-|         | Dot matrix display              |              |             |
-|         | Touch sensor                    |              |             |
-|         | Glowing ultrasonic sensor       |              |             |
-|         | MP3 module                      |              |             |
-|         | Bracket(for ultransion sensor)  |              |             |
-|         | 4cm Balls                       |              |             |
-| | 65*65mm Tags                    | | |
-| | 4PIN wire                       | | |
-| | Screwdriver                     | | |
-| | Accessory bag<br>(M4 *5 Black single-pass nylon column * 6<br>M4 *6 round head screw *12<br>M2 *6 round head screw * 6<br>M3 *6 Black round head screw * 6) | | |
-| | Manual                          | | |
-|         | TOF Lidar(with bracket) |              |             |
+|---------| ------------------------------- | ------------ | ----------- |
+| 1       | PuppyPi(with camera)            |              |             |
+| 2       | 8.4V charger                    |              |             |
+| 3       | HPS-0618SG Spare coreless servo |              |             |
+| 4       | Card Reader                     |              |             |
+| 5       | PS2 wireless handle             |              |             |
+| 6       | Dot matrix display              |              |             |
+| 7       | Touch sensor                    |              |             |
+| 8       | Glowing ultrasonic sensor       |              |             |
+| 9       | MP3 module                      |              |             |
+| 10      | Bracket(for ultransion sensor)  |              |             |
+| 11      | 4cm Balls                       |              |             |
+| 12      | 65*65mm Tags                    | | |
+| 13      | 4PIN wire                       | | |
+| 14      | Screwdriver                     | | |
+| 15      | Accessory bag<br>(M4 *5 Black single-pass nylon column * 6<br>M4 *6 round head screw *12<br>M2 *6 round head screw * 6<br>M3 *6 Black round head screw * 6) | | |
+| 16      | Manual                          | | |
+| 17      | TOF Lidar(with bracket) |              |             |
 
 ## 1.3 Start PuppyPi
 
@@ -120,7 +120,7 @@ Furthermore, unless explicitly stated by Hiwonder, we are not responsible for an
 
 (5) Insert the included power adaptor into the round hole on Raspberry Pi expansion board.
 
-<img class="common_img" src="../_static/media/chapter_1/section_2/image7.png"  alt="" />
+<img class="common_img" src="../_static/media/chapter_1/section_2/image7.png"  alt="" style="width:600px;" />
 
 (6)  Please wait until PuppyPi is fully charged. The indicator on power adaptor is green without plugged in. When plugged in, its indicator will turn red which indicates PuppyPi is charging. The charging time is approximately one and a half hours.When the indicator turns green again, PuppyPi gets fully charged. After charging, please unplug the power adaptor as soon as possible.
 
@@ -136,14 +136,14 @@ Furthermore, unless explicitly stated by Hiwonder, we are not responsible for an
 
 <img class="common_img" src="../_static/media/chapter_1/section_2/image9.png" alt="" />
 
-(2) Then push the switch on expansion board to "ON". After booting up, current battery voltage will be displayed on digital tube at the back (Charge the robot at once when the voltage is below 6.8V), and LED1 and LED2 will turn blue. Later, LED1 will keep lighting up and LED2 will flash continuously, which means that the network configuration is done. Please wait until the buzzer beeps, at this time, Ros finishes configuration and PuppyPi completely boots up.
+(2) Then push the switch on expansion board to "**ON**". After booting up, current battery voltage will be displayed on digital tube at the back (Charge the robot at once when the voltage is below 6.8V), and LED1 and LED2 will turn blue. Later, LED1 will keep lighting up and LED2 will flash continuously, which means that the network configuration is done. Please wait until the buzzer beeps, at this time, Ros finishes configuration and PuppyPi completely boots up.
 
-<img class="common_img" src="../_static/media/chapter_1/section_2/image11.png"  alt="" />
+<img class="common_img" src="../_static/media/chapter_1/section_2/image11.png"  alt="" style="width:700px"/>
 
-<img class="common_img" src="../_static/media/chapter_1/section_2/image13.png"  alt="" />
+<img class="common_img" src="../_static/media/chapter_1/section_2/image13.png"  alt="" style="width:600px" />
 
-(3) The default network mode is AP Direct Connection Mode. After successful booting up, PuppyPi will generate a WiFi starting with "HW".
+(3) The default network mode is AP Direct Connection Mode. After successful booting up, PuppyPi will generate a WiFi starting with "**HW**".
 
 <img class="common_img" src="../_static/media/chapter_1/section_2/image15.png" alt="" />
 
-After successfully booting up PuppyPi, please move to "[Quick User Experience]()" to experience PuppyPi's function.
+After successfully booting up PuppyPi, please move to "[**APP and Handle Control**](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/2_play_first_hand.html)" to experience PuppyPi's function.
