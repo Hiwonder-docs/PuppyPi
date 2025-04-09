@@ -377,39 +377,39 @@ In this project, we will integrate **"raise_hands"** and **"sit"** action groups
 
 ### 5.5.2 Normal Mode
 
-(1)  After connecting VNC, double click <img src="../_static/media/chapter_10/section_5/image1.png" style="width:0.31458in;height:0.31458in" /> on the desktop to open PC software. Then select "**Normal Mode**". 
+(1)  After connecting VNC, double click <img src="../_static/media/chapter_10/section_5/image1.png" style="width:0.41458in;height:0.41458in" /> on the desktop to open PC software. Then select "**Normal Mode**". 
 
-<img src="../_static/media/chapter_10/section_5/image2.png" style="width:5.76389in;height:0.52778in" />
+<img src="../_static/media/chapter_10/section_5/image2.png" style="" />
 
 (2) Click **"Open Action File"** button, and then double click **"raise_hands"** action group to open it.
 
-<img class="common_img" src="../_static/media/chapter_10/section_5/image3.png"/>
+<img class="common_img" src="../_static/media/chapter_10/section_5/image3.png" style="width:600px;"/>
 
-<img class="common_img" src="../_static/media/chapter_10/section_5/image4.png"/>
+<img class="common_img" src="../_static/media/chapter_10/section_5/image4.png" style="width:600px;"/>
 
 At this time, the parameters of "**raise_hands**" is updated to the action list
 
-<img class="common_img" src="../_static/media/chapter_10/section_5/image5.png" />
+<img class="common_img" src="../_static/media/chapter_10/section_5/image5.png" style="width:600px;"/>
 
 (3) Click **"Integrate Action File"**, and then open **"sit.d6a"** to completer integration.
 
-<img class="common_img" src="../_static/media/chapter_10/section_5/image6.png" />
+<img class="common_img" src="../_static/media/chapter_10/section_5/image6.png" style="width:600px;"/>
 
-<img class="common_img" src="../_static/media/chapter_10/section_5/image7.png" />
+<img class="common_img" src="../_static/media/chapter_10/section_5/image7.png" style="width:600px;"/>
 
 At this time, parameters of "**sit**" is added behind the parameters of "**raise_hands**".
 
-<img class="common_img" src="../_static/media/chapter_10/section_5/image8.png" />
+<img class="common_img" src="../_static/media/chapter_10/section_5/image8.png" style="width:600px;"/>
 
 (4) Click "**Run**" button. Then PuppyPi will execute this new action group.
 
-<img class="common_img" src="../_static/media/chapter_10/section_5/image9.png" />
+<img class="common_img" src="../_static/media/chapter_10/section_5/image9.png" style="width:600px;"/>
 
 (5) Click **"Save Action File"** button, name this new action group **"raise_hands_sit"**, and the click **"Save"**.
 
-<img class="common_img" src="../_static/media/chapter_10/section_5/image10.png" />
+<img class="common_img" src="../_static/media/chapter_10/section_5/image10.png" style="width:600px;"/>
 
-<img class="common_img" src="../_static/media/chapter_10/section_5/image11.png" />
+<img class="common_img" src="../_static/media/chapter_10/section_5/image11.png" style="width:600px;"/>
 
 ### 5.5.3 Coordinate Mode
 
@@ -441,7 +441,7 @@ cd software/puppypi_control/ActionGroups
 ls
 ```
 
-<img src="../_static/media/chapter_10/section_6/image3.png"  />
+<img src="../_static/media/chapter_10/section_6/image3.png" class="common_img" />
 
 ### 5.6.3 Operation Steps
 

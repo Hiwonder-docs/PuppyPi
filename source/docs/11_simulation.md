@@ -20,7 +20,7 @@ For instance, when describing the two legs of a humanoid robot, the URDF model w
 
 ### 6.1.3 Basic Syntax of URDF Model
 
-- #### XML Basic Syntax
+* **XML Basic Syntax**
 
 The URDF model is written using XML standard. 
 
@@ -52,7 +52,7 @@ Comments have no impact on the definition of other properties and elements. Plea
 <!-- comment content -->
 ```
 
-- #### Link
+* **Link**
 
 The Link element describes the visual and physical properties of the robot's rigid component. The following tags are commonly used to define the motion of a link:
 
@@ -76,15 +76,15 @@ Each tag contains the corresponding child tag. The functions of the tags are lis
 
 <p id="anchor_1_3_3"></p>
 
-- #### Joint
+* **Joint**
 
-The "Joint" tag describes the kinematic and dynamic properties of the robot's joints, including the joint's range of motion, target positions, and speed limitations. In terms of motion style, joints can be categorized into six types.
+The "**Joint**" tag describes the kinematic and dynamic properties of the robot's joints, including the joint's range of motion, target positions, and speed limitations. In terms of motion style, joints can be categorized into six types.
 
-<img src="../_static/media/chapter_11/section_1/image1.png"  />
+<img src="../_static/media/chapter_11/section_1/image1.png" class="common_img" />
 
 The following tags will be used to write joint motion.
 
-<img src="../_static/media/chapter_11/section_1/image3.png"  />
+<img src="../_static/media/chapter_11/section_1/image3.png" class="common_img" />
 
 (1) \<parent_link\>： Parent link
 
@@ -92,9 +92,9 @@ The following tags will be used to write joint motion.
 
 (3) \<calibration\>：Calibrate the joint angle
 
-(4) \<dynamics\>：Describes some physical properties of motion
+(4) \<dynamics\>：Describes some physical properties of motion
 
-(5) \<limit\>：Describes some limitations of the motion
+(5) \<limit\>：Describes some limitations of the motion
 
 The function of each tag is listed below. Each tag involves one or several child tags.
 
@@ -106,85 +106,85 @@ The function of each tag is listed below. Each tag involves one or several child
 | mimic | Describe the relationship between joints. |
 | safety_controller | Describes the parameters of the safety controller used for protecting the joint motion of the robot. |
 
-- #### robot Tag
+* **robot Tag**
 
 The complete top tags of a robot, including the <link> and <joint> tags, must be enclosed within the <robot> tag. The format is as follows:
 
-<img src="../_static/media/chapter_11/section_1/image4.png"  />
+<img src="../_static/media/chapter_11/section_1/image4.png" class="common_img"/>
 
-- #### gazebo Tag
+* **gazebo Tag**
 
 This tag is used in conjunction with the Gazebo simulator. Within this tag, you can define simulation parameters and import Gazebo plugins, as well as specify Gazebo's physical properties, and more.
 
-<img src="../_static/media/chapter_11/section_1/image5.png"  />
+<img src="../_static/media/chapter_11/section_1/image5.png" class="common_img" />
 
-- #### Write Simple URDF Model
+* **Write Simple URDF Model**
 
 **(1) Name the model of the robot**
 
-To start writing the URDF model, we need to set the name of the robot following this format: "<robot name="robot model name">". Lastly, input "</robot>" at the end to represent that the model is written successfully.
+To start writing the URDF model, we need to set the name of the robot following this format: "<robot name='robot model name'>". Lastly, input "</robot>" at the end to represent that the model is written successfully.
 
-<img src="../_static/media/chapter_11/section_1/image7.png"  />
+<img src="../_static/media/chapter_11/section_1/image7.png" class="common_img" />
 
-<img src="../_static/media/chapter_11/section_1/image8.png"  />
+<img src="../_static/media/chapter_11/section_1/image8.png"  class="common_img"/>
 
 **(2) Set links**
 
-① To write the first link and use indentation to indicate that it is part of the currently set model. Set the name of the link using the following format: <link name="link name">. Finally, conclude with "</link>" to indicate the successful completion of the link definition.
+① To write the first link and use indentation to indicate that it is part of the currently set model. Set the name of the link using the following format: **<link name="link name">**. Finally, conclude with "**</link>**" to indicate the successful completion of the link definition.
 
-<img src="../_static/media/chapter_11/section_1/image9.png"  />
+<img src="../_static/media/chapter_11/section_1/image9.png"  class="common_img"/>
 
-<img src="../_static/media/chapter_11/section_1/image10.png"  />
+<img src="../_static/media/chapter_11/section_1/image10.png" class="common_img" />
 
-② Write the link description and use indentation to indicate that it is part of the currently set link, and conclude with "</visual>". 
+② Write the link description and use indentation to indicate that it is part of the currently set link, and conclude with "**</visual>**". 
 
-<img src="../_static/media/chapter_11/section_1/image11.png"  />
+<img src="../_static/media/chapter_11/section_1/image11.png" class="common_img" />
 
-<img src="../_static/media/chapter_11/section_1/image12.png"  />
+<img src="../_static/media/chapter_11/section_1/image12.png"  class="common_img"/>
 
-③ The "<geometry>" tag is employed to define the shape of a link. Once the description is complete, include "</geometry>". Within the "<geometry>" tag, indentation is used to specify the detailed description of the link's shape. The following example demonstrates a link with a cylindrical shape: "<cylinder length="0.01" radius="0.2"/>". In this instance, "length="0.01"" signifies a length of 0.01 meters for the link, while "radius="0.2"" denotes a radius of 0.2 meters, resulting in a cylindrical shape.
+③ The "**<geometry>**" tag is employed to define the shape of a link. Once the description is complete, include "**</geometry>**". Within the "**<geometry>**" tag, indentation is used to specify the detailed description of the link's shape. The following example demonstrates a link with a cylindrical shape: "**<cylinder length='0.01' radius='0.2'/>**". In this instance, "**length='0.01'**" signifies a length of 0.01 meters for the link, while "**radius='0.2'**" denotes a radius of 0.2 meters, resulting in a cylindrical shape.
 
-<img src="../_static/media/chapter_11/section_1/image13.png"  />
+<img src="../_static/media/chapter_11/section_1/image13.png" class="common_img" />
 
-④ The "<origin>" tag is utilized to specify the position of a link, with indentation used to indicate the detailed description of the link's position. The following example demonstrates the position of a link: "<origin rpy="0 0 0" xyz="0 0 0" />". In this example, "rpy" represents the roll, pitch, and yaw angles of the link, while "xyz" represents the coordinates of the link's position. This particular example indicates that the link is positioned at the origin of the coordinate system.
+④ The "**<origin>**" tag is utilized to specify the position of a link, with indentation used to indicate the detailed description of the link's position. The following example demonstrates the position of a link: "**<origin rpy='0 0 0' xyz='0 0 0' />**". In this example, "**rpy**" represents the roll, pitch, and yaw angles of the link, while "**xyz**" represents the coordinates of the link's position. This particular example indicates that the link is positioned at the origin of the coordinate system.
 
-<img src="../_static/media/chapter_11/section_1/image14.png"  />
+<img src="../_static/media/chapter_11/section_1/image14.png" class="common_img" />
 
-⑤ The "<material>" tag is used to define the visual appearance of a link, with indentation used to specify the detailed description of the link's color. To start describing the color, include "<material>", and end with "</material>" when the description is complete. The following example demonstrates setting a link color to yellow: "<color rgba="1 1 0 1" />". In this example, "rgba="1 1 0 1"" represents the color threshold for achieving a yellow color.
+⑤ The "**<material>**" tag is used to define the visual appearance of a link, with indentation used to specify the detailed description of the link's color. To start describing the color, include "**<material>**", and end with "**</material>**" when the description is complete. The following example demonstrates setting a link color to yellow: "**<color rgba='1 1 0 1' />**". In this example, "**rgba='1 1 0 1'**" represents the color threshold for achieving a yellow color.
 
-<img src="../_static/media/chapter_11/section_1/image15.png"  />
+<img src="../_static/media/chapter_11/section_1/image15.png" class="common_img" />
 
 **(3) Set joint**
 
-① To write the first joint, use indentation to indicate that the joint belongs to the current model being set. Then, specify the name and type of the joint as follows: "<joint name="joint name" type="joint type">". Finally, include "</joint>" to indicate the completion of the joint definition.
+① To write the first joint, use indentation to indicate that the joint belongs to the current model being set. Then, specify the name and type of the joint as follows: "**<joint name='joint name' type='joint type'>**". Finally, include "**</joint>**" to indicate the completion of the joint definition.
 
 :::{Note}
-to learn about the type of the joint, please refer to "[1.3 Basic Syntax of URDF Model->1.3.3 joint](#anchor_1_3_3)". 
+to learn about the type of the joint, please refer to "[**1.3 Basic Syntax of URDF Model->1.3.3 joint**](#anchor_1_3_3)". 
 :::
 
-<img src="../_static/media/chapter_11/section_1/image16.png"  />
+<img src="../_static/media/chapter_11/section_1/image16.png" class="common_img" />
 
-<img src="../_static/media/chapter_11/section_1/image17.png"  />
+<img src="../_static/media/chapter_11/section_1/image17.png" class="common_img" />
 
-② Write the description section for the connection between the link and the joint. Use indentation to indicate that it is part of the currently defined joint. The parent parameter and child parameter should be set using the following format: "<parent link="parent link"/>", and "<child link="child link" />". With the parent link serving as the pivot, the joint rotates the child link.
+② Write the description section for the connection between the link and the joint. Use indentation to indicate that it is part of the currently defined joint. The parent parameter and child parameter should be set using the following format: "**<parent link='parent link'/>**", and "**<child link='child link' />**". With the parent link serving as the pivot, the joint rotates the child link.
 
-<img src="../_static/media/chapter_11/section_1/image18.png"  />
+<img src="../_static/media/chapter_11/section_1/image18.png" class="common_img" />
 
-③ "<origin>" describes the position of the joint using indention. This example describes the position of the joint: "<origin xyz="0 0 0.1" />". xyz is the coordinate of the joint.
+③ "**<origin>**" describes the position of the joint using indention. This example describes the position of the joint: "**<origin xyz='0 0 0.1' />**". xyz is the coordinate of the joint.
 
-<img src="../_static/media/chapter_11/section_1/image19.png"  />
+<img src="../_static/media/chapter_11/section_1/image19.png" class="common_img" />
 
 ④ "<axis>" describes the position of the joint adopting indention. "<axis xyz="0 0 1" />" describes one posture of a joint. Xyz specifies the pose of the joint.
 
-<img src="../_static/media/chapter_11/section_1/image20.png"  />
+<img src="../_static/media/chapter_11/section_1/image20.png" class="common_img" />
 
-⑤ "<limit>" imposes restrictions on the joint using indention. The below picture The "<limit>" tag is used to restrict the motion of a joint, with indentation indicating the specific description of the joint angle limitations. The following example describes a joint with a maximum force limit of 300 Newtons, an upper limit of 3.14 radians, and a lower limit of -3.14 radians. The settings are defined as follows: "effort="joint force (N)", velocity="joint motion speed", lower="lower limit in radians", upper="upper limit in radians".
+⑤ "<limit>" imposes restrictions on the joint using indention. The below picture The "<limit>" tag is used to restrict the motion of a joint, with indentation indicating the specific description of the joint angle limitations. The following example describes a joint with a maximum force limit of 300 Newtons, an upper limit of 3.14 radians, and a lower limit of -3.14 radians. The settings are defined as follows: "**effort='joint force (N)', velocity='joint motion speed', lower='lower limit in radians', upper='upper limit in radians'**".
 
-<img src="../_static/media/chapter_11/section_1/image21.png"  />
+<img src="../_static/media/chapter_11/section_1/image21.png"  class="common_img"/>
 
-⑥ "<dynamics>" describes the dynamics of the joint using indention. "<dynamics damping="50" friction="1" />" describes dynamics parameters of a joint.
+⑥ "**<dynamics>**" describes the dynamics of the joint using indention. "**<dynamics damping='50' friction='1' />**" describes dynamics parameters of a joint.
 
-<img src="../_static/media/chapter_11/section_1/image22.png"  />
+<img src="../_static/media/chapter_11/section_1/image22.png" class="common_img" />
 
 The complete code is as below:
 
@@ -194,11 +194,11 @@ The complete code is as below:
 
 ### 6.2.1 Import Virtual Machine
 
-- #### Start and Import the Virtual Machine
+* **Start and Import the Virtual Machine**
 
 (1)  1)Extract the virtual machine files located in the same directory to any non-Chinese path.
 
-(2)  Extract and open the client from the "PuppyPi_VM.zip" file 
+(2)  Extract and open the client from the "**PuppyPi_VM.zip**" file 
 
 <img class="common_img" src="../_static/media/chapter_11/section_2/image1.png"  />
 
@@ -206,86 +206,88 @@ The complete code is as below:
 
 <img class="common_img" src="../_static/media/chapter_11/section_2/image2.png"  />
 
-(4) Navigate to the location where the virtual machine was extracted, select the "PuppyPi_VM.ovf" file, and click "Open."
+(4) Navigate to the location where the virtual machine was extracted, select the "**PuppyPi_VM.ovf**" file, and click "**Open**".
 
 <img src="../_static/media/chapter_11/section_2/image3.png"  />
 
-(5) Click "Browse" to set the virtual machine storage path. It is recommended to store it on a solid-state drive (SSD), as the read/write speed of the storage drive will affect the virtual machine's performance. Finally, click "Import".
+(5) Click "**Browse**" to set the virtual machine storage path. It is recommended to store it on a solid-state drive (SSD), as the read/write speed of the storage drive will affect the virtual machine's performance. Finally, click "**Import**".
 
 <img class="common_img" src="../_static/media/chapter_11/section_2/image4.png"  />
 
-(6) Click "Power on this Virtual Machine" to run it.
+(6) Click "**Power on this Virtual Machine**" to run it.
 
-<img src="../_static/media/chapter_11/section_2/image5.png"  />
+<img src="../_static/media/chapter_11/section_2/image5.png"  class="common_img"/>
 
 ### 6.2.2 Open Robot Dog URDF Model File
 
-(1) In the Ubuntu system of the VMware virtual machine, press "Ctrl+Alt+T" to open the terminal. Then, enter the following command to navigate to the folder where the URDF model is stored："**cd puppy_sim/src/puppy_description/urdf**".
+(1) In the Ubuntu system of the VMware virtual machine, press "**Ctrl+Alt+T**" to open the terminal. Then, enter the following command to navigate to the folder where the URDF model is stored："**cd puppy_sim/src/puppy_description/urdf**".
 
-<img src="../_static/media/chapter_11/section_2/image14.png"  />
+<img src="../_static/media/chapter_11/section_2/image14.png" class="common_img" />
 
 (2) For example, to open the robot dog's URDF model, enter the following command in this directory:
 
-```py
+```bash
 vim puppy.urdf.xacro
 ```
 
-<img src="../_static/media/chapter_11/section_2/image16.png"  />
+<img src="../_static/media/chapter_11/section_2/image16.png" class="common_img" />
 
 (3) If the screen appears as shown below, it confirms that the PuppyPi robot dog's URDF model file has been successfully opened.
 
-<img src="../_static/media/chapter_11/section_2/image18.png"  />
+<img src="../_static/media/chapter_11/section_2/image18.png" class="common_img" />
 
 ### 6.2.3 Analysis and Understanding of the URDF Model
 
-- #### Structure of the URDF Model
+* **Structure of the URDF Model**
 
 The URDF model of the PuppyPi robot consists of three files: **"puppy.urdf.xacro"**, **"puppy.gazebo.xacro"**, and **"puppy.transmission.xacro"**. Among these, puppy.urdf.xacro is the main URDF file for the entire robot. It includes the other two xacro files, puppy.gazebo.xacro and puppy.transmission.xacro, which together define the robot's complete mechanical structure, dynamics, and simulation information.
 The files are organized using include directives and macros, which allow for functional modularization. This makes the model easier to read, maintain, and update, ultimately forming a complete and organized URDF model.
 
-- #### Analysis of puppy.urdf.xacro 
+* **Analysis of puppy.urdf.xacro** 
 
 This file defines the basic structure of the robot, including the body, joints, and connections. It also includes some macro and property definitions, which can be reused multiple times in the code to simplify it and avoid redundancy. Since the code is relatively long, it will be divided into three parts for easier explanation, covering the following sections:
 
 **(1)  Model Declaration and Property Definitions**
 
-The <robot> tag defines the robot model's name as "puppy." The <property> tag defines various property values, such as maximum torque and maximum joint speed.
+The <robot> tag defines the robot model's name as "**puppy**". The <property> tag defines various property values, such as maximum torque and maximum joint speed.
 
 The <include> directive includes two files: puppy.transmission.xacro and puppy.gazebo.xacro. These files contain information about the robot's transmission system and its properties in the Gazebo simulation environment.
 
-<img src="../_static/media/chapter_11/section_2/image21.png"  />
+<img src="../_static/media/chapter_11/section_2/image21.png" class="common_img" />
 
 **(2) Link Definition**
 
 The <link> element represents a rigid body in the robot model and can contain information such as inertia, visualization, and collision data. Below is an example code for a <link> element that includes inertia, visualization, and collision information:
 
-<img src="../_static/media/chapter_11/section_2/image23.png"  />
+<img src="../_static/media/chapter_11/section_2/image23.png"  class="common_img"/>
 
 **(3) Joint Definition** 
 
-The <joint> element represents a joint in the robot model, connecting two links and defining their relative motion. Below is an example code for a <joint> element that includes joint type, connected links, joint axis direction, and joint limits:<img src="../_static/media/chapter_11/section_2/image25.png" style="width:5.14583in;height:1.15625in" />
+The <joint> element represents a joint in the robot model, connecting two links and defining their relative motion. Below is an example code for a <joint> element that includes joint type, connected links, joint axis direction, and joint limits:
 
-- #### Analysis of puppy.gazebo.xacro
+<img src="../_static/media/chapter_11/section_2/image25.png" class="common_img" />
+
+* **Analysis of puppy.gazebo.xacro**
 
 This section is primarily used to define the physical characteristics, joint controls, sensors, and other information of the robot's components for simulation, control, and testing in the Gazebo environment. Since the code is relatively long, it will be divided into three parts for easier explanation, covering the following sections:
 
 **(1) Gazebo Plugin Definition**
 
-This section defines a Gazebo plugin, "gazebo_ros_control", which is used for controlling the robot. The actual implementation of this plugin is provided by the library "libgazebo_ros_control.so". Additionally, it sets the Gazebo simulation type and defines the namespace for the robot model.
+This section defines a Gazebo plugin, "**gazebo_ros_control**", which is used for controlling the robot. The actual implementation of this plugin is provided by the library "**libgazebo_ros_control.so**". Additionally, it sets the Gazebo simulation type and defines the namespace for the robot model.
 
-<img src="../_static/media/chapter_11/section_2/image27.png" style="width:5.76736in;height:1.22222in" />
+<img src="../_static/media/chapter_11/section_2/image27.png" class="common_img" />
 
 **(2) Macro Definitions**
 
-This section defines several Xacro macros, which are used to easily set the color and physical properties of the robot's links. The "model_color" macro is used to set the color of a link, while the "link_setup_block" macro is used to define the physical properties of a link.<img src="../_static/media/chapter_11/section_2/image30.png" style="width:5.76597in;height:1.02292in" />
+This section defines several Xacro macros, which are used to easily set the color and physical properties of the robot's links. The "**model_color**" macro is used to set the color of a link, while the "**link_setup_block**" macro is used to define the physical properties of a link. <img src="../_static/media/chapter_11/section_2/image30.png" style="width:5.76597in;height:1.02292in" />
 
 **(3) Using Macro**
 
-Use the following macros to set the color and physical properties of each link in the robot model. The "model_color" macro simplifies the process of setting the link's color. This macro accepts a link_name parameter and assigns the specified link a black material while enabling gravity for that link.
+Use the following macros to set the color and physical properties of each link in the robot model. The "**model_color**" macro simplifies the process of setting the link's color. This macro accepts a link_name parameter and assigns the specified link a black material while enabling gravity for that link.
 
-<img src="../_static/media/chapter_11/section_2/image32.png" style="width:5.76736in;height:5.24931in" /> 
+<img src="../_static/media/chapter_11/section_2/image32.png" class="common_img" /> 
 
-- #### Analysis of puppy.transmissions.xacro
+* **Analysis of puppy.transmissions.xacro**
 
 The transmissions.xacro file defines the transmission system within the robot model, including the transmission methods between joints and motors. During runtime, ROS will convert the 'transmissions.xacro' file into the robot's transmission system. This file consists of the following two main parts:
 
@@ -293,13 +295,13 @@ The transmissions.xacro file defines the transmission system within the robot mo
 
 Xacro macros are used to define templates for the transmission system using the <xacro:macro> tag. The <transmission> tag specifies the type and name of the transmission system, the <joint> tag defines the joint actuator interface, and the <actuator> tag sets the mechanical reduction ratio and other related properties.
 
-<img src="../_static/media/chapter_11/section_2/image33.png" style="width:5.76597in;height:1.60278in" />
+<img src="../_static/media/chapter_11/section_2/image33.png" class="common_img" />
 
 **(2) Defining Different Transmission Types**
 
 The transmission block Xacro macro is invoked to define the corresponding transmission for each joint. This allows the robot's transmission system to be consistently defined through configuration files.
 
-<img src="../_static/media/chapter_11/section_2/image35.png" style="width:5.76389in;height:1.26597in" />
+<img src="../_static/media/chapter_11/section_2/image35.png" class="common_img" />
 
 ## 6.3 Gazebo Introduction
 
@@ -431,15 +433,15 @@ The number of joint coordinate systems is not fixed and is mainly related to the
 
 ### 6.4.1 Install Virtual Machine
 
-- #### Install Virtual Machine Software
+* Install Virtual Machine Software
 
 Virtual Machine PuppyPi_VM：[PuppyPi_VM](https://pan.baidu.com/share/init?surl=U1ybIJ--KNu5fvi1ayAtGw)
 
-- #### Open and Import the Virtual Machine
+* Open and Import the Virtual Machine
 
 (1) Extract the virtual machine files from the provided archive to any directory with a non-Chinese path.
 
-(2) Navigate to the directory "[Software Tools->PuppyPi_VM.zip]()". Then, open the virtual machine client. 
+(2) Navigate to the directory "[**Software Tools->PuppyPi_VM.zip**]()". Then, open the virtual machine client. 
 
 <img class="common_img" src="../_static/media/chapter_11/section_4/image1.png" style="width:0.88542in;height:0.94792in" />
 
@@ -461,11 +463,11 @@ Virtual Machine PuppyPi_VM：[PuppyPi_VM](https://pan.baidu.com/share/init?surl=
 
 <img class="common_img" src="../_static/media/chapter_11/section_4/image10.png" style="width:3.75in;height:2.38542in" />
 
-(2) After successfully connecting to the hotspot, open VMware and click "Edit > Virtual Network Editor" in the menu. 
+(2) After successfully connecting to the hotspot, open VMware and click "**Edit > Virtual Network Editor**" in the menu. 
 
-<img src="../_static/media/chapter_11/section_4/image12.png"  />
+<img src="../_static/media/chapter_11/section_4/image12.png" class="common_img" />
 
-(3) In the network card list under "Bridge Mode", select the wireless network adapter of your computer. The name of the wireless network adapter may vary by device but typically includes "802.11ac" in its name. Select the adapter with "802.11ac", and click "OK" to confirm.
+(3) In the network card list under "**Bridge Mode**", select the wireless network adapter of your computer. The name of the wireless network adapter may vary by device but typically includes "**802.11ac**" in its name. Select the adapter with "**802.11ac**", and click "**OK**" to confirm.
 
 <img class="common_img" src="../_static/media/chapter_11/section_4/image5.png"  />
 
@@ -477,7 +479,7 @@ Virtual Machine PuppyPi_VM：[PuppyPi_VM](https://pan.baidu.com/share/init?surl=
 
 (5) Once on the Ubuntu desktop, right-click anywhere, select **"Open in Terminal"** to launch the terminal. 
 
-<img src="../_static/media/chapter_11/section_4/image15.png"  />
+<img src="../_static/media/chapter_11/section_4/image15.png" class="common_img" />
 
 (6) Enter the following command and press Enter. The red box in the terminal output will display the IP address of the Ubuntu system.
 
@@ -485,7 +487,7 @@ Virtual Machine PuppyPi_VM：[PuppyPi_VM](https://pan.baidu.com/share/init?surl=
 ifconfig
 ```
 
-<img src="../_static/media/chapter_11/section_4/image17.png"  />
+<img src="../_static/media/chapter_11/section_4/image17.png" class="common_img" />
 
 :::{Note}
 If the IP address is not displayed after entering the ifconfig command, please check whether you are properly connected to the Puppy hotspot. If the connection is correct but the IP is still not found, you can manually obtain the IP address by entering the command sudo dhclient ens33. By default, ens33 is the name of the network interface.
@@ -495,7 +497,7 @@ If the IP address is not displayed after entering the ifconfig command, please c
 
 (1) Go to the Ubuntu desktop, right-click, and select **"Open in Terminal"** to open the command line.
 
-<img src="../_static/media/chapter_11/section_4/image15.png"  />
+<img src="../_static/media/chapter_11/section_4/image15.png" class="common_img" />
 
 (2) In the terminal, enter the following command to open the network configuration file:
 
@@ -505,9 +507,9 @@ sudo vim /etc/hosts
 
 (3) Replace the IP addresses on lines 2 and 3 (shown in the image) with the IP addresses of the virtual machine and Raspberry Pi.
 
-<img src="../_static/media/chapter_11/section_4/image20.png"  />
+<img src="../_static/media/chapter_11/section_4/image20.png" class="common_img" />
 
-<img src="../_static/media/chapter_11/section_4/image21.png"  />
+<img src="../_static/media/chapter_11/section_4/image21.png" class="common_img" />
 
 :::{Note}
 ① Ensure that the indentation of the new IP addresses matches that of the previous lines.
@@ -526,7 +528,7 @@ source ~/.bashrc
 rosparam set /puppy_control/joint_state_controller_pub_topic true
 ```
 
-<img src="../_static/media/chapter_11/section_4/image23.png"  />
+<img src="../_static/media/chapter_11/section_4/image23.png"  class="common_img"/>
 
 ### 6.4.4 Start Gazebo Simulation Tool
 
@@ -536,17 +538,17 @@ rosparam set /puppy_control/joint_state_controller_pub_topic true
 roslaunch puppy_description gazebo.launch
 ```
 
-<img src="../_static/media/chapter_11/section_4/image24.png"  />
+<img src="../_static/media/chapter_11/section_4/image24.png" class="common_img" style="width:830px;"/>
 
 (2) Click the Gazebo simulation software icon on the left taskbar of the Ubuntu system page to enter the simulation interface. Then, click the **"Start"** button at the bottom of the Gazebo simulation page to begin the simulation.
 
-<img src="../_static/media/chapter_11/section_4/image26.png"  />
+<img src="../_static/media/chapter_11/section_4/image26.png" class="common_img" style="width:830px;"/>
 
 ### 6.4.5 Gazebo GUI Introduction
 
 The simulation interface is as below:
 
-<img src="../_static/media/chapter_11/section_4/image27.png"  />
+<img src="../_static/media/chapter_11/section_4/image27.png" class="common_img" style="width:830px;"/>
 
 |    Name    |                           Function                           |
 | :--------: | :----------------------------------------------------------: |
@@ -566,7 +568,7 @@ We will use the Trot gait as an example.
 rosed puppy_control puppy_demo.py
 ```
 
-<img src="../_static/media/chapter_11/section_4/image29.png"  />
+<img src="../_static/media/chapter_11/section_4/image29.png" class="common_img" />
 
 (2) Next, enter the following command and press Enter to start the Trot gait:
 
@@ -578,13 +580,13 @@ rosrun puppy_control puppy_demo.py
 
 <img class="common_img" src="../_static/media/chapter_11/section_4/image31.png"  />
 
-(4) By default, the program is set to the Trot gait. If you want to switch to another gait, enter the command in VNC to locate the section in the code shown below. For example, to change to the Amble gait, replace `gait = 'Trot' with "gait = 'Amble'`.
+(4) By default, the program is set to the Trot gait. If you want to switch to another gait, enter the command in VNC to locate the section in the code shown below. For example, to change to the Amble gait, replace `gait = 'Trot' with "gait = 'Amble'"`.
 
 ```bash
 rosed puppy_control puppy_demo.py
 ```
 
-<img src="../_static/media/chapter_11/section_4/image29.png"  />
+<img src="../_static/media/chapter_11/section_4/image29.png" class="common_img" />
 
 (5) Press **"ESC"** to enter the command mode, then type **":wq"** to save the changes: 
 
