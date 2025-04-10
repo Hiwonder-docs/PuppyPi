@@ -6,7 +6,7 @@
 
 The so-called autonomous navigation refers to the ability of the robot to move from point A to point B on its own. To achieve this functionality, the robot requires fixed components: global map, self-localization, path planning, motion control, and environmental perception. It is through these components that the subsequent autonomous navigation functionality can be realized. You can refer to the following image for more details:
 
-<img src="../_static/media/chapter_21/section_1/image1.png"  alt="loading" />
+<img class="common_img" src="../_static/media/chapter_21/section_1/image1.png"  alt="loading" />
 
 ### 15.1.2 Autonomous Navigation Principle
 
@@ -39,9 +39,9 @@ AMCL Package Link：https://github.com/ros-planning/navigation/tree/melodic-deve
 
 Monte Carlo Localization (MCL) involves a particle update process for a one-dimensional robot. Initially, a group of particles is randomly generated, each representing possible states of the robot, including position, direction, or other estimated state variables. Each particle has a weight, indicating its similarity to the actual system state. Next, the state of each particle for the next time step is predicted based on the expected behavior of the real system. Subsequently, the weights of particles are updated based on measurements, with particles that match the measurement being assigned higher weights. Afterward, resampling is performed, discarding highly unlikely particles and replacing them with more probable ones. Finally, the weighted mean and covariance of the particle set are calculated to obtain the estimated state.
 
-<img src="../_static/media/chapter_21/section_2/image2.png"  />
+<img class="common_img" src="../_static/media/chapter_21/section_2/image2.png"  />
 
-<img src="../_static/media/chapter_21/section_2/image3.png"  />
+<img class="common_img" src="../_static/media/chapter_21/section_2/image3.png"  />
 
 Monte Carlo methods vary, but tend to follow a specific pattern:
 
@@ -65,7 +65,7 @@ The Monte Carlo particle filtering algorithm has wide-ranging applications in va
 
 AMCL can be regarded as an improved version of the Monte Carlo localization algorithm. It reduces execution time and enhances real-time performance by employing a small number of samples in the Monte Carlo localization algorithm. It implements an adaptive or KLD-sampling Monte Carlo localization method, which utilizes particle filtering to track a robot's pose with respect to a known map.
 The Adaptive Monte Carlo Localization (AMCL) node primarily utilizes laser scans and laser map data to propagate messages and compute pose estimates. In the implementation process, it first initializes the particle filter of the Adaptive Monte Carlo Localization algorithm based on various initialization parameters provided by the ROS system. If the initial pose is not specified, the AMCL algorithm assumes that the robot starts running from the origin of the coordinate system, which can lead to relatively complex calculations.
-Therefore, it is recommended to set the initial pose using the "2D Pose Estimate" button in rviz. For more information about Adaptive Monte Carlo Localization, you can also refer to the wiki page at the following link: https://github.com/ros-planning/navigation
+Therefore, it is recommended to set the initial pose using the "**2D Pose Estimate**" button in rviz. For more information about Adaptive Monte Carlo Localization, you can also refer to the wiki page at the following link: https://github.com/ros-planning/navigation
 
 ### 15.2.4 Costmap
 
@@ -81,12 +81,12 @@ Algorithm Core Idea: Assume: k = dy/dx. Because the starting point of the line i
 <img class="common_img" src="../_static/media/chapter_21/section_2/image5.png"  />
 
 The Costmap2D class maintains the cost values for each grid. The Layer class is a virtual base class that provides a unified interface for various plugin costmap layers. The most important interface functions include:
-The "initialize" function, which calls the "onInitialize" function, initializes each costmap layer separately.
-The "matchSize" function, used in both the StaticLayer and ObstacleLayer classes, calls the "matchSize" function of the CostmapLayer class. This function initializes the size, resolution, origin, and default cost of each costmap layer, ensuring consistency with the layered_costmap. For the InflationLayer class, it calculates a cost table that varies with distance based on the inflation radius. This allows for querying the cost values of inflated grid cells based on distance. Additionally, the "seen_" array is defined to mark whether a grid cell has been traversed. For the VoxelLayer class, it initializes the size of voxel grids.
+The "**initialize**" function, which calls the "**onInitialize**" function, initializes each costmap layer separately.
+The "**matchSize**" function, used in both the StaticLayer and ObstacleLayer classes, calls the "**matchSize**" function of the CostmapLayer class. This function initializes the size, resolution, origin, and default cost of each costmap layer, ensuring consistency with the layered_costmap. For the InflationLayer class, it calculates a cost table that varies with distance based on the inflation radius. This allows for querying the cost values of inflated grid cells based on distance. Additionally, the "**seen_**" array is defined to mark whether a grid cell has been traversed. For the VoxelLayer class, it initializes the size of voxel grids.
 
-The "updateBounds" function adjusts the size range that the current costmap layer needs to update. For the StaticLayer class, it sets the update range of the costmap to the size of the static map (note: the static layer is generally used only in the global costmap). For the ObstacleLayer class, it traverses the sensor data in "clearing_observations" to determine the boundaries of the obstacles.
+The "**updateBounds**" function adjusts the size range that the current costmap layer needs to update. For the StaticLayer class, it sets the update range of the costmap to the size of the static map (note: the static layer is generally used only in the global costmap). For the ObstacleLayer class, it traverses the sensor data in "**clearing_observations**" to determine the boundaries of the obstacles.
 
-The "initialize" and "matchSize" functions are executed only once. The "updateBounds" and "updateCosts" functions are executed periodically, with their execution frequency determined by `map_update_frequency`.
+The "**initialize**" and "**matchSize**" functions are executed only once. The "**updateBounds**" and "**updateCosts**" functions are executed periodically, with their execution frequency determined by `map_update_frequency`.
 
 The CostmapLayer class inherits from both the Layer class and the Costmap2D class and provides several methods for updating cost values. The StaticLayer and ObstacleLayer classes need to store the cost values of the instantiated costmap layer, so they both inherit from the CostmapLayer class. The StaticLayer class updates its costmap using static grid map data, while the ObstacleLayer class updates its costmap using sensor data. The VoxelLayer class, compared to the ObstacleLayer class, additionally considers data along the z-axis. The main difference in their effects is reflected in the clearing of obstacles: one performs clearing in a two-dimensional plane, while the other handles it in three dimensions.
 
@@ -118,21 +118,21 @@ Robot navigation utilizes path planning to enable it to reach its destination. T
 **(3) Behavior Execution Layer:** Combining the commands sent from the upper layers and the path planning results, it determines the current behavior of the mobile robot.
 As a key focus area in mobile robot research, the quality of path planning algorithms largely determines the efficiency of the robot's operations.
 
-- #### Dijkstra algorithm
+* **Dijkstra algorithm**
 
 The Dijkstra algorithm is a typical shortest path algorithm. It is a single-source shortest path algorithm characterized by expanding outward from the starting point in a breadth-first search manner until reaching the destination. It is a breadth-first algorithm that considers edge weights and is one of the most commonly used algorithms in global path planning problems.
 
 Below is an illustration of the Dijkstra algorithm.
 
-(1)  At the beginning, we initialize dis[start] to 0, and the rest of the points are initialized to inf.
+(1)  At the beginning, we initialize dis\[start\] to 0, and the rest of the points are initialized to inf.
 
 <img class="common_img" src="../_static/media/chapter_21/section_2/image9.png" style="width:50%"  />
 
-(2)  In the first loop, we find the point 1 with the minimum dis value. We then mark 1 as visited and update the dis values of all adjacent blue points. Specifically, we set dis[2] = 2, dis[3] = 4, and dis[4] = 7.
+(2)  In the first loop, we find the point 1 with the minimum dis value. We then mark 1 as visited and update the dis values of all adjacent blue points. Specifically, we set dis[2] = 2, dis\[3\] = 4, and dis\[4\] = 7.
 
 <img class="common_img" src="../_static/media/chapter_21/section_2/image10.png" style="width:50%" />
 
-(3)  In the second loop, we find the point 2 with the minimum dis value. We then mark 2 as visited and update the dis values of all adjacent blue points. Specifically, we set dis[3] = 3 and dis[5] = 4.
+(3)  In the second loop, we find the point 2 with the minimum dis value. We then mark 2 as visited and update the dis values of all adjacent blue points. Specifically, we set dis[3] = 3 and dis\[5\] = 4.
 
 <img class="common_img" src="../_static/media/chapter_21/section_2/image11.png" style="width:50%" />
 
@@ -144,7 +144,7 @@ Below is an illustration of the Dijkstra algorithm.
 
 For information and usage instructions on the Dijkstra algorithm, you can visit the following link:  http://wiki.ros.org/navfn
 
-- #### A* algorithm
+*  **A\* algorithm**
 
 A* algorithm is a modification of the Dijkstra algorithm, optimized for a single destination. While Dijkstra's algorithm can find paths to all locations, A* searches for the closest path to one or several locations. It prioritizes paths that appear to be closer to the goal.
 
@@ -170,25 +170,25 @@ https://www.redblobgames.com/pathfinding/a-star/introduction.html#graphs
 
 Due to the limited computing power of Raspberry Pi, virtual machine will take over part of mapping work. Mapping and navigation both require communication between the virtual machine and PuppyPi. We need to modify the configurations of both to enable this communication
 
-- #### Install Virtual Machine
+* **nstall Virtual Machine**
 
-You can refer to the document "[Virtual Machine Installation.docx](https://store.hiwonder.com.cn/docs/common/Mirror_burning_tool/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E5%AF%BC%E5%85%A5.docx)" in the same directory for instructions on installing the virtual machine.
+You can refer to the document "[**Virtual Machine Installation.docx**](https://store.hiwonder.com.cn/docs/common/Mirror_burning_tool/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E5%AF%BC%E5%85%A5.docx)" in the same directory for instructions on installing the virtual machine.
 
-- #### Open and Import Virtual Machine
+* **Open and Import Virtual Machine**
 
 (1) Unzip the virtual machine files in any non-Chinese directory within the same directory.
 
-<img src="../_static/media/chapter_21/section_3/image2.png"  />
+<img class="common_img" src="../_static/media/chapter_21/section_3/image2.png"  />
 
 (2) Open a virtual machine.
 
-<img src="../_static/media/chapter_21/section_3/image3.png"  />
+<img class="common_img" src="../_static/media/chapter_21/section_3/image3.png"  />
 
 (3) Select the folder where virtual machine file is extracted, then open it.
 
-<img src="../_static/media/chapter_21/section_3/image4.png"  />
+<img class="common_img" src="../_static/media/chapter_21/section_3/image4.png"  />
 
-(4) Enter the name and set the storage path for virtual machine. Then click "Import".
+(4) Enter the name and set the storage path for virtual machine. Then click "**Import**".
 
 <img class="common_img" src="../_static/media/chapter_21/section_3/image5.png"  />
 
@@ -196,7 +196,7 @@ You can refer to the document "[Virtual Machine Installation.docx](https://store
 after the first importing, you can directly select the storage path for the previous virtual machine, and open it without importing it again.
 :::
 
-- #### Network Configuration of Virtual Machine
+* **Network Configuration of Virtual Machine**
 
 :::{Note}
 if you are using desktop computer, please prepare a wireless LAN adapter or USB wireless adapter.
@@ -208,7 +208,7 @@ if you are using desktop computer, please prepare a wireless LAN adapter or USB 
 
 (2) Return to the virtual machine interface, and click **"edit->virtual machine editor"**.
 
-<img src="../_static/media/chapter_21/section_3/image7.png"  />
+<img class="common_img" src="../_static/media/chapter_21/section_3/image7.png"  />
 
 (3) Select the wireless network card to be bridged. Then click OK.
 
@@ -218,14 +218,14 @@ if you are using desktop computer, please prepare a wireless LAN adapter or USB 
 
 (4) Open virtual machine, and power on virtual machine.
 
-<img src="../_static/media/chapter_21/section_3/image10.png"  />
+<img class="common_img" src="../_static/media/chapter_21/section_3/image10.png"  />
 
 (5) When entering the system desktop, right click the desktop and select **"open in terminal"**.
 
-<img src="../_static/media/chapter_21/section_3/image11.png"  />
+<img class="common_img" src="../_static/media/chapter_21/section_3/image11.png"  />
 
 :::{Note}
-The input command should be case sensitive and the keywords can be complemented by "Tab" key.
+The input command should be case sensitive and the keywords can be complemented by "**Tab**" key.
 :::
 
 (6) Input command **"ifconfig"** and press Enter to check the IP of virtual machine. And the IP is as the red frame shown.
@@ -234,7 +234,7 @@ The input command should be case sensitive and the keywords can be complemented 
 ifconfig
 ```
 
-<img src="../_static/media/chapter_21/section_3/image13.png"  />
+<img class="common_img" src="../_static/media/chapter_21/section_3/image13.png"  />
 
 (7)  Right click the system desktop, and open a new command line terminal. Then input command **"sudo nano /etc/hosts"** and press Enter to configure the network.
 
@@ -244,7 +244,7 @@ sudo nano /etc/hosts
 
 (8) Modify the IP in the second and the third lines as the IP of virtual machine and Raspberry Pi you got in the previous step. And the fixed IP of Raspberry Pi under direct connection mode is "192.168.149.1".
 
-<img src="../_static/media/chapter_21/section_3/image15.png"  />
+<img class="common_img" src="../_static/media/chapter_21/section_3/image15.png"  />
 
 :::{Note}
 When modifying the IP, please ensure the indent is consistent.
@@ -252,15 +252,15 @@ When modifying the IP, please ensure the indent is consistent.
 
 (9) After modification, press Ctrl+x, and Y key to save modified buffer, then press Enter.
 
-<img src="../_static/media/chapter_21/section_3/image16.png"  />
+<img class="common_img" src="../_static/media/chapter_21/section_3/image16.png"  />
 
-- #### PuppyPi Network Configuration
+* **PuppyPi Network Configuration**
 
 (1) Get access to Raspberry Pi desktop via VNC.
 
-(2)  Click<img src="../_static/media/chapter_21/section_3/image17.png" style="width:0.31458in;height:0.27361in" /> or use shortcut **"Ctrl+Alt+T"** to open terminal
+(2)  Click <img src="../_static/media/chapter_21/section_3/image17.png" style="width:0.31458in;height:0.27361in" /> or use shortcut **"Ctrl+Alt+T"** to open terminal
 
-(3) Enter command "sudo vim /etc/hosts" and press Enter to change network configuration.
+(3) Enter command and press Enter to change network configuration.
 
 ```bash
 sudo vim /etc/hosts
@@ -272,7 +272,7 @@ sudo vim /etc/hosts
 :wq
 ```
 
-<img src="../_static/media/chapter_21/section_3/image19.png"  />
+<img class="common_img" src="../_static/media/chapter_21/section_3/image19.png"  />
 
 (5) Run the command **"source .bashrc"** to update the configuration.
 
@@ -282,9 +282,9 @@ source .bashrc
 
 ### 15.3.2 Configure Navigation
 
-(1)  Connect to PuppyPi system. Then open the terminal<img src="../_static/media/chapter_21/section_3/image21.png" style="width:0.32292in;height:0.30208in" />.
+(1)  Connect to PuppyPi system. Then open the terminal <img src="../_static/media/chapter_21/section_3/image21.png" style="width:0.32292in;height:0.30208in" />.
 
-(2) Input command "roslaunch puppy_navigation navigation.launch" and press Enter to open navigation service.
+(2) Input command and press Enter to open navigation service.
 
 ```bash
 roslaunch puppy_navigation navigation.launch
@@ -296,31 +296,31 @@ By default, the map selected here is map1.
 
 When you receive the following messages, PuppyPi navigation service is enabled successfully.
 
-<img src="../_static/media/chapter_21/section_3/image24.png"  />
+<img class="common_img" src="../_static/media/chapter_21/section_3/image24.png"  />
 
-(3) Open virtual machine, then input command **"rosparam set /puppy_control/joint_state_pub_topic true"** and press Enter to open the model to check node.
+(3) Open virtual machine, then input command and press Enter to open the model to check node.
 
 ```bash
 rosparam set /puppy_control/joint_state_pub_topic true
 ```
 
-(4) Open a new command line terminal, then input command **"roslaunch puppy_description rviz_with_urdf.launch"** and press Enter to open model viewing software.
+(4) Open a new command line terminal, then input command and press Enter to open model viewing software.
 
 ```bash
 roslaunch puppy_description rviz_with_urdf.launch
 ```
 
-<img src="../_static/media/chapter_21/section_3/image29.png"  />
+<img class="common_img" src="../_static/media/chapter_21/section_3/image29.png"  />
 
 (5)  Click **"File->Open Config"**.
 
-<img src="../_static/media/chapter_21/section_3/image30.png"  />
+<img class="common_img" src="../_static/media/chapter_21/section_3/image30.png"  />
 
 As shown in the image below, navigate to the corresponding path, select **"navigation.rviz",** and then click **"Open"**.
 
-<img src="../_static/media/chapter_21/section_3/image31.png"  />
+<img class="common_img" src="../_static/media/chapter_21/section_3/image31.png"  />
 
-<img src="../_static/media/chapter_21/section_3/image32.png"  />
+<img class="common_img" src="../_static/media/chapter_21/section_3/image32.png"  />
 
 ### 15.3.3 Start Navigation
 
@@ -334,19 +334,19 @@ If you need to interrupt the navigation, simply use the second tool to set a tar
 
 (1) In the software menu bar, **"2D Pose Estimate"** is used to set the initial position of the PuppyPi robot dog.
 
-<img src="../_static/media/chapter_21/section_3/image34.png"  />
+<img class="common_img" src="../_static/media/chapter_21/section_3/image34.png"  />
 
-<img src="../_static/media/chapter_21/section_3/image35.png"  />
+<img class="common_img" src="../_static/media/chapter_21/section_3/image35.png"  />
 
 (2)  **"2D Nav Goal"** is used to set a single target point for the robot. Click the icon and select a location on the map as the target point. Press the left mouse button at that point, then drag the mouse to select both the destination and orientation for the robot. After selection, the robot will automatically generate a route and move to the target point.
 
-<img src="../_static/media/chapter_21/section_3/image37.png"  />
+<img class="common_img" src="../_static/media/chapter_21/section_3/image37.png"  />
 
-<img src="../_static/media/chapter_21/section_3/image38.png"  />
+<img class="common_img" src="../_static/media/chapter_21/section_3/image38.png"  />
 
 Once the target point is set, two lines will be generated: a red line and a green line. The red line represents the straight-line distance from the robot dog to the target, while the green line represents the route planned by the robot dog itself.
 
-<img src="../_static/media/chapter_21/section_3/image39.png"  />
+<img class="common_img" src="../_static/media/chapter_21/section_3/image39.png"  />
 
 ## 15.4 App Navigation
 
@@ -360,19 +360,19 @@ Via the app, you can control PuppyPi's movement, view its mapping process and se
 
 ### 15.4.2 Navigation
 
-- #### Enable App Navigation Service
+* **Enable App Navigation Service**
 
 (1) Start PuppyPi, then access Raspberry Pi desktop via VNC.
 
-(2)  Click-on <img src="../_static/media/chapter_21/section_4/image2.png" style="width:0.32292in;height:0.30208in" />at upper left corner to open the Terminator terminal.
+(2)  Click-on <img src="../_static/media/chapter_21/section_4/image2.png" style="width:0.32292in;height:0.30208in" /> at upper left corner to open the Terminator terminal.
 
-(3) Run the command **"/home/ubuntu/puppy_pi/src/puppy_navigation/scripts/navigation_app.sh"** and press Enter to enable app navigation service.
+(3) Run the command and press Enter to enable app navigation service.
 
 ```bash
 . /home/ubuntu/puppypi/src/puppy_navigation/scripts/navigation_app.sh
 ```
 
-- #### App Navigation
+* **App Navigation**
 
 (1) Turn on PuppyPi, then connect it to the remote control software VNC.
 
@@ -387,7 +387,7 @@ Via the app, you can control PuppyPi's movement, view its mapping process and se
 <img class="common_img" src="../_static/media/chapter_21/section_4/image7.png" style="width:50%" />
 
 :::{Note}
-The "CHOOSE A MAP" has no practical function. The map will be updated automatically.
+The "**CHOOSE A MAP**" has no practical function. The map will be updated automatically.
 :::
 
 The app interface is divided into 3 parts:
@@ -398,7 +398,7 @@ The app interface is divided into 3 parts:
 
 **③ Blue frame:** the options **"Set Pose"** and **"Set Goal"** are used in conjunction with the green square. Set the initial position and the target position
 
-<img src="../_static/media/chapter_21/section_4/image22.png"  />
+<img class="common_img" src="../_static/media/chapter_21/section_4/image22.png"  />
 
 (5) Select **"Set Pose"**. Then press one point on the map to set it as the initial position for the robot.
 
