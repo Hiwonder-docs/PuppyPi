@@ -4,7 +4,7 @@
 
 ## 3.1. VNC Installation and Connection
 
-**3.1.1 Preparation**
+### 3.1.1 Preparation
 
 * **Hardware**
 
@@ -40,7 +40,7 @@ VNC is a graphical remote desktop control software. Through connecting your comp
 
 Start Robot When LED1 on expansion board starts flickering and buzzer emits one beep, robot boots up successfully.
 
-**3.1.2 Connect to Robot**
+### 3.1.2 Connect to Robot
 
 (1) After turning Robot on successfully, the default mode is AP direct connection mode. Robot generates a WiFi starting with HW. Connect your computer to this WiFi.
 
@@ -64,7 +64,7 @@ Start Robot When LED1 on expansion board starts flickering and buzzer emits one 
 
 <img class="common_img" src="../_static/media/chapter_8/section_1/image12.png"  />
 
-**3.1.3 Introduction to Desktop**
+### 3.1.3 Introduction to Desktop
 
 The desktop is as pictured after connecting Robot through VNC successfully.
 

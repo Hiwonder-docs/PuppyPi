@@ -122,7 +122,7 @@ This tag is used in conjunction with the Gazebo simulator. Within this tag, you 
 
 **(1) Name the model of the robot**
 
-To start writing the URDF model, we need to set the name of the robot following this format: "<robot name='robot model name'>". Lastly, input "</robot>" at the end to represent that the model is written successfully.
+To start writing the URDF model, we need to set the name of the robot following this format: "\<robot name='robot model name'\>". Lastly, input "\</robot\>" at the end to represent that the model is written successfully.
 
 <img src="../_static/media/chapter_11/section_1/image7.png" class="common_img" />
 
@@ -130,27 +130,27 @@ To start writing the URDF model, we need to set the name of the robot following 
 
 **(2) Set links**
 
-① To write the first link and use indentation to indicate that it is part of the currently set model. Set the name of the link using the following format: **<link name="link name">**. Finally, conclude with "**</link>**" to indicate the successful completion of the link definition.
+① To write the first link and use indentation to indicate that it is part of the currently set model. Set the name of the link using the following format: **\<link name="link name"\>**. Finally, conclude with "**\</link\>**" to indicate the successful completion of the link definition.
 
 <img src="../_static/media/chapter_11/section_1/image9.png"  class="common_img"/>
 
 <img src="../_static/media/chapter_11/section_1/image10.png" class="common_img" />
 
-② Write the link description and use indentation to indicate that it is part of the currently set link, and conclude with "**</visual>**". 
+② Write the link description and use indentation to indicate that it is part of the currently set link, and conclude with "**\</visual\>**". 
 
 <img src="../_static/media/chapter_11/section_1/image11.png" class="common_img" />
 
 <img src="../_static/media/chapter_11/section_1/image12.png"  class="common_img"/>
 
-③ The "**<geometry>**" tag is employed to define the shape of a link. Once the description is complete, include "**</geometry>**". Within the "**<geometry>**" tag, indentation is used to specify the detailed description of the link's shape. The following example demonstrates a link with a cylindrical shape: "**<cylinder length='0.01' radius='0.2'/>**". In this instance, "**length='0.01'**" signifies a length of 0.01 meters for the link, while "**radius='0.2'**" denotes a radius of 0.2 meters, resulting in a cylindrical shape.
+③ The "**\<geometry\>**" tag is employed to define the shape of a link. Once the description is complete, include "**\</geometry\>**". Within the "**\<geometry\>**" tag, indentation is used to specify the detailed description of the link's shape. The following example demonstrates a link with a cylindrical shape: "**\<cylinder length='0.01' radius='0.2'/\>**". In this instance, "**length='0.01'**" signifies a length of 0.01 meters for the link, while "**radius='0.2'**" denotes a radius of 0.2 meters, resulting in a cylindrical shape.
 
 <img src="../_static/media/chapter_11/section_1/image13.png" class="common_img" />
 
-④ The "**<origin>**" tag is utilized to specify the position of a link, with indentation used to indicate the detailed description of the link's position. The following example demonstrates the position of a link: "**<origin rpy='0 0 0' xyz='0 0 0' />**". In this example, "**rpy**" represents the roll, pitch, and yaw angles of the link, while "**xyz**" represents the coordinates of the link's position. This particular example indicates that the link is positioned at the origin of the coordinate system.
+④ The "**\<origin\>**" tag is utilized to specify the position of a link, with indentation used to indicate the detailed description of the link's position. The following example demonstrates the position of a link: "**\<origin rpy='0 0 0' xyz='0 0 0' /\>**". In this example, "**rpy**" represents the roll, pitch, and yaw angles of the link, while "**xyz**" represents the coordinates of the link's position. This particular example indicates that the link is positioned at the origin of the coordinate system.
 
 <img src="../_static/media/chapter_11/section_1/image14.png" class="common_img" />
 
-⑤ The "**<material>**" tag is used to define the visual appearance of a link, with indentation used to specify the detailed description of the link's color. To start describing the color, include "**<material>**", and end with "**</material>**" when the description is complete. The following example demonstrates setting a link color to yellow: "**<color rgba='1 1 0 1' />**". In this example, "**rgba='1 1 0 1'**" represents the color threshold for achieving a yellow color.
+⑤ The "**\<material\>**" tag is used to define the visual appearance of a link, with indentation used to specify the detailed description of the link's color. To start describing the color, include "**\<material\>**", and end with "**\</material\>**" when the description is complete. The following example demonstrates setting a link color to yellow: "**<color rgba='1 1 0 1' />**". In this example, "**rgba='1 1 0 1'**" represents the color threshold for achieving a yellow color.
 
 <img src="../_static/media/chapter_11/section_1/image15.png" class="common_img" />
 
