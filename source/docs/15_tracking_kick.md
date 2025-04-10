@@ -18,7 +18,7 @@ The input command should be case and space sensitive.
 
 (1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-(2) Click<img src="../_static/media/chapter_15/section_1/image4.png" style="width:0.32292in;height:0.30208in" /> to open LX terminal
+(2) Click <img src="../_static/media/chapter_15/section_1/image4.png" style="width:0.32292in;height:0.30208in" /> to open LX terminal
 
 (3) Input the command and press Enter to start the game.
 
@@ -26,7 +26,7 @@ The input command should be case and space sensitive.
 rosrun puppy_advanced_functions kick_ball_demo.py
 ```
 
-(4) If want to close this game, we can press "Ctrl+C". If it fails to close the game, please try again.
+(4) If want to close this game, we can press "**Ctrl+C**". If it fails to close the game, please try again.
 
 ### 9.1.3 Program Outcome
 
@@ -42,9 +42,9 @@ When a red ball is recognized, a rectangle will be used to highlight the ball ib
 
 The source code is located in 
 
-[/home/ubuntu/puppy_pi/src/puppy_advanced_functions/scripts/kick_ball_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/15/kick_ball_demo.py)
+[/home/ubuntu/puppy_pi/src/puppy_advanced_functions/scripts/kick_ball_demo.py](../_static/source_code/kick_ball_demo.zip)
 
-- #### Import Function Package
+* **Import Function Package**
 
 ```PY
 import sys
@@ -68,9 +68,9 @@ from puppy_control.srv import SetRunActionName
 
 Import the required module through import statements: math provides a range of mathematical functions and constants for related calculations; rospy is used for ROS communication; from sensor_msgs.msg import Image: import target tracking related service. from puppy_control.msg import Velocity, Pose, Gait: import services for controlling and transmitting the velocity, pose, and gait of the robot.
 
-- #### Image Processing
+* **Image Processing**
 
-**(1) Gaussian Filtering**
+(1) Gaussian Filtering
 
 Before converting the image from RGB into Lab space, denoise the image and use GaussianBlur() function in cv2 library for Gaussian filtering.
 
@@ -86,7 +86,7 @@ The second parameter `(3, 3)` is the size of Gaussian kernel
 
 The third parameter `3` is the allowable range of variation around the average in Gaussian filtering. The larger the value, the larger the allowable range of variation.
 
-**(2) Binaryzation Processing**
+(2) Binaryzation Processing
 
 Adopt `inRange()` function in cv2 library to perform binaryzation on the image.
 
@@ -104,7 +104,7 @@ The first parameter in the bracket is the input image.
 
 The second and the third parameters respectively are the lower limit and upper limit of the threshold. When the RGB value of the pixel is between the upper limit and lower limit, the pixel is assigned 1, otherwise, 0.
 
-**(3) Erode and Dilate**
+(3) Erode and Dilate
 
 :::{Note} 
 To reduce interference and make the image smoother, it is necessary to process the image.
@@ -177,7 +177,7 @@ for i in range(4):
 cv2.drawContours(img, [box], -1, (0,0,255,255), 2)#画出四个点组成的矩形(draw a rectangle formed by connecting the four points)
 ```
 
-- #### Display Coordinate
+* **Display Coordinate**
 
 Lastly, the x-axis coordinate of the red ball will be displayed on the terminal.
 
@@ -189,7 +189,7 @@ print('expect_center[X] , target_info[centerX]',expect_center['X'] , target_info
 ## 9.2 Auto Tracking and Shooting
 
 :::{Note}
-if the demonstration effect is not satisfactory, you can debug the device according to "[4.1 Close Debugging Interface](#anchor_2_4_1)".
+if the demonstration effect is not satisfactory, you can debug the device according to "[**9.2.5 Close Debugging Interface**](#anchor_9_2_5)".
 :::
 
 ### 9.2.1 Program Logic
@@ -206,15 +206,15 @@ The input command should be case and space sensitive.
 
 (1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-(2) Click<img src="../_static/media/chapter_15/section_2/image3.png" style="width:0.32292in;height:0.30208in" />to open LX terminal
+(2) Click <img src="../_static/media/chapter_15/section_2/image3.png" style="width:0.32292in;height:0.30208in" /> to open LX terminal
 
-(3) Input command **"rosrun puppy_advanced_functions kick_ball_demo.py"** and press Enter to start the game.
+(3) Input command and press Enter to start the game.
 
 ```bash
 rosrun puppy_advanced_functions kick_ball_demo.py
 ```
 
-(4) If want to close this game, we can press "Ctrl+C". If it fails to close the game, please try again.
+(4) If want to close this game, we can press "**Ctrl+C**". If it fails to close the game, please try again.
 
 ### 9.2.3 Program Outcome
 
@@ -224,13 +224,11 @@ The program is default to recognize red, green and blue.
 
 When recognizing red ball, PuppyPi will approach the ball autonomously according to the location of PuppyPi, and then shoot the ball. Besides, the red ball will be marked with red circle and its color will be printed on the camera returned image.
 
-
-
 ### 9.2.4 Program Analysis
 
-The source code of this program is stored in [/home/ubuntu/puppy_pi/src/puppy_advanced_functions/scripts/kick_ball_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/15/kick_ball_demo.py)
+The source code of this program is stored in [/home/ubuntu/puppy_pi/src/puppy_advanced_functions/scripts/kick_ball_demo.py](../_static/source_code/kick_ball_demo.zip)
 
-**(1) Direction Judging**
+(1) Direction Judging
 
 After locating the ball, judge whether the ball is at left or right according to the coordinate of the ball.
 
@@ -241,7 +239,7 @@ else:
     which_foot_kick_ball = 'right'
 ```
 
-**(2) Approach the Red Ball**
+(2) Approach the Red Ball
 
 According to the coordinate of the ball, control PuppyPi to approach the red ball.
 
@@ -279,7 +277,7 @@ The second parameter `y` is the speed in cm/s of moving sideways. Left is taken 
 
 The third parameter `yaw_rate` is the speed in rad/s of turning. Counterclockwise is taken as positive direction.
 
-**(3) Shoot the Ball**
+(3) Shoot the Ball
 
 After PuppyPi approaches the red ball, call the action group to make PuppyPi shoot the ball according to the direction of the ball.
 
@@ -295,14 +293,11 @@ with lock:
       haved_detect = False
 ```
 
-
-
+<p id="anchor_9_2_5"></p>
 
 ### 9.2.5 Function Extension
 
-<span id="anchor_2_4_1" class="anchor"></span>
-
-- #### Close Debugging Interface
+* **Close Debugging Interface**
 
 As the continuous refresh of debugging interface will occupy CPU of Raspberry Pi, we can close debugging interface to tackle choppy running.
 
@@ -314,7 +309,7 @@ rosed puppy_advanced_functions kick_ball_demo.py
 
 (2) Next, jump to this line of code.
 
-<img src="../_static/media/chapter_15/section_2/image7.png"  />
+<img src="../_static/media/chapter_15/section_2/image7.png" class="common_img" />
 
 :::{Note}
 we can input the line code and press **"Shift+G"** to jump to the corresponding line.
@@ -322,7 +317,7 @@ we can input the line code and press **"Shift+G"** to jump to the corresponding 
 
 (3) Press **"i"** key to enter editing mode. Then add **"#"** in front of the codes in the red frame to comment.
 
-<img src="../_static/media/chapter_15/section_2/image8.png"  />
+<img src="../_static/media/chapter_15/section_2/image8.png" class="common_img" />
 
 (4) After modification, press **"Esc"** and input **":wq"** and press Enter to save and exit editing.
 
@@ -336,11 +331,11 @@ we can input the line code and press **"Shift+G"** to jump to the corresponding 
 rosrun puppy_advanced_functions kick_ball_demo.py
 ```
 
-(6) If you need to view the debugging screen again (real-time feedback from the camera), you can uncomment the content boxed in step 3), i.e., remove the "#" in front of the code, then save, as shown in the following figure:
+(6) If you need to view the debugging screen again (real-time feedback from the camera), you can uncomment the content boxed in step 3), i.e., remove the "**#**" in front of the code, then save, as shown in the following figure:
 
-<img src="../_static/media/chapter_15/section_2/image7.png"  />
+<img src="../_static/media/chapter_15/section_2/image7.png" class="common_img" />
 
-- #### Change Ball Color
+* **Change Ball Color**
 
 **The program is default to recognize and shoot the red ball. If you need to change the color, please follow the below steps to operate.**
 
@@ -352,7 +347,7 @@ rosed puppy_advanced_functions kick_ball_demo.py
 
 (2) Next, jump to this line of code.
 
-<img src="../_static/media/chapter_15/section_2/image11.png"  />
+<img src="../_static/media/chapter_15/section_2/image11.png" class="common_img" />
 
 :::{Note}
 we can input the line code and press **"Shift+G"** to jump to the corresponding line.
@@ -360,7 +355,7 @@ we can input the line code and press **"Shift+G"** to jump to the corresponding 
 
 (3) Press **"i"** key to enter editing mode. Modify **"red"** as **"blue"**.
 
-<img src="../_static/media/chapter_15/section_2/image12.png"  />
+<img src="../_static/media/chapter_15/section_2/image12.png" class="common_img" />
 
 (4) After modification, press **"Esc"** and input **":wq"** and press Enter to save and exit editing.
 

@@ -21,7 +21,7 @@ The input command should be case and space sensitive.
 
 (1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-(2)  Click<img src="../_static/media/chapter_14/section_1/image3.png" style="width:0.32292in;height:0.30208in" /> to open LX terminal.
+(2)  Click <img src="../_static/media/chapter_14/section_1/image3.png" style="width:0.32292in;height:0.30208in" /> to open LX terminal.
 
 (3) Input command and press Enter to start the game.
 
@@ -41,9 +41,9 @@ Paste the red electrical tape on the boarder of the stair, and then place the st
 
 ### 8.1.4 Program Analysis
 
-The source code of this program is stored in [/home/ubuntu/puppy_pi/src/puppy_advanced_functions/scripts/negotiate_stairs_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/14/negotiate_stairs_demo.py)
+The source code of this program is stored in [/home/ubuntu/puppy_pi/src/puppy_advanced_functions/scripts/negotiate_stairs_demo.py](../_static/source_code/negotiate_stairs_demo.zip)
 
-- #### Import Function Package
+* **Import Function Package**
 
 ```PY
 import sys
@@ -70,9 +70,9 @@ Using import statements to import the required modules: math provides a range of
 
 `from puppy_control.msg import Velocity, Pose, Gait` imports services for controlling and transmitting the velocity, pose, and gait of the robot.
 
-- #### Image Processing
+* **Image Processing**
 
-**(1) Gaussian Filtering**
+(1) Gaussian Filtering
 
 Before converting the image from RGB into Lab space, denoise the image and use `GaussianBlur()` function in cv2 library for Gaussian filtering.
 
@@ -88,7 +88,7 @@ The second parameter `(3, 3)` is the size of Gaussian kernel
 
 The third parameter `3`  is the allowable range of variation around the average in Gaussian filtering. The larger the value, the larger the allowable range of variation
 
-**(2)  Binaryzation Processing**
+(2)  Binaryzation Processing
 
 Adopt inRange() function in cv2 library to perform binaryzation on the image.
 
@@ -104,7 +104,7 @@ Adopt inRange() function in cv2 library to perform binaryzation on the image.
 
 The first parameter in the bracket is the input image. The second and the third parameters respectively are the lower limit and upper limit of the threshold. When the RGB value of the pixel is between the upper limit and lower limit, the pixel is assigned 1, otherwise, 0.
 
-**(3) Open Operation and Close Operation**
+(3) Open Operation and Close Operation
 
 :::{Note}
 To reduce interference and make the image smoother, it is necessary to process the image.
@@ -127,7 +127,7 @@ The second parameter `cv2.MORPH_OPEN` refers to processing method, open operatio
 
 The third parameter `np.ones((6, 6), np.uint8)` is frame size.
 
-**(4) Acquire the Maximum Contour**
+(4) Acquire the Maximum Contour
 
 After processing the image, acquire the contour of the target to be recognized, which involves `findContours()` function in cv2 library.
 
@@ -160,9 +160,9 @@ def getAreaMaxContour(contours):
     return area_max_contour, contour_area_max  # 返回最大的轮廓(return the maximal contour)
 ```
 
-- #### Acquire the Position
+* **Acquire the Position**
 
-**(1) Frame the Line**
+(1) Frame the Line
 
 Call `drawContours()` function to set the rectangle pattern and frame the line.
 
@@ -170,7 +170,7 @@ Call `drawContours()` function to set the rectangle pattern and frame the line.
 cv2.drawContours(img, [box], -1, (0,0,255,255), 2)#画出四个点组成的矩形(draw a rectangle formed by the four points)
 ```
 
-**(2)  Draw the Center**
+(2)  Draw the Center
 
 Next, acquire the diagonal points of the rectangle, and draw the line center through `circle()` function.
 
@@ -192,8 +192,7 @@ cv2.circle(img, (int(centerX), int(centerY)), 5, (0,0,255), -1)#画出中心点(
 ## 8.2 Stair Negotiating
 
 :::{Note}
-
-if PuppyPi's performance is not desired, we can close debugging interface according to "[2.4.1 Close Debugging Interface](#anchor_2_4_1)".
+if PuppyPi's performance is not desired, we can close debugging interface according to "[**8.2.5 Function Extension -> Close Debugging Interface**](#anchor_8_2_5)".
 :::
 
 ### 8.2.1 Program Logic
@@ -216,15 +215,15 @@ The input command should be case and space sensitive.
 
 (1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-(2) Click<img src="../_static/media/chapter_14/section_2/image4.png" style="width:0.32292in;height:0.30208in" />to open command line terminal
+(2) Click <img src="../_static/media/chapter_14/section_2/image4.png" style="width:0.32292in;height:0.30208in" /> to open command line terminal
 
-(3) Input command "rosrun puppy_advanced_functions negotiate_stairs_demo.py" and press Enter to start the game.
+(3) Input command and press Enter to start the game.
 
 ```bash
 rosrun puppy_advanced_functions negotiate_stairs_demo.py
 ```
 
-(4) If want to close this game, we can press "Ctrl+C". If it fails to close the game, please try again.
+(4) If want to close this game, we can press "**Ctrl+C**". If it fails to close the game, please try again.
 
 ### 8.2.3 Program Outcome
 
@@ -236,9 +235,9 @@ Paste the red electrical tape on the boarder of the stair, and then place the st
 
 ### 8.2.4 Program Analysis
 
-The source code is located in:[/home/ubuntu/puppy_pi/src/puppy_advanced_functions/scripts/negotiate_stairs_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/14/negotiate_stairs_demo.py)
+The source code is located in:[/home/ubuntu/puppy_pi/src/puppy_advanced_functions/scripts/negotiate_stairs_demo.py](../_static/source_code/negotiate_stairs_demo.zip)
 
-- #### Approach the Stair
+* **Approach the Stair**
 
 After stair recognition, program PuppyPi to approach the stair according to the coordinate of the line center.
 
@@ -267,9 +266,9 @@ The second parameter `y` is the speed in cm/s of moving sideways. PuppyPi cannot
 
 The third parameter `yaw_rate` is the turning speed in rad/s. Counterclockwise direction is taken ad positive direction.
 
-- #### Negotiate the Stair
+* **Negotiate the Stair**
 
-After PuppyPi approaches the stair, call the built-in action group "up_stairs_2cm.d6ac" to control it to negotiate the stair.
+After PuppyPi approaches the stair, call the built-in action group "**up_stairs_2cm.d6ac**" to control it to negotiate the stair.
 
 ```PY
         while(puppyStatus == PuppyStatus.FOUND_TARGET) :
@@ -314,15 +313,15 @@ The seventh parameter `yaw` is yaw angle in degree.
 
 The eighth parameter `run_time` is the motion time in ms.
 
+<p id="anchor_8_2_5"></p>
+
 ### 8.2.5 Function Extension
 
-<span id="anchor_2_4_1"></span>
-
-- #### Close Debugging Interface
+* **Close Debugging Interface**
 
 As the continuous refresh of debugging interface will occupy CPU of Raspberry Pi, we can close debugging interface to tackle choppy running.
 
-(1) Input **"rosed puppy_advanced_functions negotiate_stairs_demo.py"** command and press Enter to edit the stair negotiating program.
+(1) Input command and press Enter to edit the stair negotiating program.
 
 ```bash
 rosed puppy_advanced_functions negotiate_stairs_demo.py
@@ -330,15 +329,15 @@ rosed puppy_advanced_functions negotiate_stairs_demo.py
 
 (2) Next, jump to this line of code.
 
-<img src="../_static/media/chapter_14/section_2/image11.png" alt="loading" />
+<img class="common_img" src="../_static/media/chapter_14/section_2/image11.png" alt="loading" />
 
 :::{Note}
-we can input the line code and press "Shift+G" to jump to the corresponding line. The numbering of code positions in the diagram is for reference only, please refer to the actual positions.
+we can input the line code and press "**Shift+G**" to jump to the corresponding line. The numbering of code positions in the diagram is for reference only, please refer to the actual positions.
 :::
 
 (3) Press **"i"** key to enter editing mode. Then add **"#"** in front of the codes in the red frame to comment.
 
-<img src="../_static/media/chapter_14/section_2/image13.png" alt="loading" />
+<img class="common_img" src="../_static/media/chapter_14/section_2/image13.png" alt="loading" />
 
 (4) After modification, press **"Esc"** and input **":wq"** and press Enter to save and exit editing.
 
@@ -352,33 +351,33 @@ we can input the line code and press "Shift+G" to jump to the corresponding line
 rosrun puppy_advanced_functions negotiate_stairs_demo.py
 ```
 
-(6) If you need to view the debugging screen again (real-time feedback from the camera), you can uncomment the content boxed in step 3), i.e., remove the "#" in front of the code, then save, as shown in the following figure:
+(6) If you need to view the debugging screen again (real-time feedback from the camera), you can uncomment the content boxed in step 3), i.e., remove the "**#**" in front of the code, then save, as shown in the following figure:
 
-<img src="../_static/media/chapter_14/section_2/image11.png" alt="loading" />
+<img class="common_img" src="../_static/media/chapter_14/section_2/image11.png" alt="loading" />
 
-- #### Change Line Color
+* **Change Line Color**
 
 :::{Note}
 The program is default to recognize red line. And we can change the color, for example black.
 :::
 
-(1) Enter "rosed puppy_advanced_functions negotiate_stairs_demo.py" command and press Enter to edit the program file. 
+(1) Enter command and press Enter to edit the program file. 
 
 ```bash
-rosed puppy_advanced_functions** **negotiate_stairs_demo.py
+rosed puppy_advanced_functions negotiate_stairs_demo.py
 ```
 
 (2) Next, jump to this line of code. 
 
-<img src="../_static/media/chapter_14/section_2/image18.png" alt="loading" />
+<img class="common_img" src="../_static/media/chapter_14/section_2/image18.png" alt="loading" />
 
 :::{Note}
-we can input the line code and press "Shift+G" to jump to the corresponding line.
+we can input the line code and press "**Shift+G**" to jump to the corresponding line.
 :::
 
-(3)  Press "i" key to enter editing mode. Modify "red" as "black".
+(3)  Press "**i**" key to enter editing mode. Modify "**red**" as "**black**".
 
-<img src="../_static/media/chapter_14/section_2/image20.png" alt="loading" />
+<img class="common_img" src="../_static/media/chapter_14/section_2/image20.png" alt="loading" />
 
 (4) After modification, press **"Esc"** and input **":wq"** and press Enter to save and exit editing.
 
@@ -386,7 +385,7 @@ we can input the line code and press "Shift+G" to jump to the corresponding line
 :wq
 ```
 
-(5) Input command **"rosrun puppy_advanced_functions negotiate_stairs_demo.py"** to restart the game and check PuppyPi's performance.
+(5) Input command to restart the game and check PuppyPi's performance.
 
 ```bash
 rosrun puppy_advanced_functions negotiate_stairs_demo.py

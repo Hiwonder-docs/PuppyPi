@@ -20,7 +20,7 @@ The input command should be case and space sensitive.
 
 (1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-(2) Click<img src="../_static/media/chapter_16/section_1/image3.png"  />to open LX terminal.
+(2) Click <img src="../_static/media/chapter_16/section_1/image3.png"/> to open LX terminal.
 
 (3) Input command and press Enter to start the game.
 
@@ -28,7 +28,7 @@ The input command should be case and space sensitive.
 rosrun puppy_advanced_functions visual_patrol_demo.py
 ```
 
-(4) If want to close this game, we can press "Ctrl+C". If it fails to close the game, please try again.
+(4) If want to close this game, we can press "**Ctrl+C**". If it fails to close the game, please try again.
 
 ### 10.1.3 Program Outcome
 
@@ -38,17 +38,17 @@ The program is default to recognize red.
 
 Use red electrical tape to set the line. Then place PuppyPi on the red line. After the line is recognized by PuppyPi, the line will be framed on the camera returned image and the center of line will be drawn. At the same time, the coordinate of the line center will be displayed on the terminal.
 
-<img src="../_static/media/chapter_16/section_1/image8.png"  />
+<img src="../_static/media/chapter_16/section_1/image8.png" class="common_img" />
 
 ### 10.1.4 Program Analysis
 
-The source code of this program is stored in [/home/ubuntu/puppy_pi/src/puppy_advanced_functions/scripts/visual_patrol_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/16/visual_patrol_demo.py)
+The source code of this program is stored in [/home/ubuntu/puppy_pi/src/puppy_advanced_functions/scripts/visual_patrol_demo.py](../_static/source_code/visual_patrol_demo.zip)
 
-- #### Image Processing
+* **Image Processing**
 
-**(1) Import Function Package**
+(1) Import Function Package
 
-```py
+```python
 import sys
 import cv2
 import math
@@ -68,7 +68,7 @@ from common import Misc
 
 Import the required modules through import statements: math provides a range of mathematical functions and constants for related calculations; rospy is used for ROS communication; from sensor_msgs.msg import Image: import Image information type from sensor_msgs.msg. Sensor_msgs package provides information definition and camera image of various sensor data. Puppy control imports action group.
 
-**(2) Obtain the Maximal Contour**
+(2) Obtain the Maximal Contour
 
 ```py
 if debug:
@@ -79,7 +79,7 @@ if debug:
 
 Set the line color to red.
 
-**(3) Gussian Filtering**
+(3) Gussian Filtering
 
 Before converting the image from RGB into Lab space, denoise the image and use GaussianBlur() function in cv2 library for Gaussian filtering.
 
@@ -97,7 +97,7 @@ The third parameter `3` is the allowable variance around the average in Gaussian
 
 The larger the value, the larger the allowable variance.
 
-**(4) Binaryzation Processing**
+(4) Binaryzation Processing
 
 Adopt `inRange()` function in cv2 library to perform binaryzation on the image.
 
@@ -115,7 +115,7 @@ The first parameter in the bracket is the input image.
 
  The second and the third parameters respectively are the lower limit and upper limit of the threshold. When the RGB value of the pixel is between the upper limit and lower limit, the pixel is assigned 1, otherwise, 0.
 
-**(5) Open Operation and Close Operation**
+(5) Open Operation and Close Operation
 
 :::{Note}
 To reduce interference and make the image smoother, it is necessary to process the image.
@@ -132,7 +132,7 @@ The first parameter `frame_mask` is the input image.
 The second parameter `cv2.MORPH_OPEN` refers to processing method, open operation.
 The third parameter `np.ones((6, 6), np.uint8)` is frame size.
 
-**(6) Acquire the Maximum Contour**
+(6) Acquire the Maximum Contour
 
 After processing the image, acquire the contour of the target to be recognized, which involves `findContours()` function in cv2 library.
 
@@ -166,9 +166,9 @@ def getAreaMaxContour(contours):
     return area_max_contour, contour_area_max  # 返回最大的轮廓(return the maximal contour)
 ```
 
-- #### Acquire the Position
+* **Acquire the Position**
 
-**(1) Frame the Line**
+(1) Frame the Line
 
 Call  `drawContours()` function to set the rectangle pattern and frame the line.
 
@@ -176,7 +176,7 @@ Call  `drawContours()` function to set the rectangle pattern and frame the line.
 cv2.drawContours(img, [box], -1, (0,0,255,255), 2)#画出四个点组成的矩形(draw a rectangle formed by connecting the four points)
 ```
 
-**(2) Draw the Center**
+(2) Draw the Center
 
 Next, acquire the diagonal points of the rectangle, and draw the line center through `circle()` function.
 
@@ -204,7 +204,7 @@ else:
 
 :::{Note}
 
- if PuppyPi's performance is not desired, we can debug according to "[10.2.5 Function Extension -> Close Debugging Interface and Printed Data ](#anchor_2_4_1)".
+ if PuppyPi's performance is not desired, we can debug according to "[10.2.5 Function Extension -> Close Debugging Interface and Printed Data ](#anchor_10_2_5)".
 :::
 
 ### 10.2.1 Program Logic
@@ -212,7 +212,6 @@ else:
 PuppyPi can recognize the color of line and use algorithm to process the image so as to realize line following.  
 
 Firstly, program to recognize the color of line. Use Lab color space to convert the image from RGB into Lab. Then, perform binaryzation, corrosion, dilation, etc., on the image to obtain the contour which contains the target color. Next, mark the contour with rectangle.
-
 
 After color recognition, perform calculation based on the location of line in the image to control PuppyPi to move along the line.
 
@@ -224,7 +223,7 @@ The input command should be case and space sensitive.
 
 (1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-(2) Click<img src="../_static/media/chapter_16/section_2/image4.png" style="width:0.32292in;height:0.30208in" />to open command line terminal.
+(2) Click <img src="../_static/media/chapter_16/section_2/image4.png" style="width:0.32292in;height:0.30208in" /> to open command line terminal.
 
 (3) Input command "rosrun puppy_advanced_functions visual_patrol_demo.py" and press Enter to start the game.
 
@@ -244,9 +243,9 @@ Use the red electrical tape to set the line, and place PuppyPi on the red line. 
 
 ### 10.2.4 Program Analysis
 
-The source code of this program is stored in [/home/ubuntu/puppy_pi/src/puppy_advanced_functions/scripts/visual_patrol_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/16/visual_patrol_demo.py)
+The source code of this program is stored in [/home/ubuntu/puppy_pi/src/puppy_advanced_functions/scripts/visual_patrol_demo.py](../_static/source_code/visual_patrol_demo.zip)
 
-**(1) Set the line color**
+(1) Set the line color
 
 ```py
 if debug:
@@ -257,7 +256,7 @@ if debug:
 
 Set the line color to red.
 
-**(2) Move Following the Line**
+(2) Move Following the Line
 
 After locating the line, control PuppyPi to move following the line according to the coordinate of the center of line.
 
@@ -292,7 +291,7 @@ def move():
         if is_shutdown:break
 ```
 
-**(3) Walk**
+(3) Walk
 
 `PuppyPosePub.publish()`, `PuppyGaitConfigPub.publish` and `PuppyVelocityPub.publish` functions are used to control PuppyPi to walk. 
 
@@ -360,16 +359,15 @@ yaw_rate=PuppyMove['yaw_rate'])` for example. The meaning of the parameters in b
 
 ③ The third parameter `yaw_rate` is the speed in rad/s of turning. Counterclockwise is taken as the positive direction.
 
+<p id="anchor_10_2_5"></p>
 
 ### 10.2.5 Function Extension
 
-<span id="anchor_2_4_1" class="anchor"></span>
-
-- #### Close Debugging Interface and Printed Data
+* **Close Debugging Interface and Printed Data**
 
 As the continuous refresh of debugging interface and printed data on terminal will occupy CPU of Raspberry Pi, we can close debugging interface and printed data to tackle choppy running.
 
-(1) Input **"rosed puppy_advanced_functions visual_patrol_demo.py"** command and press Enter to edit the program file.
+(1) Input command and press Enter to edit the program file.
 
 ```bash
 rosed puppy_advanced_functions visual_patrol_demo.py
@@ -377,9 +375,9 @@ rosed puppy_advanced_functions visual_patrol_demo.py
 
 (2) Next, jump to this line of code.
 
-<img src="../_static/media/chapter_16/section_2/image11.png"  />
+<img src="../_static/media/chapter_16/section_2/image11.png" class="common_img" />
 
-<img src="../_static/media/chapter_16/section_2/image13.png"  />
+<img src="../_static/media/chapter_16/section_2/image13.png" class="common_img" />
 
 :::{Note}
 we can input the line code and press **"Shift+G"** to jump to the corresponding line.
@@ -387,9 +385,9 @@ we can input the line code and press **"Shift+G"** to jump to the corresponding 
 
 (3)  Press **"i"** key to enter editing mode. Then add **"#"** in front of the codes in the red frame to comment.
 
-<img src="../_static/media/chapter_16/section_2/image15.png"  />
+<img src="../_static/media/chapter_16/section_2/image15.png" class="common_img" />
 
-<img src="../_static/media/chapter_16/section_2/image17.png"  />
+<img src="../_static/media/chapter_16/section_2/image17.png" class="common_img" />
 
 (4) After modification, press **"Esc"** and input **":wq"** and press Enter to save and exit editing.
 
@@ -403,17 +401,17 @@ we can input the line code and press **"Shift+G"** to jump to the corresponding 
 rosrun puppy_advanced_functions visual_patrol_demo.py
 ```
 
-(6) If you need to view the debugging screen again (real-time feedback from the camera), you can uncomment the content boxed in step 3, i.e., remove the "#" in front of the code, then save, as shown in the following figure:
+(6) If you need to view the debugging screen again (real-time feedback from the camera), you can uncomment the content boxed in step 3, i.e., remove the "**#**" in front of the code, then save, as shown in the following figure:
 
-<img src="../_static/media/chapter_16/section_2/image11.png"  />
+<img src="../_static/media/chapter_16/section_2/image11.png" class="common_img" />
 
-<img src="../_static/media/chapter_16/section_2/image13.png"  />
+<img src="../_static/media/chapter_16/section_2/image13.png" class="common_img" />
 
-- #### Change the Followed Color
+* **Change the Followed Color**
 
 The program is default to follow red line. If you need to change the followed color, for example black, please follow the below steps to operate.
 
-(1) Enter **"rosed puppy_advanced_functions visual_patrol_demo.py"** and press Enter to edit the auto line following program.
+(1) Enter and press Enter to edit the auto line following program.
 
 ```bash
 rosed puppy_advanced_functions visual_patrol_demo.py
@@ -421,7 +419,7 @@ rosed puppy_advanced_functions visual_patrol_demo.py
 
 (2) Next, jump to this line of code.
 
-<img src="../_static/media/chapter_16/section_2/image22.png"  />
+<img src="../_static/media/chapter_16/section_2/image22.png" class="common_img" />
 
 :::{Note}
 we can input the line code and press **"Shift+G"** to jump to the corresponding line.
@@ -429,7 +427,7 @@ we can input the line code and press **"Shift+G"** to jump to the corresponding 
 
 (3) Press **"i"** key to enter editing mode. Modify **"red"** as **"black"**.
 
-<img src="../_static/media/chapter_16/section_2/image24.png"  />
+<img src="../_static/media/chapter_16/section_2/image24.png" class="common_img" />
 
 (4)  After modification, press **"Esc"** and input **":wq"** and press Enter to save and exit editing.
 

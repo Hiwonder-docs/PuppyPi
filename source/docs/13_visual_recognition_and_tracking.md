@@ -58,7 +58,7 @@ Take adjusting red color for example. The following operation steps are also app
 
 (3) Face the camera to the red block. Drag L, A and B sliders to adjust the color threshold till the red block at left turns white and other area turns black. 
 
-<img class="common_img" src="../_static/media/chapter_13/section_1/image10.png" style="width:800px;"  alt="loading" />
+<img class="common_img" src="../_static/media/chapter_13/section_1/image10.png" style="width:780px;"  alt="loading" />
 
 **LAB Threshold Adjustment Parameter**
 
@@ -102,7 +102,7 @@ Take adding orange color as example. Follow the steps below to operate.
 
 ② Face the camera to the orange object. And then drag the slider of L, A and B to adjust the color threshold till the orange ball at left turns white and other area turns black
 
-<img class="common_img" src="../_static/media/chapter_13/section_1/image13.png" style="width:800px;" alt="loading" />
+<img class="common_img" src="../_static/media/chapter_13/section_1/image13.png" style="width:780px;" alt="loading" />
 
 ③ Click **"Save"** buttons to keep the modified data.
 
@@ -262,7 +262,7 @@ In addition to the three built-in recognized colors, we can also set other color
 
 (1) Based on "[**7.1 Color Threshold Adjustment**](#anchor_7_1)", use LAB_TOOL to add orange and save it. 
 
-<img class="common_img" src="../_static/media/chapter_13/section_2/image10.png"  />
+<img class="common_img" src="../_static/media/chapter_13/section_2/image10.png" style="width:820px;" />
 
 (2) After saving the orange, we can open the command window, input command "sudo vim puppy_pi/src/lab_config/config/lab_config.yaml" and press Enter.
 
@@ -310,7 +310,7 @@ The following part of the program is the key code for color recognition. We need
 
 (5) After adding the code at the indicated location, enter the command to restart the game. Place an orange object in front of the camera, and you should see the orange color being recognized in the feedback screen. Additionally, in the command window, you should see the message "**detect_color is orange**" printed.
 
-<img src="../_static/media/chapter_13/section_2/image27.png"  />
+<img src="../_static/media/chapter_13/section_2/image27.png" style="width:820px;" />
 
 ## 7.3 Tag Recognition
 
@@ -459,7 +459,7 @@ After the game starts, place the tag card within the camera frame. When the tag 
 
 <img class="common_img" src="../_static/media/chapter_13/section_4/image8.png"  />
 
-<img src="../_static/media/chapter_13/section_4/image9.png"  />
+<img class="common_img" src="../_static/media/chapter_13/section_4/image9.png"  />
 
 ### 7.4.4 Program Analysis
 
@@ -636,7 +636,7 @@ input the line number and press **"Shift+G"** to jump to the corresponding line.
 
 (4) Press **"i"** key to enter editing mode and modify the code as **"ar_app_node.set_model_srv_callback('cow')".**
 
-<img src="../_static/media/chapter_13/section_4/image14.png"  />
+<img src="../_static/media/chapter_13/section_4/image14.png" class="common_img"  />
 
 (5) After modification, press **"Esc"**, input **":wq"** and press Enter to save and exit the editing.
 
@@ -684,7 +684,7 @@ After the game starts, place the red block within the camera frame. When the col
 
 <img class="common_img" src="../_static/media/chapter_13/section_5/image9.png"  />
 
-<img src="../_static/media/chapter_13/section_5/image10.png"  />
+<img src="../_static/media/chapter_13/section_5/image10.png" class="comon_img" />
 
 ### 7.5.4 Program Analysis
 
@@ -826,7 +826,7 @@ rosed lab_config lab_config.yaml
 
 (3)  Double click the <img src="../_static/media/chapter_13/section_5/image23.png" style="width:0.31496in;height:0.29528in" /> in the system desktop to open color threshold adjustment tool. If the prompt box pops up, just click **"Execute"**.
 
-<img src="../_static/media/chapter_13/section_5/image24.png"  />
+<img src="../_static/media/chapter_13/section_5/image24.png" class="common_img" />
 
 (4) Having entered the interface successfully, select **"red"** in the drop-down menu.
 
@@ -1068,11 +1068,11 @@ In addition to the built-in recognized colors, you can add other recognition col
 
 (1)  Double click the <img src="../_static/media/chapter_13/section_6/image18.png" style="width:0.31496in;height:0.29548in" /> in the system desktop to open color threshold adjustment tool. If the prompt box pops up, just click **"Execute"**.
 
-<img src="../_static/media/chapter_13/section_6/image19.png"  />
+<img src="../_static/media/chapter_13/section_6/image19.png" class="common_img" />
 
 (2)  Next, click **"Add"** button.
 
-<img src="../_static/media/chapter_13/section_6/image20.png"  />
+<img src="../_static/media/chapter_13/section_6/image20.png" class="common_img" />
 
 (3) Then enter **"yellow"** in the pop-up interface.
 
@@ -1080,15 +1080,15 @@ In addition to the built-in recognized colors, you can add other recognition col
 
 (4) Select **"yellow"** in the drop-down menu.
 
-<img src="../_static/media/chapter_13/section_6/image22.png"  />
+<img class="common_img" src="../_static/media/chapter_13/section_6/image22.png"  />
 
 (5) Place the yellow object within the camera frame. Then Drag the sliders of L, A, and B until the yellow block at the left screen becomes white and other areas become black.
 
-<img src="../_static/media/chapter_13/section_6/image23.png"  />
+<img class="common_img" src="../_static/media/chapter_13/section_6/image23.png"  />
 
 (6) After adjustment, click "**Save**" to keep the data. Then we can close the tool.
 
-<img src="../_static/media/chapter_13/section_6/image24.png"  />
+<img class="common_img" src="../_static/media/chapter_13/section_6/image24.png"  />
 
 (7) Click <img src="../_static/media/chapter_13/section_6/image6.png" style="width:0.31458in;height:0.27361in" /> or press **"Ctrl+Alt+T"** to open command line terminal
 
@@ -1098,7 +1098,7 @@ In addition to the built-in recognized colors, you can add other recognition col
 rosed lab_config lab_config.yaml
 ```
 
-<img src="../_static/media/chapter_13/section_6/image26.png"  />
+<img class="common_img" src="../_static/media/chapter_13/section_6/image26.png"  />
 
 (9) According to the steps in "[**7.6.5 Function Extension -> Modify Default Recognition Color**](#anchor_7_6_5)", modify the default recognition color as yellow.
 
@@ -1360,7 +1360,7 @@ elif coordinate[2] < 0.18:
 
 ### 7.8.5 Function Extension
 
-- #### 8.5.1 Modify Default
+* **Modify Default**
 
 The distance threshold has been set in the program, which is used to decide PuppyPi perform which action for feedback.
 
@@ -1388,7 +1388,7 @@ rosed puppy_standard_functions apriltag_tracking_demo.py
 
 (5) Press **"i"** key to enter the editing mode, and then modify the code as `coordinate[2] > 0.20`.
 
-<img src="../_static/media/chapter_13/section_8/image14.png"  />
+<img class="common_img" src="../_static/media/chapter_13/section_8/image14.png"  />
 
 (6) After modification, press **"Esc"** and input **":wq"** and press Enter to save and exit the editing.
 
@@ -1426,8 +1426,8 @@ we can input the line number and press **"Shift+G"** to jump to the correspondin
 
 (5) Press "**i**" key to enter the editing mode, and then modify the code as `PuppyVelocityPub.publish(x=3, y=0, yaw_rate=0)`.
 
-<img src="../_static/media/chapter_13/section_8/image21.png"  />
-
+<img class="common_img" src="../_static/media/chapter_13/section_8/image21.png"  />
+ 
 (6) After modification, press **"Esc"** and input **":wq"** and press Enter to save and exit the editing.
 
 ```bash
