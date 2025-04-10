@@ -26,15 +26,15 @@ The specifications of the laser radar used in the PuppyPi robot dog are as follo
 
 **(1)  Electrical and Mechanical Parameters** 
 
-<img src="../_static/media/chapter_19/section_1/image3.png"  />
+<img src="../_static/media/chapter_19/section_1/image3.png" class="common_img" />
 
 **(2) Optics Parameter** 
 
-<img src="../_static/media/chapter_19/section_1/image4.png"  />
+<img src="../_static/media/chapter_19/section_1/image4.png" class="common_img" />
 
 **(3) Performance Parameter** 
 
-<img src="../_static/media/chapter_19/section_1/image5.png"  />
+<img src="../_static/media/chapter_19/section_1/image5.png" class="common_img" />
 
 **(4) Interface and Communication Protocol** 
 
@@ -42,7 +42,7 @@ LD19 connects to the external system through ZH1.5T-4P 1.5mm connector to supply
 
 <img class="common_img" src="../_static/media/chapter_19/section_1/image6.png" style="width:50%" />
 
-<img src="../_static/media/chapter_19/section_1/image7.png"  />
+<img src="../_static/media/chapter_19/section_1/image7.png" class="common_img" />
 
 **(5) Serial Port Specification** 
 
@@ -58,69 +58,69 @@ Lidar can range the distance in two ways, including triangulation ranging and TO
 
 The working principle of TOF is as pictured. Firstly, Lidar will cast the light on the object, and the object will reflect the light on the Lidar. Then Lidar will calculate the time taken for light to return, and multiply the time times the speed of light to get the distance between object and it.
 
-<img src="../_static/media/chapter_19/section_2/image2.png"  alt="loading" />
+<img class="common_img" src="../_static/media/chapter_19/section_2/image2.png"  alt="loading" />
 
 Triangulation ranging is as the picture shown. During Lidar production, its angle of light casting on the object will be adjusted to let the light not directly hit on the object, but at a certain angle. This angle is set in advance and will not change during operation. And we can calculate the distance from the object to the Lidar by substituting this angle into the trigonometric function.
 
-<img src="../_static/media/chapter_19/section_2/image3.png"  alt="loading" />
+<img class="common_img" src="../_static/media/chapter_19/section_2/image3.png"  alt="loading" />
 
 ### 13.2.2 Lidar Working Result
 
 Its working result is as follows. Lidar will emit light and shine it on the object surface. When receiving the light reflected by the object, Lidar will mark the contour of the object at the position where the light is reflected.
 
-<img src="../_static/media/chapter_19/section_2/image4.png"  alt="loading" />
+<img class="common_img" src="../_static/media/chapter_19/section_2/image4.png"  alt="loading" />
 
 ## 13.3 Lidar Obstacle Avoidance
 
-If you want to know how to connect PuppyPi Pro to the APP, please refer to the material in "[Getting Ready\ 1.App Installation and Connection](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/2_play_first_hand.html#app)"
+If you want to know how to connect PuppyPi Pro to the APP, please refer to the material in "[**2. APP and Handle Control / 2.1 APP Installation and Connection**](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/2_play_first_hand.html#app-installation-and-connection)"
 
 ### 13.3.1 Operation Steps
 
-- #### Turn on via APP
+* **Turn on via APP**
 
 (1) Open **"WonderPi"** APP, and connect it to PuppyPi.
 
 (2) Select **"Lidar"** to enter the game interface.
 
-<img src="../_static/media/chapter_19/section_3/image2.png"  />
+<img class="common_img" src="../_static/media/chapter_19/section_3/image2.png"  />
 
 (3) Click **"Avoid obstacle"** to start the game.
 
-<img src="../_static/media/chapter_19/section_3/image3.png"  alt="loading" />
+<img class="common_img" src="../_static/media/chapter_19/section_3/image3.png"  alt="loading" />
 
-- #### **Turn on via Command**
+* **Turn on via Command**
 
 :::{Note}
-this game doesn't require closing the auto-start service of APP. If the auto-start service has already been closed, you can input the command "sudo systemctl restart start_node.service" to restart the auto-start service, and wait for the robot's buzzer to beep once.
+this game doesn't require closing the auto-start service of APP. If the auto-start service has already been closed, you can input the command "**sudo systemctl restart start_node.service**" to restart the auto-start service, and wait for the robot's buzzer to beep once.
 :::
 
 (1)  Turn on PuppyPi and connect it to the Raspberry Pi desktop through VNC.
 
-(2)  Click the upper left icon<img src="../_static/media/chapter_19/section_3/image4.png" style="width:0.32292in;height:0.30208in" />to open Terminator terminal.
+(2)  Click the upper left icon <img src="../_static/media/chapter_19/section_3/image4.png" style="width:0.32292in;height:0.30208in" /> to open Terminator terminal.
 
-(3)  Input command **"rosservice call /lidar_app/enter "{}""**and press Enter to enter Lidar program.
+(3)  Input command and press Enter to enter Lidar program.
 
 ```bash
 rosservice call /lidar_app/enter "{}"
 ```
 
-(4) After the device is successfully starting, input command `rosservice call /lidar_app/set_running "data: 1"` and press Enter to turn on Lidar program.
+(4) After the device is successfully starting, input command and press Enter to turn on Lidar program.
 
 ```bash
 rosservice call /lidar_app/set_running "data: 1"
 ```
 
 :::{Note}
-the effect is the same as when using the app. If you need to check the source code, you can find "lidar.py" in the "/home/pi/puppy_pi/src/lidar_app/scripts".
+the effect is the same as when using the app. If you need to check the source code, you can find "**lidar.py**" in the "**/home/pi/puppy_pi/src/lidar_app/scripts**".
 :::
 
-(5) Input command **"rosservice call /lidar_app/set_running "data: 0""** and press Enter to stop this program.
+(5) Input command and press Enter to stop this program.
 
 ```bash
 rosservice call /lidar_app/set_running "data: 0"
 ```
 
-(6) Then input command **"rosservice call /lidar_app/exit "{}""** and press Enter to close Lidar obstacle avoidance program.
+(6) Then input command and press Enter to close Lidar obstacle avoidance program.
 
 ```bash
 rosservice call /lidar_app/exit "{}"
@@ -142,11 +142,11 @@ Here, we use a book as the object to be detected. It is important to note that w
 
 The Launch file path is **/home/ubuntu/puppy_pi/src/lidar_app/launch/**
 
-<img src="../_static/media/chapter_19/section_3/image14.png"  />
+<img class="common_img" src="../_static/media/chapter_19/section_3/image14.png"  />
 
 First, launch the lidar with the following command: `$(find ldlidar)/launch/LD06.launch`. 
 
-Then, start a node named lidar_app, using the lidar.py file from the lidar_app package. The parameters `output="screen"` indicate that the node's output will be displayed in the terminal, while "respawn="false"" means that the node will not restart if it unexpectedly terminates.
+Then, start a node named lidar_app, using the lidar.py file from the lidar_app package. The parameters `output="screen"` indicate that the node's output will be displayed in the terminal, while "**respawn='false'**" means that the node will not restart if it unexpectedly terminates.
 
 `lidar.py` is the source code file of this program, you can check it in this path "/home/ubuntu/puppy_pi/src/lidar_app/scripts/".
 
@@ -154,7 +154,7 @@ Then, start a node named lidar_app, using the lidar.py file from the lidar_app p
 
 The source code of this program is stored in ：**[/home/ubuntu/puppypi/src/lidar_app/scripts/lidar.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/19/lidar.py)**
 
-**(1) Initialization**
+(1) Initialization
 
 ```py
 class LidarController:
@@ -181,7 +181,7 @@ self.name: Store the incoming name as an attribute of the object. Other attribut
 
 self.lock: A thread lock has been created for secure access in a multi-threaded environment.
 
-**(2) Create ROS service**
+(2) Create ROS service
 
 ```py
 enter_srv = rospy.Service('/%s/enter'%ROS_NODE_NAME, Trigger, enter_func)
@@ -199,9 +199,9 @@ A ROS service named `/set_running` has been created with the type SetInt64, and 
 
 A ROS service named `/set_parameters` has been created with the type SetFloat64List, and the callback function is set to set_parameters_srv_callback. When this service is called, it will execute the set_parameters_srv_callback function.
 
-A Heart object has been created, using the ROS topic "/%s/heartbeat", with a set interval of 5 seconds. This is used to execute the heartbeat_srv_cb function when a message is triggered.
+A Heart object has been created, using the ROS topic **"/%s/heartbeat"**, with a set interval of 5 seconds. This is used to execute the heartbeat_srv_cb function when a message is triggered.
 
-**(3) Lidar obstacle avoidance**
+(3) Lidar obstacle avoidance
 
 ```py
 #避障(obstacle avoidance)
@@ -219,55 +219,55 @@ if self.running_mode == 1 and self.timestamp <= time.time():
 
 ## 13.4 Lidar Following
 
-If you want to know how to connect PuppyPi Pro to the APP, please refer to the material in "[2.APP and Handle Control->2.1App Installation and Connection](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/2_play_first_hand.html#app)".
+If you want to know how to connect PuppyPi Pro to the APP, please refer to the material in "[**2.APP and Handle Control->2.1App Installation and Connection**](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/2_play_first_hand.html#app)".
 
 ### 13.4.1 Operation Steps
 
-- #### Turn on via APP
+* **Turn on via APP**
 
 (1) Open **"WonderPi"** APP, and connect it to PuppyPi.
 
 (2) Select **"Lidar"** to enter the game interface.
 
-<img src="../_static/media/chapter_19/section_4/image2.png"  />
+<img class="common_img" src="../_static/media/chapter_19/section_4/image2.png"  />
 
 (3) Click **Lidar following** to start the game.
 
-<img src="../_static/media/chapter_19/section_4/image4.png"  alt="loading" />
+<img class="common_img" src="../_static/media/chapter_19/section_4/image4.png"  alt="loading" />
 
-- #### Turn on via Command
+* **Turn on via Command**
 
 :::{Note}
- this game doesn't require closing the auto-start service of APP. If the auto-start service has already been closed, you can input the command "sudo systemctl restart start_node.service" to restart the auto-start service, and wait for the robot's buzzer to beep once.
+ this game doesn't require closing the auto-start service of APP. If the auto-start service has already been closed, you can input the command "**sudo systemctl restart start_node.service**" to restart the auto-start service, and wait for the robot's buzzer to beep once.
 :::
 
 (1) Turn on PuppyPi and connect it to the Raspberry Pi desktop through VNC.
 
-(2) Click the upper left icon<img src="../_static/media/chapter_19/section_4/image6.png"  />to open the Terminator terminal.
+(2) Click the upper left icon <img src="../_static/media/chapter_19/section_4/image6.png"  /> to open the Terminator terminal.
 
-(3) Input command **"rosservice call /lidar_app/enter "{}""**and press Enter to enter Lidar program.
+(3) Input command and press Enter to enter Lidar program.
 
 ```bash
 rosservice call /lidar_app/enter "{}"
 ```
 
-(4) After the device is successfully starting, input command **"rosservice call /lidar_app/set_running "data: 2""** and press Enter to turn on Lidar program.
+(4) After the device is successfully starting, input command and press Enter to turn on Lidar program.
 
 ```bash
 rosservice call /lidar_app/set_running "data: 2"
 ```
 
 :::{Note}
-the effect is the same as when using the app. If you need to check the source code, you can find "lidar.py" in the "/home/ubuntu/puppy_pi/src/lidar_app/scripts".
+the effect is the same as when using the app. If you need to check the source code, you can find "**lidar.py**" in the "**/home/ubuntu/puppy_pi/src/lidar_app/scripts**".
 :::
 
-(5) Input command **"rosservice call /lidar_app/set_running "data: 0""** and press Enter to stop this program.
+(5) Input command and press Enter to stop this program.
 
 ```bash
 rosservice call /lidar_app/set_running "data: 0"
 ```
 
-(6) Then input command **"rosservice call /lidar_app/exit "{}""** and press Enter to close Lidar obstacle avoidance program.
+(6) Then input command and press Enter to close Lidar obstacle avoidance program.
 
 ```bash
 rosservice call /lidar_app/exit** **"{}"
@@ -283,20 +283,21 @@ Here, we use a book as the object to be detected. It is important to note that w
 
 ### 13.4.3 Program Analysis
 
-**(1)  Launch Brief Analysis** 
+(1)  Launch Brief Analysis 
 
 The Launch file path is `/home/ubuntu/puppy_pi/src/lidar_app/launch/`
 
 <img src="../_static/media/chapter_19/section_4/image13.png" class="common_img" />
 
-First, launch the lidar with the following command: "$(find ldlidar)/launch/LD06.launch". Then, start a node named lidar_app, using the lidar.py file from the lidar_app package. The parameters "output="screen"" indicate that the node's output will be displayed in the terminal, while "respawn="false"" means that the node will not restart if it unexpectedly terminates.
-"lidar.py" is the source code file of this program, you can check it in this path **"/home/ubuntu/puppy_pi/src/lidar_app/scripts/".**
+First, launch the lidar with the following command: "**$(find ldlidar)/launch/LD06.launch**". Then, start a node named lidar_app, using the lidar.py file from the lidar_app package. The parameters "**output='screen'**" indicate that the node's output will be displayed in the terminal, while "**respawn='false'**" means that the node will not restart if it unexpectedly terminates.
 
-**(2) Source Code Program Brief Analysis**
+"**lidar.py**" is the source code file of this program, you can check it in this path **"/home/ubuntu/puppy_pi/src/lidar_app/scripts/".**
+
+(2) Source Code Program Brief Analysis
 
 Based on the implemented effects, summarize the program's process logic as shown in the diagram below：**[/home/ubuntu/puppypi/src/lidar_app/scripts/lidar.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/19/lidar.py)**
 
-**①  Initialization**
+①  Initialization
 
 ```py
 class LidarController:
@@ -321,7 +322,7 @@ class LidarController:
 `self.name`: Store the incoming name as an attribute of the object. Other attributes include some parameters controlling the Lidar, such as operation mode, threshold, scanning angle, speed, etc.
 `self.lock`: A thread lock has been created for secure access in a multi-threaded environment.
 
-**② Create ROS service**
+② Create ROS service
 
 ```py
 enter_srv = rospy.Service('/%s/enter'%ROS_NODE_NAME, Trigger, enter_func)
@@ -338,7 +339,7 @@ A ROS service named `/set_running` has been created with the type SetInt64, and 
 A ROS service named `/set_parameters` has been created with the type SetFloat64List, and the callback function is set to set_parameters_srv_callback. When this service is called, it will execute the set_parameters_srv_callback function.
 A Heart object has been created, using the ROS topic `/%s/heartbeat`, with a set interval of 5 seconds. This is used to execute the heartbeat_srv_cb function when a message is triggered.
 
-**③  Lidar obstacle avoidance**
+③  Lidar obstacle avoidance
 
 ```py
 # 追踪(tracking)
@@ -363,43 +364,41 @@ elif self.running_mode == 2 and self.timestamp <= time.time():
        self.velocity_pub.publish(twist)
 ```
 
-
-
 ## 13.5 Lidar Guarding
 
-If you want to know how to connect PuppyPi Pro to the APP, please refer to the material in "[2.APP and Handle Control->2.1App Installation and Connection](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/2_play_first_hand.html#app)".
+If you want to know how to connect PuppyPi Pro to the APP, please refer to the material in "[**2.APP and Handle Control->2.1App Installation and Connection**](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/2_play_first_hand.html#app-installation-and-connection)".
 
 ### 13.5.1 Operation Steps
 
-- #### Turn on via APP
+* **Turn on via APP**
 
 (1) Open **"WonderPi"** APP, and connect it to PuppyPi.
 
 (2) Select **"Lidar"** to enter the game interface.
 
- <img src="../_static/media/chapter_19/section_5/image2.png"  />
+ <img class="common_img" src="../_static/media/chapter_19/section_5/image2.png"  />
 
 (3) Click **"Lidar guarding"** to start the game.
 
- <img src="../_static/media/chapter_19/section_5/image4.png"  alt="loading" />
+ <img class="common_img" src="../_static/media/chapter_19/section_5/image4.png"  alt="loading" />
 
-- #### Turn on via Command
+* **Turn on via Command**
 
 :::{Note}
- this game doesn't require closing the auto-start service of APP. If the auto-start service has already been closed, you can input the command "sudo systemctl restart start_node.service" to restart the auto-start service, and wait for the robot's buzzer to beep once.
+ this game doesn't require closing the auto-start service of APP. If the auto-start service has already been closed, you can input the command "**sudo systemctl restart start_node.service**" to restart the auto-start service, and wait for the robot's buzzer to beep once.
 :::
 
 (1) Turn on PuppyPi and connect it to the Raspberry Pi desktop through VNC.
 
-(2) Click the upper left icon<img src="../_static/media/chapter_19/section_5/image6.png"  />to open the Terminator terminal.
+(2) Click the upper left icon <img src="../_static/media/chapter_19/section_5/image6.png"  /> to open the Terminator terminal.
 
-(3) Input command **"rosservice call /lidar_app/enter "{}""**and press Enter to enter Lidar program.
+(3) Input command and press Enter to enter Lidar program.
 
 ```bash 
 rosservice call /lidar_app/enter "{}"
 ```
 
-(4) After the device is successfully starting, input command **"rosservice call /lidar_app/set_running "data: 3""** and press Enter to turn on Lidar program.
+(4) After the device is successfully starting, input command and press Enter to turn on Lidar program.
 
 ```bash 
 rosservice call /lidar_app/set_running "data: 3"
@@ -409,13 +408,13 @@ rosservice call /lidar_app/set_running "data: 3"
 the effect is the same as when using the app. If you need to check the source code, you can find "**[lidar.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/19/lidar.py)**"  in the "/home/ubuntu/puppy_pi/src/lidar_app/scripts".
 :::
 
-(5) Input command **"rosservice call /lidar_app/set_running "data: 0""** and press Enter to stop this program.
+(5) Input command and press Enter to stop this program.
 
 ```bash 
 rosservice call /lidar_app/set_running "data: 0"
 ```
 
-(6) Then input command **"rosservice call /lidar_app/exit "{}""** and press Enter to close Lidar obstacle avoidance program.
+(6) Then input command and press Enter to close Lidar obstacle avoidance program.
 
 ```bash 
 rosservice call /lidar_app/exit "{}"
@@ -431,21 +430,21 @@ Here, we use a book as the object to be detected. It is important to note that w
 
 ### 13.5.3 Program Analysis
 
-**(1) Launch Brief Analysis**
+(1) Launch Brief Analysis
 
 The Launch file path is `/home/ubuntu/puppy_pi/src/lidar_app/launch/`
 
-<img src="../_static/media/chapter_19/section_5/image13.png"  />
+<img class="common_img" src="../_static/media/chapter_19/section_5/image13.png"  />
 
-First, launch the lidar with the following command: "$(find ldlidar)/launch/LD06.launch". Then, start a node named lidar_app, using the lidar.py file from the lidar_app package. The parameters "output="screen"" indicate that the node's output will be displayed in the terminal, while "respawn="false"" means that the node will not restart if it unexpectedly terminates.
+First, launch the lidar with the following command: "**$(find ldlidar)/launch/LD06.launch**". Then, start a node named lidar_app, using the lidar.py file from the lidar_app package. The parameters "**output='screen'**" indicate that the node's output will be displayed in the terminal, while "**respawn='false'**" means that the node will not restart if it unexpectedly terminates.
 
-"lidar.py" is the source code file of this program, you can check it in this path `/home/ubuntu/puppy_pi/src/lidar_app/scripts/`.
+"**lidar.py**" is the source code file of this program, you can check it in this path `/home/ubuntu/puppy_pi/src/lidar_app/scripts/`.
 
-**(2) Source Code Program Brief Analysis**
+(2) Source Code Program Brief Analysis
 
 The source code of this program is stored in **[/home/ubuntu/puppypi/src/lidar_app/scripts/lidar.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/19/lidar.py)**
 
-**①  Initialization**
+① Initialization
 
 ```py
 class LidarController:
@@ -472,7 +471,7 @@ class LidarController:
 
 `self.lock`: A thread lock has been created for secure access in a multi-threaded environment.
 
-**②  Create ROS service**
+②  Create ROS service
 
 ```py
 enter_srv = rospy.Service('/%s/enter'%ROS_NODE_NAME, Trigger, enter_func)
@@ -491,9 +490,9 @@ A ROS service named `/set_running` has been created with the type SetInt64, and 
 
 A ROS service named `/set_parameters` has been created with the type SetFloat64List, and the callback function is set to set_parameters_srv_callback. When this service is called, it will execute the set_parameters_srv_callback function.
 
-A Heart object has been created, using the ROS topic "/%s/heartbeat", with a set interval of 5 seconds. This is used to execute the heartbeat_srv_cb function when a message is triggered.
+A Heart object has been created, using the ROS topic "**/%s/heartbeat**", with a set interval of 5 seconds. This is used to execute the heartbeat_srv_cb function when a message is triggered.
 
-**③  Lidar guarding**
+③ Lidar guarding
 
 ```py
 # 警卫看守(guard duty)

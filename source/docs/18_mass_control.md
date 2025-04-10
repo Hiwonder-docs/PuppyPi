@@ -6,19 +6,19 @@
 
 (1)  Please prepare at least 2 or more PuppyPi. Two PuppyPi are used in this lesson for demonstration.
 
-(2) Set development environment. Please download and install VNC according to "[Remote Desktop Tool Installation and Connection](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/8_remote_tool.html#)". 
+(2) Set development environment. Please download and install VNC according to "[**Remote Desktop Tool Installation and Connection**](https://docs.hiwonder.com/projects/PuppyPi/en/latest/docs/8_remote_tool.html)". 
 
 ### 12.1.2 Working Principle
 
 By configuring the master and the slave machine in the same network, the master sends motion commands to the slave via a multicast program, achieving the effect of controlling the slave.
 
+<p id="anchor_12_1_3"></p>
+
 ### 12.1.3 Operation Steps
 
-<p id="anchor_1_3_1"></p>
+* **Network Configuration**
 
-- #### Network Configuration
-
-**(1) Configure Master Network**
+(1) Configure Master Network
 
 ① Firstly, select one PuppyPi as the master, power it on, and then remotely connect to its system desktop.
 
@@ -28,14 +28,15 @@ By configuring the master and the slave machine in the same network, the master 
 cd hiwonder-toolbox
 ```
 
-③ Use vim editor to open Wi-Fi. Configure file and input command **"sudo vim wifi_conf.py"**. Then press Enter.
+③ Use vim editor to open Wi-Fi. Configure file and input command. Then press Enter.
+
 ```bash
 sudo vim wifi_conf.py
 ```
 
 ④ After modification, press Esc to exit editing mode. Then input **":wq"** to save and exit.
 
-<img src="../_static/media/chapter_18/section_1//image5.png"  />
+<img src="../_static/media/chapter_18/section_1//image5.png" class="common_img" />
 
 ⑤ After modification, press Esc to exit editing mode. Then input **":wq"** to save and exit.
 
@@ -43,7 +44,7 @@ sudo vim wifi_conf.py
 :wq
 ```
 
-<img src="../_static/media/chapter_18/section_1//image6.png"  />
+<img src="../_static/media/chapter_18/section_1//image6.png" class="common_img" />
 
 ⑥ Input the command to restart the master.
 
@@ -51,7 +52,7 @@ sudo vim wifi_conf.py
 sudo systemctl restart wifi.service
 ```
 
-⑦ After the master restarts, when reconnecting to the master's Wi-Fi, you will need to enter the Wi-Fi password "hiwonder."
+⑦ After the master restarts, when reconnecting to the master's Wi-Fi, you will need to enter the Wi-Fi password "**hiwonder**".
 
 **(2) Configure Slave Network**
 
@@ -63,7 +64,7 @@ sudo systemctl restart wifi.service
 cd hiwonder-toolbox
 ```
 
-③ Use vim editor to open wifi. Configure the file and input command **"sudo vim wifi_conf.py"**. Then press Enter.
+③ Use vim editor to open wifi. Configure the file and input command. Then press Enter.
 
 ```bash
 sudo vim wifi_conf.py
@@ -71,9 +72,9 @@ sudo vim wifi_conf.py
 
 ④ Press **"i"** to go to the editing mode. Change the two lines of code for the WI-FI name and password as shown in the figure below. Find the four lines of code highlighted in the box.
 
-<img src="../_static/media/chapter_18/section_1//image8.png"  />
+<img src="../_static/media/chapter_18/section_1//image8.png" class="common_img" />
 
-Setting the network mode of the slave device to '2' will be in LAN mode, while 'HW-123' and 'hiwonder' refer to configuring the host WI-FI name and password in  [Network Configuration Configure Master Network]().
+Setting the network mode of the slave device to '2' will be in LAN mode, while 'HW-123' and 'hiwonder' refer to configuring the host WI-FI name and password in [12.1.3 Operation Steps -> Network Configuration](#anchor_12_1_3).
 
 ⑤ After modification, press Esc once to exit the editing mode. Then type **":wq"** and press Enter to save and exit.
 
@@ -98,7 +99,7 @@ spaces.
 
 (1) Select a PuppyPi robot dog as the host and start it, then connect to the Raspberry Pi desktop remotely via VNC.
 
-(2) Click <img src="../_static/media/chapter_18/section_2//image3.png" style="width:0.32292in;height:0.30208in" />on the upper left corner to open the Terminator terminal.
+(2) Click <img src="../_static/media/chapter_18/section_2//image3.png" style="width:0.32292in;height:0.30208in" /> on the upper left corner to open the Terminator terminal.
 
 (3) Input the command and press Enter to close auto-start program.
 
@@ -124,7 +125,7 @@ sudo ./.stop_ros.sh
 rosrun puppy_control puppy_mul.py
 ```
 
-(7) Then open a new terminal, type 'ssh 192.168.149.119' and press Enter, enter the password 'raspberrypi', and type 'source multi_slave_env.sh 192.168.149.1' to set up the environment variables for the slave (this is for starting the multi-slave control topic, and you can also set it up as host environment variables before proceeding with steps 8 to 11). The command is "ssh 192.168.149.119 source multi_slave_env.sh 192.168.149.1".
+(7) Then open a new terminal, type 'ssh 192.168.149.119' and press Enter, enter the password 'raspberrypi', and type 'source multi_slave_env.sh 192.168.149.1' to set up the environment variables for the slave (this is for starting the multi-slave control topic, and you can also set it up as host environment variables before proceeding with steps (8) to (11). The command is "**ssh 192.168.149.119 source multi_slave_env.sh 192.168.149.1**".
 
 ```bash
 ssh 192.168.149.119
@@ -140,27 +141,27 @@ source multi_slave_env.sh 192.168.149.1
 rostopic info /multi_robot/runActionGroup
 ```
 
-(9) Enter 'rostopic pub /multi_robot/runActionGroup', then press the Tab key 3 times to complete the command as 'rostopic pub /multi_robot/runActionGroup std_msgs/String "data: ''" '.
+(9) Enter 'rostopic pub /multi_robot/runActionGroup', then press the Tab key 3 times to complete the command as `rostopic pub /multi_robot/runActionGroup std_msgs/String "data: ''"`.
 
 ```bash
 rostopic pub /multi_robot/runActionGroup std_msgs/String "data: ''"
 ```
 
-(10) Fill in the name of the action group in 'data: '' (The action group can be found in the directory '/home/ubuntu/software/puppypi_control/ActionGroups').
+(10) Fill in the name of the action group in "**data: ''**" (The action group can be found in the directory '/home/ubuntu/software/puppypi_control/ActionGroups').
 
-<img src="../_static/media/chapter_18/section_2//image13.png"  />
+<img src="../_static/media/chapter_18/section_2//image13.png" class="common_img" />
 
 (11) After the action group is executed, you can see the printed action group name in the terminal interface where the multi-slave control program is running on both the host and the slave.
 
 <img class="common_img" src="../_static/media/chapter_18/section_2//image14.jpeg"  />
 
-(12) If you want to execute other actions, in the terminal where the multi-slave control topic is started, press 'Ctrl+c' to close it, then press the '↑' arrow key on the keyboard, modify the action group name, and press Enter to execute.
+(12) If you want to execute other actions, in the terminal where the multi-slave control topic is started, press 'Ctrl+C' to close it, then press the '↑' arrow key on the keyboard, modify the action group name, and press Enter to execute.
 
-<img src="../_static/media/chapter_18/section_2//image15.png"  />
+<img src="../_static/media/chapter_18/section_2//image15.png" class="common_img" />
 
-(13)  If you need to close this gameplay, you can press 'Ctrl+C' in the LX terminal interface. If closing fails, you can press it multiple times.
+(13)  If you need to close this gameplay, you can press **'Ctrl+C'** in the LX terminal interface. If closing fails, you can press it multiple times.
 
-(14) Next, in the terminal interface of both the host and the slave, refer to '[1.3 Host Network Configuration](#anchor_1_3_1) ' and add comments to the Wi-Fi configuration file. Restore it to direct connection mode.
+(14) Next, in the terminal interface of both the host and the slave, refer to '[12.1.3 Operation Steps -> Network Configuration](#anchor_12_1_3)' and add comments to the Wi-Fi configuration file. Restore it to direct connection mode.
 
 ### 12.2.2 Program Outcome
 
