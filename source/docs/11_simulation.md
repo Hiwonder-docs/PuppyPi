@@ -150,13 +150,13 @@ To start writing the URDF model, we need to set the name of the robot following 
 
 <img src="../_static/media/chapter_11/section_1/image14.png" class="common_img" />
 
-⑤ The "**\<material\>**" tag is used to define the visual appearance of a link, with indentation used to specify the detailed description of the link's color. To start describing the color, include "**\<material\>**", and end with "**\</material\>**" when the description is complete. The following example demonstrates setting a link color to yellow: "**<color rgba='1 1 0 1' />**". In this example, "**rgba='1 1 0 1'**" represents the color threshold for achieving a yellow color.
+⑤ The "**\<material\>**" tag is used to define the visual appearance of a link, with indentation used to specify the detailed description of the link's color. To start describing the color, include "**\<material\>**", and end with "**\</material\>**" when the description is complete. The following example demonstrates setting a link color to yellow: "**\<color rgba='1 1 0 1' /\>**". In this example, "**rgba='1 1 0 1'**" represents the color threshold for achieving a yellow color.
 
 <img src="../_static/media/chapter_11/section_1/image15.png" class="common_img" />
 
 **(3) Set joint**
 
-① To write the first joint, use indentation to indicate that the joint belongs to the current model being set. Then, specify the name and type of the joint as follows: "**<joint name='joint name' type='joint type'>**". Finally, include "**</joint>**" to indicate the completion of the joint definition.
+① To write the first joint, use indentation to indicate that the joint belongs to the current model being set. Then, specify the name and type of the joint as follows: "**\<joint name='joint name' type='joint type'\>**". Finally, include "**\</joint\>**" to indicate the completion of the joint definition.
 
 :::{Note}
 to learn about the type of the joint, please refer to "[**1.3 Basic Syntax of URDF Model->1.3.3 joint**](#anchor_1_3_3)". 
