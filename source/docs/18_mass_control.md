@@ -151,9 +151,11 @@ rostopic pub /multi_robot/runActionGroup std_msgs/String "data: ''"
 
 <img src="../_static/media/chapter_18/section_2//image13.png" class="common_img" />
 
-(11) After the action group is executed, you can see the printed action group name in the terminal interface where the multi-slave control program is running on both the host and the slave.
+(11)  Enter the command to excute the action group.
 
-<img class="common_img" src="../_static/media/chapter_18/section_2//image14.jpeg"  />
+```
+rosrun puppy_control puppy_mul.py
+```
 
 (12) If you want to execute other actions, in the terminal where the multi-slave control topic is started, press 'Ctrl+C' to close it, then press the '↑' arrow key on the keyboard, modify the action group name, and press Enter to execute.
 

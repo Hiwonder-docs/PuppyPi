@@ -25,7 +25,7 @@ Lidar uses a pulse laser as the signal source to scan the surrounding obstacles 
 
 (1) Place the robot in front of a wall or a box before enabling mapping, which allows the robot to scan more points.
 
-<img src="../_static/media/chapter_20/section_1/image2.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_1/image2.png"  />
 
 (2) Try to keep the robot moving straight instead of turning to avoid sparse feature point collection by the Lidar. When the features in the environment are weak, it's best to map areas where feature points are obvious to improve accuracy.
 
@@ -35,7 +35,7 @@ Lidar uses a pulse laser as the signal source to scan the surrounding obstacles 
 
 In environments like shopping malls, which have a lot of transparent glass and unclear environmental features, it's helpful to stop the robot at a suitable location if there are distinct features ahead, such as columns, left and right passages, or diagonal walls. The robot can then rotate in place towards the feature position and wait until the Lidar has scanned the feature environment before rotating back and continuing forward. However, it's best to avoid backing up during the rotation process to ensure accurate mapping.
 
-<img src="../_static/media/chapter_20/section_1/image4.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_1/image4.png"  />
 
 ### 14.1.4 Evaluation of Map Building Results
 
@@ -73,7 +73,7 @@ The theoretical concept of Gmapping is relatively simple. It is an open-source S
 
 As the scene size increases, the number of particles required will also increase. However, since each particle needs to carry a copy of the map, this leads to excessive computational and memory consumption for constructing large maps. Therefore, the Gmapping algorithm is more suitable for building small-scale maps.
 
-<img src="../_static/media/chapter_20/section_2/image2.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_2/image2.png"  />
 
 ### 14.2.2 Gmapping Principle
 
@@ -97,29 +97,29 @@ Looking at the Cartographer algorithm, optimization is akin to using only one pa
 
 * Slam_Gmapping software package: https://github.com/ros-perception/slam_gmapping
 
-* OpenSlam_Gmapping open source algorithm: https://github.com/ros-perception/openslam_gmapping
+* OpenSlam_Gmapping open source algorithm: https://github.com/ros-perception/openslam_gmapping
 
 ### 14.2.3  Virtual Machine Installation and Configuration
 
 Due to the limited computing power of Raspberry Pi, virtual machine will take over part of mapping work. Mapping and navigation both require communication between the virtual machine and PuppyPi, so we need to modify the configurations of both.
 
-- #### Install Virtual Machine Software
+* **Install Virtual Machine Software**
 
-You can refer to the document "Virtual Machine Installation.docx" in the same directory for instructions on installing the virtual machine.
+You can refer to the document "**Virtual Machine Installation.docx**" in the same directory for instructions on installing the virtual machine.
 
-- #### Open and Import Virtual Machine
+* **Open and Import Virtual Machine**
 
 (1) Extract the virtual machine files from the directory to any non-Chinese path you prefer.
 
-<img src="../_static/media/chapter_20/section_2/image4.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_2/image4.png"  />
 
 (2) Open a virtual machine.
 
-<img src="../_static/media/chapter_20/section_2/image5.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_2/image5.png"  />
 
 (3)  Select the folder where virtual machine file is extracted, then open it.
 
-<img src="../_static/media/chapter_20/section_2/image6.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_2/image6.png"  />
 
 (4) Set the name and storage path of the virtual machine according to your needs. Once set, click on **"Import"** to proceed.
 
@@ -141,21 +141,21 @@ if you are using desktop computer, please prepare a wireless LAN adapter or USB 
 
 (2)  Return to the virtual machine interface, and click **"edit->virtual machine editor"**.
 
-<img src="../_static/media/chapter_20/section_2/image9.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_2/image9.png"  />
 
 (3) Select the wireless network card to be bridged. Then click OK.
 
-<img src="../_static/media/chapter_20/section_2/image10.png"  alt="loading" />
+<img class="common_img" src="../_static/media/chapter_20/section_2/image10.png"  alt="loading" />
 
-<img src="../_static/media/chapter_20/section_2/image11.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_2/image11.png"  />
 
 (4)  Open virtual machine, and power on virtual machine.
 
-<img src="../_static/media/chapter_20/section_2/image12.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_2/image12.png"  />
 
 (5) When entering the system desktop, right click the desktop and select **"open in terminal"**.
 
-<img src="../_static/media/chapter_20/section_2/image13.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_2/image13.png"  />
 
 :::{Note}
 The input command should be case sensitive and the keywords can be complemented by **"Tab"** key.
@@ -167,9 +167,9 @@ The input command should be case sensitive and the keywords can be complemented 
 ifconfig
 ```
 
-<img src="../_static/media/chapter_20/section_2/image15.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_2/image15.png"  />
 
-(7) Right click the system desktop, and open a new command line terminal. Then input command **"sudo nano /etc/hosts"** and press Enter to configure the network.
+(7) Right click the system desktop, and open a new command line terminal. Then input command and press Enter to configure the network.
 
 ```bash
 sudo nano /etc/hosts
@@ -177,7 +177,7 @@ sudo nano /etc/hosts
 
 (8) Modify the IP in the second and the third lines as the IP of virtual machine and Raspberry Pi you got in the previous step. And the fixed IP of Raspberry Pi under direct connection mode is **"192.168.149.1"**.
 
-<img src="../_static/media/chapter_20/section_2/image17.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_2/image17.png"  />
 
 :::{Note}
  When modifying the IP, please ensure the indent is consistent.
@@ -185,7 +185,7 @@ sudo nano /etc/hosts
 
 (9)  After modification, press Ctrl+x, and Y key to save modified buffer, then press Enter.
 
-<img src="../_static/media/chapter_20/section_2/image18.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_2/image18.png"  />
 
 - #### PuppyPi Network Configuration
 
@@ -193,7 +193,7 @@ sudo nano /etc/hosts
 
 (2) Click <img src="../_static/media/chapter_20/section_2/image19.png" style="width:0.31458in;height:0.27361in" /> or use shortcut **"Ctrl+Alt+T"** to open terminal
 
-(3) Enter command **"sudo vim /etc/hosts"** and press Enter to change network configuration.
+(3) Enter command and press Enter to change network configuration.
 
 ```bash
 sudo vim /etc/hosts
@@ -205,9 +205,9 @@ sudo vim /etc/hosts
 :wq
 ```
 
-<img src="../_static/media/chapter_20/section_2/image21.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_2/image21.png"  />
 
-(5) Input command **"source .bashrc"** and press Enter to update the configuration.
+(5) Input command and press Enter to update the configuration.
 
 ```bash
 source .bashrc
@@ -216,28 +216,28 @@ source .bashrc
 ### 14.2.4  Enable Lidar Mapping
 
 :::{Note}
-The input command should be case sensitive, and the keyword can be complemented by "Tab" key.
+The input command should be case sensitive, and the keyword can be complemented by "**Tab**" key.
 :::
 
 (1) Firstly, control PuppyPi with PS2 wireless handle to move around for perceiving the surrounding and start mapping. Turn on the handle, then press START button.
 
 (2) Connect to Raspberry Pi desktop through VNC.
 
-(3) Click<img src="../_static/media/chapter_20/section_2/image23.png" style="width:0.32292in;height:0.30208in" />or press **"Ctrl+Alt+T"** to open the Terminator terminal.
+(3) Click <img src="../_static/media/chapter_20/section_2/image23.png" style="width:0.32292in;height:0.30208in" /> or press **"Ctrl+Alt+T"** to open the Terminator terminal.
 
-(4) Input command **"roslaunch puppy_slam gmapping.launch"**, and press Enter to enable mapping service.
+(4) Input command, and press Enter to enable mapping service.
 
 ```bash
 roslaunch puppy_slam gmapping.launch
 ```
 
-(5) Open the virtual machine and open the terminal. Then input command **"rosparam set /puppy_control/joint_state_pub_topic true"** and press Enter to enable the node to display URDF model.
+(5) Open the virtual machine and open the terminal. Then input command and press Enter to enable the node to display URDF model.
 
 ```bash
 rosparam set /puppy_control/joint_state_pub_topic true
 ```
 
-(6) Enter command **"roslaunch puppy_description rviz_with_urdf.launch"** and press Enter to open the tool to view mapping process.
+(6) Enter command and press Enter to open the tool to view mapping process.
 
 ```bash
 roslaunch puppy_description rviz_with_urdf.launch
@@ -245,15 +245,15 @@ roslaunch puppy_description rviz_with_urdf.launch
 
 (7) Click **"File->Open Config"** to open configuration file.
 
-<img src="../_static/media/chapter_20/section_2/image28.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_2/image28.png"  />
 
-(8) Move to the folder **"puppy/puppy_sim/src/puppy_description"**, select "mapping.rviz" folder and open it.
+(8) Move to the folder **"puppy/puppy_sim/src/puppy_description"**, select "**mapping.rviz**" folder and open it.
 
-<img src="../_static/media/chapter_20/section_2/image29.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_2/image29.png"  />
 
 (9) After a while, map will appear as pictured.
 
-<img src="../_static/media/chapter_20/section_2/image30.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_2/image30.png"  />
 
 (10) Then you can use the wireless handle to control the robot dog to move to anywhere. As PuppyPi is moving, the map will become complete. For how to control PuppyPi to move with handle, please refer to the table below.
 
@@ -277,7 +277,7 @@ roslaunch puppy_description rviz_with_urdf.launch
 |   ◻ / move right joystick left   | Speed up（Combined with ↑and↓ keys） |
 |  ○ / move right joystick right   | Speed down（Combined with↑and↓keys） |
 
-(11) After PuppyPi has traveled around the surrounding, you need to save the map to Raspberry Pi. Return back to VNC, and open a new terminal, then input command "rosrun map_server map_saver -f /home/ubuntu/puppy_pi/src/puppy_slam/maps/map1". 
+(11) After PuppyPi has traveled around the surrounding, you need to save the map to Raspberry Pi. Return back to VNC, and open a new terminal, then input command. 
 
 ```bash
 rosrun map_server map_saver -f /home/ubuntu/puppypi/src/puppy_slam/maps/map1
@@ -285,11 +285,11 @@ rosrun map_server map_saver -f /home/ubuntu/puppypi/src/puppy_slam/maps/map1
 
 Map1 is the name of the map, and you change it. Press Enter, and after a while, the map will be kept in the specific path.
 
-<img src="../_static/media/chapter_20/section_2/image31.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_2/image31.png"  />
 
-(12) open the file manager, and you can find the map under the path, "/home/ubuntu/puppy_pi/src/puppy_slam/maps/".
+(12) open the file manager, and you can find the map under the path, "**/home/ubuntu/puppy_pi/src/puppy_slam/maps/**".
 
-<img src="../_static/media/chapter_20/section_2/image34.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_2/image34.png"  />
 
 (13) At this time, SLAM mapping comes to the end. And you can press Crtl+C on terminal interface.
 
@@ -307,7 +307,7 @@ The Hector algorithm does not require odometry data, making it suitable for unev
 
 The overall mapping accuracy of the Hector algorithm is generally better than that of the Gmapping algorithm. However, Hector requires higher parameter configuration, while Gmapping is known for its ease of use.
 
-<img src="../_static/media/chapter_20/section_3/image2.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_3/image2.png"  />
 
 ### 14.3.2 Hector Principle
 
@@ -318,39 +318,39 @@ Continuing, the next step involves matching these two frames of data. Assuming t
 Finally, based on the pose of the second frame's scan data, calculate its coordinates in the map, effectively mapping it onto the map. By continuously repeating the above steps, the mapping process can be completed.
 The algorithm process of Hector is as shown in the figure below:
 
-<img src="../_static/media/chapter_20/section_3/image3.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_3/image3.png"  />
 
 The diagram above serves not only as the algorithm flowchart for Hector SLAM but also as the structural diagram for the Hector source code. Users can refer to this diagram for code organization and study when learning the Hector SLAM algorithm in the later stages.
 
-HectorSLAM related source code and WIKI address:
+HectorSLAM related source code and WIKI address:
 
 Hector Mapping ROS Wiki: http://wiki.ros.org/hector_mapping
 
 Hector_slam software package: https://github.com/tu-darmstadt-ros-pkg/hector_slam 
 
-<img src="../_static/media/chapter_20/section_3/image4.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_3/image4.png"  />
 
 ### 14.3.3 Virtual Machine Installation and Configuration
 
 Due to the limited computing power of Raspberry Pi, virtual machine will take over part of mapping work. Mapping and navigation both require communication between the virtual machine and PuppyPi. We need to modify the configurations of both to enable this.
 
-- #### Install Virtual Machine
+* **Install Virtual Machine**
 
 You can refer to the document **"Virtual Machine Installation.docx"** in the same directory for instructions on installing the virtual machine.
 
-- #### Open and Import Virtual Machine
+* **Open and Import Virtual Machine**
 
 (1) Extract the virtual machine files from the directory to any non-Chinese path you prefer.
 
-<img src="../_static/media/chapter_20/section_3/image5.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_3/image5.png"  />
 
 (2) Open a virtual machine.
 
-<img src="../_static/media/chapter_20/section_3/image6.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_3/image6.png"  />
 
 (3) Select the folder where virtual machine file is extracted, then open it.
 
-<img src="../_static/media/chapter_20/section_3/image7.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_3/image7.png"  />
 
 (4)  Enter the name and set the storage path for virtual machine. Then click **"Import"**.
 
@@ -372,21 +372,21 @@ if you are using desktop computer, please prepare a wireless LAN adapter or USB 
 
 (2) Return to the virtual machine interface, and click **"edit->virtual machine editor"**.
 
-<img src="../_static/media/chapter_20/section_3/image10.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_3/image10.png"  />
 
 (3) Select the wireless network card to be bridged. Then click OK.
 
-<img src="../_static/media/chapter_20/section_3/image11.png"  alt="loading" />
+<img class="common_img" src="../_static/media/chapter_20/section_3/image11.png"  alt="loading" />
 
-<img src="../_static/media/chapter_20/section_3/image12.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_3/image12.png"  />
 
 (4) Open virtual machine, and power on virtual machine.
 
-<img src="../_static/media/chapter_20/section_3/image13.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_3/image13.png"  />
 
-(5) When entering the system desktop, right click the desktop and select "open in terminal".
+(5) When entering the system desktop, right click the desktop and select "**open in terminal**".
 
-<img src="../_static/media/chapter_20/section_3/image14.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_3/image14.png"  />
 
 :::{Note}
 The input command should be case sensitive and the keywords can be complemented by **"Tab"** key.
@@ -398,7 +398,7 @@ The input command should be case sensitive and the keywords can be complemented 
 ifconfig
 ```
 
-<img src="../_static/media/chapter_20/section_3/image16.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_3/image16.png"  />
 
 (7) Right click the system desktop, and open a new command line terminal. Then input command **"sudo nano /etc/hosts"** and press Enter to configure the network.
 
@@ -406,9 +406,9 @@ ifconfig
 sudo nano /etc/hosts
 ```
 
-(8) Modify the IP in the second and the third lines as the IP of virtual machine and Raspberry Pi you got in the previous step. And the fixed IP of Raspberry Pi under direct connection mode is "192.168.149.1".
+(8) Modify the IP in the second and the third lines as the IP of virtual machine and Raspberry Pi you got in the previous step. And the fixed IP of Raspberry Pi under direct connection mode is "**192.168.149.1**".
 
-<img src="../_static/media/chapter_20/section_3/image18.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_3/image18.png"  />
 
 :::{Note}
 when modifying the IP, please ensure the indent is consistent.
@@ -416,15 +416,15 @@ when modifying the IP, please ensure the indent is consistent.
 
 (9) After modification, press Ctrl+x, and Y key to save modified buffer, then press Enter.
 
-<img src="../_static/media/chapter_20/section_3/image19.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_3/image19.png"  />
 
-- #### PuppyPi Network Configuration
+* **PuppyPi Network Configuration**
 
 (1) Get access to Raspberry Pi desktop via VNC.
 
 (2)  Click <img src="../_static/media/chapter_20/section_3/image20.png" style="width:0.31458in;height:0.27361in" /> or use shortcut **"Ctrl+Alt+T"** to open terminal
 
-(3)  Enter command **"sudo vim /etc/hosts"** and press Enter to change PuppyPi network configuration.
+(3)  Enter command and press Enter to change PuppyPi network configuration.
 
 ```bash
 sudo vim /etc/hosts
@@ -436,7 +436,7 @@ sudo vim /etc/hosts
 :wq
 ```
 
-<img src="../_static/media/chapter_20/section_3/image22.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_3/image22.png"  />
 
 (5) Run the command **"source .bashrc"** and press Enter to update the configuration.
 
@@ -447,16 +447,16 @@ source .bashrc
 ### 14.3.4 Enable Lidar Mapping
 
 :::{Note}
-The input command should be case sensitive, and the keyword can be complemented by "Tab" key.
+The input command should be case sensitive, and the keyword can be complemented by "**Tab**" key.
 :::
 
 (1) Firstly, control PuppyPi with PS2 wireless handle to move around for perceiving the surrounding and start mapping. Turn on the handle, then press START button.
 
 (2) Connect to Raspberry Pi desktop through VNC.
 
-(3) Click<img src="../_static/media/chapter_20/section_3/image24.png" style="width:0.32292in;height:0.30208in" /> to open the Terminator terminal.
+(3) Click <img src="../_static/media/chapter_20/section_3/image24.png" style="width:0.32292in;height:0.30208in" /> to open the Terminator terminal.
 
-(4) Input command **"roslaunch puppy_slam hector.launch"**, and press Enter to enable mapping service.
+(4) Input command, and press Enter to enable mapping service.
 
 ```bash
 roslaunch puppy_slam hector.launch
@@ -476,15 +476,15 @@ roslaunch puppy_description rviz_with_urdf.launch
 
 (7) Click **"File->Open Config"** to open configuration file.
 
-<img src="../_static/media/chapter_20/section_3/image29.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_3/image29.png"  />
 
 (8) Move to the folder **"puppy/puppy_sim/src/puppy_description"**, select **"mapping.rviz"** folder and open it.
 
-<img src="../_static/media/chapter_20/section_3/image30.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_3/image30.png"  />
 
 (9) After a while, map will appear as pictured.
 
-<img src="../_static/media/chapter_20/section_3/image31.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_3/image31.png"  />
 
 (10) Then you can use the wireless handle to control the robot dog to move to anywhere. As PuppyPi is moving, the map will become complete. For how to control PuppyPi to move with handle, please refer to the table below.
 
@@ -508,7 +508,7 @@ if PuppyPi is stuck during walking, you can close VNC which has occupied part of
 |   ◻ / move right joystick left   |  Speed up（Combined with↑and↓keys）  |
 |  ○ / move right joystick right   | Speed down（Combined with↑and↓keys） |
 
-(11) After PuppyPi has traveled around the surrounding, you need to save the map to Raspberry Pi. Return back to VNC, and open a new terminal, then input command **"rosrun map_server map_saver -f /home/ubuntu/puppy_pi/src/puppy_slam/maps/map1".** 
+(11) After PuppyPi has traveled around the surrounding, you need to save the map to Raspberry Pi. Return back to VNC, and open a new terminal, then input command.
 
 ```bash
 rosrun map_server map_saver -f /home/ubuntu/puppypi/src/puppy_slam/maps/map1
@@ -516,11 +516,11 @@ rosrun map_server map_saver -f /home/ubuntu/puppypi/src/puppy_slam/maps/map1
 
 map1 is the name of the map, and you change it. Press Enter, and after a while, the map will be kept in the specific path.
 
-<img src="../_static/media/chapter_20/section_3/image32.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_3/image32.png"  />
 
-(12) Click  to open the file manager, and you can find the map under the path, "/home/pi/puppy_pi/src/puppy_slam/maps/".
+(12) Click  to open the file manager, and you can find the map under the path, "**/home/pi/puppy_pi/src/puppy_slam/maps/**".
 
-<img src="../_static/media/chapter_20/section_3/image35.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_3/image35.png"  />
 
 (13) At this time, SLAM mapping comes to the end. And you can press Crtl+C on terminal interface.
 
@@ -537,13 +537,13 @@ The drawback of the Karto algorithm lies in the fact that it requires the constr
 The ROS version of Karto_SLAM utilizes Spare Pose Adjustment (SPA), which is associated with scan matching and loop closure detection. As the number of landmarks increases, the memory requirements also increase. However, the graph optimization method has a greater advantage in mapping large environments compared to other methods because it only involves a graph of points (robot pose), with the map being computed after obtaining the poses.
 The algorithmic framework of Karto SLAM is illustrated in the diagram below:
 
-<img src="../_static/media/chapter_20/section_4/image2.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_4/image2.png"  />
 
 From the diagram, it can be seen that the process is quite simple. The traditional soft real-time running mechanism of SLAM operates such that upon entering each frame of data, processing occurs, and then returns.
 
-**KartoSLAM related source code and WIKI address:**
+**KartoSLAM related source code and WIKI address:**
 
-* **KartoSLAM ROS Wiki:**http://wiki.ros.org/slam_karto 
+**KartoSLAM ROS Wiki:**http://wiki.ros.org/slam_karto** 
 
 * **slam_karto software package:** https://github.com/ros-perception/slam_karto
 
@@ -554,7 +554,7 @@ From the diagram, it can be seen that the process is quite simple. The tradition
 The Karto algorithm is based on the principle of graph optimization, where the map is represented by the mean image, and each node represents a position point of the robot's trajectory along with a dataset of sensor measurements. Whenever a new node is added to the map, constraint calculations are performed based on the node's position to update the map information.
 The data processing flow of the Karto algorithm is as follows:
 
-<img src="../_static/media/chapter_20/section_4/image3.png"  alt="loading" />
+<img class="common_img" src="../_static/media/chapter_20/section_4/image3.png"  alt="loading" />
 
 First, the current pose of the robot is obtained based on odometry. Then, this pose is matched with the poses obtained after translating and rotating the robot within a certain range. Among these possible poses, the one with the highest likelihood is selected. If a single pose is obtained, it is considered as the matched pose. If multiple poses are obtained, their mean is calculated, and the resulting pose is considered as the matched pose.
 Subsequently, a threshold is set for saving the laser scan data. During the scanning process, data that reaches this threshold are saved.
@@ -565,27 +565,27 @@ Finally, the map is updated based on the processed data, completing the map cons
 
 Due to the limited computing power of Raspberry Pi, virtual machine will take over part of mapping work.
 
-- #### Install Virtual Machine
+* **Install Virtual Machine**
 
 You can refer to the document "**[Virtual Machine Installation.docx](https://store.hiwonder.com.cn/docs/common/Mirror_burning_tool/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E5%AF%BC%E5%85%A5.docx)**". in the same directory for instructions on installing the virtual machine.
 
-- #### Open and Import Virtual Machine
+* **Open and Import Virtual Machine**
 
 (1)  Extract the virtual machine files from the directory to any non-Chinese path you prefer.
 
-<img src="../_static/media/chapter_20/section_4/image4.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_4/image4.png"  />
 
 (2) Open a virtual machine.
 
-<img src="../_static/media/chapter_20/section_4/image5.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_4/image5.png"  />
 
 (3) Select the folder where virtual machine file is extracted, then open it.
 
-<img src="../_static/media/chapter_20/section_4/image6.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_4/image6.png"  />
 
 (4) Enter the name and set the storage path for virtual machine. Then click **"Import"**.
 
-<img class="common_img" src="../_static/media/chapter_20/section_4/image7.png"  />
+<img class="common_img" class="common_img" src="../_static/media/chapter_20/section_4/image7.png"  />
 
 :::{Note}
 After the first importing, you can directly select the storage path for the previous virtual machine, and open it without importing it again.
@@ -603,7 +603,7 @@ If you are using desktop computer, please prepare a wireless LAN adapter or USB 
 
 (2) Return to the virtual machine interface, and click **"edit->virtual machine editor"**.
 
-<img src="../_static/media/chapter_20/section_4/image9.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_4/image9.png"  />
 
 (3) Select the wireless network card to be bridged. Then click OK.
 
@@ -613,12 +613,14 @@ If you are using desktop computer, please prepare a wireless LAN adapter or USB 
 
 (4) Open virtual machine, and power on virtual machine.
 
-<img src="../_static/media/chapter_20/section_4/image12.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_4/image12.png"  />
 
-(5) When entering the system desktop, right click the desktop and select "**open in terminal**".<img src="../_static/media/chapter_20/section_4/image13.png"  />
+(5) When entering the system desktop, right click the desktop and select "**open in terminal**".
+
+<img class="common_img" src="../_static/media/chapter_20/section_4/image13.png"  />
 
 :::{Note}
-The input command should be case sensitive and the keywords can be complemented by "Tab" key.
+The input command should be case sensitive and the keywords can be complemented by "**Tab**" key.
 :::
 
 (6) Input command **"ifconfig"** and press Enter to check the IP of virtual machine. And the IP is as the red frame shown.
@@ -627,27 +629,27 @@ The input command should be case sensitive and the keywords can be complemented 
 ifconfig
 ```
 
-<img src="../_static/media/chapter_20/section_4/image15.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_4/image15.png"  />
 
-(7) Right click the system desktop, and open a new command line terminal. Then input command **"sudo nano /etc/hosts"** and press Enter to configure the network.
+(7) Right click the system desktop, and open a new command line terminal. Then input command and press Enter to configure the network.
 
 ```bash
 sudo nano /etc/hosts
 ```
 
-(8) Modify the IP in the second and the third lines as the IP of virtual machine and Raspberry Pi you got in the previous step. And the fixed IP of Raspberry Pi under direct connection mode is "192.168.149.1".
+(8) Modify the IP in the second and the third lines as the IP of virtual machine and Raspberry Pi you got in the previous step. And the fixed IP of Raspberry Pi under direct connection mode is "**192.168.149.1**".
 
-<img src="../_static/media/chapter_20/section_4/image17.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_4/image17.png"  />
 
 :::{Note} 
- when modifying the IP, please ensure the indent is consistent.
+when modifying the IP, please ensure the indent is consistent.
 :::
 
 (9)  After modification, press **Ctrl+x**, and Y key to save modified buffer, then press Enter.
 
-<img src="../_static/media/chapter_20/section_4/image18.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_4/image18.png"  />
 
-- #### PuppyPi Network Configuration
+* **PuppyPi Network Configuration**
 
 (1) Get access to Raspberry Pi desktop via VNC.
 
@@ -665,9 +667,9 @@ sudo vim /etc/hosts
 :wq
 ```
 
-<img src="../_static/media/chapter_20/section_4/image21.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_4/image21.png"  />
 
-(5) Input command **"source .bashrc"** and press Enter to update the configuration.
+(5) Input command and press Enter to update the configuration.
 
 ```bash
 source .bashrc
@@ -676,7 +678,7 @@ source .bashrc
 ### 14.4.4 Enable Lidar Mapping
 
 :::{Note}
-The input command should be case sensitive, and the keyword can be complemented by "Tab" key.
+The input command should be case sensitive, and the keyword can be complemented by "**Tab**" key.
 :::
 
 (1) Firstly, control PuppyPi with PS2 wireless handle to move around for perceiving the surrounding and start mapping. Turn on the handle, then press START button.
@@ -691,13 +693,13 @@ The input command should be case sensitive, and the keyword can be complemented 
 roslaunch puppy_slam karto.launch
 ```
 
-(5) Open the virtual machine and open the terminal. Then input command **"rosparam set /puppy_control/joint_state_pub_topic true"** and press Enter to enable the node to display URDF model.
+(5) Open the virtual machine and open the terminal. Then input command and press Enter to enable the node to display URDF model.
 
 ```bash
 rosparam set /puppy_control/joint_state_pub_topic true
 ```
 
-(6) Enter command **"roslaunch puppy_description rviz_with_urdf.launch"** and press Enter to open the tool to view mapping process.
+(6) Enter command and press Enter to open the tool to view mapping process.
 
 ```bash
 roslaunch puppy_description rviz_with_urdf.launch
@@ -705,15 +707,15 @@ roslaunch puppy_description rviz_with_urdf.launch
 
 (7) Click **"File->Open Config"** to open configuration file.
 
-<img src="../_static/media/chapter_20/section_4/image28.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_4/image28.png"  />
 
 (8) Move to the folder **"puppy/puppy_sim/src/puppy_description"**, select **"mapping.rviz"** folder and open it.
 
-<img src="../_static/media/chapter_20/section_4/image29.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_4/image29.png"  />
 
 (9) After a while, map will appear as pictured.
 
-<img src="../_static/media/chapter_20/section_4/image30.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_4/image30.png"  />
 
 (10) Then you can use the wireless handle to control the robot dog to move to anywhere. As PuppyPi is moving, the map will become complete. For how to control PuppyPi to move with handle, please refer to the table below.
 
@@ -737,7 +739,7 @@ if PuppyPi is stuck during walking, you can close VNC which has occupied part of
 |   ◻ / move right joystick left    |  Speed up（Combined with↑and↓keys）  |
 |   ○ / move right joystick right   | Speed down（Combined with↑and↓keys） |
 
-(11) After PuppyPi has traveled around the surrounding, you need to save the map to Raspberry Pi. Return back to VNC, and open a new terminal, then input command "rosrun map_server map_saver -f /home/pi/puppy_pi/src/puppy_slam/maps/map1". 
+(11) After PuppyPi has traveled around the surrounding, you need to save the map to Raspberry Pi. Return back to VNC, and open a new terminal, then input command. 
 
 ```bash
 rosrun map_server map_saver -f /home/ubuntu/puppypi/src/puppy_slam/maps/map1
@@ -745,11 +747,11 @@ rosrun map_server map_saver -f /home/ubuntu/puppypi/src/puppy_slam/maps/map1
 
 map1 is the name of the map, and you change it. Press Enter, and after a while, the map will be kept in the specific path
 
-<img src="../_static/media/chapter_20/section_4/image31.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_4/image31.png"  />
 
 (12) The saved map is located in the Docker container at the path '/homeubuntu/puppypi/src/puppy_slam/maps/'.
 
-<img src="../_static/media/chapter_20/section_4/image35.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_4/image35.png"  />
 
 (13) At this time, SLAM mapping comes to the end. And you can press Crtl+C on terminal interface.
 
@@ -765,15 +767,15 @@ Via the app, you can control PuppyPi's movement, view its mapping process and se
 
 ### 14.5.2 Mapping
 
-<span id="anchor_5_2_1" class="anchor"></span>
+<p id="anchor_5_2_1" class="anchor"></p>
 
-- #### Enable App Mapping Service
+* **Enable App Mapping Service**
 
 (1) Start PuppyPi, then connect to the Raspberry Pi desktop via VNC.
 
 (2)  Click <img src="../_static/media/chapter_20/section_5/image2.png" style="width:0.32292in;height:0.30208in" /> to open the Terminator terminal. 
 
-(3) Input command ". /home/ubuntu/puppy_pi/src/puppy_slam/scripts/mapping_app.sh" and press Enter to enable APP mapping service.
+(3) Input command "**. /home/ubuntu/puppy_pi/src/puppy_slam/scripts/mapping_app.sh**" and press Enter to enable APP mapping service.
 
 ```bash
 . /home/ubuntu/puppypi/src/puppy_slam/scripts/mapping_app.sh
@@ -789,18 +791,18 @@ Via the app, you can control PuppyPi's movement, view its mapping process and se
 
 <img class="common_img" src="../_static/media/chapter_20/section_5/image6.png"  />
 
-(4) Open **"Make A Map"**. And input "http://192.168.149.1:11311" in "Master URI" bar, then click **"CONNECT"**.
+(4) Open **"Make A Map"**. And input "**http://192.168.149.1:11311**" in "**Master URI**" bar, then click **"CONNECT"**.
 
 <img class="common_img" src="../_static/media/chapter_20/section_5/image7.png" style="width:50%" />
 
 The APP interface is divided into two parts:
 Yellow area: display mapping process 
 
-<img src="../_static/media/chapter_20/section_5/image8.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_5/image8.png"  />
 
-- #### Save the Map
+* **Save the Map**
 
-(1) After robot completes mapping, save the map onto Raspberry Pi. Open a new terminal, and run this command "rosrun map_server map_saver -f /home/ubuntu/puppy_pi/src/puppy_slam/maps/map1" and press Enter to save the file to the designated path. 
+(1) After robot completes mapping, save the map onto Raspberry Pi. Open a new terminal, and run this command "**rosrun map_server map_saver -f /home/ubuntu/puppy_pi/src/puppy_slam/maps/map1**" and press Enter to save the file to the designated path. 
 
 ```bash
 rosrun map_server map_saver -f /home/ubuntu/puppypi/src/puppy_slam/maps/map1
@@ -808,11 +810,11 @@ rosrun map_server map_saver -f /home/ubuntu/puppypi/src/puppy_slam/maps/map1
 
 **"map1"** is the name of the map file and you can rename it. Press Enter and wait for a moment. The map will be saved at the specified path under this command.
 
-<img src="../_static/media/chapter_20/section_5/image9.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_5/image9.png"  />
 
 (2)  The saved map is located in the Docker container at the path "/homeubuntu/puppypi/src/puppy_slam/maps/"
 
-<img src="../_static/media/chapter_20/section_5/image10.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_5/image10.png"  />
 
 (3) Press **"Ctrl+C"** on the terminal where mapping program is running to exit the program.
 
@@ -820,24 +822,24 @@ rosrun map_server map_saver -f /home/ubuntu/puppypi/src/puppy_slam/maps/map1
 
 (1) Start PuppyPi, then access Raspberry Pi desktop through VNC.
 
-(2) Click-on<img src="../_static/media/chapter_20/section_5/image2.png" style="width:0.32292in;height:0.30208in" />at upper left corner to open the Terminator terminal.
+(2) Click-on <img src="../_static/media/chapter_20/section_5/image2.png" style="width:0.32292in;height:0.30208in" /> at upper left corner to open the Terminator terminal.
 
-(3)  Run the command **"roscd puppy_slam/scripts/"** and press Enter to navigate to the folder where .sh execution files are stored. 
+(3)  Run the command and press Enter to navigate to the folder where .sh execution files are stored. 
 
 ```bash
 roscd puppy_slam/scripts/
 ```
 
-(4) Enter the command **"sudo vim mapping_app.sh"** and press Enter to check app mapping file.
+(4) Enter the command and press Enter to check app mapping file.
 
 ```bash
 sudo vim mapping_app.sh
 ```
 
-(5) Modify the 8th line indicated in the red frame to "gmapping.launch", "hector.launch" or "karto.launch". Then press "Esc" key and input ":wq" to save and exit the file. Then execute "[5.2.1 Enable APP Mapping Service]()".
+(5) Modify the 8th line indicated in the red frame to "**gmapping.launch**", "**hector.launch**" or "**karto.launch**". Then press "**Esc**" key and input "**:wq**" to save and exit the file. Then execute "[**5.2.1 Enable APP Mapping Service**]()".
 
 ```bash
 :wq
 ```
 
-<img src="../_static/media/chapter_20/section_5/image18.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_5/image18.png"  />
