@@ -1,6 +1,6 @@
 # 7. ROS1-AI Vision and Tracking Course
 
-<p id="anchor_1"></p>
+<p id="anchor_7_1"></p>
 
 ## 7.1 Color Threshold Adjustment
 
@@ -29,13 +29,13 @@ The interface is divided into two parts, including image display zone and recogn
 | image display zone | <img src="../_static/media/chapter_13/section_1/image4.png" style=" " alt="loading" /> |
 | recognition adjustment zone | <img src="../_static/media/chapter_13/section_1/image4.png" style=" " alt="loading" /> |
 
-**(1)  Image Display Zone**
+(1)  Image Display Zon**e**
 
 | Icon | Function |
 |----|----|
 | <img src="../_static/media/chapter_13/section_1/image4.png" style=" " alt="loading" /> | At left, it is the original image. At right, it is the processed image. |
 
-**(2) Recognition Adjustment Zone**
+(2) Recognition Adjustment Zone
 
 | Icon | Function |
 |----|----|
@@ -58,7 +58,7 @@ Take adjusting red color for example. The following operation steps are also app
 
 (3) Face the camera to the red block. Drag L, A and B sliders to adjust the color threshold till the red block at left turns white and other area turns black. 
 
-<img class="common_img" src="../_static/media/chapter_13/section_1/image10.png"  alt="loading" />
+<img class="common_img" src="../_static/media/chapter_13/section_1/image10.png" style="width:800px;"  alt="loading" />
 
 **LAB Threshold Adjustment Parameter**
 
@@ -102,7 +102,7 @@ Take adding orange color as example. Follow the steps below to operate.
 
 ② Face the camera to the orange object. And then drag the slider of L, A and B to adjust the color threshold till the orange ball at left turns white and other area turns black
 
-<img class="common_img" src="../_static/media/chapter_13/section_1/image13.png"  alt="loading" />
+<img class="common_img" src="../_static/media/chapter_13/section_1/image13.png" style="width:800px;" alt="loading" />
 
 ③ Click **"Save"** buttons to keep the modified data.
 
@@ -127,9 +127,9 @@ The input command should be case sensitive. And the key words can be complemente
 
 (1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-(2) Click<img src="../_static/media/chapter_13/section_2/image3.png" style="width:0.32292in;height:0.30208in" /> or press **"Ctrl+Alt+T"** to open command line terminal.
+(2) Click <img src="../_static/media/chapter_13/section_2/image3.png" style="width:0.32292in;height:0.30208in" /> or press **"Ctrl+Alt+T"** to open command line terminal.
 
-(3) Input command **"rosrun puppy_standard_functions color_detect_demo.py"** and press Enter to start color recognition.
+(3) Input command and press Enter to start color recognition.
 
 ```bash
 rosrun puppy_standard_functions color_detect_demo.py
@@ -149,11 +149,11 @@ For example, when red block is recognized, "**red**" will show up.
 
 ### 7.2.4 Program Analysis
 
-The source code of this program is located in: [/home/pi/puppy_pi/src/puppy_standard_functions/scripts/color_detect_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/13/color_detect_demo.py)
+The source code of this program is located in: [/home/pi/puppy_pi/src/puppy_standard_functions/scripts/color_detect_demo.py](../_static/source_code/color_detect_demo.zip)
 
 * **Image Processing**
 
-**(1) Gaussian filtering**
+(1) Gaussian filtering
 
 Before converting the image from RGB into Lab space, denoise the image and use GaussianBlur() function in cv2 library for Gaussian filtering.
 
@@ -203,7 +203,7 @@ dilated = cv2.dilate(eroded, cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))) 
 
 `dilate()` function is used for image dilation. And the meaning of the parameters in parenthesis is the same as that of erode() function.
 
-**(4) Acquire the maximum contour**
+(4) Acquire the maximum contour
 
 ① After processing the image, acquire the contour of the target to be recognized, which involves `findContours()` function in cv2 library.
 
@@ -220,7 +220,7 @@ if contour_area_temp > 50:  # 只有在面积大于50时，最大面积的轮廓
                 area_max_contour = c
 ```
 
-- #### Feedback information
+* **Feedback information**
 
 (1)  After the contour of the maximum area is obtained, call circle() function in cv2 library, and circle the recognized target. The color of the circle is in line with the recognized color.
 
@@ -254,13 +254,13 @@ The sixth parameter  `draw_color` represents the color of the font.
 
 The seventh parameter  `2`  represents the font weight.
 
-### 2.5 Function Extension
+### 7.2.5 Function Extension
 
-**2.5.1 Add new recognized color**
+* **Add new recognized color**
 
 In addition to the three built-in recognized colors, we can also set other colors for recognition. For example, let's take orange as an additional color for recognition. The specific modification steps are as follows:
 
-(1) Based on "[**7.1 Color Threshold Adjustment**]()", use LAB_TOOL to add orange and save it. 
+(1) Based on "[**7.1 Color Threshold Adjustment**](#anchor_7_1)", use LAB_TOOL to add orange and save it. 
 
 <img class="common_img" src="../_static/media/chapter_13/section_2/image10.png"  />
 
@@ -272,9 +272,9 @@ sudo vim puppypi/src/lab_config/config/lab_config.yaml
 
 Find the LAB value of the orange color we added in the opened file.
 
-<img src="../_static/media/chapter_13/section_2/image13.png"  />
+<img class="common_img" src="../_static/media/chapter_13/section_2/image13.png"  />
 
-(3) Open the new command window and input the command "**sudo vim puppy_pi/src/lab_config/lab_config_list.yaml**".
+(3) Open the new command window and input the command.
 
 ```bash
 sudo vim puppypi/src/lab_config/lab_config_list.yaml
@@ -282,7 +282,7 @@ sudo vim puppypi/src/lab_config/lab_config_list.yaml
 
 Write the value of orange found in the previous file into the lab_config_list file and save it.
 
-<img src="../_static/media/chapter_13/section_2/image16.png"  />
+<img class="common_img" src="../_static/media/chapter_13/section_2/image16.png"  />
 
 (4)  Input the command in the command window to open program file.
 
@@ -292,7 +292,7 @@ sudo vim puppypi/src/puppy_standard_functions/scripts/color_detect_demo.py
 
 In the program file, add the BGR value of the font color in the feedback screen.
 
-<img src="../_static/media/chapter_13/section_2/image19.png"  />
+<img src="../_static/media/chapter_13/section_2/image19.png" class="common_img" />
 
 :::{Note}
 The three values here present the BGR values, solely serving as the color values for the front in the feedback screen, without affecting the recognition performance. You can modify the specific BGR values by looking up color-related BGR values on websites.
@@ -302,11 +302,11 @@ The values (0, 128, 255) here represent the BGR for orange.
 
 The following part of the program is the key code for color recognition. We need to add the LAB value for orange in it.
 
-<img src="../_static/media/chapter_13/section_2/image21.png"  />
+<img src="../_static/media/chapter_13/section_2/image21.png" class="common_img" />
 
-<img src="../_static/media/chapter_13/section_2/image23.png"  />
+<img src="../_static/media/chapter_13/section_2/image23.png" class="common_img" />
 
-<img src="../_static/media/chapter_13/section_2/image25.png"  />
+<img src="../_static/media/chapter_13/section_2/image25.png" class="common_img" />
 
 (5) After adding the code at the indicated location, enter the command to restart the game. Place an orange object in front of the camera, and you should see the orange color being recognized in the feedback screen. Additionally, in the command window, you should see the message "**detect_color is orange**" printed.
 
@@ -316,7 +316,7 @@ The following part of the program is the key code for color recognition. We need
 
 ### 7.3.1 Program Logic
 
-Firstly, program to recognize tag, which involves image graying, positioning and other operations. 
+Firstly, program to recognize tag, which involves image graying, positioning and other operations.
 Lastly, encode and decode the tag, and display the recognition result on the camera returned image and terminal interface.
 
 ### 7.3.2 Operation Steps
@@ -343,13 +343,13 @@ After the game starts, place the tag card within the camera frame. When recogniz
 
 <img class="common_img" src="../_static/media/chapter_13/section_3/image9.png"  />
 
-<img src="../_static/media/chapter_13/section_3/image10.png"  />
+<img src="../_static/media/chapter_13/section_3/image10.png" class="common_img" />
 
 ### 7.3.4 Program Analysis 
 
 The source code of this program is stored in :
 
-[/home/pi/puppy_pi/src/puppy_standard_functions/scripts/apriltag_detect_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/13/apriltag_detect_demo.py)
+[/home/pi/puppy_pi/src/puppy_standard_functions/scripts/apriltag_detect_demo.py](../_static/source_code/apriltag_tracking_demo.zip)
 
 * **Tag Detection**
 
@@ -362,7 +362,7 @@ gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
 detections = detector.detect(gray, return_image=False)
 ```
 
-**(2) Extract Tag Information**
+(2) Extract Tag Information
 
 After collecting the tag information, extract the useful information.
 
@@ -465,7 +465,7 @@ After the game starts, place the tag card within the camera frame. When the tag 
 
 The source code of this program is stored in /home/pi/puppy_pi/src/puppy_standard_functions/scripts/apriltag_AR_demo.py 
 
-[/home/pi/puppy_pi/src/puppy_standard_functions/scripts/apriltag_AR_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/13/apriltag_AR_demo.py)
+[/home/pi/puppy_pi/src/puppy_standard_functions/scripts/apriltag_AR_demo.py](../_static/source_code/apriltag_AR_demo.zip)
 
 * **Tag Detection**
 
@@ -519,7 +519,7 @@ The third parameter `self.camera_intrinsic` is the 3D coordinate in mm under wor
 
 The fourth parameter `self.dist_coeffs` is the 2D coordinate in pixel under camera coordinate system
 
-**(2) Model Projection**
+(2) Model Projection
 
 After the pose of the camera relative to the world coordinate system is required, call `projectPoints()` function in cv2 library to convert the 3D coordinate under world coordinate system into 2D coordinate under pixel coordinate system  
 
@@ -599,7 +599,7 @@ The first parameter `image` is the window name and the data type is string.
 
 The second parameter `frame_result` is the input image.
 
-**(2) Print Tag Information**
+(2) Print Tag Information
 
 Call print() function to print tag coordinate and ID on the terminal.
 
@@ -690,7 +690,7 @@ After the game starts, place the red block within the camera frame. When the col
 
 The source code of this program lies in 
 
-[/home/pi/puppy_pi/src/puppy_standard_functions/scripts/color_tracking_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/13/color_tracking_demo.py)
+[/home/pi/puppy_pi/src/puppy_standard_functions/scripts/color_tracking_demo.py](../_static/source_code/color_tracking_demo.zip)
 
 * **Image Processing**
 
@@ -721,7 +721,7 @@ The second parameter `cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))` is the 
 
 `dilate()` function is used for image dilation. And the meaning of the parameters in parenthesis is the same as that of `erode()` function.
 
-**(3)  Acquire the Maximum Contour**
+(3)  Acquire the Maximum Contour
 
 After processing the image, acquire the contour of the target to be recognized, which involves findContours() function in cv2 library.
 
@@ -768,9 +768,9 @@ The fourth parameter `range_rgb[__target_color]` is the color of the circle
 
 The fifth parameter `2` is thickness of the circle.
 
-### 7.5.5 Function Extension
+<p id="anchor_7_5_5"></p>
 
-<p id="anchor_5_4_1"></p>
+### 7.5.5 Function Extension
 
 * **Modify Default Recognition Color**
 
@@ -788,7 +788,7 @@ rosed puppy_standard_functions color_tracking_demo.py
 
 (3) Then, jump to this line of code.
 
-<img src="../_static/media/chapter_13/section_5/image13.png"  />
+<img src="../_static/media/chapter_13/section_5/image13.png" class="common_img" />
 
 :::{Note}
  we can input the line number and press **"Shift+G"** to jump to the corresponding line.
@@ -852,7 +852,7 @@ rosed lab_config lab_config.yaml
  In order to avoid the game performance, it's recommended to use the LAB_Tool to modify the value back to the initial value after the modification.
 :::
 
-(8)  According to the steps in "[**7.5.5 Function Extension -> Modify Default Recognition Color**]()", restore the default recognition color to red.
+(8)  According to the steps in "[**7.5.5 Function Extension -> Modify Default Recognition Color**](#anchor_7_5_5)", restore the default recognition color to red.
 
 (9) Input the command and press Enter to restart Colored Block Positioning game. Place the yellow block within the camera frame. Then it will be circled on the camera returned image
 
@@ -900,7 +900,7 @@ After the game starts, place the red block within the camera frame. When recogni
 
 The source code of this program lies in 
 
-[/home/pi/puppy_pi/src/puppy_standard_functions/scripts/color_tracking_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/13/color_tracking_demo.py)
+[/home/pi/puppy_pi/src/puppy_standard_functions/scripts/color_tracking_demo.py](../_static/source_code/color_tracking_demo.zip)
 
 * **Image Processing**
 
@@ -1020,6 +1020,8 @@ z_dis = np.radians(-20) if z_dis < np.radians(-20) else z_dis
 PuppyPose['pitch'] = z_dis
 ```
 
+<p id="anchor_7_6_5"></p>
+
 ### 7.6.5 Function Extension
 
 * **Modify Default Recognition Color**
@@ -1038,7 +1040,7 @@ rosed puppy_standard_functions color_tracking_demo.py
 
 (3) Then, jump to this line of code.
 
-<img src="../_static/media/chapter_13/section_6/image12.png"  />
+<img src="../_static/media/chapter_13/section_6/image12.png" class="common_img" />
 
 :::{Note}
 we can input the line number and press **"Shift+G"** to jump to the corresponding line.
@@ -1064,7 +1066,7 @@ rosrun puppy_standard_functions color_tracking_demo.py
 
 In addition to the built-in recognized colors, you can add other recognition colors in the program. Take adding yellow as example.
 
-(1)  Double click the<img src="../_static/media/chapter_13/section_6/image18.png" style="width:0.31496in;height:0.29548in" />in the system desktop to open color threshold adjustment tool. If the prompt box pops up, just click **"Execute"**.
+(1)  Double click the <img src="../_static/media/chapter_13/section_6/image18.png" style="width:0.31496in;height:0.29548in" /> in the system desktop to open color threshold adjustment tool. If the prompt box pops up, just click **"Execute"**.
 
 <img src="../_static/media/chapter_13/section_6/image19.png"  />
 
@@ -1098,7 +1100,7 @@ rosed lab_config lab_config.yaml
 
 <img src="../_static/media/chapter_13/section_6/image26.png"  />
 
-(9) According to the steps in "[**7.6.5 Function Extension -> Modify Default Recognition Color**]()", modify the default recognition color as yellow.
+(9) According to the steps in "[**7.6.5 Function Extension -> Modify Default Recognition Color**](#anchor_7_6_5)", modify the default recognition color as yellow.
 
 (10) Input command and press Enter to restart the game. The PuppyPi will recognize yellow.
 
@@ -1140,11 +1142,11 @@ After the game starts, place the tag card within the camera frame. When recogniz
 
 The source code of this program is stored in 
 
-[/home/pi/puppy_pi/src/puppy_standard_functions/scripts/apriltag_tracking_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/13/apriltag_tracking_demo.py)
+[/home/pi/puppy_pi/src/puppy_standard_functions/scripts/apriltag_tracking_demo.py](../_static/source_code/apriltag_tracking_demo.zip)
 
 * **Tag Detection**
 
-**(1) Image Graying**
+(1) Image Graying
 
 Call `cvtColor()` function in cv2 library to convert the collected colored image into grayscale image and collect the tag information.
 
@@ -1245,7 +1247,7 @@ After the game starts, place the tag card within the camera frame. When recogniz
 
 The source code of this program is stored in 
 
-[/home/pi/puppy_pi/src/puppy_standard_functions/scripts/apriltag_tracking_demo.py ](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/13/apriltag_tracking_demo.py)
+[/home/pi/puppy_pi/src/puppy_standard_functions/scripts/apriltag_tracking_demo.py ](../_static/source_code/apriltag_tracking_demo.zip)
 
 * **Tag Detection**
 
@@ -1378,7 +1380,7 @@ rosed puppy_standard_functions apriltag_tracking_demo.py
 
 (4) Then jump to this line of code.
 
-<img src="../_static/media/chapter_13/section_8/image12.png"  />
+<img src="../_static/media/chapter_13/section_8/image12.png"  class="common_img"/>
 
 :::{Note}
  we can input the line number and press **"Shift+G"** to jump to the corresponding line.
@@ -1400,7 +1402,7 @@ rosed puppy_standard_functions apriltag_tracking_demo.py
 rosrun puppy_standard_functions apriltag_tracking_demo.py
 ```
 
-- #### Change the Default Moving Speed
+* **Change the Default Moving Speed**
 
 Both the default speed of moving forward and backward in the program have been set as 5cm/s. And we can modify the value. For example, modify the speed of moving forward as 3cm/s. 
 
@@ -1416,7 +1418,7 @@ rosed puppy_standard_functions apriltag_tracking_demo.py
 
 (4) Then jump to this line of code.
 
-<img src="../_static/media/chapter_13/section_8/image19.png"  />
+<img src="../_static/media/chapter_13/section_8/image19.png" class="common_img" />
 
 :::{Note}
 we can input the line number and press **"Shift+G"** to jump to the corresponding line.
