@@ -103,9 +103,45 @@ Looking at the Cartographer algorithm, optimization is akin to using only one pa
 
 Due to the limited computing power of Raspberry Pi, virtual machine will take over part of mapping work. Mapping and navigation both require communication between the virtual machine and PuppyPi, so we need to modify the configurations of both.
 
+<p id="anchor_14_2_3_1"></p>
+
 * **Install Virtual Machine Software**
 
-You can refer to the document "**Virtual Machine Installation.docx**" in the same directory for instructions on installing the virtual machine.
+(1) Prepare a computer and connect it to Wi-Fi.
+
+<img class="common_img" src="../_static/media/10.motion_planning_simulation/3.1/image1.png"  />
+
+(2) Extract the Ubuntu image package and virtual machine installation pack
+
+which are saved in the same folder.
+
+<img class="common_img" src="../_static/media/10.motion_planning_simulation/3.1/image2.png"  />
+
+<img class="common_img" src="../_static/media/10.motion_planning_simulation/3.1/image3.png"  />
+
+(3) After packages are extracted, double click the .exe file to execute it.
+
+<img class="common_img" src="../_static/media/10.motion_planning_simulation/3.1/image4.png"  />
+
+(4) Finish the installation following the instructions.
+
+<img class="common_img" style="width:500px" src="../_static/media/10.motion_planning_simulation/3.1/image5.png"  />
+
+<img class="common_img"  style="width:500px" src="../_static/media/10.motion_planning_simulation/3.1/image6.png"  />
+
+<img class="common_img"  style="width:500px" src="../_static/media/10.motion_planning_simulation/3.1/image7.png"  />
+
+<img class="common_img"  style="width:500px" src="../_static/media/10.motion_planning_simulation/3.1/image8.png"  />
+
+<img class="common_img"  style="width:500px" src="../_static/media/10.motion_planning_simulation/3.1/image9.png"  />
+
+<img class="common_img"  style="width:500px" src="../_static/media/10.motion_planning_simulation/3.1/image10.png"  />
+
+<img class="common_img"  style="width:500px" src="../_static/media/10.motion_planning_simulation/3.1/image11.png"  />
+
+(5) After the software is installed successfully, open it. VMware Workstation  offers 30-day free trial. After 30-day trial, you can purchase a license key to  activate this software. If you need free resource, please contact us via email.
+
+<img class="common_img"  style="width:500px" src="../_static/media/10.motion_planning_simulation/3.1/image13.png"  />
 
 * **Open and Import Virtual Machine**
 
@@ -336,7 +372,7 @@ Due to the limited computing power of Raspberry Pi, virtual machine will take ov
 
 * **Install Virtual Machine**
 
-You can refer to the document **"Virtual Machine Installation.docx"** in the same directory for instructions on installing the virtual machine.
+You can refer to the document **"[Virtual Machine Installation](#anchor_14_2_3_1)"** in the same directory for instructions on installing the virtual machine.
 
 * **Open and Import Virtual Machine**
 
@@ -567,7 +603,7 @@ Due to the limited computing power of Raspberry Pi, virtual machine will take ov
 
 * **Install Virtual Machine**
 
-You can refer to the document "**[Virtual Machine Installation.docx](https://store.hiwonder.com.cn/docs/common/Mirror_burning_tool/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E5%AF%BC%E5%85%A5.docx)**". in the same directory for instructions on installing the virtual machine.
+You can refer to the document "**"[Virtual Machine Installation](#anchor_14_2_3_1)"**". in the same directory for instructions on installing the virtual machine.
 
 * **Open and Import Virtual Machine**
 
@@ -585,7 +621,7 @@ You can refer to the document "**[Virtual Machine Installation.docx](https://sto
 
 (4) Enter the name and set the storage path for virtual machine. Then click **"Import"**.
 
-<img class="common_img" class="common_img" src="../_static/media/chapter_20/section_4/image7.png"  />
+<img class="common_img" src="../_static/media/chapter_20/section_4/image7.png"  />
 
 :::{Note}
 After the first importing, you can directly select the storage path for the previous virtual machine, and open it without importing it again.
@@ -687,7 +723,7 @@ The input command should be case sensitive, and the keyword can be complemented 
 
 (3) Click <img src="../_static/media/chapter_20/section_4/image23.png" style="width:0.32292in;height:0.30208in" />to open the Terminator terminal.
 
-(4) Input command **"roslaunch puppy_slam karto.launch"**, and press Enter to enable mapping service.
+(4) Input command, and press Enter to enable mapping service.
 
 ```bash
 roslaunch puppy_slam karto.launch
@@ -775,7 +811,7 @@ Via the app, you can control PuppyPi's movement, view its mapping process and se
 
 (2)  Click <img src="../_static/media/chapter_20/section_5/image2.png" style="width:0.32292in;height:0.30208in" /> to open the Terminator terminal. 
 
-(3) Input command "**. /home/ubuntu/puppy_pi/src/puppy_slam/scripts/mapping_app.sh**" and press Enter to enable APP mapping service.
+(3) Input command and press Enter to enable APP mapping service.
 
 ```bash
 . /home/ubuntu/puppypi/src/puppy_slam/scripts/mapping_app.sh

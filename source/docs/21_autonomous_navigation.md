@@ -168,9 +168,9 @@ And redblobgames website：**[https://www.redblobgames.com/pathfinding/a-star/in
 
 Due to the limited computing power of Raspberry Pi, virtual machine will take over part of mapping work. Mapping and navigation both require communication between the virtual machine and PuppyPi. We need to modify the configurations of both to enable this communication
 
-* **nstall Virtual Machine**
+* **Install Virtual Machine**
 
-You can refer to the document "[**Virtual Machine Installation.docx**](https://store.hiwonder.com.cn/docs/common/Mirror_burning_tool/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E5%AF%BC%E5%85%A5.docx)" in the same directory for instructions on installing the virtual machine.
+You can refer to the document "[**14.2.3 Virtual Machine Installation and Configuration ->Install Virtual Machine Software**](https://store.hiwonder.com.cn/docs/common/Mirror_burning_tool/%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%AE%89%E8%A3%85%E4%B8%8E%E5%AF%BC%E5%85%A5.docx)" for instructions on installing the virtual machine.
 
 * **Open and Import Virtual Machine**
 
