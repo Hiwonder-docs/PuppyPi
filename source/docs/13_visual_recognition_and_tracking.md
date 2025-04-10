@@ -8,9 +8,9 @@ Different light source will have different influence on the colors, which will r
 
 ### 7.1.1 Open LAB_Tool
 
-(1) Open VNC software, double click<img src="../_static/media/chapter_13/section_1/image2.png" style="width:0.31458in;height:0.31458in" />to open LAB_Tool.
+(1) Open VNC software, double click <img src="../_static/media/chapter_13/section_1/image2.png" style="width:0.31458in;height:0.31458in" /> to open LAB_Tool.
 
-(2) Then click "execute" in the pop-up window. 
+(2) Then click "**execute**" in the pop-up window. 
 
 (3) The interface of LAB_Tool is as follow.
 
@@ -72,7 +72,7 @@ Take adjusting red color for example. The following operation steps are also app
 
 <img class="common_img" src="../_static/media/chapter_13/section_1/image11.png"  style="width:300px;" />
 
-We need to adjust the value of L, A and B to approach the zone of the recognized color. Take "red" for example, and please follow these steps to adjust.
+We need to adjust the value of L, A and B to approach the zone of the recognized color. Take "**red**" for example, and please follow these steps to adjust.
 
 (1) Firstly, set all the parameters at left as 0, and at right as 255.
 
@@ -96,7 +96,7 @@ Method ① is more convenient. Take adding orange with method ① for example. T
 
 Take adding orange color as example. Follow the steps below to operate.
 
-① Open LAB_Tool. After the camera is ready, select "red" in the drop-down menu.
+① Open LAB_Tool. After the camera is ready, select "**red**" in the drop-down menu.
 
  <img class="common_img" src="../_static/media/chapter_13/section_1/image8.png"  alt="loading" />
 
@@ -122,7 +122,7 @@ Lastly, display the recognition result on the camera returned image and terminal
 ### 7.2.2 Operation Steps
 
 :::{Note}
-The input command should be case sensitive. And the key words can be complemented by "Tab" key.
+The input command should be case sensitive. And the key words can be complemented by "**Tab**" key.
 :::
 
 (1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
@@ -135,13 +135,13 @@ The input command should be case sensitive. And the key words can be complemente
 rosrun puppy_standard_functions color_detect_demo.py
 ```
 
-(4) If want to close this game, we can press "Ctrl+C". If it fails to close the game, please try again.
+(4) If want to close this game, we can press "**Ctrl+C**". If it fails to close the game, please try again.
 
 ### 7.2.3 Program Outcome
 
 When red, green or blue is recognized, the color type will be displayed on camera returned image and the terminal.
 
-For example, when red block is recognized, "red" will show up. 
+For example, when red block is recognized, "**red**" will show up. 
 
 <img class="common_img" src="../_static/media/chapter_13/section_2/image8.png"  />
 
@@ -151,7 +151,7 @@ For example, when red block is recognized, "red" will show up.
 
 The source code of this program is located in: [/home/pi/puppy_pi/src/puppy_standard_functions/scripts/color_detect_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/13/color_detect_demo.py)
 
-- #### Image Processing
+* **Image Processing**
 
 **(1) Gaussian filtering**
 
@@ -169,7 +169,7 @@ The second parameter `(3, 3)` is the size of Gaussian kernel
 
 The third parameter `3` is the allowable variance around the average in Gaussian filtering. The larger the value, the larger the allowable variance
 
-**(2) Binaryzation Processing**
+(2) Binaryzation Processing
 
 Adopt `inRange()` function in cv2 library to perform binaryzation on the image.
 
@@ -186,7 +186,7 @@ frame_mask = cv2.inRange(frame_lab,
 The first parameter in the bracket is the input image. The second and the third parameters respectively are the lower limit and upper limit of the threshold. When the RGB value of the pixel is between the upper limit and lower limit, the pixel is assigned 1, otherwise, 0.
 To reduce the interference and make the image smoother, it is necessary to perform corrosion and dilation on the image.
 
-**(3) Corrosion and dilation treatment**
+(3) Corrosion and dilation treatment
 
 To reduce the interference and make the image smoother, it is necessary to perform corrosion and dilation on the image.
 
@@ -260,7 +260,7 @@ The seventh parameter  `2`  represents the font weight.
 
 In addition to the three built-in recognized colors, we can also set other colors for recognition. For example, let's take orange as an additional color for recognition. The specific modification steps are as follows:
 
-(1) Based on "[7.1 Color Threshold Adjustment]()", use LAB_TOOL to add orange and save it. 
+(1) Based on "[**7.1 Color Threshold Adjustment**]()", use LAB_TOOL to add orange and save it. 
 
 <img class="common_img" src="../_static/media/chapter_13/section_2/image10.png"  />
 
@@ -274,7 +274,7 @@ Find the LAB value of the orange color we added in the opened file.
 
 <img src="../_static/media/chapter_13/section_2/image13.png"  />
 
-(3) Open the new command window and input the command "sudo vim puppy_pi/src/lab_config/lab_config_list.yaml".
+(3) Open the new command window and input the command "**sudo vim puppy_pi/src/lab_config/lab_config_list.yaml**".
 
 ```bash
 sudo vim puppypi/src/lab_config/lab_config_list.yaml
@@ -284,7 +284,7 @@ Write the value of orange found in the previous file into the lab_config_list fi
 
 <img src="../_static/media/chapter_13/section_2/image16.png"  />
 
-(4)  Input the command "sudo vim puppy_pi/src/puppy_standard_functions/scripts/color_detect_demo.py" in the command window to open program file.
+(4)  Input the command in the command window to open program file.
 
 ```bash
 sudo vim puppypi/src/puppy_standard_functions/scripts/color_detect_demo.py
@@ -308,7 +308,7 @@ The following part of the program is the key code for color recognition. We need
 
 <img src="../_static/media/chapter_13/section_2/image25.png"  />
 
-(5) After adding the code at the indicated location, enter the command to restart the game. Place an orange object in front of the camera, and you should see the orange color being recognized in the feedback screen. Additionally, in the command window, you should see the message "detect_color is orange" printed.
+(5) After adding the code at the indicated location, enter the command to restart the game. Place an orange object in front of the camera, and you should see the orange color being recognized in the feedback screen. Additionally, in the command window, you should see the message "**detect_color is orange**" printed.
 
 <img src="../_static/media/chapter_13/section_2/image27.png"  />
 
@@ -322,21 +322,20 @@ Lastly, encode and decode the tag, and display the recognition result on the cam
 ### 7.3.2 Operation Steps
 
 :::{Note}
-The input command should be case sensitive. And the key words can be complemented by "Tab" key.
+The input command should be case sensitive. And the key words can be complemented by "**Tab**" key.
 :::
-
 
 (1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-(2)  Click<img src="../_static/media/chapter_13/section_3/image4.png" style="width:0.32292in;height:0.30208in" /> or press "Ctrl+Alt+T" to open command line terminal.
+(2)  Click <img src="../_static/media/chapter_13/section_3/image4.png" style="width:0.32292in;height:0.30208in" /> or press "**Ctrl+Alt+T**" to open command line terminal.
 
-(3)  If want to close this game, we can press "Ctrl+C". If it fails to close the game, please try again.
+(3)  If want to close this game, we can press "**Ctrl+C**". If it fails to close the game, please try again.
 
 ```bash
 rosrun puppy_standard_functions apriltag_detect_demo.py
 ```
 
-(4) If want to close this game, we can press "Ctrl+C". If it fails to close the game, please try again.
+(4) If want to close this game, we can press "**Ctrl+C**". If it fails to close the game, please try again.
 
 ### 7.3.3 Program Outcome
 
@@ -352,9 +351,9 @@ The source code of this program is stored in :
 
 [/home/pi/puppy_pi/src/puppy_standard_functions/scripts/apriltag_detect_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/13/apriltag_detect_demo.py)
 
-- #### Tag Detection
+* **Tag Detection**
 
-**(1) Image Graying**
+(1) Image Graying
 
 Call `cvtColor()` function in cv2 library to convert the collected colored image into grayscale image and collect the tag information. 
 
@@ -391,7 +390,7 @@ After collecting the tag information, extract the useful information.
 
 `coordinate` represents the tag coordinate, `tag_family` refers to the type of tag, and `tag_id` indicates tag ID.
 
-- #### **Feedback Information**
+* **Feedback Information**
 
 (1) After recognition, call `print()` function to print the tag coordinate and ID on the terminal.
 
@@ -424,7 +423,7 @@ The fifth parameter  `2`  is the font size.
 
 The sixth parameter `(0, 255, 255)` is the color of the font, and the values respectively corresponds to B, G, R. The color here is yellow.
 
-The seventh parameter "3" is the font weight.
+The seventh parameter "**3**" is the font weight.
 
 ## 7.4 AR Vision
 
@@ -439,12 +438,12 @@ Lastly, through model projection, polygon fill and other operations, draw 3D ima
 ### 7.4.2 Operation Steps
 
 :::{Note}
-The input command should be case sensitive. And the key words can be complemented by "Tab" key.
+The input command should be case sensitive. And the key words can be complemented by "**Tab**" key.
 :::
 
 (1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-(2)  Click<img src="../_static/media/chapter_13/section_4/image4.png" style="width:0.32292in;height:0.30208in" />or press "Ctrl+Alt+T" to open command line terminal
+(2)  Click <img src="../_static/media/chapter_13/section_4/image4.png" style="width:0.32292in;height:0.30208in" /> or press "**Ctrl+Alt+T**" to open command line terminal
 
 (3)  Input the command and press Enter to start AR vision.
 
@@ -452,7 +451,7 @@ The input command should be case sensitive. And the key words can be complemente
 rosrun puppy_standard_functions apriltag_AR_demo.py
 ```
 
-(4) If want to close this game, we can press "Ctrl+C". If it fails to close the game, please try again.
+(4) If want to close this game, we can press "**Ctrl+C**". If it fails to close the game, please try again.
 
 ### 7.4.3 Program Outcome
 
@@ -466,11 +465,11 @@ After the game starts, place the tag card within the camera frame. When the tag 
 
 The source code of this program is stored in /home/pi/puppy_pi/src/puppy_standard_functions/scripts/apriltag_AR_demo.py 
 
-[/home/pi/puppy_pi/src/puppy_standard_functions/scripts/apriltag_AR_demo.py ](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/13/apriltag_AR_demo.py)
+[/home/pi/puppy_pi/src/puppy_standard_functions/scripts/apriltag_AR_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/13/apriltag_AR_demo.py)
 
-- #### Tag Detection
+* **Tag Detection**
 
-**(1) Image Graying**
+(1) Image Graying
 
 Call `cvtColor()` function in cv2 library to convert the collected colored image into grayscale image and collect the tag information.
 
@@ -479,7 +478,7 @@ gray = cv2.cvtColor(rgb_image, cv2.COLOR_RGB2GRAY)
 detections = self.tag_detector.detect(gray)
 ```
 
-**(2) Extract Tag Information**
+(2) Extract Tag Information
 
 After collecting the tag information, extract the useful information.
 
@@ -500,9 +499,9 @@ tag_corners = detection.corners
 
 `coordinate`  represents the tag coordinate, `tag_family` refers to the type of tag, and  `tag_id`  indicates tag ID.
 
-- #### 3D Image Drawing 
+* **3D Image Drawing** 
 
-**(1) Relative Pose Calculation**
+(1) Relative Pose Calculation
 
 Firstly, acquire the pose of the camera relative to the world coordinate system, that is the rotation vector and translation vector from the world coordinate system to the camera coordinate system. solvePnP() function in cv2 library will be called.
 
@@ -528,7 +527,7 @@ After the pose of the camera relative to the world coordinate system is required
 imgpts, jac = cv2.projectPoints(AXIS, rvecs, tvecs, self.camera_intrinsic, self.dist_coeffs)
 ```
 
-**(3) Image Drawing**
+(3) Image Drawing
 
 The program is default to draw 3D bicycle
 
@@ -584,9 +583,9 @@ The second parameter `imgpts` is the vertex of the polygon.
 
 The third parameter `(255, 255, 0)` is the filled color. The values respectively corresponds to R, G and B, and refers to yellow.
 
-- #### Feedback Information
+* **Feedback Information**
 
-**(1) Image Output**
+(1) Image Output
 
 Call `imshow()` function in cv2 library to display the image on camera returned image.
 
@@ -614,14 +613,14 @@ print('tag_id = ',tag_id)
 
 ### 7.4.5 Function Extension
 
-- #### Change Default Displayed Image
+* **Change Default Displayed Image**
 
 The program is default to display 3D bicycle. And other 3D models are available, including cow, fox, rat, wolf, pirate-ship-fat and rectangle. 
 For example, we can modify the program to display 3D cow. We need to take 6 steps to realize this. 
 
-(1)  Click<img src="../_static/media/chapter_13/section_4/image6.png" style="width:0.31458in;height:0.27361in" /> at upper left corner or press **"Ctrl+Alt+T"** to open command line terminal.
+(1)  Click <img src="../_static/media/chapter_13/section_4/image6.png" style="width:0.31458in;height:0.27361in" /> at upper left corner or press **"Ctrl+Alt+T"** to open command line terminal.
 
-(2) Input command  `rosed puppy_standard_functions apriltag_AR_demo.py` and press Enter to open the program file.
+(2) Input command  and press Enter to open the program file.
 
 ```bash
 rosed puppy_standard_functions apriltag_AR_demo.py
@@ -664,20 +663,20 @@ Lastly, display the recognition result on the camera returned image and terminal
 ### 7.5.2 Operation Steps
 
 :::{Note}
-The input command should be case sensitive. And the key words can be complemented by "Tab" key.
+The input command should be case sensitive. And the key words can be complemented by "**Tab**" key.
 :::
 
 (1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-(2)  Click<img src="../_static/media/chapter_13/section_5/image4.png" style="width:0.32292in;height:0.30208in" />or press "**Ctrl+Alt+T**" to open command line terminal.
+(2)  Click <img src="../_static/media/chapter_13/section_5/image4.png" style="width:0.32292in;height:0.30208in" /> or press "**Ctrl+Alt+T**" to open command line terminal.
 
-(3) Input command "rosrun puppy_standard_functions color_tracking_demo.py" and press Enter to start the game.
+(3) Input command and press Enter to start the game.
 
 ```bash
 rosrun puppy_standard_functions color_tracking_demo.py
 ```
 
-(4) If want to close this game, we can press "Ctrl+C". If it fails to close the game, please try again.
+(4) If want to close this game, we can press "**Ctrl+C**". If it fails to close the game, please try again.
 
 ### 7.5.3 Program Outcome
 
@@ -693,9 +692,9 @@ The source code of this program lies in
 
 [/home/pi/puppy_pi/src/puppy_standard_functions/scripts/color_tracking_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/13/color_tracking_demo.py)
 
-- #### Image Processing
+* **Image Processing**
 
-**(1) Binaryzation Processing**
+(1) Binaryzation Processing
 
 Adopt `inRange()` function in cv2 library to perform binaryzation on the image.
 
@@ -705,7 +704,7 @@ frame_mask = cv2.inRange(frame_lab, tuple(target_color_range['min']), tuple(targ
 
 The first parameter in the bracket is the input image. The second and the third parameters respectively are the lower limit and upper limit of the threshold. When the RGB value of the pixel is between the upper limit and lower limit, the pixel is assigned 1, otherwise, 0.
 
-**(2) Corrosion and Dilation**
+(2) Corrosion and Dilation
 
 To reduce the interference and make the image smoother, it is necessary to perform corrosion and dilation on the image.
 
@@ -739,9 +738,9 @@ The first parameter in parentheses is the input image; the second parameter is t
        area_max_contour = c
 ```
 
-- #### Feedback Information 
+* **Feedback Information** 
 
-**(1) Coordinate Feedback**
+(1) Coordinate Feedback
 
 Call print() function to print the coordinate of the colored block on the camera returned image. 
 
@@ -749,7 +748,7 @@ Call print() function to print the coordinate of the colored block on the camera
  print('center_x = %d ,center_y=%d'%(int(center_x), int(center_y)))
 ```
 
-**(2) Block Marking**
+(2) Block Marking
 
 Use circle() function in cv2 library to circle the colored block in corresponding color
 
@@ -773,13 +772,13 @@ The fifth parameter `2` is thickness of the circle.
 
 <p id="anchor_5_4_1"></p>
 
-- #### Modify Default Recognition Color
+* **Modify Default Recognition Color**
 
 There are three built-in colors, including red, green and blue. The default recognized color is red.
 
 Take modifying the default recognition color as green for example. The specific operation steps are as follow.
 
-(1)  Click <img src="../_static/media/chapter_13/section_5/image6.png" style="width:0.31458in;height:0.27361in" />or press "**Ctrl+Alt+T**" to open command line terminal
+(1)  Click <img src="../_static/media/chapter_13/section_5/image6.png" style="width:0.31458in;height:0.27361in" /> or press "**Ctrl+Alt+T**" to open command line terminal
 
 (2) Input the command and press Enter to open program file.
 
@@ -805,19 +804,19 @@ rosed puppy_standard_functions color_tracking_demo.py
 :wq
 ```
 
-(6 Input command `rosrun puppy_standard_functions color_tracking_demo.py` to restart the game. Then PuppyPi will recognize green.
+(6 Input command to restart the game. Then PuppyPi will recognize green.
 
 ```bash
 rosrun puppy_standard_functions color_tracking_demo.py
 ```
 
-- #### Add New Recognition Color
+* **Add New Recognition Color**
 
 In addition to the built-in recognized colors, you can add other recognition colors in the program. Take adding yellow as example.
 
-(1) Click <img src="../_static/media/chapter_13/section_5/image6.png" style="width:0.31458in;height:0.27361in" />or press "**Ctrl+Alt+T**" to open command line terminal
+(1) Click <img src="../_static/media/chapter_13/section_5/image6.png" style="width:0.31458in;height:0.27361in" /> or press "**Ctrl+Alt+T**" to open command line terminal
 
-(2) Input command **"rosed lab_config lab_config.yaml"** and press Enter to open Lab color setting document. It is recommended to screenshot the initial value for recording.
+(2) Input command and press Enter to open Lab color setting document. It is recommended to screenshot the initial value for recording.
 
 ```bash
 rosed lab_config lab_config.yaml
@@ -853,7 +852,7 @@ rosed lab_config lab_config.yaml
  In order to avoid the game performance, it's recommended to use the LAB_Tool to modify the value back to the initial value after the modification.
 :::
 
-(8)  According to the steps in "[7.5.5 Function Extension -> Modify Default Recognition Color]()", restore the default recognition color to red.
+(8)  According to the steps in "[**7.5.5 Function Extension -> Modify Default Recognition Color**]()", restore the default recognition color to red.
 
 (9) Input the command and press Enter to restart Colored Block Positioning game. Place the yellow block within the camera frame. Then it will be circled on the camera returned image
 
@@ -876,12 +875,12 @@ Lastly, obtain the rotation angle of the servo through inverse kinematics calcul
 ### 7.6.2 Operation Steps
 
 :::{Note}
-The input command should be case sensitive. And the key words can be complemented by "Tab" key.
+The input command should be case sensitive. And the key words can be complemented by "**Tab**" key.
 :::
 
 (1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-(2)  Click<img src="../_static/media/chapter_13/section_6/image4.png" style="width:0.32292in;height:0.30208in" /> or press "Ctrl+Alt+T" to open command line terminal
+(2)  Click <img src="../_static/media/chapter_13/section_6/image4.png" style="width:0.32292in;height:0.30208in" /> or press "**Ctrl+Alt+T**" to open command line terminal
 
 (3) Input command "rosrun puppy_standard_functions color_tracking_demo.py" and press Enter to start the game.
 
@@ -889,7 +888,7 @@ The input command should be case sensitive. And the key words can be complemente
 rosrun puppy_standard_functions color_tracking_demo.py
 ```
 
-(4) If want to close this game, we can press "Ctrl+C". If it fails to close the game, please try again.
+(4) If want to close this game, we can press "**Ctrl+C**". If it fails to close the game, please try again.
 
 ### 7.6.3 Program Outcome
 
@@ -903,9 +902,9 @@ The source code of this program lies in
 
 [/home/pi/puppy_pi/src/puppy_standard_functions/scripts/color_tracking_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/13/color_tracking_demo.py)
 
-- #### Image Processing
+* **Image Processing**
 
-**(1) Binaryzation Processing**
+(1) Binaryzation Processing
 
 Adopt inRange() function in cv2 library to perform binaryzation on the image.
 
@@ -915,7 +914,7 @@ frame_mask = cv2.inRange(frame_lab, tuple(target_color_range['min']), tuple(targ
 
 The first parameter in the bracket is the input image. The second and the third parameters respectively are the lower limit and upper limit of the threshold. When the RGB value of the pixel is between the upper limit and lower limit, the pixel is assigned 1, otherwise, 0.
 
-**(2) Corrosion and Dilation**
+(2) Corrosion and Dilation
 
 To reduce the interference and make the image smoother, it is necessary to perform corrosion and dilation on the image.
 
@@ -924,12 +923,12 @@ eroded = cv2.erode(frame_mask, cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
 dilated = cv2.dilate(eroded, cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3)))  # 膨胀(dilation)
 ```
 
-erode() function is used for corrosion. Take "eroded = cv2.erode(frame_mask, cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3)))" for example. The meaning of the parameters in bracket are as follow.
-The first parameter "frame_mask" is the input image.
-The second parameter "cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))" is the structural element and kernel deciding the nature of the operation. And the first parameter in the parenthesis is the kernel shape and the second parameter is the kernel dimension.
+erode() function is used for corrosion. Take "**eroded = cv2.erode(frame_mask, cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3)))**" for example. The meaning of the parameters in bracket are as follow.
+The first parameter "**frame_mask**" is the input image.
+The second parameter "**cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))**" is the structural element and kernel deciding the nature of the operation. And the first parameter in the parenthesis is the kernel shape and the second parameter is the kernel dimension.
 dilate() function is used for image dilation. And the meaning of the parameters in parenthesis is the same as that of erode() function
 
-**(3) Acquire the Maximum Contour**
+(3) Acquire the Maximum Contour
 
 After processing the image, acquire the contour of the target to be recognized, which involves findContours() function in cv2 library.
 
@@ -944,9 +943,9 @@ if contour_area_temp > 10:  # 只有在面积大于300时，最大面积的轮�
     area_max_contour = c
 ```
 
-- #### Feedback Information
+* **Feedback Information**
 
-**(1) Coordinate Feedback**
+(1) Coordinate Feedback
 
 Call print() function to print the coordinate of the colored block on the camera returned image.
 
@@ -954,7 +953,7 @@ Call print() function to print the coordinate of the colored block on the camera
 print('center_x = %d ,center_y=%d'%(int(center_x), int(center_y)))
 ```
 
-**(2) Block Marking**
+(2) Block Marking
 
 Use circle() function in cv2 library to circle the colored block in corresponding color
 
@@ -974,9 +973,9 @@ The fourth parameter `range_rgb[__target_color]` is the color of the circle
 
 The fifth parameter `2` is thickness of the circle.
 
-- #### Action Feedback
+* **Action Feedback**
 
-**(1)  Set Specific Point** 
+(1)  Set Specific Point 
 
 Set the center of the camera returned image as the specific point. Then based on the position relation between the center of the target object and the specific point, determine PuppyPi to execute which action. 
 
@@ -988,7 +987,7 @@ x_pid.SetPoint = img_w / 2.0  # 设定(set)
 z_pid.SetPoint = img_h / 2.0
 ```
 
-**(2) Adjust Roll Angle**
+(2) Adjust Roll Angle
 
 Adjust PuppyPi's Roll angle according to whether the target center is at left or right of the camera returned image center.
 
@@ -1005,7 +1004,7 @@ if abs(x_pid.SetPoint - center_x) > 230:
    PuppyPose['roll'] = x_dis
 ```
 
-**(3) Adjust Pitch Angle**
+(3) Adjust Pitch Angle
 
 Adjust PuppyPi's Pitch angle according to whether the target center is below or above the camera returned image center.
 
@@ -1023,15 +1022,15 @@ PuppyPose['pitch'] = z_dis
 
 ### 7.6.5 Function Extension
 
-- #### Modify Default Recognition Color
+* **Modify Default Recognition Color**
 
 There are three built-in colors, including red, green and blue. The default recognized color is red.
 
 Take modifying the default recognition color as green for example. The specific operation steps are as follow.
 
-(1)  Click <img src="../_static/media/chapter_13/section_6/image6.png" style="width:0.31458in;height:0.27361in" />or press "**Ctrl+Alt+T**" to open command line terminal
+(1)  Click <img src="../_static/media/chapter_13/section_6/image6.png" style="width:0.31458in;height:0.27361in" /> or press "**Ctrl+Alt+T**" to open command line terminal
 
-(2)  Input command "rosed puppy_standard_functions color_tracking_demo.py" and press Enter to open program file.
+(2)  Input command and press Enter to open program file.
 
 ```bash
 rosed puppy_standard_functions color_tracking_demo.py
@@ -1045,7 +1044,7 @@ rosed puppy_standard_functions color_tracking_demo.py
 we can input the line number and press **"Shift+G"** to jump to the corresponding line.
 :::
 
-(4) Press "i" to enter the editing mode. Modify the code as `msg.data = 'green'`.
+(4) Press "**i**" to enter the editing mode. Modify the code as `msg.data = 'green'`.
 
 <img class="common_img" src="../_static/media/chapter_13/section_6/image13.png"  />
 
@@ -1055,13 +1054,13 @@ we can input the line number and press **"Shift+G"** to jump to the correspondin
 :wq
 ```
 
-(6) Input command **"rosrun puppy_standard_functions color_tracking_demo.py"** to restart the game. Then PuppyPi will recognize green.
+(6) Input command to restart the game. Then PuppyPi will recognize green.
 
 ```bash
 rosrun puppy_standard_functions color_tracking_demo.py
 ```
 
-- #### Add New Recognition Color
+* **Add New Recognition Color**
 
 In addition to the built-in recognized colors, you can add other recognition colors in the program. Take adding yellow as example.
 
@@ -1085,13 +1084,13 @@ In addition to the built-in recognized colors, you can add other recognition col
 
 <img src="../_static/media/chapter_13/section_6/image23.png"  />
 
-(6) After adjustment, click "Save" to keep the data. Then we can close the tool.
+(6) After adjustment, click "**Save**" to keep the data. Then we can close the tool.
 
 <img src="../_static/media/chapter_13/section_6/image24.png"  />
 
 (7) Click <img src="../_static/media/chapter_13/section_6/image6.png" style="width:0.31458in;height:0.27361in" /> or press **"Ctrl+Alt+T"** to open command line terminal
 
-(8) Check whether the modified data was successfully written in. Input the command **"rosed lab_config lab_config.yaml"** and press Enter to open Lab color setting file.
+(8) Check whether the modified data was successfully written in. Input the command and press Enter to open Lab color setting file.
 
 ```bash
 rosed lab_config lab_config.yaml
@@ -1099,9 +1098,9 @@ rosed lab_config lab_config.yaml
 
 <img src="../_static/media/chapter_13/section_6/image26.png"  />
 
-(9) According to the steps in "[7.6.5 Function Extension -> Modify Default Recognition Color]()", modify the default recognition color as yellow.
+(9) According to the steps in "[**7.6.5 Function Extension -> Modify Default Recognition Color**]()", modify the default recognition color as yellow.
 
-(10) Input command **"rosrun puppy_standard_functions color_tracking_demo.py"** and press Enter to restart the game. The PuppyPi will recognize yellow.
+(10) Input command and press Enter to restart the game. The PuppyPi will recognize yellow.
 
 ```bash
 rosrun puppy_standard_functions color_tracking_demo.py
@@ -1118,12 +1117,12 @@ Lastly, encode and decode the tag, and display the recognition result on the cam
 ### 7.7.2 Operation Steps
 
 :::{Note}
-The input command should be case sensitive. And the key words can be complemented by "Tab" key.
+The input command should be case sensitive. And the key words can be complemented by "**Tab**" key.
 :::
 
 (1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-(2)  Click<img src="../_static/media/chapter_13/section_7/image4.png" style="width:0.32292in;height:0.30208in" />or press "**Ctrl+Alt+T**" to open command line terminal
+(2)  Click <img src="../_static/media/chapter_13/section_7/image4.png" style="width:0.32292in;height:0.30208in" /> or press "**Ctrl+Alt+T**" to open command line terminal
 
 (3)  Input the command  and press Enter to start the game.
 
@@ -1143,7 +1142,7 @@ The source code of this program is stored in
 
 [/home/pi/puppy_pi/src/puppy_standard_functions/scripts/apriltag_tracking_demo.py](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/13/apriltag_tracking_demo.py)
 
-- #### Tag Detection
+* **Tag Detection**
 
 **(1) Image Graying**
 
@@ -1154,7 +1153,7 @@ gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
 detections = detector.detect(gray, return_image=False)
 ```
 
-**(2) Extract Tag Information**
+(2) Extract Tag Information
 
 After collecting the tag information, extract the useful information.
 
@@ -1179,11 +1178,9 @@ if tag_family == 'tag36h11':
    return tag_id
 ```
 
-
-
 `coordinate` represents the tag coordinate, `tag_family` refers to the type of tag, and `tag_id` indicates tag ID.
 
-- #### Feedback Information
+* **Feedback Information**
 
 Call `putText()` function in cv2 library to print the tag ID on the camera returned image.
 
@@ -1207,8 +1204,6 @@ The sixth parameter `(0, 255, 255)` is the color of the font, and the values res
 
 The seventh parameter `3` is the font weight.
 
-
-
 ## 7.8 Tag Tracking
 
 ### 7.8.1 Program Logic
@@ -1226,7 +1221,7 @@ Then, according to the distance between the tag and the camera, control PuppyPi 
 ### 7.8.2 Operation Steps
 
 :::{Note}
-The input command should be case sensitive. And the key words can be complemented by "Tab" key.
+The input command should be case sensitive. And the key words can be complemented by "**Tab**" key.
 :::
 
 (1) Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
@@ -1252,9 +1247,9 @@ The source code of this program is stored in
 
 [/home/pi/puppy_pi/src/puppy_standard_functions/scripts/apriltag_tracking_demo.py ](https://store.hiwonder.com.cn/docs/PuppyPi/pi5/source_code/13/apriltag_tracking_demo.py)
 
-- #### Tag Detection
+* **Tag Detection**
 
-**(1)  Image Graying**
+(1)  Image Graying
 
 Call `cvtColor()` function in cv2 library to convert the collected colored image into grayscale image and collect the tag information.
 
@@ -1263,7 +1258,7 @@ gray = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
 detections = detector.detect(gray, return_image=False)
 ```
 
-**(2)  Extract Tag Information**
+(2)  Extract Tag Information
 
 After collecting the tag information, extract the useful information.
 
@@ -1290,7 +1285,7 @@ if tag_family == 'tag36h11':
 
 `coordinate` represents the tag coordinate, `tag_family` refers to the type of tag, and `tag_id` indicates tag ID.
 
-- #### Feedback Information
+* **Feedback Information**
 
 Call `putText()` function in cv2 library to print the tag ID on the camera returned image.
 
@@ -1314,7 +1309,7 @@ The sixth parameter `(0, 255, 255)` is the color of the font, and the values res
 
 The seventh parameter `3` is the font weight.
 
-- #### Action Feedback
+* **Action Feedback**
 
 The program controls PuppyPi's movement through publishing topic.
 
@@ -1333,11 +1328,11 @@ else:
 
 The meaning of the parameters of `PuppyVelocityPub.publish()` is as follow. 
 
-The first parameter is used to control PuppyPi to move straight. Moving forward is taken as the positive direction and Its unit is cm/s. When it is "0", PuppyPi will stay still. When it is positive, PuppyPi will move forward. When it is negative, PuppyPi will move backward. The greater the absolute value of the parameter, the larger the stride PuppyPi takes.   
+The first parameter is used to control PuppyPi to move straight. Moving forward is taken as the positive direction and Its unit is cm/s. When it is "**0**", PuppyPi will stay still. When it is positive, PuppyPi will move forward. When it is negative, PuppyPi will move backward. The greater the absolute value of the parameter, the larger the stride PuppyPi takes.   
 
 The second parameter is used to control PuppyPi to walk sideways. Its unit is cm/s. As PuppyPi cannot walk sideways, this parameter is without actual function.
 
-The third parameter is used to control PuppyPi to turn. The counterclockwise direction is taken as the positive direction, and the unit is rad/s. When the value is "0", PuppyPi will move straight. When the value is positive, PuppyPi will keep turning left as moving. When the value is negative, PuppyPi will keep turning right as moving. The greater the absolute value of the parameter, the greater PuppyPi turns. 
+The third parameter is used to control PuppyPi to turn. The counterclockwise direction is taken as the positive direction, and the unit is rad/s. When the value is "**0**", PuppyPi will move straight. When the value is positive, PuppyPi will keep turning left as moving. When the value is negative, PuppyPi will keep turning right as moving. The greater the absolute value of the parameter, the greater PuppyPi turns. 
 
 (1) When not recognizing the tag, PuppyPi will not take action.
 
@@ -1373,9 +1368,9 @@ The distance threshold can be modified. For example, we program PuppyPi to move 
 
 (1)  Turn on PuppyPi, and then connect to Raspberry Pi desktop through VNC.
 
-(2)  Click<img src="../_static/media/chapter_13/section_8/image4.png" style="width:0.32292in;height:0.30208in" />or press "**Ctrl+Alt+T**" to open command line terminal.
+(2)  Click <img src="../_static/media/chapter_13/section_8/image4.png" style="width:0.32292in;height:0.30208in" /> or press "**Ctrl+Alt+T**" to open command line terminal.
 
-(3) Input command **"rosed puppy_standard_functions apriltag_tracking_demo.py"** and press Enter to open the program file.
+(3) Input command and press Enter to open the program file.
 
 ```bash
 rosed puppy_standard_functions apriltag_tracking_demo.py
@@ -1427,7 +1422,7 @@ rosed puppy_standard_functions apriltag_tracking_demo.py
 we can input the line number and press **"Shift+G"** to jump to the corresponding line.
 :::
 
-(5) Press "i" key to enter the editing mode, and then modify the code as `PuppyVelocityPub.publish(x=3, y=0, yaw_rate=0)`.
+(5) Press "**i**" key to enter the editing mode, and then modify the code as `PuppyVelocityPub.publish(x=3, y=0, yaw_rate=0)`.
 
 <img src="../_static/media/chapter_13/section_8/image21.png"  />
 

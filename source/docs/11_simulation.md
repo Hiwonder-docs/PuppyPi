@@ -24,7 +24,7 @@ For instance, when describing the two legs of a humanoid robot, the URDF model w
 
 The URDF model is written using XML standard. 
 
-**(1) Elements:**
+(1) Elements:
 
 An element can be defined as desired using the following formula:
 
@@ -33,7 +33,7 @@ An element can be defined as desired using the following formula:
 </element>
 ```
 
-**(2) Properties:**
+(2) Properties:
 
 Properties are included within elements to define characteristics and parameters. Please refer to the following formula to define an element with properties:
 
@@ -44,7 +44,7 @@ property_2="property value2">
 </element>
 ```
 
-**(3) Comments:**
+(3) Comments:
 
 Comments have no impact on the definition of other properties and elements. Please use the following formula to define a comment:
 
@@ -120,7 +120,7 @@ This tag is used in conjunction with the Gazebo simulator. Within this tag, you 
 
 * **Write Simple URDF Model**
 
-**(1) Name the model of the robot**
+(1) Name the model of the robot
 
 To start writing the URDF model, we need to set the name of the robot following this format: "\<robot name='robot model name'\>". Lastly, input "\</robot\>" at the end to represent that the model is written successfully.
 
@@ -128,7 +128,7 @@ To start writing the URDF model, we need to set the name of the robot following 
 
 <img src="../_static/media/chapter_11/section_1/image8.png"  class="common_img"/>
 
-**(2) Set links**
+(2) Set links
 
 ① To write the first link and use indentation to indicate that it is part of the currently set model. Set the name of the link using the following format: **\<link name="link name"\>**. Finally, conclude with "**\</link\>**" to indicate the successful completion of the link definition.
 
@@ -154,7 +154,7 @@ To start writing the URDF model, we need to set the name of the robot following 
 
 <img src="../_static/media/chapter_11/section_1/image15.png" class="common_img" />
 
-**(3) Set joint**
+(3) Set joint
 
 ① To write the first joint, use indentation to indicate that the joint belongs to the current model being set. Then, specify the name and type of the joint as follows: "**\<joint name='joint name' type='joint type'\>**". Finally, include "**\</joint\>**" to indicate the completion of the joint definition.
 
@@ -166,23 +166,23 @@ to learn about the type of the joint, please refer to "[**1.3 Basic Syntax of UR
 
 <img src="../_static/media/chapter_11/section_1/image17.png" class="common_img" />
 
-② Write the description section for the connection between the link and the joint. Use indentation to indicate that it is part of the currently defined joint. The parent parameter and child parameter should be set using the following format: "**<parent link='parent link'/>**", and "**<child link='child link' />**". With the parent link serving as the pivot, the joint rotates the child link.
+② Write the description section for the connection between the link and the joint. Use indentation to indicate that it is part of the currently defined joint. The parent parameter and child parameter should be set using the following format: "**\<parent link='parent link'/\>**", and "**\<child link='child link' /\>**". With the parent link serving as the pivot, the joint rotates the child link.
 
 <img src="../_static/media/chapter_11/section_1/image18.png" class="common_img" />
 
-③ "**<origin>**" describes the position of the joint using indention. This example describes the position of the joint: "**<origin xyz='0 0 0.1' />**". xyz is the coordinate of the joint.
+③ "**\<origin\>**" describes the position of the joint using indention. This example describes the position of the joint: "**\<origin xyz='0 0 0.1' /\>**". xyz is the coordinate of the joint.
 
 <img src="../_static/media/chapter_11/section_1/image19.png" class="common_img" />
 
-④ "<axis>" describes the position of the joint adopting indention. "<axis xyz="0 0 1" />" describes one posture of a joint. Xyz specifies the pose of the joint.
+④ "**\<axis\>**" describes the position of the joint adopting indention. "**\<axis xyz="0 0 1" /\>**" describes one posture of a joint. Xyz specifies the pose of the joint.
 
 <img src="../_static/media/chapter_11/section_1/image20.png" class="common_img" />
 
-⑤ "<limit>" imposes restrictions on the joint using indention. The below picture The "<limit>" tag is used to restrict the motion of a joint, with indentation indicating the specific description of the joint angle limitations. The following example describes a joint with a maximum force limit of 300 Newtons, an upper limit of 3.14 radians, and a lower limit of -3.14 radians. The settings are defined as follows: "**effort='joint force (N)', velocity='joint motion speed', lower='lower limit in radians', upper='upper limit in radians'**".
+⑤ "**\<limit\>**" imposes restrictions on the joint using indention. The below picture The "**\<limit\>**" tag is used to restrict the motion of a joint, with indentation indicating the specific description of the joint angle limitations. The following example describes a joint with a maximum force limit of 300 Newtons, an upper limit of 3.14 radians, and a lower limit of -3.14 radians. The settings are defined as follows: "**effort='joint force (N)', velocity='joint motion speed', lower='lower limit in radians', upper='upper limit in radians'**".
 
 <img src="../_static/media/chapter_11/section_1/image21.png"  class="common_img"/>
 
-⑥ "**<dynamics>**" describes the dynamics of the joint using indention. "**<dynamics damping='50' friction='1' />**" describes dynamics parameters of a joint.
+⑥ "**\<dynamics\>**" describes the dynamics of the joint using indention. "**\<dynamics damping='50' friction='1' /\>**" describes dynamics parameters of a joint.
 
 <img src="../_static/media/chapter_11/section_1/image22.png" class="common_img" />
 
@@ -247,23 +247,23 @@ The files are organized using include directives and macros, which allow for fun
 
 This file defines the basic structure of the robot, including the body, joints, and connections. It also includes some macro and property definitions, which can be reused multiple times in the code to simplify it and avoid redundancy. Since the code is relatively long, it will be divided into three parts for easier explanation, covering the following sections:
 
-**(1)  Model Declaration and Property Definitions**
+(1)  Model Declaration and Property Definitions
 
-The <robot> tag defines the robot model's name as "**puppy**". The <property> tag defines various property values, such as maximum torque and maximum joint speed.
+The \<robot\> tag defines the robot model's name as "**puppy**". The \<property\> tag defines various property values, such as maximum torque and maximum joint speed.
 
-The <include> directive includes two files: puppy.transmission.xacro and puppy.gazebo.xacro. These files contain information about the robot's transmission system and its properties in the Gazebo simulation environment.
+The \<include\> directive includes two files: puppy.transmission.xacro and puppy.gazebo.xacro. These files contain information about the robot's transmission system and its properties in the Gazebo simulation environment.
 
 <img src="../_static/media/chapter_11/section_2/image21.png" class="common_img" />
 
-**(2) Link Definition**
+(2) Link Definition
 
-The <link> element represents a rigid body in the robot model and can contain information such as inertia, visualization, and collision data. Below is an example code for a <link> element that includes inertia, visualization, and collision information:
+The \<link\> element represents a rigid body in the robot model and can contain information such as inertia, visualization, and collision data. Below is an example code for a \<link\> element that includes inertia, visualization, and collision information:
 
 <img src="../_static/media/chapter_11/section_2/image23.png"  class="common_img"/>
 
-**(3) Joint Definition** 
+(3) Joint Definition 
 
-The <joint> element represents a joint in the robot model, connecting two links and defining their relative motion. Below is an example code for a <joint> element that includes joint type, connected links, joint axis direction, and joint limits:
+The \<joint\> element represents a joint in the robot model, connecting two links and defining their relative motion. Below is an example code for a \<joint\> element that includes joint type, connected links, joint axis direction, and joint limits:
 
 <img src="../_static/media/chapter_11/section_2/image25.png" class="common_img" />
 
@@ -271,19 +271,19 @@ The <joint> element represents a joint in the robot model, connecting two links 
 
 This section is primarily used to define the physical characteristics, joint controls, sensors, and other information of the robot's components for simulation, control, and testing in the Gazebo environment. Since the code is relatively long, it will be divided into three parts for easier explanation, covering the following sections:
 
-**(1) Gazebo Plugin Definition**
+(1) Gazebo Plugin Definition
 
 This section defines a Gazebo plugin, "**gazebo_ros_control**", which is used for controlling the robot. The actual implementation of this plugin is provided by the library "**libgazebo_ros_control.so**". Additionally, it sets the Gazebo simulation type and defines the namespace for the robot model.
 
 <img src="../_static/media/chapter_11/section_2/image27.png" class="common_img" />
 
-**(2) Macro Definitions**
+(2) Macro Definitions
 
 This section defines several Xacro macros, which are used to easily set the color and physical properties of the robot's links. The "**model_color**" macro is used to set the color of a link, while the "**link_setup_block**" macro is used to define the physical properties of a link. 
 
 <img src="../_static/media/chapter_11/section_2/image30.png" style="width:5.76597in;height:1.02292in" />
 
-**(3) Using Macro**
+(3) Using Macro
 
 Use the following macros to set the color and physical properties of each link in the robot model. The "**model_color**" macro simplifies the process of setting the link's color. This macro accepts a link_name parameter and assigns the specified link a black material while enabling gravity for that link.
 
@@ -293,13 +293,13 @@ Use the following macros to set the color and physical properties of each link i
 
 The transmissions.xacro file defines the transmission system within the robot model, including the transmission methods between joints and motors. During runtime, ROS will convert the 'transmissions.xacro' file into the robot's transmission system. This file consists of the following two main parts:
 
-**(1) Xacro Macro Definitions**
+(1) Xacro Macro Definitions
 
-Xacro macros are used to define templates for the transmission system using the <xacro:macro> tag. The <transmission> tag specifies the type and name of the transmission system, the <joint> tag defines the joint actuator interface, and the <actuator> tag sets the mechanical reduction ratio and other related properties.
+Xacro macros are used to define templates for the transmission system using the \<xacro:macro\> tag. The \<transmission\> tag specifies the type and name of the transmission system, the \<joint\> tag defines the joint actuator interface, and the \<actuator\> tag sets the mechanical reduction ratio and other related properties.
 
 <img src="../_static/media/chapter_11/section_2/image33.png" class="common_img" />
 
-**(2) Defining Different Transmission Types**
+(2) Defining Different Transmission Types
 
 The transmission block Xacro macro is invoked to define the corresponding transmission for each joint. This allows the robot's transmission system to be consistently defined through configuration files.
 
@@ -311,7 +311,7 @@ The transmission block Xacro macro is invoked to define the corresponding transm
 
 Gazebo is a 3D dynamic simulator that accurately and effectively simulates robots in complex indoor and outdoor environments. Similar to game engines providing high-fidelity visual simulation, Gazebo offers high-fidelity physics simulation. It provides a comprehensive set of sensor models and a user-friendly interaction method for both users and programs.
 
-**(1)  Typical applications of Gazebo:**
+(1)  Typical applications of Gazebo:
 
 ① Testing robot algorithms
 
@@ -319,7 +319,7 @@ Gazebo is a 3D dynamic simulator that accurately and effectively simulates robot
 
 ③ Conducting regression tests in real-world scenarios
 
-**(2) Key features of Gazebo:**
+(2) Key features of Gazebo:
 
 ① Incorporates multiple physics engines
 
@@ -411,11 +411,11 @@ The GUI library uses QT to create graphical widgets for user simulation interact
 
 Coordinate systems are essential for both forward and inverse kinematic analyses. Below, we'll use the PuppyPi robot model in the Gazebo environment as an example to introduce several commonly used coordinate systems.
 
-**(1)  World Coordinate System**
+(1)  World Coordinate System
 
 The World Coordinate System is a stationary reference coordinate system located on the 'ground.' It undergoes no translation or rotation changes over time. Of course, here, the term 'ground' is broadly defined. For example, if the robot is on a tabletop, the world coordinate system would be situated on the plane of that table.
 
-**(2)  Leg Coordinate System**
+(2)  Leg Coordinate System
 
 The establishment of the joint coordinate system follows the right-hand rule. Therefore, in the example robot model in the diagram below, the red axis represents the X-axis, the green axis represents the Y-axis, and the blue axis represents the Z-axis.
 
