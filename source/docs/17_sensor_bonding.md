@@ -30,7 +30,7 @@ Besides, on each probe, there is RGB light whose brightness can be adjusted and 
 
 Firstly, set the distance range. Then control RGB colored light to light on or get out though the change of the level. Lastly, control the color of light through changing the parameter of color channels.
 
-The source code of this program is stored in [/home/ubuntu/puppy_pi/src/puppy_extend_demo/scripts/sonar_control_demo.py ](../_static/source_code/sonar_control_demo.zip)
+The source code of this program is stored in [/home/ubuntu/puppy_pi/src/puppy_extend_demo/scripts/sonar_control_demo.py](../_static/source_code/sonar_control_demo.zip)
 
 ### 11.1.5 Operation Steps
 
