@@ -107,6 +107,8 @@ table {
 }
 #packing-list > .wy-table-responsive > .docutils{
     text-align:center;
+    max-width:760px;
+    width:100%;
 }
 @media screen and (min-width: 1400px) {
     .wy-grid-for-nav .wy-nav-side, .wy-grid-for-nav .wy-side-nav-search, .wy-grid-for-nav .wy-menu {
