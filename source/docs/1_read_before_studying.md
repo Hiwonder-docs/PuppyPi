@@ -47,81 +47,81 @@ Furthermore, unless explicitly stated by Hiwonder, we are not responsible for an
 
 | **No.** | **Components**                  | **Quantity** | **Picture**                                                                     |
 | ------- | ------------------------------- | ------------ |---------------------------------------------------------------------------------|
-| 1       | PuppyPi(with camera)            | 1            | <img  src="../_static/media/chapter_1/section_3/1.png" sytle="width:300px;"/>   |
-| 2       | 8.4V charger                    | 1            | <img  src="../_static/media/chapter_1/section_3/2.png" sytle="width:200px;"/>   |
-| 3       | HPS-0618SG Spare coreless servo | 1            | <img  src="../_static/media/chapter_1/section_3/3.png" sytle="width:100px;"/>   |
-| 4       | Card Reader                     | 1            | <img  src="../_static/media/chapter_1/section_3/4.png" sytle="width:50px;"/>    |
-| 5       | 4cm Balls                       | 3            | <img  src="../_static/media/chapter_1/section_3/5.png" sytle="width:180px;"/>   |
-| 6       | 65*65mm Tags                    | 3            | <img  src="../_static/media/chapter_1/section_3/6.1.png" sytle="width:180px;"/> |
-| 7       | Screwdriver                     | 1            | <img  src="../_static/media/chapter_1/section_3/7.png" sytle="width:180px;"/>   |
-| 8       | Manual                          | 1            | <img  src="../_static/media/chapter_1/section_3/8.png" sytle="width:300px;"/>                       |
+| 1       | PuppyPi(with camera)            | 1            | <img  src="../_static/media/chapter_1/section_3/1.png" style="width:300px;"/>   |
+| 2       | 8.4V charger                    | 1            | <img  src="../_static/media/chapter_1/section_3/2.png" style="width:200px;"/>   |
+| 3       | HPS-0618SG Spare coreless servo | 1            | <img  src="../_static/media/chapter_1/section_3/3.png" style="width:100px;"/>   |
+| 4       | Card Reader                     | 1            | <img  src="../_static/media/chapter_1/section_3/4.png" style="width:50px;"/>    |
+| 5       | 4cm Balls                       | 3            | <img  src="../_static/media/chapter_1/section_3/5.png" style="width:180px;"/>   |
+| 6       | 65*65mm Tags                    | 3            | <img  src="../_static/media/chapter_1/section_3/6.1.png" style="width:180px;"/> |
+| 7       | Screwdriver                     | 1            | <img  src="../_static/media/chapter_1/section_3/7.png" style="width:180px;"/>   |
+| 8       | Manual                          | 1            | <img  src="../_static/media/chapter_1/section_3/8.png" style="width:300px;"/>                       |
 
 (2) PuppyPi Advanced Packing List
 
 | **No.** | Components           | **Quantity** | **Picture**                                                                      |
 |---------| -------------------- | ------------ |----------------------------------------------------------------------------------|
-| 1       | PuppyPi(with camera)            | 1            | <img  src="../_static/media/chapter_1/section_3/1.png" sytle="width:300px;"/>    |
-| 2       | 8.4V charger                    | 1            | <img  src="../_static/media/chapter_1/section_3/2.png"  sytle="width:200px;"/>   |
-| 3       | HPS-0618SG Spare coreless servo | 1            | <img  src="../_static/media/chapter_1/section_3/3.png"  sytle="width:100px;"/>   |
-| 4       | Card Reader                     | 1            | <img  src="../_static/media/chapter_1/section_3/4.png"  sytle="width:50px;"/>    |
-| 5       | PS2 wireless handle | 1 | <img  src="../_static/media/chapter_1/section_3/16.png"  sytle="width:180px;"/>  |
-| 6       | Dot matrix display              | 1 | <img  src="../_static/media/chapter_1/section_3/10.png"  sytle="width:180px;"/>  |
-| 7       | Touch sensor | 1 | <img  src="../_static/media/chapter_1/section_3/11.png"  sytle="width:180px;"/>  |
-| 8       | Glowing ultrasonic sensor | 1 | <img  src="../_static/media/chapter_1/section_3/12.png"  sytle="width:180px;"/>  |
-| 9       | MP3 module | 1 | <img  src="../_static/media/chapter_1/section_3/13.png"  sytle="width:180px;"/>  |
-| 10      | Bracket(for ultransion sensor) | 1 | <img  src="../_static/media/chapter_1/section_3/14.png" sytle="width:180px;" />  |
-| 11      | 4cm Balls                       | 3 | <img  src="../_static/media/chapter_1/section_3/5.png"  sytle="width:180px;"/>   |
-| 12      | 65*65mm Tags                    | 3 | <img  src="../_static/media/chapter_1/section_3/6.1.png"  sytle="width:180px;"/> |
-| 13      | 4PIN wire                       | 3 | <img  src="../_static/media/chapter_1/section_3/9.png"  sytle="width:180px;"/>   |
-| 14      | Screwdriver                     | 1 | <img  src="../_static/media/chapter_1/section_3/7.png"  sytle="width:180px;"/>   |
+| 1       | PuppyPi(with camera)            | 1            | <img  src="../_static/media/chapter_1/section_3/1.png" style="width:300px;"/>    |
+| 2       | 8.4V charger                    | 1            | <img  src="../_static/media/chapter_1/section_3/2.png"  style="width:200px;"/>   |
+| 3       | HPS-0618SG Spare coreless servo | 1            | <img  src="../_static/media/chapter_1/section_3/3.png"  style="width:100px;"/>   |
+| 4       | Card Reader                     | 1            | <img  src="../_static/media/chapter_1/section_3/4.png"  style="width:50px;"/>    |
+| 5       | PS2 wireless handle | 1 | <img  src="../_static/media/chapter_1/section_3/16.png"  style="width:180px;"/>  |
+| 6       | Dot matrix display              | 1 | <img  src="../_static/media/chapter_1/section_3/10.png"  style="width:180px;"/>  |
+| 7       | Touch sensor | 1 | <img  src="../_static/media/chapter_1/section_3/11.png"  style="width:180px;"/>  |
+| 8       | Glowing ultrasonic sensor | 1 | <img  src="../_static/media/chapter_1/section_3/12.png"  style="width:180px;"/>  |
+| 9       | MP3 module | 1 | <img  src="../_static/media/chapter_1/section_3/13.png"  style="width:180px;"/>  |
+| 10      | Bracket(for ultransion sensor) | 1 | <img  src="../_static/media/chapter_1/section_3/14.png" style="width:180px;" />  |
+| 11      | 4cm Balls                       | 3 | <img  src="../_static/media/chapter_1/section_3/5.png"  style="width:180px;"/>   |
+| 12      | 65*65mm Tags                    | 3 | <img  src="../_static/media/chapter_1/section_3/6.1.png"  style="width:180px;"/> |
+| 13      | 4PIN wire                       | 3 | <img  src="../_static/media/chapter_1/section_3/9.png"  style="width:180px;"/>   |
+| 14      | Screwdriver                     | 1 | <img  src="../_static/media/chapter_1/section_3/7.png"  style="width:180px;"/>   |
 | 15      | Accessory bag<br>(M4 *5 Black single-pass nylon column * 6<br>M4 *6 round head screw *12<br>M2 *6 round head screw * 6<br>M3 *6 Black round head screw * 6) | 1 | <img  src="../_static/media/chapter_1/section_3/15.png" />                       |
-| 16      | Manual                          | 1 | <img  src="../_static/media/chapter_1/section_3/8.png"  sytle="width:300px;"/>                        |
+| 16      | Manual                          | 1 | <img  src="../_static/media/chapter_1/section_3/8.png"  style="width:300px;"/>                        |
 
 (3) PuppyPi Pro Packing List
 
 | **No.** | Components                      | **Quantity** | **Picture**                                                                       |
 |---------| ------------------------------- | ------------ |-----------------------------------------------------------------------------------|
-| 1       | PuppyPi(with camera)            | 1 | <img  src="../_static/media/chapter_1/section_3/1.png"  sytle="width:300px;"/>    |
-| 2       | 8.4V charger                    | 1 | <img  src="../_static/media/chapter_1/section_3/2.png"  sytle="width:200px;"/>    |
-| 3       | HPS-0618SG Spare coreless servo | 1 | <img  src="../_static/media/chapter_1/section_3/3.png"  sytle="width:100px;"/>    |
-| 4       | Card Reader                     | 1 | <img  src="../_static/media/chapter_1/section_3/4.png"  sytle="width:50px;"/>     |
-| 5       | PS2 wireless handle             | 1 | <img  src="../_static/media/chapter_1/section_3/16.png"  sytle="width:180px;"/>   |
-| 6       | Dot matrix display              | 1 | <img  src="../_static/media/chapter_1/section_3/10.png" sytle="width:180px;"/>  |
-| 7       | Touch sensor                    | 1 | <img  src="../_static/media/chapter_1/section_3/11.png" sytle="width:180px;"/>  |
-| 8       | Glowing ultrasonic sensor       | 1 | <img  src="../_static/media/chapter_1/section_3/12.png" sytle="width:180px;"/>  |
-| 9       | MP3 module                      | 1 | <img  src="../_static/media/chapter_1/section_3/13.png"sytle="width:180px;"/>  |
-| 10 | TOF Lidar(with bracket) | 1 | <img  src="../_static/media/chapter_1/section_3/18.png" sytle="width:180px;"/>  |
-| 11      | Bracket(for ultransion sensor)  | 1 | <img  src="../_static/media/chapter_1/section_3/14.png" sytle="width:180px;"/>  |
-| 12      | 4cm Balls                       | 3 | <img  src="../_static/media/chapter_1/section_3/5.png" sytle="width:180px;"/>   |
-| 13      | 65*65mm Tags                    | 3 | <img  src="../_static/media/chapter_1/section_3/6.1.png" sytle="width:180px;"/> |
-| 14      | 4PIN wire                       | 3 | <img  src="../_static/media/chapter_1/section_3/9.png" sytle="width:180px;"/>   |
-| 15      | Screwdriver                     | 1 | <img  src="../_static/media/chapter_1/section_3/7.png" sytle="width:180px;"/>   |
+| 1       | PuppyPi(with camera)            | 1 | <img  src="../_static/media/chapter_1/section_3/1.png"  style="width:300px;"/>    |
+| 2       | 8.4V charger                    | 1 | <img  src="../_static/media/chapter_1/section_3/2.png"  style="width:200px;"/>    |
+| 3       | HPS-0618SG Spare coreless servo | 1 | <img  src="../_static/media/chapter_1/section_3/3.png"  style="width:100px;"/>    |
+| 4       | Card Reader                     | 1 | <img  src="../_static/media/chapter_1/section_3/4.png"  style="width:50px;"/>     |
+| 5       | PS2 wireless handle             | 1 | <img  src="../_static/media/chapter_1/section_3/16.png"  style="width:180px;"/>   |
+| 6       | Dot matrix display              | 1 | <img  src="../_static/media/chapter_1/section_3/10.png" style="width:180px;"/>  |
+| 7       | Touch sensor                    | 1 | <img  src="../_static/media/chapter_1/section_3/11.png" style="width:180px;"/>  |
+| 8       | Glowing ultrasonic sensor       | 1 | <img  src="../_static/media/chapter_1/section_3/12.png" style="width:180px;"/>  |
+| 9       | MP3 module                      | 1 | <img  src="../_static/media/chapter_1/section_3/13.png"style="width:180px;"/>  |
+| 10 | TOF Lidar(with bracket) | 1 | <img  src="../_static/media/chapter_1/section_3/18.png" style="width:180px;"/>  |
+| 11      | Bracket(for ultransion sensor)  | 1 | <img  src="../_static/media/chapter_1/section_3/14.png" style="width:180px;"/>  |
+| 12      | 4cm Balls                       | 3 | <img  src="../_static/media/chapter_1/section_3/5.png" style="width:180px;"/>   |
+| 13      | 65*65mm Tags                    | 3 | <img  src="../_static/media/chapter_1/section_3/6.1.png" style="width:180px;"/> |
+| 14      | 4PIN wire                       | 3 | <img  src="../_static/media/chapter_1/section_3/9.png" style="width:180px;"/>   |
+| 15      | Screwdriver                     | 1 | <img  src="../_static/media/chapter_1/section_3/7.png" style="width:180px;"/>   |
 | 16      | Accessory bag<br>(M4 *5 Black single-pass nylon column * 6<br>M4 *6 round head screw *12<br>M2 *6 round head screw * 6<br>M3 *6 Black round head screw * 6) | 1 | <img  src="../_static/media/chapter_1/section_3/15.png" />                        |
-| 17      | Manual                          | 1 | <img  src="../_static/media/chapter_1/section_3/8.png" sytle="width:300px;"/>   |
+| 17      | Manual                          | 1 | <img  src="../_static/media/chapter_1/section_3/8.png" style="width:300px;"/>   |
 
 (4) PuppyPi Pro Ultimate Packing List
 
 | **No.** | Components                      | **Quantity** | **Picture**                                                                      |
 |---------| ------------------------------- | ------------ |----------------------------------------------------------------------------------|
-| 1       | PuppyPi(with camera)            | 1 | <img  src="../_static/media/chapter_1/section_3/1.png" sytle="width:300px;"/>  |
-| 2       | 8.4V charger                    | 1 | <img  src="../_static/media/chapter_1/section_3/2.png" sytle="width:200px;"/>  |
-| 3       | HPS-0618SG Spare coreless servo | 1 | <img  src="../_static/media/chapter_1/section_3/3.png" sytle="width:100px;"/>  |
-| 4       | Card Reader                     | 1 | <img  src="../_static/media/chapter_1/section_3/4.png" sytle="width:50px;"/>   |
-| 5       | PS2 wireless handle             | 1 | <img  src="../_static/media/chapter_1/section_3/16.png" sytle="width:180px;"/> |
-| 6       | Dot matrix display              | 1 | <img  src="../_static/media/chapter_1/section_3/10.png" sytle="width:180px;"/>   |
-| 7       | Touch sensor                    | 1 | <img  src="../_static/media/chapter_1/section_3/11.png" sytle="width:180px;"/>   |
-| 8       | Glowing ultrasonic sensor       | 1 | <img  src="../_static/media/chapter_1/section_3/12.png" sytle="width:180px;"/>   |
-| 9       | MP3 module                      | 1 | <img  src="../_static/media/chapter_1/section_3/13.png" sytle="width:180px;"/>   |
-| 10 | TOF Lidar(with bracket) | 1 | <img  src="../_static/media/chapter_1/section_3/18.png" sytle="width:180px;"/>   |
-| 11      | Bracket(for ultransion sensor)  | 1 | <img  src="../_static/media/chapter_1/section_3/14.png" sytle="width:180px;"/>   |
-| 12      | 4cm Balls                       | 3 | <img  src="../_static/media/chapter_1/section_3/5.png" sytle="width:180px;"/>    |
-| 13      | 65*65mm Tags                    | 3 | <img  src="../_static/media/chapter_1/section_3/6.1.png" sytle="width:180px;"/>  |
-| 14      | 4PIN wire                       | 3 | <img  src="../_static/media/chapter_1/section_3/9.png" sytle="width:180px;"/>    |
-| 15      | Screwdriver                     | 1 | <img  src="../_static/media/chapter_1/section_3/7.png" sytle="width:180px;"/>    |
+| 1       | PuppyPi(with camera)            | 1 | <img  src="../_static/media/chapter_1/section_3/1.png" style="width:300px;"/>  |
+| 2       | 8.4V charger                    | 1 | <img  src="../_static/media/chapter_1/section_3/2.png" style="width:200px;"/>  |
+| 3       | HPS-0618SG Spare coreless servo | 1 | <img  src="../_static/media/chapter_1/section_3/3.png" style="width:100px;"/>  |
+| 4       | Card Reader                     | 1 | <img  src="../_static/media/chapter_1/section_3/4.png" style="width:50px;"/>   |
+| 5       | PS2 wireless handle             | 1 | <img  src="../_static/media/chapter_1/section_3/16.png" style="width:180px;"/> |
+| 6       | Dot matrix display              | 1 | <img  src="../_static/media/chapter_1/section_3/10.png" style="width:180px;"/>   |
+| 7       | Touch sensor                    | 1 | <img  src="../_static/media/chapter_1/section_3/11.png" style="width:180px;"/>   |
+| 8       | Glowing ultrasonic sensor       | 1 | <img  src="../_static/media/chapter_1/section_3/12.png" style="width:180px;"/>   |
+| 9       | MP3 module                      | 1 | <img  src="../_static/media/chapter_1/section_3/13.png" style="width:180px;"/>   |
+| 10 | TOF Lidar(with bracket) | 1 | <img  src="../_static/media/chapter_1/section_3/18.png" style="width:180px;"/>   |
+| 11      | Bracket(for ultransion sensor)  | 1 | <img  src="../_static/media/chapter_1/section_3/14.png" style="width:180px;"/>   |
+| 12      | 4cm Balls                       | 3 | <img  src="../_static/media/chapter_1/section_3/5.png" style="width:180px;"/>    |
+| 13      | 65*65mm Tags                    | 3 | <img  src="../_static/media/chapter_1/section_3/6.1.png" style="width:180px;"/>  |
+| 14      | 4PIN wire                       | 3 | <img  src="../_static/media/chapter_1/section_3/9.png" style="width:180px;"/>    |
+| 15      | Screwdriver                     | 1 | <img  src="../_static/media/chapter_1/section_3/7.png" style="width:180px;"/>    |
 | 16      | Accessory bag<br>(M4 *5 Black single-pass nylon column * 6<br>M4 *6 round head screw *12<br>M2 *6 round head screw * 6<br>M3 *6 Black round head screw * 6) | 1 | <img  src="../_static/media/chapter_1/section_3/15.png" />                       |
-| 17 |Robot Arm(with mounting bracket)  | 1 | <img  src="../_static/media/chapter_1/section_3/17.png" sytle="width:230px;"/>   |
-| 18 |Sponge cube  | 3 | <img  src="../_static/media/chapter_1/section_3/6.png" sytle="width:180px;"/>    |
-| 19      | Manual                          | 1 | <img  src="../_static/media/chapter_1/section_3/8.png" sytle="width:300px;"/>    |
+| 17 |Robot Arm(with mounting bracket)  | 1 | <img  src="../_static/media/chapter_1/section_3/17.png" style="width:230px;"/>   |
+| 18 |Sponge cube  | 3 | <img  src="../_static/media/chapter_1/section_3/6.png" style="width:180px;"/>    |
+| 19      | Manual                          | 1 | <img  src="../_static/media/chapter_1/section_3/8.png" style="width:300px;"/>    |
 
 ## 1.3 Start PuppyPi
 
