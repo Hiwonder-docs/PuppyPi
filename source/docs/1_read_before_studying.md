@@ -89,7 +89,7 @@ Furthermore, unless explicitly stated by Hiwonder, we are not responsible for an
 | 6       | Dot matrix display              | 1 | <img  src="../_static/media/chapter_1/section_3/10.png" sytle="width:180px;"/>  |
 | 7       | Touch sensor                    | 1 | <img  src="../_static/media/chapter_1/section_3/11.png" sytle="width:180px;"/>  |
 | 8       | Glowing ultrasonic sensor       | 1 | <img  src="../_static/media/chapter_1/section_3/12.png" sytle="width:180px;"/>  |
-| 9       | MP3 module                      | 1 | <img  src="../_static/media/chapter_1/section_3/13.png"sytle="width:180px;"/> />  |
+| 9       | MP3 module                      | 1 | <img  src="../_static/media/chapter_1/section_3/13.png"sytle="width:180px;"/>  |
 | 10 | TOF Lidar(with bracket) | 1 | <img  src="../_static/media/chapter_1/section_3/18.png" sytle="width:180px;"/>  |
 | 11      | Bracket(for ultransion sensor)  | 1 | <img  src="../_static/media/chapter_1/section_3/14.png" sytle="width:180px;"/>  |
 | 12      | 4cm Balls                       | 3 | <img  src="../_static/media/chapter_1/section_3/5.png" sytle="width:180px;"/>   |
