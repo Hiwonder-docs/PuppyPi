@@ -45,6 +45,8 @@ Furthermore, unless explicitly stated by Hiwonder, we are not responsible for an
 
 (1) PuppyPi Standard Packing List
 
+<p style="text-align:center;">
+
 | **No.** | **Components**                  | **Quantity** | **Picture**                                                                     |
 | ------- | ------------------------------- | ------------ |---------------------------------------------------------------------------------|
 | 1       | PuppyPi(with camera)            | 1            | <img  src="../_static/media/chapter_1/section_3/1.png" style="width:300px;"/>   |
@@ -55,6 +57,8 @@ Furthermore, unless explicitly stated by Hiwonder, we are not responsible for an
 | 6       | 65*65mm Tags                    | 3            | <img  src="../_static/media/chapter_1/section_3/6.1.png" style="width:180px;"/> |
 | 7       | Screwdriver                     | 1            | <img  src="../_static/media/chapter_1/section_3/7.png" style="width:180px;"/>   |
 | 8       | Manual                          | 1            | <img  src="../_static/media/chapter_1/section_3/8.png" style="width:300px;"/>                       |
+
+</p>
 
 (2) PuppyPi Advanced Packing List
 
