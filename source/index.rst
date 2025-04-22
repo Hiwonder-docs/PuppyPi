@@ -40,3 +40,4 @@ PuppyPi
    docs/34.ros2_autonomous_navigation_course.md
    docs/35.ros2_robot_arm_course.md
    docs/resources_download.md
+   Download <https://drive.google.com/drive/folders/1sgG2CQcXimtivb-J_ILMTr9niWKPPdqN?usp=sharing>
