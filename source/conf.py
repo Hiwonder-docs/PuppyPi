@@ -9,7 +9,7 @@
 project = 'PuppyPi'
 copyright = '2025, Hiwonder'
 author = 'Hiwonder'
-release = 'v1.0'
+release = 'v2.0'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
@@ -27,6 +27,7 @@ myst_enable_extensions = [
     "attrs_block",
     "colon_fence",
     "substitution",
+    "dollarmath",
 ]
 
 # -- Options for HTML output -------------------------------------------------
