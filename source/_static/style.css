@@ -7,6 +7,14 @@ section p {
 .caption{
     display:none;
 }
+.wy-menu-vertical > ul > li:last-child >a{
+    display: block;
+    width: fit-content;
+    margin: 1.618em;
+    background: #f98800;
+    color: #fff;
+    border-radius: 8px;
+}
 .wy-nav-side .wy-menu-vertical header, .wy-menu-vertical p.caption{
     color: #f98800;
     text-transform: unset;
