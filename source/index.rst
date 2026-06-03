@@ -46,4 +46,4 @@ PuppyPi
    docs/33.ROS2_Robot_Arm_Course.md
    docs/34.ROS2_AI_Large_Model_Courses.md
    docs/resources_download.md
-   Download <https://drive.google.com/drive/folders/1sgG2CQcXimtivb-J_ILMTr9niWKPPdqN?usp=sharing>
+   Download <https://drive.google.com/drive/folders/1j3ScVwKSTTDiGVcX9v69KmrL0Hahnj1E?usp=sharing>
